@@ -1,7 +1,6 @@
 import React,{useState, useEffect} from 'react';
 import Axios from 'axios'
 import {Link} from "react-router-dom";
-import moment from "moment";
 
 function HomePage(props) {
   return (
