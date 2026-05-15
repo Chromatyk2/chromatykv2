@@ -4,6 +4,7 @@
 }
 .App {
   text-align: center;
+  font-family: 'Charge Vector Black'
 }
 
 .App-logo {
@@ -32,22 +33,28 @@
   color: #61dafb;
 }
 
-.loginButton {
-    display: flex;
-    background-color: #6441a5;
-    color: white;
-    border: none;
-    padding: 15px;
-    border-radius: 30px;
-    line-height: 22px;
-    font-size: 25px;
-}
-
 /* NAVBAR*/
 .navBar {
     width: 100%;
     background-color: #120747;
 }
+.loginButton {
+    :hover{
+        cursor:pointer;
+    }
+    background-color: #6441a5;
+    border: none;
+    border-radius: 3px;
+    color: #fff;
+    display: flex;
+    font-size: 15px;
+    line-height: 3px;
+    padding: 15px;
+    float: inline-end;
+    margin: 20px;
+    font-weight: 900;
+}
+
 /* SHINY DEX */
 .shinydexContainer {
     display: flex;
