@@ -19,7 +19,8 @@ function HomePage(props) {
     return (
         <>
             {typeof cookies.user === "undefined" &&
-                <div className={"navBar"}>
+                <div className={"connectionBar"}>
+                    <p>Connectez-vous pour jouer !</p>
                     <Login />
                 </div>
             }
