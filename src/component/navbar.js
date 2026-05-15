@@ -4,7 +4,6 @@ import Axios from "axios";
 import { useCookies } from 'react-cookie';
 
 function NavBar(props) {
-    const [expanded, setExpanded] = useState(false);
     const [cookies, setCookie] = useCookies();
     //useEffect(() => {
     //    if(typeof props.cookies.user !== "undefined"){
@@ -61,18 +60,18 @@ function NavBar(props) {
     //}, [props.cookies]);
   return (
     <div>
-        <Link onClick={() => setExpanded(false)} className="navLink linkFromNav" to="/">Accueil</Link>
+        <Link className="navLink linkFromNav" to="/">Accueil</Link>
         {typeof cookies.user !== "undefined" &&              
             <>
-                <Link onClick={() => setExpanded(false)} className="navLink linkFromNav" to="/profil">Profil</Link>
-                <Link onClick={() => setExpanded(false)} className="navLink linkFromNav" to="/compagnon">Compagnon</Link>
-                <Link onClick={() => setExpanded(false)} className="navLink linkFromNav" to="/pokedex">Pokedex</Link>
-                <Link onClick={() => setExpanded(false)} className="navLink linkFromNav" to="/allProfils">Communauté</Link>
-                <Link onClick={() => setExpanded(false)} className="navLink linkFromNav" to="/tcg/cartes">Mes cartes</Link>
-                <Link onClick={() => setExpanded(false)} className="navLink linkFromNav" to="/tcg/boutique">Ouverture Booster</Link>
+                <Link className="navLink linkFromNav" to="/profil">Profil</Link>
+                <Link className="navLink linkFromNav" to="/compagnon">Compagnon</Link>
+                <Link className="navLink linkFromNav" to="/pokedex">Pokedex</Link>
+                <Link className="navLink linkFromNav" to="/allProfils">Communauté</Link>
+                <Link className="navLink linkFromNav" to="/tcg/cartes">Mes cartes</Link>
+                <Link className="navLink linkFromNav" to="/tcg/boutique">Ouverture Booster</Link>
         </>
         }
-        <Link style={{color:"gold"}} onClick={() => setExpanded(false)} className="navLink linkFromNav" to="/shinydex">Shinydex</Link>
+        <Link style={{color:"gold"}} className="navLink linkFromNav" to="/shinydex">Shinydex</Link>
     </div>
   );
 }
