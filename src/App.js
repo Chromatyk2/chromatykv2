@@ -19,7 +19,6 @@ function App() {
   return (
     <div className="App">
           <header className="App-header">
-              <NavBar cookies={cookies} />
               {typeof cookies.user === "undefined" && 
                   <Login />
               }
@@ -29,6 +28,7 @@ function App() {
                       <Route path="/" element={<HomePage />} />
                   </Routes>
               </BrowserRouter>
+              <NavBar cookies={cookies} />
       </header>
     </div>
   );
