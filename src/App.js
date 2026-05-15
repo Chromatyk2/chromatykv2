@@ -28,6 +28,7 @@ function App() {
                       <Route path="/" element={<HomePage />} />
                   </Routes>
               </BrowserRouter>
+              <NavBar cookies={cookies} />
       </header>
     </div>
   );
