@@ -43,9 +43,12 @@
     font-size: 25px;
 }
 
+/* NAVBAR*/
+.navBar {
+    width: 100%;
+    background-color: background-color: #120747;
+}
 /* SHINY DEX */
-
-
 .shinydexContainer {
     display: flex;
     flex-wrap: wrap;

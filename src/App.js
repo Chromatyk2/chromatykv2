@@ -6,7 +6,6 @@ import { useCookies } from 'react-cookie';
 
 //Services
 
-import Login from './services/auth.services.js';
 import Log from "./services/log";
 
 //Publique
@@ -19,9 +18,6 @@ function App() {
   return (
     <div className="App">
           <header className="App-header">
-              {typeof cookies.user === "undefined" && 
-                  <Login />
-              }
               <BrowserRouter>
                   <NavBar cookies={cookies} />
                   <Routes>

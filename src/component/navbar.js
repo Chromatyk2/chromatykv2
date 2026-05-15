@@ -2,6 +2,7 @@ import React,{useState, useEffect} from 'react';
 import {Link} from "react-router-dom";
 import Axios from "axios";
 import { useCookies } from 'react-cookie';
+import Login from './services/auth.services.js';
 
 function NavBar(props) {
     const [cookies, setCookie] = useCookies();
@@ -59,7 +60,7 @@ function NavBar(props) {
     //    }
     //}, [props.cookies]);
   return (
-    <div>
+      <div className={"navBar"}>
         <Link className="navLink linkFromNav" to="/">Accueil</Link>
         {typeof cookies.user !== "undefined" &&              
             <>
@@ -71,7 +72,10 @@ function NavBar(props) {
                 <Link className="navLink linkFromNav" to="/tcg/boutique">Ouverture Booster</Link>
         </>
         }
-        <Link style={{color:"gold"}} className="navLink linkFromNav" to="/shinydex">Shinydex</Link>
+          <Link style={{ color: "gold" }} className="navLink linkFromNav" to="/shinydex">Shinydex</Link>
+          {typeof cookies.user === "undefined" &&
+              <Login />
+          }
     </div>
   );
 }
