@@ -1,7 +1,4 @@
 import React,{useState, useEffect} from 'react';
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
 import {Link} from "react-router-dom";
 import Axios from "axios";
 import { useCookies } from 'react-cookie';
@@ -63,7 +60,7 @@ function NavBar(props) {
     //    }
     //}, [props.cookies]);
   return (
-    <Nav className="me-auto my-2 my-lg-0" navbarScroll>
+    <div>
         <Link onClick={() => setExpanded(false)} className="navLink linkFromNav" to="/">Accueil</Link>
         {typeof cookies.user !== "undefined" &&              
             <>
@@ -76,7 +73,7 @@ function NavBar(props) {
         </>
         }
         <Link style={{color:"gold"}} onClick={() => setExpanded(false)} className="navLink linkFromNav" to="/shinydex">Shinydex</Link>
-    </Nav>
+    </div>
   );
 }
 
