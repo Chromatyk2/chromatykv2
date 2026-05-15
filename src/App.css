@@ -39,8 +39,8 @@
     background-color: #120747;
 }
 .loginButton {
-    :hover{
-        cursor:pointer;
+    :hover {
+        cursor: pointer;
     }
     background-color: #6441a5;
     border: none;
@@ -51,7 +51,7 @@
     line-height: 3px;
     padding: 15px;
     float: inline-end;
-    margin: 20px;
+    margin: 10px;
     font-weight: 900;
 }
 
