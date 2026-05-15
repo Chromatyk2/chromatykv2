@@ -2,7 +2,7 @@ import React,{useState, useEffect} from 'react';
 import {Link} from "react-router-dom";
 import Axios from "axios";
 import { useCookies } from 'react-cookie';
-import Login from './services/auth.services.js';
+import Login from '../services/auth.services.js';
 
 function NavBar(props) {
     const [cookies, setCookie] = useCookies();
