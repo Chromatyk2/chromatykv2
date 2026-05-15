@@ -11,6 +11,7 @@ import Log from "./services/log";
 
 //Publique
 
+import NavBar from './component/navbar.js';
 import HomePage from './component/home.js';
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
   return (
     <div className="App">
           <header className="App-header">
+              <NavBar cookies={cookies} />
               {typeof cookies.user === "undefined" && 
                   <Login />
               }
