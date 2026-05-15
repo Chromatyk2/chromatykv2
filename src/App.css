@@ -32,6 +32,17 @@
   color: #61dafb;
 }
 
+.loginButton {
+    display: flex;
+    background-color: #6441a5;
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 30px;
+    line-height: 22px;
+    font-size: 25px;
+}
+
 /* SHINY DEX */
 
 
