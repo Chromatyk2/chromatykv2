@@ -32,6 +32,65 @@
   color: #61dafb;
 }
 
+/////// SHINY DEX ///////
+
+
+.shinydexContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    width: 90%;
+    margin: auto;
+    padding-bottom: 100px;
+}
+
+.shinydexCard {
+    width: 300px;
+    display: flex;
+    flex-flow: column;
+    border: solid 1px #120747;
+}
+
+.shinydexName {
+    color: white;
+    text-align: center;
+    background-color: #120747;
+    padding: 5px;
+}
+
+.shinydexSpriteContainer {
+    background-image: linear-gradient(to bottom right, #120747, #072057 25%, #120747 50%, #072057 75%, #120747);
+    flex: 1 1 auto;
+    min-height: 1px;
+    padding: 1.25rem;
+    position: relative;
+}
+
+.shinydexSprite {
+    max-width: 100%;
+    max-height: 150px;
+    width: auto;
+}
+
+.description {
+    color: white;
+    text-align: center;
+    background-color: #120747;
+    padding: 5px;
+}
+
+.spanShinydex {
+    color: #83d7d7;
+}
+
+.linkShinydex {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 50px;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
