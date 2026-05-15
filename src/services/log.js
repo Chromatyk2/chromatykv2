@@ -7,13 +7,10 @@ import { Navigate } from "react-router-dom";
 
 
 function Log() {
-    //useEffect(() => {
-    //    window.location.href = "https://chromatykv2.netlify.app/";
-    //}, []);
-    return (
-        <>
-            <p style={{ textAlign: "center", color: "white" }}>Bienvenue,</p>>
-        </>
-    )
+    useEffect(() => {
+        setTimeout(function () {
+            window.location.href = "https://chromatykv2.netlify.app/";
+        }, 1000);
+    }, []);
 }
 export default Log;
