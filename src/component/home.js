@@ -3,9 +3,12 @@ import Axios from 'axios'
 import '../App.css'
 import { Link } from "react-router-dom";
 import moment from "moment";
+import { useCookies } from 'react-cookie';
+import Login from '../services/auth.services.js';
 
 function HomePage(props) {
     const [shinydex, setShinydex] = useState(null);
+    const [cookies, setCookie] = useCookies();
     useEffect(() => {
         Axios
             .get("/api/getShinydex")
@@ -15,6 +18,11 @@ function HomePage(props) {
     }, []);
     return (
         <>
+            {typeof cookies.user === "undefined" &&
+                <div className={"navBar"}>
+                    <Login />
+                </div>
+            }
             <p style={{ textAlign: "center", color: "white" }}>Bienvenue,</p>
             <p style={{ textAlign: "center", color: "white" }}>Ici, tu peux ouvrir un booster Pokémon toutes les heures, et utiliser tes points de chaîne Twitch pour en ouvrir encore plus ou capturer des Pokémon. <br />
                 Complète ton Pokédex, remplis ta collection de cartes, construis ton profil pour flex sur les lives !<br />
