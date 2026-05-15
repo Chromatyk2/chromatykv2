@@ -17,11 +17,11 @@ function App() {
     <div className="App">
           <header className="App-header">
               <BrowserRouter>
-              <NavBar />
                   <Routes>
                       <Route path="/log" element={<Log />} />
                       <Route path="/" element={<HomePage />} />
                   </Routes>
+                  <NavBar />
               </BrowserRouter>
       </header>
     </div>

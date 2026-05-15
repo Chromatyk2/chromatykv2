@@ -48,12 +48,12 @@
     align-items: center;
     background-color: #120747;
     display: flex;
-    font-size: 15px;
+    font-size: 20px;
     justify-content: center;
     width: fit-content;
-    padding: 0 0 0 10px;
+    padding: 0 35px 0 40px;
+    border-radius: 5px;
     margin-top: 50px;
-    border-radius:3px;
 }
 .connectionBar p {
     margin:0;
