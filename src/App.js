@@ -23,12 +23,12 @@ function App() {
                   <Login />
               }
               <BrowserRouter>
+                  <NavBar cookies={cookies} />
                   <Routes>
                       <Route path="/log" element={<Log cookies={cookies} />} />
                       <Route path="/" element={<HomePage />} />
                   </Routes>
               </BrowserRouter>
-              <NavBar cookies={cookies} />
       </header>
     </div>
   );
