@@ -60,18 +60,18 @@ function NavBar(props) {
     //}, [props.cookies]);
   return (
     <div>
-        {/*<Link className="navLink linkFromNav" to="/">Accueil</Link>*/}
-        {/*{typeof cookies.user !== "undefined" &&              */}
-        {/*    <>*/}
-        {/*        <Link className="navLink linkFromNav" to="/profil">Profil</Link>*/}
-        {/*        <Link className="navLink linkFromNav" to="/compagnon">Compagnon</Link>*/}
-        {/*        <Link className="navLink linkFromNav" to="/pokedex">Pokedex</Link>*/}
-        {/*        <Link className="navLink linkFromNav" to="/allProfils">Communauté</Link>*/}
-        {/*        <Link className="navLink linkFromNav" to="/tcg/cartes">Mes cartes</Link>*/}
-        {/*        <Link className="navLink linkFromNav" to="/tcg/boutique">Ouverture Booster</Link>*/}
-        {/*</>*/}
-        {/*}*/}
-        {/*<Link style={{color:"gold"}} className="navLink linkFromNav" to="/shinydex">Shinydex</Link>*/}
+        <Link className="navLink linkFromNav" to="/">Accueil</Link>
+        {typeof cookies.user !== "undefined" &&              
+            <>
+                <Link className="navLink linkFromNav" to="/profil">Profil</Link>
+                <Link className="navLink linkFromNav" to="/compagnon">Compagnon</Link>
+                <Link className="navLink linkFromNav" to="/pokedex">Pokedex</Link>
+                <Link className="navLink linkFromNav" to="/allProfils">Communauté</Link>
+                <Link className="navLink linkFromNav" to="/tcg/cartes">Mes cartes</Link>
+                <Link className="navLink linkFromNav" to="/tcg/boutique">Ouverture Booster</Link>
+        </>
+        }
+        <Link style={{color:"gold"}} className="navLink linkFromNav" to="/shinydex">Shinydex</Link>
     </div>
   );
 }
