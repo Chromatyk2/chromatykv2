@@ -13,9 +13,11 @@ function Fight() {
     const [pokemonMaxHp, setPokemonMaxHp] = useState(1000);
     function throwRock() {
         let dmg = Math.floor((Math.random() * 20) + 1);
-        setPokemonCurrentHp(pokemonCurrentHp - dmg);
-        let currentHP = pokemonCurrentHp - dmg;
-        setPokemonHpPurcent(100 - (currentHP / pokemonMaxHp) * 100)
+        if (pokemonCurrentHp - dmg > 0) {
+            setPokemonCurrentHp(pokemonCurrentHp - dmg);
+            let currentHP = pokemonCurrentHp - dmg;
+            setPokemonHpPurcent(100 - (currentHP / pokemonMaxHp) * 100)
+        }
     }
     return (
         <div className={"fightContainer"}>
