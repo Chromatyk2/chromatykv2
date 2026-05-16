@@ -24,7 +24,7 @@ function App() {
                           <Route path="/" element={<HomePage />} />
                           <Route path="/shiny" element={<ShinyDex />} />
                       </Routes>
-                      <div className={"nevBarcontent"}>
+                      <div className={"navBarContent"}>
                           <NavBar />
                       </div>
                   </div>
