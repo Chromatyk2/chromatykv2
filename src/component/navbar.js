@@ -60,8 +60,7 @@ function NavBar(props) {
     //    }
     //}, [props.cookies]);
     function deployNav() {
-        const isActive = document.getElementById("navBar").classList.contains('expended');
-        if (!isActive) {
+        if (!document.getElementById("navBar").classList.contains('expended')) {
             document.getElementById("navBar").classList.add('expended');
         } else {
             document.getElementById("navBar").remove('expended');
