@@ -57,8 +57,11 @@
     background-color: #054873;
     border-radius: 0 0 10rem 10rem;
     height: 4rem;
-    width: 5rem;
     margin: auto;
+    width: 5rem;
+    border-right: solid white;
+    border-left: solid white;
+    border-bottom: solid white;
 }
 .halfCircle:hover {
     cursor: pointer;
@@ -77,6 +80,7 @@
     transition: height 1s ease-in-out;
     gap: 20px;
     overflow-y: hidden;
+    border-bottom: white solid;
 }
 #navBar.expended {
     height: fit-content;
@@ -233,12 +237,6 @@ a.navLink.linkFromNav p {
     height: 20px;
     width: 50%;
     transition: width 1s ease-in-out;
-}
-.shinydexSprite {
-    max-height: 250px;
-    max-width: 100%;
-    width: auto;
-    margin-top:50px;
 }
 .fightActionsContainer {
     display: flex;
