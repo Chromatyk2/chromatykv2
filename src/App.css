@@ -76,6 +76,10 @@
     transition: height 1s ease-in-out;
     gap: 20px
 }
+.navBar.expended {
+    height: fit-content;
+    transition: height 1s ease-in-out;
+}
 a.navLink.linkFromNav {
     background-color: #0f1751;
     border-radius: 10px;

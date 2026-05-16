@@ -60,7 +60,7 @@ function NavBar(props) {
     //    }
     //}, [props.cookies]);
     function deployNav() {
-        document.getElementById("navBar").style.height = "fit-content";
+        document.getElementById("navBar").toggle('expended');
     }
     return (
         <>
@@ -93,7 +93,7 @@ function NavBar(props) {
                     </Link>
                     </>
                 }
-                <Link className="navLink linkFromNav" to="/leaderboard">
+                <Link className="navLink linkFromNav" to="/shiny">
                     <img src={"/shiny.png"} />
                     <p>Shiny Dex</p>
                 </Link>
