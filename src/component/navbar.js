@@ -63,8 +63,10 @@ function NavBar(props) {
     function deployNav() {
         if (isExtended) {
             document.getElementById("navBar").style.height = "0";
+            setIsExtended(false);
         } else {
             document.getElementById("navBar").style.height = "fit-content";
+            setIsExtended(true);
         }
     }
     return (
