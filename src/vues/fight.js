@@ -10,7 +10,6 @@ function Fight() {
     const [cookies, setCookie] = useCookies();
     const [pokemonHp, setPokemonHp] = useState(100);
     const [pokemonMaxHp, setPokemonMaxHp] = useState(1000);
-    const [customStyles, setCustomStyles] = useState(null);
     function throwRock() {
         let dmg = Math.floor((Math.random() * 20) + 1);
         setPokemonHp(pokemonHp - dmg);
@@ -21,7 +20,7 @@ function Fight() {
             <p className={"fightName"}>Lugia</p>
             <div className={"tierFight"}>Tier 1</div>
             <div className={"progressBarFightExternal"}>
-                <div style={{ width: +pokemonHp/pokemonMaxHp*100 + "%" }} className={"progressBarFightInternal"}></div>
+                <div style={{ width: +100-pokemonHp/pokemonMaxHp + "%" }} className={"progressBarFightInternal"}></div>
             </div>
             <div>
                 <img class="fightSprite" src="/Shinydex/shiny/249.gif" />
