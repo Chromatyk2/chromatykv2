@@ -72,6 +72,11 @@
     display: flex;
     font-size: 20px;
     padding: 20px 0 20px 0;
+    flex-wrap: wrap;
+    -webkit-transition: height 1s ease-in-out;
+    -moz-transition: height 1s ease-in-out;
+    -o-transition: height 1s ease-in-out;
+    transition: height 1s ease-in-out;
 }
 a.navLink.linkFromNav {
     color: white;
