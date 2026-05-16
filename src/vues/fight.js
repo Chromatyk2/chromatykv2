@@ -18,12 +18,16 @@ function Fight() {
             <div className={"fightActionsContainer"}>
                 <div className={"fightActions"}>
                     < img src={"/honey.png"} />
+                    <p>Miels</p>
                 </div>
                 <div className={"fightActions"}>
                     < img src={"/stone.png"} />
+                    <p>Cailloux</p>
+                    <p>x 1</p>
                 </div>
                 <div className={"fightActions"}>
                     < img src={"/ball.png"} />
+                    <p>Balls</p>
                 </div>
             </div>
         </div>
