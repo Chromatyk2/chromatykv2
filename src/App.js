@@ -17,10 +17,12 @@ function App() {
     <div className="App">
           <header className="App-header">
               <BrowserRouter>
-                  <Routes>
-                      <Route path="/log" element={<Log />} />
-                      <Route path="/" element={<HomePage />} />
-                  </Routes>
+                  <div className={"globalContainer"}>
+                      <Routes>
+                          <Route path="/log" element={<Log />} />
+                          <Route path="/" element={<HomePage />} />
+                      </Routes>
+                  </div>
                   <NavBar />
               </BrowserRouter>
       </header>
