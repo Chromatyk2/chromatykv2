@@ -8,7 +8,7 @@ import ProgressBarFight from '../components/progressBarFight.js';
 
 function Fight() {
     const [cookies, setCookie] = useCookies();
-    const [pokemonHpPurcent, setPokemonHpPurcent] = useState(100);
+    const [pokemonHpPurcent, setPokemonHpPurcent] = useState(200);
     const [pokemonCurrentHp, setPokemonCurrentHp] = useState(1000);
     const [pokemonMaxHp, setPokemonMaxHp] = useState(1000);
     function throwRock() {
