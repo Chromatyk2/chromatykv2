@@ -10,6 +10,7 @@ import Log from "./services/log";
 //Publique
 
 import NavBar from './vues/navbar.js';
+import Footer from './components/footer.js';
 import HomePage from './vues/home.js';
 import ShinyDex from './vues/Shinydex.js';
 import Fight from './vues/fight.js';
@@ -26,7 +27,8 @@ function App() {
                           <Route path="/combat" element={<Fight />} />
                       </Routes>
                       <div className={"navBarContent"}>
-                          <NavBar />
+                        <NavBar />
+                        <Footer />
                       </div>
                   </div>
               </BrowserRouter>
