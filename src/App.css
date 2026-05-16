@@ -88,7 +88,7 @@
     padding: 20px 0;
 }
 a.navLink.linkFromNav {
-    background-color: #0f1751;
+    background-color: rgba(0,0,0,0.1);
     border-radius: 10px;
     color: #fff;
     font-size: 15px;
@@ -218,7 +218,7 @@ a.navLink.linkFromNav p {
 /* Combat */
 .fightContainer {
     align-items: center;
-    background-color: #054873;
+    background-color: rgba(0,0,0,0.1);
     border-radius: 10px;
     display: flex;
     flex-flow: column;
@@ -246,7 +246,7 @@ a.navLink.linkFromNav p {
 .fightActions {
     width: 100px;
     height: 100px;
-    background-color: #0D235A;
+    background-color: rgba(0,0,0,0.1);
     border-radius: 10px;
 }
 .fightActions img {
