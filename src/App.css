@@ -55,7 +55,6 @@
 .halfCircle {
     background-color: #054873;
     border-radius: 0 0 10rem 10rem;
-    filter: drop-shadow(2px -2px 6px black);
     height: 4rem;
     width: 5rem;
     margin: auto;

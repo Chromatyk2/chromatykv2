@@ -59,9 +59,12 @@ function NavBar(props) {
     //        )
     //    }
     //}, [props.cookies]);
+    function deployNav() {
+        document.getElementById("navBar").style.height = "120px";
+    }
     return (
         <>
-            <div className={"navBar"}>
+            <div id={"navBar"} className={"navBar"}>
                 <Link className="navLink linkFromNav" to="/"><FontAwesomeIcon icon="fa-solid fa-house" /></Link>
                 {typeof cookies.user !== "undefined" &&
                     <>
@@ -75,8 +78,8 @@ function NavBar(props) {
                 }
                 <Link style={{ color: "gold" }} className="navLink linkFromNav" to="/shinydex"><FontAwesomeIcon icon="fa-solid fa-star" /></Link>
             </div>
-            <div className="halfCircle">
-                <svg onclick="openMenu()" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#5a9bc4" stroke-linecap="round" stroke-linejoin="round" height="55" width="55">
+            <div onclick={deployNav} className="halfCircle">
+                <svg onclick="openMenu()" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" height="55" width="55">
                     <path d="M3 12a9 9 0 1 0 18 0 9 9 0 1 0 -18 0" stroke-width="2"></path>
                     <path d="M9 12a3 3 0 1 0 6 0 3 3 0 1 0 -6 0" stroke-width="2"></path>
                     <path d="M3 12h6" stroke-width="2"></path>
