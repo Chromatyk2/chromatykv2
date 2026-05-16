@@ -62,10 +62,11 @@ function NavBar(props) {
     function deployNav() {
         document.getElementById("navBar").style.height = "fit-content";
         document.getElementById("navBar").style.padding = "20px 0";
+        document.getElementById("navBar").classList.toggle("expended");
     }
     return (
         <>
-            <div id={"navBar"} className={"navBar"}>
+            <div id={"navBar"}>
                 <Link className="navLink linkFromNav" to="/profil">
                     <img src={"/profil.png"} />
                     <p>Profil</p>
