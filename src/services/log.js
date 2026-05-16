@@ -10,7 +10,7 @@ function Log() {
     useEffect(() => {
         setTimeout(function () {
             window.location.href = "https://chromatykv2.netlify.app/";
-        }, 1000);
+        }, 2000);
     }, []);
 }
 export default Log;
