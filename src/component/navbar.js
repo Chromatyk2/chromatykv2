@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 function NavBar(props) {
     const [cookies, setCookie] = useCookies();
+    const [isExtended, setIsExtended] = useState(false);
     //useEffect(() => {
     //    if(typeof props.cookies.user !== "undefined"){
     //        Axios
@@ -60,7 +61,11 @@ function NavBar(props) {
     //    }
     //}, [props.cookies]);
     function deployNav() {
-        document.getElementById("navBar").classList.add('expended');
+        if (isExtended) {
+            document.getElementById("navBar").style.height = "0";
+        } else {
+            document.getElementById("navBar").style.height = "fit-content";
+        }
     }
     return (
         <>
