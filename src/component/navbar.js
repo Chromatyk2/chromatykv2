@@ -60,11 +60,11 @@ function NavBar(props) {
     //    }
     //}, [props.cookies]);
     function deployNav() {
-        document.getElementById("navBar").classList.toggle("expended");
+        document.getElementById("navBar").style.height = "fit-content";
     }
     return (
         <>
-            <div id={"navBar"}>
+            <div id={"navBar"} className={"navBar"}>
                 <Link className="navLink linkFromNav" to="/profil">
                     <img src={"/profil.png"} />
                     <p>Profil</p>
