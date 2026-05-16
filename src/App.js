@@ -9,10 +9,10 @@ import Log from "./services/log";
 
 //Publique
 
-import NavBar from './component/navbar.js';
-import HomePage from './component/home.js';
-import ShinyDex from './component/Shinydex.js';
-import Fight from './component/fight.js';
+import NavBar from './vues/navbar.js';
+import HomePage from './vues/home.js';
+import ShinyDex from './vues/Shinydex.js';
+import Fight from './vues/fight.js';
 function App() {
   return (
     <div className="App">
