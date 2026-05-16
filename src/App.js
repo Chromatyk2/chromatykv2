@@ -23,7 +23,7 @@ function App() {
                           <Route path="/log" element={<Log />} />
                           <Route path="/" element={<HomePage />} />
                           <Route path="/shiny" element={<ShinyDex />} 
-                          <Route path="/combat" element={<Fight />} />
+                          <Route path="/combat" element={<Fight />} 
                       </Routes>
                       <div className={"navBarContent"}>
                           <NavBar />
