@@ -265,8 +265,14 @@ a.navLink.linkFromNav p {
     font-size:13px;
     margin:0;
 }
-.tierFight{
-    padding:5px;
+.tierFight {
+    padding: 5px;
+    font-size: 13px;
+    margin-bottom: 15px;
+}
+.fightName {
+    margin-top: 10px;
+    margin-bottom: 0;
 }
 /* Media Query */
 @media (max-width: 1250px) {

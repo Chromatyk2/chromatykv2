@@ -10,7 +10,7 @@ function Fight() {
     const [cookies, setCookie] = useCookies();
     return (
         <div className={"fightContainer"}>
-            <p>Lugia</p>
+            <p className={"fightName"}>Lugia</p>
             <div className={"tierFight"}>Tier 1</div>
             <ProgressBarFight />
             <div>
