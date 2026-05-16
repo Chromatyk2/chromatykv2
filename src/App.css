@@ -73,19 +73,31 @@
     font-size: 20px;
     padding: 20px 0 20px 0;
     flex-wrap: wrap;
-    -webkit-transition: height 1s ease-in-out;
-    -moz-transition: height 1s ease-in-out;
-    -o-transition: height 1s ease-in-out;
     transition: height 1s ease-in-out;
+    gap:20px
 }
 a.navLink.linkFromNav {
-    color: white;
-    text-decoration: none;
-    font-size: 17px;
-    width: 150px;
-    height: 80px;
-    background-color: #0F1751;
+    background-color: #0f1751;
     border-radius: 10px;
+    color: #fff;
+    font-size: 15px;
+    height: 104px;
+    text-decoration: none;
+    width: 150px;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    padding: 10px;
+}
+a.navLink.linkFromNav img {
+    width: 55px;
+}
+a.navLink.linkFromNav p {
+    background-color: #054873;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 0;
+    font-size: 15px;
 }
 /* ACCEUIL */
 .connectionBar {
