@@ -17,17 +17,18 @@ function HomePage(props) {
             })
     }, []);
     return (
-        <>
+        <div className={"containerHome"}>
+            <p>Bienvenue,</p>
+            <p>Ici, tu peux ouvrir un booster Pokémon toutes les heures, et utiliser tes points de chaîne Twitch pour en ouvrir encore plus ou capturer des Pokémon. <br />
+                Complète ton Pokédex, remplis ta collection de cartes, construis ton profil pour flex sur les lives !<br />
+                Tout ça, c’est du taff, alors si tu veux me soutenir, passe sur mes streams et pense à lacher ton follow, tu me régalerais !</p>
+
             {typeof cookies.user === "undefined" &&
                 <div className={"connectionBar"}>
                     <p>Connectez-vous pour jouer !</p>
                     <Login />
                 </div>
             }
-            <p style={{ textAlign: "center", color: "white" }}>Bienvenue,</p>
-            <p style={{ textAlign: "center", color: "white" }}>Ici, tu peux ouvrir un booster Pokémon toutes les heures, et utiliser tes points de chaîne Twitch pour en ouvrir encore plus ou capturer des Pokémon. <br />
-                Complète ton Pokédex, remplis ta collection de cartes, construis ton profil pour flex sur les lives !<br />
-                Tout ça, c’est du taff, alors si tu veux me soutenir, passe sur mes streams et pense à lacher ton follow, tu me régalerais !</p>
             <div className="socialContainer">
                 <a className="socialLink" target='_blank' href="https://discord.gg/8V6fyQdSCG"><i
                     className="fa-brands fa-discord"></i> Discord</a>
@@ -57,7 +58,7 @@ function HomePage(props) {
                     </div>
                 }
             </div>
-        </>
+        </div>
     )
 }
 
