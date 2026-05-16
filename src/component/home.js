@@ -17,38 +17,35 @@ function HomePage(props) {
             })
     }, []);
     return (
-        <div className={"containerHome"}>
+        <>
             <p>Bienvenue,</p>
-
             {typeof cookies.user === "undefined" &&
                 <div className={"connectionBar"}>
                     <p>Connectez-vous pour jouer !</p>
                     <Login />
                 </div>
             }
-            <div className="socialContainer">                
-                <p className="pseudoProfil">Dernier shiny capturé</p>
-                {shinydex &&
-                    <div className={"shinydexCard"}>
-                        <div className={"shinydexName"}>#{shinydex[0].idPkm} {shinydex[0].pokemon}<br /><span
-                            className={"spanShinydex"}>{shinydex[0].surnom}</span></div>
-                        <div className={"shinydexSpriteContainer"}>
-                            <div>
-                                <img className={"shinydexSprite"} src={"/Shinydex/shiny/" + shinydex[0].idPkm + ".gif"} />
-                            </div>
-                            {shinydex[0].lien !== null &&
-                                <a target={"_blank"} href={shinydex[0].lien}><img className={"linkShinydex"}
-                                    src={"/youtube.png"} /></a>
-                            }
+            <p className="pseudoProfil">Dernier shiny capturé</p>
+            {shinydex &&
+                <div className={"shinydexCard"}>
+                    <div className={"shinydexName"}>#{shinydex[0].idPkm} {shinydex[0].pokemon}<br /><span
+                        className={"spanShinydex"}>{shinydex[0].surnom}</span></div>
+                    <div className={"shinydexSpriteContainer"}>
+                        <div>
+                            <img className={"shinydexSprite"} src={"/Shinydex/shiny/" + shinydex[0].idPkm + ".gif"} />
                         </div>
-                        <div className={"description"}>
-                            {moment(shinydex[0].date).utc().format('DD/MM/YYYY')}<br /><span
-                                className={"spanShinydex"}>{shinydex[0].version}</span><br />{shinydex[0].description}
-                        </div>
+                        {shinydex[0].lien !== null &&
+                            <a target={"_blank"} href={shinydex[0].lien}><img className={"linkShinydex"}
+                                src={"/youtube.png"} /></a>
+                        }
                     </div>
-                }
-            </div>
-        </div>
+                    <div className={"description"}>
+                        {moment(shinydex[0].date).utc().format('DD/MM/YYYY')}<br /><span
+                            className={"spanShinydex"}>{shinydex[0].version}</span><br />{shinydex[0].description}
+                    </div>
+                </div>
+            }
+        </>        
     )
 }
 

@@ -50,6 +50,9 @@
 /* ACCEUIL */
 .containerHome {
     margin: auto;
+    align-items: center;
+    display: flex;
+    flex-flow: column;
 }
 .containerHome p {
     font-size: 20px;
@@ -86,6 +89,13 @@
     float: inline-end;
     margin: 0 10px 0 10px;
     font-weight: 900;
+}
+
+.socialContainer {
+    display: flex;
+    justify-content: center;
+    flex-flow: column;
+    align-items: center;
 }
 
 /* SHINY DEX */
