@@ -45,9 +45,9 @@
 
 /* NAVBAR*/
 .halfCircle {
-    width: 7rem;
+    width: 5rem;
     height: 4rem;
-    background-color: #120747;
+    background-color: #054873;
     border-radius: 0rem 0rem 10rem 10rem;
     position: absolute;
     top: 0;
@@ -55,7 +55,7 @@
 }
     .halfCircle:hover {
         cursor: pointer;
-        background-color: #110935;
+        background-color: #0C275C;
     }
 .navBar {
     background-color: #120747;
