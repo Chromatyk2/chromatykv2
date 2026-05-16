@@ -64,7 +64,7 @@ function NavBar(props) {
     }
     return (
         <>
-            <div id={"navBar"} className={"navBar"}>
+            <div id={"navBar"}>
                 <Link className="navLink linkFromNav" to="/profil">
                     <img src={"/profil.png"} />
                     <p>Profil</p>
