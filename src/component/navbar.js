@@ -69,21 +69,29 @@ function NavBar(props) {
                 {typeof cookies.user !== "undefined" &&
                     <>
                     <Link className="navLink linkFromNav" to="/profil">
-                        <img src={"/trainer.png"} />
+                        <img src={"/profil.png"} />
                         <p>Profil</p>
                     </Link>
                     <Link className="navLink linkFromNav" to="/combat">
-                        <img src={"/grass.png"} />
+                        <img src={"/punch.png"} />
                         <p>Combat</p>
                     </Link>
                     <Link className="navLink linkFromNav" to="/pokedex">
                         <img src={"/dex.png"} />
                         <p>Pokedex</p>
                     </Link>
-                        <Link className="navLink linkFromNav" to="/prof">Compagnon</Link>
-                        <Link className="navLink linkFromNav" to="/allProfils">Communauté</Link>
-                        <Link className="navLink linkFromNav" to="/tcg/cartes">Mes cartes</Link>
-                        <Link className="navLink linkFromNav" to="/tcg/boutique">Ouverture Booster</Link>
+                    <Link className="navLink linkFromNav" to="/compagnon">
+                        <img src={"/doll.png"} />
+                        <p>Compagnon</p>
+                    </Link>
+                    <Link className="navLink linkFromNav" to="/tcg/cartes">
+                        <img src={"/card.png"} />
+                        <p>Cartes</p>
+                    </Link>
+                    <Link className="navLink linkFromNav" to="/vs">
+                        <img src={"/card.png"} />
+                        <p>Communauté</p>
+                    </Link>
                     </>
                 }
                 <Link style={{ color: "gold" }} className="navLink linkFromNav" to="/shinydex"><FontAwesomeIcon icon="fa-solid fa-star" /></Link>
