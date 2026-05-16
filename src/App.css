@@ -218,7 +218,18 @@ a.navLink.linkFromNav p {
     background-color: #054873;
     border-radius: 10px;
 }
-
+.progressBarFightExternal{
+    width:95%;
+    height:50px;
+    border-radius:10px;
+    background-color:white;
+}
+.progressBarFightInternal {
+    width: 50%;
+    height: 50px;
+    border-radius: 10px;
+    background-color: red;
+}
 /* Media Query */
 @media (max-width: 1250px) {
     .globalContainer {
