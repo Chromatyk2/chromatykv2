@@ -74,35 +74,35 @@ function NavBar(props) {
     return (
         <>
             <div id={"navBar"}>
-                <Link className="navLink linkFromNav" to="/profil">
+                <Link onClick={deployNav} className="navLink linkFromNav" to="/profil">
                     <img src={"/profil.png"} />
                     <p>Profil</p>
                 </Link>
                 {typeof cookies.user !== "undefined" &&
                     <>
-                    <Link className="navLink linkFromNav" to="/combat">
+                    <Link onClick={deployNav} className="navLink linkFromNav" to="/combat">
                         <img src={"/punch.png"} />
                         <p>Combat</p>
                     </Link>
-                    <Link className="navLink linkFromNav" to="/pokedex">
+                    <Link onClick={deployNav} className="navLink linkFromNav" to="/pokedex">
                         <img src={"/dex.png"} />
                         <p>Pokedex</p>
                     </Link>
-                    <Link className="navLink linkFromNav" to="/compagnon">
+                    <Link onClick={deployNav} className="navLink linkFromNav" to="/compagnon">
                         <img src={"/doll.png"} />
                         <p>Compagnon</p>
                     </Link>
-                    <Link className="navLink linkFromNav" to="/tcg/cartes">
+                    <Link onClick={deployNav} className="navLink linkFromNav" to="/tcg/cartes">
                         <img src={"/card.png"} />
                         <p>Cartes</p>
                     </Link>
-                    <Link className="navLink linkFromNav" to="/leaderboard">
+                    <Link onClick={deployNav} className="navLink linkFromNav" to="/leaderboard">
                         <img src={"/vs.png"} />
                         <p>Communauté</p>
                     </Link>
                     </>
                 }
-                <Link className="navLink linkFromNav" to="/shiny">
+                <Link onClick={deployNav} className="navLink linkFromNav" to="/shiny">
                     <img src={"/shiny.png"} />
                     <p>Shiny Dex</p>
                 </Link>
