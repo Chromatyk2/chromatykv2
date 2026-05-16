@@ -12,7 +12,9 @@ function Fight() {
         <div className={"fightContainer"}>
             <p>Lugia</p>
             <ProgressBarFight />
-            <img src={"/Shinydex/shiny/249.gif"} />
+            <div>
+                <img class="shinydexSprite" src="/Shinydex/shiny/249.gif">
+            </div>
             <div className={"fightActionsContainer"}>
                 <div className={"fightActions"}>
                     < img src={"/honey.png"} />

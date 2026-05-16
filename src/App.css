@@ -233,6 +233,12 @@ a.navLink.linkFromNav p {
     height: 20px;
     width: 50%;
 }
+.shinydexSprite {
+    max-height: 250px;
+    max-width: 100%;
+    width: auto;
+    margin-top:"50px";
+}
 /* Media Query */
 @media (max-width: 1250px) {
     .globalContainer {
