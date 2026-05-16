@@ -11,6 +11,7 @@ import Log from "./services/log";
 
 import NavBar from './component/navbar.js';
 import HomePage from './component/home.js';
+import ShinyDex from './component/Shinydex.js';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
                       <Routes>
                           <Route path="/log" element={<Log />} />
                           <Route path="/" element={<HomePage />} />
+                          <Route path="/shiny" element={<ShinyDex />} />
                       </Routes>
                       <NavBar />
                   </div>
