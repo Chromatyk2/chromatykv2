@@ -11,6 +11,7 @@ function Fight() {
     return (
         <div className={"fightContainer"}>
             <p>Lugia</p>
+            <div className={"tierFight"}>Tier 1</div>
             <ProgressBarFight />
             <div>
                 <img class="fightSprite" src="/Shinydex/shiny/249.gif" />

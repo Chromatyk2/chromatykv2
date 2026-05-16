@@ -265,6 +265,9 @@ a.navLink.linkFromNav p {
     font-size:13px;
     margin:0;
 }
+.tierFight{
+    padding:5px;
+}
 /* Media Query */
 @media (max-width: 1250px) {
     .globalContainer {
