@@ -297,4 +297,7 @@ a.navLink.linkFromNav p {
     .globalContainer {
         width: 100%;
     }
+    .fightContainer {
+        width: 100%;
+    }
 }
