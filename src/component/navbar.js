@@ -61,21 +61,21 @@ function NavBar(props) {
     //}, [props.cookies]);
     return (
         <>
+            <div className={"navBar"}>
+                <Link className="navLink linkFromNav" to="/"><FontAwesomeIcon icon="fa-solid fa-house" /></Link>
+                {typeof cookies.user !== "undefined" &&
+                    <>
+                        <Link className="navLink linkFromNav" to="/profil"></Link>
+                        <Link className="navLink linkFromNav" to="/compagnon">Compagnon</Link>
+                        <Link className="navLink linkFromNav" to="/pokedex">Pokedex</Link>
+                        <Link className="navLink linkFromNav" to="/allProfils">Communauté</Link>
+                        <Link className="navLink linkFromNav" to="/tcg/cartes">Mes cartes</Link>
+                        <Link className="navLink linkFromNav" to="/tcg/boutique">Ouverture Booster</Link>
+                    </>
+                }
+                <Link style={{ color: "gold" }} className="navLink linkFromNav" to="/shinydex"><FontAwesomeIcon icon="fa-solid fa-star" /></Link>
+            </div>
             <div className="halfCircle">
-                <div className={"navBar"}>
-                    <Link className="navLink linkFromNav" to="/"><FontAwesomeIcon icon="fa-solid fa-house" /></Link>
-                    {typeof cookies.user !== "undefined" &&
-                        <>
-                            <Link className="navLink linkFromNav" to="/profil"></Link>
-                            <Link className="navLink linkFromNav" to="/compagnon">Compagnon</Link>
-                            <Link className="navLink linkFromNav" to="/pokedex">Pokedex</Link>
-                            <Link className="navLink linkFromNav" to="/allProfils">Communauté</Link>
-                            <Link className="navLink linkFromNav" to="/tcg/cartes">Mes cartes</Link>
-                            <Link className="navLink linkFromNav" to="/tcg/boutique">Ouverture Booster</Link>
-                        </>
-                    }
-                    <Link style={{ color: "gold" }} className="navLink linkFromNav" to="/shinydex"><FontAwesomeIcon icon="fa-solid fa-star" /></Link>
-                </div>
                 <svg onclick="openMenu()" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#5a9bc4" stroke-linecap="round" stroke-linejoin="round" height="55" width="55">
                     <path d="M3 12a9 9 0 1 0 18 0 9 9 0 1 0 -18 0" stroke-width="2"></path>
                     <path d="M9 12a3 3 0 1 0 6 0 3 3 0 1 0 -6 0" stroke-width="2"></path>
