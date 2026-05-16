@@ -65,13 +65,12 @@ function NavBar(props) {
     return (
         <>
             <div id={"navBar"} className={"navBar"}>
-                <Link className="navLink linkFromNav" to="/"><FontAwesomeIcon icon="fa-solid fa-house" /></Link>
+                <Link className="navLink linkFromNav" to="/profil">
+                    <img src={"/profil.png"} />
+                    <p>Profil</p>
+                </Link>
                 {typeof cookies.user !== "undefined" &&
                     <>
-                    <Link className="navLink linkFromNav" to="/profil">
-                        <img src={"/profil.png"} />
-                        <p>Profil</p>
-                    </Link>
                     <Link className="navLink linkFromNav" to="/combat">
                         <img src={"/punch.png"} />
                         <p>Combat</p>
@@ -88,13 +87,16 @@ function NavBar(props) {
                         <img src={"/card.png"} />
                         <p>Cartes</p>
                     </Link>
-                    <Link className="navLink linkFromNav" to="/vs">
-                        <img src={"/card.png"} />
+                    <Link className="navLink linkFromNav" to="/leaderboard">
+                        <img src={"/vs.png"} />
                         <p>Communauté</p>
                     </Link>
                     </>
                 }
-                <Link style={{ color: "gold" }} className="navLink linkFromNav" to="/shinydex"><FontAwesomeIcon icon="fa-solid fa-star" /></Link>
+                <Link className="navLink linkFromNav" to="/leaderboard">
+                    <img src={"/shiny.png"} />
+                    <p>Shiny Dex</p>
+                </Link>
             </div>
             <div onClick={deployNav} className="halfCircle">
                 <svg onClick={deployNav} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" height="55" width="55">
