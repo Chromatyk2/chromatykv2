@@ -65,7 +65,7 @@
 }
 .navBar {
     height: 0;
-    justify-content: space-between;
+    justify-content: center;
     width: 100%;
     align-items: center;
     background-color: #054873;
@@ -74,7 +74,7 @@
     padding: 20px 0 20px 0;
     flex-wrap: wrap;
     transition: height 1s ease-in-out;
-    gap:20px
+    gap: 20px
 }
 a.navLink.linkFromNav {
     background-color: #0f1751;
@@ -88,6 +88,9 @@ a.navLink.linkFromNav {
     flex-flow: column;
     align-items: center;
     padding: 10px;
+}
+a.navLink.linkFromNav{
+    background-color:#0c275c;
 }
 a.navLink.linkFromNav img {
     width: 55px;
