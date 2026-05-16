@@ -218,17 +218,17 @@ a.navLink.linkFromNav p {
     background-color: #054873;
     border-radius: 10px;
 }
-.progressBarFightExternal{
-    width:95%;
-    height:50px;
-    border-radius:10px;
-    background-color:white;
+.progressBarFightExternal {
+    background-color: #fff;
+    border-radius: 10px;
+    height: 30px;
+    width: 300px;
 }
 .progressBarFightInternal {
-    width: 50%;
-    height: 50px;
-    border-radius: 10px;
     background-color: red;
+    border-radius: 10px;
+    height: 30px;
+    width: 50%;
 }
 /* Media Query */
 @media (max-width: 1250px) {
