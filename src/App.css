@@ -224,6 +224,7 @@ a.navLink.linkFromNav p {
     flex-flow: column;
     height: 61vh;
     width: 75%;
+    background-image: url('../public/fightBack.jpg')
 }
 .progressBarFightExternal {
     background-color: #fff;
