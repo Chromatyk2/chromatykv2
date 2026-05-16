@@ -60,7 +60,7 @@ function NavBar(props) {
     //    }
     //}, [props.cookies]);
     function deployNav() {
-        document.getElementById("navBar").toggle('expended');
+        document.getElementById("navBar").classList.toggle('expended');
     }
     return (
         <>
