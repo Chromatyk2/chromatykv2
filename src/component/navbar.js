@@ -70,9 +70,11 @@ function NavBar(props) {
                     <>
                     <Link className="navLink linkFromNav" to="/profil">
                         <img src={"/pokeball.png"} />
+                        <p>Capture</p>
                     </Link>
                         <Link className="navLink linkFromNav" to="/compagnon">Compagnon</Link>
-                        <Link className="navLink linkFromNav" to="/pokedex">Pokedex</Link>
+                    <Link className="navLink linkFromNav" to="/pokedex">
+                        <img src={"/dex.png"} /><p>Pokedex</p></Link>
                         <Link className="navLink linkFromNav" to="/allProfils">Communauté</Link>
                         <Link className="navLink linkFromNav" to="/tcg/cartes">Mes cartes</Link>
                         <Link className="navLink linkFromNav" to="/tcg/boutique">Ouverture Booster</Link>
