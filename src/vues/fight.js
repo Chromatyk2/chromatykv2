@@ -12,7 +12,9 @@ function Fight() {
     const [pokemonMaxHp, setPokemonMaxHp] = useState(1000);
     function throwRock() {
         let dmg = Math.floor((Math.random() * 20) + 1);
-        setPokemonHp(pokemonHp - dmg);
+        let pokemonHp = pokemonHp - dmg;
+
+        setPokemonHp(100 - ((pokemonHp / pokemonMaxHp) * 100));
 
     }
     return (
@@ -20,7 +22,7 @@ function Fight() {
             <p className={"fightName"}>Lugia</p>
             <div className={"tierFight"}>Tier 1</div>
             <div className={"progressBarFightExternal"}>
-                <div style={{ width:+100-((pokemonHp/pokemonMaxHp)*100)+"%" }} className={"progressBarFightInternal"}>{100 - pokemonHp / pokemonMaxHp}</div>
+                <div style={{ width:+pokemonHp+"%" }} className={"progressBarFightInternal"}>{100 - pokemonHp / pokemonMaxHp}</div>
             </div>
             <div>
                 <img class="fightSprite" src="/Shinydex/shiny/249.gif" />
