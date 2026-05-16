@@ -24,7 +24,7 @@ function Fight() {
             <p className={"fightName"}>Lugia</p>
             <div className={"tierFight"}>Tier 1</div>
             <div className={"progressBarFightExternal"}>
-                <div style={{ width: +parseFloat(100-pokemonHpPurcent).toFixed(2) + "%" }} className={"progressBarFightInternal"}>{parseFloat(100-pokemonHpPurcent).toFixed(2) +" %"}</div>
+                <div style={{ width: +parseFloat(100 - pokemonHpPurcent).toFixed(2) + "%" }} className={"progressBarFightInternal"}><p>{parseFloat(100 - pokemonHpPurcent).toFixed(2) + " %"}</p></div>
             </div>
             <div>
                 <img class="fightSprite" src="/Shinydex/shiny/249.gif" />

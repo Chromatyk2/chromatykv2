@@ -227,31 +227,39 @@ a.navLink.linkFromNav p {
 }
 .progressBarFightExternal {
     background-color: #fff;
-    border-radius: 10px;
     height: 20px;
     width: 300px;
 }
 .progressBarFightInternal {
     background-color: red;
-    border-radius: 10px;
     height: 20px;
     width: 50%;
     transition: width 1s ease-in-out;
+    color: #072851;
 }
+.progressBarFightInternal p {
+    position: absolute;
+    left: 0;
+    right: 0;
+}
+
 .fightActionsContainer {
     display: flex;
     justify-content: space-around;
     width: 100%;
 }
+
 .fightActions {
     width: 100px;
     height: 100px;
     background-color: rgba(0,0,0,0.1);
     border-radius: 10px;
 }
-.fightActions img {
-    width: 55px;
-}
+
+    .fightActions img {
+        width: 55px;
+    }
+
 .fightSprite {
     flex: 1 1 auto;
     min-height: 1px;
@@ -260,15 +268,18 @@ a.navLink.linkFromNav p {
     margin: 30px;
     width: 275px;
 }
-.fightActions p{
-    font-size:13px;
-    margin:0;
+
+.fightActions p {
+    font-size: 13px;
+    margin: 0;
 }
+
 .tierFight {
     padding: 5px;
     font-size: 13px;
     margin-bottom: 15px;
 }
+
 .fightName {
     margin-top: 10px;
     margin-bottom: 0;
