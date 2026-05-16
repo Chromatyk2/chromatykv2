@@ -2,6 +2,7 @@ import React,{useState, useEffect} from 'react';
 import {Link} from "react-router-dom";
 import Axios from "axios";
 import { useCookies } from 'react-cookie';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 function NavBar(props) {
     const [cookies, setCookie] = useCookies();
@@ -63,7 +64,7 @@ function NavBar(props) {
         <Link className="navLink linkFromNav" to="/">Accueil</Link>
             {typeof cookies.user !== "undefined" &&              
                 <>
-                    <Link className="navLink linkFromNav" to="/profil">Profil</Link>
+              <Link className="navLink linkFromNav" to="/profil"><FontAwesomeIcon icon="fa-solid fa-house" /></Link>
                     <Link className="navLink linkFromNav" to="/compagnon">Compagnon</Link>
                     <Link className="navLink linkFromNav" to="/pokedex">Pokedex</Link>
                     <Link className="navLink linkFromNav" to="/allProfils">Communauté</Link>

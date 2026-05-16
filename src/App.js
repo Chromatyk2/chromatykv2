@@ -22,8 +22,8 @@ function App() {
                           <Route path="/log" element={<Log />} />
                           <Route path="/" element={<HomePage />} />
                       </Routes>
+                      <NavBar />
                   </div>
-                  <NavBar />
               </BrowserRouter>
       </header>
     </div>
