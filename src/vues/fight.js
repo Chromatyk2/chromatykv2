@@ -8,11 +8,21 @@ import ProgressBarFight from '../components/progressBarFight.js';
 
 function Fight() {
     const [cookies, setCookie] = useCookies();
+    const [pokemonHp, setPokemonHp] = useState(100);
+    const [pokemonMaxHp, setPokemonMaxHp] = useState(1000);
+    const [customStyles, setCustomStyles] = useState(null);
+    function throwRock() {
+        let dmg = Math.floor((Math.random() * 20) + 1);
+        setPokemonHp(pokemonHp - dmg);
+
+    }
     return (
         <div className={"fightContainer"}>
             <p className={"fightName"}>Lugia</p>
             <div className={"tierFight"}>Tier 1</div>
-            <ProgressBarFight />
+            <div className={"progressBarFightExternal"}>
+                <div style={{ width: +pokemonHp/pokemonMaxHp*100 + "%" }} className={"progressBarFightInternal"}></div>
+            </div>
             <div>
                 <img class="fightSprite" src="/Shinydex/shiny/249.gif" />
             </div>
@@ -21,7 +31,7 @@ function Fight() {
                     < img src={"/honey.png"} />
                     <p>Miels</p>
                 </div>
-                <div className={"fightActions"}>
+                <div onClick={throwRock} className={"fightActions"}>
                     < img src={"/stone.png"} />
                     <p>Cailloux</p>
                     <p>x 1</p>
