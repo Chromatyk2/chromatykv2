@@ -14,7 +14,7 @@ function Fight() {
     function throwRock() {
         let dmg = Math.floor((Math.random() * 20) + 1);
         setPokemonCurrentHp(pokemonCurrentHp - dmg);
-        let currentHP = pokemonCurrentHp;
+        let currentHP = pokemonCurrentHp - dmg;
         setPokemonHpPurcent(100 - ((currentHP / pokemonMaxHp) * 100))
     }
     return (
@@ -22,7 +22,7 @@ function Fight() {
             <p className={"fightName"}>Lugia</p>
             <div className={"tierFight"}>Tier 1</div>
             <div className={"progressBarFightExternal"}>
-                <div style={{ width: +pokemonHpPurcent + "%" }} className={"progressBarFightInternal"}>{pokemonHpPurcent}</div>
+                <div style={{ width: +pokemonHpPurcent + "%" }} className={"progressBarFightInternal"}>{pokemonHpPurcent+" %"}</div>
             </div>
             <div>
                 <img class="fightSprite" src="/Shinydex/shiny/249.gif" />
