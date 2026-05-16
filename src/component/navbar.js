@@ -61,6 +61,7 @@ function NavBar(props) {
     //}, [props.cookies]);
     function deployNav() {
         document.getElementById("navBar").style.height = "120px";
+        console.log("oui");
     }
     return (
         <>
