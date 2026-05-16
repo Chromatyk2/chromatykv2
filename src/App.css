@@ -213,21 +213,24 @@ a.navLink.linkFromNav p {
 
 /* Combat */
 .fightContainer {
-    width: 95%;
-    height: 70vh;
     background-color: #054873;
     border-radius: 10px;
+    height: 70vh;
+    width: 95%;
+    align-items: center;
+    display: flex;
+    flex-flow: column;
 }
 .progressBarFightExternal {
     background-color: #fff;
     border-radius: 10px;
-    height: 30px;
+    height: 20px;
     width: 300px;
 }
 .progressBarFightInternal {
     background-color: red;
     border-radius: 10px;
-    height: 30px;
+    height: 20px;
     width: 50%;
 }
 /* Media Query */
