@@ -89,7 +89,7 @@ a.navLink.linkFromNav {
     align-items: center;
     padding: 10px;
 }
-a.navLink.linkFromNav{
+a.navLink.linkFromNav:hover{
     background-color:#0c275c;
 }
 a.navLink.linkFromNav img {
