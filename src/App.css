@@ -35,6 +35,10 @@
     min-width: 300px;
     max-width: 75%;
     margin: auto;
+    align-items: center;
+}
+.globalContainer p {
+    font-size: 20px;
 }
 
 /* NAVBAR*/
@@ -48,15 +52,6 @@
 }
 
 /* ACCEUIL */
-.containerHome {
-    margin: auto;
-    align-items: center;
-    display: flex;
-    flex-flow: column;
-}
-.containerHome p {
-    font-size: 20px;
-}
 .connectionBar {
     align-items: center;
     background-color: #120747;
