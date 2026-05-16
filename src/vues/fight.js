@@ -20,7 +20,7 @@ function Fight() {
             <p className={"fightName"}>Lugia</p>
             <div className={"tierFight"}>Tier 1</div>
             <div className={"progressBarFightExternal"}>
-                <div style={{ width: +100 - pokemonHp / pokemonMaxHp + "%" }} className={"progressBarFightInternal"}>{100 - pokemonHp / pokemonMaxHp}</div>
+                <div style={{ width: +100 - ((pokemonHp / pokemonMaxHp)*100) + "%" }} className={"progressBarFightInternal"}>{100 - pokemonHp / pokemonMaxHp}</div>
             </div>
             <div>
                 <img class="fightSprite" src="/Shinydex/shiny/249.gif" />
