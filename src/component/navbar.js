@@ -61,7 +61,7 @@ function NavBar(props) {
     //}, [props.cookies]);
     function deployNav() {
         document.getElementById("navBar").style.height = "fit-content";
-        document.getElementById("navBar").style.gap = "20px";
+        document.getElementById("navBar").style.padding = "20px 0";
     }
     return (
         <>
