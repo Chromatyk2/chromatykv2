@@ -80,6 +80,7 @@
 #navBar.expended {
     height: fit-content;
     transition: height 1s ease-in-out;
+    padding: 20px 0;
 }
 a.navLink.linkFromNav {
     background-color: #0f1751;

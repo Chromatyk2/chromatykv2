@@ -60,8 +60,11 @@ function NavBar(props) {
     //    }
     //}, [props.cookies]);
     function deployNav() {
-        document.getElementById("navBar").style.padding = "20px 0";
-        document.getElementById("navBar").classList.toggle("expended");
+        const isActive = document.getElementById("navBar").classList.contains('expended');
+        document.getElementById("navBar").remove('expended');
+        if (!isActive) {
+            document.getElementById("navBar").classList.add('active');
+        }
     }
     return (
         <>
