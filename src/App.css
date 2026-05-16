@@ -63,7 +63,7 @@
     cursor: pointer;
     background-color: #0C275C;
 }
-.navBar {
+#navBar {
     height: 0;
     justify-content: center;
     width: 100%;
@@ -76,7 +76,7 @@
     transition: height 1s ease-in-out;
     gap: 20px
 }
-.navBar.expended {
+#navBar.expended {
     height: fit-content;
     transition: height 1s ease-in-out;
 }
