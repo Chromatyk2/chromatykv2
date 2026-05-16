@@ -69,6 +69,10 @@ function NavBar(props) {
                 {typeof cookies.user !== "undefined" &&
                     <>
                     <Link className="navLink linkFromNav" to="/profil">
+                        <img src={"/trainer.png"} />
+                        <p>Profil</p>
+                    </Link>
+                    <Link className="navLink linkFromNav" to="/combat">
                         <img src={"/grass.png"} />
                         <p>Combat</p>
                     </Link>
@@ -76,7 +80,7 @@ function NavBar(props) {
                         <img src={"/dex.png"} />
                         <p>Pokedex</p>
                     </Link>
-                        <Link className="navLink linkFromNav" to="/compagnon">Compagnon</Link>
+                        <Link className="navLink linkFromNav" to="/prof">Compagnon</Link>
                         <Link className="navLink linkFromNav" to="/allProfils">Communauté</Link>
                         <Link className="navLink linkFromNav" to="/tcg/cartes">Mes cartes</Link>
                         <Link className="navLink linkFromNav" to="/tcg/boutique">Ouverture Booster</Link>
