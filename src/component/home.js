@@ -18,7 +18,12 @@ function HomePage(props) {
     }, []);
     return (
         <>
-            <p>Bienvenue,</p>
+            {typeof cookies.user === "undefined" ?
+                <p>Bienvenue,{cookies.user.data[0].login}</p>
+                :
+                <p>Bienvenue</p>
+            }
+            
             {typeof cookies.user === "undefined" &&
                 <div className={"connectionBar"}>
                     <p>Connectez-vous pour jouer !</p>
