@@ -253,6 +253,14 @@ a.navLink.linkFromNav p {
 .fightActions img {
     width: 55px;
 }
+.fightSprite {
+    flex: 1 1 auto;
+    min-height: 1px;
+    padding: 1.25rem;
+    position: relative;
+    margin: 30px;
+    width: 275px;
+}
 /* Media Query */
 @media (max-width: 1250px) {
     .globalContainer {
