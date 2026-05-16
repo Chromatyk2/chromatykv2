@@ -241,6 +241,7 @@ a.navLink.linkFromNav p {
     position: absolute;
     left: 0;
     right: 0;
+    color: #fff;
 }
 
 .fightActionsContainer {
@@ -267,11 +268,12 @@ a.navLink.linkFromNav p {
 
 .fightSprite {
     flex: 1 1 auto;
+    margin: 30px;
     min-height: 1px;
     padding: 1.25rem;
     position: relative;
-    margin: 30px;
-    width: 275px;
+    max-width: 275px;
+    height: 220px;
 }
 
 .fightActions p {
