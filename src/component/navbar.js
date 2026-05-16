@@ -60,11 +60,7 @@ function NavBar(props) {
     //    }
     //}, [props.cookies]);
     function deployNav() {
-        if (!document.getElementById("navBar").classList.contains('expended')) {
-            document.getElementById("navBar").classList.add('expended');
-        } else {
-            document.getElementById("navBar").remove('expended');
-        }
+        document.getElementById("navBar").classList.add('expended');
     }
     return (
         <>

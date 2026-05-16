@@ -19,9 +19,9 @@ function HomePage(props) {
     return (
         <>
             {typeof cookies.user === "undefined" ?
-                <p>Bienvenue,{cookies.user.data[0].login}</p>
-                :
                 <p>Bienvenue</p>
+                :
+                <p>Bienvenue,{cookies.user.data[0].login}</p>
             }
             
             {typeof cookies.user === "undefined" &&
