@@ -49,8 +49,6 @@
 
 /* ACCEUIL */
 .containerHome {
-    min-width: 300px;
-    max-width: 50%;
     margin: auto;
 }
 .containerHome p {
