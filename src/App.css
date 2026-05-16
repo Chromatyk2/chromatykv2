@@ -29,13 +29,15 @@
   color: #61dafb;
 }
 .globalContainer {
+    align-items: center;
     display: flex;
     flex-flow: column;
     justify-content: center;
-    min-width: 300px;
-    max-width: 75%;
     margin: auto;
-    align-items: center;
+    width: 50%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.2);
+    filter: drop-shadow(10px 4px 10px black);
 }
 .globalContainer p {
     font-size: 20px;
