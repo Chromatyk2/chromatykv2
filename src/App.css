@@ -232,12 +232,13 @@ a.navLink.linkFromNav p {
     border-radius: 10px;
     height: 20px;
     width: 50%;
+    transition: width 1s ease-in-out;
 }
 .shinydexSprite {
     max-height: 250px;
     max-width: 100%;
     width: auto;
-    margin-top:"50px";
+    margin-top:50px;
 }
 .fightActionsContainer {
     display: flex;
