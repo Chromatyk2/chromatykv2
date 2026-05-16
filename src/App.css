@@ -256,9 +256,14 @@ a.navLink.linkFromNav p {
     border-radius: 10px;
 }
 
-    .fightActions img {
-        width: 55px;
-    }
+.fightActions:hover {
+    background-color: rgba(0,0,0,0.2);
+    cursor:pointer;
+}
+
+.fightActions img {
+    width: 55px;
+}
 
 .fightSprite {
     flex: 1 1 auto;
