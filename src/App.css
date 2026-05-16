@@ -55,7 +55,7 @@
 }
     .halfCircle:hover {
         cursor: pointer;
-        filter: drop-shadow(0px 0px 0px black);
+        background-color: #110935;
     }
 .navBar {
     background-color: #120747;
