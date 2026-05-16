@@ -69,7 +69,9 @@ function NavBar(props) {
                 <Link className="navLink linkFromNav" to="/"><FontAwesomeIcon icon="fa-solid fa-house" /></Link>
                 {typeof cookies.user !== "undefined" &&
                     <>
-                        <Link className="navLink linkFromNav" to="/profil"></Link>
+                    <Link className="navLink linkFromNav" to="/profil">
+                        <img src={"/pokeball.png"} />
+                    </Link>
                         <Link className="navLink linkFromNav" to="/compagnon">Compagnon</Link>
                         <Link className="navLink linkFromNav" to="/pokedex">Pokedex</Link>
                         <Link className="navLink linkFromNav" to="/allProfils">Communauté</Link>
