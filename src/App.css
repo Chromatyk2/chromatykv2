@@ -51,13 +51,14 @@
     font-size: 20px;
     justify-content: center;
     width: fit-content;
-    padding: 0 35px 0 40px;
     border-radius: 5px;
-    margin-top: 50px;
+    margin: 0 0px 0 10px;
+    padding: 15px;
+    flex-wrap: wrap;
 }
-.connectionBar p {
-    margin:0;
-}
+    .connectionBar p {
+        margin: 5px 0 5px 0px;
+    }
 
 .loginButton {
     :hover {
