@@ -60,7 +60,6 @@ function NavBar(props) {
     //    }
     //}, [props.cookies]);
     function deployNav() {
-        document.getElementById("navBar").style.height = "fit-content";
         document.getElementById("navBar").style.padding = "20px 0";
         document.getElementById("navBar").classList.toggle("expended");
     }
