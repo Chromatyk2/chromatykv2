@@ -16,7 +16,13 @@ function Fight() {
     function fleeFight() {
         setPokemon(null);
     }
-
+    function addLoveS() {
+        setCurrentLove(currentLove+10);
+    } function addLoveM() {
+        setCurrentLove(currentLove+25);
+    } function addLoveL() {
+        setCurrentLove(currentLove+50);
+    }
     function getRandomPokemon() {
         const tierRoll =  Math.random() * 100;
         if (tierRoll < 39) {
@@ -132,17 +138,17 @@ function Fight() {
             {pokemon ?
                 <>
                     <div className={"fightActionsContainer"}>
-                        <div className={"fightActions"}>
+                        <div onClick={addLoveS} className={"fightActions"}>
                             < img src={"/exps.png"} />
                             <p>Bonbon S</p>
                             <p>x 1</p>
                         </div>
-                        <div className={"fightActions"}>
+                        <div onClick={addLoveM} className={"fightActions"}>
                             < img src={"/expm.png"} />
                             <p>Bonbon M</p>
                             <p>x 1</p>
                         </div>
-                        <div className={"fightActions"}>
+                        <div onClick={addLoveL} className={"fightActions"}>
                             < img src={"/expl.png"} />
                             <p>Bonbon L</p>
                             <p>x 1</p>
