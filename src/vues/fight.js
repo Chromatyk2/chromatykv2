@@ -172,17 +172,17 @@ function Fight() {
                             </>
                             :
                             <>
-                                <div onClick={() => catchPokemon(1, pokemon.tier)} className={"fightActions"}>
+                                <div onClick={() => catchPokemon(0, pokemon.tier)} className={"fightActions"}>
                                     < img src={"/ball.png"} />
                                     <p>Pokéball</p>
                                     <p>x 1</p>
                                 </div>
-                                <div onClick={() => catchPokemon(2, pokemon.tier)} className={"fightActions"}>
+                                <div onClick={() => catchPokemon(1, pokemon.tier)} className={"fightActions"}>
                                     < img src={"/great.png"} />
                                     <p>Super Ball</p>
                                     <p>x 1</p>
                                 </div>
-                                <div onClick={() => catchPokemon(3,pokemon.tier)} className={"fightActions"}>
+                                <div onClick={() => catchPokemon(2,pokemon.tier)} className={"fightActions"}>
                                     < img src={"/ultra.png"} />
                                     <p>Hyper Ball</p>
                                     <p>x 1</p>
