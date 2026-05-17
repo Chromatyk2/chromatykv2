@@ -138,21 +138,48 @@ function Fight() {
             {pokemon ?
                 <>
                     <div className={"fightActionsContainer"}>
-                        <div onClick={addLoveS} className={"fightActions"}>
-                            < img src={"/exps.png"} />
-                            <p>Bonbon S</p>
-                            <p>x 1</p>
-                        </div>
-                        <div onClick={addLoveM} className={"fightActions"}>
-                            < img src={"/expm.png"} />
-                            <p>Bonbon M</p>
-                            <p>x 1</p>
-                        </div>
-                        <div onClick={addLoveL} className={"fightActions"}>
-                            < img src={"/expl.png"} />
-                            <p>Bonbon L</p>
-                            <p>x 1</p>
-                        </div>
+                        {currentLove < maxLove ?
+                            <>
+                                <div onClick={addLoveS} className={"fightActions"}>
+                                    < img src={"/exps.png"} />
+                                    <p>Bonbon S</p>
+                                    <p>x 1</p>
+                                </div>
+                                <div onClick={addLoveM} className={"fightActions"}>
+                                    < img src={"/expm.png"} />
+                                    <p>Bonbon M</p>
+                                    <p>x 1</p>
+                                </div>
+                                <div onClick={addLoveL} className={"fightActions"}>
+                                    < img src={"/expl.png"} />
+                                    <p>Bonbon L</p>
+                                    <p>x 1</p>
+                                </div>
+                            </>
+                            :
+                            <>
+                                <div onClick={addLoveS} className={"fightActions"}>
+                                    < img src={"/ball.png"} />
+                                    <p>Pokéball</p>
+                                    <p>x 1</p>
+                                </div>
+                                <div onClick={addLoveM} className={"fightActions"}>
+                                    < img src={"/great.png"} />
+                                    <p>Super Ball</p>
+                                    <p>x 1</p>
+                                </div>
+                                <div onClick={addLoveL} className={"fightActions"}>
+                                    < img src={"/ultra.png"} />
+                                    <p>Hyper Ball</p>
+                                    <p>x 1</p>
+                                </div>
+                                <div onClick={addLoveL} className={"fightActions"}>
+                                    < img src={"/master.png"} />
+                                    <p>Master Ball</p>
+                                    <p>x 1</p>
+                                </div>
+                            </>
+                        }
                     </div>
                 </>
                 :
