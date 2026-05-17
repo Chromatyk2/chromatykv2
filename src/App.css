@@ -244,7 +244,7 @@ a.navLink.linkFromNav p {
     width: 300px;
 }
 .progressBarFightInternal {
-    background-color: #ff7a99;
+    background-color: #cc333f;
     height: 20px;
     width: 50%;
     transition: width 1s ease-in-out;
@@ -252,11 +252,10 @@ a.navLink.linkFromNav p {
     position: relative;
 }
     .progressBarFightInternal p {
-        color: #000;
+        color: #fff;
         left: 0;
         position: absolute;
         right: 0;
-        top: -22.6px;
     }
 
 .fightActionsContainer {
