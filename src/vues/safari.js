@@ -44,7 +44,8 @@ function Fight() {
     function fleeFight() {
         setOnCatch(false);
         setPokemon(null);
-        setCurrentLove(0)
+        setCurrentLove(0);
+        setSafari(false);
         Axios.delete('/api/deleteSafari/' + cookies.user.data[0].id)
     }
     function saveFight() {
