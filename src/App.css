@@ -331,6 +331,17 @@ a.navLink.linkFromNav p {
     right: 10px;
     top: 10px;
 }
+.fightActionsSave {
+    width: 100px;
+    height: 100px;
+    background-color: rgba(173, 10, 10, 0.5);
+    border-radius: 10px;
+    height: 65px;
+    width: 65px;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
 fightActionsFlee img {
     width: 55px;
 }
