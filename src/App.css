@@ -307,6 +307,10 @@ a.navLink.linkFromNav p {
     max-width: 275px;
     height: 220px;
     filter: drop-shadow(0px 0px 3px black);
+    transform: scale(0);
+    animation-name: myAnimation;
+    animation-duration: 4s;
+    animation-fill-mode: forwards;
 }
 
 .fightActions p {
@@ -324,6 +328,17 @@ a.navLink.linkFromNav p {
     margin-top: 10px;
     margin-bottom: 0;
 }
+/* Animation */
+@keyframes myAnimation {
+    from {
+        transform scale(0);
+    }
+
+    to {
+        transform: scale(1);
+    }
+}
+
 /* Media Query */
 @media (max-width: 1250px) {
     .globalContainer {
