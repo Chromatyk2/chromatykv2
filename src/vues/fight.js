@@ -139,12 +139,11 @@ function Fight() {
                         <div class="heart">
                             <div style={{ backgroundColor: currentLove < maxLove ? "#fff" :"#cc333f"}} class="heartInt">
                             </div>
-                            <div class="pokeball"></div>
                         </div>
                     </div>
                 </div>
                 <div style={{ filter: negative === 1 && "invert(1)", backgroundImage: `url(/Sprites/${shiny === 1 ? "shiny" : "normal"}/${pokemon.number}.gif)` }} className={"fightSpriteCard"}>
-                    
+                    <div class="pokeball"></div>  
                 </div>
                 </>
             }
