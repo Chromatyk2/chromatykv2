@@ -72,16 +72,16 @@ function Fight() {
                 </>
                 :
                 <>
-                    <div className={"honeytActionsContainer"}>
-                        <div onClick={getRandomPokemon} className={"fightActions"}>
+                    <div className={"honeyActionsContainer"}>
+                        <div onClick={getRandomPokemon} className={"honeyActions"}>
                             < img src={"/honey.png"} />
                             <p>Miel classique</p>
                         </div>
-                        <div onClick={getRandomPokemon} className={"fightActions"}>
+                        <div onClick={getRandomPokemon} className={"honeyActions"}>
                             < img src={"/honey.png"} />
                             <p>Miel Légendaire</p>
                         </div>
-                        <div onClick={getRandomPokemon} className={"fightActions"}>
+                        <div onClick={getRandomPokemon} className={"honeyActions"}>
                             < img src={"/honey.png"} />
                             <p>Miel Shiny</p>
                         </div>
