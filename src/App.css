@@ -270,6 +270,13 @@ a.navLink.linkFromNav p {
     justify-content: center;
     align-items: center;
 }
+.honeyActions img {
+    width: 50px;
+}
+.honeyActions p {
+    font-size: 20px;
+    margin:0;
+}
 
 .fightActions {
     width: 100px;
