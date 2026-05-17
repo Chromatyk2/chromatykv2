@@ -22,7 +22,7 @@ function Fight() {
         Axios
             .get("/api/getSafari/" + cookies.user.data[0].id)
             .then(function (response) {
-                if (response.data[0].length > 0) {
+                if (response.length > 0) {
                     setSafari(true);
                 }
                 setCurrentLove(response.data[0].love)
