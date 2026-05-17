@@ -52,7 +52,8 @@ function Fight() {
             pokemon: pokemon.number,
             love: currentLove,
             shiny: shiny,
-            negative: negative
+            negative: negative,
+            tier: pokemon.tier
         }).then(function () {
             setSafari(true);
         })
