@@ -59,7 +59,7 @@ function Fight() {
                         </div>
                     </>
                     :
-                    <div className={"fightActions"}>
+                    <div onClick={getRandomPokemon} className={"fightActions"}>
                         < img src={"/honey.png"} />
                         <p>Miels</p>
                     </div>
