@@ -351,7 +351,6 @@ fightActionsFlee img {
     animation-name: myAnimation;
     background-position: 50%;
     background-repeat: no-repeat;
-    background-size: contain;
     height: 270px;
     margin-top: 35px;
     transform: scale(0);
@@ -388,7 +387,7 @@ fightActionsFlee img {
     border-radius: 50%;
     border: 8px solid black;
     box-shadow: inset -16px -8px 0 0 rgba(0, 0, 0, 0.2);
-    animation: shake 1.25s cubic-bezier(0.36, 0.07, 0.19, 0.97) 1.5s 3, catch 0.5s ease-out 5.25s forwards;
+    animation: shake cubic-bezier(.36,.07,.19,.97) 1.5s 3,catch .5s ease-out 5.25s forwards
 }
 
 /* Animation */
