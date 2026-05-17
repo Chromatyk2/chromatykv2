@@ -32,7 +32,7 @@ function Shinydex() {
                                 <div className={"shinydexName"}>#{val.idPkm} {val.pokemon}<br/><span className={"spanShinydex"}>{val.surnom}</span></div>
                                 <div className={"shinydexSpriteContainer"}>
                                     <div>
-                                        <img className={"shinydexSprite"} src={"/Shinydex/shiny/" + val.idPkm + ".gif"}/>
+                                        <img className={"shinydexSprite"} src={"/Sprites/shiny/" + val.idPkm + ".gif"}/>
                                     </div>
                                     {val.lien !== null &&
                                         <a target={"_blank"} href={val.lien}><img className={"linkShinydex"} src={"/youtube.png"}/></a>
