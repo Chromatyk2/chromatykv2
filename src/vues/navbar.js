@@ -80,9 +80,9 @@ function NavBar(props) {
                 </Link>
                 {typeof cookies.user !== "undefined" &&
                     <>
-                    <Link onClick={deployNav} className="navLink linkFromNav" to="/combat">
-                        <img src={"/punch.png"} />
-                        <p>Combat</p>
+                    <Link onClick={deployNav} className="navLink linkFromNav" to="/safari">
+                        <img src={"/honey.png"} />
+                        <p>Safari</p>
                     </Link>
                     <Link onClick={deployNav} className="navLink linkFromNav" to="/pokedex">
                         <img src={"/dex.png"} />

@@ -12,7 +12,7 @@ import Log from "./services/log";
 import NavBar from './vues/navbar.js';
 import HomePage from './vues/home.js';
 import ShinyDex from './vues/Shinydex.js';
-import Fight from './vues/fight.js';
+import Safari from './vues/safari.js';
 function App() {
   return (
     <div className="App">
@@ -23,7 +23,7 @@ function App() {
                           <Route path="/log" element={<Log />} />
                           <Route path="/" element={<HomePage />} />
                           <Route path="/shiny" element={<ShinyDex />} />
-                          <Route path="/combat" element={<Fight />} />
+                          <Route path="/safari" element={<Safari />} />
                       </Routes>
                       <div className={"navBarContent"}>
                         <NavBar />
