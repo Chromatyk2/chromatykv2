@@ -312,7 +312,6 @@ a.navLink.linkFromNav p {
     animation-duration: 2s;
     animation-fill-mode: forwards;
 }
-}
 .spriteContainer {
     height: 300px;
     display: flex;
