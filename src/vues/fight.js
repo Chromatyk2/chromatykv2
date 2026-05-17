@@ -180,6 +180,7 @@ function Fight() {
                                 </div>
                             </>
                             :
+                            onCatch === false &&
                             <>
                                 <div onClick={() => catchPokemon(0, pokemon.tier)} className={"fightActions"}>
                                     < img src={"/ball.png"} />
