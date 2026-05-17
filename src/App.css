@@ -245,6 +245,7 @@ a.navLink.linkFromNav p {
     background-image: url('../public/fightBack.jpg');
     background-blend-mode: darken;
     position: relative;
+    justify-content: center;
 }
 .progressBarFightExternal {
     background-color: #fff;
@@ -272,6 +273,10 @@ a.navLink.linkFromNav p {
     width: 100%;
     margin-top: 20px;
     flex-wrap: wrap;
+    background: rgba(0, 0, 0, 0.4);
+    padding: 15px 0 15px 0;
+    border-radius: 10px;
+    min-height: 100px;
 }
 .honeyActionsContainer {
     display: flex;
