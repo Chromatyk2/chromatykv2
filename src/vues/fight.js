@@ -29,10 +29,12 @@ function Fight() {
         const tryCatch = Math.floor(Math.random() * rate);
         setTimeout(function () {
             if (tryCatch == 0) {
-                setOnCatch(false);
+                setTimeout(function () {
+                    fleeFight();
+                }, 300);
             }
             else {
-                fleeFight();
+                setOnCatch(false);
             }
         }, 5300);
     }
