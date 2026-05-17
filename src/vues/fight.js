@@ -30,6 +30,7 @@ function Fight() {
         setTimeout(function () {
             if (tryCatch == 0) {
                 setTimeout(function () {
+                    document.getElementById("validCatchText").style.display = "block";                    
                 }, 300);
             }
             else {
@@ -180,7 +181,7 @@ function Fight() {
                                 </div>
                             </>
                             :
-                            onCatch === false &&
+                            onCatch === false ?
                             <>
                                 <div onClick={() => catchPokemon(0, pokemon.tier)} className={"fightActions"}>
                                     < img src={"/ball.png"} />
@@ -203,6 +204,8 @@ function Fight() {
                                     <p>x 1</p>
                                 </div>
                             </>
+                                :
+                                <p id={"validCatchText"} style={{display:"none"}}>Et Hop !<br />{pokemon.name} est attrapé !</p>
                         }
                     </div>
                 </>
