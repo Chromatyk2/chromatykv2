@@ -7,17 +7,24 @@ import { useCookies } from 'react-cookie';
 import ProgressBarFight from '../components/progressBarFight.js';
 
 function Fight() {
+    //Cookies
     const [cookies, setCookie] = useCookies();
+    //Safari
+    const [safari, setSafari] = useState(false);
     const [onCatch, setOnCatch] = useState(false);
+    const [maxLove, setMaxLove] = useState(0);
+    const [currentLove, setCurrentLove] = useState(0);
+    //Pokemon
     const [pokemon, setPokemon] = useState(null);
     const [shiny, setShiny] = useState(null);
     const [negative, setNegative] = useState(null);
-    const [maxLove, setMaxLove] = useState(0);
-    const [currentLove, setCurrentLove] = useState(0);
     useEffect(() => {
         Axios
             .get("/api/getSafari/" + cookies.user.data[0].id)
             .then(function (response) {
+                if (response.data[0].length > 0) {
+                    setSafari(true);
+                }
                 setCurrentLove(response.data[0].love)
                 setShiny(response.data[0].shiny)
                 setNegative(response.data[0].negative)
@@ -46,6 +53,8 @@ function Fight() {
             love: currentLove,
             shiny: shiny,
             negative: negative
+        }).then(function () {
+            setSafari(true);
         })
     }
 
@@ -176,14 +185,17 @@ function Fight() {
         <div className={"fightContainer"}>
             {pokemon &&
                 <>
+                {safari === true &&
                     <div style={{ top: "10px" }} onClick={saveFight} className={"fightActionsFlee"}>
-                            < img src={"/disc.png"} />
-                            <p>Save</p>
-                     </div>
-                    <div style={{ top: "85px" }} onClick={fleeFight} className={"fightActionsFlee"}>
-                        < img src={"/boot.png"} />
-                        <p>Partir</p>
+                        < img src={"/disc.png"} />
+                        <p>Save</p>
                     </div>
+
+                }
+                <div style={{ top: "85px" }} onClick={fleeFight} className={"fightActionsFlee"}>
+                    < img src={"/boot.png"} />
+                    <p>Partir</p>
+                </div>
                 </>
             }
             {pokemon &&
