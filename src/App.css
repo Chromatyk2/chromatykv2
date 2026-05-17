@@ -297,7 +297,11 @@ a.navLink.linkFromNav p {
 .fightActions img {
     width: 55px;
 }
-
+.spriteContainer {
+    height: 300px;
+    display: flex;
+    align-items: center;
+}
 .fightSprite {
     flex: 1 1 auto;
     margin: 30px;
@@ -305,11 +309,10 @@ a.navLink.linkFromNav p {
     padding: 1.25rem;
     position: relative;
     max-width: 275px;
-    height: 220px;
     filter: drop-shadow(0px 0px 3px black);
     transform: scale(0);
     animation-name: myAnimation;
-    animation-duration: 4s;
+    animation-duration: 2s;
     animation-fill-mode: forwards;
 }
 
