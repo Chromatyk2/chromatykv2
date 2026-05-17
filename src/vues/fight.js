@@ -59,22 +59,36 @@ function Fight() {
             <div className={"fightActionsContainer"}>
                 {pokemon ?
                     <>
-                        <div onClick={throwRock} className={"fightActions"}>
-                            < img src={"/stone.png"} />
-                            <p>Cailloux</p>
-                            <p>x 1</p>
-                        </div>
-                        <div className={"fightActions"}>
-                            < img src={"/ball.png"} />
-                            <p>Balls</p>
+                        <div className={"fightActionsContainer"}>
+                            <div onClick={throwRock} className={"fightActions"}>
+                                < img src={"/stone.png"} />
+                                <p>Cailloux</p>
+                                <p>x 1</p>
+                            </div>
+                            <div className={"fightActions"}>
+                                < img src={"/ball.png"} />
+                                <p>Balls</p>
+                            </div>
                         </div>
                     </>
                     :
-                    <div onClick={getRandomPokemon} className={"fightActions"}>
-                        < img src={"/honey.png"} />
-                        <p>Miels</p>
-                    </div>
-                }   
+                    <>
+                        <div className={"honeytActionsContainer"}>
+                            <div onClick={getRandomPokemon} className={"fightActions"}>
+                                < img src={"/honey.png"} />
+                                <p>Miel classique</p>
+                            </div>
+                            <div onClick={getRandomPokemon} className={"fightActions"}>
+                                < img src={"/honey.png"} />
+                                <p>Miel Légendaire</p>
+                            </div>
+                            <div onClick={getRandomPokemon} className={"fightActions"}>
+                                < img src={"/honey.png"} />
+                                <p>Miel Shiny</p>
+                            </div>
+                        </div>
+                    </>
+                }
             </div>
         </div>
     )
