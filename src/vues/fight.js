@@ -12,10 +12,8 @@ function Fight() {
     const [pokemon, setPokemon] = useState(null);
     const [shiny, setShiny] = useState(null);
     const [negative, setNegative] = useState(null);
-    const [color, setColor] = useState(0);
     const [maxLove, setMaxLove] = useState(0);
     const [currentLove, setCurrentLove] = useState(0);
-    const [catchRate, setCatchRate] = useState(0);
     function fleeFight() {
         setOnCatch(false);
         setPokemon(null);
@@ -38,7 +36,7 @@ function Fight() {
         var rate = (f+1) - e;
         const tryCatch = Math.floor(Math.random() * rate);
         setTimeout(function () {
-            if (tryCatch == 0) {
+            if (tryCatch == 0 || f == 4) {
                 setTimeout(function () {
                     document.getElementById("validCatchText").style.display = "block";                    
                 }, 300);
