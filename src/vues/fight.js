@@ -14,13 +14,8 @@ function Fight() {
     const [pokemonHpPurcent, setPokemonHpPurcent] = useState(0);
     const [pokemonCurrentHp, setPokemonCurrentHp] = useState(1000);
     const [pokemonMaxHp, setPokemonMaxHp] = useState(1000);
-    function throwRock() {
-        let dmg = Math.floor((Math.random() * 20) + 1);
-        if (pokemonCurrentHp - dmg > 0) {
-            setPokemonCurrentHp(pokemonCurrentHp - dmg);
-            let currentHP = pokemonCurrentHp - dmg;
-            setPokemonHpPurcent(100 - (currentHP / pokemonMaxHp) * 100)
-        }
+    function fleeFight() {
+        setPokemon(null);
     }
 
     function getRandomPokemon() {
@@ -133,11 +128,11 @@ function Fight() {
                             <p>x 1</p>
                         </div>
                         <div className={"fightActions"}>
-                            < img src={"/expsXL.png"} />
+                            < img src={"/expsxl.png"} />
                             <p>Bonbon XL</p>
                             <p>x 1</p>
                         </div>
-                        <div className={"fightActions"}>
+                        <div onClick={fleeFight} className={"fightActionsFlee"}>
                             < img src={"/boot.png"} />
                             <p>Fuire</p>
                         </div>
