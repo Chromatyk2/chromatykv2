@@ -331,7 +331,7 @@ a.navLink.linkFromNav p {
 /* Animation */
 @keyframes myAnimation {
     from {
-        transform scale(0);
+        transform: scale(0);
     }
 
     to {
