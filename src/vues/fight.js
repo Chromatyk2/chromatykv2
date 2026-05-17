@@ -14,6 +14,7 @@ function Fight() {
     const [maxLove, setMaxLove] = useState(0);
     const [currentLove, setCurrentLove] = useState(0);
     const [catchRate, setCatchRate] = useState(0);
+    const [onCatch, setOnCatch] = useState(false);
     function fleeFight() {
         setPokemon(null);
         setCurrentLove(0)
@@ -22,6 +23,7 @@ function Fight() {
         setCurrentLove(currentLove + e);
     }
     function catchPokemon(e, f) {
+        setOnCatch(true);
         var rate = (f+1) - e;
         const tryCatch = Math.floor(Math.random() * rate);
         console.log(tryCatch);
@@ -143,7 +145,7 @@ function Fight() {
                     </div>
                 </div>
                 <div style={{ filter: negative === 1 && "invert(1)", backgroundImage: `url(/Sprites/${shiny === 1 ? "shiny" : "normal"}/${pokemon.number}.gif)` }} className={"fightSpriteCard"}>
-                    <div class="pokeball"></div>  
+                    <div style={{visible:onCatch ? "visible" : "hidden"}} class="pokeball"></div>  
                 </div>
                 </>
             }
