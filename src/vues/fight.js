@@ -27,6 +27,14 @@ function Fight() {
         setOnCatch(true);
         var rate = (f+1) - e;
         const tryCatch = Math.floor(Math.random() * rate);
+        setTimeout(function () {
+            if (tryCatch == 0) {
+                setOnCatch(false);
+            }
+            else {
+                fleeFight();
+            }
+        }, 5300);
     }
     function getRandomPokemon() {
         const tierRoll =  Math.random() * 100;
