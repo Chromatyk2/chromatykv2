@@ -36,7 +36,7 @@ function Fight() {
         var rate = (f+1) - e;
         const tryCatch = Math.floor(Math.random() * rate);
         setTimeout(function () {
-            if (tryCatch == 0 || f == 3) {
+            if (tryCatch == 0 || e == 3) {
                 setTimeout(function () {
                     document.getElementById("validCatchText").style.display = "block";                    
                 }, 300);
