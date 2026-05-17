@@ -86,7 +86,7 @@ function Fight() {
                             <p>Miel<br/>Chromatique</p>
                         </div>
                         <div class="honeyActions">
-                            <img src="/honey.png" style={{filter: "drop-shadow(gold 0px 0px 5px) hue-rotate(15deg) contrast(1.3) invert(1)"}}>
+                            <img src="/honey.png" style={{filter: "drop-shadow(gold 0px 0px 5px) hue-rotate(15deg) contrast(1.3) invert(1)"}} />
                             <p>Miel<br/>Négatif</p>
                         </div>
                     </div>
