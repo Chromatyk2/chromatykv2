@@ -217,20 +217,24 @@ a.navLink.linkFromNav p {
 
 /* Combat */
 .heart {
-    height: 250px;
-    aspect-ratio: 1;
-    clip-path: shape(from 50% 91%,line to 90% 50%,arc to 50% 9% of 1%,arc to 10% 50% of 1%);
+    align-items: center;
     background: #cc333f;
     display: flex;
+    height: 50px;
     justify-content: center;
-    align-items: center;
+    position: absolute;
+    right: -25px;
+    top: -10px;
+    aspect-ratio: 1;
+    clip-path: shape(from 50% 91%, line to 90% 50%, arc to 50% 9% of 1%, arc to 10% 50% of 1%);
+}
 }
 
 .heartInt {
-    height: 230px;
+    background: white;
+    height: 40px;
     aspect-ratio: 1;
-    clip-path: shape(from 50% 91%,line to 90% 50%,arc to 50% 9% of 1%,arc to 10% 50% of 1%);
-    background: blue;
+    clip-path: shape(from 50% 91%, line to 90% 50%, arc to 50% 9% of 1%, arc to 10% 50% of 1%);
 }
 .fightContainer {
     align-items: center;
