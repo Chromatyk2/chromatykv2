@@ -28,7 +28,7 @@ function Shinydex() {
                 {shinydex &&
                     shinydex.map((val, key) => {
                         return (
-                            <div className={"shinydexCard"}>
+                            <div className={"fightSpriteCard"}>
                                 <div className={"shinydexName"}>#{val.idPkm} {val.pokemon}<br/><span className={"spanShinydex"}>{val.surnom}</span></div>
                                 <div className={"shinydexSpriteContainer"}>
                                     <div>

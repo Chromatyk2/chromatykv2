@@ -297,6 +297,12 @@ a.navLink.linkFromNav p {
 .fightActions img {
     width: 55px;
 }
+.fightSpriteCard {
+    width: 300px;
+    display: flex;
+    flex-flow: column;
+    margin-top: 35px;
+}
 .spriteContainer {
     height: 300px;
     display: flex;
@@ -304,7 +310,6 @@ a.navLink.linkFromNav p {
 }
 .fightSprite {
     flex: 1 1 auto;
-    margin: 30px;
     min-height: 1px;
     padding: 1.25rem;
     position: relative;
