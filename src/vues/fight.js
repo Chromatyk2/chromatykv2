@@ -22,11 +22,8 @@ function Fight() {
     }
 
     function getRandomPokemon() {
-        Axios.get('/api/getRandomPokemon',
-            {
-                tier: Math.floor((Math.random() * 4) + 1)
-            }
-        )
+        const tier = Math.floor((Math.random() * 4) + 1);
+        Axios.get('/api/getRandomPokemon/'+tier)
         .then(function (response) {
             setPokemon(response.data.number)
         })
