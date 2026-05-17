@@ -102,10 +102,12 @@ function Fight() {
     }
     return (
         <div className={"fightContainer"}>
-            <div onClick={fleeFight} className={"fightActionsFlee"}>
-                < img src={"/boot.png"} />
-                <p>Fuire</p>
-            </div>
+            {pokemon &&
+                <div onClick={fleeFight} className={"fightActionsFlee"}>
+                    < img src={"/boot.png"} />
+                    <p>Fuire</p>
+                </div>
+            }
             {pokemon &&
                 <>
                 <p className={"fightName"}>{pokemon.name}</p>
