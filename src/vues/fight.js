@@ -13,7 +13,6 @@ function Fight() {
     const [negative, setNegative] = useState(null);
     const [maxLove, setMaxLove] = useState(0);
     const [currentLove, setCurrentLove] = useState(0);
-    const
     function fleeFight() {
         setPokemon(null);
     }
