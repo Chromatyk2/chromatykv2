@@ -216,6 +216,12 @@ a.navLink.linkFromNav p {
 }
 
 /* Combat */
+.heart {
+    height: 250px;
+    aspect-ratio: 1;
+    clip-path: shape(from 50% 91%,line to 90% 50%,arc to 50% 9% of 1%,arc to 10% 50% of 1%);
+    background: #cc333f;
+}
 .fightContainer {
     align-items: center;
     background-color: rgba(0,0,0,0.1);
