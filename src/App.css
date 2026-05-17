@@ -224,7 +224,8 @@ a.navLink.linkFromNav p {
     flex-flow: column;
     height: 61vh;
     width: 75%;
-    background-image: url('../public/fightBack.jpg')
+    background-image: url('../public/fightBack.jpg');
+    background-blend-mode: darken;
 }
 .progressBarFightExternal {
     background-color: #fff;
@@ -275,6 +276,7 @@ a.navLink.linkFromNav p {
     position: relative;
     max-width: 275px;
     height: 220px;
+    filter: drop-shadow(0px 0px 3px black);
 }
 
 .fightActions p {
