@@ -305,10 +305,14 @@ a.navLink.linkFromNav p {
 }
 
 .fightActions {
-    width: 100px;
-    height: 100px;
     background-color: rgba(0, 0, 0, 0.5);
     border-radius: 10px;
+    flex-flow: column;
+    height: 100px;
+    width: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .fightActionsFlee {
     width: 100px;
@@ -338,7 +342,7 @@ fightActionsFlee img {
 }
 
 .fightActions img {
-    width: 55px;
+    width: 35px;
 }
 .fightSpriteCard {
     animation-duration: 2s;
