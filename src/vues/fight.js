@@ -87,7 +87,7 @@ function Fight() {
                 setNegative(0);
             })
     }
-    function getRandomPokemon() {
+    function getNegativePokemon() {
         const tierRoll = Math.random() * 100;
         if (tierRoll < 39) {
             var tier = 1;
