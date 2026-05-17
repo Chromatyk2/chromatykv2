@@ -249,13 +249,15 @@ a.navLink.linkFromNav p {
     width: 50%;
     transition: width 1s ease-in-out;
     color: #072851;
+    position: relative;
 }
-.progressBarFightInternal p {
-    position: absolute;
-    left: 0;
-    right: 0;
-    color: #fff;
-}
+    .progressBarFightInternal p {
+        color: #000;
+        left: 0;
+        position: absolute;
+        right: 0;
+        top: -22.6px;
+    }
 
 .fightActionsContainer {
     display: flex;
