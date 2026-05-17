@@ -8,6 +8,7 @@ import ProgressBarFight from '../components/progressBarFight.js';
 
 function Fight() {
     const [cookies, setCookie] = useCookies();
+    const [pokemon, setPokemon] = useState(null);
     const [pokemonHpPurcent, setPokemonHpPurcent] = useState(0);
     const [pokemonCurrentHp, setPokemonCurrentHp] = useState(1000);
     const [pokemonMaxHp, setPokemonMaxHp] = useState(1000);
@@ -21,28 +22,37 @@ function Fight() {
     }
     return (
         <div className={"fightContainer"}>
-            <p className={"fightName"}>Lugia</p>
-            <div className={"tierFight"}>Tier 1</div>
-            <div className={"progressBarFightExternal"}>
-                <div style={{ width: +parseFloat(100 - pokemonHpPurcent).toFixed(2) + "%" }} className={"progressBarFightInternal"}><p>{parseFloat(100 - pokemonHpPurcent).toFixed(2) + " %"}</p></div>
-            </div>
-            <div>
-                <img class="fightSprite" src="/Shinydex/shiny/249.gif" />
-            </div>
+            {pokemon &&
+                <>
+                    <p className={"fightName"}>Lugia</p>
+                    <div className={"tierFight"}>Tier 1</div>
+                    <div className={"progressBarFightExternal"}>
+                        <div style={{ width: +parseFloat(100 - pokemonHpPurcent).toFixed(2) + "%" }} className={"progressBarFightInternal"}><p>{parseFloat(100 - pokemonHpPurcent).toFixed(2) + " %"}</p></div>
+                    </div>
+                    <div>
+                        <img class="fightSprite" src="/Shinydex/shiny/249.gif" />
+                    </div>
+                </>
+            }
             <div className={"fightActionsContainer"}>
-                <div className={"fightActions"}>
-                    < img src={"/honey.png"} />
-                    <p>Miels</p>
-                </div>
-                <div onClick={throwRock} className={"fightActions"}>
-                    < img src={"/stone.png"} />
-                    <p>Cailloux</p>
-                    <p>x 1</p>
-                </div>
-                <div className={"fightActions"}>
-                    < img src={"/ball.png"} />
-                    <p>Balls</p>
-                </div>
+                {pokemon ?
+                    <>
+                        <div onClick={throwRock} className={"fightActions"}>
+                            < img src={"/stone.png"} />
+                            <p>Cailloux</p>
+                            <p>x 1</p>
+                        </div>
+                        <div className={"fightActions"}>
+                            < img src={"/ball.png"} />
+                            <p>Balls</p>
+                        </div>
+                    </>
+                    :
+                    <div className={"fightActions"}>
+                        < img src={"/honey.png"} />
+                        <p>Miels</p>
+                    </div>
+                }   
             </div>
         </div>
     )
