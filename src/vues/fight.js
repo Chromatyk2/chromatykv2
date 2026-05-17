@@ -139,6 +139,7 @@ function Fight() {
                         <div class="heart">
                             <div style={{ backgroundColor: currentLove < maxLove ? "#fff" :"#cc333f"}} class="heartInt">
                             </div>
+                            <div class="pokeball"></div>
                         </div>
                     </div>
                 </div>
