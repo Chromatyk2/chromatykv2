@@ -10,6 +10,7 @@ function Fight() {
     const [cookies, setCookie] = useCookies();
     const [pokemon, setPokemon] = useState(null);
     const [shiny, setShiny] = useState(null);
+    const [negative, setNegative] = useState(null);
     const [pokemonHpPurcent, setPokemonHpPurcent] = useState(0);
     const [pokemonCurrentHp, setPokemonCurrentHp] = useState(1000);
     const [pokemonMaxHp, setPokemonMaxHp] = useState(1000);
@@ -42,6 +43,54 @@ function Fight() {
             }
         })
     }
+    function getLegendaryPokemon() {
+        Axios.get("/api/getRandomPokemon/4")
+            .then(function (response) {
+                setPokemon(response.data[0])
+                const shiny = Math.floor((Math.random() * 4096) + 1);
+                if (shiny == 16) {
+                    setShiny(1);
+                }
+            })
+    }
+    function getShinyPokemon() {
+        const tierRoll = Math.random() * 100;
+        if (tierRoll < 39) {
+            var tier = 1;
+        } else if (tierRoll < 89) {
+            var tier = 2;
+        } else if (tierRoll < 99) {
+            var tier = 3;
+        } else {
+            var tier = 4;
+        }
+        Axios.get("/api/getRandomPokemon/" + tier)
+            .then(function (response) {
+                setPokemon(response.data[0]);
+                setShiny(1);
+            })
+    }
+    function getRandomPokemon() {
+        const tierRoll = Math.random() * 100;
+        if (tierRoll < 39) {
+            var tier = 1;
+        } else if (tierRoll < 89) {
+            var tier = 2;
+        } else if (tierRoll < 99) {
+            var tier = 3;
+        } else {
+            var tier = 4;
+        }
+        Axios.get("/api/getRandomPokemon/" + tier)
+            .then(function (response) {
+                setPokemon(response.data[0])
+                const shiny = Math.floor((Math.random() * 4096) + 1);
+                if (shiny == 16) {
+                    setShiny(0);
+                    setNegative(1);
+                }
+            })
+    }
     return (
         <div className={"fightContainer"}>
             {pokemon &&
@@ -51,8 +100,8 @@ function Fight() {
                     <div className={"progressBarFightExternal"}>
                         <div style={{ width: +parseFloat(100 - pokemonHpPurcent).toFixed(2) + "%" }} className={"progressBarFightInternal"}><p>{parseFloat(100 - pokemonHpPurcent).toFixed(2) + " %"}</p></div>
                     </div>
-                    <div>
-                    <img class="fightSprite" src={`/Sprites/${shiny === 1 ? "shiny" : "normal"}/${pokemon.number}.gif`} />
+                <div>
+                    <img style={negative === && filter: "invert(1)" } class="fightSprite" src={`/Sprites/${shiny === 1 ? "shiny" : "normal"}/${pokemon.number}.gif`} />
                     </div>
                 </>
             }
@@ -77,15 +126,15 @@ function Fight() {
                             <img style={{ filter: "drop-shadow(white 0px 0px 5px) hue-rotate(352deg) contrast(1.1)" }} src={"/honey.png"} />
                             <p>Miel<br/>Classique</p>
                         </div>
-                        <div onClick={getRandomPokemon} className={"honeyActions"}>
+                        <div onClick={getLegendaryPokemon} className={"honeyActions"}>
                             <img style={{ filter:"drop-shadow(red 0px 0px 5px) hue-rotate(303deg) contrast(1.1)" }} src={"/honey.png"} />
                             <p>Miel<br/>Légendaire</p>
                         </div>
-                        <div onClick={getRandomPokemon} className={"honeyActions"}>
+                        <div onClick={getShinyPokemon} className={"honeyActions"}>
                             <img style={{ filter:"drop-shadow(gold 0px 0px 5px) hue-rotate(15deg) contrast(1.3)"}} src={"/honey.png"} />
                             <p>Miel<br/>Chromatique</p>
                         </div>
-                        <div class="honeyActions">
+                        <div onClick={getNegativePokemon} class="honeyActions">
                             <img src="/honey.png" style={{filter: "drop-shadow(gold 0px 0px 5px) hue-rotate(15deg) contrast(1.3) invert(1)"}} />
                             <p>Miel<br/>Négatif</p>
                         </div>
