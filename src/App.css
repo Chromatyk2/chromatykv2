@@ -226,6 +226,7 @@ a.navLink.linkFromNav p {
     width: 75%;
     background-image: url('../public/fightBack.jpg');
     background-blend-mode: darken;
+    position: relative;
 }
 .progressBarFightExternal {
     background-color: #fff;
@@ -297,6 +298,9 @@ a.navLink.linkFromNav p {
     border-radius: 10px;
     height: 65px;
     width: 65px;
+    position: absolute;
+    right: 10px;
+    top: 10px;
 }
 fightActionsFlee img {
     width: 55px;
