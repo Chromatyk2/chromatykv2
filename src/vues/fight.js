@@ -145,7 +145,7 @@ function Fight() {
                     </div>
                 </div>
                 <div style={{ filter: negative === 1 && "invert(1)", backgroundImage: `url(/Sprites/${shiny === 1 ? "shiny" : "normal"}/${pokemon.number}.gif)` }} className={"fightSpriteCard"}>
-                    <div style={{visible:onCatch ? "visible" : "hidden"}} class="pokeball"></div>  
+                    <div style={{visibility:onCatch ? "visible" : "hidden"}} class="pokeball"></div>  
                 </div>
                 </>
             }
