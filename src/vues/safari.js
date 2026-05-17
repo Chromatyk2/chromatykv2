@@ -21,7 +21,17 @@ function Fight() {
                 setCurrentLove(response.data[0].love)
                 setShiny(response.data[0].shiny)
                 setNegative(response.data[0].negative)
-                setPokemon({ name: response.data[0].name, number:response.data[0].pokemon, tier :4 })
+                setPokemon({ name: response.data[0].name, number: response.data[0].pokemon, tier: 4 })
+                if (response.data[0].tier == 1) {
+                    setMaxLove(50);
+                } else if (response.data[0].tier == 1) {
+                    setMaxLove(100);
+                } else if (response.data[0].tier == 1) {
+                    setMaxLove(150);
+                } else {
+                    var tier = 4;
+                    setMaxLove(250);
+                }
             })
     })
     function fleeFight() {
