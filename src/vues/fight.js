@@ -38,8 +38,16 @@ function Fight() {
         .then(function (response) {
             setPokemon(response.data[0])
             const shiny = Math.floor((Math.random() * 4096) + 1);
-            if (shiny == 16) {
+            const negative = Math.floor((Math.random() * 8192) + 1);
+            if (negative == 16) {
+                setShiny(0);
+                setNegative(1);
+            } else if (shiny == 16) {
                 setShiny(1);
+                setNegative(0);
+            } else {
+                setShiny(0);
+                setNegative(0);
             }
         })
     }
@@ -48,8 +56,16 @@ function Fight() {
             .then(function (response) {
                 setPokemon(response.data[0])
                 const shiny = Math.floor((Math.random() * 4096) + 1);
-                if (shiny == 16) {
+                const negative = Math.floor((Math.random() * 8192) + 1);
+                if (negative == 16) {
+                    setShiny(0);
+                    setNegative(1);
+                } else if (shiny == 16) {
                     setShiny(1);
+                    setNegative(0);
+                } else {
+                    setShiny(0);
+                    setNegative(0);
                 }
             })
     }
@@ -68,6 +84,7 @@ function Fight() {
             .then(function (response) {
                 setPokemon(response.data[0]);
                 setShiny(1);
+                setNegative(0);
             })
     }
     function getRandomPokemon() {
@@ -101,7 +118,7 @@ function Fight() {
                         <div style={{ width: +parseFloat(100 - pokemonHpPurcent).toFixed(2) + "%" }} className={"progressBarFightInternal"}><p>{parseFloat(100 - pokemonHpPurcent).toFixed(2) + " %"}</p></div>
                     </div>
                 <div>
-                    <img style={negative === && filter: "invert(1)" } class="fightSprite" src={`/Sprites/${shiny === 1 ? "shiny" : "normal"}/${pokemon.number}.gif`} />
+                    <img style={{negative === && filter: "invert(1)" }} class="fightSprite" src={`/Sprites/${shiny === 1 ? "shiny" : "normal"}/${pokemon.number}.gif`} />
                     </div>
                 </>
             }
