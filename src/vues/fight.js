@@ -145,7 +145,7 @@ function Fight() {
         <div className={"fightContainer"}>
             {pokemon &&
                 <>
-                    <div style={{top:"85px"}} onClick={fleeFight} className={"fightActionsSave"}>
+                <div style={{ top: "85px" }} onClick={fleeFight} className={"fightActionsFlee"}>
                         < img src={"/disc.png"} />
                         <p>Save</p>
                         </div>
