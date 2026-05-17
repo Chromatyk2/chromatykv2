@@ -49,6 +49,7 @@ function Fight() {
         Axios.delete('/api/deleteSafari/' + cookies.user.data[0].id)
     }
     function saveFight() {
+        setSafari(true);
         Axios.post('/api/addSafari', {
             user: cookies.user.data[0].id,
             pokemon: pokemon.number,
@@ -56,9 +57,6 @@ function Fight() {
             shiny: shiny,
             negative: negative,
             tier: pokemon.tier
-        })
-        .then(function (response) {
-            setSafari(true);
         })
     }
 
