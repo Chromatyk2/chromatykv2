@@ -16,6 +16,7 @@ function Fight() {
     const [catchRate, setCatchRate] = useState(0);
     const [onCatch, setOnCatch] = useState(false);
     function fleeFight() {
+        setOnCatch(false);
         setPokemon(null);
         setCurrentLove(0)
     }
@@ -26,7 +27,6 @@ function Fight() {
         setOnCatch(true);
         var rate = (f+1) - e;
         const tryCatch = Math.floor(Math.random() * rate);
-        console.log(tryCatch);
     }
     function getRandomPokemon() {
         const tierRoll =  Math.random() * 100;
