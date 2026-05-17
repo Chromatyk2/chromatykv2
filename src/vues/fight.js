@@ -101,11 +101,8 @@ function Fight() {
         Axios.get("/api/getRandomPokemon/" + tier)
             .then(function (response) {
                 setPokemon(response.data[0])
-                const shiny = Math.floor((Math.random() * 4096) + 1);
-                if (shiny == 16) {
-                    setShiny(0);
-                    setNegative(1);
-                }
+                setShiny(0);
+                setNegative(1);
             })
     }
     return (
