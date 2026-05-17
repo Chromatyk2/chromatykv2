@@ -31,7 +31,7 @@ function Fight() {
             setMaxLove(150)
         } else {
             var tier = 4;
-            setMaxLove(200)
+            setMaxLove(250)
         }
         Axios.get("/api/getRandomPokemon/"+tier)
         .then(function (response) {
