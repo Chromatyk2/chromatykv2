@@ -296,6 +296,13 @@ a.navLink.linkFromNav p {
     background-color: rgba(173, 10, 10, 0.5);
     border-radius: 10px;
 }
+fightActionsFlee img {
+    width: 55px;
+}
+.fightActionsFlee p {
+    font-size: 13px;
+    margin: 0;
+}
 .fightActionsFlee:hover {
     background-color: rgba(173, 10, 10, 0.6);
     cursor: pointer;

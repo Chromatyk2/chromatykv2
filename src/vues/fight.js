@@ -123,13 +123,13 @@ function Fight() {
                             <p>x 1</p>
                         </div>
                         <div className={"fightActions"}>
-                            < img src={"/expl.png"} />
-                            <p>Bonbon L</p>
+                            < img src={"/expm.png"} />
+                            <p>Bonbon M</p>
                             <p>x 1</p>
                         </div>
                         <div className={"fightActions"}>
-                            < img src={"/expsxl.png"} />
-                            <p>Bonbon XL</p>
+                            < img src={"/expl.png"} />
+                            <p>Bonbon L</p>
                             <p>x 1</p>
                         </div>
                         <div onClick={fleeFight} className={"fightActionsFlee"}>
