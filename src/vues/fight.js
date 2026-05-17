@@ -30,7 +30,6 @@ function Fight() {
         setTimeout(function () {
             if (tryCatch == 0) {
                 setTimeout(function () {
-                    fleeFight();
                 }, 300);
             }
             else {
