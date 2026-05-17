@@ -117,7 +117,7 @@ function Fight() {
             {pokemon ?
                 <>
                     <div className={"fightActionsContainer"}>
-                        <div onClick={throwRock} className={"fightActions"}>
+                        <div className={"fightActions"}>
                             < img src={"/exps.png"} />
                             <p>Bonbon S</p>
                             <p>x 1</p>
