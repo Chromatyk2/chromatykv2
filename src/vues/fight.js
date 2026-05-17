@@ -22,7 +22,7 @@ function Fight() {
         setCurrentLove(currentLove + e);
     }
     function catchPokemon(e,f) {
-        const tryCatch = Math.floor((Math.random() * f-e) + 1);
+        const tryCatch = Math.floor(Math.random() * f-e);
         console.log(tryCatch);
     }
     function getRandomPokemon() {
