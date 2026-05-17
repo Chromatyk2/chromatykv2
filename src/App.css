@@ -444,4 +444,7 @@ fightActionsFlee img {
     .fightContainer {
         width: 100%;
     }
+    .navBarContent {
+        width: 100%;
+    }
 }
