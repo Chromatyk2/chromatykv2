@@ -35,7 +35,7 @@ function Fight() {
         }
         Axios.get("/api/getRandomPokemon/"+tier)
         .then(function (response) {
-            setPokemon(response.data[0].number)
+            setPokemon(response.data[0])
             const shiny = Math.floor((Math.random() * 4096) + 1);
             if (shiny == 16) {
                 setShiny(1);
@@ -46,13 +46,13 @@ function Fight() {
         <div className={"fightContainer"}>
             {pokemon &&
                 <>
-                    <p className={"fightName"}>Lugia</p>
-                    <div className={"tierFight"}>Tier 1</div>
+                <p className={"fightName"}>{pokemon.name}</p>
+                <div className={"tierFight"}>Tier {pokemon.tier}</div>
                     <div className={"progressBarFightExternal"}>
                         <div style={{ width: +parseFloat(100 - pokemonHpPurcent).toFixed(2) + "%" }} className={"progressBarFightInternal"}><p>{parseFloat(100 - pokemonHpPurcent).toFixed(2) + " %"}</p></div>
                     </div>
                     <div>
-                    <img class="fightSprite" src={`/Sprites/${shiny === 1 ? "shiny" : "normal"}/"+pokemon+".gif`} />
+                    <img class="fightSprite" src={`/Sprites/${shiny === 1 ? "shiny" : "normal"}/${pokemon.number}.gif`} />
                     </div>
                 </>
             }
