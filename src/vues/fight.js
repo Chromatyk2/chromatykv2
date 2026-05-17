@@ -8,13 +8,14 @@ import ProgressBarFight from '../components/progressBarFight.js';
 
 function Fight() {
     const [cookies, setCookie] = useCookies();
+    const [onCatch, setOnCatch] = useState(false);
     const [pokemon, setPokemon] = useState(null);
     const [shiny, setShiny] = useState(null);
     const [negative, setNegative] = useState(null);
+    const [color, setColor] = useState(0);
     const [maxLove, setMaxLove] = useState(0);
     const [currentLove, setCurrentLove] = useState(0);
     const [catchRate, setCatchRate] = useState(0);
-    const [onCatch, setOnCatch] = useState(false);
     function fleeFight() {
         setOnCatch(false);
         setPokemon(null);
@@ -24,6 +25,15 @@ function Fight() {
         setCurrentLove(currentLove + e);
     }
     function catchPokemon(e, f) {
+        if (e == 1) {
+            document.getElementById("ball").style.background = "background: radial-gradient(rgb(255, 255, 255) 16px, rgb(0, 0, 0) 17px, rgb(0, 0, 0) 18px, rgb(255, 255, 255) 19px, rgb(255, 255, 255) 24px, rgb(0, 0, 0) 25px, rgb(0, 0, 0) 32px, rgba(0, 0, 0, 0) 33px), linear-gradient(red 0px, red 80px, rgb(0, 0, 0) 81px, rgb(0, 0, 0) 96px, rgb(255, 255, 255) 97px, rgb(255, 255, 255) 100%)";   
+        } else if (e == 2) {
+            document.getElementById("ball").style.background = "radial-gradient(rgb(255, 255, 255) 16px, rgb(0, 0, 0) 17px, rgb(0, 0, 0) 18px, rgb(255, 255, 255) 19px, rgb(255, 255, 255) 24px, rgb(0, 0, 0) 25px, rgb(0, 0, 0) 32px, rgba(0, 0, 0, 0) 33px), linear-gradient(red 0px, #0089ff 80px, rgb(0, 0, 0) 81px, rgb(0, 0, 0) 96px, rgb(255, 255, 255) 97px, rgb(255, 255, 255) 100%)";
+        } else if (e == 3) {
+            document.getElementById("ball").style.background = "radial-gradient(rgb(255, 255, 255) 16px, rgb(0, 0, 0) 17px, rgb(0, 0, 0) 18px, rgb(255, 255, 255) 19px, rgb(255, 255, 255) 24px, rgb(0, 0, 0) 25px, rgb(0, 0, 0) 32px, rgba(0, 0, 0, 0) 33px), linear-gradient(#000000 0px, #e3c805 80px, rgb(0, 0, 0) 81px, rgb(0, 0, 0) 96px, rgb(255, 255, 255) 97px, rgb(255, 255, 255) 100%)";
+        } else {
+            document.getElementById("ball").style.background = "radial-gradient(rgb(255, 255, 255) 16px, rgb(0, 0, 0) 17px, rgb(0, 0, 0) 18px, rgb(255, 255, 255) 19px, rgb(255, 255, 255) 24px, rgb(0, 0, 0) 25px, rgb(0, 0, 0) 32px, rgba(0, 0, 0, 0) 33px), linear-gradient(#ff00f7 0px, #300c51 80px, rgb(0, 0, 0) 81px, rgb(0, 0, 0) 96px, rgb(255, 255, 255) 97px, rgb(255, 255, 255) 100%)";
+        }
         setOnCatch(true);
         var rate = (f+1) - e;
         const tryCatch = Math.floor(Math.random() * rate);
@@ -138,7 +148,7 @@ function Fight() {
             {pokemon &&
                 <div onClick={fleeFight} className={"fightActionsFlee"}>
                     < img src={"/boot.png"} />
-                    <p>Fuire</p>
+                    <p>Partir</p>
                 </div>
             }
             {pokemon &&
@@ -155,7 +165,7 @@ function Fight() {
                     </div>
                 </div>
                 <div style={{ filter: negative === 1 && "invert(1)", backgroundSize: onCatch ? "0" : "contain", backgroundImage: `url(/Sprites/${shiny === 1 ? "shiny" : "normal"}/${pokemon.number}.gif)` }} className={"fightSpriteCard"}>
-                    <div style={{display:onCatch ? "block" : "none"}} class="pokeball"></div>  
+                    <div id={"ball"} style={{display:onCatch ? "block" : "none"}} class="pokeball"></div>  
                 </div>
                 </>
             }
