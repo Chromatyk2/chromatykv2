@@ -304,6 +304,14 @@ a.navLink.linkFromNav p {
     margin-top: 35px;
     width: 300px;
     height: 300px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    transform: scale(0);
+    animation-name: myAnimation;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+}
 }
 .spriteContainer {
     height: 300px;
@@ -317,11 +325,6 @@ a.navLink.linkFromNav p {
     position: relative;
     max-width: 275px;
     filter: drop-shadow(0px 0px 3px black);
-    transform: scale(0);
-    animation-name: myAnimation;
-    animation-duration: 2s;
-    animation-fill-mode: forwards;
-}
 
 .fightActions p {
     font-size: 13px;
