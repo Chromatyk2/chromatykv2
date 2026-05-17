@@ -20,10 +20,10 @@ function Fight() {
         setCurrentLove(0)
     }
     function saveFight() {
-        console.log(cookies.id);
+        console.log(cookies.data[0].id);
         console.log(pokemon.number);
         Axios.post('/api/addSafari', {
-            user: cookies.id,
+            user: cookies.data[0].id,
             pokemon: pokemon.number,
             love: currentLove,
             shiny: shiny,
