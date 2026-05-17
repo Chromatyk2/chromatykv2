@@ -304,10 +304,10 @@ a.navLink.linkFromNav p {
     background-position: 50%;
     background-repeat: no-repeat;
     background-size: contain;
-    height: 250px;
-    margin: 40px;
+    height: 270px;
+    margin-top: 35px;
     transform: scale(0);
-    width: 300px;
+    width: 270px;
 }
 
 .fightActions p {

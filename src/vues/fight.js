@@ -131,6 +131,18 @@ function Fight() {
                             < img src={"/ball.png"} />
                             <p>Balls</p>
                         </div>
+                        <div className={"fightActions"}>
+                            < img src={"/ball.png"} />
+                            <p>Balls</p>
+                        </div>
+                        <div className={"fightActions"}>
+                            < img src={"/ball.png"} />
+                            <p>Balls</p>
+                        </div>
+                        <div className={"fightActions"}>
+                            < img src={"/ball.png"} />
+                            <p>Balls</p>
+                        </div>
                     </div>
                 </>
                 :
