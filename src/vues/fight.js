@@ -13,6 +13,7 @@ function Fight() {
     const [negative, setNegative] = useState(null);
     const [maxLove, setMaxLove] = useState(0);
     const [currentLove, setCurrentLove] = useState(0);
+    const [catchRate, setCatchRate] = useState(0);
     function fleeFight() {
         setPokemon(null);
         setCurrentLove(0)
@@ -20,20 +21,24 @@ function Fight() {
     function addLove(e) {
         setCurrentLove(currentLove + e);
     }
+    function catchPokemon(e) {
+        const tryCatch = Math.floor((Math.random() * catchRate-e) + 1);
+        console.log(tryCatch);
+    }
     function getRandomPokemon() {
         const tierRoll =  Math.random() * 100;
         if (tierRoll < 39) {
             var tier = 1;
-            setMaxLove(50)
+            setMaxLove(50);
         } else if (tierRoll < 89) {
             var tier = 2;
-            setMaxLove(100)
+            setMaxLove(100);
         } else if (tierRoll < 99) {
             var tier = 3;
-            setMaxLove(150)
+            setMaxLove(150);
         } else {
             var tier = 4;
-            setMaxLove(250)
+            setMaxLove(250);
         }
         Axios.get("/api/getRandomPokemon/"+tier)
         .then(function (response) {
@@ -164,22 +169,22 @@ function Fight() {
                             </>
                             :
                             <>
-                                <div className={"fightActions"}>
+                                <div onClick={() => catchPokemon(1)} className={"fightActions"}>
                                     < img src={"/ball.png"} />
                                     <p>Pokéball</p>
                                     <p>x 1</p>
                                 </div>
-                                <div className={"fightActions"}>
+                                <div onClick={() => catchPokemon(2)} className={"fightActions"}>
                                     < img src={"/great.png"} />
                                     <p>Super Ball</p>
                                     <p>x 1</p>
                                 </div>
-                                <div className={"fightActions"}>
+                                <div onClick={() => catchPokemon(3)} className={"fightActions"}>
                                     < img src={"/ultra.png"} />
                                     <p>Hyper Ball</p>
                                     <p>x 1</p>
                                 </div>
-                                <div className={"fightActions"}>
+                                <div onClick={() => catchPokemon(4)} className={"fightActions"}>
                                     < img src={"/master.png"} />
                                     <p>Master Ball</p>
                                     <p>x 1</p>
