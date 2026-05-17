@@ -74,16 +74,20 @@ function Fight() {
                 <>
                     <div className={"honeyActionsContainer"}>
                         <div onClick={getRandomPokemon} className={"honeyActions"}>
-                            <img src={"/honey.png"} />
-                            <p>Miel classique</p>
+                            <img style={{ filter: "drop-shadow(white 0px 0px 5px) hue-rotate(352deg) contrast(1.1)" }} src={"/honey.png"} />
+                            <p>Miel<br/>Classique</p>
                         </div>
                         <div onClick={getRandomPokemon} className={"honeyActions"}>
-                            <img style={{ filter:"hue-rotate(286deg)" }} src={"/honey.png"} />
-                            <p>Miel Légendaire</p>
+                            <img style={{ filter:"drop-shadow(red 0px 0px 5px) hue-rotate(303deg) contrast(1.1)" }} src={"/honey.png"} />
+                            <p>Miel<br/>Légendaire</p>
                         </div>
                         <div onClick={getRandomPokemon} className={"honeyActions"}>
-                            <img style={{ filter:"hue-rotate(132deg) brightness(1.3) drop-shadow(0px 0px 6px white)"}} src={"/honey.png"} />
-                            <p>Miel Chromatique</p>
+                            <img style={{ filter:"drop-shadow(gold 0px 0px 5px) hue-rotate(15deg) contrast(1.3)"}} src={"/honey.png"} />
+                            <p>Miel<br/>Chromatique</p>
+                        </div>
+                        <div class="honeyActions">
+                            <img src="/honey.png" style={{filter: "drop-shadow(gold 0px 0px 5px) hue-rotate(15deg) contrast(1.3) invert(1)"}}>
+                            <p>Miel<br/>Négatif</p>
                         </div>
                     </div>
                 </>

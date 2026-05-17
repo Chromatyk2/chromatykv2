@@ -253,11 +253,11 @@ a.navLink.linkFromNav p {
 }
 .honeyActionsContainer {
     display: flex;
-    height: stretch;
     align-items: center;
     flex-wrap: wrap;
     justify-content: center;
     gap: 20px;
+    margin: auto;
 }
 
 .honeyActions {
