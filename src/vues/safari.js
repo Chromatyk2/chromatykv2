@@ -19,6 +19,17 @@ function Fight() {
         setPokemon(null);
         setCurrentLove(0)
     }
+    function saveFight() {
+        Axios.post('/api/addSafari', {
+            user: cookies.id,
+            pokemon: pokemon.number,
+            love: currentLove,
+            shiny: shiny,
+            negative: negative
+        })
+    }
+
+    
     function addLove(e) {
         setCurrentLove(currentLove + e);
     }
@@ -145,14 +156,14 @@ function Fight() {
         <div className={"fightContainer"}>
             {pokemon &&
                 <>
-                <div style={{ top: "10px" }} onClick={fleeFight} className={"fightActionsFlee"}>
-                        < img src={"/disc.png"} />
-                        <p>Save</p>
-                        </div>
+                    <div style={{ top: "10px" }} onClick={saveFight} className={"fightActionsFlee"}>
+                            < img src={"/disc.png"} />
+                            <p>Save</p>
+                     </div>
                     <div style={{ top: "85px" }} onClick={fleeFight} className={"fightActionsFlee"}>
                         < img src={"/boot.png"} />
                         <p>Partir</p>
-                     </div>
+                    </div>
                 </>
             }
             {pokemon &&
