@@ -22,8 +22,8 @@ function Fight() {
         setCurrentLove(currentLove + e);
     }
     function catchPokemon(e, f) {
-        console.log(e)
-        console.log(f)
+        console.log(e);
+        console.log("tier" + f);
         var rate = f - e;
         const tryCatch = Math.floor(Math.random() * rate);
         console.log(tryCatch);
