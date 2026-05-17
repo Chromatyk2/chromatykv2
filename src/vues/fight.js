@@ -21,8 +21,8 @@ function Fight() {
     function addLove(e) {
         setCurrentLove(currentLove + e);
     }
-    function catchPokemon(e) {
-        const tryCatch = Math.floor((Math.random() * catchRate-e) + 1);
+    function catchPokemon(e,f) {
+        const tryCatch = Math.floor((Math.random() * f-e) + 1);
         console.log(tryCatch);
     }
     function getRandomPokemon() {
@@ -169,22 +169,22 @@ function Fight() {
                             </>
                             :
                             <>
-                                <div onClick={() => catchPokemon(1)} className={"fightActions"}>
+                                <div onClick={() => catchPokemon(0, pokemon.tier)} className={"fightActions"}>
                                     < img src={"/ball.png"} />
                                     <p>Pokéball</p>
                                     <p>x 1</p>
                                 </div>
-                                <div onClick={() => catchPokemon(2)} className={"fightActions"}>
+                                <div onClick={() => catchPokemon(1, pokemon.tier)} className={"fightActions"}>
                                     < img src={"/great.png"} />
                                     <p>Super Ball</p>
                                     <p>x 1</p>
                                 </div>
-                                <div onClick={() => catchPokemon(3)} className={"fightActions"}>
+                                <div onClick={() => catchPokemon(2,pokemon.tier)} className={"fightActions"}>
                                     < img src={"/ultra.png"} />
                                     <p>Hyper Ball</p>
                                     <p>x 1</p>
                                 </div>
-                                <div onClick={() => catchPokemon(4)} className={"fightActions"}>
+                                <div onClick={() => catchPokemon(3,pokemon.tier)} className={"fightActions"}>
                                     < img src={"/master.png"} />
                                     <p>Master Ball</p>
                                     <p>x 1</p>
