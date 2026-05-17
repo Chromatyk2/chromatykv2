@@ -117,7 +117,7 @@ function Fight() {
                 <div style={{ backgroundColor: pokemon.tier == 1 ? "#6d6d6c" : pokemon.tier == 2 ? "#21693a" : pokemon.tier == 3 ? "#744095" : "#bfa93a" }} className={"tierFight"}>Tier {pokemon.tier}</div>
                     <div className={"progressBarFightExternal"}>
                     <div style={{ width: +parseFloat(currentLove/maxLove*100).toFixed(2) + "%" }} className={"progressBarFightInternal"}>
-                        <p>{currentLove+"/"+maxLove}</p>
+                        <p>{currentLove + "/" + maxLove}</p>
                         <div class="heart"></div>
                     </div>
                 </div>
