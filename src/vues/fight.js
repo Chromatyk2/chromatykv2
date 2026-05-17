@@ -22,7 +22,7 @@ function Fight() {
     }
 
     function getRandomPokemon() {
-        Axios.post('/api/removeCardsPoint',
+        Axios.post('/api/getRandomPokemon',
             {
                 tier: Math.floor((Math.random() * 4) + 1)
             }
