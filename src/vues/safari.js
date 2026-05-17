@@ -14,6 +14,13 @@ function Fight() {
     const [negative, setNegative] = useState(null);
     const [maxLove, setMaxLove] = useState(0);
     const [currentLove, setCurrentLove] = useState(0);
+    useEffect(() => {
+        Axios
+            .get("/api/getSafari/" + cookies.user.data[0].id)
+            .then(function (response) {
+                console.log(response);
+            })
+    })
     function fleeFight() {
         setOnCatch(false);
         setPokemon(null);
