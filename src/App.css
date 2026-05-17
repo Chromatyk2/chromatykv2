@@ -220,18 +220,17 @@ a.navLink.linkFromNav p {
     align-items: center;
     background: #cc333f;
     display: flex;
-    height: 50px;
+    height: 40px;
     justify-content: center;
     position: absolute;
     right: -25px;
-    top: -10px;
+    top: -8px;
     aspect-ratio: 1;
     clip-path: shape(from 50% 91%, line to 90% 50%, arc to 50% 9% of 1%, arc to 10% 50% of 1%);
 }
-}
 
 .heartInt {
-    height: 40px;
+    height: 39px;
     aspect-ratio: 1;
     clip-path: shape(from 50% 91%, line to 90% 50%, arc to 50% 9% of 1%, arc to 10% 50% of 1%);
 }
