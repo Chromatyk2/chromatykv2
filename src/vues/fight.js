@@ -74,16 +74,16 @@ function Fight() {
                 <>
                     <div className={"honeyActionsContainer"}>
                         <div onClick={getRandomPokemon} className={"honeyActions"}>
-                            < img src={"/honey.png"} />
+                            <img src={"/honey.png"} />
                             <p>Miel classique</p>
                         </div>
                         <div onClick={getRandomPokemon} className={"honeyActions"}>
-                            < img style={{ filter:" hue - rotate(286deg)" }} src={"/honey.png"} />
+                            <img style={{ filter:"hue-rotate(286deg)" }} src={"/honey.png"} />
                             <p>Miel Légendaire</p>
                         </div>
                         <div onClick={getRandomPokemon} className={"honeyActions"}>
-                            < img style={{ filter:"hue - rotate(132deg) brightness(1.3) drop- shadow(0px 0px 6px white)"}} src={"/honey.png"} />
-                            <p>Miel Shiny</p>
+                            <img style={{ filter:"hue-rotate(132deg) brightness(1.3) drop-shadow(0px 0px 6px white)"}} src={"/honey.png"} />
+                            <p>Miel Chromatique</p>
                         </div>
                     </div>
                 </>
