@@ -123,25 +123,23 @@ function Fight() {
                 <>
                     <div className={"fightActionsContainer"}>
                         <div onClick={throwRock} className={"fightActions"}>
-                            < img src={"/stone.png"} />
-                            <p>Cailloux</p>
+                            < img src={"/exps.png"} />
+                            <p>Bonbon S</p>
                             <p>x 1</p>
                         </div>
                         <div className={"fightActions"}>
-                            < img src={"/ball.png"} />
-                            <p>Balls</p>
+                            < img src={"/expl.png"} />
+                            <p>Bonbon L</p>
+                            <p>x 1</p>
                         </div>
                         <div className={"fightActions"}>
-                            < img src={"/ball.png"} />
-                            <p>Balls</p>
+                            < img src={"/expsXL.png"} />
+                            <p>Bonbon XL</p>
+                            <p>x 1</p>
                         </div>
                         <div className={"fightActions"}>
-                            < img src={"/ball.png"} />
-                            <p>Balls</p>
-                        </div>
-                        <div className={"fightActions"}>
-                            < img src={"/ball.png"} />
-                            <p>Balls</p>
+                            < img src={"/boot.png"} />
+                            <p>Fuire</p>
                         </div>
                     </div>
                 </>
