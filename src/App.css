@@ -312,18 +312,6 @@ a.navLink.linkFromNav p {
     animation-duration: 2s;
     animation-fill-mode: forwards;
 }
-.spriteContainer {
-    height: 300px;
-    display: flex;
-    align-items: center;
-}
-.fightSprite {
-    flex: 1 1 auto;
-    min-height: 1px;
-    padding: 1.25rem;
-    position: relative;
-    max-width: 275px;
-    filter: drop-shadow(0px 0px 3px black);
 
 .fightActions p {
     font-size: 13px;
