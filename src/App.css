@@ -356,6 +356,9 @@ fightActionsFlee img {
     margin-top: 35px;
     transform: scale(0);
     width: 270px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .fightActions p {
