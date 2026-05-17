@@ -9,6 +9,7 @@ import ProgressBarFight from '../components/progressBarFight.js';
 function Fight() {
     const [cookies, setCookie] = useCookies();
     const [pokemon, setPokemon] = useState(null);
+    const [shiny, setShiny] = useState(null);
     const [pokemonHpPurcent, setPokemonHpPurcent] = useState(0);
     const [pokemonCurrentHp, setPokemonCurrentHp] = useState(1000);
     const [pokemonMaxHp, setPokemonMaxHp] = useState(1000);
@@ -22,10 +23,23 @@ function Fight() {
     }
 
     function getRandomPokemon() {
-        const tier = Math.floor((Math.random() * 4) + 1);
+        const tierRoll =  Math.random() * 100;
+        if (tierRoll < 39) {
+            var tier = 1;
+        } else if (tierRoll < 89) {
+            var tier = 2;
+        } else if (tierRoll < 99) {
+            var tier = 3;
+        } else {
+            var tier = 4;
+        }
         Axios.get("/api/getRandomPokemon/"+tier)
         .then(function (response) {
             setPokemon(response.data[0].number)
+            const shiny = Math.floor((Math.random() * 4096) + 1);
+            if (shiny == 16) {
+                setShiny(1);
+            }
         })
     }
     return (
@@ -38,7 +52,7 @@ function Fight() {
                         <div style={{ width: +parseFloat(100 - pokemonHpPurcent).toFixed(2) + "%" }} className={"progressBarFightInternal"}><p>{parseFloat(100 - pokemonHpPurcent).toFixed(2) + " %"}</p></div>
                     </div>
                     <div>
-                        <img class="fightSprite" src={"/Shinydex/shiny/"+pokemon+".gif"} />
+                    <img class="fightSprite" src={"/Sprites/" + {shiny == 1 ? "shiny" : "normal"} +"/"+pokemon+".gif"} />
                     </div>
                 </>
             }
