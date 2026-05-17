@@ -49,7 +49,6 @@ function Fight() {
         Axios.delete('/api/deleteSafari/' + cookies.user.data[0].id)
     }
     function saveFight() {
-        setSafari(true);
         Axios.post('/api/addSafari', {
             user: cookies.user.data[0].id,
             pokemon: pokemon.number,
@@ -187,7 +186,7 @@ function Fight() {
         <div className={"fightContainer"}>
             {pokemon &&
                 <>
-                {safari === true &&
+                {safari &&
                     <div style={{ top: "10px" }} onClick={saveFight} className={"fightActionsFlee"}>
                         < img src={"/disc.png"} />
                         <p>Save</p>
