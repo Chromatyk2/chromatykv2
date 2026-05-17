@@ -217,48 +217,21 @@ a.navLink.linkFromNav p {
 
 /* Combat */
 .heart {
-    position: relative;
-    width: 100px;
-    height: 90px;
-    float: left;
+    height: 250px;
+    aspect-ratio: 1;
+    clip-path: shape(from 50% 91%,line to 90% 50%,arc to 50% 9% of 1%,arc to 10% 50% of 1%);
+    background: #cc333f;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-    .heart:before,
-    .heart:after {
-        position: absolute;
-        content: "";
-        left: 50px;
-        top: 0;
-        width: 50px;
-        height: 80px;
-        background: #fc2e5a;
-        -moz-border-radius: 50px 50px 0 0;
-        border-radius: 50px 50px 0 0;
-        -webkit-transform: rotate(-45deg);
-        -moz-transform: rotate(-45deg);
-        -ms-transform: rotate(-45deg);
-        -o-transform: rotate(-45deg);
-        transform: rotate(-45deg);
-        -webkit-transform-origin: 0 100%;
-        -moz-transform-origin: 0 100%;
-        -ms-transform-origin: 0 100%;
-        -o-transform-origin: 0 100%;
-        transform-origin: 0 100%;
-    }
-
-    .heart:after {
-        left: 0;
-        -webkit-transform: rotate(45deg);
-        -moz-transform: rotate(45deg);
-        -ms-transform: rotate(45deg);
-        -o-transform: rotate(45deg);
-        transform: rotate(45deg);
-        -webkit-transform-origin: 100% 100%;
-        -moz-transform-origin: 100% 100%;
-        -ms-transform-origin: 100% 100%;
-        -o-transform-origin: 100% 100%;
-        transform-origin: 100% 100%;
-    }
+.heartInt {
+    height: 230px;
+    aspect-ratio: 1;
+    clip-path: shape(from 50% 91%,line to 90% 50%,arc to 50% 9% of 1%,arc to 10% 50% of 1%);
+    background: blue;
+}
 .fightContainer {
     align-items: center;
     background-color: rgba(0,0,0,0.1);
@@ -277,7 +250,7 @@ a.navLink.linkFromNav p {
     width: 300px;
 }
 .progressBarFightInternal {
-    background-color: #e5989e;
+    background-color: #cc333f;
     height: 20px;
     width: 50%;
     transition: width 1s ease-in-out;

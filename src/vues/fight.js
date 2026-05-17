@@ -118,7 +118,10 @@ function Fight() {
                     <div className={"progressBarFightExternal"}>
                     <div style={{ width: +parseFloat(currentLove/maxLove*100).toFixed(2) + "%" }} className={"progressBarFightInternal"}>
                         <p>{currentLove + "/" + maxLove}</p>
-                        <div class="heart"></div>
+                        <div class="heart">
+                            <div class="heartInt">
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div style={{ filter: negative === 1 && "invert(1)", backgroundImage: `url(/Sprites/${shiny === 1 ? "shiny" : "normal"}/${pokemon.number}.gif)` }} className={"fightSpriteCard"}>
