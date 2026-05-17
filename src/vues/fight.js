@@ -15,13 +15,10 @@ function Fight() {
     const [currentLove, setCurrentLove] = useState(0);
     function fleeFight() {
         setPokemon(null);
+        setCurrentLove(0)
     }
-    function addLoveS() {
-        setCurrentLove(currentLove+10);
-    } function addLoveM() {
-        setCurrentLove(currentLove+25);
-    } function addLoveL() {
-        setCurrentLove(currentLove+50);
+    function addLove(e) {
+        setCurrentLove(currentLove + e);
     }
     function getRandomPokemon() {
         const tierRoll =  Math.random() * 100;
@@ -149,17 +146,17 @@ function Fight() {
                     <div className={"fightActionsContainer"}>
                         {currentLove < maxLove ?
                             <>
-                                <div onClick={addLoveS} className={"fightActions"}>
+                                <div onClick={() => addLove(10)} className={"fightActions"}>
                                     < img src={"/exps.png"} />
                                     <p>Bonbon S</p>
                                     <p>x 1</p>
                                 </div>
-                                <div onClick={addLoveM} className={"fightActions"}>
+                                <div onClick={() => addLove(25)} className={"fightActions"}>
                                     < img src={"/expm.png"} />
                                     <p>Bonbon M</p>
                                     <p>x 1</p>
                                 </div>
-                                <div onClick={addLoveL} className={"fightActions"}>
+                                <div onClick={() => addLove(50)} className={"fightActions"}>
                                     < img src={"/expl.png"} />
                                     <p>Bonbon L</p>
                                     <p>x 1</p>
