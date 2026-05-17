@@ -118,7 +118,7 @@ function Fight() {
                         <div style={{ width: +parseFloat(100 - pokemonHpPurcent).toFixed(2) + "%" }} className={"progressBarFightInternal"}><p>{parseFloat(100 - pokemonHpPurcent).toFixed(2) + " %"}</p></div>
                     </div>
                 <div>
-                    <img style={{negative === && filter: "invert(1)" }} class="fightSprite" src={`/Sprites/${shiny === 1 ? "shiny" : "normal"}/${pokemon.number}.gif`} />
+                    <img style={{negative === 1 && filter: "invert(1)" }} class="fightSprite" src={`/Sprites/${shiny === 1 ? "shiny" : "normal"}/${pokemon.number}.gif`} />
                     </div>
                 </>
             }
