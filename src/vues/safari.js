@@ -33,7 +33,7 @@ function Fight() {
                     setMaxLove(250);
                 }
             })
-    })
+    }, []);
     function fleeFight() {
         setOnCatch(false);
         setPokemon(null);
