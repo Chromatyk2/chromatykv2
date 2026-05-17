@@ -11,9 +11,9 @@ function Fight() {
     const [pokemon, setPokemon] = useState(null);
     const [shiny, setShiny] = useState(null);
     const [negative, setNegative] = useState(null);
-    const [pokemonHpPurcent, setPokemonHpPurcent] = useState(0);
-    const [pokemonCurrentHp, setPokemonCurrentHp] = useState(0);
-    const [pokemonMaxHp, setPokemonMaxHp] = useState(1000);
+    const [maxLove, setMaxLove] = useState(0);
+    const [currentLove, setCurrentLove] = useState(0);
+    const
     function fleeFight() {
         setPokemon(null);
     }
@@ -22,12 +22,16 @@ function Fight() {
         const tierRoll =  Math.random() * 100;
         if (tierRoll < 39) {
             var tier = 1;
+            setMaxLove(50)
         } else if (tierRoll < 89) {
             var tier = 2;
+            setMaxLove(100)
         } else if (tierRoll < 99) {
             var tier = 3;
+            setMaxLove(150)
         } else {
             var tier = 4;
+            setMaxLove(200)
         }
         Axios.get("/api/getRandomPokemon/"+tier)
         .then(function (response) {
@@ -113,8 +117,8 @@ function Fight() {
                 <p className={"fightName"}>{pokemon.name}</p>
                 <div style={{ backgroundColor: pokemon.tier == 1 ? "#6d6d6c" : pokemon.tier == 2 ? "#21693a" : pokemon.tier == 3 ? "#744095" : "#bfa93a" }} className={"tierFight"}>Tier {pokemon.tier}</div>
                     <div className={"progressBarFightExternal"}>
-                    <div style={{ width: +parseFloat(100 - pokemonHpPurcent).toFixed(2) + "%" }} className={"progressBarFightInternal"}>
-                        <p>{parseFloat(100 - pokemonHpPurcent).toFixed(2) + " %"}</p>
+                    <div style={{ width: +parseFloat(currentLove/maxLove*100).toFixed(2) + "%" }} className={"progressBarFightInternal"}>
+                        <p>{currentLove+"/"+maxLove}</p>
                         <div class="heart"></div>
                     </div>
                 </div>
