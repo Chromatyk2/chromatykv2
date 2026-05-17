@@ -18,7 +18,10 @@ function Fight() {
         Axios
             .get("/api/getSafari/" + cookies.user.data[0].id)
             .then(function (response) {
-                console.log(response);
+                setCurrentLove(response.data[0].love)
+                setShiny(response.data[0].shiny)
+                setNegative(response.data[0].negative)
+                setPokemon({ name: response.data[0].name, number:response.data[0].pokemon, tier :4 })
             })
     })
     function fleeFight() {
