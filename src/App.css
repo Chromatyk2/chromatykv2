@@ -302,6 +302,8 @@ a.navLink.linkFromNav p {
     display: flex;
     flex-flow: column;
     margin-top: 35px;
+    width: 300px;
+    height: 300px;
 }
 .spriteContainer {
     height: 300px;
