@@ -20,6 +20,17 @@ function Fight() {
             setPokemonHpPurcent(100 - (currentHP / pokemonMaxHp) * 100)
         }
     }
+
+    function getRandomPokemon() {
+        Axios.post('/api/removeCardsPoint',
+            {
+                tier: Math.floor((Math.random() * 4) + 1)
+            }
+        )
+        .then(function (response) {
+            setPokemon(response.data.number)
+        })
+    }
     return (
         <div className={"fightContainer"}>
             {pokemon &&
@@ -30,7 +41,7 @@ function Fight() {
                         <div style={{ width: +parseFloat(100 - pokemonHpPurcent).toFixed(2) + "%" }} className={"progressBarFightInternal"}><p>{parseFloat(100 - pokemonHpPurcent).toFixed(2) + " %"}</p></div>
                     </div>
                     <div>
-                        <img class="fightSprite" src="/Shinydex/shiny/249.gif" />
+                        <img class="fightSprite" src={"/Shinydex/shiny/"+pokemon+".gif"} />
                     </div>
                 </>
             }
