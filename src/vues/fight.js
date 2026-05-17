@@ -110,16 +110,12 @@ function Fight() {
             {pokemon &&
                 <>
                 <p className={"fightName"}>{pokemon.name}</p>
-                <div className={"tierFight"}>Tier {pokemon.tier}</div>
+                <div style={{ backgroundColor: pokemon.tier == 1 ? "#6d6d6c" : pokemon.tier == 2 ? "#21693a" : pokemon.tier == 3 ? "#744095" : "#bfa93a" }} className={"tierFight"}>Tier {pokemon.tier}</div>
                     <div className={"progressBarFightExternal"}>
                         <div style={{ width: +parseFloat(100 - pokemonHpPurcent).toFixed(2) + "%" }} className={"progressBarFightInternal"}><p>{parseFloat(100 - pokemonHpPurcent).toFixed(2) + " %"}</p></div>
                 </div>
-                <div style={{ filter: negative === 1 ? "drop-shadow(0 0 3px black) invert(1)" : "drop-shadow(0 0 3px black)", backgroundImage: `url(/Sprites/${shiny === 1 ? "shiny" : "normal"}/${pokemon.number}.gif)` }} className={"fightSpriteCard"}>
-                    {/*<div className={"spriteContainer"}>*/}
-                    {/*    <div>*/}
-                    {/*        <img style={{ filter: negative === 1 ? "drop-shadow(0 0 3px black) invert(1)" : "drop-shadow(0 0 3px black)" }} class="fightSprite" src={`/Sprites/${shiny === 1 ? "shiny" : "normal"}/${pokemon.number}.gif`} />*/}
-                    {/*    </div>*/}
-                    {/*</div>*/}
+                <div style={{ filter: negative === 1 && "invert(1)", backgroundImage: `url(/Sprites/${shiny === 1 ? "shiny" : "normal"}/${pokemon.number}.gif)` }} className={"fightSpriteCard"}>
+                    
                 </div>
                 </>
             }
