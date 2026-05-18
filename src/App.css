@@ -413,11 +413,11 @@ fightActionsFlee img {
     gap: 20px;
 }
 .twitchLink {
-    color: #c6e8f9;
+    color: #fff;
     text-decoration: none;
 }
 .twitchLink:hover {
-    color: #628b9f;
+    color: #c6e8f9;
 }
 /* Animation */
 @keyframes myAnimation {
