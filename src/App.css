@@ -218,7 +218,7 @@ a.navLink.linkFromNav p {
 /* Combat */
 .heart {
     align-items: center;
-    background: #cc333f;
+    background: #ffffff;
     display: flex;
     height: 40px;
     justify-content: center;
@@ -230,7 +230,7 @@ a.navLink.linkFromNav p {
 }
 
 .heartInt {
-    height: 39px;
+    height: 33px;
     aspect-ratio: 1;
     clip-path: shape(from 50% 91%, line to 90% 50%, arc to 50% 9% of 1%, arc to 10% 50% of 1%);
 }
@@ -251,14 +251,15 @@ a.navLink.linkFromNav p {
     background-color: #fff;
     height: 20px;
     width: 300px;
+    border: white solid 1px;
 }
 .progressBarFightInternal {
-    background-color: #cc333f;
+    background-color: rgb(115, 0, 9);
     height: 20px;
     transition: width 1s ease-in-out;
     color: #072851;
     position: relative;
-    max-width:100%;
+    max-width: 100%;
 }
     .progressBarFightInternal p {
         color: #fff;

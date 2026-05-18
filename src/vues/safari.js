@@ -198,7 +198,7 @@ function Fight() {
                     <div style={{ width: +parseFloat(currentLove/maxLove*100).toFixed(2) + "%" }} className={"progressBarFightInternal"}>
                         <p>{currentLove + "/" + maxLove}</p>
                         <div class="heart">
-                            <div style={{ backgroundColor: currentLove < maxLove ? "#fff" :"#cc333f"}} class="heartInt">
+                            <div style={{backgroundColor:"#rgb(115, 0, 9)"}} class="heartInt">
                             </div>
                         </div>
                     </div>
