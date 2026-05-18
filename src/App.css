@@ -218,7 +218,7 @@ a.navLink.linkFromNav p {
 /* Combat */
 .heart {
     align-items: center;
-    background: #ffffff;
+    background: white;
     display: flex;
     height: 40px;
     justify-content: center;
@@ -230,9 +230,13 @@ a.navLink.linkFromNav p {
 }
 
 .heartInt {
-    height: 33px;
     aspect-ratio: 1;
     clip-path: shape(from 50% 91%, line to 90% 50%, arc to 50% 9% of 1%, arc to 10% 50% of 1%);
+    height: 33px;
+    background: #730009;
+    position: absolute;
+    left: 3.5px;
+    top: 3px;
 }
 .fightContainer {
     align-items: center;
