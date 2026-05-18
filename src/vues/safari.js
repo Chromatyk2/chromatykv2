@@ -23,8 +23,9 @@ function Fight() {
             .get("/api/getSafari/" + cookies.user.data[0].id)
             .then(function (response) {
                 if (response.data.length == 0) {
-                    document.getElementById("fightActionsSave").style.display = "none";
+                    document.getElementById("fightActionsSave").style.display = "block";
                 } else {
+                    document.getElementById("fightActionsSave").style.display = "none";
                     setCurrentLove(response.data[0].love)
                     setShiny(response.data[0].shiny)
                     setNegative(response.data[0].negative)
