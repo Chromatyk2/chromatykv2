@@ -15,7 +15,7 @@ function Inventory(props) {
             .get("/api/getInventory/" + cookies.user.data[0].id)
             .then(function (response) {
                 setInventory(response.data);
-                console.log(response.dta);
+                console.log(response.data);
             })
         })
     }, []);
