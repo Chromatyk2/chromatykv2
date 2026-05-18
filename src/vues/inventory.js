@@ -19,6 +19,44 @@ function Inventory(props) {
     }, []);
     return (
         <>
+            <p className="pseudoProfil">Inventaire</p>
+            <div className={"fightActionsContainer"}>
+                <div className={"fightActions"}>
+                    < img src={"/exps.png"} />
+                    <p>Bonbon S</p>
+                    <p>x 1</p>
+                </div>
+                <div className={"fightActions"}>
+                    < img src={"/expm.png"} />
+                    <p>Bonbon M</p>
+                    <p>x 1</p>
+                </div>
+                <div className={"fightActions"}>
+                    < img src={"/expl.png"} />
+                    <p>Bonbon L</p>
+                    <p>x 1</p>
+                </div>
+                <div className={"fightActions"}>
+                    < img src={"/ball.png"} />
+                    <p>Pokéball</p>
+                    <p>x 1</p>
+                </div>
+                <div className={"fightActions"}>
+                    < img src={"/great.png"} />
+                    <p>Super Ball</p>
+                    <p>x 1</p>
+                </div>
+                <div className={"fightActions"}>
+                    < img src={"/ultra.png"} />
+                    <p>Hyper Ball</p>
+                    <p>x 1</p>
+                </div>
+                <div className={"fightActions"}>
+                    < img src={"/master.png"} />
+                    <p>Master Ball</p>
+                    <p>x 1</p>
+                </div>
+            </div>
         </>
     )
 }
