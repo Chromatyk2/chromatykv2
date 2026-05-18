@@ -219,6 +219,7 @@ function Fight() {
                     {inventory &&
                         inventory.filter(item => item.slug === "honey" || item.slug === "legendary" || item.slug === "shiny" || item.slug === "negative").length < 1 ?
                         <p className="pseudoProfil">Vous n'avez pas de miel, récupérez en sur les streams de Chromatyk</p> :
+                        inventory &&
                         inventory.filter(item => item.slug === "honey" || item.slug === "legendary" || item.slug === "shiny" || item.slug === "negative").map((val, key) => {
                                 return (
                                     val.quantity > 0 && (
