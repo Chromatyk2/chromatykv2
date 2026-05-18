@@ -21,6 +21,22 @@ function Inventory(props) {
         <>
             <p className="pseudoProfil">Inventaire</p>
             <div className={"fightActionsContainer"}>
+                <div className={"honeyActions"}>
+                    <img style={{ filter: "drop-shadow(white 0px 0px 5px) hue-rotate(352deg) contrast(1.1)" }} src={"/honey.png"} />
+                    <p>Miel<br />Classique</p>
+                </div>
+                <div className={"honeyActions"}>
+                    <img style={{ filter: "drop-shadow(red 0px 0px 5px) hue-rotate(303deg) contrast(1.1)" }} src={"/honey.png"} />
+                    <p>Miel<br />Légendaire</p>
+                </div>
+                <div className={"honeyActions"}>
+                    <img style={{ filter: "drop-shadow(gold 0px 0px 5px) hue-rotate(15deg) contrast(1.3)" }} src={"/honey.png"} />
+                    <p>Miel<br />Chromatique</p>
+                </div>
+                <div class="honeyActions">
+                    <img src="/honey.png" style={{ filter: "drop-shadow(gold 0px 0px 5px) hue-rotate(15deg) contrast(1.3) invert(1)" }} />
+                    <p>Miel<br />Négatif</p>
+                </div>
                 <div className={"fightActions"}>
                     < img src={"/exps.png"} />
                     <p>Bonbon S</p>
