@@ -23,7 +23,7 @@ function Fight() {
             .get("/api/getSafari/" + cookies.user.data[0].id)
             .then(function (response) {
                 if (response.data.length == 0) {
-                    setSafari(true);
+                    setSafari(false);
                 }
                 setCurrentLove(response.data[0].love)
                 setShiny(response.data[0].shiny)
@@ -105,7 +105,8 @@ function Fight() {
         }
         Axios.get("/api/getRandomPokemon/"+tier)
         .then(function (response) {
-            setPokemon(response.data[0])
+            setPokemon(response.data[0]);
+            setSafari(true);
             const shiny = Math.floor((Math.random() * 4096) + 1);
             const negative = Math.floor((Math.random() * 8192) + 1);
             if (negative == 16) {
