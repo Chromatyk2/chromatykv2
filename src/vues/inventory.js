@@ -118,7 +118,7 @@ function Inventory(props) {
                 :
                 <>
                     <p className="pseudoProfil">Votre inventire est vide, récupère des objets et des boosters sur les stream de Chromatyk</p>
-                    <a href="https://witch.tv/chromatyk" target="blank_">Twitch</a>
+                    <a href="https://twitch.tv/chromatyk" target="blank_">Twitch</a>
                 </>
             }
          </>
