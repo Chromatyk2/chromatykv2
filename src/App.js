@@ -23,7 +23,7 @@ function App() {
                       <Routes>
                           <Route path="/log" element={<Log />} />
                           <Route path="/" element={<HomePage />} />
-                          <Route path="/inventire" element={<Inventory />} />
+                          <Route path="/inventaire" element={<Inventory />} />
                           <Route path="/shiny" element={<ShinyDex />} />
                           <Route path="/safari" element={<Safari />} />
                       </Routes>
