@@ -23,22 +23,21 @@ function Fight() {
             .get("/api/getSafari/" + cookies.user.data[0].id)
             .then(function (response) {
                 if (response.data.length == 0) {
-                    document.getElementById("fightActionsSave").style.display = "block";
-                } else {
                     document.getElementById("fightActionsSave").style.display = "none";
-                    setCurrentLove(response.data[0].love)
-                    setShiny(response.data[0].shiny)
-                    setNegative(response.data[0].negative)
-                    setPokemon({ name: response.data[0].name, number: response.data[0].pokemon, tier: response.data[0].tier })
-                    if (response.data[0].tier == 1) {
-                        setMaxLove(50);
-                    } else if (response.data[0].tier == 1) {
-                        setMaxLove(100);
-                    } else if (response.data[0].tier == 1) {
-                        setMaxLove(150);
-                    } else {
-                        setMaxLove(250);
-                    }
+                }
+                document.getElementById("fightActionsSave").style.display = "block";
+                setCurrentLove(response.data[0].love)
+                setShiny(response.data[0].shiny)
+                setNegative(response.data[0].negative)
+                setPokemon({ name: response.data[0].name, number: response.data[0].pokemon, tier: response.data[0].tier })
+                if (response.data[0].tier == 1) {
+                    setMaxLove(50);
+                } else if (response.data[0].tier == 1) {
+                    setMaxLove(100);
+                } else if (response.data[0].tier == 1) {
+                    setMaxLove(150);
+                } else {
+                    setMaxLove(250);
                 }
             })
     }, []);
