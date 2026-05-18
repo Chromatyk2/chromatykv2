@@ -26,7 +26,7 @@ function Inventory(props) {
                 <p className="pseudoProfil">Inventaire</p>
                 <div className={"inventoryContainer"}>
                     {inventory[0].box > 0 &&
-                        <div className={"honeyActions"}>
+                        <div style={{ backgroundColor: "rgba(255, 255, 255, 0.1)", filter: "drop-shadow(white 0px 0px 5px) hue-rotate(352deg) contrast(1.1)" }} className={"honeyActions"}>
                             <img src={"/box.png"} />
                             <p>Lootbox</p>
                             <p>x {inventory[0].box}</p>
