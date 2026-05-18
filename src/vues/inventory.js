@@ -6,6 +6,7 @@ import { useCookies } from 'react-cookie';
 function Inventory(props) {
     const [cookies, setCookie] = useCookies();
     const [inventory, setInventory] = useState(null);
+    const [honey, setHoney] = useState(null);
     useEffect(() => {
         Axios.post('/api/createInventory', {
             user: cookies.user.data[0].id
@@ -19,6 +20,23 @@ function Inventory(props) {
             })
         })
     }, []);
+    function openLootbox() {
+        const honeyTier = Math.random() * 100;
+        if (honeyTier < 98) {
+            var honeyToAdd = "honey";
+        } else if (honeyTier < 99) {
+            var honeyToAdd = "legendary";
+        } else if (honeyTier < 100) {
+            var honeyToAdd = "shiny";
+        } else {
+            var honeyToAdd = "negative";
+        }
+        Axios.post('/api/addHoney', {
+            user: cookies.user.data[0].id,
+            honey: honeyToAdd,
+            honeys: honeyToAdd,
+        })
+    }
     return (
         <>
             {inventory &&
@@ -26,7 +44,7 @@ function Inventory(props) {
                 <p className="pseudoProfil">Inventaire</p>
                 <div className={"inventoryContainer"}>
                     {inventory[0].box > 0 &&
-                        <div style={{ backgroundColor: "rgba(255, 255, 255, 0.1)", filter: "drop-shadow(white 0px 0px 5px) hue-rotate(352deg) contrast(1.1)" }} className={"honeyActions"}>
+                        <div onClick={openLootbox} style={{ backgroundColor: "rgba(255, 255, 255, 0.1)", filter: "drop-shadow(white 0px 0px 5px) hue-rotate(352deg) contrast(1.1)" }} className={"honeyActions"}>
                             <img src={"/box.png"} />
                             <p>Lootbox</p>
                             <p>x {inventory[0].box}</p>
