@@ -107,7 +107,6 @@ function Fight() {
         Axios.get("/api/getRandomPokemon/"+tier)
         .then(function (response) {
             setPokemon(response.data[0]);
-            setSafari(true);
             const shiny = Math.floor((Math.random() * 4096) + 1);
             const negative = Math.floor((Math.random() * 8192) + 1);
             if (negative == 16) {
@@ -189,13 +188,10 @@ function Fight() {
         <div className={"fightContainer"}>
             {pokemon &&
                 <>
-                {safari == true &&
-                    <div id={"fightActionsSave"} style={{ top: "10px" }} onClick={saveFight} className={"fightActionsFlee"}>
-                        < img src={"/disc.png"} />
-                        <p>Save</p>
-                    </div>
-
-                }
+                <div id={"fightActionsSave"} style={{ top: "10px" }} onClick={saveFight} className={"fightActionsFlee"}>
+                    < img src={"/disc.png"} />
+                    <p>Save</p>
+                </div>
                 <div style={{ top: "85px" }} onClick={fleeFight} className={"fightActionsFlee"}>
                     < img src={"/boot.png"} />
                     <p>Partir</p>
