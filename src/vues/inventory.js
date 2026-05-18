@@ -15,16 +15,16 @@ function Inventory(props) {
     }, []);
     function openLootbox() {
         const honeyTier = Math.random() * 100;
-        if (honeyTier < 98) {
+        if (honeyTier < 97) {
             var item = "Miel Ordinaire";
             var slug = "honey";
-        } else if (honeyTier < 99) {
+        } else if (honeyTier < 98) {
             var item = "Miel Légendaire";
             var slug = "legendary";
-        } else if (honeyTier < 100) {
+        } else if (honeyTier < 99) {
             var item = "Miel Chromatique";
             var slug = "shiny";
-        } else {
+        } else if (honeyTier < 100) {
             var item = "Miel Négatif";
             var slug = "negative";
         }
