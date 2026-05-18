@@ -23,18 +23,22 @@ function Inventory(props) {
     function openLootbox() {
         const honeyTier = Math.random() * 100;
         if (honeyTier < 98) {
-            var honeyToAdd = "honey";
+            var item = "Miel Ordinaire";
+            var slug = "honey";
         } else if (honeyTier < 99) {
-            var honeyToAdd = "legendary";
+            var item = "Miel Légendaire";
+            var slug = "legendary";
         } else if (honeyTier < 100) {
-            var honeyToAdd = "shiny";
+            var item = "Miel Chromatique";
+            var slug = "shiny";
         } else {
-            var honeyToAdd = "negative";
+            var item = "Miel Négatif";
+            var slug = "negative";
         }
         Axios.post('/api/addHoney', {
-            honey: honeyToAdd,
-            honeys: honeyToAdd,
-            user: cookies.user.data[0].id
+            user: cookies.user.data[0].id,
+            item: item,
+            slug: slug,
         })
     }
     return (
