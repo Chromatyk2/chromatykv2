@@ -27,7 +27,7 @@ function Inventory(props) {
                 <div className={"inventoryContainer"}>
                     {inventory[0].box > 0 &&
                         <div className={"honeyActions"}>
-                            <img style={{ filter: "drop-shadow(white 0px 0px 5px) hue-rotate(352deg) contrast(1.1)" }} src={"/honey.png"} />
+                            <img style={{ backgroundColor: "rgba(255, 255, 255, 0.1)", filter: "drop-shadow(white 0px 0px 5px) hue-rotate(352deg) contrast(1.1)" }} src={"/box.png"} />
                             <p>Lootbox</p>
                             <p>x {inventory[0].box}</p>
                         </div>
