@@ -34,13 +34,13 @@ function Inventory(props) {
             slug: slug
         }).then(function (response) {
                 const ballTier = Math.random() * 100;
-                if (honeyTier < 98) {
+            if (ballTier < 98) {
                     var item = "Poke Ball";
                     var slug = "ball";
-                } else if (honeyTier < 99) {
+            } else if (ballTier < 99) {
                     var item = "Super Ball";
                     var slug = "great";
-                } else if (honeyTier < 100) {
+            } else if (ballTier < 100) {
                     var item = "Hyper Ball";
                     var slug = "ultra";
                 } else {
@@ -53,10 +53,10 @@ function Inventory(props) {
                     slug: slug
                 }).then(function (response) {
                         const candyTier = Math.random() * 100;
-                        if (honeyTier < 50) {
-                            var item = "Bonbon S";
-                            var slug = "exps";
-                        } else if (honeyTier < 90) {
+                        if (candyTier < 50) {
+                                var item = "Bonbon S";
+                                var slug = "exps";
+                        } else if (candyTier < 90) {
                             var item = "Bonbon M";
                             var slug = "expm";
                         } else {
