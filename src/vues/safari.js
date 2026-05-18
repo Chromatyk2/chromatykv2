@@ -75,7 +75,8 @@ function Fight() {
         }, 5300);
     }
     function consomeHoney(e) {
-        if (inventory.find((item) => item.slug == e).quantity - 1 >= 0) {
+        console.log(e);
+        if (inventory.find((item) => item.slug === e).quantity - 1 >= 0) {
             const expr = e;
             switch (expr) {
                 case "honey":
