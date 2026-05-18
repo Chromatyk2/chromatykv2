@@ -17,23 +17,29 @@ function Fight() {
     const [pokemon, setPokemon] = useState(null);
     const [shiny, setShiny] = useState(null);
     const [negative, setNegative] = useState(null);
+    const [inventory, setInventory] = useState(null);
     useEffect(() => {
         Axios
             .get("/api/getSafari/" + cookies.user.data[0].id)
             .then(function (response) {
-                setCurrentLove(response.data[0].love)
-                setShiny(response.data[0].shiny)
-                setNegative(response.data[0].negative)
-                setPokemon({ name: response.data[0].name, number: response.data[0].pokemon, tier: response.data[0].tier })
-                if (response.data[0].tier == 1) {
-                    setMaxLove(50);
-                } else if (response.data[0].tier == 2) {
-                    setMaxLove(100);
-                } else if (response.data[0].tier == 3) {
-                    setMaxLove(150);
-                } else {
-                    setMaxLove(250);
-                }
+                Axios
+                    .get("/api/getInventory/" + cookies.user.data[0].id)
+                    .then(function (response) {
+                        setInventory(response.data);
+                        setCurrentLove(response.data[0].love)
+                        setShiny(response.data[0].shiny)
+                        setNegative(response.data[0].negative)
+                        setPokemon({ name: response.data[0].name, number: response.data[0].pokemon, tier: response.data[0].tier })
+                        if (response.data[0].tier == 1) {
+                            setMaxLove(50);
+                        } else if (response.data[0].tier == 2) {
+                            setMaxLove(100);
+                        } else if (response.data[0].tier == 3) {
+                            setMaxLove(150);
+                        } else {
+                            setMaxLove(250);
+                        }
+                    })
             })
     }, []);
     function fleeFight() {
@@ -261,22 +267,27 @@ function Fight() {
                 :
                 <>
                     <div className={"honeyActionsContainer"}>
-                        <div onClick={getRandomPokemon} className={"honeyActions"}>
-                            <img style={{ filter: "drop-shadow(white 0px 0px 5px) hue-rotate(352deg) contrast(1.1)" }} src={"/honey.png"} />
-                            <p>Miel<br/>Classique</p>
-                        </div>
-                        <div onClick={getLegendaryPokemon} className={"honeyActions"}>
-                            <img style={{ filter:"drop-shadow(red 0px 0px 5px) hue-rotate(303deg) contrast(1.1)" }} src={"/honey.png"} />
-                            <p>Miel<br/>Légendaire</p>
-                        </div>
-                        <div onClick={getShinyPokemon} className={"honeyActions"}>
-                            <img style={{ filter:"drop-shadow(gold 0px 0px 5px) hue-rotate(15deg) contrast(1.3)"}} src={"/honey.png"} />
-                            <p>Miel<br/>Chromatique</p>
-                        </div>
-                        <div onClick={getNegativePokemon} class="honeyActions">
-                            <img src="/honey.png" style={{filter: "drop-shadow(gold 0px 0px 5px) hue-rotate(15deg) contrast(1.3) invert(1)"}} />
-                            <p>Miel<br/>Négatif</p>
-                        </div>
+                    {inventory &&
+                        inventory.map((val, key) => {
+                            return (
+                                val.slug === "box" ?
+                                    val.quantity > 0 &&
+                                    <div onClick={openLootbox} style={{ backgroundColor: "rgba(255, 255, 255, 0.1)", filter: "drop-shadow(white 0px 0px 5px) hue-rotate(352deg) contrast(1.1)" }} className={"honeyActions"}>
+                                        <img src={"/" + val.slug + ".png"} />
+                                        <p>{val.item}</p>
+                                        <p>x {val.quantity}</p>
+                                    </div>
+                                    :
+                                    val.quantity > 0 &&
+                                    <div className={"honeyActions"}>
+                                        <img style={{ filter: val.slug == "honey" ? "drop-shadow(white 0px 0px 5px) hue-rotate(352deg) contrast(1.1)" : val.slug == "shiny" ? "drop-shadow(gold 0px 0px 5px) hue-rotate(15deg) contrast(1.3)" : val.slug == "legendary" ? "drop-shadow(red 0px 0px 5px) hue-rotate(303deg) contrast(1.1)" : val.slug == "negative" && "drop-shadow(gold 0px 0px 5px) hue-rotate(15deg) contrast(1.3) invert(1)" }} src={"/" + val.slug == "honey" || val.slug == "shiny" || val.slug == "legendary" || val.slug == "negative" ? "honey.png" : val.slug + ".png"} />
+                                        <p>{val.item}</p>
+                                        <p>x {val.quantity}</p>
+                                    </div>
+
+                            )
+                        })
+                        }
                     </div>
                 </>
             }
