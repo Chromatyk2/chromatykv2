@@ -27,6 +27,11 @@ function Inventory(props) {
                 <div className={"inventoryContainer"}>
                     <div className={"honeyActions"}>
                         <img style={{ filter: "drop-shadow(white 0px 0px 5px) hue-rotate(352deg) contrast(1.1)" }} src={"/honey.png"} />
+                        <p>Lootbox</p>
+                        <p>x {inventory[0].box}</p>
+                    </div>
+                    <div className={"honeyActions"}>
+                        <img style={{ filter: "drop-shadow(white 0px 0px 5px) hue-rotate(352deg) contrast(1.1)" }} src={"/honey.png"} />
                         <p>Miel<br />Classique</p>
                         <p>x {inventory[0].honey}</p>
                     </div>
@@ -48,7 +53,7 @@ function Inventory(props) {
                     <div className={"honeyActions"}>
                         < img src={"/exps.png"} />
                         <p>Bonbon S</p>
-                        <p>x {inventory[0].samall}</p>
+                        <p>x {inventory[0].small}</p>
                     </div>
                     <div className={"honeyActions"}>
                         < img src={"/expm.png"} />
