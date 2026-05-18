@@ -32,9 +32,9 @@ function Inventory(props) {
             var honeyToAdd = "negative";
         }
         Axios.post('/api/addHoney', {
-            user: cookies.user.data[0].id,
             honey: honeyToAdd,
             honeys: honeyToAdd,
+            user: cookies.user.data[0].id
         })
     }
     return (
