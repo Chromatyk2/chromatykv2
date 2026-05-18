@@ -37,7 +37,7 @@ function Inventory(props) {
         Axios.post('/api/addHoney', {
             user: cookies.user.data[0].id,
             item: item,
-            slug: slug,
+            slug: slug
         })
     }
     return (
