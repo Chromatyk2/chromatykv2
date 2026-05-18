@@ -20,7 +20,7 @@ function Inventory(props) {
     return (
         <>
             <p className="pseudoProfil">Inventaire</p>
-            <div className={"honeyActionsContainer"}>
+            <div className={"inventoryContainer"}>
                 <div className={"honeyActions"}>
                     <img style={{ filter: "drop-shadow(white 0px 0px 5px) hue-rotate(352deg) contrast(1.1)" }} src={"/honey.png"} />
                     <p>Miel<br />Classique</p>

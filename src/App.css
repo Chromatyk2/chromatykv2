@@ -400,6 +400,15 @@ fightActionsFlee img {
     animation: shake cubic-bezier(.36,.07,.19,.97) 1.5s 3,catch .5s ease-out 5.25s forwards
 }
 
+/* Inventaire */
+.inventoryContainer {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
 /* Animation */
 @keyframes myAnimation {
     from {
