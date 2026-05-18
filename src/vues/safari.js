@@ -95,21 +95,14 @@ function Fight() {
         console.log(e);
         if (inventory.find((item) => item.slug === e).quantity - 1 >= 0) {
             const expr = e;
-            switch (expr) {
-                case "honey":
-                    getRandomPokemon();
-                    break;
-                case "legendary":
-                    getLegendaryPokemon();
-                    break;
-                case "shiny":
-                    getShinyPokemon();
-                    break;
-                case "negative":
-                    getNegativePokemon();
-                    break;
-                default:
-                    console.log(`Miel périmé`);
+            if (expr == "honey") {
+                getRandomPokemon();
+            } else if (expr == "legendary") {
+                getLegendaryPokemon();
+            } else if (expr == "shiny") {
+                getShinyPokemon();
+            } else {
+                getNegativePokemon();
             }
         }
         const tierRoll = Math.random() * 100;
