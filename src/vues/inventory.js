@@ -22,6 +22,7 @@ function Inventory(props) {
     return (
         <>
             {inventory &&
+                console.log(inventory.box);
                 <>
                 <p className="pseudoProfil">Inventaire</p>
                 <div className={"inventoryContainer"}>
