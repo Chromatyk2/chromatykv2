@@ -87,6 +87,47 @@ function Fight() {
             }
         }, 5300);
     }
+    function useHoney(e) {
+        if (inventory.find((item) => item.slug == e).quantity - 1 >= 0) {
+            const expr = e;
+            switch (expr) {
+                case "honey":
+                    getRandomPokemon();
+                    break;
+                case "legendary":
+                    getLegendaryPokemon();
+                    break;
+                case "shiny":
+                    getShinyPokemon();
+                    break;
+                case "negative":
+                    getNegativePokemon();
+                    break;
+                default:
+                    console.log(`Miel périmé`);
+            }
+        }
+        const tierRoll = Math.random() * 100;
+        if (tierRoll < 39) {
+            var tier = 1;
+            setMaxLove(50)
+        } else if (tierRoll < 89) {
+            var tier = 2;
+            setMaxLove(100)
+        } else if (tierRoll < 99) {
+            var tier = 3;
+            setMaxLove(150)
+        } else {
+            var tier = 4;
+            setMaxLove(250)
+        }
+        Axios.get("/api/getRandomPokemon/" + tier)
+            .then(function (response) {
+                setPokemon(response.data[0])
+                setShiny(0);
+                setNegative(1);
+            })
+    }
     function getRandomPokemon() {
         const tierRoll =  Math.random() * 100;
         if (tierRoll < 39) {
@@ -270,16 +311,9 @@ function Fight() {
                     {inventory &&
                         inventory.map((val, key) => {
                             return (
-                                val.slug === "box" ?
+                                val.slug === "box" &&
                                     val.quantity > 0 &&
-                                    <div onClick={openLootbox} style={{ backgroundColor: "rgba(255, 255, 255, 0.1)", filter: "drop-shadow(white 0px 0px 5px) hue-rotate(352deg) contrast(1.1)" }} className={"honeyActions"}>
-                                        <img src={"/" + val.slug + ".png"} />
-                                        <p>{val.item}</p>
-                                        <p>x {val.quantity}</p>
-                                    </div>
-                                    :
-                                    val.quantity > 0 &&
-                                    <div className={"honeyActions"}>
+                                <div onClick={() => useHoney(val.slug)} className={"honeyActions"}>
                                         <img style={{ filter: val.slug == "honey" ? "drop-shadow(white 0px 0px 5px) hue-rotate(352deg) contrast(1.1)" : val.slug == "shiny" ? "drop-shadow(gold 0px 0px 5px) hue-rotate(15deg) contrast(1.3)" : val.slug == "legendary" ? "drop-shadow(red 0px 0px 5px) hue-rotate(303deg) contrast(1.1)" : val.slug == "negative" && "drop-shadow(gold 0px 0px 5px) hue-rotate(15deg) contrast(1.3) invert(1)" }} src={"/" + val.slug == "honey" || val.slug == "shiny" || val.slug == "legendary" || val.slug == "negative" ? "honey.png" : val.slug + ".png"} />
                                         <p>{val.item}</p>
                                         <p>x {val.quantity}</p>
