@@ -18,10 +18,10 @@ function Inventory(props) {
         if (honeyTier < 0.1) {
             var item = "Miel Négatif";
             var slug = "negative";
-        } else if (honeyTier < 1.0) {
+        } else if (honeyTier < 1) {
             var item = "Miel Chromatique";
             var slug = "shiny";
-        } else if (honeyTier < 2.0) {
+        } else if (honeyTier < 6) {
             var item = "Miel Légendaire";
             var slug = "legendary";
         } else {
@@ -40,7 +40,7 @@ function Inventory(props) {
                 } else if (ballTier < 6) {
                     var item = "Hyper Ball";
                     var slug = "ultra";
-                } else if (ballTier < 46) {
+                } else if (ballTier < 36) {
                     var item = "Super Ball";
                     var slug = "great";
                 } else {
