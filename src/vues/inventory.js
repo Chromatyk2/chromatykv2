@@ -33,48 +33,48 @@ function Inventory(props) {
             item: item,
             slug: slug
         }).then(function (response) {
-            const ballTier = Math.random() * 100;
-            if (ballTier < 0.1) {
-                var item = "Miel Négatif";
-                var slug = "negative";
-            } else if (ballTier < 1.0) {
-                var item = "Miel Chromatique";
-                var slug = "shiny";
-            } else if (ballTier < 2.0) {
-                var item = "Miel Légendaire";
-                var slug = "legendary";
-            } else {
-                var item = "Miel Ordinaire";
-                var slug = "honey";
-            }
+                const ballTier = Math.random() * 100;
+                if (ballTier < 1) {
+                    var item = "Master Ball";
+                    var slug = "master";
+                } else if (ballTier < 6) {
+                    var item = "Hyper Ball";
+                    var slug = "ultra";
+                } else if (ballTier < 46) {
+                    var item = "Super Ball";
+                    var slug = "great";
+                } else {
+                    var item = "Poke Ball";
+                    var slug = "ball";
+                }
                 Axios.post('/api/addItem', {
                     user: cookies.user.data[0].id,
                     item: item,
                     slug: slug
                 }).then(function (response) {
-                        const candyTier = Math.random() * 100;
-                        if (candyTier < 50) {
-                                var item = "Bonbon S";
-                                var slug = "exps";
-                        } else if (candyTier < 90) {
-                            var item = "Bonbon M";
-                            var slug = "expm";
-                        } else {
-                            var item = "Bonbon L";
-                            var slug = "expl";
-                        }
-                        Axios.post('/api/addItem', {
-                            user: cookies.user.data[0].id,
-                            item: item,
-                            slug: slug
-                        }).then(function (response) {
-                            Axios
-                                .get("/api/getInventory/" + cookies.user.data[0].id)
-                                .then(function (response) {
-                                    setInventory(response.data);
-                                })
-                        })
+                    const candyTier = Math.random() * 100;
+                    if (candyTier < 1) {
+                        var item = "Bonbon L";
+                        var slug = "expl";
+                    } else if (candyTier < 40) {
+                        var item = "Bonbon M";
+                        var slug = "expm";
+                    } else {
+                        var item = "Bonbon S";
+                        var slug = "exps";
+                    }
+                    Axios.post('/api/addItem', {
+                        user: cookies.user.data[0].id,
+                        item: item,
+                        slug: slug
+                    }).then(function (response) {
+                        Axios
+                            .get("/api/getInventory/" + cookies.user.data[0].id)
+                            .then(function (response) {
+                                setInventory(response.data);
+                            })
                     })
+                })
             })
     }
     return (
