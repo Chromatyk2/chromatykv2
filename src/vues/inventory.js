@@ -22,64 +22,63 @@ function Inventory(props) {
     return (
         <>
             {inventory &&
-                console.log(inventory.box);
                 <>
                 <p className="pseudoProfil">Inventaire</p>
                 <div className={"inventoryContainer"}>
                     <div className={"honeyActions"}>
                         <img style={{ filter: "drop-shadow(white 0px 0px 5px) hue-rotate(352deg) contrast(1.1)" }} src={"/honey.png"} />
                         <p>Miel<br />Classique</p>
-                        <p>x {inventory.honey}</p>
+                        <p>x {inventory[.honey}</p>
                     </div>
                     <div className={"honeyActions"}>
                         <img style={{ filter: "drop-shadow(red 0px 0px 5px) hue-rotate(303deg) contrast(1.1)" }} src={"/honey.png"} />
                         <p>Miel<br />Légendaire</p>
-                        <p>x {inventory.legendary}</p>
+                        <p>x {inventory[0].legendary}</p>
                     </div>
                     <div className={"honeyActions"}>
                         <img style={{ filter: "drop-shadow(gold 0px 0px 5px) hue-rotate(15deg) contrast(1.3)" }} src={"/honey.png"} />
                         <p>Miel<br />Chromatique</p>
-                        <p>x {inventory.shiny}</p>
+                        <p>x {inventory[0].shiny}</p>
                     </div>
                     <div class="honeyActions">
                         <img src="/honey.png" style={{ filter: "drop-shadow(gold 0px 0px 5px) hue-rotate(15deg) contrast(1.3) invert(1)" }} />
                         <p>Miel<br />Négatif</p>
-                        <p>x {inventory.negative}</p>
+                        <p>x {inventory[0].negative}</p>
                     </div>
                     <div className={"honeyActions"}>
                         < img src={"/exps.png"} />
                         <p>Bonbon S</p>
-                        <p>x {inventory.samall}</p>
+                        <p>x {inventory[0].samall}</p>
                     </div>
                     <div className={"honeyActions"}>
                         < img src={"/expm.png"} />
                         <p>Bonbon M</p>
-                        <p>x {inventory.medium}</p>
+                        <p>x {inventory[0].medium}</p>
                     </div>
                     <div className={"honeyActions"}>
                         < img src={"/expl.png"} />
                         <p>Bonbon L</p>
-                        <p>x {inventory.large}</p>
+                        <p>x {inventory[0].large}</p>
                     </div>
                     <div className={"honeyActions"}>
                         < img src={"/ball.png"} />
                         <p>Pokéball</p>
-                        <p>x {inventory.pokeball}</p>
+                        <p>x {inventory[0].pokeball}</p>
                     </div>
                     <div className={"honeyActions"}>
                         < img src={"/great.png"} />
                         <p>Super Ball</p>
-                        <p>x {inventory.greatball}</p>
+                        <p>x {inventory[0].greatball}</p>
                     </div>
                     <div className={"honeyActions"}>
                         < img src={"/ultra.png"} />
                         <p>Hyper Ball</p>
-                        <p>x {inventory.ultraball}</p>
+                        <p>x {inventory[0].ultraball}</p>
                     </div>
                     <div className={"honeyActions"}>
                         < img src={"/master.png"} />
                         <p>Master Ball</p>
-                        <p>x {inventory.msterball}</p>
+                        <p>x {inventory[0].masterball}</p>
                     </div>
                 </div>
                 </>
