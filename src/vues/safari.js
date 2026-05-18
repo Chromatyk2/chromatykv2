@@ -187,7 +187,7 @@ function Fight() {
         <div className={"fightContainer"}>
             {pokemon &&
                 <>
-                {safari &&
+                {safari == true &&
                     <div style={{ top: "10px" }} onClick={saveFight} className={"fightActionsFlee"}>
                         < img src={"/disc.png"} />
                         <p>Save</p>
