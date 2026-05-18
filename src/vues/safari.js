@@ -217,7 +217,8 @@ function Fight() {
                 <>
                     <div className={"honeyActionsContainer"}>
                     {inventory &&
-                        inventory.filter(item => item.slug === "honey" || item.slug === "legendary" || item.slug === "shiny" || item.slug === "negative").length > 0 ?
+                        inventory.filter(item => item.slug === "honey" || item.slug === "legendary" || item.slug === "shiny" || item.slug === "negative").length < 1 ?
+                        <p className="pseudoProfil">Vous n'avez pas de miel, récupérez en sur les streams de Chromatyk</p> :
                         inventory.filter(item => item.slug === "honey" || item.slug === "legendary" || item.slug === "shiny" || item.slug === "negative").map((val, key) => {
                                 return (
                                     val.quantity > 0 && (
@@ -231,8 +232,6 @@ function Fight() {
                                 )
                             })
                         }
-                    :
-                    <p className="pseudoProfil">Vous n'avez pas de miel, récupérez en sur les streams de Chromatyk</p>
                     </div>
                 </>
             }
