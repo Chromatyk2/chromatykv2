@@ -11,7 +11,6 @@ function Inventory(props) {
         .get("/api/getInventory/" + cookies.user.data[0].id)
         .then(function (response) {
             setInventory(response.data);
-            console.log(response.data);
         })
     }, []);
     function openLootbox() {
@@ -33,7 +32,50 @@ function Inventory(props) {
             user: cookies.user.data[0].id,
             item: item,
             slug: slug
-        })
+        }).then(function (response) {
+                const ballTier = Math.random() * 100;
+                if (honeyTier < 98) {
+                    var item = "Poke Ball";
+                    var slug = "ball";
+                } else if (honeyTier < 99) {
+                    var item = "Super Ball";
+                    var slug = "great";
+                } else if (honeyTier < 100) {
+                    var item = "Hyper Ball";
+                    var slug = "ultra";
+                } else {
+                    var item = "Master Ball";
+                    var slug = "master";
+                }
+                Axios.post('/api/addItem', {
+                    user: cookies.user.data[0].id,
+                    item: item,
+                    slug: slug
+                }).then(function (response) {
+                        const candyTier = Math.random() * 100;
+                        if (honeyTier < 50) {
+                            var item = "Bonbon S";
+                            var slug = "exps";
+                        } else if (honeyTier < 90) {
+                            var item = "Bonbon M";
+                            var slug = "expm";
+                        } else {
+                            var item = "Bonbon L";
+                            var slug = "expl";
+                        }
+                        Axios.post('/api/addItem', {
+                            user: cookies.user.data[0].id,
+                            item: item,
+                            slug: slug
+                        }).then(function (response) {
+                            Axios
+                                .get("/api/getInventory/" + cookies.user.data[0].id)
+                                .then(function (response) {
+                                    setInventory(response.data);
+                                })
+                        })
+                    })
+            })
     }
     return (
         <>
