@@ -14,7 +14,7 @@ function Inventory(props) {
             Axios
             .get("/api/getInventory/" + cookies.user.data[0].id)
             .then(function (response) {
-                setInventory(response.data[0])
+                setInventory(response.data)
             })
         })
     }, []);
