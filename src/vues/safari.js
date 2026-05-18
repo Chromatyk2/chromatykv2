@@ -26,15 +26,6 @@ function Fight() {
                     .get("/api/getInventory/" + cookies.user.data[0].id)
                     .then(function (response) {
                         setInventory(response.data);
-                        if (response.data[0].tier == 1) {
-                            setMaxLove(50);
-                        } else if (response.data[0].tier == 2) {
-                            setMaxLove(100);
-                        } else if (response.data[0].tier == 3) {
-                            setMaxLove(150);
-                        } else {
-                            setMaxLove(250);
-                        }
                     })
             })
     }, []);
