@@ -20,7 +20,7 @@ function Inventory(props) {
     return (
         <>
             <p className="pseudoProfil">Inventaire</p>
-            <div className={"fightActionsContainer"}>
+            <div className={"honeyActionsContainer"}>
                 <div className={"honeyActions"}>
                     <img style={{ filter: "drop-shadow(white 0px 0px 5px) hue-rotate(352deg) contrast(1.1)" }} src={"/honey.png"} />
                     <p>Miel<br />Classique</p>
@@ -37,37 +37,37 @@ function Inventory(props) {
                     <img src="/honey.png" style={{ filter: "drop-shadow(gold 0px 0px 5px) hue-rotate(15deg) contrast(1.3) invert(1)" }} />
                     <p>Miel<br />Négatif</p>
                 </div>
-                <div className={"fightActions"}>
+                <div className={"honeyActions"}>
                     < img src={"/exps.png"} />
                     <p>Bonbon S</p>
                     <p>x 1</p>
                 </div>
-                <div className={"fightActions"}>
+                <div className={"honeyActions"}>
                     < img src={"/expm.png"} />
                     <p>Bonbon M</p>
                     <p>x 1</p>
                 </div>
-                <div className={"fightActions"}>
+                <div className={"honeyActions"}>
                     < img src={"/expl.png"} />
                     <p>Bonbon L</p>
                     <p>x 1</p>
                 </div>
-                <div className={"fightActions"}>
+                <div className={"honeyActions"}>
                     < img src={"/ball.png"} />
                     <p>Pokéball</p>
                     <p>x 1</p>
                 </div>
-                <div className={"fightActions"}>
+                <div className={"honeyActions"}>
                     < img src={"/great.png"} />
                     <p>Super Ball</p>
                     <p>x 1</p>
                 </div>
-                <div className={"fightActions"}>
+                <div className={"honeyActions"}>
                     < img src={"/ultra.png"} />
                     <p>Hyper Ball</p>
                     <p>x 1</p>
                 </div>
-                <div className={"fightActions"}>
+                <div className={"honeyActions"}>
                     < img src={"/master.png"} />
                     <p>Master Ball</p>
                     <p>x 1</p>
