@@ -218,7 +218,8 @@ function Fight() {
                     <div className={"honeyActionsContainer"}>
                     {inventory &&
                         inventory.filter(item => (item.slug === "honey" && item.quantity > 0) || (item.slug === "legendary" && item.quantity > 0) || (item.slug === "shiny" && item.quantity > 0) || (item.slug === "negative" && item.quantity > 0)).length < 1 ?
-                        <p className="pseudoProfil">Vous n'avez pas de miel, récupérez en sur les streams de Chromatyk</p> :
+                        <p className="pseudoProfil">Vous n'avez pas de miel, récupérez en sur les streams de Chromatyk</p>
+                        <a className={"twitchLink"} href="https://twitch.tv/chromatyk" target="blank_">Twitch</a>:
                         inventory &&
                         inventory.filter(item => item.slug === "honey" || item.slug === "legendary" || item.slug === "shiny" || item.slug === "negative").map((val, key) => {
                                 return (
