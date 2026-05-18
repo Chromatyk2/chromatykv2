@@ -88,7 +88,7 @@ function Inventory(props) {
     return (
         <>
             {inventory &&
-                inventory.lenght > 0 ? 
+                inventory.filter(item => item.quantity > 0).length > 0 ? 
                 <>
                     <p className="pseudoProfil">Inventaire</p>
                     <div className={"inventoryContainer"}>
