@@ -92,18 +92,28 @@ function Fight() {
         }, 5300);
     }
     function consomeHoney(e) {
-        console.log(e);
         if (inventory.find((item) => item.slug === e).quantity - 1 >= 0) {
-            const expr = e;
-            if (expr == "honey") {
-                getRandomPokemon();
-            } else if (expr == "legendary") {
-                getLegendaryPokemon();
-            } else if (expr == "shiny") {
-                getShinyPokemon();
-            } else {
-                getNegativePokemon();
-            }
+            Axios.post('/api/removeItem', {
+                user: cookies.user.data[0].id,
+                slug: e
+            })
+            .then(function (response) {
+                Axios
+                    .get("/api/getInventory/" + cookies.user.data[0].id)
+                    .then(function (response) {
+                        setInventory(response.data);
+                        const expr = e;
+                        if (expr == "honey") {
+                            getRandomPokemon();
+                        } else if (expr == "legendary") {
+                            getLegendaryPokemon();
+                        } else if (expr == "shiny") {
+                            getShinyPokemon();
+                        } else {
+                            getNegativePokemon();
+                        }
+                    })
+            })
         }
     }
     function getRandomPokemon() {
