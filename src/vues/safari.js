@@ -26,7 +26,6 @@ function Fight() {
                     .get("/api/getInventory/" + cookies.user.data[0].id)
                     .then(function (response) {
                         setInventory(response.data);
-                        console.log(response.data.filter(item => (item.slug === "honey" && item.quantity > 0) || (item.slug === "legendary" && item.quantity > 0) || (item.slug === "shiny" && item.quantity > 0) || (item.slug === "negative" && item.quantity > 0)));
                         Axios
                             .get("/api/getSafari/" + cookies.user.data[0].id)
                             .then(function (response) {
@@ -218,6 +217,9 @@ function Fight() {
                 <>
                     <div className={"honeyActionsContainer"}>
                     {inventory &&
+                        inventory.filter(item => (item.slug === "honey" && item.quantity > 0) || (item.slug === "legendary" && item.quantity > 0) || (item.slug === "shiny" && item.quantity > 0) || (item.slug === "negative" && item.quantity > 0)).length < 1 ?
+                        <p className="pseudoProfil">Vous n'avez pas de miel, récupérez en sur les streams de Chromatyk</p> :
+                        inventory &&
                         inventory.filter(item => item.slug === "honey" || item.slug === "legendary" || item.slug === "shiny" || item.slug === "negative").map((val, key) => {
                                 return (
                                     val.quantity > 0 && (
