@@ -10,7 +10,6 @@ function Fight() {
     //Cookies
     const [cookies, setCookie] = useCookies();
     //Safari
-    const [safari, setSafari] = useState(false);
     const [onCatch, setOnCatch] = useState(false);
     const [maxLove, setMaxLove] = useState(0);
     const [currentLove, setCurrentLove] = useState(0);
@@ -41,11 +40,9 @@ function Fight() {
         setOnCatch(false);
         setPokemon(null);
         setCurrentLove(0);
-        document.getElementById("fightActionsSave").style.display = "none";
         Axios.delete('/api/deleteSafari/' + cookies.user.data[0].id)
     }
     function saveFight() {
-        document.getElementById("fightActionsSave").style.display = "none";
         Axios.post('/api/addSafari', {
             user: cookies.user.data[0].id,
             pokemon: pokemon.number,
