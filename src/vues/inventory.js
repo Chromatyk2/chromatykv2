@@ -87,7 +87,8 @@ function Inventory(props) {
     }
     return (
         <>
-            {inventory.lenght > 0 ? 
+            {inventory &&
+                inventory.lenght > 0 ? 
                 <>
                     <p className="pseudoProfil">Inventaire</p>
                     <div className={"inventoryContainer"}>
