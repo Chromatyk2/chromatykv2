@@ -22,11 +22,6 @@ function Fight() {
         Axios
             .get("/api/getSafari/" + cookies.user.data[0].id)
             .then(function (response) {
-                if (response.data.length == 0) {
-                    document.getElementById("fightActionsSave").style.display = "none";
-                } else {
-                    document.getElementById("fightActionsSave").style.display = "block";
-                }
                 setCurrentLove(response.data[0].love)
                 setShiny(response.data[0].shiny)
                 setNegative(response.data[0].negative)
