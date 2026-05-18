@@ -45,22 +45,23 @@ function Inventory(props) {
             <p className="pseudoProfil">Inventaire</p>
             <div className={"inventoryContainer"}>
                 {inventory &&
-                    inventory.map((item, key) => {
+                    inventory.map((val, key) => {
                         return (
-                            if (val.slug == "slug" && val.quantity > 0) {
+                            val.slug === "box" ?
+                                val.quantity > 0 &&
                                 <div onClick={openLootbox} style={{ backgroundColor: "rgba(255, 255, 255, 0.1)", filter: "drop-shadow(white 0px 0px 5px) hue-rotate(352deg) contrast(1.1)" }} className={"honeyActions"}>
-                                    <img src={"/" + val.slug + ".png"} />
+                                    <img src={"/"+val.slug+".png"} />
                                     <p>{val.item}</p>
                                     <p>x {val.quantity}</p>
                                 </div>
-
-                            } else {
+                                :
+                                val.quantity > 0 &&
                                 <div className={"honeyActions"}>
                                     <img src={"/" + val.slug + ".png"} />
                                     <p>{val.item}</p>
                                     <p>x {val.quantity}</p>
                                 </div>
-                            }
+                            
                         )
                     })
                 }
