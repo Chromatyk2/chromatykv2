@@ -5,7 +5,7 @@ import { useCookies } from 'react-cookie';
 
 function Inventory(props) {
     const [cookies, setCookie] = useCookies();
-    const [inventory, setInventory] = useCookies(null);
+    const [inventory, setInventory] = useState(null);
     useEffect(() => {
         Axios.post('/api/createInventory', {
             user: cookies.user.data[0].id
