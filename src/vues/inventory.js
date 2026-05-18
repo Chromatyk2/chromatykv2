@@ -14,6 +14,7 @@ function Inventory(props) {
         })
     }, []);
     function openLootbox() {
+        console.log(inventory.find((item) => item.slug == "box").quantity);
         const honeyTier = Math.random() * 100;
         if (honeyTier < 0.1) {
             var item = "Miel Négatif";
