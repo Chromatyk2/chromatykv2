@@ -26,10 +26,6 @@ function Fight() {
                     .get("/api/getInventory/" + cookies.user.data[0].id)
                     .then(function (response) {
                         setInventory(response.data);
-                        setCurrentLove(response.data[0].love)
-                        setShiny(response.data[0].shiny)
-                        setNegative(response.data[0].negative)
-                        setPokemon({ name: response.data[0].name, number: response.data[0].pokemon, tier: response.data[0].tier })
                         if (response.data[0].tier == 1) {
                             setMaxLove(50);
                         } else if (response.data[0].tier == 2) {
