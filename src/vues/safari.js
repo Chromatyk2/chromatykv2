@@ -26,7 +26,7 @@ function Fight() {
                     .get("/api/getInventory/" + cookies.user.data[0].id)
                     .then(function (response) {
                         setInventory(response.data);
-                        console.log(response.data.filter(item => item.slug === "honey" || item.slug === "legendary" || item.slug === "shiny" || item.slug === "negative"));
+                        console.log(response.data.filter(item => (item.slug === "honey" && item.quantity > 0) || (item.slug === "legendary" && item.quantity > 0) || (item.slug === "shiny" && item.quantity > 0) || (item.slug === "negative" && item.quantity > 0)));
                         Axios
                             .get("/api/getSafari/" + cookies.user.data[0].id)
                             .then(function (response) {
