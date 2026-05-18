@@ -23,7 +23,8 @@ function Fight() {
             .get("/api/getSafari/" + cookies.user.data[0].id)
             .then(function (response) {
                 if (response.data.length == 0) {
-                    setSafari(false);
+                    document.getElementById("fightActionsSave").style.display = "none";
+                } else {
                     setCurrentLove(response.data[0].love)
                     setShiny(response.data[0].shiny)
                     setNegative(response.data[0].negative)
@@ -44,11 +45,11 @@ function Fight() {
         setOnCatch(false);
         setPokemon(null);
         setCurrentLove(0);
-        setSafari(false);
+        document.getElementById("fightActionsSave").style.display = "none";
         Axios.delete('/api/deleteSafari/' + cookies.user.data[0].id)
     }
     function saveFight() {
-        setSafari(true);
+        document.getElementById("fightActionsSave").style.display = "none";
         Axios.post('/api/addSafari', {
             user: cookies.user.data[0].id,
             pokemon: pokemon.number,
@@ -188,7 +189,7 @@ function Fight() {
             {pokemon &&
                 <>
                 {safari == true &&
-                    <div style={{ top: "10px" }} onClick={saveFight} className={"fightActionsFlee"}>
+                    <div id={"fightActionsSave"} style={{ top: "10px" }} onClick={saveFight} className={"fightActionsFlee"}>
                         < img src={"/disc.png"} />
                         <p>Save</p>
                     </div>
