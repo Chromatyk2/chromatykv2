@@ -7,16 +7,11 @@ function Inventory(props) {
     const [cookies, setCookie] = useCookies();
     const [inventory, setInventory] = useState(null);
     useEffect(() => {
-        Axios.post('/api/createInventory', {
-            user: cookies.user.data[0].id
-        })
+        Axios
+        .get("/api/getInventory/" + cookies.user.data[0].id)
         .then(function (response) {
-            Axios
-            .get("/api/getInventory/" + cookies.user.data[0].id)
-            .then(function (response) {
-                setInventory(response.data);
-                console.log(response.data);
-            })
+            setInventory(response.data);
+            console.log(response.data);
         })
     }, []);
     function openLootbox() {
@@ -34,7 +29,7 @@ function Inventory(props) {
             var item = "Miel Négatif";
             var slug = "negative";
         }
-        Axios.post('/api/addHoney', {
+        Axios.post('/api/addItem', {
             user: cookies.user.data[0].id,
             item: item,
             slug: slug
