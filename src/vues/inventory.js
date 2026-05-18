@@ -47,21 +47,19 @@ function Inventory(props) {
                 {inventory &&
                     inventory.map((item, key) => {
                         return (
-                            {
-                                val.slug == "slug" ?
-                                    val.quantity > 0 &&
-                                    <div onClick={openLootbox} style={{ backgroundColor: "rgba(255, 255, 255, 0.1)", filter: "drop-shadow(white 0px 0px 5px) hue-rotate(352deg) contrast(1.1)" }} className={"honeyActions"}>
-                                        <img src={"/"+val.slug+".png"} />
-                                        <p>{val.item}</p>
-                                        <p>x {val.quantity}</p>
-                                    </div>
-                                    :
-                                    <div className={"honeyActions"}>
-                                        <img src={"/" + val.slug + ".png"} />
-                                        <p>{val.item}</p>
-                                        <p>x {val.quantity}</p>
-                                    </div>
+                            if (val.slug == "slug" && val.quantity > 0) {
+                                <div onClick={openLootbox} style={{ backgroundColor: "rgba(255, 255, 255, 0.1)", filter: "drop-shadow(white 0px 0px 5px) hue-rotate(352deg) contrast(1.1)" }} className={"honeyActions"}>
+                                    <img src={"/" + val.slug + ".png"} />
+                                    <p>{val.item}</p>
+                                    <p>x {val.quantity}</p>
+                                </div>
 
+                            } else {
+                                <div className={"honeyActions"}>
+                                    <img src={"/" + val.slug + ".png"} />
+                                    <p>{val.item}</p>
+                                    <p>x {val.quantity}</p>
+                                </div>
                             }
                         )
                     })
