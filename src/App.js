@@ -13,6 +13,7 @@ import NavBar from './vues/navbar.js';
 import HomePage from './vues/home.js';
 import ShinyDex from './vues/Shinydex.js';
 import Safari from './vues/safari.js';
+import Inventory from './vues/inventory.js';
 function App() {
   return (
     <div className="App">
@@ -22,6 +23,7 @@ function App() {
                       <Routes>
                           <Route path="/log" element={<Log />} />
                           <Route path="/" element={<HomePage />} />
+                          <Route path="/inventire" element={<Inventory />} />
                           <Route path="/shiny" element={<ShinyDex />} />
                           <Route path="/safari" element={<Safari />} />
                       </Routes>
