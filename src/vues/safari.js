@@ -272,18 +272,20 @@ function Fight() {
             {pokemon &&
                     <div className={"fightActionsContainer"}>
                         {currentLove < maxLove ?
-                            <>
-                                <div onClick={() => addLove(10)} className={"fightActions"}>
+                        <>
+                            {inventory.filter(item => item.slug === "exps" && item.quantity > 0).length < 1 &&
+                                <div onClick={() => addLove(10, "exps")} className={"fightActions"}>
                                     < img src={"/exps.png"} />
                                     <p>Bonbon S</p>
-                                    <p>x 1</p>
+                                    <p>x {inventory.filter(item => item.slug === "exps" && item.quantity > 0)[0].quantity}</p>
                                 </div>
-                                <div onClick={() => addLove(25)} className={"fightActions"}>
+                            }
+                                <div onClick={() => addLove(25, "expm")} className={"fightActions"}>
                                     < img src={"/expm.png"} />
                                     <p>Bonbon M</p>
                                     <p>x 1</p>
                                 </div>
-                                <div onClick={() => addLove(50)} className={"fightActions"}>
+                                <div onClick={() => addLove(50, "expl")} className={"fightActions"}>
                                     < img src={"/expl.png"} />
                                     <p>Bonbon L</p>
                                     <p>x 1</p>
