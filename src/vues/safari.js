@@ -105,26 +105,6 @@ function Fight() {
                 getNegativePokemon();
             }
         }
-        const tierRoll = Math.random() * 100;
-        if (tierRoll < 39) {
-            var tier = 1;
-            setMaxLove(50)
-        } else if (tierRoll < 89) {
-            var tier = 2;
-            setMaxLove(100)
-        } else if (tierRoll < 99) {
-            var tier = 3;
-            setMaxLove(150)
-        } else {
-            var tier = 4;
-            setMaxLove(250)
-        }
-        Axios.get("/api/getRandomPokemon/" + tier)
-            .then(function (response) {
-                setPokemon(response.data[0])
-                setShiny(0);
-                setNegative(1);
-            })
     }
     function getRandomPokemon() {
         const tierRoll =  Math.random() * 100;
