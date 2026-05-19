@@ -87,7 +87,7 @@ function Inventory(props) {
         }
     }
     return (
-        <>
+        <div className={"globalContainerCenter"}>
             {inventory &&
                 inventory.filter(item => item.quantity > 0).length > 0 ? 
                 <>
@@ -143,7 +143,7 @@ function Inventory(props) {
                     <a className={"twitchLink"} href="https://twitch.tv/chromatyk" target="blank_">Twitch</a>
                 </>
             }
-         </>
+         </div>
     )
 }
 
