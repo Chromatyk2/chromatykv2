@@ -9,6 +9,7 @@ function Pokedex() {
     const [pokedex, setPokedex] = useState(null);
     const [filteredPokedex, setFilteredPokedex] = useState(null);
     const [gen, setGen] = useState(1);
+    const [isShiny, setIsShiny] = useState("Normal");
     const [genList, setGenList] = useState([1,2,3,4,5,6,7,8,9])
     useEffect(() => {
         Axios
@@ -43,8 +44,8 @@ function Pokedex() {
                     })}
 
                 </div>
-                {pokedex &&
-                    pokedex.filter(item => item.gen === gen).map((val, key) => {
+                {filteredPokedex &&
+                    filteredPokedex.filter(item => item.gen === gen).map((val, key) => {
                         return (
                             <>
                                 <div className={"dexCard"}>
