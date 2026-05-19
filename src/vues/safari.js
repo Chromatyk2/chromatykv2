@@ -80,29 +80,43 @@ function Fight() {
                 })
         }
     }
-    function catchPokemon(e, f) {
-        if (e == 0) {
-            document.getElementById("ball").style.background = "background: radial-gradient(rgb(255, 255, 255) 16px, rgb(0, 0, 0) 17px, rgb(0, 0, 0) 18px, rgb(255, 255, 255) 19px, rgb(255, 255, 255) 24px, rgb(0, 0, 0) 25px, rgb(0, 0, 0) 32px, rgba(0, 0, 0, 0) 33px), linear-gradient(red 0px, red 80px, rgb(0, 0, 0) 81px, rgb(0, 0, 0) 96px, rgb(255, 255, 255) 97px, rgb(255, 255, 255) 100%)";   
-        } else if (e == 1) {
-            document.getElementById("ball").style.background = "radial-gradient(rgb(255, 255, 255) 16px, rgb(0, 0, 0) 17px, rgb(0, 0, 0) 18px, rgb(255, 255, 255) 19px, rgb(255, 255, 255) 24px, rgb(0, 0, 0) 25px, rgb(0, 0, 0) 32px, rgba(0, 0, 0, 0) 33px), linear-gradient(red 0px, #0089ff 80px, rgb(0, 0, 0) 81px, rgb(0, 0, 0) 96px, rgb(255, 255, 255) 97px, rgb(255, 255, 255) 100%)";
-        } else if (e == 2) {
-            document.getElementById("ball").style.background = "radial-gradient(rgb(255, 255, 255) 16px, rgb(0, 0, 0) 17px, rgb(0, 0, 0) 18px, rgb(255, 255, 255) 19px, rgb(255, 255, 255) 24px, rgb(0, 0, 0) 25px, rgb(0, 0, 0) 32px, rgba(0, 0, 0, 0) 33px), linear-gradient(#000000 0px, #e3c805 80px, rgb(0, 0, 0) 81px, rgb(0, 0, 0) 96px, rgb(255, 255, 255) 97px, rgb(255, 255, 255) 100%)";
-        } else if (e == 3) {
-            document.getElementById("ball").style.background = "radial-gradient(rgb(255, 255, 255) 16px, rgb(0, 0, 0) 17px, rgb(0, 0, 0) 18px, rgb(255, 255, 255) 19px, rgb(255, 255, 255) 24px, rgb(0, 0, 0) 25px, rgb(0, 0, 0) 32px, rgba(0, 0, 0, 0) 33px), linear-gradient(#ff00f7 0px, #300c51 80px, rgb(0, 0, 0) 81px, rgb(0, 0, 0) 96px, rgb(255, 255, 255) 97px, rgb(255, 255, 255) 100%)";
+    function catchPokemon(e, f, ball) {
+        if (inventory.find((item) => item.slug === ball).quantity - 1 >= 0) {
+            Axios.post('/api/removeItem', {
+                user: cookies.user.data[0].id,
+                slug: ball
+            })
+                .then(function (response) {
+                    Axios
+                        .get("/api/getInventory/" + cookies.user.data[0].id)
+                        .then(function (response) {
+                            setInventory(response.data);
+                            setCurrentLove(currentLove + e);
+                            if (e == 0) {
+                                document.getElementById("ball").style.background = "background: radial-gradient(rgb(255, 255, 255) 16px, rgb(0, 0, 0) 17px, rgb(0, 0, 0) 18px, rgb(255, 255, 255) 19px, rgb(255, 255, 255) 24px, rgb(0, 0, 0) 25px, rgb(0, 0, 0) 32px, rgba(0, 0, 0, 0) 33px), linear-gradient(red 0px, red 80px, rgb(0, 0, 0) 81px, rgb(0, 0, 0) 96px, rgb(255, 255, 255) 97px, rgb(255, 255, 255) 100%)";
+                            } else if (e == 1) {
+                                document.getElementById("ball").style.background = "radial-gradient(rgb(255, 255, 255) 16px, rgb(0, 0, 0) 17px, rgb(0, 0, 0) 18px, rgb(255, 255, 255) 19px, rgb(255, 255, 255) 24px, rgb(0, 0, 0) 25px, rgb(0, 0, 0) 32px, rgba(0, 0, 0, 0) 33px), linear-gradient(red 0px, #0089ff 80px, rgb(0, 0, 0) 81px, rgb(0, 0, 0) 96px, rgb(255, 255, 255) 97px, rgb(255, 255, 255) 100%)";
+                            } else if (e == 2) {
+                                document.getElementById("ball").style.background = "radial-gradient(rgb(255, 255, 255) 16px, rgb(0, 0, 0) 17px, rgb(0, 0, 0) 18px, rgb(255, 255, 255) 19px, rgb(255, 255, 255) 24px, rgb(0, 0, 0) 25px, rgb(0, 0, 0) 32px, rgba(0, 0, 0, 0) 33px), linear-gradient(#000000 0px, #e3c805 80px, rgb(0, 0, 0) 81px, rgb(0, 0, 0) 96px, rgb(255, 255, 255) 97px, rgb(255, 255, 255) 100%)";
+                            } else if (e == 3) {
+                                document.getElementById("ball").style.background = "radial-gradient(rgb(255, 255, 255) 16px, rgb(0, 0, 0) 17px, rgb(0, 0, 0) 18px, rgb(255, 255, 255) 19px, rgb(255, 255, 255) 24px, rgb(0, 0, 0) 25px, rgb(0, 0, 0) 32px, rgba(0, 0, 0, 0) 33px), linear-gradient(#ff00f7 0px, #300c51 80px, rgb(0, 0, 0) 81px, rgb(0, 0, 0) 96px, rgb(255, 255, 255) 97px, rgb(255, 255, 255) 100%)";
+                            }
+                            setOnCatch(true);
+                            var rate = (f + 1) - e;
+                            const tryCatch = Math.floor(Math.random() * rate);
+                            setTimeout(function () {
+                                if (tryCatch == 0 || e == 3) {
+                                    setTimeout(function () {
+                                        document.getElementById("validCatchText").style.display = "block";
+                                    }, 300);
+                                }
+                                else {
+                                    setOnCatch(false);
+                                }
+                            }, 5300);
+                        })
+                })
         }
-        setOnCatch(true);
-        var rate = (f+1) - e;
-        const tryCatch = Math.floor(Math.random() * rate);
-        setTimeout(function () {
-            if (tryCatch == 0 || e == 3) {
-                setTimeout(function () {
-                    document.getElementById("validCatchText").style.display = "block";                    
-                }, 300);
-            }
-            else {
-                setOnCatch(false);
-            }
-        }, 5300);
     }
     function consomeHoney(e) {
         if (inventory.find((item) => item.slug === e).quantity - 1 >= 0) {
@@ -287,7 +301,7 @@ function Fight() {
                         {currentLove < maxLove ?
                         <>
                             {inventory.filter(item => (item.slug === "exps" && item.quantity > 0) || (item.slug === "expm" && item.quantity > 0) || (item.slug === "expl" && item.quantity > 0)).length < 1 &&
-                                <div className={"emptyInventory"}>
+                                <div style={{background:"none"}} className={"emptyInventory"}>
                                     <p className="pseudoProfil">Tu n'as pas de miel, récupère en sur les streams de Chromatyk</p>
                                     <a className={"twitchLink"} href="https://twitch.tv/chromatyk" target="blank_">Twitch</a>
                                 </div>
@@ -317,26 +331,40 @@ function Fight() {
                             :
                             onCatch === false ?
                             <>
-                                <div onClick={() => catchPokemon(0, pokemon.tier)} className={"fightActions"}>
-                                    < img src={"/ball.png"} />
-                                    <p>Pokéball</p>
-                                    <p>x 1</p>
-                                </div>
-                                <div onClick={() => catchPokemon(1, pokemon.tier)} className={"fightActions"}>
-                                    < img src={"/great.png"} />
-                                    <p>Super Ball</p>
-                                    <p>x 1</p>
-                                </div>
-                                <div onClick={() => catchPokemon(2,pokemon.tier)} className={"fightActions"}>
-                                    < img src={"/ultra.png"} />
-                                    <p>Hyper Ball</p>
-                                    <p>x 1</p>
-                                </div>
-                                <div onClick={() => catchPokemon(3,pokemon.tier)} className={"fightActions"}>
-                                    < img src={"/master.png"} />
-                                    <p>Master Ball</p>
-                                    <p>x 1</p>
-                                </div>
+                                {inventory.filter(item => (item.slug === "ball" && item.quantity > 0) || (item.slug === "great" && item.quantity > 0) || (item.slug === "ultra" && item.quantity > 0) || (item.slug === "master" && item.quantity > 0)).length < 1 &&
+                                    <div style={{ background: "none" }} className={"emptyInventory"}>
+                                        <p className="pseudoProfil">Tu n'as pas de miel, récupère en sur les streams de Chromatyk</p>
+                                        <a className={"twitchLink"} href="https://twitch.tv/chromatyk" target="blank_">Twitch</a>
+                                    </div>
+                                }
+                                {inventory.filter(item => item.slug === "ball" && item.quantity > 0).length > 0 &&
+                                    <div onClick={() => catchPokemon(0, pokemon.tier,"ball")} className={"fightActions"}>
+                                        < img src={"/ball.png"} />
+                                        <p>Pokéball</p>
+                                        <p>x {inventory.find((item) => item.slug === "ball").quantity}</p>
+                                    </div>
+                                }
+                                {inventory.filter(item => item.slug === "great" && item.quantity > 0).length > 0 &&
+                                    <div onClick={() => catchPokemon(1, pokemon.tier,"great")} className={"fightActions"}>
+                                        < img src={"/great.png"} />
+                                        <p>Super Ball</p>
+                                        <p>x {inventory.find((item) => item.slug === "great").quantity}</p>
+                                    </div>
+                                }
+                                {inventory.filter(item => item.slug === "ultra" && item.quantity > 0).length > 0 &&
+                                    <div onClick={() => catchPokemon(2, pokemon.tier, "ultra")} className={"fightActions"}>
+                                        < img src={"/ultra.png"} />
+                                        <p>Hyper Ball</p>
+                                        <p>x {inventory.find((item) => item.slug === "ultra").quantity}</p>
+                                    </div>
+                                }
+                                {inventory.filter(item => item.slug === "master" && item.quantity > 0).length > 0 &&
+                                    <div onClick={() => catchPokemon(3, pokemon.tier, "master")} className={"fightActions"}>
+                                        < img src={"/master.png"} />
+                                        <p>Master Ball</p>
+                                        <p>x {inventory.find((item) => item.slug === "master").quantity}</p>
+                                    </div>
+                                }
                             </>
                                 :
                                 <p id={"validCatchText"} style={{display:"none"}}>Et Hop !<br />{pokemon.name} est attrapé !</p>
