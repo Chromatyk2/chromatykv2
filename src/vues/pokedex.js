@@ -48,7 +48,7 @@ function Pokedex() {
                                     <div className={"dexSpriteContainer"}>
                                         <span className={"dexNumber"}>#{val.pokemon}</span>
                                         <div>
-                                            <img className={"dexSprite"} src={"/Sprites/" + isShiny + "/" + val.pokemon + ".gif"} />
+                                            <img lloading="lazy" className={"dexSprite"} src={"/Sprites/" + isShiny + "/" + val.pokemon + ".gif"} />
                                         </div>
                                     </div>
                                     <div className={"dexDescription"}>
