@@ -47,7 +47,7 @@ function Pokedex() {
         <div className={"globalContainer"}>
             <div className={"dexContainer"}>
                 <div className={"genFilter"}>
-                    <button className={isShiny === 0 && isNegative === 0 && "active"} onClick={() => filterForm(0)}>Tous</button>
+                    <button className={isShiny === 0 && isNegative === 0 && "active"} onClick={() => filterForm(0)}>Normal</button>
                     <button className={isShiny === 1 && "active"} onClick={() => filterForm("Shiny")}>Shiny</button>
                     <button className={isNegative === 1 && "active"} onClick={() => filterForm(1)}>Négatif</button>
                 </div>
