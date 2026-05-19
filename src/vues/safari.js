@@ -311,7 +311,7 @@ function Fight() {
             }
             {pokemon &&
                     <div className={"fightActionsContainer"}>
-                    {onCatch === false ?
+                    {onCatch === false &&
                         currentLove < maxLove ?
                         <>
                             {inventory.filter(item => (item.slug === "exps" && item.quantity > 0) || (item.slug === "expm" && item.quantity > 0) || (item.slug === "expl" && item.quantity > 0)).length < 1 &&
