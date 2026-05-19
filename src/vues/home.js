@@ -37,7 +37,7 @@ function HomePage(props) {
                         className={"spanShinydex"}>{shinydex[0].surnom}</span></div>
                     <div className={"shinydexSpriteContainer"}>
                         <div>
-                            <img className={"shinydexSprite"} src={"/Shinydex/shiny/" + shinydex[0].idPkm + ".gif"} />
+                            <img className={"shinydexSprite"} src={"/Sprites/shiny/" + shinydex[0].idPkm + ".gif"} />
                         </div>
                         {shinydex[0].lien !== null &&
                             <a target={"_blank"} href={shinydex[0].lien}><img className={"linkShinydex"}
