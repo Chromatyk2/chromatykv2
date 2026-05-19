@@ -296,7 +296,7 @@ function Fight() {
             }
             {pokemon &&
                 <>
-                <p className={"fightName"}>{shiny === 1 || negative === 1 && <img style={{ filter: negative === 1 ? "invert(1)" : "invert(0)" }} src={"/star.png"}/> {pokemon.name}</p>
+                <p className={"fightName"}>{shiny === 1 || negative === 1 && <img style={{ filter: negative === 1 ? "invert(1)" : "invert(0)" }} src={"/star.png"} />} {pokemon.name}</p>
                 <div style={{ backgroundColor: pokemon.tier == 1 ? "#6d6d6c" : pokemon.tier == 2 ? "#21693a" : pokemon.tier == 3 ? "#744095" : "#bfa93a" }} className={"tierFight"}>Tier {pokemon.tier}</div>
                     <div className={"progressBarFightExternal"}>
                     <div style={{ width: +parseFloat(currentLove/maxLove*100).toFixed(2) + "%" }} className={"progressBarFightInternal"}>
