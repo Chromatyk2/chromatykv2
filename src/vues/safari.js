@@ -115,7 +115,6 @@ function Fight() {
                                             negative: negative,
                                             date: moment(new Date()).utc().format('YYYY-MM-DD hh:mm:ss')
                                         })
-
                                         setTimeout(function () {
                                             setPokemon(null);
                                         }, 1000);
