@@ -452,6 +452,7 @@ fightActionsFlee img {
     background: rgba(255, 255, 255, 0.2);
     border-radius: 10px;
     padding: 10px 0px 10px 0px;
+    border: 2px solid #a4b3bd;
 }
 
 .dexName {
@@ -505,13 +506,14 @@ span.dexNumber {
     border-radius: 5px;
     font-family: Charge Vector Black;
     letter-spacing: 1px;
+    border: 2px solid #a4b3bd;
 }
-    .genFilter button:hover {
-        cursor: pointer;
-        background: rgba(255, 255, 255, 0.2);
-        border: rgba(5, 72, 115, 1) solid 2px;
-        background: rgba(5, 72, 115, 0.5);
-    }
+.genFilter button:hover {
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.2);
+    border: rgba(5, 72, 115, 1) solid 2px;
+    background: rgba(5, 72, 115, 0.5);
+}
 /* Animation */
 @keyframes myAnimation {
     from {

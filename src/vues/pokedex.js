@@ -16,16 +16,20 @@ function Pokedex() {
         Axios
             .get("/api/getPokedex/"+cookies.user.data[0].id)
             .then(function (response) {
-                setPokedex(response.data.filter(item => item.gen === 1 && item.shiny === 0 && item.negative === 0))
+                setPokedex(response.data)
+                setFilteredPokedex(response.data.filter(item => item.gen === 1 && item.shiny === 0 && item.negative === 0))
             })
     }, []);
+    function filterGen(e) {
+        setFilteredPokedex(pokedex.filter(item => item.gen === e))
+    }
     return (
         <div className={"globalContainer"}>
             <div className={"dexContainer"}>
                 <div className={"genFilter"}>
                     {genList.map((val, key) => {
                         return (
-                            <button value={val}>Gen {val}</button>
+                            <button onClick={() => filterGen(val)} value={val}>Gen {val}</button>
                         )
                     })}
 
