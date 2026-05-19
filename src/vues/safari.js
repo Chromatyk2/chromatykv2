@@ -113,6 +113,7 @@ function Fight() {
                                         Axios.post('/api/addPokemon', {
                                             user: cookies.user.data[0].id,
                                             pokemon: pokemon.number,
+                                            gen: pokemon.gen,
                                             shiny: shiny,
                                             negative: negative,
                                             date: moment(new Date()).utc().format('YYYY-MM-DD hh:mm:ss')
