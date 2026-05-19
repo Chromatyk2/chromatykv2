@@ -11,7 +11,7 @@ function Pokedex() {
     const [gen, setGen] = useState(1);
     useEffect(() => {
         Axios
-            .get("/api/getPokedex/" + + cookies.user.data[0].id)
+            .get("/api/getPokedex/"+cookies.user.data[0].id)
             .then(function (response) {
                 setPokedex(response.data)
             })
