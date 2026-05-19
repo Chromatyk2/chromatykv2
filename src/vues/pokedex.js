@@ -19,7 +19,7 @@ function Pokedex() {
     return (
         <>
             {pokedex &&
-                pokedex.filter(item => (item.gen === gen).map((val, key) => {
+                pokedex.filter(item => item.gen === gen).map((val, key) => {
                     return (
                         <div className={"dexCard"}>
                             <span className={"dexName"}>{val.number}</span>
