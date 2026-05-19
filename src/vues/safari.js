@@ -21,30 +21,35 @@ function Fight() {
     const [inventory, setInventory] = useState(null);
     useEffect(() => {
         Axios
-            .get("/api/getSafari/" + cookies.user.data[0].id)
+            .get("/api/getPokedex/" + cookies.user.data[0].id)
             .then(function (response) {
+                setPokedex(response.data)
                 Axios
-                    .get("/api/getInventory/" + cookies.user.data[0].id)
+                    .get("/api/getSafari/" + cookies.user.data[0].id)
                     .then(function (response) {
-                        setInventory(response.data);
                         Axios
-                            .get("/api/getSafari/" + cookies.user.data[0].id)
+                            .get("/api/getInventory/" + cookies.user.data[0].id)
                             .then(function (response) {
-                                if (response.data.length > 0) {
-                                    setCurrentLove(response.data[0].love)
-                                    setShiny(response.data[0].shiny)
-                                    setNegative(response.data[0].negative)
-                                    setPokemon({ name: response.data[0].name, number: response.data[0].pokemon, tier: response.data[0].tier })
-                                    if (response.data[0].tier == 1) {
-                                        setMaxLove(50);
-                                    } else if (response.data[0].tier == 2) {
-                                        setMaxLove(100);
-                                    } else if (response.data[0].tier == 3) {
-                                        setMaxLove(150);
-                                    } else {
-                                        setMaxLove(250);
-                                    }
-                                }
+                                setInventory(response.data);
+                                Axios
+                                    .get("/api/getSafari/" + cookies.user.data[0].id)
+                                    .then(function (response) {
+                                        if (response.data.length > 0) {
+                                            setCurrentLove(response.data[0].love)
+                                            setShiny(response.data[0].shiny)
+                                            setNegative(response.data[0].negative)
+                                            setPokemon({ name: response.data[0].name, number: response.data[0].pokemon, tier: response.data[0].tier })
+                                            if (response.data[0].tier == 1) {
+                                                setMaxLove(50);
+                                            } else if (response.data[0].tier == 2) {
+                                                setMaxLove(100);
+                                            } else if (response.data[0].tier == 3) {
+                                                setMaxLove(150);
+                                            } else {
+                                                setMaxLove(250);
+                                            }
+                                        }
+                                    })
                             })
                     })
             })
