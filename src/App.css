@@ -167,7 +167,7 @@ a.navLink.linkFromNav p {
 }
 
 .shinydexCard {
-    width: 300px;
+    width: 270px;
     display: flex;
     flex-flow: column;
     border: solid 1px #120747;
