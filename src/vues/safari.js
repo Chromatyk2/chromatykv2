@@ -121,6 +121,7 @@ function Fight() {
                                         Axios.delete('/api/deleteSafari/' + cookies.user.data[0].id)
                                         setTimeout(function () {
                                             setPokemon(null);
+                                            setOnCatch(false);
                                         }, 2000);
                                     }, 300);
                                 }
