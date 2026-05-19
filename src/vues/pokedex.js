@@ -68,7 +68,7 @@ function Pokedex() {
                                     <div className={"dexSpriteContainer"}>
                                         <span className={"dexNumber"}>#{val.pokemon}</span>
                                         <div>
-                                            <img style={{ filter: isNegative === 1 ? "invert(1)" : "invert(0)" }} loading="lazy" className={"dexSprite"} src={"/Sprites/"+isShiny === 1 ? "Shiny" : "Normal" + "/" + val.pokemon + ".gif"} />
+                                            <img style={{ filter: isNegative === 1 ? "invert(1)" : "invert(0)" }} loading="lazy" className={"dexSprite"} src={isShiny === 1 ? "/Sprites/Shiny" : "/Sprites/Normal" + "/" + val.pokemon + ".gif"} />
                                         </div>
                                     </div>
                                     <div className={"dexDescription"}>
