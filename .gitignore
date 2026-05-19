@@ -7,7 +7,7 @@
 /.vs
 # testing
 /coverage
-
+/public/Sprites
 # production
 /build
 

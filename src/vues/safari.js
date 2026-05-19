@@ -129,7 +129,16 @@ function Fight() {
                                     }, 300);
                                 }
                                 else {
-                                    setOnCatch(false);
+                                    const fleeRate = Math.floor((Math.random() * 10) + 1);
+                                    if (fleeRate == 8) {
+                                        document.getElementById("fleeFightText").style.display = "block";
+                                        document.getElementById("ball").style.display = "none";
+                                        setTimeout(function () {
+                                            fleeFight();
+                                        }, 2000);
+                                    } else {
+                                        setOnCatch(false);
+                                    }
                                 }
                             }, 5300);
                         })
@@ -397,6 +406,7 @@ function Fight() {
                             </>
                                 :
                                 <p id={"validCatchText"} style={{display:"none"}}>Et Hop !<br />{pokemon.name} est attrapé !</p>
+                                <p id={"fleeFightText"} style={{display:"none"}}>Oh non !<br />{pokemon.name} s'est enfui !</p>
                     }
                     {onCatch === false &&
                         inventory.filter(item => item.slug === "master" && item.quantity > 0).length > 0 &&
