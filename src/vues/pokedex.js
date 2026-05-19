@@ -45,7 +45,7 @@ function Pokedex() {
 
                 </div>
                 {filteredPokedex &&
-                    filteredPokedex.filter(item => item.gen === gen).map((val, key) => {
+                    filteredPokedex.map((val, key) => {
                         return (
                             <>
                                 <div className={"dexCard"}>
