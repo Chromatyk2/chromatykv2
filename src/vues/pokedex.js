@@ -21,10 +21,10 @@ function Pokedex() {
     }, []);
     function filterGen(e) {
         setGen(e);
-        if (e == 0) {
-            setFilteredPokedex(pokedex.filter(item => item.gen > 0))
-        } else {
+        if (e > 0) {
             setFilteredPokedex(pokedex.filter(item => item.gen === e))
+        } else {
+            setFilteredPokedex(pokedex.filter(item => item.gen > 0))
         }
     }
     return (
