@@ -69,10 +69,11 @@ function Inventory(props) {
                             var item = "Bonbon S";
                             var slug = "exps";
                         }
-                        Axios.post('/api/addItem', {
+                        Axios.post('/api/addCandy', {
                             user: cookies.user.data[0].id,
                             item: item,
-                            slug: slug
+                            slug: slug,
+                            quantity: Math.floor(Math.random() * 5)
                         }).then(function (response) {
                             Axios
                                 .get("/api/getInventory/" + cookies.user.data[0].id)
