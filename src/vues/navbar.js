@@ -100,10 +100,6 @@ function NavBar(props) {
                         <img src={"/card.png"} />
                         <p>Cartes</p>
                     </Link>
-                    <Link onClick={deployNav} className="navLink linkFromNav" to="/tcg/cartes">
-                        <img src={"/card.png"} />
-                        <p>Cartes</p>
-                    </Link>
                     <Link onClick={deployNav} className="navLink linkFromNav" to="/leaderboard">
                         <img src={"/vs.png"} />
                         <p>Communauté</p>
