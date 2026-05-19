@@ -10,6 +10,7 @@ function Fight() {
     //Cookies
     const [cookies, setCookie] = useCookies();
     //Safari
+    const [pokedex, setPokedex] = useState(false);
     const [onCatch, setOnCatch] = useState(false);
     const [maxLove, setMaxLove] = useState(0);
     const [currentLove, setCurrentLove] = useState(0);
@@ -160,36 +161,40 @@ function Fight() {
         }
     }
     function getRandomPokemon() {
-        const tierRoll =  Math.random() * 100;
-        if (tierRoll < 39) {
-            var tier = 1;
-            setMaxLove(50);
-        } else if (tierRoll < 89) {
-            var tier = 2;
-            setMaxLove(100);
-        } else if (tierRoll < 99) {
-            var tier = 3;
-            setMaxLove(150);
-        } else {
-            var tier = 4;
-            setMaxLove(250);
-        }
-        Axios.get("/api/getRandomPokemon/"+tier)
-        .then(function (response) {
-            setPokemon(response.data[0]);
-            const shiny = Math.floor((Math.random() * 4096) + 1);
-            const negative = Math.floor((Math.random() * 8192) + 1);
-            if (negative == 16) {
-                setShiny(0);
-                setNegative(1);
-            } else if (shiny == 16) {
-                setShiny(1);
-                setNegative(0);
-            } else {
-                setShiny(0);
-                setNegative(0);
-            }
-        })
+        Axios.get("/api/getPokedex/" + cookies.user.data[0].id)
+            .then(function (response) {
+                setPokedex(response.data)
+                const tierRoll = Math.random() * 100;
+                if (tierRoll < 39) {
+                    var tier = 1;
+                    setMaxLove(50);
+                } else if (tierRoll < 89) {
+                    var tier = 2;
+                    setMaxLove(100);
+                } else if (tierRoll < 99) {
+                    var tier = 3;
+                    setMaxLove(150);
+                } else {
+                    var tier = 4;
+                    setMaxLove(250);
+                }
+                Axios.get("/api/getRandomPokemon/" + tier)
+                    .then(function (response) {
+                        setPokemon(response.data[0]);
+                        const shiny = Math.floor((Math.random() * 4096) + 1);
+                        const negative = Math.floor((Math.random() * 8192) + 1);
+                        if (negative == 16) {
+                            setShiny(0);
+                            setNegative(1);
+                        } else if (shiny == 16) {
+                            setShiny(1);
+                            setNegative(0);
+                        } else {
+                            setShiny(0);
+                            setNegative(0);
+                        }
+                    })
+            })
     }
     function getLegendaryPokemon() {
         setMaxLove(250)
@@ -297,7 +302,7 @@ function Fight() {
             }
             {pokemon &&
                 <>
-                <p className={"fightName"}>{(shiny === 1 || negative === 1) && <img style={{ width:"30px", filter: negative === 1 ? "invert(1)" : "invert(0)" }} src={"/star.png"} alt={"Shiny"} />} {pokemon.name}</p>
+                <p className={"fightName"}>{pokedex.filter(item => item.pokemon === pokemon.number && item.shiny === shiny && item.negative === negative).length > 0 && <img style={{ width: "30px"}} src={"/ball.png"} alt={"Catched"} />} {(shiny === 1 || negative === 1) && <img style={{ width:"30px", filter: negative === 1 ? "invert(1)" : "invert(0)" }} src={"/star.png"} alt={"Shiny"} />} {pokemon.name}</p>
                 <div style={{ backgroundColor: pokemon.tier == 1 ? "#6d6d6c" : pokemon.tier == 2 ? "#21693a" : pokemon.tier == 3 ? "#744095" : "#bfa93a" }} className={"tierFight"}>Tier {pokemon.tier}</div>
                     <div className={"progressBarFightExternal"}>
                     <div style={{ width: +parseFloat(currentLove/maxLove*100).toFixed(2) + "%" }} className={"progressBarFightInternal"}>

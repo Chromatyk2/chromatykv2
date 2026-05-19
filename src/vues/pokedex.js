@@ -8,6 +8,7 @@ function Pokedex() {
     const [cookies, setCookie] = useCookies();
     const [pokedex, setPokedex] = useState(null);
     const [isShiny, setIsShiny] = useState("normal");
+    const [isNegative, setIsNegative] = useState(0);
     const [gen, setGen] = useState(1);
     useEffect(() => {
         Axios

@@ -439,7 +439,7 @@ fightActionsFlee img {
 }
 
 .dexName {
-    color: white;
+    color: #8fc9ef;
     text-align: center;
     padding: 5px;
     font-size: 18px;
@@ -473,7 +473,7 @@ span.dexNumber {
     font-size: 10px;
     left: 5px;
     top: -6px;
-    color: #10104D;
+    color: #8fc9ef;
 }
 /* Animation */
 @keyframes myAnimation {
