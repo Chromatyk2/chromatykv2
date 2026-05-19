@@ -45,8 +45,15 @@ function Profil() {
     }
     return (
         <div className={"globalContainer"}>
-            <div className={"dexContainer"}>
-                <p>Pokédex</p>
+            <div className={"profilContainer"}>
+                <div className={"profilHeader"}>
+                    <img src={"/Badge/pokemon1.png"} />
+                    <div>
+                        <p>{cookies.user.data[0].id}</p>
+                        <p>Niveau 1</p>
+                    </div>
+
+                </div>
                 <div className={"genFilter"}>
                     <button className={isShiny === 0 && isNegative === 0 && "active"} onClick={() => filterForm(0)}>Normal</button>
                     <button className={isShiny === 1 && "active"} onClick={() => filterForm("Shiny")}>Shiny</button>
