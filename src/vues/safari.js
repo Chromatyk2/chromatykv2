@@ -266,6 +266,7 @@ function Fight() {
     }
     return (
         <div className={"globalContainerCenter"}>
+        <p>Safari</p>
         <div className={"fightContainer"}>
             {!pokemon &&
                 <>
