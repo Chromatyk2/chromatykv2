@@ -418,6 +418,52 @@ fightActionsFlee img {
 .twitchLink:hover {
     color: #c6e8f9;
 }
+/* Pokedex */
+.dexContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    width: 90%;
+    margin: auto;
+    padding-bottom: 100px;
+}
+
+.dexCard {
+    width: 270px;
+    display: flex;
+    flex-flow: column;
+    border: solid 1px #120747;
+}
+
+.dexName {
+    color: white;
+    text-align: center;
+    background-color: #120747;
+    padding: 5px;
+    font-size: 18px;
+}
+
+.dexSpriteContainer {
+    flex: 1 1 auto;
+    min-height: 1px;
+    padding: 1.25rem;
+    position: relative;
+}
+
+.dexSprite {
+    max-width: 100%;
+    max-height: 150px;
+    width: auto;
+}
+
+.description {
+    color: white;
+    text-align: center;
+    background-color: #120747;
+    padding: 5px;
+    font-size: 18px;
+}
 /* Animation */
 @keyframes myAnimation {
     from {

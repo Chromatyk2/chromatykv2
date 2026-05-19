@@ -22,12 +22,21 @@ function Pokedex() {
                 {pokedex &&
                     pokedex.filter(item => item.gen === gen).map((val, key) => {
                         return (
-                            <div className={"dexCard"}>
-                                <span className={"dexName"}>{val.number}</span>
-                                <img className={"dexSprite"} src={"/Sprites/" + isShiny + "/" + val.pokemon + ".gif"} />
-                                <p className={"dexName"}>{val.name}</p>
-                                <p className={"dexDate"}>{moment(val.date).utc().format('DD/MM/YYYY')}</p>
-                            </div >
+                            <>
+                                <div className={"dexCard"}>
+                                    <div className={"dexSpriteContainer"}>
+                                        <span className={"dexName"}>{val.number}</span>
+                                        <div>
+                                            <img className={"dexSprite"} src={"/Sprites/" + isShiny + "/" + val.pokemon + ".gif"} />
+                                        </div>
+                                    </div>
+                                    <div className={"description"}>
+                                        <p className={"dexName"}>{val.name}</p>
+                                        <p className={"dexDate"}>{moment(val.date).utc().format('DD/MM/YYYY')}</p>
+                                    </div>
+                                </div>
+                            </>
+
                         )
                     })
                 }
