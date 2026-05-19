@@ -117,6 +117,8 @@ function Fight() {
                                             negative: negative,
                                             date: moment(new Date()).utc().format('YYYY-MM-DD hh:mm:ss')
                                         })
+                                        setCurrentLove(0);
+                                        Axios.delete('/api/deleteSafari/' + cookies.user.data[0].id)
                                         setTimeout(function () {
                                             setPokemon(null);
                                         }, 2000);
