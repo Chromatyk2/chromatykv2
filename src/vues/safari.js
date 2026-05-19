@@ -119,7 +119,7 @@ function Fight() {
                                         })
                                         setTimeout(function () {
                                             setPokemon(null);
-                                        }, 1000);
+                                        }, 2000);
                                     }, 300);
                                 }
                                 else {
