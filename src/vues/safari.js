@@ -129,8 +129,8 @@ function Fight() {
                                     }, 300);
                                 }
                                 else {
-                                    const fleeRate = Math.floor((Math.random() * 10) + 1);
-                                    if (fleeRate == 8) {
+                                    const fleeRate = Math.floor((Math.random() * 1) + 1);
+                                    if (fleeRate == 1) {
                                         document.getElementById("fleeFightText").style.display = "block";
                                         document.getElementById("ball").style.display = "none";
                                         setTimeout(function () {
