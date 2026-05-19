@@ -26,8 +26,9 @@ function Pokedex() {
                             <p className={"dexName"}>{val.name}</p>
                             <p className={"dexDate"}>{moment(val.date).utc().format('DD/MM/YYYY')}</p>
                         </div >
-                )
-            }
+                    )
+                })
+             }
         </>
     );
 }
