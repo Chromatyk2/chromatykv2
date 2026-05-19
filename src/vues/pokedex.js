@@ -11,6 +11,7 @@ function Pokedex() {
     const [isShiny, setIsShiny] = useState("normal");
     const [isNegative, setIsNegative] = useState(0);
     const [gen, setGen] = useState(1);
+    const [genList, setGenList] = useState([1,2,3,4,5,6,7,8,9])
     useEffect(() => {
         Axios
             .get("/api/getPokedex/"+cookies.user.data[0].id)
@@ -21,6 +22,14 @@ function Pokedex() {
     return (
         <>
             <div className={"dexContainer"}>
+                <div className={"genFilter"}>
+                    {genList.map((val, key) => {
+                        return (
+                            <button value={val}>Gen {val}</button>
+                        )
+                    })}
+
+                </div>
                 {pokedex &&
                     pokedex.filter(item => item.gen === gen).map((val, key) => {
                         return (
