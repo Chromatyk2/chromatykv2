@@ -108,6 +108,13 @@ function Fight() {
                                 if (tryCatch == 0 || e == 3) {
                                     setTimeout(function () {
                                         document.getElementById("validCatchText").style.display = "block";
+                                        Axios.post('/api/addPokemon', {
+                                            user: cookies.user.data[0].id,
+                                            pokemon: pokemon.number,
+                                            shiny: shiny,
+                                            negative: negative,
+                                            date: moment(new Date()).utc().format('YYYY-MM-DD hh:mm:ss')
+                                        })
                                     }, 300);
                                 }
                                 else {
