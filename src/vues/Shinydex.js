@@ -13,7 +13,7 @@ function Shinydex() {
             })
     }, []);
     return (
-        <>
+        <div className={"globalContainerCenter"}>
             {shinydex &&
                 <>
                     <p className="pseudoProfil">Shinydex de Chromatyk</p>
@@ -46,7 +46,7 @@ function Shinydex() {
                     })
                 }
             </div>
-        </>
+        </div>
     );
 }
 

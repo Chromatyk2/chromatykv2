@@ -265,6 +265,7 @@ function Fight() {
             })
     }
     return (
+        <div className={"globalContainerCenter"}>
         <div className={"fightContainer"}>
             {!pokemon &&
                 <>
@@ -410,6 +411,7 @@ function Fight() {
                     }
                     </div>
             }
+            </div>
         </div>
     )
 }

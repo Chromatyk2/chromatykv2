@@ -23,11 +23,12 @@
     justify-content: center;
     font-size: calc(10px + 2vmin);
     color: white;
+    min-height: 100vh;
 }
 .App-link {
   color: #61dafb;
 }
-.globalContainer {
+.globalContainerCenter {
     align-items: center;
     background-color: rgba(18, 7, 71, 0.1);
     display: flex;
@@ -38,6 +39,19 @@
     width: 50%;
     box-shadow: 0px 5px 30px black;
     padding-top: 75px;
+}
+.globalContainerCenter p {
+    font-size: 20px;
+}
+.globalContainer {
+    align-items: flex-start;
+    background-color: #1207471a;
+    box-shadow: 0 5px 30px #000;
+    display: flex;
+    justify-content: center;
+    height: stretch;
+    padding-top: 134px;
+    width: 50%;
 }
 .globalContainer p {
     font-size: 20px;
@@ -474,6 +488,20 @@ span.dexNumber {
     left: 5px;
     top: -6px;
     color: #8fc9ef;
+}
+.genFilter {
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+    width: 100%;
+}
+.genFilter button {
+    color: white;
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    border-radius: 5px;
+    font-family: Charge Vector Black;
+    letter-spacing: 1px;
 }
 /* Animation */
 @keyframes myAnimation {

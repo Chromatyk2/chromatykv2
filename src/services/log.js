@@ -14,7 +14,10 @@ function Log() {
         }, 2000);
     }, []);
     return (
-        <Login />
+
+        <div className={"globalContainerCenter"}>
+            <Login />
+        </div>
     )
 }
 export default Log;

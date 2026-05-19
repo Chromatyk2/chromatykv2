@@ -17,7 +17,7 @@ function HomePage(props) {
             })
     }, []);
     return (
-        <>
+        <div className={"globalContainerCenter"}>
             {typeof cookies.user === "undefined" ?
                 <p>Bienvenue</p>
                 :
@@ -50,7 +50,7 @@ function HomePage(props) {
                     </div>
                 </div>
             }
-        </>        
+        </div>        
     )
 }
 

@@ -20,7 +20,6 @@ function App() {
     <div className="App">
           <header className="App-header">
               <BrowserRouter>
-                  <div className={"globalContainer"}>
                       <Routes>
                           <Route path="/log" element={<Log />} />
                           <Route path="/" element={<HomePage />} />
@@ -32,7 +31,6 @@ function App() {
                       <div className={"navBarContent"}>
                         <NavBar />
                       </div>
-                  </div>
               </BrowserRouter>
       </header>
     </div>

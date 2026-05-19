@@ -20,7 +20,7 @@ function Pokedex() {
             })
     }, []);
     return (
-        <>
+        <div className={"globalContainer"}>
             <div className={"dexContainer"}>
                 <div className={"genFilter"}>
                     {genList.map((val, key) => {
@@ -52,7 +52,7 @@ function Pokedex() {
                     })
                 }
             </div>
-        </>
+        </div>
     );
 }
 
