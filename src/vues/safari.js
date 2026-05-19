@@ -64,8 +64,21 @@ function Fight() {
     }
 
     
-    function addLove(e) {
-        setCurrentLove(currentLove + e);
+    function addLove(e, candy) {
+        if (inventory.find((item) => item.slug === candy).quantity - 1 >= 0) {
+            Axios.post('/api/removeItem', {
+                user: cookies.user.data[0].id,
+                slug: candy
+            })
+                .then(function (response) {
+                    Axios
+                        .get("/api/getInventory/" + cookies.user.data[0].id)
+                        .then(function (response) {
+                            setInventory(response.data);
+                            setCurrentLove(currentLove + e);
+                        })
+                })
+        }
     }
     function catchPokemon(e, f) {
         if (e == 0) {
