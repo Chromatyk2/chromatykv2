@@ -358,17 +358,17 @@ function Fight() {
                                         <p>x {inventory.find((item) => item.slug === "ultra").quantity}</p>
                                     </div>
                                 }
-                                {inventory.filter(item => item.slug === "master" && item.quantity > 0).length > 0 &&
-                                    <div onClick={() => catchPokemon(3, pokemon.tier, "master")} className={"fightActions"}>
-                                        < img src={"/master.png"} />
-                                        <p>Master Ball</p>
-                                        <p>x {inventory.find((item) => item.slug === "master").quantity}</p>
-                                    </div>
-                                }
                             </>
                                 :
                                 <p id={"validCatchText"} style={{display:"none"}}>Et Hop !<br />{pokemon.name} est attrapé !</p>
-                        }
+                    }
+                    {inventory.filter(item => item.slug === "master" && item.quantity > 0).length > 0 &&
+                        <div onClick={() => catchPokemon(3, pokemon.tier, "master")} className={"fightActions"}>
+                            < img src={"/master.png"} />
+                            <p>Master Ball</p>
+                            <p>x {inventory.find((item) => item.slug === "master").quantity}</p>
+                        </div>
+                    }
                     </div>
             }
         </div>
