@@ -8,15 +8,16 @@ function Pokedex() {
     const [cookies, setCookie] = useCookies();
     const [pokedex, setPokedex] = useState(null);
     const [filteredPokedex, setFilteredPokedex] = useState(null);
-    const [gen, setGen] = useState(1);
-    const [isShiny, setIsShiny] = useState("Normal");
+    const [gen, setGen] = useState(0);
+    const [isShiny, setIsShiny] = useState(0);
+    const [isNegative, setIsNegative] = useState(0);
     const [genList, setGenList] = useState([1,2,3,4,5,6,7,8,9])
     useEffect(() => {
         Axios
             .get("/api/getPokedex/"+cookies.user.data[0].id)
             .then(function (response) {
                 setPokedex(response.data)
-                setFilteredPokedex(response.data.filter(item => item.gen === 1 && item.shiny === 0 && item.negative === 0))
+                setFilteredPokedex(response.data)
             })
     }, []);
     function filterGen(e) {
@@ -24,16 +25,29 @@ function Pokedex() {
         if (e > 0) {
             setFilteredPokedex(pokedex.filter(item => item.gen === e))
         } else {
-            setFilteredPokedex(pokedex.filter(item => item.gen > 0))
+            setFilteredPokedex(pokedex)
         }
+    }
+    function filterForm(e) {
+        if (e === "Shiny") {
+            setIsShiny(1);
+        }
+        if (e === 1) {
+            setIsNegative(1);
+        }
+        if (e === 0) {
+            setIsShiny(0);
+            setIsNegative(0);
+        }
+
     }
     return (
         <div className={"globalContainer"}>
             <div className={"dexContainer"}>
                 <div className={"genFilter"}>
-                    <button onClick={() => filterGen(0)} value={0}>Tous</button>
-                    <button onClick={() => filterGen(1)} value={1}>Gen {1}</button>
-                    <button onClick={() => filterGen(2)} value={2}>Gen {2}</button>
+                    <button onClick={() => filterForm(0)}>Tous</button>
+                    <button onClick={() => filterForm("Shiny")}>Shiny</button>
+                    <button onClick={() => filterForm(1)}>Négtif</button>
                 </div>
                 <div className={"genFilter"}>
                     <button className={gen === 0 && "active"} onClick={() => filterGen(0)} value={0}>Toutes</button>
@@ -45,14 +59,14 @@ function Pokedex() {
 
                 </div>
                 {filteredPokedex &&
-                    filteredPokedex.map((val, key) => {
+                    filteredPokedex.filter(item => (item.shiny === isShiny || item.negative === isNegative)).map((val, key) => {
                         return (
                             <>
                                 <div className={"dexCard"}>
                                     <div className={"dexSpriteContainer"}>
                                         <span className={"dexNumber"}>#{val.pokemon}</span>
                                         <div>
-                                            <img lloading="lazy" className={"dexSprite"} src={"/Sprites/" + isShiny + "/" + val.pokemon + ".gif"} />
+                                            <img style={{ filter: isNegative === 1 ? "invert(1)" : "invert(0)" }} loading="lazy" className={"dexSprite"} src={"/Sprites/" + isShiny + "/" + val.pokemon + ".gif"} />
                                         </div>
                                     </div>
                                     <div className={"dexDescription"}>
