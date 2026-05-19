@@ -23,7 +23,7 @@ function Pokedex() {
     function filterGen(e) {
         setGen(e);
         if (e == 0) {
-            setPokedex(pokedex.filter(item => item.gen === e))
+            setFilteredPokedex(pokedex)
         } else {
             setFilteredPokedex(pokedex.filter(item => item.gen === e))
         }
