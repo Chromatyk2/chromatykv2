@@ -15,18 +15,20 @@ import ShinyDex from './vues/Shinydex.js';
 import Safari from './vues/safari.js';
 import Inventory from './vues/inventory.js';
 import Pokedex from './vues/pokedex.js';
+import Profil from './vues/profil.js';
 function App() {
   return (
     <div className="App">
           <header className="App-header">
               <BrowserRouter>
                       <Routes>
-                          <Route path="/log" element={<Log />} />
-                          <Route path="/" element={<HomePage />} />
-                          <Route path="/inventaire" element={<Inventory />} />
-                          <Route path="/shiny" element={<ShinyDex />} />
-                          <Route path="/safari" element={<Safari />} />
-                          <Route path="/pokedex" element={<Pokedex />} />
+                        <Route path="/log" element={<Log />} />
+                        <Route path="/" element={<HomePage />} />
+                        <Route path="/inventaire" element={<Inventory />} />
+                        <Route path="/shiny" element={<ShinyDex />} />
+                        <Route path="/safari" element={<Safari />} />
+                        <Route path="/pokedex" element={<Pokedex />} />
+                        <Route path="/profil" element={<Profil />} />
                       </Routes>
                       <div className={"navBarContent"}>
                         <NavBar />
