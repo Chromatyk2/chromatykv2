@@ -35,7 +35,7 @@ function Fight() {
                                     setCurrentLove(response.data[0].love)
                                     setShiny(response.data[0].shiny)
                                     setNegative(response.data[0].negative)
-                                    setPokemon({ name: response.data[0].name, number: response.data[0].pokemon, tier: response.data[0].tier })
+                                    setPokemon({ name: response.data[0].name, number: response.data[0].pokemon, tier: response.data[0].tier, gen: response.data[0].gen })
                                     if (response.data[0].tier == 1) {
                                         setMaxLove(50);
                                     } else if (response.data[0].tier == 2) {
