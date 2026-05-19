@@ -277,21 +277,21 @@ function Fight() {
                                 <div onClick={() => addLove(10, "exps")} className={"fightActions"}>
                                     < img src={"/exps.png"} />
                                     <p>Bonbon S</p>
-                                    <p>x {inventory.filter(item => item.slug === "exps" && item.quantity > 0).quantity}</p>
+                                    <p>x {inventory.filter(item => item.slug === "exps").quantity}</p>
                                 </div>
                             }
                             {inventory.filter(item => item.slug === "expm" && item.quantity > 0).length > 0 &&
                                 <div onClick={() => addLove(25, "expm")} className={"fightActions"}>
                                     < img src={"/expm.png"} />
                                     <p>Bonbon M</p>
-                                    <p>x {inventory.filter(item => item.slug === "expm" && item.quantity > 0).quantity}</p>
+                                    <p>x {inventory.filter(item => item.slug === "expm").quantity}</p>
                                 </div>
                             }
                             {inventory.filter(item => item.slug === "expl" && item.quantity > 0).length > 0 &&
                                 <div onClick={() => addLove(50, "expl")} className={"fightActions"}>
                                     < img src={"/expl.png"} />
                                     <p>Bonbon L</p>
-                                    <p>x {inventory.filter(item => item.slug === "expl" && item.quantity > 0).quantity}</p>
+                                    <p>x {inventory.filter(item => item.slug === "expl").quantity}</p>
                                 </div>
                             }
                             </>
