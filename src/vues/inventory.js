@@ -93,7 +93,28 @@ function Inventory(props) {
                     <p className="pseudoProfil">Inventaire</p>
                     <div className={"inventoryContainer"}>
                         {inventory &&
-                            inventory.map((val, key) => {
+                            inventory.filter(item => item.slug === "box").map((val, key) => {
+                                return (
+                                    val.slug === "box" ?
+                                        val.quantity > 0 &&
+                                        <div onClick={openLootbox} style={{ backgroundColor: "rgba(255, 255, 255, 0.1)", filter: "drop-shadow(white 0px 0px 5px) hue-rotate(352deg) contrast(1.1)" }} className={"honeyActions"}>
+                                            <img src={"/" + val.slug + ".png"} />
+                                            <p>{val.item}</p>
+                                            <p>x {val.quantity}</p>
+                                        </div>
+                                        :
+                                        val.quantity > 0 &&
+                                        <div className={"honeyActions"}>
+                                            <img style={{ filter: val.slug == "honey" ? "drop-shadow(white 0px 0px 5px) hue-rotate(352deg) contrast(1.1)" : val.slug == "shiny" ? "drop-shadow(gold 0px 0px 5px) hue-rotate(15deg) contrast(1.3)" : val.slug == "legendary" ? "drop-shadow(red 0px 0px 5px) hue-rotate(303deg) contrast(1.1)" : val.slug == "negative" && "drop-shadow(gold 0px 0px 5px) hue-rotate(15deg) contrast(1.3) invert(1)" }} src={"/" + val.slug == "honey" || val.slug == "shiny" || val.slug == "legendary" || val.slug == "negative" ? "honey.png" : val.slug + ".png"} />
+                                            <p>{val.item}</p>
+                                            <p>x {val.quantity}</p>
+                                        </div>
+
+                                )
+                            })
+                        }
+                        {inventory &&
+                            inventory.filter(item => item.slug !== "box").map((val, key) => {
                                 return (
                                     val.slug === "box" ?
                                         val.quantity > 0 &&
