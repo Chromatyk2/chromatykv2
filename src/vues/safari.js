@@ -286,8 +286,7 @@ function Fight() {
                     <div className={"fightActionsContainer"}>
                         {currentLove < maxLove ?
                         <>
-                            {inventory &&
-                                inventory.filter(item => (item.slug === "exps" && item.quantity > 0) || (item.slug === "expm" && item.quantity > 0) || (item.slug === "expl" && item.quantity > 0).length < 1 &&
+                            {inventory.filter(item => (item.slug === "exps" && item.quantity > 0) || (item.slug === "expm" && item.quantity > 0) || (item.slug === "expl" && item.quantity > 0)).length < 1 &&
                                 <div className={"emptyInventory"}>
                                     <p className="pseudoProfil">Tu n'as pas de miel, récupère en sur les streams de Chromatyk</p>
                                     <a className={"twitchLink"} href="https://twitch.tv/chromatyk" target="blank_">Twitch</a>
