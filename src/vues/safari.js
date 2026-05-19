@@ -267,6 +267,7 @@ function Fight() {
                 </>
             }
             {pokemon &&
+                onCatch === false &&
                 <>
                 <div id={"fightActionsSave"} style={{ top: "10px" }} onClick={saveFight} className={"fightActionsFlee"}>
                     < img src={"/disc.png"} />
