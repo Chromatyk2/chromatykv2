@@ -21,15 +21,21 @@ function Pokedex() {
             })
     }, []);
     function filterGen(e) {
-        setFilteredPokedex(pokedex.filter(item => item.gen === e))
+        setGen(e);
+        if (e == 0) {
+            setPokedex(pokedex.filter(item => item.gen === e))
+        } else {
+            setFilteredPokedex(pokedex.filter(item => item.gen === e))
+        }
     }
     return (
         <div className={"globalContainer"}>
             <div className={"dexContainer"}>
                 <div className={"genFilter"}>
+                    <button className={gen === 0 && "active"} onClick={() => filterGen(0)} value={0}>Toutes</button>
                     {genList.map((val, key) => {
                         return (
-                            <button onClick={() => filterGen(val)} value={val}>Gen {val}</button>
+                            <button className={gen === val && "active"} onClick={() => filterGen(val)} value={val}>Gen {val}</button>
                         )
                     })}
 
