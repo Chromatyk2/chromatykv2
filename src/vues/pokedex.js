@@ -31,9 +31,11 @@ function Pokedex() {
     function filterForm(e) {
         if (e === "Shiny") {
             setIsShiny(1);
+            setIsNegative(0);
         }
         if (e === 1) {
             setIsNegative(1);
+            setIsShiny(0);
         }
         if (e === 0) {
             setIsShiny(0);
@@ -59,7 +61,7 @@ function Pokedex() {
 
                 </div>
                 {filteredPokedex &&
-                    filteredPokedex.filter(item => (item.shiny === isShiny || item.negative === isNegative)).map((val, key) => {
+                    filteredPokedex.filter(item => (item.shiny === isShiny && item.negative === isNegative)).map((val, key) => {
                         return (
                             <>
                                 <div className={"dexCard"}>
