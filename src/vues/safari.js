@@ -307,7 +307,17 @@ function Fight() {
             }
             {pokemon &&
                 <>
-                <p className={"fightName"}>{pokedex.filter(item => item.pokemon === pokemon.number && ({shiny === 1 ? item.shiny === shiny :negative === 1 && item.negative === negative})).length > 0 && <img style={{ width: "30px"}} src={"/ball.png"} alt={"Catched"} />} {(shiny === 1 || negative === 1) && <img style={{ width:"30px", filter: negative === 1 ? "invert(1)" : "invert(0)" }} src={"/star.png"} alt={"Shiny"} />} {pokemon.name}</p>
+                <p className={"fightName"}>
+                    {
+                        shiny === 1 ?
+                            pokedex.filter(item => item.pokemon === pokemon.number && item.shiny === shiny).length > 0 && <img style={{ width: "30px" }} src={"/ball.png"} alt={"Catched"} />
+                            :
+                            negative === 1 ?
+                                pokedex.filter(item => item.pokemon === pokemon.number && item.negative === negative).length > 0 && <img style={{ width: "30px" }} src={"/ball.png"} alt={"Catched"} />
+                                :
+                                pokedex.filter(item => item.pokemon === pokemon.number).length > 0 && <img style={{ width: "30px" }} src={"/ball.png"} alt={"Catched"} />
+                    }
+                    {(shiny === 1 || negative === 1) && <img style={{ width: "30px", filter: negative === 1 ? "invert(1)" : "invert(0)" }} src={"/star.png"} alt={"Shiny"} />} {pokemon.name}</p>
                 <div style={{ backgroundColor: pokemon.tier == 1 ? "#6d6d6c" : pokemon.tier == 2 ? "#21693a" : pokemon.tier == 3 ? "#744095" : "#bfa93a" }} className={"tierFight"}>Tier {pokemon.tier}</div>
                     <div className={"progressBarFightExternal"}>
                     <div style={{ width: +parseFloat(currentLove/maxLove*100).toFixed(2) + "%" }} className={"progressBarFightInternal"}>
