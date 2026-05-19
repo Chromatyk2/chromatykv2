@@ -7,6 +7,7 @@ import { useCookies } from 'react-cookie';
 function Pokedex() {
     const [cookies, setCookie] = useCookies();
     const [pokedex, setPokedex] = useState(null);
+    const [filteredPokedex, setFilteredPokedex] = useState(null);
     const [isShiny, setIsShiny] = useState("normal");
     const [isNegative, setIsNegative] = useState(0);
     const [gen, setGen] = useState(1);
@@ -14,7 +15,7 @@ function Pokedex() {
         Axios
             .get("/api/getPokedex/"+cookies.user.data[0].id)
             .then(function (response) {
-                setPokedex(response.data)
+                setPokedex(response.data.filter(item => item.gen === 1 && item.shiny === 0 && item.negative === 0))
             })
     }, []);
     return (
