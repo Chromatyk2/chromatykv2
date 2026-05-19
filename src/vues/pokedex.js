@@ -30,7 +30,7 @@ function Pokedex() {
                                             <img className={"dexSprite"} src={"/Sprites/" + isShiny + "/" + val.pokemon + ".gif"} />
                                         </div>
                                     </div>
-                                    <div className={"description"}>
+                                    <div className={"dexDescription"}>
                                         <p className={"dexName"}>{val.name}</p>
                                         <p className={"dexDate"}>{moment(val.date).utc().format('DD/MM/YYYY')}</p>
                                     </div>
