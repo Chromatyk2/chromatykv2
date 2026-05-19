@@ -441,7 +441,6 @@ fightActionsFlee img {
 .dexName {
     color: white;
     text-align: center;
-    background-color: #120747;
     padding: 5px;
     font-size: 18px;
 }
@@ -467,7 +466,14 @@ fightActionsFlee img {
 }
 .dexDescription p {
     margin: 0;
-    font-size: 15px;
+    font-size: 12px;
+}
+span.dexNumber {
+    position: absolute;
+    font-size: 10px;
+    left: 5px;
+    top: -6px;
+    color: #10104D;
 }
 /* Animation */
 @keyframes myAnimation {

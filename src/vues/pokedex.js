@@ -25,7 +25,7 @@ function Pokedex() {
                             <>
                                 <div className={"dexCard"}>
                                     <div className={"dexSpriteContainer"}>
-                                        <span className={"dexName"}>{val.number}</span>
+                                        <span className={"dexNumber"}>#{val.pokemon}</span>
                                         <div>
                                             <img className={"dexSprite"} src={"/Sprites/" + isShiny + "/" + val.pokemon + ".gif"} />
                                         </div>
