@@ -14,6 +14,7 @@ import HomePage from './vues/home.js';
 import ShinyDex from './vues/Shinydex.js';
 import Safari from './vues/safari.js';
 import Inventory from './vues/inventory.js';
+import Pokedex from './vues/pokedex.js';
 function App() {
   return (
     <div className="App">
@@ -26,6 +27,7 @@ function App() {
                           <Route path="/inventaire" element={<Inventory />} />
                           <Route path="/shiny" element={<ShinyDex />} />
                           <Route path="/safari" element={<Safari />} />
+                          <Route path="/pokedex" element={<Pokedex />} />
                       </Routes>
                       <div className={"navBarContent"}>
                         <NavBar />

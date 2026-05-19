@@ -4,7 +4,7 @@ import moment from "moment/moment";
 import { useCookies } from 'react-cookie';
 
 
-function Shinydex() {
+function Pokedex() {
     const [cookies, setCookie] = useCookies();
     const [pokedex, setPokedex] = useState(null);
     useEffect(() => {
@@ -21,4 +21,4 @@ function Shinydex() {
     );
 }
 
-export default Shinydex;
+export default Pokedex;
