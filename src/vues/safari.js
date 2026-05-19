@@ -319,7 +319,7 @@ function Fight() {
                         <>
                             {inventory.filter(item => (item.slug === "exps" && item.quantity > 0) || (item.slug === "expm" && item.quantity > 0) || (item.slug === "expl" && item.quantity > 0)).length < 1 &&
                                 <div style={{background:"none"}} className={"emptyInventory"}>
-                                    <p className="pseudoProfil">Tu n'as pas de miel, récupère en sur les streams de Chromatyk</p>
+                                    <p className="pseudoProfil">Tu n'as pas de miel, récupère en sur les streams de Chromatyk <span style={{ fontSize: "10px" }}>Pense à sauvegarder en haut à droite</span></p>
                                     <a className={"twitchLink"} href="https://twitch.tv/chromatyk" target="blank_">Twitch</a>
                                 </div>
                             }
@@ -350,7 +350,7 @@ function Fight() {
                             <>
                                 {inventory.filter(item => (item.slug === "ball" && item.quantity > 0) || (item.slug === "great" && item.quantity > 0) || (item.slug === "ultra" && item.quantity > 0) || (item.slug === "master" && item.quantity > 0)).length < 1 &&
                                     <div style={{ background: "none" }} className={"emptyInventory"}>
-                                        <p className="pseudoProfil">Tu n'as pas de miel, récupère en sur les streams de Chromatyk</p>
+                                        <p className="pseudoProfil">Tu n'as pas de balls, récupère en sur les streams de Chromatyk <span style={{fontSize:"10px"}}>Pense à sauvegarder en haut à droite</span></p>
                                         <a className={"twitchLink"} href="https://twitch.tv/chromatyk" target="blank_">Twitch</a>
                                     </div>
                                 }
