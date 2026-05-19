@@ -129,7 +129,7 @@ function Fight() {
                                     }, 300);
                                 }
                                 else {
-                                    const fleeRate = Math.floor((Math.random() * 1) + 1);
+                                    const fleeRate = Math.floor((Math.random() * 5) + 1);
                                     if (fleeRate == 1) {
                                         document.getElementById("fleeFightText").style.display = "block";
                                         document.getElementById("ball").style.display = "none";
@@ -405,8 +405,10 @@ function Fight() {
                                 }
                             </>
                                 :
-                                <p id={"validCatchText"} style={{display:"none"}}>Et Hop !<br />{pokemon.name} est attrapé !</p>
-                                <p id={"fleeFightText"} style={{display:"none"}}>Oh non !<br />{pokemon.name} s'est enfui !</p>
+                                <>
+                                    <p id={"validCatchText"} style={{ display: "none" }}>Et Hop !<br />{pokemon.name} est attrapé !</p>
+                                    <p id={"fleeFightText"} style={{ display: "none" }}>Oh non !<br />{pokemon.name} s'est enfui !</p>
+                                </>
                     }
                     {onCatch === false &&
                         inventory.filter(item => item.slug === "master" && item.quantity > 0).length > 0 &&
