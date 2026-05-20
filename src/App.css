@@ -220,6 +220,12 @@ a.navLink.linkFromNav p {
     justify-content: space-between;
     width: 100%;
 }
+.leaderboardHeaderContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
 .profilHeader {
     align-items: center;
     display: flex;

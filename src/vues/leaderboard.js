@@ -19,8 +19,7 @@ function Leaderboard() {
             {leaderboard &&
                 leaderboard.map((val, key) => {
                     return (
-
-                        <div class={"profilHeaderContainer"}>
+                        <div class={"leaderboardHeaderContainer"}>
                             <div className={"profilHeader"}>
                                 <div style={{ backgroundColor: "rgba(0,0,0,0.3)", backgroundImage: `url("/Skins/Trainer${val.skin}.png")`, backgroundRepeat: "no-repeat", backgroundSize: "contain", backgroundPosition: "center" }} className={"profilPicture"}>
                                 </div>
