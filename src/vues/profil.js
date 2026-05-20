@@ -256,7 +256,7 @@ function Profil() {
                                 {skins &&
                                     skins.map((val, key) => {
                                         return (                                            
-                                            <div onClick={() => changeSkin(val.skins)} loading={"lazy"} style={{backgroundColor: val.color,backgroundImage: `url("/Skins/Trainer${val.skins}.png")`,backgroundSize: "90%",backgroundPosition: "center"}} className={"profilPicture"}>
+                                            <div onClick={() => changeSkin(val.skins)} loading={"lazy"} style={{ backgroundColor: val.color, backgroundRepeat: "no-repeat", backgroundImage: `url("/Skins/Trainer${val.skins}.png")`,backgroundSize: "90%",backgroundPosition: "center"}} className={"profilPicture"}>
                                             </div>
                                         )
                                     })
@@ -268,7 +268,7 @@ function Profil() {
                                 {compagnonList &&
                                     compagnonList.map((val, key) => {
                                         return (
-                                            <div onClick={() => changeActiveCompagnon(val.number)} loading={"lazy"} style={{ filter: val.negative === 1 ? "invert(1)" : "invert(0)", backgroundRepeat: "no-repeat", backgroundColor: val.color, backgroundImage: `url("/Sprites/${val.number === 1 ? "Shiny" : "Normal"}/${val.number}.gif")`, backgroundSize: "90%", backgroundPosition: "center" }} className={"profilPicture"}>
+                                            <div onClick={() => changeActiveCompagnon(val.number)} loading={"lazy"} style={{ filter: val.negative === 1 ? "invert(1)" : "invert(0)", backgroundRepeat: "no-repeat", backgroundColor: val.color, backgroundImage: `url("/Sprites/${val.shiny === 1 ? "Shiny" : "Normal"}/${val.number}.gif")`, backgroundSize: "90%", backgroundPosition: "center" }} className={"profilPicture"}>
                                             </div>
                                         )
                                     })
