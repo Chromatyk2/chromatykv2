@@ -15,7 +15,7 @@ function Leaderboard() {
     }, []);
     return (
         <div className={"globalContainer"}>
-            <div className={"profilContainer"}>
+            <div className={"leaderboardContainer"}>
             {leaderboard &&
                 leaderboard.map((val, key) => {
                     return (
