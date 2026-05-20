@@ -30,6 +30,10 @@ function Leaderboard() {
                                     <p className={"levelProfil"}>Niveau {val.level}</p>
                                 </div>
                             </div>
+                            <div className={"buttonLeaderboard"}>
+                                <button>Profil</button>
+                                <button>Pokedex</button>
+                            </div>
                             <div className={"profilHeader"}>
                                 <div className={"profilInfos"}>
                                     <p style={{ textAlign: "end" }}>{val.pokemon}</p>
