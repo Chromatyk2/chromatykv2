@@ -45,27 +45,35 @@ function Profil() {
                     <p>EXP</p>
                     <p>0/100</p>
                 </div>
-                {filteredPokedex &&
-                    filteredPokedex.filter(item => (item.shiny === isShiny && item.negative === isNegative)).map((val, key) => {
-                        return (
-                            <>
-                                <div className={"dexCard"}>
-                                    <div className={"dexSpriteContainer"}>
-                                        <span className={"dexNumber"}>#{val.pokemon}</span>
-                                        <div>
-                                            <img style={{ filter: isNegative === 1 ? "invert(1)" : "invert(0)" }} loading="lazy" className={"dexSprite"} src={isShiny === 1 ? "/Sprites/Shiny/" + val.pokemon + ".gif" : "/Sprites/Normal/" + val.pokemon + ".gif"} />
-                                        </div>
-                                    </div>
-                                    <div className={"dexDescription"}>
-                                        <p className={"dexName"}>{val.name}</p>
-                                        <p className={"dexDate"}>{moment(val.date).utc().format('DD/MM/YYYY')}</p>
-                                    </div>
-                                </div>
-                            </>
-
-                        )
-                    })
-                }
+                <div className={"profilBody"}>
+                    <div>
+                        <div className={"profilHeader"}>
+                            <div className={"profilInfos"}>
+                                <p>Pokédex Classique</p>
+                                <p className={"levelProfil"}>1198 / 1198</p>
+                            </div>
+                            <img src={"/Badge/lv1.png"} />
+                        </div>
+                    </div>
+                    <div>
+                        <div className={"profilHeader"}>
+                            <div className={"profilInfos"}>
+                                <p>Pokédex Shiny</p>
+                                <p className={"levelProfil"}>1198 / 1198</p>
+                            </div>
+                            <img src={"/Badge/lv1.png"} />
+                        </div>
+                    </div>
+                    <div>
+                        <div className={"profilHeader"}>
+                            <div className={"profilInfos"}>
+                                <p>Pokédex Négatif</p>
+                                <p className={"levelProfil"}>1198 / 1198</p>
+                            </div>
+                            <img src={"/Badge/lv1.png"} />
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     );
