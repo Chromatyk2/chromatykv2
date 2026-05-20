@@ -41,6 +41,19 @@ function Profil() {
             xp = profil.xp,
             skin = e
         })
+        .then(function (response) {
+            Axios.get("/api/getUser/" + cookies.user.data[0].id)
+            .then(function (response) {
+                setProfil(response.data);
+                setIndex();
+                const img = new Image();
+                img.src = "/Skins/Trainer" + response.data[0].skin + ".png";
+
+                img.onload = () => {
+                    setColor(getColorSync(img).hex());
+                };
+            })
+        })
     }
     function changePage(e) {
         if (e !== 2) {
