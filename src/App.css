@@ -239,8 +239,8 @@ p.levelProfil {
     font-size: 15px;
 }
 .progressBarProfilExternal {
-    background-color: #8a9cdd;
-    border: 1px solid #fff;
+    background-color: #fff;
+    border: 1px solid #8a9cdd;
     height: 10px;
     width: 100%;
     border-radius: 10px;
