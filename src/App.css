@@ -193,6 +193,11 @@ a.navLink.linkFromNav p {
     margin: 0;
     font-size: 20px;
 }
+.profilDex p {
+    text-align: left;
+    margin: 0;
+    font-size: 13px;
+}
 p.levelProfil {
     font-size: 15px;
 }

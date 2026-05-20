@@ -49,7 +49,7 @@ function Profil() {
                             {pokedex.length > 0 &&
                                 <div className={"boxProfilLarge"}>
                                     <div className={"profilHeader"}>
-                                        <div className={"profilInfos"}>
+                                        <div className={"profilDex"}>
                                             <p>Pokédex Classique</p>
                                             <p className={"levelProfil"}>{pokedex.length} / {maxPokedex}</p>
                                         </div>
@@ -60,7 +60,7 @@ function Profil() {
                         {pokedex.filter(item => (item.shiny === 1)).length > 0 &&
                             <div className={"boxProfilLarge"}>
                                 <div className={"profilHeader"}>
-                                    <div className={"profilInfos"}>
+                                    <div className={"profilDex"}>
                                         <p>Pokédex Shiny</p>
                                         <p className={"levelProfil"}>{pokedex.filter(item => (item.shiny === 1)).length} / {maxPokedex}</p>
                                     </div>
@@ -72,7 +72,7 @@ function Profil() {
                             <>
                                 <div className={"boxProfilLarge"}>
                                     <div className={"profilHeader"}>
-                                        <div className={"profilInfos"}>
+                                        <div className={"profilDex"}>
                                             <p>Pokédex Négatif</p>
                                             <p className={"levelProfil"}>{pokedex.filter(item => (item.negative === 1)).length}  / {maxPokedex}</p>
                                         </div>
