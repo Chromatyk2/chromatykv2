@@ -55,14 +55,14 @@ function Profil() {
             })
         })
     }
-    function addSkin(e) {
+    function addSkin() {
         if (skins.length < profil[0].level) {
             Axios.post('/api/addNewSkin', {
                 user: cookies.user.data[0].id
             })
                 .then(function (response) {
                     changePage(2);
-;            })
+            })
         }
     }
     function changePage(e) {
@@ -187,13 +187,8 @@ function Profil() {
                         {body === 2 &&
                             skins &&
                             skins.length < profil[0].level &&
-                            <div style={{
-                                width: "85px",
-                                height: "85px",
-                                backgroundImage: 'url("/case.png")',
-                                backgroundSize: "cover"
-                            }}>
-                                <p>{profil[0].level-skins.length}</p>
+                            <div class={"openSkinDiv"} onClick={addSkin}>
+                                <p className={"openSkinText"}>{profil[0].level - skins.length}</p>
                             </div>
                             //<img id={"skinPicture"} loading={"lazy"} style={{ background: "#efd397" }} className={"skinPicture"} src={"/case.png"} />
                         }

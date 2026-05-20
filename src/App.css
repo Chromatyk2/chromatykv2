@@ -311,6 +311,30 @@ p.levelProfil {
     gap:10px;
     flex-wrap:wrap;
 }
+.openSkinDiv {
+    width: 100px;
+    height: 100px;
+    background-image: url(/case.png);
+    background-size: cover;
+    background-color: #7b0808;
+    border-radius: 100%;
+    border: 1px solid #8a9cdd;
+}
+.openSkinDiv:hover {
+    background-color: white;
+    border: 1px solid black;
+}
+.openSkinText {
+    border-radius: 100%;
+    background-color: #7b0808;
+    width: 25px;
+    border: 1px solid #8a9cdd;
+    text-align: center;
+    height: 25px;
+    position: relative;
+    left: -5px;
+    top: -10px;
+}
 /* SHINY DEX */
 .shinydexContainer {
     display: flex;
