@@ -71,13 +71,13 @@ function Compagnon() {
         .then(function (response) {
             Axios.post('/api/newCompagnon', {
                 user: cookies.user.data[0].id,
-                number =e,
-                pokemon = f,
-                shiny = g,
-                negative = h,
-                level = r1,
-                xp = 0,
-                active = 1
+                number :e,
+                pokemon : f,
+                shiny :g,
+                negative : h,
+                level : r1,
+                xp : 0,
+                active : 1
             }).then(function (response) {
                 Axios.get('/api/getCurrentCompagnon/' + cookies.user.data[0].id)
                     .then(function (response) {
