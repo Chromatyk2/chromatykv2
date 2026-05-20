@@ -37,8 +37,8 @@ function Profil() {
         Axios.post('/api/addProfil', {
             user:cookies.user.data[0].id,
             login:cookies.user.data[0].login,
-            level:profil.level,
-            xp:profil.xp,
+            level:profil[0].level,
+            xp: profil[0].xp,
             skin:e
         })
         .then(function (response) {
