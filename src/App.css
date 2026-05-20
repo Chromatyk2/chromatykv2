@@ -231,10 +231,24 @@ a.navLink.linkFromNav p {
     align-items: center;
     border: 1px solid #8a9cdd;
 }
-    .leaderboardHeaderContainer:hover {
-        background-color: #3b3b3b4d;
-        cursor:pointer;
-    }
+.leaderboardHeaderContainer:hover {
+    background-color: #3b3b3b4d;
+    cursor:pointer;
+}
+.rank {
+    font-weight: 900;
+    font-size: 0.75rem;
+    line-height: 1rem;
+    background-color: rgba(51, 65, 85, 0.5);
+    border-radius: 9999px;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    color: #8a9cdd;
+}
 .profilHeader {
     align-items: center;
     display: flex;
