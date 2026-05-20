@@ -103,7 +103,32 @@ function Compagnon() {
                         })
                 })
             })
-            }
+    }
+    function levelupCompagnon(e) {
+        if (inventory.find((item) => item.slug === e).quantity - 1 >= 0) {
+            Axios.post('/api/removeItem', {
+                user: cookies.user.data[0].id,
+                slug: e
+            })
+                .then(function (response) {
+                    Axios.post('/api/levelupCompagnon', {
+                        id: compagnon[0].id
+                    })
+                    Axios.get('/api/getCurrentCompagnon/' + cookies.user.data[0].id)
+                        .then(function (response) {
+                            setHaveCompagnon(true)
+                            setChooseCompagnon(false)
+                            setCompagnon(response.data);
+                            Axios
+                                .get("/api/getInventory/" + cookies.user.data[0].id)
+                                .then(function (response) {
+                                    setInventory(response.data);
+                                    setHaveCompagnon(true)
+                                })
+                        })
+            })
+        }
+    }
     return (
         <div className={"globalContainerCenter"}>
             <p>Compagnon</p>
@@ -165,7 +190,7 @@ function Compagnon() {
                     compagnon.length > 0 &&
                     !chooseCompagnon && (
                     <>
-                        <div style={{ top: "85px" }} onClick={chooseCompgnon} className={"fightActionsFlee"}>
+                        <div style={{ top: "10px" }} onClick={chooseCompgnon} className={"fightActionsFlee"}>
                             < img src={"/doll.png"} />
                             <p>Changer</p>
                         </div>
@@ -180,7 +205,7 @@ function Compagnon() {
                     inventory &&
                     inventory.length > 0 &&
                     !chooseCompagnon && (
-                    <div style={{background:"none"}} className="fightActionsContainer">
+                    <div onClick={() => levelupCompagnon(inventory.find(item => item.slug === "rarecandy").slug) } style={{background:"none"}} className="fightActionsContainer">
                             <div className="fightActions">
                                 <img src="/rarecandy.png" />
                                 <p>Super Bonbon</p>
