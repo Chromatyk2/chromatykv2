@@ -188,7 +188,10 @@ function Profil() {
                             <div className={"skinContainer"}>
                                 {skins &&
                                     skins.length < profil[0].level &&
-                                    <img id={"skinPicture"} loading={"lazy"} onClick={() => addSkin()} style={{ background: "#efd397" }} className={"skinPicture"} src={"/case.png"} />
+                                    <div onClick={() => addSkin()} className={{ position: "absolute" }}>
+                                        <p style={{ position: "relative", top: "35px", left: "-50px" }}>{skins.length < profil[0].level}</p>
+                                        <img id={"skinPicture"} loading={"lazy"} onClick={() => addSkin()} style={{background: "#efd397" }} className={"skinPicture"} src={"/case.png"} />
+                                    </div>
                                 }
                                 {skins &&
                                     skins.map((val, key) => {
