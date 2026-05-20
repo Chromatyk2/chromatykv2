@@ -301,7 +301,7 @@ p.levelProfil {
 }
 .skinPicture:hover {
     border-radius: 100%;
-    border: white solid 1px;
+    border: black solid 1px;
     cursor:pointer;
     background-color:white;
 }
