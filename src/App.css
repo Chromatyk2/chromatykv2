@@ -177,9 +177,9 @@ a.navLink.linkFromNav p {
     gap: 10px;
     justify-content: flex-start;
     width: 100%;
-    border-top: white 2px solid;
+    border-top: #8a9cdd 2px solid;
     padding-top: 25px;
-    border-bottom: white 2px solid;
+    border-bottom: #8a9cdd 2px solid;
     padding-bottom: 25px;
 }
 .filterProfil button {
@@ -239,7 +239,7 @@ p.levelProfil {
     font-size: 15px;
 }
 .progressBarProfilExternal {
-    background-color: #fff;
+    background-color: #8a9cdd;
     border: 1px solid #fff;
     height: 10px;
     width: 100%;
@@ -284,7 +284,7 @@ p.levelProfil {
     height: 100px;
     padding-left: 25px;
     width: 380px;
-    border: white solid 1px;
+    border: #8a9cdd solid 1px;
 }
 /* SHINY DEX */
 .shinydexContainer {
