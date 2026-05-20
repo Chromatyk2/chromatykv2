@@ -10,11 +10,34 @@ function HomePage(props) {
     const [shinydex, setShinydex] = useState(null);
     const [cookies, setCookie] = useCookies();
     useEffect(() => {
-        Axios
-            .get("/api/getShinydex")
-            .then(function (response) {
-                setShinydex(response.data.sort((a, b) => b.id - a.id))
+        if (typeof cookies.user === "undefined") {
+            Axios
+                .get("/api/getShinydex")
+                .then(function (response) {
+                    setShinydex(response.data.sort((a, b) => b.id - a.id))
+                })
+        } else {
+            Axios.post('/api/addProfil', {
+                user: cookies.user.data[0].id,
+                login: cookies.user.data[0].login,
+                level: 1,
+                xp: 0,
+                skin: 9999,
+                compagnon: 0
+            }).then(function (response) {
+                Axios.post('/api/addItem', {
+                    user: cookies.user.data[0].id,
+                    item: "Lootbox",
+                    slug: "box"
+                }).then(function (response) {
+                    Axios
+                        .get("/api/getShinydex")
+                        .then(function (response) {
+                            setShinydex(response.data.sort((a, b) => b.id - a.id))
+                        })
+                })
             })
+        }
     }, []);
     return (
         <div className={"globalContainerCenter"}>
