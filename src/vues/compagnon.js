@@ -64,28 +64,29 @@ function Compagnon() {
     function chooseCompgnon() {
         setChooseCompagnon(true)
     }
-    function changeCompagnon(e,f,g,h) {
+    function changeCompagnon(e, f, g, h) {
         Axios.post('/api/updateCurrentCompagnon', {
             user: cookies.user.data[0].id
         })
-        .then(function (response) {
-            Axios.post('/api/newCompagnon', {
-                user: cookies.user.data[0].id,
-                number :e,
-                pokemon : f,
-                shiny :g,
-                negative : h,
-                level : r1,
-                xp : 0,
-                active : 1
-            }).then(function (response) {
-                Axios.get('/api/getCurrentCompagnon/' + cookies.user.data[0].id)
-                    .then(function (response) {
-                        setHaveCompagnon(true)
-                        setChooseCompagnon(false)
-                    })
-        })
-    }
+            .then(function (response) {
+                Axios.post('/api/newCompagnon', {
+                    user: cookies.user.data[0].id,
+                    number: e,
+                    pokemon: f,
+                    shiny: g,
+                    negative: h,
+                    level: 1,
+                    xp: 0,
+                    active: 1
+                }).then(function (response) {
+                    Axios.get('/api/getCurrentCompagnon/' + cookies.user.data[0].id)
+                        .then(function (response) {
+                            setHaveCompagnon(true)
+                            setChooseCompagnon(false)
+                        })
+                })
+            })
+            }
     return (
         <div className={"globalContainerCenter"}>
             <p>Compagnon</p>
