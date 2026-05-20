@@ -60,18 +60,50 @@ function Profil() {
             Axios.post('/api/addNewSkin', {
                 user: cookies.user.data[0].id
             })
-            .then(function (response) {
-                Axios.get("/api/getUser/" + cookies.user.data[0].id)
-                    .then(function (response) {
-                        setProfil(response.data);
-                        setIndex();
-                        const img = new Image();
-                        img.src = "/Skins/Trainer" + response.data[0].skin + ".png";
+                .then(function (response) {
+                    Axios
+                        .get("/api/getTrainers/" + cookies.user.data[0].id)
+                        .then(async (response) => {
 
-                        img.onload = () => {
-                            setColor(getColorSync(img).hex());
-                        };
-                    })
+                            const newSkins = [];
+
+                            for (const val of response.data) {
+
+                                const img = new Image();
+
+                                img.src = "/Skins/Trainer" + val.skin + ".png";
+
+                                await new Promise((resolve) => {
+
+                                    img.onload = () => {
+
+                                        const color = getColorSync(img).hex();
+
+                                        newSkins.push({
+                                            skins: val.skin,
+                                            color: color
+                                        });
+
+                                        resolve();
+
+                                    };
+
+                                    img.onerror = () => {
+                                        console.log("Erreur image :", img.src);
+                                        resolve();
+                                    };
+
+                                });
+
+                            }
+
+                            setSkins(newSkins);
+
+                            console.log(newSkins);
+
+                            setBody(e);
+
+                        });
             })
         }
     }
