@@ -17,6 +17,7 @@ import Inventory from './vues/inventory.js';
 import Pokedex from './vues/pokedex.js';
 import Profil from './vues/profil.js';
 import Leaderboard from './vues/leaderboard.js';
+import Compagnon from './vues/compagnon.js';
 function App() {
   return (
     <div className="App">
@@ -29,8 +30,9 @@ function App() {
                         <Route path="/shiny" element={<ShinyDex />} />
                         <Route path="/safari" element={<Safari />} />
                         <Route path="/pokedex" element={<Pokedex />} />
-                      <Route path="/profil" element={<Profil />} />
-                      <Route path="/leaderboard" element={<Leaderboard />} />
+                        <Route path="/profil" element={<Profil />} />
+                          <Route path="/leaderboard" element={<Leaderboard />} />
+                          <Route path="/compagnon" element={<Compagnon />} />
                       </Routes>
                       <div className={"navBarContent"}>
                         <NavBar />
