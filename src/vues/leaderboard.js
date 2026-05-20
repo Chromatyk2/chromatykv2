@@ -5,7 +5,7 @@ import { useCookies } from 'react-cookie';
 
 
 function Leaderboard() {
-    const [cookies, setCookie] = useCookies
+    const [cookies, setCookie] = useCookies();
     const [leaderboard, setLeaderboard] = useState(null);
     useEffect(() => {
         Axios.get("/api/getLeaderBoard/")
