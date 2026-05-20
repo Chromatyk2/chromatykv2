@@ -44,7 +44,7 @@ function Profil() {
                     </div>
                 </div>
                 <div className={"profilBody"}>
-                    <p style={{width: "100%",textAlign:"left"}}>Progression</p>
+                    <p style={{width: "100%",textAlign:"left",fontSize:"15px"}}>Progression</p>
                     {pokedex &&
                         <>
                             {pokedex.length > 0 &&
