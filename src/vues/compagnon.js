@@ -89,6 +89,12 @@ function Compagnon() {
                             setHaveCompagnon(true)
                             setChooseCompagnon(false)
                             setCompagnon(response.data);
+                            Axios
+                                .get("/api/getInventory/" + cookies.user.data[0].id)
+                                .then(function (response) {
+                                    setInventory(response.data);
+                                    setHaveCompagnon(true)
+                                })
                         })
                 })
             })
