@@ -152,6 +152,8 @@ function Compagnon() {
                     </>
                 }
                 {haveCompagnon &&
+                    compagnon &&
+                    !chooseCompagnon &&
                     <>
                      <p className={"fightName"}>{compagnon[0].pokemon}</p>
                     <div className={"tierFight"}>Nv.{compagnon[0].level}</div>
@@ -159,8 +161,9 @@ function Compagnon() {
                     </>  
                 }
                 {haveCompagnon &&
-                    inventory.filter(item => item.slug === "rarecandy" && item.quantity > 0).length > 0 &&
-                    compagnon[0].level < 100 &&
+                    !chooseCompagnon &&
+                        inventory.filter(item => item.slug === "rarecandy" && item.quantity > 0).length > 0 &&
+                        compagnon[0].level < 100 &&
                     <div className={"fightActionsContainer"}>
                             <div className={"fightActions"}>
                             < img src={"/rarecandy.png"} />
