@@ -187,7 +187,12 @@ function Profil() {
                         {body === 2 &&
                             skins &&
                             skins.length < profil[0].level &&
-                            <div style={{ width: "85px", height: "85px", backgroundImage: 'url("/case.png)'}}>
+                            <div style={{
+                                width: "85px",
+                                height: "85px",
+                                backgroundImage: 'url("/case.png")',
+                                backgroundSize: "cover"
+                            }}>
                                 <p>{profil[0].level-skins.length}</p>
                             </div>
                             //<img id={"skinPicture"} loading={"lazy"} style={{ background: "#efd397" }} className={"skinPicture"} src={"/case.png"} />
