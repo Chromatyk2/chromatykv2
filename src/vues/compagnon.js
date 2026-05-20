@@ -166,8 +166,8 @@ function Compagnon() {
                     !chooseCompagnon && (
                     <>
                         <div style={{ top: "85px" }} onClick={chooseCompgnon} className={"fightActionsFlee"}>
-                            < img src={"/boot.png"} />
-                            <p>Partir</p>
+                            < img src={"/doll.png"} />
+                            <p>Changer</p>
                         </div>
                             <p className="fightName">{compagnon[0].pokemon}</p>
                             <div className="tierFight">
