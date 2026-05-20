@@ -292,6 +292,7 @@ p.levelProfil {
     width: 85px;
     padding: 5px;
     margin-right: 10px;
+    height: 85px;
 }
 .skinPicture {
     border-radius: 100%;

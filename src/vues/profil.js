@@ -119,7 +119,7 @@ function Profil() {
             {profil &&
                 <div className={"profilContainer"}>
                     <div className={"profilHeader"}>
-                        <div style={{background: color, backgroundImage: 'url("/Skins/Trainer' + profil[0].skin +'.png")'}} className={"profilPicture"}>
+                        <div style={{backgroundColor: color,backgroundImage: `url("/Skins/Trainer${profil[0].skin}.png")`,backgroundSize: "cover",backgroundPosition: "center"}} className={"profilPicture"}>
                         </div>
                         {/*<img className={"profilPicture"} style={{ background: color }} src={"/Skins/Trainer"+profil[0].skin+".png"} />*/}
                         <div className={"profilInfos"}>
@@ -198,8 +198,9 @@ function Profil() {
                             <div className={"skinContainer"}>
                                 {skins &&
                                     skins.map((val, key) => {
-                                        return (
-                                            <img id={"skinPicture"} loading={"lazy"} onClick={() => changeSkin(val.skins)} style={{ background: val.color }} className={"skinPicture"} src={"/Skins/Trainer" + val.skins + ".png"} />
+                                        return (                                            
+                                            <div onClick={() => changeSkin(val.skins)} loading={"lazy"} style={{backgroundColor: val.color,backgroundImage: `url("/Skins/Trainer${val.skins}.png")`,backgroundSize: "cover",backgroundPosition: "center"}} className={"profilPicture"}>
+                                            </div>
                                         )
                                     })
                                 }
