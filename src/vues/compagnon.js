@@ -161,6 +161,7 @@ function Compagnon() {
                     </>  
                 }
                 {haveCompagnon &&
+                    compagnon &&
                     !chooseCompagnon &&
                         inventory.filter(item => item.slug === "rarecandy" && item.quantity > 0).length > 0 &&
                         compagnon[0].level < 100 &&
