@@ -69,6 +69,7 @@ function Compagnon() {
             <p>Compagnon</p>
             <div className={"fightContainer"}>
                 {!haveCompagnon &&
+                    !chooseCompagnon &&
                     <>
                     <div onClick={chooseCompgnon} className={"honeyActionsContainer"}>
                             <div className={"honeyActions"}>
