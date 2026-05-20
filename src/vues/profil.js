@@ -35,6 +35,10 @@ function Profil() {
                     <button>Shiny</button>
                     <button>Négatif</button>
                 </div>
+                <div className={"textProgressProfil"}>
+                    <p>EXP</p>
+                    <p>100000/1000000</p>
+                </div>
                 <div className={"progressBarProfilExternal"}>
                     <div style={{ width: "50%" }} className={"progressBarProfilInternal"}>
                     </div>

@@ -203,19 +203,30 @@ p.levelProfil {
     border-radius: 10px;
 }
 .progressBarProfilInternal {
-    background-color: #730009;
     color: #072851;
     height: 10px;
     max-width: 100%;
     position: relative;
     transition: width 1s ease-in-out;
     border-radius: 10px;
+    background: linear-gradient(140deg, #120747, #035078);
 }
 .progressBarProfilInternal p {
     color: #fff;
     left: 0;
     position: absolute;
     right: 0;
+}
+.textProgressProfil {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin: 0;
+}
+.textProgressProfil p {
+    margin: 0;
+    margin-bottom: -15px;
+    font-size: 13px;
 }
 /* SHINY DEX */
 .shinydexContainer {
