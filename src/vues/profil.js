@@ -39,7 +39,7 @@ function Profil() {
                             setColor(getColorSync(img).hex());
                         };
                         Axios
-                            .get("/api/getActiveCompagnon/" + cookies.user.data[0].id)
+                            .get("/api/getActiveCompagnon/" + cookies.user.data[0].id + "/" + response.data[0].compagnon)
                             .then(function (response) {
                                 setCompagnon(response.data);
                                 setIndex();
