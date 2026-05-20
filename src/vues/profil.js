@@ -30,7 +30,7 @@ function Profil() {
                         <p className={"levelProfil"}>Niveau 1</p>
                     </div>
                 </div>
-                <div className={"genFilter"}>
+                <div className={"filterProfil"}>
                     <button>Profil</button>
                     <button>Shiny</button>
                     <button>Négatif</button>

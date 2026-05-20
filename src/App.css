@@ -171,6 +171,15 @@ a.navLink.linkFromNav p {
     align-items: center;
 }
 /* PROFIL */
+.filterProfil {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: flex-start;
+    width: 100%;
+    border-top: white 2px solid;
+    padding-top: 25px;
+}
 .profilContainer {
     display: flex;
     flex-wrap: wrap;
