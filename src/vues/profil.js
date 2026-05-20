@@ -190,7 +190,7 @@ function Profil() {
                                     skins.length < profil[0].level &&
                                     <div onClick={() => addSkin()} style={{ position: "absolute" }}>
                                         <p style={{ position: "relative", top: "50px", left: "0px", background: "rgb(239, 211, 151)", borderRadius: "100%", width: "27px", height: "27px", border: "1px solid #8a9cdd", color: "black" }}>{profil[0].level - skins.length}</p>
-                                        <img id={"skinPicture"} loading={"lazy"} onClick={() => addSkin()} style={{background: "#efd397" }} className={"skinPicture"} src={"/case.png"} />
+                                        <img id={"skinPicture"} loading={"lazy"} style={{background: "#efd397" }} className={"skinPicture"} src={"/case.png"} />
                                     </div>
                                 }
                                 {skins &&
