@@ -108,7 +108,7 @@ function Profil() {
     }
     function changePage(e) {
         if (e === 3) {
-                Axios.get("/api/getTrainers/" + cookies.user.data[0].id)
+            Axios.get("/api/getMaxLevelCompagnon/" + cookies.user.data[0].id)
                     .then((response) => {
                         setCompagnonList(response.data);
                         setBody(e);
