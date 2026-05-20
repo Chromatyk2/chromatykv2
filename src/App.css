@@ -293,7 +293,7 @@ p.levelProfil {
     border: #8a9cdd solid 1px;
 }
 .profilPicture {
-    border-radius: 100%;
+    border-radius: 10px;
     border: #8a9cdd solid 1px;
     width: 85px;
     padding: 5px;
@@ -302,7 +302,7 @@ p.levelProfil {
 }
 .compagnonPicture {
     border: 1px solid #8a9cdd;
-    border-radius: 100%;
+    border-radius: 10px;
     height: 85px;
     margin-left: 10px;
     padding: 5px;

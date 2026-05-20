@@ -21,6 +21,7 @@ function Profil() {
     const [skins, setSkins] = useState([]);
     const [loadSkin, setLoadSkin] = useState(false);
     const [compagnon, setCompagnon] = useState(null);
+    const [compagnonList, setCompagnonList] = useState(null);
     useEffect(() => {
         Axios
             .get("/api/getUser/" + cookies.user.data[0].id)
@@ -71,6 +72,29 @@ function Profil() {
             })
         })
     }
+    function changeActiveCompagnon(e) {
+        Axios.post('/api/addProfil', {
+            user: cookies.user.data[0].id,
+            login: cookies.user.data[0].login,
+            level: profil[0].level,
+            xp: profil[0].xp,
+            skin: profil[0].skin,
+            compagnon: e
+        })
+            .then(function (response) {
+                Axios.get("/api/getUser/" + cookies.user.data[0].id)
+                    .then(function (response) {
+                        setProfil(response.data);
+                        setIndex();
+                        const img = new Image();
+                        img.src = "/Skins/Trainer" + response.data[0].skin + ".png";
+
+                        img.onload = () => {
+                            setColor(getColorSync(img).hex());
+                        };
+                    })
+            })
+    }
     function addSkin() {
         setLoadSkin(true);
         if (skins.length < profil[0].level) {
@@ -83,9 +107,12 @@ function Profil() {
         }
     }
     function changePage(e) {
-        if (e !== 2) {
-            setBody(e);
-        } else {
+        if (e === 3) {
+                Axios.get("/api/getTrainers/" + cookies.user.data[0].id)
+                    .then((response) => {
+                        setCompagnonList(response.data);
+                    })
+        } else if (e === 2) {
             Axios
                 .get("/api/getTrainers/" + cookies.user.data[0].id)
                 .then(async (response) => {
@@ -127,6 +154,8 @@ function Profil() {
                     setLoadSkin(false);
 
                 });
+        } else {
+            setBody(e);
         }
     }
     return (
@@ -135,7 +164,7 @@ function Profil() {
                 <div className={"profilContainer"}>
                     <div class={"profilHeaderContainer"}>
                         <div className={"profilHeader"}>
-                            <div style={{ backgroundColor: color, backgroundImage: `url("/Skins/Trainer${profil[0].skin}.png")`, backgroundRepeat: "no-repeat", backgroundSize: "contain", backgroundPosition: "center" }} className={"profilPicture"}>
+                            <div style={{ backgroundColor: color, backgroundImage: `url("/Skins/Trainer${profil[0].skin}.png")`, backgroundRepeat: "no-repeat", backgroundSize: "90%", backgroundPosition: "center" }} className={"profilPicture"}>
                             </div>
                             {/*<img className={"profilPicture"} style={{ background: color }} src={"/Skins/Trainer"+profil[0].skin+".png"} />*/}
                             <div className={"profilInfos"}>
@@ -148,7 +177,7 @@ function Profil() {
                                 <p style={{textAlign: "end"}}>{compagnon[0].pokemon}</p>
                                 <p style={{ textAlign: "end" }} className={"levelProfil"}>{compagnon[0].shiny === 1 ? "Shiny" : compagnon[0].negative === 1 ? "Négatif" : "Classique"}</p>
                             </div>
-                            <div style={{ filter: compagnon[0].negative === 1 ?"invert(1)" : "invert(0)", backgroundColor: color, backgroundImage: `url("/Sprites/${compagnon[0].shiny === 1 ? "Shiny" : "Normal"}/${compagnon[0].number}.gif")`, backgroundRepeat: "no-repeat", backgroundSize: "contain", backgroundPosition: "center"}} className={"compagnonPicture"}>
+                            <div style={{ filter: compagnon[0].negative === 1 ?"invert(1)" : "invert(0)", backgroundColor: color, backgroundImage: `url("/Sprites/${compagnon[0].shiny === 1 ? "Shiny" : "Normal"}/${compagnon[0].number}.gif")`, backgroundRepeat: "no-repeat", backgroundSize: "90%", backgroundPosition: "center"}} className={"compagnonPicture"}>
                             </div>
                             {/*<img className={"profilPicture"} style={{ background: color }} src={"/Skins/Trainer"+profil[0].skin+".png"} />*/}
                         </div>
@@ -164,6 +193,7 @@ function Profil() {
                     <div className={"filterProfil"}>
                         <button className={body === 1 && "active"} onClick={() => changePage(1)}>Profil</button>
                         <button className={body === 2 && "active"} onClick={() => changePage(2)}>Skins</button>
+                        <button className={body === 2 && "active"} onClick={() => changePage(3)}>Pokémons</button>
                     </div>                    
                     <div className={"profilBody"}>
                         {body === 1 &&
@@ -225,7 +255,19 @@ function Profil() {
                                 {skins &&
                                     skins.map((val, key) => {
                                         return (                                            
-                                            <div onClick={() => changeSkin(val.skins)} loading={"lazy"} style={{backgroundColor: val.color,backgroundImage: `url("/Skins/Trainer${val.skins}.png")`,backgroundSize: "cover",backgroundPosition: "center"}} className={"profilPicture"}>
+                                            <div onClick={() => changeSkin(val.skins)} loading={"lazy"} style={{backgroundColor: val.color,backgroundImage: `url("/Skins/Trainer${val.skins}.png")`,backgroundSize: "90%",backgroundPosition: "center"}} className={"profilPicture"}>
+                                            </div>
+                                        )
+                                    })
+                                }
+                            </div>
+                        }
+                        {body === 3 &&
+                            <div className={"skinContainer"}>
+                                {compagnonList &&
+                                    compagnonList.map((val, key) => {
+                                        return (
+                                            <div onClick={() => changeActiveCompagnon(val.number)} loading={"lazy"} style={{ backgroundColor: val.color, backgroundImage: `url("/Sprites/${compagnon[0].shiny === 1 ? "Shiny" : "Normal"}/${compagnon[0].number}.gif")`, backgroundSize: "90%", backgroundPosition: "center" }} className={"profilPicture"}>
                                             </div>
                                         )
                                     })
