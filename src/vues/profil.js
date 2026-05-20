@@ -7,17 +7,19 @@ import { useCookies } from 'react-cookie';
 function Profil() {
     const [cookies, setCookie] = useCookies();
     const [pokedex, setPokedex] = useState(null);
-    const [filteredPokedex, setFilteredPokedex] = useState(null);
-    const [gen, setGen] = useState(0);
-    const [isShiny, setIsShiny] = useState(0);
-    const [isNegative, setIsNegative] = useState(0);
-    const [genList, setGenList] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9])
+    const [uniqueDex, setUniqueDex] = useState([]);
+    const [uniqueDexShiny, setUniqueDexShiny] = useState([]);
+    const [uniqueDexNegative, setUniqueDexNegative] = useState([]);
     useEffect(() => {
         Axios
             .get("/api/getPokedex/" + cookies.user.data[0].id)
             .then(function (response) {
-                setPokedex(response.data)
-                setFilteredPokedex(response.data)
+                setPokedex(response.data);
+                response.data.map(item => {
+                    if (uniqueDex.indexOf(item.pokemon) === -1) {
+                        setUniqueDex(oldArray => [...oldArray, item.pokemon]);
+                    }
+                });
             })
     }, []);
     return (
@@ -44,35 +46,39 @@ function Profil() {
                     </div>
                 </div>
                 <div className={"profilBody"}>
-                    <div className={"boxProfilLarge"}>
-                        <div className={"profilHeader"}>
-                            <div className={"profilInfos"}>
-                                <p>Pokédex Classique</p>
-                                <p className={"levelProfil"}>1198 / 1198</p>
+                    {uniqueDex.length > 0 &&
+                        <>
+                            <div className={"boxProfilLarge"}>
+                                <div className={"profilHeader"}>
+                                    <div className={"profilInfos"}>
+                                        <p>Pokédex Classique</p>
+                                        <p className={"levelProfil"}>{uniqueDex.length} / 1198</p>
+                                    </div>
+                                    <img src={"/Badge/lv1.png"} />
+                                </div>
                             </div>
-                            <img src={"/Badge/lv1.png"} />
-                        </div>
-                    </div>
-                    <div className={"boxProfilLarge"}>
-                        <div className={"profilHeader"}>
-                            <div className={"profilInfos"}>
-                                <p>Pokédex Shiny</p>
-                                <p className={"levelProfil"}>1198 / 1198</p>
+                            <div className={"boxProfilLarge"}>
+                                <div className={"profilHeader"}>
+                                    <div className={"profilInfos"}>
+                                        <p>Pokédex Shiny</p>
+                                        <p className={"levelProfil"}>{1198} / 1198</p>
+                                    </div>
+                                    <img src={"/Badge/lv1.png"} />
+                                </div>
                             </div>
-                            <img src={"/Badge/lv1.png"} />
-                        </div>
-                    </div>
-                    <div className={"boxProfilLarge"}>
-                        <div className={"profilHeader"}>
-                            <div className={"profilInfos"}>
-                                <p>Pokédex Négatif</p>
-                                <p className={"levelProfil"}>1198 / 1198</p>
+                            <div className={"boxProfilLarge"}>
+                                <div className={"profilHeader"}>
+                                    <div className={"profilInfos"}>
+                                        <p>Pokédex Négatif</p>
+                                        <p className={"levelProfil"}>1198 / 1198</p>
+                                    </div>
+                                    <img src={"/Badge/lv1.png"} />
+                                </div>
                             </div>
-                            <img src={"/Badge/lv1.png"} />
-                        </div>
-                    </div>
-                    <div className={"boxProfilLarge"}>
-                    </div>
+                            <div className={"boxProfilLarge"}>
+                            </div>
+                    </>
+                    }
                 </div>
             </div>
         </div>
