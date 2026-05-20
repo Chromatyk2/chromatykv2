@@ -38,25 +38,48 @@ function Profil() {
             setBody(e);
         } else {
             Axios
-                .get("/api/getTrainers/"+cookies.user.data[0].id)
-                .then(function (response) {
-                        response.data.forEach((val) => {
-                            const img = new Image();
-                            img.src = "/Skins/Trainer" + val.skin + ".png";
+                .get("/api/getTrainers/" + cookies.user.data[0].id)
+                .then(async (response) => {
+
+                    const newSkins = [];
+
+                    for (const val of response.data) {
+
+                        const img = new Image();
+
+                        img.src = "/Skins/Trainer" + val.skin + ".png";
+
+                        await new Promise((resolve) => {
+
                             img.onload = () => {
+
                                 const color = getColorSync(img).hex();
-                                setSkins((prev) => [
-                                    ...prev,
-                                    {
-                                        skins: val.skin,
-                                        color: color
-                                    }
-                                ]);
+
+                                newSkins.push({
+                                    skins: val.skin,
+                                    color: color
+                                });
+
+                                resolve();
+
                             };
-                            console.log(skins);
+
+                            img.onerror = () => {
+                                console.log("Erreur image :", img.src);
+                                resolve();
+                            };
+
                         });
+
+                    }
+
+                    setSkins(newSkins);
+
+                    console.log(newSkins);
+
                     setBody(e);
-                })
+
+                });
         }
     }
     return (
