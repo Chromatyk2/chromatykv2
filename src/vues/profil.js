@@ -177,15 +177,17 @@ function Profil() {
                                 <p className={"levelProfil"}>Niveau {profil[0].level}</p>
                             </div>
                         </div>
-                        <div className={"profilHeader"}>
-                            <div className={"profilInfos"}>
-                                <p style={{textAlign: "end"}}>{compagnon[0].pokemon}</p>
-                                <p style={{ textAlign: "end" }} className={"levelProfil"}>{compagnon[0].shiny === 1 ? "Shiny" : compagnon[0].negative === 1 ? "Négatif" : "Classique"}</p>
+                        {compagnon.length > 0 &&
+                            <div className={"profilHeader"}>
+                                <div className={"profilInfos"}>
+                                    <p style={{ textAlign: "end" }}>{compagnon[0].pokemon}</p>
+                                    <p style={{ textAlign: "end" }} className={"levelProfil"}>{compagnon[0].shiny === 1 ? "Shiny" : compagnon[0].negative === 1 ? "Négatif" : "Classique"}</p>
+                                </div>
+                                <div style={{ filter: compagnon[0].negative === 1 ? "invert(1)" : "invert(0)", backgroundColor: color, backgroundImage: `url("/Sprites/${compagnon[0].shiny === 1 ? "Shiny" : "Normal"}/${compagnon[0].number}.gif")`, backgroundRepeat: "no-repeat", backgroundSize: "contain", backgroundPosition: "center" }} className={"compagnonPicture"}>
+                                </div>
+                                {/*<img className={"profilPicture"} style={{ background: color }} src={"/Skins/Trainer"+profil[0].skin+".png"} />*/}
                             </div>
-                            <div style={{ filter: compagnon[0].negative === 1 ? "invert(1)" : "invert(0)", backgroundColor: color, backgroundImage: `url("/Sprites/${compagnon[0].shiny === 1 ? "Shiny" : "Normal"}/${compagnon[0].number}.gif")`, backgroundRepeat: "no-repeat", backgroundSize: "contain", backgroundPosition: "center"}} className={"compagnonPicture"}>
-                            </div>
-                            {/*<img className={"profilPicture"} style={{ background: color }} src={"/Skins/Trainer"+profil[0].skin+".png"} />*/}
-                        </div>
+                         }
                     </div>
                     <div className={"textProgressProfil"}>
                         <p>EXP</p>
