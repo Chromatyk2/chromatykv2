@@ -22,7 +22,12 @@ function Profil() {
             .then(function (response) {
                 setPokedex(response.data);
                 setIndex();
-                console.log(getColorSync(new Image().src = "/Badge/Trainer2090.png").hex());
+                const img = new Image();
+                img.src = "/Badge/Trainer2090.png";
+
+                img.onload = () => {
+                    console.log(getColorSync(img).hex());
+                };
 
             })
     }, []);
