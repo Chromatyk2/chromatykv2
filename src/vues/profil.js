@@ -63,7 +63,6 @@ function Profil() {
                 user: cookies.user.data[0].id
             })
                 .then(function (response) {
-                    setLoadSkin(false);
                     changePage(2);
             })
         }
@@ -109,10 +108,8 @@ function Profil() {
                     }
 
                     setSkins(newSkins);
-
-                    console.log(newSkins);
-
                     setBody(e);
+                    setLoadSkin(false);
 
                 });
         }
