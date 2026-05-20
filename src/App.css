@@ -323,6 +323,7 @@ p.levelProfil {
 .openSkinDiv:hover {
     background-color: white;
     border: 1px solid black;
+    cursor:pointer;
 }
 .openSkinText {
     border-radius: 100%;
