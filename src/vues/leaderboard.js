@@ -15,8 +15,8 @@ function Leaderboard() {
     }, []);
     return (
         <div className={"globalContainer"}>
-            <p style={{ margin: 0 }} >Leaderboard</p>
             <div className={"leaderboardContainer"}>
+            <p style={{ margin: 0 }} >Leaderboard</p>
             {leaderboard &&
                 leaderboard.map((val, key) => {
                     return (
