@@ -20,29 +20,6 @@ function Profil() {
                 setFilteredPokedex(response.data)
             })
     }, []);
-    function filterGen(e) {
-        setGen(e);
-        if (e > 0) {
-            setFilteredPokedex(pokedex.filter(item => item.gen === e))
-        } else {
-            setFilteredPokedex(pokedex)
-        }
-    }
-    function filterForm(e) {
-        if (e === "Shiny") {
-            setIsShiny(1);
-            setIsNegative(0);
-        }
-        if (e === 1) {
-            setIsNegative(1);
-            setIsShiny(0);
-        }
-        if (e === 0) {
-            setIsShiny(0);
-            setIsNegative(0);
-        }
-
-    }
     return (
         <div className={"globalContainer"}>
             <div className={"profilContainer"}>
@@ -53,13 +30,16 @@ function Profil() {
                         <p className={"levelProfil"}>Niveau 1</p>
                     </div>
                 </div>
+                <div className={"genFilter"}>
+                    <button>Profil</button>
+                    <button>Shiny</button>
+                    <button>Négatif</button>
+                </div>
                 <div className={"progressBarProfilExternal"}>
-                    <div style={{ width: "50%" }} className={"progressBarFightInternal"}>
-                        <div class="heart">
-                            <div style={{ backgroundColor: "#rgb(115, 0, 9)" }} class="heartInt">
-                            </div>
-                        </div>
+                    <div style={{ width: "50%" }} className={"progressBarProfilInternal"}>
                     </div>
+                    <p>EXP</p>
+                    <p>0/100</p>
                 </div>
                 <div className={"genFilter"}>
                     <button className={isShiny === 0 && isNegative === 0 && "active"} onClick={() => filterForm(0)}>Normal</button>

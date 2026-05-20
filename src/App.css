@@ -197,17 +197,19 @@ p.levelProfil {
 }
 .progressBarProfilExternal {
     background-color: #fff;
-    height: 20px;
+    border: 1px solid #fff;
+    height: 10px;
     width: 100%;
-    border: white solid 1px;
+    border-radius: 10px;
 }
 .progressBarProfilInternal {
-    background-color: rgb(115, 0, 9);
-    height: 20px;
-    transition: width 1s ease-in-out;
+    background-color: #730009;
     color: #072851;
-    position: relative;
+    height: 10px;
     max-width: 100%;
+    position: relative;
+    transition: width 1s ease-in-out;
+    border-radius: 10px;
 }
 .progressBarProfilInternal p {
     color: #fff;
