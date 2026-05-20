@@ -60,7 +60,7 @@ function Profil() {
             {profil &&
                 <div className={"profilContainer"}>
                     <div className={"profilHeader"}>
-                        <img classNme={"profilPicture"} style={{ background: color }} src={"/Skins/Trainer"+profil[0].skin+".png"} />
+                        <img className={"profilPicture"} style={{ background: color }} src={"/Skins/Trainer"+profil[0].skin+".png"} />
                         <div className={"profilInfos"}>
                             <p>{cookies.user.data[0].login}</p>
                             <p className={"levelProfil"}>Niveau 1</p>
@@ -129,7 +129,9 @@ function Profil() {
                             skins &&
                             skins.map((val, key) => {
                                 return (
-                                    <img style={{ background: val.color }} classNme={"profilPicture"} src={"/Skins/Trainer" + val.skin + ".png"} />
+                                    <div className={"skinContainer"}>
+                                        <img style={{ background: val.color }} classNme={"skinPicture"} src={"/Skins/Trainer" + val.skin + ".png"} />
+                                    </div>
                                 )
                             })
                         }
