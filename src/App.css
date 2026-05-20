@@ -179,6 +179,8 @@ a.navLink.linkFromNav p {
     width: 100%;
     border-top: white 2px solid;
     padding-top: 25px;
+    border-bottom: white 2px solid;
+    padding-bottom: 25px;
 }
 .profilContainer {
     display: flex;
@@ -206,6 +208,9 @@ a.navLink.linkFromNav p {
     text-align: left;
     margin: 0;
     font-size: 13px;
+}
+.profilDex .levelProfil {
+    font-size: 20px;
 }
 p.levelProfil {
     font-size: 15px;
