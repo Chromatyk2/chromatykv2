@@ -181,8 +181,9 @@ a.navLink.linkFromNav p {
     width: 90%;
 }
 .profilHeader {
-    display: flex;
     align-items: center;
+    display: flex;
+    justify-content: space-between;
 }
 .profilHeader img {
     width: 100px;
@@ -234,10 +235,12 @@ p.levelProfil {
     flex-wrap: wrap;
     width: 100%;
 }
-.boxProfilLarge{
-    background:rgba(255,255,255,0.3);
-    padding:10px;
-    margin : 10px;
+.boxProfilLarge {
+    background: rgba(0, 0, 0, 0.2);
+    margin: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    min-width: 300px;
 }
 /* SHINY DEX */
 .shinydexContainer {
