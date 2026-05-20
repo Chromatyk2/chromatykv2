@@ -241,6 +241,7 @@ p.levelProfil {
     border-radius: 10px;
     height: 100px;
     padding-left: 25px;
+    width: 400px;
 }
 /* SHINY DEX */
 .shinydexContainer {
