@@ -231,16 +231,16 @@ p.levelProfil {
 }
 .profilBody {
     display: flex;
-    justify-content: center;
     flex-wrap: wrap;
+    justify-content: center;
     width: 100%;
+    gap: 5px;
 }
 .boxProfilLarge {
-    background: rgba(0, 0, 0, 0.2);
-    margin: 10px;
-    padding: 10px;
+    background: #0003;
     border-radius: 10px;
-    min-width: 300px;
+    height: 100px;
+    padding-left: 25px;
 }
 /* SHINY DEX */
 .shinydexContainer {
