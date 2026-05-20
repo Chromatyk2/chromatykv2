@@ -195,6 +195,26 @@ a.navLink.linkFromNav p {
 p.levelProfil {
     font-size: 15px;
 }
+.progressBarProfilExternal {
+    background-color: #fff;
+    height: 20px;
+    width: 100%;
+    border: white solid 1px;
+}
+.progressBarProfilInternal {
+    background-color: rgb(115, 0, 9);
+    height: 20px;
+    transition: width 1s ease-in-out;
+    color: #072851;
+    position: relative;
+    max-width: 100%;
+}
+.progressBarProfilInternal p {
+    color: #fff;
+    left: 0;
+    position: absolute;
+    right: 0;
+}
 /* SHINY DEX */
 .shinydexContainer {
     display: flex;

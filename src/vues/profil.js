@@ -52,7 +52,14 @@ function Profil() {
                         <p>{cookies.user.data[0].login}</p>
                         <p className={"levelProfil"}>Niveau 1</p>
                     </div>
-
+                </div>
+                <div className={"progressBarProfilExternal"}>
+                    <div style={{ width: "50%" }} className={"progressBarFightInternal"}>
+                        <div class="heart">
+                            <div style={{ backgroundColor: "#rgb(115, 0, 9)" }} class="heartInt">
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div className={"genFilter"}>
                     <button className={isShiny === 0 && isNegative === 0 && "active"} onClick={() => filterForm(0)}>Normal</button>
