@@ -31,13 +31,13 @@ function Compagnon() {
                     .then(function (response) {
                         if (response.data.length < 1) {
                             setHaveCompagnon(false)
+                            setCompagnon(response.data);
                         } else {
                             Axios
                                 .get("/api/getInventory/" + cookies.user.data[0].id)
                                 .then(function (response) {
                                     setInventory(response.data);
                                     setHaveCompagnon(true)
-                                    setCompagnon(response.data);
                                 })
                         }
                     })
