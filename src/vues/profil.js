@@ -72,7 +72,7 @@ function Profil() {
                         </div>
                     </div>
                     <div className={"boxProfilLarge"}>
-                    </diV>
+                    </div>
                 </div>
             </div>
         </div>
