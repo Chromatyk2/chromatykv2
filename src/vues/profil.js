@@ -153,15 +153,15 @@ function Profil() {
                             </>
                         }
                         {body === 2 &&
-                            skins &&
-                                skins.length > 0 &
-                            skins.map((val, key) => {
-                                return (
-                                    <div className={"skinContainer"}>
-                                        <img style={{ background: val.color }} classNme={"skinPicture"} src={"/Skins/Trainer" + val.skin + ".png"} />
-                                    </div>
-                                )
-                            })
+                            <div className={"skinContainer"}>
+                                {skins &&
+                                    skins.map((val, key) => {
+                                        return (
+                                            <img style={{ background: val.color }} classNme={"skinPicture"} src={"/Skins/Trainer" + val.skin + ".png"} />
+                                        )
+                                    })
+                                }
+                            </div>
                         }
                     </div>
                 </div>
