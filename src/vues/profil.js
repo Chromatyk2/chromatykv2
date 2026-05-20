@@ -125,13 +125,24 @@ function Profil() {
         <div className={"globalContainer"}>
             {profil &&
                 <div className={"profilContainer"}>
-                    <div className={"profilHeader"}>
-                        <div style={{backgroundColor: color,backgroundImage: `url("/Skins/Trainer${profil[0].skin}.png")`,backgroundSize: "cover",backgroundPosition: "center"}} className={"profilPicture"}>
+                    <div class={"profilHeaderContainer"}>
+                        <div className={"profilHeader"}>
+                            <div style={{ backgroundColor: color, backgroundImage: `url("/Skins/Trainer${profil[0].skin}.png")`, backgroundSize: "cover", backgroundPosition: "center" }} className={"profilPicture"}>
+                            </div>
+                            {/*<img className={"profilPicture"} style={{ background: color }} src={"/Skins/Trainer"+profil[0].skin+".png"} />*/}
+                            <div className={"profilInfos"}>
+                                <p>{cookies.user.data[0].login}</p>
+                                <p className={"levelProfil"}>Niveau {profil[0].level}</p>
+                            </div>
                         </div>
-                        {/*<img className={"profilPicture"} style={{ background: color }} src={"/Skins/Trainer"+profil[0].skin+".png"} />*/}
-                        <div className={"profilInfos"}>
-                            <p>{cookies.user.data[0].login}</p>
-                            <p className={"levelProfil"}>Niveau {profil[0].level}</p>
+                        <div className={"profilHeader"}>
+                            <div style={{ backgroundColor: color, backgroundImage: `url("/Skins/Trainer${profil[0].skin}.png")`, backgroundSize: "cover", backgroundPosition: "center" }} className={"profilPicture"}>
+                            </div>
+                            {/*<img className={"profilPicture"} style={{ background: color }} src={"/Skins/Trainer"+profil[0].skin+".png"} />*/}
+                            <div className={"profilInfos"}>
+                                <p>{cookies.user.data[0].login}</p>
+                                <p className={"levelProfil"}>Niveau {profil[0].level}</p>
+                            </div>
                         </div>
                     </div>
                     <div className={"textProgressProfil"}>
