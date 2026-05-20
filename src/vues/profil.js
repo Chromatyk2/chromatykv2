@@ -41,14 +41,15 @@ function Profil() {
                 .get("/api/getSkins/" + cookies.user.data[0].id)
                 .then(function (response) {
                     response.data.map((val, key) => {
-                            const img = new Image();
-                            img.src = "/Skins/Trainer" + response.data[0].skin + ".png";
+                        const img = new Image();
+                        img.src = "/Skins/Trainer" + response.data[0].skin + ".png";
                         img.onload = () => {
                             setSkins(shopCart => ({
                                 ...skins,
                                 ...{ skins: val.skin, color: getColorSync(img).hex() }
                             }));
-                            };
+                        };
+                        console.log(skins);
                     })
                     setBody(e);
                 })
