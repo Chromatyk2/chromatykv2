@@ -276,7 +276,7 @@ p.levelProfil {
     flex-wrap: wrap;
     justify-content: center;
     width: 100%;
-    gap: 5px;
+    gap: 15px;
 }
 .boxProfilLarge {
     background: #0003;
