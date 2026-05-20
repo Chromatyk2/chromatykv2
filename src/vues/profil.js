@@ -111,6 +111,7 @@ function Profil() {
                 Axios.get("/api/getTrainers/" + cookies.user.data[0].id)
                     .then((response) => {
                         setCompagnonList(response.data);
+                        setBody(e);
                     })
         } else if (e === 2) {
             Axios
@@ -193,7 +194,7 @@ function Profil() {
                     <div className={"filterProfil"}>
                         <button className={body === 1 && "active"} onClick={() => changePage(1)}>Profil</button>
                         <button className={body === 2 && "active"} onClick={() => changePage(2)}>Skins</button>
-                        <button className={body === 2 && "active"} onClick={() => changePage(3)}>Pokémons</button>
+                        <button className={body === 3 && "active"} onClick={() => changePage(3)}>Pokémons</button>
                     </div>                    
                     <div className={"profilBody"}>
                         {body === 1 &&
