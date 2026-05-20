@@ -35,11 +35,11 @@ function Profil() {
     }, []);
     function changeSkin(e) {
         Axios.post('/api/removeItem', {
-            user =cookies.user.data[0].id,
-            login = cookies.user.data[0].login,
-            level = profil.level,
-            xp = profil.xp,
-            skin = e
+            user:cookies.user.data[0].id,
+            login:cookies.user.data[0].login,
+            level:profil.level,
+            xp:profil.xp,
+            skin:e
         })
         .then(function (response) {
             Axios.get("/api/getUser/" + cookies.user.data[0].id)
