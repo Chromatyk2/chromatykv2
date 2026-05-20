@@ -17,6 +17,7 @@ function Profil() {
     const [index, setIndex] = useState(null);
     const [body, setBody] = useState(1);
     const [color, setColor] = useState(1);
+    const [skins, setSkins] = useState(null);
     useEffect(() => {
         Axios
             .get("/api/getUser/" + cookies.user.data[0].id)
@@ -24,7 +25,7 @@ function Profil() {
                 setProfil(response.data);
                 setIndex();
                 const img = new Image();
-                img.src = "/Sprites/Trainer"+response.data[0].skin+".png";
+                img.src = "/Skins/Trainer"+response.data[0].skin+".png";
 
                 img.onload = () => {
                     setColor(getColorSync(img).hex());
@@ -33,14 +34,23 @@ function Profil() {
             })
     }, []);
     function changePage(e) {
-        setBody(e);
+        if (e === 2) {
+            setBody(e);
+        } else {
+            Axios
+                .get("/api/getSkins/" + cookies.user.data[0].id)
+                .then(function (response) {
+                    setSkins(response.data);
+                    setBody(e);
+                })
+        }
     }
     return (
         <div className={"globalContainer"}>
             {profil &&
                 <div className={"profilContainer"}>
                     <div className={"profilHeader"}>
-                        <img classNme={"profilPicture"} style={{ background: color }} src={"/Sprites/Trainer"+profil[0].skin+".png"} />
+                        <img classNme={"profilPicture"} style={{ background: color }} src={"/Skins/Trainer"+profil[0].skin+".png"} />
                         <div className={"profilInfos"}>
                             <p>{cookies.user.data[0].login}</p>
                             <p className={"levelProfil"}>Niveau 1</p>
@@ -104,6 +114,14 @@ function Profil() {
                                     </>
                                 }
                             </>
+                        }
+                        {body === 2 &&
+                            skins.length > 0 &&
+                            skins.map((val, key) => {
+                                return (
+                                    <img classNme={"profilPicture"} style={{ background: color }} src={"/Skins/Trainer" + val.skin + ".png"} />
+                                )
+                            })
                         }
                     </div>
                 </div>
