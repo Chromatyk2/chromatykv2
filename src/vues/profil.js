@@ -23,9 +23,9 @@ function Profil() {
         Axios
             .get("/api/getUser/" + cookies.user.data[0].id)
             .then(function (response) {
-                Axios.post('/api/updateXp', {
+                Axios.post('/api/updateLevel', {
                     user: cookies.user.data[0].id,
-                    level: Math.floor((response.data[0].xp / 5) - 50)
+                    level: Math.floor((Math.sqrt(1 + (8 * xp) / 100) - 1) / 2
                 }).then(function (response) {
                 Axios
                     .get("/api/getUser/" + cookies.user.data[0].id)
