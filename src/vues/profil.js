@@ -119,7 +119,9 @@ function Profil() {
             {profil &&
                 <div className={"profilContainer"}>
                     <div className={"profilHeader"}>
-                        <img className={"profilPicture"} style={{ background: color }} src={"/Skins/Trainer"+profil[0].skin+".png"} />
+                        <div style={{background: color, backgroundImage: 'url("/Skins/Trainer' + profil[0].skin +'.png")'}} className={"profilPicture"}>
+                        </div>
+                        {/*<img className={"profilPicture"} style={{ background: color }} src={"/Skins/Trainer"+profil[0].skin+".png"} />*/}
                         <div className={"profilInfos"}>
                             <p>{cookies.user.data[0].login}</p>
                             <p className={"levelProfil"}>Niveau {profil[0].level}</p>
