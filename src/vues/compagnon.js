@@ -19,6 +19,7 @@ function Compagnon() {
     //Pokemon
     const [haveCompagnon, setHaveCompagnon] = useState(false);
     const [chooseCompagnon, setChooseCompagnon] = useState(false);
+    const [compagnon, setCompagnon] = useState(false);
     useEffect(() => {
         Axios
             .get("/api/getPokedex/" + cookies.user.data[0].id)
@@ -57,7 +58,7 @@ function Compagnon() {
                     setHaveCompagnon(false)
                 } else {
                     setHaveCompagnon(true)
-
+                    setCompagnon(response.data);
                 }
             })
     }, []);
@@ -83,6 +84,7 @@ function Compagnon() {
                         .then(function (response) {
                             setHaveCompagnon(true)
                             setChooseCompagnon(false)
+                            setCompagnon(response.data);
                         })
                 })
             })
@@ -142,7 +144,15 @@ function Compagnon() {
                             }
                         </div>
                     </>
-                } 
+                }
+                {haveCompagnon &&
+                    <>
+                        <p className={"fightName"}>{compagnon.name}</p>
+                        <div className={"tierFight"}>Nv.{compagnon.level}</div>
+                        <div style={{ filter: compagnon.negative === 1 && "invert(1)", backgroundSize:"contain", backgroundImage: `url(/Sprites/${compagnon.shiny === 1 ? "shiny" : "normal"}/${compagnon.number}.gif)` }} className={"fightSpriteCard"}>
+                        </div>  
+                    </>  
+                }
             </div>
         </div>
     )
