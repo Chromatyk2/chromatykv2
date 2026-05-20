@@ -24,7 +24,7 @@ function Profil() {
                 setProfil(response.data);
                 setIndex();
                 const img = new Image();
-                img.src = "/Badge/Trainer"+response.data[0].skin+".png";
+                img.src = "/Sprites/Trainer"+response.data[0].skin+".png";
 
                 img.onload = () => {
                     setColor(getColorSync(img).hex());
@@ -40,7 +40,7 @@ function Profil() {
             {profil &&
                 <div className={"profilContainer"}>
                     <div className={"profilHeader"}>
-                        <img classNme={"profilPicture"} style={{ background: color }} src={"/Badge/Trainer"+profil[0].skin+".png"} />
+                        <img classNme={"profilPicture"} style={{ background: color }} src={"/Sprites/Trainer"+profil[0].skin+".png"} />
                         <div className={"profilInfos"}>
                             <p>{cookies.user.data[0].login}</p>
                             <p className={"levelProfil"}>Niveau 1</p>
