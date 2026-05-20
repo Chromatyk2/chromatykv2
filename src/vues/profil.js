@@ -38,7 +38,7 @@ function Profil() {
             setBody(e);
         } else {
             Axios
-                .get("/api/getSkins/" + cookies.user.data[0].id)
+                .get("/api/getTrainers/"+cookies.user.data[0].id)
                 .then(function (response) {
                         response.data.forEach((val) => {
                             const img = new Image();
