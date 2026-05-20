@@ -7,11 +7,19 @@ import { useCookies } from 'react-cookie';
 function Profil() {
     const [cookies, setCookie] = useCookies();
     const [pokedex, setPokedex] = useState(null);
+    const [maxPokedex, setMaxPokedex] = useState(1198);
+    const images = ["lv1", "lv2", "lv3", "lv4", "lv5", "lv6", "lv7", "lv8", "lv9", "lv10", "lv11"];
+    const [index, setIndex] = useState(null);
     useEffect(() => {
         Axios
             .get("/api/getPokedex/" + cookies.user.data[0].id)
             .then(function (response) {
                 setPokedex(response.data);
+                setIndex(Math.min(
+                    images.length - 1,
+                    Math.floor((pokedex.length / 1198) * images.length)
+                ));
+
             })
     }, []);
     return (
@@ -44,16 +52,16 @@ function Profil() {
                                 <div className={"profilHeader"}>
                                     <div className={"profilInfos"}>
                                         <p>Pokédex Classique</p>
-                                        <p className={"levelProfil"}>{pokedex.length} / 1198</p>
+                                    <p className={"levelProfil"}>{pokedex.length} / {maxPokedex}</p>
                                     </div>
-                                    <img src={"/Badge/lv1.png"} />
+                                <img src={"/Badge/"+images[index]+".png"} />
                                 </div>
                             </div>
                             <div className={"boxProfilLarge"}>
                                 <div className={"profilHeader"}>
                                     <div className={"profilInfos"}>
                                         <p>Pokédex Shiny</p>
-                                    <p className={"levelProfil"}>{pokedex.filter(item => (item.shiny === 1)).length} / 1198</p>
+                                    <p className={"levelProfil"}>{pokedex.filter(item => (item.shiny === 1)).length} / {maxPokedex}</p>
                                     </div>
                                     <img src={"/Badge/lv1.png"} />
                                 </div>
@@ -62,7 +70,7 @@ function Profil() {
                                 <div className={"profilHeader"}>
                                     <div className={"profilInfos"}>
                                         <p>Pokédex Négatif</p>
-                                    <p className={"levelProfil"}>{pokedex.filter(item => (item.negative === 1)).length}  / 1198</p>
+                                    <p className={"levelProfil"}>{pokedex.filter(item => (item.negative === 1)).length}  / {maxPokedex}</p>
                                     </div>
                                     <img src={"/Badge/lv1.png"} />
                                 </div>
