@@ -19,7 +19,7 @@ function Profil() {
     const [color, setColor] = useState(1);
     useEffect(() => {
         Axios
-            .get("/api/getProfil/" + cookies.user.data[0].id)
+            .get("/api/getUser/" + cookies.user.data[0].id)
             .then(function (response) {
                 setProfil(response.data);
                 setIndex();
