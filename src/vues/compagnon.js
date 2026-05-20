@@ -64,6 +64,28 @@ function Compagnon() {
     function chooseCompgnon() {
         setChooseCompagnon(true)
     }
+    function changeCompagnon(e,f,g,h) {
+        Axios.post('/api/updateCurrentCompagnon', {
+            user: cookies.user.data[0].id
+        })
+        .then(function (response) {
+            Axios.post('/api/newCompagnon', {
+                user: cookies.user.data[0].id,
+                number =e,
+                pokemon = f,
+                shiny = g,
+                negative = h,
+                level = r1,
+                xp = 0,
+                active = 1
+            }).then(function (response) {
+                Axios.get('/api/getCurrentCompagnon/' + cookies.user.data[0].id)
+                    .then(function (response) {
+                        setHaveCompagnon(true)
+                        setChooseCompagnon(false)
+                    })
+        })
+    }
     return (
         <div className={"globalContainerCenter"}>
             <p>Compagnon</p>
@@ -100,7 +122,7 @@ function Compagnon() {
                                 filteredPokedex.filter(item => (item.shiny === isShiny && item.negative === isNegative)).map((val, key) => {
                                     return (
                                         <>
-                                            <div className={"dexCardCompagnon"}>
+                                            <div onClick={() => changeCompagnon(val.pokemon, val.name, isShiny, isNegative)} className={"dexCardCompagnon"}>
                                                 <div className={"dexSpriteContainer"}>
                                                     <span className={"dexNumber"}>#{val.pokemon}</span>
                                                     <div>
