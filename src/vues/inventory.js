@@ -21,13 +21,13 @@ function Inventory(props) {
             }).then(function (response) {
 
                 const honeyTier = Math.random() * 100;
-                if (honeyTier < 0.1) {
+                if (honeyTier < 0.01) {
                     var item = "Miel Négatif";
                     var slug = "negative";
-                } else if (honeyTier < 1) {
+                } else if (honeyTier < 0.11) {
                     var item = "Miel Chromatique";
                     var slug = "shiny";
-                } else if (honeyTier < 6) {
+                } else if (honeyTier < 1.11) {
                     var item = "Miel Légendaire";
                     var slug = "legendary";
                 } else {
