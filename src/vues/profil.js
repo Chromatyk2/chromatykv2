@@ -44,8 +44,7 @@ function Profil() {
                 </div>
                 <div className={"filterProfil"}>
                     <button className={body === 1 && "active"} onClick={() => changePage(1)}>Profil</button>
-                    <button className={body === 2 && "active"} onClick={() => changePage(2)}>Shiny</button>
-                    <button className={body === 3 && "active"} onClick={() => changePage(3)}>Négatif</button>
+                    <button className={body === 2 && "active"} onClick={() => changePage(2)}>Skins</button>
                 </div>
                 <div className={"profilBody"}>
                     {body === 1 &&
