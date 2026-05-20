@@ -180,6 +180,21 @@ a.navLink.linkFromNav p {
     padding-bottom: 100px;
     width: 90%;
 }
+.profilHeader {
+    display: flex;
+    align-items: center;
+}
+.profilHeader img {
+    width: 100px;
+}
+.profilInfos p {
+    text-align: left;
+    margin: 0;
+    font-size: 20px;
+}
+p.levelProfil {
+    font-size: 15px;
+}
 /* SHINY DEX */
 .shinydexContainer {
     display: flex;

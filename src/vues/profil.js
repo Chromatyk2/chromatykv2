@@ -48,9 +48,9 @@ function Profil() {
             <div className={"profilContainer"}>
                 <div className={"profilHeader"}>
                     <img src={"/Badge/pokemon1.png"} />
-                    <div>
-                        <p>{cookies.user.data[0].id}</p>
-                        <p>Niveau 1</p>
+                    <div className={"profilInfos"}>
+                        <p>{cookies.user.data[0].login}</p>
+                        <p className={"levelProfil"}>Niveau 1</p>
                     </div>
 
                 </div>
