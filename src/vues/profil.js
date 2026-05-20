@@ -112,15 +112,15 @@ function Profil() {
                         <img className={"profilPicture"} style={{ background: color }} src={"/Skins/Trainer"+profil[0].skin+".png"} />
                         <div className={"profilInfos"}>
                             <p>{cookies.user.data[0].login}</p>
-                            <p className={"levelProfil"}>Niveau {profil.level}</p>
+                            <p className={"levelProfil"}>Niveau {profil[0].level}</p>
                         </div>
                     </div>
                     <div className={"textProgressProfil"}>
                         <p>EXP</p>
-                        <p>{profil.xp}/{profil.level * 10}</p>
+                        <p>{profil[0].xp}/{profil[0].level * 10}</p>
                     </div>
                     <div className={"progressBarProfilExternal"}>
-                        <div style={{ width: +parseFloat(profil.xp / (profil.level * 10) * 100).toFixed(2) + "%" }} className={"progressBarProfilInternal"}>
+                        <div style={{ width: +parseFloat(profil[0].xp / (profil[0].level * 10) * 100).toFixed(2) + "%" }} className={"progressBarProfilInternal"}>
                         </div>
                     </div>
                     <div className={"filterProfil"}>
