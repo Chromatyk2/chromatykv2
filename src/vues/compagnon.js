@@ -18,7 +18,7 @@ function Compagnon() {
     const [inventory, setInventory] = useState(null);
     const [profil, setProfil] = useState(null);
     useEffect(() => {
-        Axios.get('/api/getCurrentCompagnon/'cookies.user.data[0].id)
+        Axios.get('/api/getCurrentCompagnon/'+cookies.user.data[0].id)
             .then(function (response) {
                 if (response.data.length < 1) {
                     setHaveCompagnon(false)
