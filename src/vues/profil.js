@@ -3,6 +3,8 @@ import Axios from "axios";
 import moment from "moment/moment";
 import { useCookies } from 'react-cookie';
 import Color from 'color-thief-react';
+import { getColorSync } from 'colorthief';
+
 
 
 
@@ -20,6 +22,7 @@ function Profil() {
             .then(function (response) {
                 setPokedex(response.data);
                 setIndex();
+                console.log(getColorSync("/Badge/Trainer2090.png").hex());
 
             })
     }, []);
