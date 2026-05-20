@@ -228,6 +228,17 @@ p.levelProfil {
     margin-bottom: -15px;
     font-size: 13px;
 }
+.profilBody {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+}
+.boxProfilLarge{
+    background:rgba(255,255,255,0.3);
+    padding:10px;
+    margin : 10px;
+}
 /* SHINY DEX */
 .shinydexContainer {
     display: flex;

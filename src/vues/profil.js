@@ -42,11 +42,9 @@ function Profil() {
                 <div className={"progressBarProfilExternal"}>
                     <div style={{ width: "50%" }} className={"progressBarProfilInternal"}>
                     </div>
-                    <p>EXP</p>
-                    <p>0/100</p>
                 </div>
                 <div className={"profilBody"}>
-                    <div>
+                    <div className={"boxProfilLarge"}>
                         <div className={"profilHeader"}>
                             <div className={"profilInfos"}>
                                 <p>Pokédex Classique</p>
@@ -55,7 +53,7 @@ function Profil() {
                             <img src={"/Badge/lv1.png"} />
                         </div>
                     </div>
-                    <div>
+                    <div className={"boxProfilLarge"}>
                         <div className={"profilHeader"}>
                             <div className={"profilInfos"}>
                                 <p>Pokédex Shiny</p>
@@ -64,7 +62,7 @@ function Profil() {
                             <img src={"/Badge/lv1.png"} />
                         </div>
                     </div>
-                    <div>
+                    <div className={"boxProfilLarge"}>
                         <div className={"profilHeader"}>
                             <div className={"profilInfos"}>
                                 <p>Pokédex Négatif</p>
