@@ -34,7 +34,7 @@ function Profil() {
             })
     }, []);
     function changePage(e) {
-        if (e === 2) {
+        if (e !== 2) {
             setBody(e);
         } else {
             Axios
@@ -49,7 +49,6 @@ function Profil() {
                                     { skins: val.skin, color: getColorSync(img).hex() }
                                 ]);
                             };
-                            console.log(skins);
 
                         });
                     setBody(e);
