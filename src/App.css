@@ -746,19 +746,33 @@ span.dexNumber {
     letter-spacing: 1px;
     border: 2px solid #a4b3bd;
 }
+.buttonLeaderboard button:hover {
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.2);
+    border: rgba(5, 72, 115, 1) solid 2px;
+    background: rgba(5, 72, 115, 0.5);
+}
+.genFilter .active {
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.2);
+    border: rgba(5, 72, 115, 1) solid 2px;
+    background: rgba(5, 72, 115, 0.5);
+}
 
-    .buttonLeaderboard button:hover {
-        cursor: pointer;
-        background: rgba(255, 255, 255, 0.2);
-        border: rgba(5, 72, 115, 1) solid 2px;
-        background: rgba(5, 72, 115, 0.5);
-    }
-    .genFilter .active {
-        cursor: pointer;
-        background: rgba(255, 255, 255, 0.2);
-        border: rgba(5, 72, 115, 1) solid 2px;
-        background: rgba(5, 72, 115, 0.5);
-    }
+ /* Compagnon*/
+.dexCardCompagnon {
+    display: flex;
+    flex-flow: column;
+    width: 145px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    padding: 10px 0px 10px 0px;
+    border: 2px solid #a4b3bd;
+}
+.dexCardCompagnon:hover {
+    background: rgba(255, 255, 255, 0.2);
+    cursor:pointer;
+}
 /* Animation */
 @keyframes myAnimation {
     from {

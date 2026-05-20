@@ -100,7 +100,7 @@ function Compagnon() {
                                 filteredPokedex.filter(item => (item.shiny === isShiny && item.negative === isNegative)).map((val, key) => {
                                     return (
                                         <>
-                                            <div className={"dexCard"}>
+                                            <div className={"dexCardCompagnon"}>
                                                 <div className={"dexSpriteContainer"}>
                                                     <span className={"dexNumber"}>#{val.pokemon}</span>
                                                     <div>
