@@ -228,7 +228,8 @@ function Profil() {
                         }
                         {body === 2 &&
                             <div className={"skinContainer"}>
-                                {skins.length < profil[0].level &&
+                                {skins &&
+                                    skins.length < profil[0].level &&
                                     <img id={"skinPicture"} loading={"lazy"} onClick={() => addSkin()} style={{ background: "#efd397" }} className={"skinPicture"} src={"/box.png"} />
                                 }
                                 {skins &&
