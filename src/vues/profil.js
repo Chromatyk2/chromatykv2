@@ -49,7 +49,7 @@ function Profil() {
                                     { skins: val.skin, color: getColorSync(img).hex() }
                                 ]);
                             };
-
+                            console.log(skins);
                         });
                     setBody(e);
                 })
