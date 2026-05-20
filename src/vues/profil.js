@@ -18,6 +18,7 @@ function Profil() {
     const [body, setBody] = useState(1);
     const [color, setColor] = useState(1);
     const [skins, setSkins] = useState([]);
+    const [loadSkin, setLoadSkin] = useState(false);
     useEffect(() => {
         Axios
             .get("/api/getUser/" + cookies.user.data[0].id)
@@ -56,11 +57,13 @@ function Profil() {
         })
     }
     function addSkin() {
+        setLoadSkin(true);
         if (skins.length < profil[0].level) {
             Axios.post('/api/addNewSkin', {
                 user: cookies.user.data[0].id
             })
                 .then(function (response) {
+                    setLoadSkin(false);
                     changePage(2);
             })
         }
@@ -185,12 +188,12 @@ function Profil() {
                             </>
                         }
                         {body === 2 &&
+                            loadSkin === false &&
                             skins &&
                             skins.length < profil[0].level &&
                             <div class={"openSkinDiv"} onClick={addSkin}>
                                 <p className={"openSkinText"}>{profil[0].level - skins.length}</p>
                             </div>
-                            //<img id={"skinPicture"} loading={"lazy"} style={{ background: "#efd397" }} className={"skinPicture"} src={"/case.png"} />
                         }
                         {body === 2 &&
                             <div className={"skinContainer"}>
