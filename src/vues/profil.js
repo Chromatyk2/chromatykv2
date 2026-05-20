@@ -23,15 +23,22 @@ function Profil() {
         Axios
             .get("/api/getUser/" + cookies.user.data[0].id)
             .then(function (response) {
-                setProfil(response.data);
-                setIndex();
-                const img = new Image();
-                img.src = "/Skins/Trainer"+response.data[0].skin+".png";
-
-                img.onload = () => {
-                    setColor(getColorSync(img).hex());
-                };
-
+                Axios.post('/api/updateXp', {
+                    user: cookies.user.data[0].id,
+                    level: Math.floor((response.data[0].xp / 5) - 50)
+                }).then(function (response) {
+                Axios
+                    .get("/api/getUser/" + cookies.user.data[0].id)
+                    .then(function (response) {
+                        setProfil(response.data);
+                        setIndex();
+                        const img = new Image();
+                        img.src = "/Skins/Trainer" + response.data[0].skin + ".png";
+                        img.onload = () => {
+                            setColor(getColorSync(img).hex());
+                        };
+                    })
+                })  
             })
     }, []);
     function changeSkin(e) {

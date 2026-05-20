@@ -140,8 +140,10 @@ function Fight() {
                                                 user: cookies.user.data[0].id,
                                                 xp: (pokemon.tier * 10) + bonusXP
                                             })
-                                            setPokemon(null);
-                                            setOnCatch(false);
+                                            .then(function (response) {
+                                                setPokemon(null);
+                                                setOnCatch(false);
+                                            })
                                         }, 2000);
                                     }, 300);
                                 }
