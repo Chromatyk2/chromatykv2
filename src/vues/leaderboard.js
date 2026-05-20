@@ -25,7 +25,7 @@ function Leaderboard() {
                                 </div>
                                 {/*<img className={"profilPicture"} style={{ background: color }} src={"/Skins/Trainer"+profil[0].skin+".png"} />*/}
                                 <div className={"profilInfos"}>
-                                    <p>{cookies.user.data[0].login}</p>
+                                    <p>{val.login}</p>
                                     <p className={"levelProfil"}>Niveau {val.level}</p>
                                 </div>
                             </div>
