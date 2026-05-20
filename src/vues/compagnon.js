@@ -155,28 +155,16 @@ function Compagnon() {
                     !chooseCompagnon && (
                         <>
                             <p className="fightName">{compagnon[0].pokemon}</p>
-
                             <div className="tierFight">
                                 Nv.{compagnon[0].level}
                             </div>
-
-                            <div
-                                className="fightSpriteCard"
-                                style={{
-                                    filter: compagnon[0].negative === 1 ? "invert(1)" : "none",
-                                    backgroundSize: "contain",
-                                    backgroundImage: `url(/Sprites/${compagnon[0].shiny === 1 ? "shiny" : "normal"
-                                        }/${compagnon[0].number}.gif)`
-                                }}
-                            />
+                            <div className="fightSpriteCard" style={{filter: compagnon[0].negative === 1 ? "invert(1)" : "none",backgroundSize: "contain",backgroundImage: `url(/Sprites/${compagnon[0].shiny === 1 ? "shiny" : "normal"}/${compagnon[0].number}.gif)`}}/>
                         </>
                     )}
-                {inventory &&
-                    haveCompagnon &&
-                    compagnon &&
-                    compagnon.length > 0 &&
-                    inventory.some(item => item.slug === "rarecandy" && item.quantity > 0) &&
-                    compagnon[0].level < 100 && (
+                {haveCompagnon &&
+                    inventory &&
+                    inventory.length > 0 &&
+                    !chooseCompagnon && (
                         <div className="fightActionsContainer">
                             <div className="fightActions">
                                 <img src="/rarecandy.png" />
