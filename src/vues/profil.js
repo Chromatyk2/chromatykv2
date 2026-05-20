@@ -42,18 +42,17 @@ function Profil() {
                 .then(function (response) {
                         response.data.forEach((val) => {
                             const img = new Image();
-                            img.src = "/Skins/Trainer" + response.data[0].skin + ".png";
+                            img.src = "/Skins/Trainer" + val.skin + ".png";
                             img.onload = () => {
                                 const color = getColorSync(img).hex();
+                                setSkins((prev) => [
+                                    ...prev,
+                                    {
+                                        skins: val.skin,
+                                        color: color
+                                    }
+                                ]);
                             };
-                            setSkins((prev) => [
-                                ...prev,
-                                {
-                                    skins: val.skin,
-                                    color: color
-                                }
-                            ]);
-                            console.log(skins);
                         });
                     setBody(e);
                 })
@@ -131,6 +130,7 @@ function Profil() {
                         }
                         {body === 2 &&
                             skins &&
+                                skins.length > 0 &
                             skins.map((val, key) => {
                                 return (
                                     <div className={"skinContainer"}>
