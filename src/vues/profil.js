@@ -19,6 +19,7 @@ function Profil() {
     const [color, setColor] = useState(1);
     const [skins, setSkins] = useState([]);
     const [loadSkin, setLoadSkin] = useState(false);
+    const [compagnon, setCompagnon] = useState(null);
     useEffect(() => {
         Axios
             .get("/api/getUser/" + cookies.user.data[0].id)
@@ -37,6 +38,11 @@ function Profil() {
                         img.onload = () => {
                             setColor(getColorSync(img).hex());
                         };
+                        Axios
+                            .get("/api/getActiveCompagnon/" + cookies.user.data[0].id)
+                            .then(function (response) {
+                                setCompagnon(response.data);
+                            })
                     })
                 })  
             })
@@ -47,7 +53,8 @@ function Profil() {
             login:cookies.user.data[0].login,
             level:profil[0].level,
             xp: profil[0].xp,
-            skin:e
+            skin: e,
+            compagnon: profil[0].compagnon
         })
         .then(function (response) {
             Axios.get("/api/getUser/" + cookies.user.data[0].id)
@@ -123,7 +130,7 @@ function Profil() {
     }
     return (
         <div className={"globalContainer"}>
-            {profil &&
+            {compagnon &&
                 <div className={"profilContainer"}>
                     <div class={"profilHeaderContainer"}>
                         <div className={"profilHeader"}>
@@ -136,13 +143,13 @@ function Profil() {
                             </div>
                         </div>
                         <div className={"profilHeader"}>
+                            <div className={"profilInfos"}>
+                                <p>{compagnon[0].pokemon}</p>
+                                <p className={"levelProfil"}>Niveau {profil[0].level}</p>
+                            </div>
                             <div style={{ backgroundColor: color, backgroundImage: `url("/Skins/Trainer${profil[0].skin}.png")`, backgroundSize: "cover", backgroundPosition: "center" }} className={"profilPicture"}>
                             </div>
                             {/*<img className={"profilPicture"} style={{ background: color }} src={"/Skins/Trainer"+profil[0].skin+".png"} />*/}
-                            <div className={"profilInfos"}>
-                                <p>{cookies.user.data[0].login}</p>
-                                <p className={"levelProfil"}>Niveau {profil[0].level}</p>
-                            </div>
                         </div>
                     </div>
                     <div className={"textProgressProfil"}>
