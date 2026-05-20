@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import Axios from "axios";
 import moment from "moment/moment";
 import { useCookies } from 'react-cookie';
+import Color from 'color-thief-react';
+
 
 
 function Profil() {
@@ -28,7 +30,13 @@ function Profil() {
         <div className={"globalContainer"}>
             <div className={"profilContainer"}>
                 <div className={"profilHeader"}>
-                    <img src={"/Badge/Trainer2090.png"} />
+                    <Color src={"/Badge/Trainer2090.png"}>
+                        {({ data, loading, error }) => (
+                            <div style={{ backgroundColor: data }}>
+                                <img src={"/Badge/Trainer2090.png"} />
+                            </div>
+                        )}
+                    </Color>
                     <div className={"profilInfos"}>
                         <p>{cookies.user.data[0].login}</p>
                         <p className={"levelProfil"}>Niveau 1</p>
