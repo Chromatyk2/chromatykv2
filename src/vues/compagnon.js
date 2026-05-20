@@ -155,23 +155,22 @@ function Compagnon() {
                     compagnon &&
                     !chooseCompagnon &&
                     <>
-                     <p className={"fightName"}>{compagnon[0].pokemon}</p>
-                    <div className={"tierFight"}>Nv.{compagnon[0].level}</div>
-                    <div style={{ filter: compagnon[0].negative === 1 && "invert(1)", backgroundSize: "contain", backgroundImage: `url(/Sprites/${compagnon[0].shiny === 1 ? "shiny" : "normal"}/${compagnon[0].number}.gif)` }} className={"fightSpriteCard"}></div>  
+                        <p className={"fightName"}>{compagnon[0].pokemon}</p>
+                        <div className={"tierFight"}>Nv.{compagnon[0].level}</div>
+                        <div style={{ filter: compagnon[0].negative === 1 && "invert(1)", backgroundSize: "contain", backgroundImage: `url(/Sprites/${compagnon[0].shiny === 1 ? "shiny" : "normal"}/${compagnon[0].number}.gif)` }} className={"fightSpriteCard"}></div>  
+                        {inventory &&
+                            inventory.filter(item => item.slug === "rarecandy" && item.quantity > 0).length > 0 &&
+                            compagnon[0].level < 100 &&
+                            <div className={"fightActionsContainer"}>
+                                <div className={"fightActions"}>
+                                    < img src={"/rarecandy.png"} />
+                                    <p>Super Bonbon</p>
+                                    <p>x {inventory.find((item) => item.slug === "rarecandy").quantity}</p>
+                                </div>
+                            </div>
+                        }
                     </>  
                 }
-                {haveCompagnon &&
-                    compagnon &&
-                    !chooseCompagnon &&
-                        inventory.filter(item => item.slug === "rarecandy" && item.quantity > 0).length > 0 &&
-                        compagnon[0].level < 100 &&
-                    <div className={"fightActionsContainer"}>
-                            <div className={"fightActions"}>
-                            < img src={"/rarecandy.png"} />
-                            <p>Super Bonbon</p>
-                            <p>x {inventory.find((item) => item.slug === "rarecandy").quantity}</p>
-                        </div>
-                    </div>
                 }
             </div>
         </div>
