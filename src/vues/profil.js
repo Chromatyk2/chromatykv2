@@ -16,6 +16,7 @@ function Profil() {
     const [imagesShiny, setImagesShiny] = useState(["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13"]);
     const [index, setIndex] = useState(null);
     const [body, setBody] = useState(1);
+    const [color, setColor] = useState(1);
     useEffect(() => {
         Axios
             .get("/api/getPokedex/" + cookies.user.data[0].id)
@@ -26,7 +27,7 @@ function Profil() {
                 img.src = "/Badge/Trainer2090.png";
 
                 img.onload = () => {
-                    console.log(getColorSync(img).hex());
+                    setColor(getColorSync(img).hex());
                 };
 
             })
@@ -38,13 +39,7 @@ function Profil() {
         <div className={"globalContainer"}>
             <div className={"profilContainer"}>
                 <div className={"profilHeader"}>
-                    <Color src={"/Badge/Trainer2090.png"}>
-                        {({ data, loading, error }) => (
-                            <div style={{ backgroundColor: data }}>
-                                <img src={"/Badge/Trainer2090.png"} />
-                            </div>
-                        )}
-                    </Color>
+                    <img style={{background:color}} src={"/Badge/Trainer2090.png"} />
                     <div className={"profilInfos"}>
                         <p>{cookies.user.data[0].login}</p>
                         <p className={"levelProfil"}>Niveau 1</p>
