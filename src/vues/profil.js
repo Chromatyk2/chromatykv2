@@ -8,7 +8,8 @@ function Profil() {
     const [cookies, setCookie] = useCookies();
     const [pokedex, setPokedex] = useState(null);
     const [maxPokedex, setMaxPokedex] = useState(1198);
-    const [images, setImages] = useState(["lv1", "lv2", "lv3", "lv4", "lv5", "lv6", "lv7", "lv8", "lv9", "lv10", "lv11"]);
+    const [images, setImages] = useState(["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"]);
+    const [imagesShiny, setImagesShiny] = useState(["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13"]);
     const [index, setIndex] = useState(null);
     useEffect(() => {
         Axios
@@ -45,35 +46,43 @@ function Profil() {
                 <div className={"profilBody"}>
                     {pokedex &&
                         <>
-                            <div className={"boxProfilLarge"}>
-                                <div className={"profilHeader"}>
-                                    <div className={"profilInfos"}>
-                                        <p>Pokédex Classique</p>
-                                    <p className={"levelProfil"}>{pokedex.length} / {maxPokedex}</p>
+                            {pokedex.length > 0 &&
+                                <div className={"boxProfilLarge"}>
+                                    <div className={"profilHeader"}>
+                                        <div className={"profilInfos"}>
+                                            <p>Pokédex Classique</p>
+                                            <p className={"levelProfil"}>{pokedex.length} / {maxPokedex}</p>
+                                        </div>
+                                        <img src={"/Badge/lv" + images[Math.min(images.length - 1, Math.floor((pokedex.length / maxPokedex) * images.length))] + ".png"} />
                                     </div>
-                                <img src={"/Badge/" + images[Math.min(images.length - 1,Math.floor((pokedex.length / maxPokedex) * images.length))] + ".png"} />
                                 </div>
-                            </div>
+                        }
+                        {pokedex.filter(item => (item.shiny === 1)).length > 0 &&
                             <div className={"boxProfilLarge"}>
                                 <div className={"profilHeader"}>
                                     <div className={"profilInfos"}>
                                         <p>Pokédex Shiny</p>
-                                    <p className={"levelProfil"}>{pokedex.filter(item => (item.shiny === 1)).length} / {maxPokedex}</p>
+                                        <p className={"levelProfil"}>{pokedex.filter(item => (item.shiny === 1)).length} / {maxPokedex}</p>
                                     </div>
-                                    <img src={"/Badge/lv1.png"} />
+                                    <img src={"/Badge/lv" + imagesShiny[Math.min(imagesShiny.length - 1, Math.floor((pokedex.filter(item => (item.shiny === 1)).length / maxPokedex) * imagesShiny.length))] + "s.png"} />
                                 </div>
-                            </div>
-                            <div className={"boxProfilLarge"}>
-                                <div className={"profilHeader"}>
-                                    <div className={"profilInfos"}>
-                                        <p>Pokédex Négatif</p>
-                                    <p className={"levelProfil"}>{pokedex.filter(item => (item.negative === 1)).length}  / {maxPokedex}</p>
+                            </div>                            
+                        }
+                        {pokedex.filter(item => (item.negative === 1)).length > 0 &&
+                            <>
+                                <div className={"boxProfilLarge"}>
+                                    <div className={"profilHeader"}>
+                                        <div className={"profilInfos"}>
+                                            <p>Pokédex Négatif</p>
+                                            <p className={"levelProfil"}>{pokedex.filter(item => (item.negative === 1)).length}  / {maxPokedex}</p>
+                                        </div>
+                                        <img src={"/Badge/lv" + imagesShiny[Math.min(imagesShiny.length - 1, Math.floor((pokedex.filter(item => (item.negative === 1)).length / maxPokedex) * imagesShiny.length))] + "n.png"} />
                                     </div>
-                                    <img src={"/Badge/lv1.png"} />
                                 </div>
-                            </div>
-                            <div className={"boxProfilLarge"}>
-                            </div>
+                                <div className={"boxProfilLarge"}>
+                                </div>
+                            </>
+                        }
                     </>
                     }
                 </div>
