@@ -71,6 +71,8 @@ function Profil() {
                             <img src={"/Badge/lv1.png"} />
                         </div>
                     </div>
+                    <div className={"boxProfilLarge"}>
+                    </diV>
                 </div>
             </div>
         </div>
