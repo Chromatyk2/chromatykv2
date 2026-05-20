@@ -297,6 +297,7 @@ p.levelProfil {
 .skinContainer .profilPicture:hover{
     background-color:white;
     border:black solid 1px;
+    cursor:pointer;
 }
 .skinPicture {
     border-radius: 100%;

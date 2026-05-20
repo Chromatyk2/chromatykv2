@@ -19,35 +19,42 @@ function Fight() {
     const [shiny, setShiny] = useState(null);
     const [negative, setNegative] = useState(null);
     const [inventory, setInventory] = useState(null);
+    const [profil, setProfil] = useState(null);
     useEffect(() => {
         Axios
-            .get("/api/getPokedex/" + cookies.user.data[0].id)
+            .get("/api/getUser/" + cookies.user.data[0].id)
             .then(function (response) {
-                setPokedex(response.data)
+                setProfil(response.data);
                 Axios
-                    .get("/api/getInventory/" + cookies.user.data[0].id)
+                    .get("/api/getPokedex/" + cookies.user.data[0].id)
                     .then(function (response) {
-                        setInventory(response.data);
+                        setPokedex(response.data)
                         Axios
-                            .get("/api/getSafari/" + cookies.user.data[0].id)
+                            .get("/api/getInventory/" + cookies.user.data[0].id)
                             .then(function (response) {
-                                if (response.data.length > 0) {
-                                    setCurrentLove(response.data[0].love)
-                                    setShiny(response.data[0].shiny)
-                                    setNegative(response.data[0].negative)
-                                    setPokemon({ name: response.data[0].name, number: response.data[0].pokemon, tier: response.data[0].tier, gen: response.data[0].gen })
-                                    if (response.data[0].tier == 1) {
-                                        setMaxLove(50);
-                                    } else if (response.data[0].tier == 2) {
-                                        setMaxLove(100);
-                                    } else if (response.data[0].tier == 3) {
-                                        setMaxLove(150);
-                                    } else {
-                                        setMaxLove(250);
-                                    }
-                                }
+                                setInventory(response.data);
+                                Axios
+                                    .get("/api/getSafari/" + cookies.user.data[0].id)
+                                    .then(function (response) {
+                                        if (response.data.length > 0) {
+                                            setCurrentLove(response.data[0].love)
+                                            setShiny(response.data[0].shiny)
+                                            setNegative(response.data[0].negative)
+                                            setPokemon({ name: response.data[0].name, number: response.data[0].pokemon, tier: response.data[0].tier, gen: response.data[0].gen })
+                                            if (response.data[0].tier == 1) {
+                                                setMaxLove(50);
+                                            } else if (response.data[0].tier == 2) {
+                                                setMaxLove(100);
+                                            } else if (response.data[0].tier == 3) {
+                                                setMaxLove(150);
+                                            } else {
+                                                setMaxLove(250);
+                                            }
+                                        }
+                                    })
                             })
                     })
+
             })
     }, []);
     function fleeFight() {
@@ -123,6 +130,16 @@ function Fight() {
                                         setCurrentLove(0);
                                         Axios.delete('/api/deleteSafari/' + cookies.user.data[0].id)
                                         setTimeout(function () {
+                                            let bonusXP = 0;
+                                            if (shiny === 1) {
+                                                bonusXP = 100;
+                                            } else if (negative === 1) {
+                                                bonusXP = 500;
+                                            }                                         
+                                            Axios.post('/api/updateXp', {
+                                                user: cookies.user.data[0].id,
+                                                xp: (pokemon.tier * 10) + bonusXP
+                                            })
                                             setPokemon(null);
                                             setOnCatch(false);
                                         }, 2000);
