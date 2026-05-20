@@ -33,6 +33,15 @@ function Profil() {
 
             })
     }, []);
+    function changeSkin(e) {
+        Axios.post('/api/removeItem', {
+            user =cookies.user.data[0].id,
+            login = cookies.user.data[0].login,
+            level = profil.level,
+            xp = profil.xp,
+            skin = e
+        })
+    }
     function changePage(e) {
         if (e !== 2) {
             setBody(e);
@@ -90,15 +99,15 @@ function Profil() {
                         <img className={"profilPicture"} style={{ background: color }} src={"/Skins/Trainer"+profil[0].skin+".png"} />
                         <div className={"profilInfos"}>
                             <p>{cookies.user.data[0].login}</p>
-                            <p className={"levelProfil"}>Niveau 1</p>
+                            <p className={"levelProfil"}>Niveau {profil.level}</p>
                         </div>
                     </div>
                     <div className={"textProgressProfil"}>
                         <p>EXP</p>
-                        <p>100000/1000000</p>
+                        <p>{profil.xp}/{profil.level * 10}</p>
                     </div>
                     <div className={"progressBarProfilExternal"}>
-                        <div style={{ width: "50%" }} className={"progressBarProfilInternal"}>
+                        <div style={{ width: +parseFloat(profil.xp / (profil.level * 10) * 100).toFixed(2) + "%" }} className={"progressBarProfilInternal"}>
                         </div>
                     </div>
                     <div className={"filterProfil"}>
@@ -157,7 +166,7 @@ function Profil() {
                                 {skins &&
                                     skins.map((val, key) => {
                                         return (
-                                            <img style={{ background: val.color }} className={"skinPicture"} src={"/Skins/Trainer" + val.skins + ".png"} />
+                                            <img onClick={() => changeSkin(val.skins)} style={{ background: val.color }} className={"skinPicture"} src={"/Skins/Trainer" + val.skins + ".png"} />
                                         )
                                     })
                                 }
