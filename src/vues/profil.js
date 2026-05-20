@@ -88,10 +88,14 @@ function Profil() {
                         setIndex();
                         const img = new Image();
                         img.src = "/Skins/Trainer" + response.data[0].skin + ".png";
-
                         img.onload = () => {
                             setColor(getColorSync(img).hex());
                         };
+                        Axios
+                            .get("/api/getActiveCompagnon/" + cookies.user.data[0].id + "/" + response.data[0].compagnon)
+                            .then(function (response) {
+                                setCompagnon(response.data);
+                            })
                     })
             })
     }
