@@ -294,6 +294,10 @@ p.levelProfil {
     margin-right: 10px;
     height: 85px;
 }
+.skinContainer .profilPicture:hover{
+    background-color:white;
+    border:black solid 1px;
+}
 .skinPicture {
     border-radius: 100%;
     border: #8a9cdd solid 1px;
