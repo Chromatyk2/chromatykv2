@@ -81,45 +81,42 @@ function Compagnon() {
                 }
                 {chooseCompagnon &&
                     <>
-                        <div className={"globalContainer"}>
-                            <div className={"dexContainer"}>
-                                <p>Pokédex</p>
-                                <div className={"genFilter"}>
-                                    <button className={isShiny === 0 && isNegative === 0 && "active"} onClick={() => filterForm(0)}>Normal</button>
-                                    <button className={isShiny === 1 && "active"} onClick={() => filterForm("Shiny")}>Shiny</button>
-                                    <button className={isNegative === 1 && "active"} onClick={() => filterForm(1)}>Négatif</button>
-                                </div>
-                                <div className={"genFilter"}>
-                                    <button className={gen === 0 && "active"} onClick={() => filterGen(0)} value={0}>Toutes</button>
-                                    {genList.map((val, key) => {
-                                        return (
-                                            <button className={gen === val && "active"} onClick={() => filterGen(val)} value={val}>Gen {val}</button>
-                                        )
-                                    })}
+                        <div className={"dexContainer"}>
+                            <div className={"genFilter"}>
+                                <button className={isShiny === 0 && isNegative === 0 && "active"} onClick={() => filterForm(0)}>Normal</button>
+                                <button className={isShiny === 1 && "active"} onClick={() => filterForm("Shiny")}>Shiny</button>
+                                <button className={isNegative === 1 && "active"} onClick={() => filterForm(1)}>Négatif</button>
+                            </div>
+                            <div className={"genFilter"}>
+                                <button className={gen === 0 && "active"} onClick={() => filterGen(0)} value={0}>Toutes</button>
+                                {genList.map((val, key) => {
+                                    return (
+                                        <button className={gen === val && "active"} onClick={() => filterGen(val)} value={val}>Gen {val}</button>
+                                    )
+                                })}
 
-                                </div>
-                                {filteredPokedex &&
-                                    filteredPokedex.filter(item => (item.shiny === isShiny && item.negative === isNegative)).map((val, key) => {
-                                        return (
-                                            <>
-                                                <div className={"dexCard"}>
-                                                    <div className={"dexSpriteContainer"}>
-                                                        <span className={"dexNumber"}>#{val.pokemon}</span>
-                                                        <div>
-                                                            <img style={{ filter: isNegative === 1 ? "invert(1)" : "invert(0)" }} loading="lazy" className={"dexSprite"} src={isShiny === 1 ? "/Sprites/Shiny/" + val.pokemon + ".gif" : "/Sprites/Normal/" + val.pokemon + ".gif"} />
-                                                        </div>
-                                                    </div>
-                                                    <div className={"dexDescription"}>
-                                                        <p className={"dexName"}>{val.name}</p>
-                                                        <p className={"dexDate"}>{moment(val.date).utc().format('DD/MM/YYYY')}</p>
+                            </div>
+                            {filteredPokedex &&
+                                filteredPokedex.filter(item => (item.shiny === isShiny && item.negative === isNegative)).map((val, key) => {
+                                    return (
+                                        <>
+                                            <div className={"dexCard"}>
+                                                <div className={"dexSpriteContainer"}>
+                                                    <span className={"dexNumber"}>#{val.pokemon}</span>
+                                                    <div>
+                                                        <img style={{ filter: isNegative === 1 ? "invert(1)" : "invert(0)" }} loading="lazy" className={"dexSprite"} src={isShiny === 1 ? "/Sprites/Shiny/" + val.pokemon + ".gif" : "/Sprites/Normal/" + val.pokemon + ".gif"} />
                                                     </div>
                                                 </div>
-                                            </>
+                                                <div className={"dexDescription"}>
+                                                    <p className={"dexName"}>{val.name}</p>
+                                                    <p className={"dexDate"}>{moment(val.date).utc().format('DD/MM/YYYY')}</p>
+                                                </div>
+                                            </div>
+                                        </>
 
-                                        )
-                                    })
-                                }
-                            </div>
+                                    )
+                                })
+                            }
                         </div>
                     </>
                 } 
