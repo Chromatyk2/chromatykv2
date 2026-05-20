@@ -165,7 +165,7 @@ function Profil() {
                 <div className={"profilContainer"}>
                     <div class={"profilHeaderContainer"}>
                         <div className={"profilHeader"}>
-                            <div style={{ backgroundColor: color, backgroundImage: `url("/Skins/Trainer${profil[0].skin}.png")`, backgroundRepeat: "no-repeat", backgroundSize: "90%", backgroundPosition: "center" }} className={"profilPicture"}>
+                            <div style={{ backgroundColor: color, backgroundImage: `url("/Skins/Trainer${profil[0].skin}.png")`, backgroundRepeat: "no-repeat", backgroundSize: "contain", backgroundPosition: "center" }} className={"profilPicture"}>
                             </div>
                             {/*<img className={"profilPicture"} style={{ background: color }} src={"/Skins/Trainer"+profil[0].skin+".png"} />*/}
                             <div className={"profilInfos"}>
@@ -178,7 +178,7 @@ function Profil() {
                                 <p style={{textAlign: "end"}}>{compagnon[0].pokemon}</p>
                                 <p style={{ textAlign: "end" }} className={"levelProfil"}>{compagnon[0].shiny === 1 ? "Shiny" : compagnon[0].negative === 1 ? "Négatif" : "Classique"}</p>
                             </div>
-                            <div style={{ filter: compagnon[0].negative === 1 ?"invert(1)" : "invert(0)", backgroundColor: color, backgroundImage: `url("/Sprites/${compagnon[0].shiny === 1 ? "Shiny" : "Normal"}/${compagnon[0].number}.gif")`, backgroundRepeat: "no-repeat", backgroundSize: "90%", backgroundPosition: "center"}} className={"compagnonPicture"}>
+                            <div style={{ filter: compagnon[0].negative === 1 ? "invert(1)" : "invert(0)", backgroundColor: color, backgroundImage: `url("/Sprites/${compagnon[0].shiny === 1 ? "Shiny" : "Normal"}/${compagnon[0].number}.gif")`, backgroundRepeat: "no-repeat", backgroundSize: "contain", backgroundPosition: "center"}} className={"compagnonPicture"}>
                             </div>
                             {/*<img className={"profilPicture"} style={{ background: color }} src={"/Skins/Trainer"+profil[0].skin+".png"} />*/}
                         </div>
@@ -256,7 +256,7 @@ function Profil() {
                                 {skins &&
                                     skins.map((val, key) => {
                                         return (                                            
-                                            <div onClick={() => changeSkin(val.skins)} loading={"lazy"} style={{ backgroundColor: val.color, backgroundRepeat: "no-repeat", backgroundImage: `url("/Skins/Trainer${val.skins}.png")`,backgroundSize: "90%",backgroundPosition: "center"}} className={"profilPicture"}>
+                                            <div onClick={() => changeSkin(val.skins)} loading={"lazy"} style={{ backgroundColor: val.color, backgroundRepeat: "no-repeat", backgroundImage: `url("/Skins/Trainer${val.skins}.png")`, backgroundSize: "contain",backgroundPosition: "center"}} className={"profilPicture"}>
                                             </div>
                                         )
                                     })
@@ -268,7 +268,7 @@ function Profil() {
                                 {compagnonList &&
                                     compagnonList.map((val, key) => {
                                         return (
-                                            <div onClick={() => changeActiveCompagnon(val.number)} loading={"lazy"} style={{ filter: val.negative === 1 ? "invert(1)" : "invert(0)", backgroundRepeat: "no-repeat", backgroundColor: val.color, backgroundImage: `url("/Sprites/${val.shiny === 1 ? "Shiny" : "Normal"}/${val.number}.gif")`, backgroundSize: "90%", backgroundPosition: "center" }} className={"profilPicture"}>
+                                            <div onClick={() => changeActiveCompagnon(val.number)} loading={"lazy"} style={{ filter: val.negative === 1 ? "invert(1)" : "invert(0)", backgroundRepeat: "no-repeat", backgroundColor: val.color, backgroundImage: `url("/Sprites/${val.shiny === 1 ? "Shiny" : "Normal"}/${val.number}.gif")`, backgroundSize: "contain", backgroundPosition: "center" }} className={"profilPicture"}>
                                             </div>
                                         )
                                     })
