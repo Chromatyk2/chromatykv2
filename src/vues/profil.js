@@ -39,7 +39,7 @@ function Profil() {
         <div className={"globalContainer"}>
             <div className={"profilContainer"}>
                 <div className={"profilHeader"}>
-                    <img style={{background:color}} src={"/Badge/Trainer2090.png"} />
+                    <img classNme={"profilPicture"} style={{background:color}} src={"/Badge/Trainer2090.png"} />
                     <div className={"profilInfos"}>
                         <p>{cookies.user.data[0].login}</p>
                         <p className={"levelProfil"}>Niveau 1</p>
