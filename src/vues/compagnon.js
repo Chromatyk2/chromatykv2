@@ -113,19 +113,20 @@ function Compagnon() {
                 .then(function (response) {
                     Axios.post('/api/levelupCompagnon', {
                         id: compagnon[0].id
+                    }).then(function (response) {
+                        Axios.get('/api/getCurrentCompagnon/' + cookies.user.data[0].id)
+                            .then(function (response) {
+                                setHaveCompagnon(true)
+                                setChooseCompagnon(false)
+                                setCompagnon(response.data);
+                                Axios
+                                    .get("/api/getInventory/" + cookies.user.data[0].id)
+                                    .then(function (response) {
+                                        setInventory(response.data);
+                                        setHaveCompagnon(true)
+                                    })
+                            })
                     })
-                    Axios.get('/api/getCurrentCompagnon/' + cookies.user.data[0].id)
-                        .then(function (response) {
-                            setHaveCompagnon(true)
-                            setChooseCompagnon(false)
-                            setCompagnon(response.data);
-                            Axios
-                                .get("/api/getInventory/" + cookies.user.data[0].id)
-                                .then(function (response) {
-                                    setInventory(response.data);
-                                    setHaveCompagnon(true)
-                                })
-                        })
             })
         }
     }
