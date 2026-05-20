@@ -81,7 +81,7 @@ function Compagnon() {
                 }
                 {chooseCompagnon &&
                     <>
-                        <div className={"dexContainer"}>
+                    <div style={{position:"absolute", top: "-100px",justifyContent:"center"}} className={"dexContainer"}>
                             <div className={"genFilter"}>
                                 <button className={isShiny === 0 && isNegative === 0 && "active"} onClick={() => filterForm(0)}>Normal</button>
                                 <button className={isShiny === 1 && "active"} onClick={() => filterForm("Shiny")}>Shiny</button>
