@@ -172,6 +172,7 @@ function Compagnon() {
                         </>
                     )}
                 {inventory &&
+                    haveCompagnon &&
                     compagnon &&
                     compagnon.length > 0 &&
                     inventory.some(item => item.slug === "rarecandy" && item.quantity > 0) &&
