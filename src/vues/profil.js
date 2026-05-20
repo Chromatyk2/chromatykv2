@@ -34,7 +34,7 @@ function Profil() {
             })
     }, []);
     function changeSkin(e) {
-        Axios.post('/api/removeItem', {
+        Axios.post('/api/addProfil', {
             user:cookies.user.data[0].id,
             login:cookies.user.data[0].login,
             level:profil.level,
