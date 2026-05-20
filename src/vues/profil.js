@@ -42,6 +42,12 @@ function Profil() {
                             .get("/api/getActiveCompagnon/" + cookies.user.data[0].id)
                             .then(function (response) {
                                 setCompagnon(response.data);
+                                setIndex();
+                                const img = new Image();
+                                img.src = "/Sprites/" + (response.data[0].shiny === 1 ? "Shiny" : "Normal") + "/" + compagnon[0].number + ".gif";
+                                img.onload = () => {
+                                    setColor(getColorSync(img).hex());
+                                };
                             })
                     })
                 })  
@@ -134,7 +140,7 @@ function Profil() {
                 <div className={"profilContainer"}>
                     <div class={"profilHeaderContainer"}>
                         <div className={"profilHeader"}>
-                            <div style={{ backgroundColor: color, backgroundImage: `url("/Skins/Trainer${profil[0].skin}.png")`, backgroundSize: "cover", backgroundPosition: "center" }} className={"profilPicture"}>
+                            <div style={{ backgroundColor: color, backgroundImage: `url("/Skins/Trainer${profil[0].skin}.png")`, backgroundRepeat: "no-repeat", backgroundSize: "contain", backgroundPosition: "center" }} className={"profilPicture"}>
                             </div>
                             {/*<img className={"profilPicture"} style={{ background: color }} src={"/Skins/Trainer"+profil[0].skin+".png"} />*/}
                             <div className={"profilInfos"}>
