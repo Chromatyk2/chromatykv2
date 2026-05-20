@@ -150,10 +150,10 @@ function Profil() {
                         </div>
                         <div className={"profilHeader"}>
                             <div className={"profilInfos"}>
-                                <p>{compagnon[0].pokemon}</p>
-                                <p className={"levelProfil"}>Niveau {compagnon[0].level}</p>
+                                <p style={{textAlign: "end"}}>{compagnon[0].pokemon}</p>
+                                <p style={{ textAlign: "end" }} className={"levelProfil"}>Niveau {compagnon[0].level}</p>
                             </div>
-                            <div style={{ filter: compagnon[0].negative === 1 "invert(1) ? invert(0)", backgroundColor: color, backgroundImage: `url("/Sprites/${compagnon[0].shiny === 1 ? "Shiny" : "Normal"}/${compagnon[0].number}.gif")`, backgroundRepeat: "no-repeat", backgroundSize: "contain", backgroundPosition: "center"}} className={"profilPicture"}>
+                            <div style={{ filter: compagnon[0].negative === 1 "invert(1) ? invert(0)", backgroundColor: color, backgroundImage: `url("/Sprites/${compagnon[0].shiny === 1 ? "Shiny" : "Normal"}/${compagnon[0].number}.gif")`, backgroundRepeat: "no-repeat", backgroundSize: "contain", backgroundPosition: "center"}} className={"compagnonPicture"}>
                             </div>
                             {/*<img className={"profilPicture"} style={{ background: color }} src={"/Skins/Trainer"+profil[0].skin+".png"} />*/}
                         </div>
