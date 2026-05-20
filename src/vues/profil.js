@@ -119,7 +119,7 @@ function Profil() {
                             skins.length > 0 &&
                             skins.map((val, key) => {
                                 return (
-                                    <img classNme={"profilPicture"} style={{ background: color }} src={"/Skins/Trainer" + val.skin + ".png"} />
+                                    <img classNme={"profilPicture"} src={"/Skins/Trainer" + val.skin + ".png"} />
                                 )
                             })
                         }
