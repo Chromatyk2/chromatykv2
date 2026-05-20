@@ -15,6 +15,7 @@ function Leaderboard() {
     }, []);
     return (
         <div className={"globalContainer"}>
+            <p style={{margin:00 }>Leaderboard</p>
             <div className={"leaderboardContainer"}>
             {leaderboard &&
                 leaderboard.map((val, key) => {
