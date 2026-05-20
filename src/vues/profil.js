@@ -157,7 +157,7 @@ function Profil() {
                                 {skins &&
                                     skins.map((val, key) => {
                                         return (
-                                            <img style={{ background: val.color }} classNme={"skinPicture"} src={"/Skins/Trainer" + val.skins + ".png"} />
+                                            <img style={{ background: val.color }} className={"skinPicture"} src={"/Skins/Trainer" + val.skins + ".png"} />
                                         )
                                     })
                                 }
