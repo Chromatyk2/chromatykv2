@@ -15,10 +15,7 @@ function Profil() {
             .get("/api/getPokedex/" + cookies.user.data[0].id)
             .then(function (response) {
                 setPokedex(response.data);
-                setIndex(Math.min(
-                    images.length - 1,
-                    Math.floor((pokedex.length / maxPokedex) * images.length)
-                ));
+                setIndex();
 
             })
     }, []);
@@ -47,7 +44,6 @@ function Profil() {
                 </div>
                 <div className={"profilBody"}>
                     {pokedex &&
-                        index &&
                         <>
                             <div className={"boxProfilLarge"}>
                                 <div className={"profilHeader"}>
@@ -55,7 +51,7 @@ function Profil() {
                                         <p>Pokédex Classique</p>
                                     <p className={"levelProfil"}>{pokedex.length} / {maxPokedex}</p>
                                     </div>
-                                <img src={"/Badge/"+images[index]+".png"} />
+                                <img src={"/Badge/" + images[Math.min(images.length - 1,Math.floor((pokedex.length / maxPokedex) * images.length))] + ".png"} />
                                 </div>
                             </div>
                             <div className={"boxProfilLarge"}>
