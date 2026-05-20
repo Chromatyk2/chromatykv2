@@ -17,7 +17,7 @@ function Profil() {
     const [index, setIndex] = useState(null);
     const [body, setBody] = useState(1);
     const [color, setColor] = useState(1);
-    const [skins, setSkins] = useState({});
+    const [skins, setSkins] = useState([]);
     useEffect(() => {
         Axios
             .get("/api/getUser/" + cookies.user.data[0].id)
@@ -44,10 +44,10 @@ function Profil() {
                         const img = new Image();
                         img.src = "/Skins/Trainer" + response.data[0].skin + ".png";
                         img.onload = () => {
-                            setSkins(shopCart => ({
+                            setSkins([
                                 ...skins,
-                                ...{ skins: val.skin, color: getColorSync(img).hex() }
-                            }));
+                                { skins: val.skin, color: getColorSync(img).hex() }
+                            ]);
                         };
                         console.log(skins);
                     })
