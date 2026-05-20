@@ -161,7 +161,7 @@ function Compagnon() {
                             compagnon[0].level < 100 &&
                             <div className={"fightActionsContainer"}>
                                 <div className={"fightActions"}>
-                                    < img src={"/rarecandy.png"} />
+                                    <img src={"/rarecandy.png"} />
                                     <p>Super Bonbon</p>
                                     <p>x {inventory.find((item) => item.slug === "rarecandy").quantity}</p>
                                 </div>
