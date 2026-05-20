@@ -230,7 +230,7 @@ function Profil() {
                             <div className={"skinContainer"}>
                                 {skins &&
                                     skins.length < profil[0].level &&
-                                    <img id={"skinPicture"} loading={"lazy"} onClick={() => addSkin()} style={{ background: "#efd397" }} className={"skinPicture"} src={"/box.png"} />
+                                    <img id={"skinPicture"} loading={"lazy"} onClick={() => addSkin()} style={{ background: "#efd397" }} className={"skinPicture"} src={"/case.png"} />
                                 }
                                 {skins &&
                                     skins.map((val, key) => {
