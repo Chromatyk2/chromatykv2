@@ -136,7 +136,7 @@ function Profil() {
                     </div>
                     <div className={"textProgressProfil"}>
                         <p>EXP</p>
-                        <p>{profil[0].xp}/{profil[0].level * 10}</p>
+                        <p>{profil[0].xp}/{100 * ((profil[0].level + 1) * (profil[0].level + 2)) / 2}</p>
                     </div>
                     <div className={"progressBarProfilExternal"}>
                         <div style={{ width: +parseFloat(profil[0].xp / (profil[0].level * 10) * 100).toFixed(2) + "%" }} className={"progressBarProfilInternal"}>
