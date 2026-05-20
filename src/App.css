@@ -229,7 +229,12 @@ a.navLink.linkFromNav p {
     border-radius: 10px;
     padding: 20px;
     align-items: center;
+    border: 1px solid #8a9cdd;
 }
+    .leaderboardHeaderContainer:hover {
+        background-color: #3b3b3b4d;
+        cursor:pointer;
+    }
 .profilHeader {
     align-items: center;
     display: flex;
