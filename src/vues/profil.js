@@ -268,7 +268,7 @@ function Profil() {
                                 {compagnonList &&
                                     compagnonList.map((val, key) => {
                                         return (
-                                            <div onClick={() => changeActiveCompagnon(val.number)} loading={"lazy"} style={{ backgroundColor: val.color, backgroundImage: `url("/Sprites/${compagnon[0].shiny === 1 ? "Shiny" : "Normal"}/${compagnon[0].number}.gif")`, backgroundSize: "90%", backgroundPosition: "center" }} className={"profilPicture"}>
+                                            <div onClick={() => changeActiveCompagnon(val.number)} loading={"lazy"} style={{ filter: val.negative === 1 ? "invert(1)" : "invert(0)", backgroundRepeat: "no-repeat", backgroundColor: val.color, backgroundImage: `url("/Sprites/${val.number === 1 ? "Shiny" : "Normal"}/${val.number}.gif")`, backgroundSize: "90%", backgroundPosition: "center" }} className={"profilPicture"}>
                                             </div>
                                         )
                                     })
