@@ -55,6 +55,26 @@ function Profil() {
             })
         })
     }
+    function addSkin(e) {
+        if (skins.length < profil[0].level) {
+            Axios.post('/api/addNewSkin', {
+                user: cookies.user.data[0].id
+            })
+            .then(function (response) {
+                Axios.get("/api/getUser/" + cookies.user.data[0].id)
+                    .then(function (response) {
+                        setProfil(response.data);
+                        setIndex();
+                        const img = new Image();
+                        img.src = "/Skins/Trainer" + response.data[0].skin + ".png";
+
+                        img.onload = () => {
+                            setColor(getColorSync(img).hex());
+                        };
+                    })
+            })
+        }
+    }
     function changePage(e) {
         if (e !== 2) {
             setBody(e);
@@ -176,6 +196,9 @@ function Profil() {
                         }
                         {body === 2 &&
                             <div className={"skinContainer"}>
+                                {skins.length < profil[0].level &&
+                                    <img id={"skinPicture"} loading={"lazy"} onClick={() => addSkin()} style={{ background: "#efd397" }} className={"skinPicture"} src={"/box.png"} />
+                                }
                                 {skins &&
                                     skins.map((val, key) => {
                                         return (
