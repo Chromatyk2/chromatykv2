@@ -153,7 +153,7 @@ function Profil() {
                                 <p>{compagnon[0].pokemon}</p>
                                 <p className={"levelProfil"}>Niveau {compagnon[0].level}</p>
                             </div>
-                            <div style={{ backgroundColor: color, backgroundImage: `url("/Sprites/Normal/${compagnon[0].number}.gif")`, backgroundSize: "cover", backgroundPosition: "center" }} className={"profilPicture"}>
+                            <div style={{ filter: compagnon[0].negative === 1 "invert(1) ? invert(0)", backgroundColor: color, backgroundImage: `url("/Sprites/${compagnon[0].shiny === 1 ? "Shiny" : "Normal"}/${compagnon[0].number}.gif")`, backgroundRepeat: "no-repeat", backgroundSize: "contain", backgroundPosition: "center"}} className={"profilPicture"}>
                             </div>
                             {/*<img className={"profilPicture"} style={{ background: color }} src={"/Skins/Trainer"+profil[0].skin+".png"} />*/}
                         </div>
