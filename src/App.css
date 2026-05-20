@@ -299,11 +299,11 @@ p.levelProfil {
     width: 85px;
     padding: 5px;
 }
-.skinPicture:hover {
+#skinPicture:hover {
     border-radius: 100%;
     border: black solid 1px;
     cursor:pointer;
-    background-color:white;
+    background-color:white!important;
 }
 .skinContainer{
     display:flex;
