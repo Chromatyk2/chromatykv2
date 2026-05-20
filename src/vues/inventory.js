@@ -75,11 +75,18 @@ function Inventory(props) {
                             slug: slug,
                             quantity: Math.floor(Math.random() * 5)
                         }).then(function (response) {
-                            Axios
-                                .get("/api/getInventory/" + cookies.user.data[0].id)
-                                .then(function (response) {
-                                    setInventory(response.data);
-                                })
+                            Axios.post('/api/addCandy', {
+                                user: cookies.user.data[0].id,
+                                item: "Super Bonbon",
+                                slug: "rarecandy",
+                                quantity: Math.floor(Math.random() * 5)
+                            }).then(function (response) {
+                                Axios
+                                    .get("/api/getInventory/" + cookies.user.data[0].id)
+                                    .then(function (response) {
+                                        setInventory(response.data);
+                                    })
+                            })
                         })
                     })
                 })
