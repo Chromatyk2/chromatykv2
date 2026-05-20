@@ -188,7 +188,7 @@ function Profil() {
                             <div className={"skinContainer"}>
                                 {skins &&
                                     skins.length < profil[0].level &&
-                                    <div onClick={() => addSkin()} className={{ position: "absolute" }}>
+                                    <div onClick={() => addSkin()} style={{ position: "absolute" }}>
                                         <p style={{position: "relative",top: "50px",left: "0px",background: "rgb(239, 211, 151)",borderRadius: "100%",width: "27px",height: "27px",border: "1px solid #8a9cdd",color: "black"}}>{skins.length < profil[0].level}</p>
                                         <img id={"skinPicture"} loading={"lazy"} onClick={() => addSkin()} style={{background: "#efd397" }} className={"skinPicture"} src={"/case.png"} />
                                     </div>
