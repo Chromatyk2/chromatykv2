@@ -213,7 +213,7 @@ function Profil() {
                                                 <div className={"profilHeader"}>
                                                     <div className={"profilDex"}>
                                                         <p>Pokédex Classique</p>
-                                                        <p className={"levelProfil"}>{profil.length} / {maxPokedex}</p>
+                                                        <p className={"levelProfil"}>{profil.filter(item => (item.pokemon !== null)).length} / {maxPokedex}</p>
                                                     </div>
                                                     <img src={"/Badge/lv" + images[Math.min(images.length - 1, Math.floor((profil.length / maxPokedex) * images.length))] + ".png"} />
                                                 </div>
