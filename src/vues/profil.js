@@ -53,6 +53,7 @@ function Profil() {
                                     }
                                 ]);
                             };
+                            console.log(skins);
                         });
                     setBody(e);
                 })
