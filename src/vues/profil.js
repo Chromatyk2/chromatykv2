@@ -47,6 +47,7 @@ function Profil() {
                 </div>
                 <div className={"profilBody"}>
                     {pokedex &&
+                        index &&
                         <>
                             <div className={"boxProfilLarge"}>
                                 <div className={"profilHeader"}>
