@@ -8,7 +8,7 @@ function Profil() {
     const [cookies, setCookie] = useCookies();
     const [pokedex, setPokedex] = useState(null);
     const [maxPokedex, setMaxPokedex] = useState(1198);
-    const images = ["lv1", "lv2", "lv3", "lv4", "lv5", "lv6", "lv7", "lv8", "lv9", "lv10", "lv11"];
+    const [images, setImages] = useState(["lv1", "lv2", "lv3", "lv4", "lv5", "lv6", "lv7", "lv8", "lv9", "lv10", "lv11"]);
     const [index, setIndex] = useState(null);
     useEffect(() => {
         Axios
@@ -17,7 +17,7 @@ function Profil() {
                 setPokedex(response.data);
                 setIndex(Math.min(
                     images.length - 1,
-                    Math.floor((pokedex.length / 1198) * images.length)
+                    Math.floor((pokedex.length / maxPokedex) * images.length)
                 ));
 
             })
