@@ -137,7 +137,7 @@ function Profil() {
                     </div>
                     <div className={"filterProfil"}>
                         <button className={body === 1 && "active"} onClick={() => changePage(1)}>Profil</button>
-                        <button className={body === 2 && "active"} onClick={() => changePage(2)}>Skins</button>
+                        <button className={body === 2 && "active"} onClick={() => changePage(2)}>Skins {profil[0].level - skins.length > 0 && ": "+profil[0].level - skins.length}</button>
                     </div>                    
                     <div className={"profilBody"}>
                         {body === 1 &&
