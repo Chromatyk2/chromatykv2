@@ -20,6 +20,7 @@ function Compagnon() {
     const [haveCompagnon, setHaveCompagnon] = useState(false);
     const [chooseCompagnon, setChooseCompagnon] = useState(false);
     const [compagnon, setCompagnon] = useState(false);
+    const [inventory, setInventory] = useState(null);
     useEffect(() => {
         Axios
             .get("/api/getPokedex/" + cookies.user.data[0].id)
@@ -57,8 +58,13 @@ function Compagnon() {
                 if (response.data.length < 1) {
                     setHaveCompagnon(false)
                 } else {
-                    setHaveCompagnon(true)
-                    setCompagnon(response.data);
+                    Axios
+                        .get("/api/getInventory/" + cookies.user.data[0].id)
+                        .then(function (response) {
+                            setInventory(response.data);
+                            setHaveCompagnon(true)
+                            setCompagnon(response.data);
+                        })
                 }
             })
     }, []);
@@ -147,11 +153,21 @@ function Compagnon() {
                 }
                 {haveCompagnon &&
                     <>
-                        <p className={"fightName"}>{compagnon[0].pokemon}</p>
+                     <p className={"fightName"}>{compagnon[0].pokemon}</p>
                     <div className={"tierFight"}>Nv.{compagnon[0].level}</div>
-                    <div style={{ filter: compagnon[0].negative === 1 && "invert(1)", backgroundSize: "contain", backgroundImage: `url(/Sprites/${compagnon[0].shiny === 1 ? "shiny" : "normal"}/${compagnon[0].number}.gif)` }} className={"fightSpriteCard"}>
-                        </div>  
+                    <div style={{ filter: compagnon[0].negative === 1 && "invert(1)", backgroundSize: "contain", backgroundImage: `url(/Sprites/${compagnon[0].shiny === 1 ? "shiny" : "normal"}/${compagnon[0].number}.gif)` }} className={"fightSpriteCard"}></div>  
                     </>  
+                }
+                {haveCompagnon &&
+                    inventory.filter(item => item.slug === "rarecandy" && item.quantity > 0).length > 0 &&
+                    compagnon[0].level < 100 &&
+                    <div className={"fightActionsContainer"}>
+                            <div className={"fightActions"}>
+                            < img src={"/rarecandy.png"} />
+                            <p>Super Bonbon</p>
+                            <p>x {inventory.find((item) => item.slug === "rarecandy").quantity}</p>
+                        </div>
+                    </div>
                 }
             </div>
         </div>
