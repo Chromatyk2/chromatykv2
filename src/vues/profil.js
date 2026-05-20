@@ -43,12 +43,6 @@ function Profil() {
                             .get("/api/getActiveCompagnon/" + cookies.user.data[0].id + "/" + response.data[0].compagnon)
                             .then(function (response) {
                                 setCompagnon(response.data);
-                                setIndex();
-                                const img = new Image();
-                                img.src = "/Sprites/" + (response.data[0].shiny === 1 ? "Shiny" : "Normal") + "/" + compagnon[0].number + ".gif";
-                                img.onload = () => {
-                                    setColorShiny(getColorSync(img).hex());
-                                };
                             })
                     })
                 })  
@@ -154,7 +148,7 @@ function Profil() {
                                 <p style={{textAlign: "end"}}>{compagnon[0].pokemon}</p>
                                 <p style={{ textAlign: "end" }} className={"levelProfil"}>Niveau {compagnon[0].level}</p>
                             </div>
-                            <div style={{ filter: compagnon[0].negative === 1 ?"invert(1)" : "invert(0)", backgroundColor: colorShiny, backgroundImage: `url("/Sprites/${compagnon[0].shiny === 1 ? "Shiny" : "Normal"}/${compagnon[0].number}.gif")`, backgroundRepeat: "no-repeat", backgroundSize: "contain", backgroundPosition: "center"}} className={"compagnonPicture"}>
+                            <div style={{ filter: compagnon[0].negative === 1 ?"invert(1)" : "invert(0)", backgroundColor: color, backgroundImage: `url("/Sprites/${compagnon[0].shiny === 1 ? "Shiny" : "Normal"}/${compagnon[0].number}.gif")`, backgroundRepeat: "no-repeat", backgroundSize: "contain", backgroundPosition: "center"}} className={"compagnonPicture"}>
                             </div>
                             {/*<img className={"profilPicture"} style={{ background: color }} src={"/Skins/Trainer"+profil[0].skin+".png"} />*/}
                         </div>
