@@ -147,7 +147,7 @@ function Compagnon() {
                 }
                 {haveCompagnon &&
                     <>
-                        <p className={"fightName"}>{compagnon[0].name}</p>
+                        <p className={"fightName"}>{compagnon[0].pokemon}</p>
                     <div className={"tierFight"}>Nv.{compagnon[0].level}</div>
                     <div style={{ filter: compagnon[0].negative === 1 && "invert(1)", backgroundSize: "contain", backgroundImage: `url(/Sprites/${compagnon[0].shiny === 1 ? "shiny" : "normal"}/${compagnon[0].number}.gif)` }} className={"fightSpriteCard"}>
                         </div>  
