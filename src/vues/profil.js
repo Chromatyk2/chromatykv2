@@ -44,11 +44,15 @@ function Profil() {
                             const img = new Image();
                             img.src = "/Skins/Trainer" + response.data[0].skin + ".png";
                             img.onload = () => {
-                                setSkins([
-                                    ...skins,
-                                    { skins: val.skin, color: getColorSync(img).hex() }
-                                ]);
+                                const color = getColorSync(img).hex();
                             };
+                            setSkins((prev) => [
+                                ...prev,
+                                {
+                                    skins: val.skin,
+                                    color: color
+                                }
+                            ]);
                             console.log(skins);
                         });
                     setBody(e);
