@@ -180,7 +180,7 @@ function Compagnon() {
                     inventory &&
                     inventory.length > 0 &&
                     !chooseCompagnon && (
-                        <div className="fightActionsContainer">
+                    <div style={{background:"none"}} className="fightActionsContainer">
                             <div className="fightActions">
                                 <img src="/rarecandy.png" />
                                 <p>Super Bonbon</p>
