@@ -72,14 +72,14 @@ function HomePage(props) {
     }, []);
     return (
         <div className={"globalContainerCenter"}>
-                <p>Bienvenue{typeof cookies.user !== "undefined" && ","+ cookies.user.data[0].login} sur la v2 du site ! (la V1 et les crtes sont toujours disponibles <a href="https://chromatykv2.netlify.app/" target="_blank">ICI</a></p>             
+            <p>Bienvenue{typeof cookies.user !== "undefined" && "," + cookies.user.data[0].login} sur la v2 du site ! (la V1 et les cartes sont toujours disponibles <a style={{textDecoration:"none", color: "#83d7d7" }} href="https://chromatykv2.netlify.app/" target="_blank">ICI</astyle></p>             
             {typeof cookies.user === "undefined" &&
                 <div className={"connectionBar"}>
                     <p>Connectez-vous pour jouer !</p>
                     <Login />
                 </div>
             }
-            <p>Rejoins les streams et viens discuter ! <a href="https://twitch.tv/chromatyk" target="_blank">Twitch Chromatyk</a></p>
+            <p>Rejoins les streams et viens discuter sur <a style={{ textDecoration: "none", color:"#83d7d7"}} href="https://twitch.tv/chromatyk" target="_blank">Twitch</a> !</p>
             <p className="pseudoProfil">Dernier shiny capturé</p>
             {shinydex &&
                 <div className={"shinydexCard"}>
