@@ -86,10 +86,11 @@ function Fight() {
                         .then(function (response) {
                             setInventory(response.data);
                             setCurrentLove(currentLove + e);
+                            const love = currentLove + e;
                             Axios.post('/api/addSafari', {
                                 user: cookies.user.data[0].id,
                                 pokemon: pokemon.number,
-                                love: currentLove,
+                                love: love,
                                 shiny: shiny,
                                 negative: negative,
                                 tier: pokemon.tier
