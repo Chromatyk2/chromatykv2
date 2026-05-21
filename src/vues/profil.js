@@ -36,31 +36,37 @@ function Profil() {
         } else {
             user = cookies.user.data[0].id;
         }
+
         Axios
-            .get("/api/getUser/" + user)
-            .then(function (response) {
-                Axios.post('/api/updateLevel', {
-                    user: user,
-                    level: Math.floor((Math.sqrt(1 + (16 * response.data[0].xp) / 100) - 1) / 2 + 1)
-                }).then(function (response) {
-                    Axios
-                        .get("/api/getUser/" + user)
-                        .then(function (response) {
-                            setProfil(response.data);
-                            setIndex();
-                            const img = new Image();
-                            img.src = "/Skins/Trainer" + response.data[0].skin + ".png";
-                            img.onload = () => {
-                                setColor(getColorSync(img).hex());
-                            };
+            .get("/api/getTrainers/" + user)
+            .then(async (response) => {
+                setSkins(response.data);
+                Axios
+                    .get("/api/getUser/" + user)
+                    .then(function (response) {
+                        Axios.post('/api/updateLevel', {
+                            user: user,
+                            level: Math.floor((Math.sqrt(1 + (16 * response.data[0].xp) / 100) - 1) / 2 + 1)
+                        }).then(function (response) {
                             Axios
-                                .get("/api/getActiveCompagnon/" + user + "/" + response.data[0].compagnon)
+                                .get("/api/getUser/" + user)
                                 .then(function (response) {
-                                    setCompagnon(response.data);
+                                    setProfil(response.data);
+                                    setIndex();
+                                    const img = new Image();
+                                    img.src = "/Skins/Trainer" + response.data[0].skin + ".png";
+                                    img.onload = () => {
+                                        setColor(getColorSync(img).hex());
+                                    };
+                                    Axios
+                                        .get("/api/getActiveCompagnon/" + user + "/" + response.data[0].compagnon)
+                                        .then(function (response) {
+                                            setCompagnon(response.data);
+                                        })
                                 })
                         })
-                })
-            })
+                    })
+            });
     }
     function changeSkin(e) {
         if (!new URLSearchParams(window.location.search).has("user")) {
