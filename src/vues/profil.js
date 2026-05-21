@@ -226,7 +226,7 @@ function Profil() {
                     </div>
                     <div className={"filterProfil"}>
                         <button className={body === 1 && "active"} onClick={() => changePage(1)}>Profil</button>
-                        <button className={body === 2 && "active"} onClick={() => changePage(2)}>Skins</button>
+                        <button className={body === 2 && "active"} onClick={() => changePage(2)}>Skins <p className={"rank"}>{skins && profil[0].level - skins.length}</p></button>
                         <button className={body === 3 && "active"} onClick={() => changePage(3)}>Compagnons N.100</button>
                     </div>         
                     <div className={"profilBody"}>
