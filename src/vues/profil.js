@@ -35,7 +35,7 @@ function Profil() {
             .then(function (response) {
                 Axios.post('/api/updateLevel', {
                     user: user,
-                    level: Math.floor((Math.sqrt(1 + (8 * response.data[0].xp) / 100) - 1) / 2)
+                    level: Math.floor((Math.sqrt(1 + (8 * response.data[0].xp) / 100) - 1) / 4)
                 }).then(function (response) {
                 Axios
                     .get("/api/getUser/" + user)
@@ -210,10 +210,10 @@ function Profil() {
                     </div>
                     <div className={"textProgressProfil"}>
                         <p>EXP</p>
-                        <p>{profil[0].xp}/{100 * ((profil[0].level + 1) * (profil[0].level + 2)) / 2}</p>
+                        <p>{profil[0].xp}/{100 * ((profil[0].level + 1) * (profil[0].level + 2)) / 4}</p>
                     </div>
                     <div className={"progressBarProfilExternal"}>
-                        <div style={{ width: +parseFloat(profil[0].xp / (100 * ((profil[0].level + 1) * (profil[0].level + 2)) / 2) * 100).toFixed(2) + "%" }} className={"progressBarProfilInternal"}>
+                        <div style={{ width: +parseFloat(profil[0].xp / (100 * ((profil[0].level + 1) * (profil[0].level + 2)) / 4) * 100).toFixed(2) + "%" }} className={"progressBarProfilInternal"}>
                         </div>
                     </div>
                     <div className={"filterProfil"}>
