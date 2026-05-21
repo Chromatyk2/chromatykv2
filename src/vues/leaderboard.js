@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from "react-router-dom";
 import Axios from "axios";
 import moment from "moment/moment";
 import { useCookies } from 'react-cookie';
@@ -20,6 +21,7 @@ function Leaderboard() {
             {leaderboard &&
                 leaderboard.map((val, key) => {
                     return (
+                        <Link to={"/profil?user="+val.user}>
                         <div class={"leaderboardHeaderContainer"}>
                             <p className={"rank"}>{key+1}</p>
                             <div style={{width: "92%",display: "flex",justifyContent: "space-between"} }>
@@ -45,6 +47,7 @@ function Leaderboard() {
                                 }
                             </div>
                         </div>
+                        </Link>
                     )
                 })
                 }

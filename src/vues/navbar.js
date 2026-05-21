@@ -74,35 +74,39 @@ function NavBar(props) {
     return (
         <>
             <div id={"navBar"}>
-                <Link onClick={deployNav} className="navLink linkFromNav" to="/profil">
-                    <img src={"/profil.png"} />
-                    <p>Profil</p>
+                <Link onClick={deployNav} className="navLink linkFromNav" to="/">
+                    <img src={"/rope.png"} />
+                    <p>Acceuil</p>
                 </Link>
                 {typeof cookies.user !== "undefined" &&
                     <>
-                    <Link onClick={deployNav} className="navLink linkFromNav" to="/inventaire">
-                        <img src={"/bag.png"} />
-                        <p>Inventaire</p>
-                    </Link>
-                    <Link onClick={deployNav} className="navLink linkFromNav" to="/safari">
-                        <img src={"/honey.png"} />
-                        <p>Safari</p>
-                    </Link>
-                    <Link onClick={deployNav} className="navLink linkFromNav" to="/pokedex">
-                        <img src={"/dex.png"} />
-                        <p>Pokedex</p>
-                    </Link>
-                    <Link onClick={deployNav} className="navLink linkFromNav" to="/compagnon">
-                        <img src={"/doll.png"} />
-                        <p>Compagnon</p>
-                    </Link>
-                    <Link onClick={deployNav} className="navLink linkFromNav" to="/tcg/cartes">
-                        <img src={"/card.png"} />
-                        <p>Cartes</p>
-                    </Link>
-                    <Link onClick={deployNav} className="navLink linkFromNav" to="/leaderboard">
-                        <img src={"/vs.png"} />
-                        <p>Communauté</p>
+                        <Link onClick={deployNav} className="navLink linkFromNav" to="/profil">
+                            <img src={"/profil.png"} />
+                            <p>Profil</p>
+                        </Link>
+                        <Link onClick={deployNav} className="navLink linkFromNav" to="/inventaire">
+                            <img src={"/bag.png"} />
+                            <p>Inventaire</p>
+                        </Link>
+                        <Link onClick={deployNav} className="navLink linkFromNav" to="/safari">
+                            <img src={"/honey.png"} />
+                            <p>Safari</p>
+                        </Link>
+                        <Link onClick={deployNav} className="navLink linkFromNav" to="/pokedex">
+                            <img src={"/dex.png"} />
+                            <p>Pokedex</p>
+                        </Link>
+                        <Link onClick={deployNav} className="navLink linkFromNav" to="/compagnon">
+                            <img src={"/doll.png"} />
+                            <p>Compagnon</p>
+                        </Link>
+                        <Link onClick={deployNav} className="navLink linkFromNav" to="/tcg/cartes">
+                            <img src={"/card.png"} />
+                            <p>Cartes</p>
+                        </Link>
+                        <Link onClick={deployNav} className="navLink linkFromNav" to="/leaderboard">
+                            <img src={"/vs.png"} />
+                            <p>Communauté</p>
                     </Link>
                     </>
                 }
