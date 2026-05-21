@@ -219,7 +219,7 @@ function Compagnon() {
                     canShow && (
                         rareCandy.quantity < 1 ? (
                             <div style={{ background: "none" }} className={"emptyInventory"}>
-                                <p style={{ fontSize: "18px" }} className="pseudoProfil">Tu n'as pas de Super Bonbon, récupère en sur les streams de Chromatyk <span style={{ fontSize: "10px" }}>Pense à sauvegarder en haut à droite</span></p>
+                                <p style={{ fontSize: "18px" }} className="pseudoProfil">Tu n'as pas de Super Bonbon, récupère en sur les streams de Chromatyk</p>
                                 <a className={"twitchLink"} href="https://twitch.tv/chromatyk" target="blank_">Twitch</a>
                             </div>
                         ) : (
