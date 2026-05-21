@@ -202,37 +202,6 @@ function Compagnon() {
                             <div className="fightSpriteCard" style={{filter: compagnon[0].negative === 1 ? "invert(1)" : "none",backgroundSize: "contain",backgroundImage: `url(/Sprites/${compagnon[0].shiny === 1 ? "shiny" : "normal"}/${compagnon[0].number}.gif)`}}/>
                         </>
                     )}
-                {haveCompagnon &&
-                    compagnon &&
-                    compagnon.length > 0 &&
-                    compagnon[0].level < 100 &&
-                    !chooseCompagnon &&
-                    inventory &&
-                    inventory.length > 0 &&
-                    typeof inventory.find(item => item.slug === "rarecandy") !== "undefined" &&
-                    inventory.find(item => item.slug === "rarecandy").quantity > 0 ? (
-                    <div onClick={() => levelupCompagnon(inventory.find(item => item.slug === "rarecandy").slug) } style={{background:"none"}} className="fightActionsContainer">
-                            <div className="fightActions">
-                                <img src="/rarecandy.png" />
-                                <p>Super Bonbon</p>
-                                <p>
-                                    x {inventory.find(item => item.slug === "rarecandy")?.quantity}
-                                </p>
-                            </div>
-                        </div>
-                    ) :
-                    (
-                        <div onClick={() => levelupCompagnon(inventory.find(item => item.slug === "rarecandy").slug)} style={{ background: "none" }} className="fightActionsContainer">
-                            <div className="fightActions">
-                                <img src="/rarecandy.png" />
-                                <p>Super Bonbon</p>
-                                <p>
-                                    x {inventory.find(item => item.slug === "rarecandy")?.quantity}
-                                </p>
-                            </div>
-                        </div>
-                    )
-                }
                 {
                     haveCompagnon &&
                         compagnon &&
