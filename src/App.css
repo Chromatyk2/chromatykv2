@@ -833,4 +833,7 @@ span.dexNumber {
     .navBarContent {
         width: 100%;
     }
+    .globalContainerCenter {
+        width: 100%;
+    }
 }
