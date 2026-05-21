@@ -836,7 +836,7 @@ span.dexNumber {
     .globalContainerCenter {
         width: 100%;
     }
-    .globalContainerCenter p {
+    .welcomeText p {
         margin-top: 80px;
     }
 }

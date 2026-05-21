@@ -72,7 +72,7 @@ function HomePage(props) {
     }, []);
     return (
         <div className={"globalContainerCenter"}>
-            <p>Bienvenue{typeof cookies.user !== "undefined" && "," + cookies.user.data[0].login} sur la v2 du site ! (la V1 et les cartes sont toujours disponibles <a style={{textDecoration:"none", color: "#83d7d7" }} href="https://chromatykv2.netlify.app/" target="_blank">ICI</a>)</p>             
+            <p clssName={"welcomeText"}>Bienvenue{typeof cookies.user !== "undefined" && "," + cookies.user.data[0].login} sur la v2 du site ! (la V1 et les cartes sont toujours disponibles <a style={{textDecoration:"none", color: "#83d7d7" }} href="https://chromatykv2.netlify.app/" target="_blank">ICI</a>)</p>             
             {typeof cookies.user === "undefined" &&
                 <div className={"connectionBar"}>
                     <p>Connectez-vous pour jouer !</p>
