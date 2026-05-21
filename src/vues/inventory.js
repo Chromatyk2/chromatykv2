@@ -79,7 +79,7 @@ function Inventory(props) {
                                 user: cookies.user.data[0].id,
                                 item: "Super Bonbon",
                                 slug: "rarecandy",
-                                quantity: Math.floor(Math.random() * 5)
+                                quantity: Math.floor((Math.random() * 5) + 1)
                             }).then(function (response) {
                                 Axios
                                     .get("/api/getInventory/" + cookies.user.data[0].id)
