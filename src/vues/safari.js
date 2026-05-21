@@ -210,16 +210,32 @@ function Fight() {
                         setPokemon(response.data[0]);
                         const shiny = Math.floor((Math.random() * 4096) + 1);
                         const negative = Math.floor((Math.random() * 8192) + 1);
+                        let isNegative;
+                        let isShiny;
                         if (negative == 16) {
                             setShiny(0);
                             setNegative(1);
+                            isNegative = 1;
+                            isShiny = 0;
                         } else if (shiny == 16) {
                             setShiny(1);
                             setNegative(0);
+                            isNegative = 0;
+                            isShiny = 1;
                         } else {
                             setShiny(0);
                             setNegative(0);
+                            isNegative = 0;
+                            isShiny = 0;
                         }
+                        Axios.post('/api/addSafari', {
+                            user: cookies.user.data[0].id,
+                            pokemon: response.data[0].number,
+                            love: 0,
+                            shiny: isShiny,
+                            negative: isNegative,
+                            tier: response.data[0].tier
+                        })
                     })
             })
     }
