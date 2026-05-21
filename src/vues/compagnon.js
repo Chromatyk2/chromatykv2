@@ -205,6 +205,7 @@ function Compagnon() {
                 {haveCompagnon &&
                     inventory &&
                     inventory.length > 0 &&
+                    typeof inventory.find(item => item.slug === "rarecandy") !== "undefined" &&
                     inventory.find(item => item.slug === "rarecandy").quantity > 0 &&
                     compagnon &&
                     compagnon.length > 0 &&
