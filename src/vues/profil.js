@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation, useSearchParams} from "react-router-dom";
+import { useSearchParams, Link } from "react-router-dom";
 import Axios from "axios";
-import moment from "moment/moment";
 import { useCookies } from 'react-cookie';
-import Color from 'color-thief-react';
 import { getColorSync } from 'colorthief';
 
 
