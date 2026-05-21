@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation, useParams} from "react-router-dom";
+import { useLocation, useSearchParams} from "react-router-dom";
 import Axios from "axios";
 import moment from "moment/moment";
 import { useCookies } from 'react-cookie';
@@ -23,15 +23,14 @@ function Profil() {
     const [loadSkin, setLoadSkin] = useState(false);
     const [compagnon, setCompagnon] = useState(null);
     const [compagnonList, setCompagnonList] = useState(null);
-    const { param } = useParams();
+    const [searchParams] = useSearchParams();
+    const param = searchParams.get("user");
+    useEffect(() => {
+        initPage();
+    }, [param]);
     useEffect(() => {
         initPage();
     }, []);
-    useEffect(() => {
-        initPage();
-
-        // fetchUser(id)
-    }, [param]);
     function initPage() {
         let user;
         if (new URLSearchParams(window.location.search).has("user")) {
