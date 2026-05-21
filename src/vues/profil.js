@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useLocation } from "react-router-dom";
 import Axios from "axios";
 import moment from "moment/moment";
 import { useCookies } from 'react-cookie';
@@ -23,15 +24,21 @@ function Profil() {
     const [compagnon, setCompagnon] = useState(null);
     const [compagnonList, setCompagnonList] = useState(null);
     useEffect(() => {
+        let user;
+        if (new URLSearchParams(window.location.search).has("user")) {
+            user = new URLSearchParams(window.location.search).get("user");
+        } else {
+            user = cookies.user.data[0].id;
+        }
         Axios
-            .get("/api/getUser/" + cookies.user.data[0].id)
+            .get("/api/getUser/" + user)
             .then(function (response) {
                 Axios.post('/api/updateLevel', {
-                    user: cookies.user.data[0].id,
+                    user: user,
                     level: Math.floor((Math.sqrt(1 + (8 * response.data[0].xp) / 100) - 1) / 2)
                 }).then(function (response) {
                 Axios
-                    .get("/api/getUser/" + cookies.user.data[0].id)
+                    .get("/api/getUser/" + user)
                     .then(function (response) {
                         setProfil(response.data);
                         setIndex();
@@ -41,7 +48,7 @@ function Profil() {
                             setColor(getColorSync(img).hex());
                         };
                         Axios
-                            .get("/api/getActiveCompagnon/" + cookies.user.data[0].id + "/" + response.data[0].compagnon)
+                            .get("/api/getActiveCompagnon/" + user + "/" + response.data[0].compagnon)
                             .then(function (response) {
                                 setCompagnon(response.data);
                             })
@@ -197,11 +204,13 @@ function Profil() {
                         <div style={{ width: +parseFloat(profil[0].xp / (100 * ((profil[0].level + 1) * (profil[0].level + 2)) / 2) * 100).toFixed(2) + "%" }} className={"progressBarProfilInternal"}>
                         </div>
                     </div>
-                    <div className={"filterProfil"}>
-                        <button className={body === 1 && "active"} onClick={() => changePage(1)}>Profil</button>
-                        <button className={body === 2 && "active"} onClick={() => changePage(2)}>Skins</button>
-                        <button className={body === 3 && "active"} onClick={() => changePage(3)}>Pokémons</button>
-                    </div>                    
+                    {!new URLSearchParams(window.location.search).has("user")
+                        < div className={"filterProfil"}>
+                            <button className={body === 1 && "active"} onClick={() => changePage(1)}>Profil</button>
+                            <button className={body === 2 && "active"} onClick={() => changePage(2)}>Skins</button>
+                            <button className={body === 3 && "active"} onClick={() => changePage(3)}>Pokémons</button>
+                        </div>  
+                    }                  
                     <div className={"profilBody"}>
                         {body === 1 &&
                             <>

@@ -220,6 +220,14 @@ a.navLink.linkFromNav p {
     justify-content: space-between;
     width: 100%;
 }
+a.leaderboardHeaderContainerLink {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    text-decoration: none;
+    color: white;
+}
 .leaderboardHeaderContainer {
     display: flex;
     flex-direction: row;

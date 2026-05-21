@@ -21,7 +21,7 @@ function Leaderboard() {
             {leaderboard &&
                 leaderboard.map((val, key) => {
                     return (
-                        <Link to={"/profil?user="+val.user}>
+                        <Link class="leaderboardHeaderContainerLink" to={"/profil?user="+val.user}>
                         <div class={"leaderboardHeaderContainer"}>
                             <p className={"rank"}>{key+1}</p>
                             <div style={{width: "92%",display: "flex",justifyContent: "space-between"} }>
