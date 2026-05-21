@@ -171,6 +171,22 @@ a.navLink.linkFromNav p {
     align-items: center;
 }
 /* PROFIL */
+.showPokedex {
+    width: fit-content;
+    padding: 2px;
+    background: #fff3;
+    border: 2px solid #a4b3bd;
+    border-radius: 5px;
+    color: #fff;
+    font-family: Charge Vector Black;
+    letter-spacing: 1px;
+}
+.showPokedex:hover {
+    background: #05487380;
+    border: 2px solid #054873;
+    cursor: pointer;
+}
+}
 .filterProfil {
     display: flex;
     flex-wrap: wrap;

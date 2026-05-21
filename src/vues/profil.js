@@ -230,7 +230,7 @@ function Profil() {
                     <div className={"profilBody"}>
                         {body === 1 &&
                             <>
-                            <p style={{ width: "100%", textAlign: "left", fontSize: "15px" }}>Progression <Link class="leaderboardHeaderContainerLink" to={"/pokedex?user=" + profil[0].login}>Voir</Link></p>
+                            <p style={{alignItems:"center", display:"flex", gap:"15px", width: "100%", textAlign: "left", fontSize: "15px" }}>Progression <Link class="showPokedex leaderboardHeaderContainerLink" to={"/pokedex?user=" + profil[0].id}>Voir</Link></p>
                                 {profil &&
                                     <>
                                         {profil.length > 0 &&
