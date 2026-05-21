@@ -84,6 +84,7 @@ function HomePage(props) {
                     <Login />
                 </div>
             }
+            <p>Rejoins les streams et viens discuter ! <a href="https://twitch.tv/chromatyk" target="_blank">Twitch Chromatyk</a></p>
             <p className="pseudoProfil">Dernier shiny capturé</p>
             {shinydex &&
                 <div className={"shinydexCard"}>
