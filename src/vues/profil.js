@@ -219,7 +219,7 @@ function Profil() {
                     <div className={"filterProfil"}>
                         <button className={body === 1 && "active"} onClick={() => changePage(1)}>Profil</button>
                         <button className={body === 2 && "active"} onClick={() => changePage(2)}>Skins</button>
-                        <button className={body === 3 && "active"} onClick={() => changePage(3)}>Pokémons</button>
+                        <button className={body === 3 && "active"} onClick={() => changePage(3)}>Compagnons N.100</button>
                     </div>         
                     <div className={"profilBody"}>
                         {body === 1 &&
