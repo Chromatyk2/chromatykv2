@@ -180,7 +180,7 @@ a.navLink.linkFromNav p {
     color: #fff;
     font-family: Charge Vector Black;
     letter-spacing: 1px;
-    width: fit-content;
+    width: fit-content!important;
 }
 .showPokedex:hover {
     background: #05487380;
