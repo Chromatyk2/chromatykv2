@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useSearchParams } from "react-router-dom";
 import Axios from "axios";
 import moment from "moment/moment";
 import { useCookies } from 'react-cookie';
@@ -11,15 +12,29 @@ function Pokedex() {
     const [gen, setGen] = useState(0);
     const [isShiny, setIsShiny] = useState(0);
     const [isNegative, setIsNegative] = useState(0);
-    const [genList, setGenList] = useState([1,2,3,4,5,6,7,8,9])
+    const [genList, setGenList] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9])
+    const [searchParams] = useSearchParams();
+    const param = searchParams.get("user");
     useEffect(() => {
+        initPage();
+    }, [param]);
+    useEffect(() => {
+        initPage();
+    }, []);
+    function initPage() {
+        let user;
+        if (new URLSearchParams(window.location.search).has("user")) {
+            user = new URLSearchParams(window.location.search).get("user");
+        } else {
+            user = cookies.user.data[0].id;
+        }
         Axios
-            .get("/api/getPokedex/"+cookies.user.data[0].id)
+            .get("/api/getPokedex/" + user)
             .then(function (response) {
                 setPokedex(response.data)
                 setFilteredPokedex(response.data)
             })
-    }, []);
+    }
     function filterGen(e) {
         setGen(e);
         if (e > 0) {
