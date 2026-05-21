@@ -130,6 +130,19 @@ function Compagnon() {
             })
         }
     }
+    const rareCandy = inventory?.find(
+        item => item.slug === "rarecandy"
+    );
+
+    const canShow =
+        haveCompagnon &&
+        compagnon &&
+        compagnon.length > 0 &&
+        compagnon[0].level < 100 &&
+        !chooseCompagnon &&
+        inventory &&
+        inventory.length > 0 &&
+        rareCandy;
     return (
         <div className={"globalContainerCenter"}>
             <p>Compagnon</p>
@@ -203,30 +216,19 @@ function Compagnon() {
                         </>
                     )}
                 {
-                    haveCompagnon &&
-                        compagnon &&
-                        compagnon.length > 0 &&
-                        compagnon[0].level < 100 &&
-                        !chooseCompagnon &&
-                        inventory &&
-                        inventory.length > 0 &&
-                        typeof inventory.find(item => item.slug === "rarecandy") !== "undefined" &&
-                        inventory.find(item => item.slug === "rarecandy").quantity < 1
-                        ?
-                        <div style={{ background: "none" }} className={"emptyInventory"}>
-                            <p style={{ fontSize: "18px" }} className="pseudoProfil">Tu n'as pas de Super Bonbon, récupère en sur les streams de Chromatyk <span style={{ fontSize: "10px" }}>Pense à sauvegarder en haut à droite</span></p>
-                            <a className={"twitchLink"} href="https://twitch.tv/chromatyk" target="blank_">Twitch</a>
-                        </div>
-                        :
-                        <div onClick={() => levelupCompagnon(inventory.find(item => item.slug === "rarecandy").slug)} style={{ background: "none" }} className="fightActionsContainer">
-                            <div className="fightActions">
-                                <img src="/rarecandy.png" />
-                                <p>Super Bonbon</p>
-                                <p>
-                                    x {inventory.find(item => item.slug === "rarecandy")?.quantity}
-                                </p>
+                    canShow && (
+                        rareCandy.quantity < 1 ? (
+                            <div className="emptyInventory">
+                                Pas de bonbon
                             </div>
-                        </div>
+                        ) : (
+                            <div
+                                onClick={() => levelupCompagnon(rareCandy.slug)}
+                            >
+                                x {rareCandy.quantity}
+                            </div>
+                        )
+                    )
                 }
             </div>
         </div>
