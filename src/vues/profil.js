@@ -64,7 +64,7 @@ function Profil() {
                 level: profil[0].level,
                 xp: profil[0].xp,
                 skin: e,
-                compagnon: compagnon[0].number
+                compagnon: profil[0].number
             })
                 .then(function (response) {
                     Axios.get("/api/getUser/" + cookies.user.data[0].id)
