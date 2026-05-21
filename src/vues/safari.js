@@ -139,7 +139,7 @@ function Fight() {
                                             }                                         
                                             Axios.post('/api/updateXp', {
                                                 user: cookies.user.data[0].id,
-                                                xp: (Math.floor(Math.random() * (pokemon.tier * 10 + 1)) + pokemon.tier*10) + bonusXP
+                                                xp: Math.floor(Math.random() * (pokemon.tier * 50 + 1)) + (pokemon.tier * 100) + bonusXP
                                             })
                                             .then(function (response) {
                                                 setPokemon(null);
