@@ -104,12 +104,12 @@ function NavBar(props) {
                             <img src={"/card.png"} />
                             <p>Cartes</p>
                         </Link>
-                        <Link onClick={deployNav} className="navLink linkFromNav" to="/leaderboard">
-                            <img src={"/vs.png"} />
-                            <p>Communauté</p>
-                    </Link>
                     </>
                 }
+                <Link onClick={deployNav} className="navLink linkFromNav" to="/leaderboard">
+                    <img src={"/vs.png"} />
+                    <p>Communauté</p>
+                </Link>
                 <Link onClick={deployNav} className="navLink linkFromNav" to="/shiny">
                     <img src={"/shiny.png"} />
                     <p>Shiny Dex</p>
