@@ -35,7 +35,7 @@ function Profil() {
             .then(function (response) {
                 Axios.post('/api/updateLevel', {
                     user: user,
-                    level: Math.floor((Math.sqrt(1 + (16 * response.data[0].xp) / 100) - 1) / 2) + 1
+                    level: Math.floor((Math.sqrt(1 + (16 * response.data[0].xp) / 100) - 1) / 2 + 1)
                 }).then(function (response) {
                 Axios
                     .get("/api/getUser/" + user)
