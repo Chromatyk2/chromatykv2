@@ -204,8 +204,8 @@ function Profil() {
                         <div style={{ width: +parseFloat(profil[0].xp / (100 * ((profil[0].level + 1) * (profil[0].level + 2)) / 2) * 100).toFixed(2) + "%" }} className={"progressBarProfilInternal"}>
                         </div>
                     </div>
-                    {!new URLSearchParams(window.location.search).has("user")
-                        < div className={"filterProfil"}>
+                    {!new URLSearchParams(window.location.search).has("user") &&
+                        <div className={"filterProfil"}>
                             <button className={body === 1 && "active"} onClick={() => changePage(1)}>Profil</button>
                             <button className={body === 2 && "active"} onClick={() => changePage(2)}>Skins</button>
                             <button className={body === 3 && "active"} onClick={() => changePage(3)}>Pokémons</button>
