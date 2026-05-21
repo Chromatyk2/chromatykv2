@@ -51,11 +51,19 @@ function HomePage(props) {
                                         quantity: 10
                                     })
                                     .then(function (response) {
-                                        Axios
-                                            .get("/api/getShinydex")
-                                            .then(function (response) {
-                                                setShinydex(response.data.sort((a, b) => b.id - a.id))
-                                            })
+                                        Axios.post('/api/addCandy', {
+                                            user: cookies.user.data[0].id,
+                                            item: "Super Bonbon",
+                                            slug: "rarecandy",
+                                            quantity: 0
+                                        })
+                                        .then(function (response) {
+                                            Axios
+                                                .get("/api/getShinydex")
+                                                .then(function (response) {
+                                                    setShinydex(response.data.sort((a, b) => b.id - a.id))
+                                                })
+                                        })
                                     })
                                 })
                             })
