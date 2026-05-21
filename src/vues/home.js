@@ -17,39 +17,55 @@ function HomePage(props) {
                     setShinydex(response.data.sort((a, b) => b.id - a.id))
                 })
         } else {
-            Axios.post('/api/addProfil', {
-                user: cookies.user.data[0].id,
-                login: cookies.user.data[0].login,
-                level: 1,
-                xp: 0,
-                skin: 9999,
-                compagnon: 0
-            }).then(function (response) {
-                Axios.post('/api/addCandy', {
-                    user: cookies.user.data[0].id,
-                    item: "Miel Ordinaire",
-                    slug: "honey",
-                    quantity: 1
-                })
-                Axios.post('/api/addCandy', {
-                    user: cookies.user.data[0].id,
-                    item: "Bonbon S",
-                    slug: "exps",
-                    quantity: 10
-                })
-                Axios.post('/api/addCandy', {
-                    user: cookies.user.data[0].id,
-                    item: "Poke Ball",
-                    slug: "ball",
-                    quantity: 10
-                }).then(function (response) {
-                    Axios
-                        .get("/api/getShinydex")
-                        .then(function (response) {
-                            setShinydex(response.data.sort((a, b) => b.id - a.id))
+            Axios
+                .get("/api/getUser/" + cookies.user.data[0].id)
+                .then(function (response) {
+                    if (response.data.length < 1) {
+
+                        Axios.post('/api/addProfil', {
+                            user: cookies.user.data[0].id,
+                            login: cookies.user.data[0].login,
+                            level: 1,
+                            xp: 0,
+                            skin: 9999,
+                            compagnon: 0
+                        }).then(function (response) {
+                            Axios.post('/api/addCandy', {
+                                user: cookies.user.data[0].id,
+                                item: "Miel Ordinaire",
+                                slug: "honey",
+                                quantity: 1
+                            }).then(function (response) {
+                                Axios.post('/api/addCandy', {
+                                    user: cookies.user.data[0].id,
+                                    item: "Bonbon S",
+                                    slug: "exps",
+                                    quantity: 10
+                                }).then(function (response) {
+                                    Axios.post('/api/addCandy', {
+                                        user: cookies.user.data[0].id,
+                                        item: "Bonbon S",
+                                        slug: "exps",
+                                        quantity: 10
+                                    }).then(function (response) {
+                                        Axios.post('/api/addCandy', {
+                                            user: cookies.user.data[0].id,
+                                            item: "Poke Ball",
+                                            slug: "ball",
+                                            quantity: 10
+                                        })
+                                    }).then(function (response) {
+                                        Axios
+                                            .get("/api/getShinydex")
+                                            .then(function (response) {
+                                                setShinydex(response.data.sort((a, b) => b.id - a.id))
+                                            })
+                                    })
+                                })
+                            })
                         })
-                })
-            })
+                    }
+                }
         }
     }, []);
     return (
