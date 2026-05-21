@@ -57,56 +57,61 @@ function Profil() {
             })
     }, []);
     function changeSkin(e) {
-        Axios.post('/api/addProfil', {
-            user:cookies.user.data[0].id,
-            login:cookies.user.data[0].login,
-            level:profil[0].level,
-            xp: profil[0].xp,
-            skin: e,
-            compagnon: compagnon[0].number
-        })
-        .then(function (response) {
-            Axios.get("/api/getUser/" + cookies.user.data[0].id)
-            .then(function (response) {
-                setProfil(response.data);
-                setIndex();
-                const img = new Image();
-                img.src = "/Skins/Trainer" + response.data[0].skin + ".png";
-
-                img.onload = () => {
-                    setColor(getColorSync(img).hex());
-                };
+        if (!new URLSearchParams(window.location.search).has("user")) {
+            Axios.post('/api/addProfil', {
+                user: cookies.user.data[0].id,
+                login: cookies.user.data[0].login,
+                level: profil[0].level,
+                xp: profil[0].xp,
+                skin: e,
+                compagnon: compagnon[0].number
             })
-        })
+                .then(function (response) {
+                    Axios.get("/api/getUser/" + cookies.user.data[0].id)
+                        .then(function (response) {
+                            setProfil(response.data);
+                            setIndex();
+                            const img = new Image();
+                            img.src = "/Skins/Trainer" + response.data[0].skin + ".png";
+
+                            img.onload = () => {
+                                setColor(getColorSync(img).hex());
+                            };
+                        })
+                })
+        }
     }
     function changeActiveCompagnon(e) {
-        Axios.post('/api/addProfil', {
-            user: cookies.user.data[0].id,
-            login: cookies.user.data[0].login,
-            level: profil[0].level,
-            xp: profil[0].xp,
-            skin: profil[0].skin,
-            compagnon: e
-        })
-            .then(function (response) {
-                Axios.get("/api/getUser/" + cookies.user.data[0].id)
-                    .then(function (response) {
-                        setProfil(response.data);
-                        setIndex();
-                        const img = new Image();
-                        img.src = "/Skins/Trainer" + response.data[0].skin + ".png";
-                        img.onload = () => {
-                            setColor(getColorSync(img).hex());
-                        };
-                        Axios
-                            .get("/api/getActiveCompagnon/" + cookies.user.data[0].id + "/" + response.data[0].compagnon)
-                            .then(function (response) {
-                                setCompagnon(response.data);
-                            })
-                    })
+        if (!new URLSearchParams(window.location.search).has("user")) {
+            Axios.post('/api/addProfil', {
+                user: cookies.user.data[0].id,
+                login: cookies.user.data[0].login,
+                level: profil[0].level,
+                xp: profil[0].xp,
+                skin: profil[0].skin,
+                compagnon: e
             })
+                .then(function (response) {
+                    Axios.get("/api/getUser/" + cookies.user.data[0].id)
+                        .then(function (response) {
+                            setProfil(response.data);
+                            setIndex();
+                            const img = new Image();
+                            img.src = "/Skins/Trainer" + response.data[0].skin + ".png";
+                            img.onload = () => {
+                                setColor(getColorSync(img).hex());
+                            };
+                            Axios
+                                .get("/api/getActiveCompagnon/" + cookies.user.data[0].id + "/" + response.data[0].compagnon)
+                                .then(function (response) {
+                                    setCompagnon(response.data);
+                                })
+                        })
+                })
+        }
     }
     function addSkin() {
+        if (!new URLSearchParams(window.location.search).has("user")) {
         setLoadSkin(true);
         if (skins.length < profil[0].level) {
             Axios.post('/api/addNewSkin', {
@@ -115,18 +120,25 @@ function Profil() {
                 .then(function (response) {
                     changePage(2);
             })
+            }
         }
     }
     function changePage(e) {
+        let user;
+        if (new URLSearchParams(window.location.search).has("user")) {
+            user = new URLSearchParams(window.location.search).get("user");
+        } else {
+            user = cookies.user.data[0].id;
+        }
         if (e === 3) {
-            Axios.get("/api/getMaxLevelCompagnon/" + cookies.user.data[0].id)
+            Axios.get("/api/getMaxLevelCompagnon/" + user)
                     .then((response) => {
                         setCompagnonList(response.data);
                         setBody(e);
                     })
         } else if (e === 2) {
             Axios
-                .get("/api/getTrainers/" + cookies.user.data[0].id)
+                .get("/api/getTrainers/" + user)
                 .then(async (response) => {
 
                     const newSkins = [];
@@ -204,13 +216,11 @@ function Profil() {
                         <div style={{ width: +parseFloat(profil[0].xp / (100 * ((profil[0].level + 1) * (profil[0].level + 2)) / 2) * 100).toFixed(2) + "%" }} className={"progressBarProfilInternal"}>
                         </div>
                     </div>
-                    {!new URLSearchParams(window.location.search).has("user") &&
-                        <div className={"filterProfil"}>
-                            <button className={body === 1 && "active"} onClick={() => changePage(1)}>Profil</button>
-                            <button className={body === 2 && "active"} onClick={() => changePage(2)}>Skins</button>
-                            <button className={body === 3 && "active"} onClick={() => changePage(3)}>Pokémons</button>
-                        </div>  
-                    }                  
+                    <div className={"filterProfil"}>
+                        <button className={body === 1 && "active"} onClick={() => changePage(1)}>Profil</button>
+                        <button className={body === 2 && "active"} onClick={() => changePage(2)}>Skins</button>
+                        <button className={body === 3 && "active"} onClick={() => changePage(3)}>Pokémons</button>
+                    </div>         
                     <div className={"profilBody"}>
                         {body === 1 &&
                             <>
@@ -262,6 +272,7 @@ function Profil() {
                             loadSkin === false &&
                             skins &&
                             skins.length < profil[0].level &&
+                            !new URLSearchParams(window.location.search).has("user") &&
                             <div class={"openSkinDiv"} onClick={addSkin}>
                                 <p className={"openSkinText"}>{profil[0].level - skins.length}</p>
                             </div>
