@@ -72,12 +72,7 @@ function HomePage(props) {
     }, []);
     return (
         <div className={"globalContainerCenter"}>
-            {typeof cookies.user === "undefined" ?
-                <p>Bienvenue</p>
-                :
-                <p>Bienvenue,{cookies.user.data[0].login}</p>
-            }
-            
+                <p>Bienvenue{typeof cookies.user === "undefined" && ","+ cookies.user.data[0].login} sur la v2 du site ! (la V1 et les crtes sont toujours disponibles <a href="https://chromatykv2.netlify.app/" target="_blank">ICI</a></p>             
             {typeof cookies.user === "undefined" &&
                 <div className={"connectionBar"}>
                     <p>Connectez-vous pour jouer !</p>

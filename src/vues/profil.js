@@ -192,7 +192,7 @@ function Profil() {
                             </div>
                             {/*<img className={"profilPicture"} style={{ background: color }} src={"/Skins/Trainer"+profil[0].skin+".png"} />*/}
                             <div className={"profilInfos"}>
-                                <p>{profil[0]..login}</p>
+                                <p>{profil[0].login}</p>
                                 <p className={"levelProfil"}>Niveau {profil[0].level}</p>
                             </div>
                         </div>
