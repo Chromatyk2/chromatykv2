@@ -10,7 +10,7 @@ import Login from './auth.services.js';
 function Log() {
     useEffect(() => {
         setTimeout(function () {
-            window.location.href = "https://chromatykv2.netlify.app/";
+            window.location.href = "https://chromatyk.fr/";
         }, 2000);
     }, []);
     return (
