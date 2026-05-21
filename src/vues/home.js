@@ -46,28 +46,26 @@ function HomePage(props) {
                                 .then(function (response) {
                                     Axios.post('/api/addCandy', {
                                         user: cookies.user.data[0].id,
-                                        item: "Bonbon S",
-                                        slug: "exps",
+                                        item: "Poke Ball",
+                                        slug: "ball",
                                         quantity: 10
                                     })
                                     .then(function (response) {
-                                        Axios.post('/api/addCandy', {
-                                            user: cookies.user.data[0].id,
-                                            item: "Poke Ball",
-                                            slug: "ball",
-                                            quantity: 10
-                                        })
-                                        .then(function (response) {
-                                            Axios
-                                                .get("/api/getShinydex")
-                                                .then(function (response) {
-                                                    setShinydex(response.data.sort((a, b) => b.id - a.id))
-                                                })
-                                        })
+                                        Axios
+                                            .get("/api/getShinydex")
+                                            .then(function (response) {
+                                                setShinydex(response.data.sort((a, b) => b.id - a.id))
+                                            })
                                     })
                                 })
                             })
                         })
+                    } else {
+                        Axios
+                            .get("/api/getShinydex")
+                            .then(function (response) {
+                                setShinydex(response.data.sort((a, b) => b.id - a.id))
+                            })
                     }
                 })
             }
