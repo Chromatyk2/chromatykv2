@@ -29,7 +29,8 @@ function Inventory(props) {
         "expm",
         "expl",
         "rarecandy",
-        "megacandy"
+        "megacandy",
+        "fragement"
 
     ];
     const visibleInventory = inventory.filter(item => item.quantity > 0);

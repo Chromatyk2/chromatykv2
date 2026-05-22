@@ -265,8 +265,38 @@ function Profil() {
             }
         }
     }
-    function recoverExpedition() {
-        setValidatedExpedition(true);
+    function recoverExpedition(id, shiny, negative) {
+        if (expedition.length > 0) {
+            Axios.delete('/api/deleteExpedition/' + cookies.user.data[0].id)
+                .then(function (response) {
+                    let fragementToWin;
+                    if (shiny === 1) {
+                        fragementToWin = Math.floor((Math.random() * 3) + 3)
+                    } else if (negative === 1) {
+                        fragementToWin = 5
+                    } else {
+                        fragementToWin = Math.floor((Math.random() * 3) + 1)
+                    }
+                    Axios.post('/api/addCandy', {
+                        user: cookies.user.data[0].id,
+                        item: "Fragement de Pack",
+                        slug: "fragement",
+                        quantity: fragementToWin
+                    }).then(function (response) {
+                        let user;
+                        if (new URLSearchParams(window.location.search).has("user")) {
+                            user = new URLSearchParams(window.location.search).get("user");
+                        } else {
+                            user = cookies.user.data[0].id;
+                        }
+                        Axios.get("/api/getExpedition/" + user)
+                            .then((response) => {
+                                setExpedition(response.data);
+                                setValidatedExpedition(true);
+                            })
+                    })
+                })
+        }
     }
     return (
         <div className={"globalContainer"}>
@@ -407,7 +437,7 @@ function Profil() {
 
                                                 <button
                                                     onClick={() => {
-                                                        recoverExpedition();
+                                                            recoverExpedition(expedition[0].id, expedition[0].shiny, expedition[0].negative);
                                                     }}
                                                 >
                                                     Récupérer
