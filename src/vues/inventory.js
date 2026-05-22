@@ -13,6 +13,68 @@ function Inventory(props) {
             setInventory(response.data);
         })
     }, []);
+    const visibleInventory = inventory.filter(item => item.quantity > 0);
+
+    const sortedInventory = [
+        ...visibleInventory.filter(item => item.slug === "box"),
+        ...visibleInventory.filter(item => item.slug !== "box")
+    ];
+
+    const getImage = (slug) => {
+        const honeyVariants = [
+            "honey",
+            "shiny",
+            "legendary",
+            "negative"
+        ];
+
+        return honeyVariants.includes(slug)
+            ? "/honey.png"
+            : `/${slug}.png`;
+    };
+
+    const getStyle = (slug) => {
+        switch (slug) {
+            case "box":
+                return {
+                    backgroundColor: "rgba(255,255,255,0.1)",
+                    filter:
+                        "drop-shadow(white 0px 0px 5px) hue-rotate(352deg) contrast(1.1)"
+                };
+
+            case "megacandy":
+                return {
+                    filter: "hue-rotate(182deg)"
+                };
+
+            case "honey":
+                return {
+                    filter:
+                        "drop-shadow(white 0px 0px 5px) hue-rotate(352deg) contrast(1.1)"
+                };
+
+            case "shiny":
+                return {
+                    filter:
+                        "drop-shadow(gold 0px 0px 5px) hue-rotate(15deg) contrast(1.3)"
+                };
+
+            case "legendary":
+                return {
+                    filter:
+                        "drop-shadow(red 0px 0px 5px) hue-rotate(303deg) contrast(1.1)"
+                };
+
+            case "negative":
+                return {
+                    filter:
+                        "drop-shadow(gold 0px 0px 5px) hue-rotate(15deg) contrast(1.3) invert(1)"
+                };
+
+            default:
+                return {};
+        }
+    };
     function openLootbox() {
         if (inventory.find((item) => item.slug === "box").quantity - 1 >= 0) {
             Axios.post('/api/removeItem', {
@@ -116,63 +178,60 @@ function Inventory(props) {
         }
     }
     return (
-        <div className={"globalContainerCenter"}>
-            {inventory &&
-                inventory.filter(item => item.quantity > 0).length > 0 ? 
+        <div className="globalContainerCenter">
+
+            {sortedInventory.length > 0 ? (
                 <>
                     <p className="pseudoProfil">Inventaire</p>
-                    <div className={"inventoryContainer"}>
-                        {inventory &&
-                            inventory.filter(item => item.slug === "box").map((val, key) => {
-                                return (
-                                    val.slug === "box" ?
-                                        val.quantity > 0 &&
-                                        <div onClick={openLootbox} style={{ backgroundColor: "rgba(255, 255, 255, 0.1)", filter: "drop-shadow(white 0px 0px 5px) hue-rotate(352deg) contrast(1.1)" }} className={"honeyActions"}>
-                                            <img src={"/" + val.slug + ".png"} />
-                                            <p>{val.item}</p>
-                                            <p>x {val.quantity}</p>
-                                        </div>
-                                        :
-                                        val.quantity > 0 &&
-                                        <div className={"honeyActions"}>
-                                            <img style={{ filter: val.slug == "honey" ? "drop-shadow(white 0px 0px 5px) hue-rotate(352deg) contrast(1.1)" : val.slug == "shiny" ? "drop-shadow(gold 0px 0px 5px) hue-rotate(15deg) contrast(1.3)" : val.slug == "legendary" ? "drop-shadow(red 0px 0px 5px) hue-rotate(303deg) contrast(1.1)" : val.slug == "negative" && "drop-shadow(gold 0px 0px 5px) hue-rotate(15deg) contrast(1.3) invert(1)" }} src={"/" + val.slug == "honey" || val.slug == "shiny" || val.slug == "legendary" || val.slug == "negative" ? "honey.png" : val.slug + ".png"} />
-                                            <p>{val.item}</p>
-                                            <p>x {val.quantity}</p>
-                                        </div>
 
-                                )
-                            })
-                        }
-                        {inventory &&
-                            inventory.filter(item => item.slug !== "box").map((val, key) => {
-                                return (
-                                    val.slug === "box" ?
-                                        val.quantity > 0 &&
-                                        <div onClick={openLootbox} style={{ backgroundColor: "rgba(255, 255, 255, 0.1)", filter: "drop-shadow(white 0px 0px 5px) hue-rotate(352deg) contrast(1.1)" }} className={"honeyActions"}>
-                                            <img src={"/" + val.slug + ".png"} />
-                                            <p>{val.item}</p>
-                                            <p>x {val.quantity}</p>
-                                        </div>
-                                        :
-                                        val.quantity > 0 &&
-                                        <div className={"honeyActions"}>
-                                                <img style={{ filter: val.slug == "megacandy" ? "hue-rotate(182deg)" : val.slug == "honey" ? "drop-shadow(white 0px 0px 5px) hue-rotate(352deg) contrast(1.1)" : val.slug == "shiny" ? "drop-shadow(gold 0px 0px 5px) hue-rotate(15deg) contrast(1.3)" : val.slug == "legendary" ? "drop-shadow(red 0px 0px 5px) hue-rotate(303deg) contrast(1.1)" : val.slug == "negative" && "drop-shadow(gold 0px 0px 5px) hue-rotate(15deg) contrast(1.3) invert(1)" }} src={"/" + val.slug == "honey" || val.slug == "shiny" || val.slug == "legendary" || val.slug == "negative" ? "honey.png" : val.slug + ".png"} />
-                                            <p>{val.item}</p>
-                                            <p>x {val.quantity}</p>
-                                        </div>
+                    <div className="inventoryContainer">
 
-                                )
-                            })
-                        }
+                        {sortedInventory.map((val) => (
+                            <div
+                                key={val.slug}
+                                className="honeyActions"
+                                style={val.slug === "box" ? getStyle(val.slug) : {}}
+                                onClick={
+                                    val.slug === "box"
+                                        ? openLootbox
+                                        : undefined
+                                }
+                            >
+                                <img
+                                    src={getImage(val.slug)}
+                                    style={
+                                        val.slug !== "box"
+                                            ? getStyle(val.slug)
+                                            : {}
+                                    }
+                                />
+
+                                <p>{val.item}</p>
+
+                                <p>x {val.quantity}</p>
+                            </div>
+                        ))}
+
                     </div>
                 </>
-                :
+            ) : (
                 <>
-                    <p className="pseudoProfil">Ton inventaire est vide, récupère des objets et des boosters sur les stream de Chromatyk</p>
-                    <a className={"twitchLink"} href="https://twitch.tv/chromatyk" target="blank_">Twitch</a>
+                    <p className="pseudoProfil">
+                        Ton inventaire est vide, récupère des objets et des boosters sur les streams de Chromatyk
+                    </p>
+
+                    <a
+                        className="twitchLink"
+                        href="https://twitch.tv/chromatyk"
+                        target="_blank"
+                        rel="noreferrer"
+                    >
+                        Twitch
+                    </a>
                 </>
-            }
-         </div>
+            )}
+
+        </div>
     )
 }
 
