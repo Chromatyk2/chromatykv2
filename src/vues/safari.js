@@ -41,13 +41,13 @@ function Fight() {
                                             setNegative(response.data[0].negative)
                                             setPokemon({ name: response.data[0].name, number: response.data[0].pokemon, tier: response.data[0].tier, gen: response.data[0].gen })
                                             if (response.data[0].tier == 1) {
-                                                setMaxLove(50);
+                                                setMaxLove(125);
                                             } else if (response.data[0].tier == 2) {
-                                                setMaxLove(100);
+                                                setMaxLove(375);
                                             } else if (response.data[0].tier == 3) {
-                                                setMaxLove(150);
+                                                setMaxLove(650);
                                             } else {
-                                                setMaxLove(250);
+                                                setMaxLove(1000);
                                             }
                                         }
                                     })
@@ -220,19 +220,19 @@ function Fight() {
         Axios.get("/api/getPokedex/" + cookies.user.data[0].id)
             .then(function (response) {
                 setPokedex(response.data)
-                const tierRoll = Math.random() * 100;
-                if (tierRoll < 39) {
-                    var tier = 1;
-                    setMaxLove(50);
-                } else if (tierRoll < 89) {
-                    var tier = 2;
-                    setMaxLove(100);
-                } else if (tierRoll < 99) {
-                    var tier = 3;
-                    setMaxLove(150);
-                } else {
+                const tierRoll = Math.random();
+                if (tierRoll < 0.01) {
                     var tier = 4;
-                    setMaxLove(250);
+                    setMaxLove(1000);
+                } else if (tierRoll < 0.11) {
+                    var tier = 3;
+                    setMaxLove(650);
+                } else if (tierRoll < 0.41) {
+                    var tier = 2;
+                    setMaxLove(375);
+                } else {
+                    var tier = 1;
+                    setMaxLove(125);
                 }
                 Axios.get("/api/getRandomPokemon/" + tier)
                     .then(function (response) {
@@ -269,7 +269,7 @@ function Fight() {
             })
     }
     function getLegendaryPokemon() {
-        setMaxLove(250)
+        setMaxLove(1000)
         Axios.get("/api/getRandomPokemon/4")
             .then(function (response) {
                 setPokemon(response.data[0])
@@ -289,18 +289,18 @@ function Fight() {
     }
     function getShinyPokemon() {
         const tierRoll = Math.random() * 100;
-        if (tierRoll < 39) {
-            var tier = 1;
-            setMaxLove(125)
-        } else if (tierRoll < 89) {
-            var tier = 2;
-            setMaxLove(375)
-        } else if (tierRoll < 99) {
-            var tier = 3;
-            setMaxLove(650)
-        } else {
+        if (tierRoll < 0.01) {
             var tier = 4;
             setMaxLove(1000)
+        } else if (tierRoll < 0.11) {
+            var tier = 3;
+            setMaxLove(650)
+        } else if (tierRoll < 0.41) {
+            var tier = 2;
+            setMaxLove(375)
+        } else {
+            var tier = 1;
+            setMaxLove(125)
         }
         Axios.get("/api/getRandomPokemon/" + tier)
             .then(function (response) {
@@ -311,18 +311,18 @@ function Fight() {
     }
     function getNegativePokemon() {
         const tierRoll = Math.random() * 100;
-        if (tierRoll < 39) {
-            var tier = 1;
-            setMaxLove(50)
-        } else if (tierRoll < 89) {
-            var tier = 2;
-            setMaxLove(100)
-        } else if (tierRoll < 99) {
-            var tier = 3;
-            setMaxLove(150)
-        } else {
+        if (tierRoll < 0.01) {
             var tier = 4;
-            setMaxLove(250)
+            setMaxLove(1000)
+        } else if (tierRoll < 0.11) {
+            var tier = 3;
+            setMaxLove(650)
+        } else if (tierRoll < 0.41) {
+            var tier = 2;
+            setMaxLove(375)
+        } else {
+            var tier = 1;
+            setMaxLove(125)
         }
         Axios.get("/api/getRandomPokemon/" + tier)
             .then(function (response) {

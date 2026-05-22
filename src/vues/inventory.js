@@ -20,11 +20,11 @@ function Inventory(props) {
                 slug: "box"
             }).then(function (response) {
                 const candyTier = Math.random();
-                if (candyTier < 10) {
+                if (candyTier < 0.10) {
                     var item = "Bonbon L";
                     var slug = "expl";
                     var quantity = Math.floor((Math.random() * 5) + 1);
-                } else if (candyTier < 40) {
+                } else if (candyTier < 0.40) {
                     var item = "Bonbon M";
                     var slug = "expm";
                     var quantity = Math.floor((Math.random() * 10) + 1);
