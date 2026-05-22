@@ -175,10 +175,10 @@ function Compagnon() {
 
     return (
         <div className={"globalContainerCenter"}>
-            {onLoad === false &&
-                <>
-                    <p>Compagnon</p>
-                    <div style={{ overflow: "overlay" }} className={"fightContainer"}>
+            <p>Compagnon</p>
+            <div style={{ overflow: "overlay" }} className={"fightContainer"}>
+                {onLoad === false &&
+                    <>
                         {!haveCompagnon &&
                             !chooseCompagnon &&
                             <>
@@ -285,9 +285,9 @@ function Compagnon() {
                                 </div>
                             </>
                         )}
-                    </div>
-                </>                    
-            }
+                    </>
+                }
+             </div>   
         </div>  
     )
 }
