@@ -118,12 +118,31 @@ function Fight() {
                         .then(function (response) {
                             setInventory(response.data);
                             setOnCatch(true);
-                            var rate = (f + 1) - e;
-                            console.log(rate);
-                            const tryCatch = Math.floor(Math.random() * rate);
-                            console.log(tryCatch);
+                            const catchRates = {
+                                1: {
+                                    0: 0.75,
+                                    1: 1,
+                                    2: 1,
+                                },
+                                2: {
+                                    0: 0.5,
+                                    1: 0.75,
+                                    2: 1,
+                                },
+                                3: {
+                                    0: 0.25,
+                                    1: 0.5,
+                                    2: 0.85,
+                                },
+                                4: {
+                                    0: 0.1,
+                                    1: 0.3,
+                                    2: 0.6,
+                                },
+                            }
+                            const rate = catchRates[f][e]
                             setTimeout(function () {
-                                if (tryCatch == 1 || e == 3) {
+                                if (Math.random() < rate || e == 3) {
                                     setTimeout(function () {
                                         document.getElementById("validCatchText").style.display = "block";
                                         Axios.post('/api/addPokemon', {
