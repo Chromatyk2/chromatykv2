@@ -266,18 +266,28 @@ function Profil() {
                 date: moment().format('YYYY-MM-DD HH:mm:ss')
             })
             .then(function (response) {
-                setExpedition(response.data);
-                if (response.data.length > 0) {
-                    let progress = 0;
-                    const startDate = new Date(response.data[0].date);
-                    const endDate = new Date(startDate.getTime() + 4 * 60 * 60 * 1000);
-                    const now = new Date();
-                    const totalDuration = endDate - startDate;
-                    const elapsed = now - startDate;
-                    progress = (elapsed / totalDuration) * 100;
-                    progress = Math.max(0, Math.min(100, progress));
-                    setProgressExpedition(progress);
+                let user;
+                if (new URLSearchParams(window.location.search).has("user")) {
+                    user = new URLSearchParams(window.location.search).get("user");
+                } else {
+                    user = cookies.user.data[0].id;
                 }
+                Axios.get("/api/getExpedition/" + user)
+                    .then((response) => {
+                        setExpedition(response.data);
+                        if (response.data.length > 0) {
+                            let progress = 0;
+                            const startDate = new Date(response.data[0].date);
+                            const endDate = new Date(startDate.getTime() + 4 * 60 * 60 * 1000);
+                            const now = new Date();
+                            const totalDuration = endDate - startDate;
+                            const elapsed = now - startDate;
+                            progress = (elapsed / totalDuration) * 100;
+                            progress = Math.max(0, Math.min(100, progress));
+                            setProgressExpedition(progress);
+                        }
+                        setBody(e);
+                    })
             })
         }
     }
