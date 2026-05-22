@@ -35,7 +35,7 @@ function Profil() {
     }, []);
     useEffect(() => {
 
-        if (expedition.length < 1) return;
+        if (expedition && expedition.length < 1) return;
 
         const interval = setInterval(() => {
 
