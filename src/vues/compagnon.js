@@ -226,7 +226,7 @@ function Compagnon() {
                                 <a className={"twitchLink"} href="https://twitch.tv/chromatyk" target="blank_">Twitch</a>
                             </div>
                         )
-                        (rareCandy.quantity < 1 &&
+                        (rareCandy.quantity > 0 &&
                             (
                                 <div onClick={() => levelupCompagnon(inventory.find(item => item.slug === "rarecandy").slug)} style={{ background: "none" }} className="fightActionsContainer">
                                     <div className="fightActions">
@@ -239,7 +239,7 @@ function Compagnon() {
                                 </div>
                             )
                         )                            
-                        (megaCandy.quantity < 1 &&
+                        (megaCandy.quantity >0 &&
                                 (
                             <div onClick={() => levelupCompagnon(inventory.find(item => item.slug === "megacandy").slug)} style={{ filter:"hue-rotate(182deg)", background: "none" }} className="fightActionsContainer">
                                         <div className="fightActions">
