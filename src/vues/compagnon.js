@@ -41,8 +41,10 @@ function Compagnon() {
                                         .get("/api/getInventory/" + cookies.user.data[0].id)
                                         .then(function (response) {
                                             setInventory(response.data);
-                                            setHaveCompagnon(true)
-                                            setOnload(false);
+                                            setHaveCompagnon(true);
+                                            setTimeout(function () {
+                                                setOnload(false);
+                                            }, 300);
                                         })
                                 })
                         }

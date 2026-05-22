@@ -12,7 +12,9 @@ function Inventory(props) {
         .get("/api/getInventory/" + cookies.user.data[0].id)
         .then(function (response) {
             setInventory(response.data);
-            setOnload(false);
+            setTimeout(function () {
+                setOnload(false);
+            }, 300);
         })
     }, []);
     const itemOrder = [
