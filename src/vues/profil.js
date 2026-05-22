@@ -294,7 +294,7 @@ function Profil() {
     }
     function recoverExpedition(id, shiny, negative, tier) {
         if (expedition.length > 0) {
-            Axios.delete('/api/deleteExpedition/' + cookies.user.data[0].id)
+            Axios.delete('/api/closeExpedition/' + cookies.user.data[0].id)
                 .then(function (response) {
                     let fragmentToWin = 0;
                     if (negative === 1) {
