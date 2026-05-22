@@ -333,10 +333,10 @@ function Profil() {
                             <div className={"skinContainer"}>
                                 <>
                                     {expedition.length > 0 &&
-                                        <>
+                                        <div className={"expeditionContainer"}>
                                             <p>{expedition[0].pokemon}</p>
-                                        <div loading={"lazy"} style={{ width: "100px", height: "100px", filter: expedition[0].negative === 1 ? "invert(1)" : "invert(0)", backgroundRepeat: "no-repeat", backgroundImage: `url("/Sprites/${expedition[0].shiny === 1 ? "Shiny" : "Normal"}/${expedition[0].number}.gif")`, backgroundSize: "contain", backgroundPosition: "center" }}></div>
-                                        </>
+                                            <div loading={"lazy"} style={{ width: "250px", height: "250px", filter: expedition[0].negative === 1 ? "invert(1)" : "invert(0)", backgroundRepeat: "no-repeat", backgroundImage: `url("/Sprites/${expedition[0].shiny === 1 ? "Shiny" : "Normal"}/${expedition[0].number}.gif")`, backgroundSize: "contain", backgroundPosition: "center" }}></div>
+                                        </div>
                                     }
                                     {expedition.length < 1 && compagnonList &&
                                         compagnonList.map((val, key) => {

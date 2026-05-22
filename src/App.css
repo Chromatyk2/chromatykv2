@@ -796,6 +796,15 @@ span.dexNumber {
     background: rgba(255, 255, 255, 0.2);
     cursor:pointer;
 }
+
+/* Expedition */
+.expeditionContainer{
+    display : "flex";
+    justify-content:"center";
+    align-items:"center";
+    justify-content:"center";
+}
+
 /* Animation */
 @keyframes myAnimation {
     from {
