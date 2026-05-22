@@ -13,11 +13,34 @@ function Inventory(props) {
             setInventory(response.data);
         })
     }, []);
-    const visibleInventory = inventory.filter(item => item.quantity > 0);
-    const sortedInventory = [
-        ...visibleInventory.filter(item => item.slug === "box"),
-        ...visibleInventory.filter(item => item.slug !== "box")
+    const itemOrder = [
+        "pokeball",
+        "superball",
+        "hyperball",
+        "masterball",
+
+        "smallcandy",
+        "mediumcandy",
+        "largecandy",
+
+        "honey",
+        "legendary",
+        "shiny",
+        "negative",
+
+        "Super Bonbon",
+        "Mega Bonbon"
+
     ];
+    const visibleInventory = inventory.filter(item => item.quantity > 0);
+    const sortedInventory = [...visibleInventory].sort((a, b) => {
+        const indexA = itemOrder.indexOf(a.slug);
+        const indexB = itemOrder.indexOf(b.slug);
+        // les items non trouvés vont à la fin
+        const safeIndexA = indexA === -1 ? 999 : indexA;
+        const safeIndexB = indexB === -1 ? 999 : indexB;
+        return safeIndexA - safeIndexB;
+    });
     const getImage = (slug) => {
         const honeyVariants = [
             "honey",
@@ -175,30 +198,12 @@ function Inventory(props) {
                     <p className="pseudoProfil">Inventaire</p>
                     <div className="inventoryContainer">
                         {sortedInventory.map((val) => (
-                            <div key={val.slug} className="honeyActions"
-                                style={val.slug === "box" ? getStyle(val.slug) : {}}
-                                onClick={
-                                    val.slug === "box"
-                                        ? openLootbox
-                                        : undefined
-                                }
-                            >
-                                <img
-                                    alt={val.slug}
-                                    src={getImage(val.slug)}
-                                    style={
-                                        val.slug !== "box"
-                                            ? getStyle(val.slug)
-                                            : {}
-                                    }
-                                />
-
+                            <div key={val.slug} className="honeyActions" style={val.slug === "box" ? getStyle(val.slug) : {}} onClick={val.slug === "box" ? openLootbox : undefined}>
+                                <img alt={val.slug} src={getImage(val.slug)} style={val.slug !== "box" ? getStyle(val.slug) : {}}/>
                                 <p>{val.item}</p>
-
                                 <p>x {val.quantity}</p>
                             </div>
                         ))}
-
                     </div>
                 </>
             ) : (
@@ -206,18 +211,11 @@ function Inventory(props) {
                     <p className="pseudoProfil">
                         Ton inventaire est vide, récupère des objets et des boosters sur les streams de Chromatyk
                     </p>
-
-                    <a
-                        className="twitchLink"
-                        href="https://twitch.tv/chromatyk"
-                        target="_blank"
-                        rel="noreferrer"
-                    >
+                    <a className="twitchLink" href="https://twitch.tv/chromatyk" target="_blank" rel="noreferrer">
                         Twitch
                     </a>
                 </>
             )}
-
         </div>
     )
 }
