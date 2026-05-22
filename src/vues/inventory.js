@@ -5,7 +5,7 @@ import { useCookies } from 'react-cookie';
 
 function Inventory(props) {
     const [cookies, setCookie] = useCookies();
-    const [inventory, setInventory] = useState(null);
+    const [inventory, setInventory] = useState([]);
     useEffect(() => {
         Axios
         .get("/api/getInventory/" + cookies.user.data[0].id)
@@ -14,12 +14,10 @@ function Inventory(props) {
         })
     }, []);
     const visibleInventory = inventory.filter(item => item.quantity > 0);
-
     const sortedInventory = [
         ...visibleInventory.filter(item => item.slug === "box"),
         ...visibleInventory.filter(item => item.slug !== "box")
     ];
-
     const getImage = (slug) => {
         const honeyVariants = [
             "honey",
@@ -27,12 +25,10 @@ function Inventory(props) {
             "legendary",
             "negative"
         ];
-
         return honeyVariants.includes(slug)
             ? "/honey.png"
             : `/${slug}.png`;
     };
-
     const getStyle = (slug) => {
         switch (slug) {
             case "box":
@@ -41,36 +37,30 @@ function Inventory(props) {
                     filter:
                         "drop-shadow(white 0px 0px 5px) hue-rotate(352deg) contrast(1.1)"
                 };
-
             case "megacandy":
                 return {
                     filter: "hue-rotate(182deg)"
                 };
-
             case "honey":
                 return {
                     filter:
                         "drop-shadow(white 0px 0px 5px) hue-rotate(352deg) contrast(1.1)"
                 };
-
             case "shiny":
                 return {
                     filter:
                         "drop-shadow(gold 0px 0px 5px) hue-rotate(15deg) contrast(1.3)"
                 };
-
             case "legendary":
                 return {
                     filter:
                         "drop-shadow(red 0px 0px 5px) hue-rotate(303deg) contrast(1.1)"
                 };
-
             case "negative":
                 return {
                     filter:
                         "drop-shadow(gold 0px 0px 5px) hue-rotate(15deg) contrast(1.3) invert(1)"
                 };
-
             default:
                 return {};
         }
@@ -183,13 +173,9 @@ function Inventory(props) {
             {sortedInventory.length > 0 ? (
                 <>
                     <p className="pseudoProfil">Inventaire</p>
-
                     <div className="inventoryContainer">
-
                         {sortedInventory.map((val) => (
-                            <div
-                                key={val.slug}
-                                className="honeyActions"
+                            <div key={val.slug} className="honeyActions"
                                 style={val.slug === "box" ? getStyle(val.slug) : {}}
                                 onClick={
                                     val.slug === "box"
@@ -198,6 +184,7 @@ function Inventory(props) {
                                 }
                             >
                                 <img
+                                    alt={val.slug}
                                     src={getImage(val.slug)}
                                     style={
                                         val.slug !== "box"
