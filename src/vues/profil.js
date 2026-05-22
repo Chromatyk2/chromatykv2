@@ -70,7 +70,7 @@ function Profil() {
                     })
             });
     }
-    function changeSkin(e) {
+    function changeSkin(e,f) {
         if (!new URLSearchParams(window.location.search).has("user")) {
             Axios.post('/api/addProfil', {
                 user: cookies.user.data[0].id,
@@ -85,18 +85,12 @@ function Profil() {
                         .then(function (response) {
                             setProfil(response.data);
                             setIndex();
-                            const img = new Image();
-                            img.src = "/Skins/Trainer" + response.data[0].skin + ".png";
-
-                            img.onload = () => {
-                                const palette = getPaletteSync(img, { colorCount: 8 });
-                                setColor(palette[Math.floor(Math.random() * palette.length)].hex());
-                            };
+                            setColor(f);
                         })
                 })
         }
     }
-    function changeActiveCompagnon(e) {
+    function changeActiveCompagnon(e,f) {
         if (!new URLSearchParams(window.location.search).has("user")) {
             Axios.post('/api/addProfil', {
                 user: cookies.user.data[0].id,
@@ -111,12 +105,7 @@ function Profil() {
                         .then(function (response) {
                             setProfil(response.data);
                             setIndex();
-                            const img = new Image();
-                            img.src = "/Skins/Trainer" + response.data[0].skin + ".png";
-                            img.onload = () => {
-                                const palette = getPaletteSync(img, { colorCount: 8 });
-                                setColor(palette[Math.floor(Math.random() * palette.length)].hex());
-                            };
+                            setColor(f);
                             Axios
                                 .get("/api/getActiveCompagnon/" + cookies.user.data[0].id + "/" + response.data[0].compagnon)
                                 .then(function (response) {
@@ -299,7 +288,7 @@ function Profil() {
                                 {skins &&
                                     skins.map((val, key) => {
                                         return (                                            
-                                            <div onClick={() => changeSkin(val.skins)} loading={"lazy"} style={{ backgroundColor: val.colorList, backgroundRepeat: "no-repeat", backgroundImage: `url("/Skins/Trainer${val.skins}.png")`, backgroundSize: "contain",backgroundPosition: "center"}} className={"profilPicture"}>
+                                            <div onClick={() => changeSkin(val.skins, val.colorList)} loading={"lazy"} style={{ backgroundColor: val.colorList, backgroundRepeat: "no-repeat", backgroundImage: `url("/Skins/Trainer${val.skins}.png")`, backgroundSize: "contain",backgroundPosition: "center"}} className={"profilPicture"}>
                                             </div>
                                         )
                                     })
@@ -311,7 +300,7 @@ function Profil() {
                                 {compagnonList &&
                                     compagnonList.map((val, key) => {
                                         return (
-                                            <div onClick={() => changeActiveCompagnon(val.number)} loading={"lazy"} style={{ filter: val.negative === 1 ? "invert(1)" : "invert(0)", backgroundRepeat: "no-repeat", backgroundColor: val.colorList, backgroundImage: `url("/Sprites/${val.shiny === 1 ? "Shiny" : "Normal"}/${val.number}.gif")`, backgroundSize: "contain", backgroundPosition: "center" }} className={"profilPicture"}>
+                                            <div onClick={() => changeActiveCompagnon(val.number, val.colorList)} loading={"lazy"} style={{ filter: val.negative === 1 ? "invert(1)" : "invert(0)", backgroundRepeat: "no-repeat", backgroundColor: val.colorList, backgroundImage: `url("/Sprites/${val.shiny === 1 ? "Shiny" : "Normal"}/${val.number}.gif")`, backgroundSize: "contain", backgroundPosition: "center" }} className={"profilPicture"}>
                                             </div>
                                         )
                                     })
