@@ -508,7 +508,6 @@ p.levelProfil {
     flex-flow: column;
     height: 61vh;
     width: 75%;
-    background-image: url('../public/fightBack.jpg');
     background-blend-mode: darken;
     position: relative;
     justify-content: center;
