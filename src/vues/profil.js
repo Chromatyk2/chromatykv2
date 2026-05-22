@@ -29,6 +29,7 @@ function Profil() {
     const param = searchParams.get("user");
     const [finished, setFinished] = useState(false);
     const [validatedExpedition, setValidatedExpedition] = useState(false);
+    const [fragementToWin, setFragementToWin] = useState(null);
     useEffect(() => {
         initPage();
     }, [param]);
@@ -283,17 +284,20 @@ function Profil() {
                         slug: "fragement",
                         quantity: fragementToWin
                     }).then(function (response) {
-                        let user;
-                        if (new URLSearchParams(window.location.search).has("user")) {
-                            user = new URLSearchParams(window.location.search).get("user");
-                        } else {
-                            user = cookies.user.data[0].id;
-                        }
-                        Axios.get("/api/getExpedition/" + user)
-                            .then((response) => {
-                                setExpedition(response.data);
-                                setValidatedExpedition(true);
-                            })
+                        setFragementToWin(fragementToWin)
+                        setValidatedExpedition(true);
+                        setTimeout(function () {
+                            let user;
+                            if (new URLSearchParams(window.location.search).has("user")) {
+                                user = new URLSearchParams(window.location.search).get("user");
+                            } else {
+                                user = cookies.user.data[0].id;
+                            }
+                            Axios.get("/api/getExpedition/" + user)
+                                .then((response) => {
+                                    setExpedition(response.data);
+                                })
+                        }, 2000);
                     })
                 })
         }
