@@ -27,6 +27,8 @@ function Profil() {
     const [searchParams] = useSearchParams();
     const [remainingTime, setRemainingTime] = useState("");
     const param = searchParams.get("user");
+    const [finished, setFinished] = useState(false);
+    const [validatedExpedition, setValidatedExpedition] = useState(false);
     useEffect(() => {
         initPage();
     }, [param]);
@@ -55,7 +57,8 @@ function Profil() {
             const remaining = endDate - now;
 
             if (remaining <= 0) {
-                setRemainingTime("Terminé");
+                setFinished(true);
+                setRemainingTime("");
                 clearInterval(interval);
                 return;
             }
@@ -262,6 +265,9 @@ function Profil() {
             }
         }
     }
+    function recoverExpedition() {
+        setValidatedExpedition(true);
+    }
     return (
         <div className={"globalContainer"}>
             {compagnon &&
@@ -393,7 +399,25 @@ function Profil() {
                                                 <div style={{ width: +progresseExpedition + "%" }} className={"progressBarProfilInternal"}>
                                                 </div>
                                             </div>
-                                            <p>{remainingTime}</p>
+                                            {!finished ? (
+
+                                                <p>{remainingTime}</p>
+
+                                            ) : !validatedExpedition ? (
+
+                                                <button
+                                                    onClick={() => {
+                                                        recoverExpedition();
+                                                    }}
+                                                >
+                                                    Récupérer
+                                                </button>
+
+                                            ) : (
+
+                                                <p>Expédition validée</p>
+
+                                            )}
                                         </div>
                                     }
                                     {expedition.length < 1 && compagnonList &&
