@@ -9,16 +9,44 @@ function Leaderboard() {
     const [cookies, setCookie] = useCookies();
     const [leaderboard, setLeaderboard] = useState(null);
     const [color, setColor] = useState(1);
+    const [colorList, setColorList] = useState(1);
     useEffect(() => {
         Axios.get("/api/getLeaderBoard/")
-            .then((response) => {
+            .then(async (response) => {
+                const newSkins = [];
+
+                for (const val of response.data) {
+
+                    const img = new Image();
+
+                    img.src = "/Skins/Trainer" + val.skin + ".png";
+
+                    await new Promise((resolve) => {
+
+                        img.onload = () => {
+
+                            const palette = getPaletteSync(img, { colorCount: 8 });
+                            const color = palette[Math.floor(Math.random() * palette.length)].hex();
+                            setColorList(color);
+                            const colorList = color;
+                            newSkins.push({
+                                skins: val.skin,
+                                color: colorList
+                            });
+
+                            resolve();
+
+                        };
+
+                        img.onerror = () => {
+                            console.log("Erreur image :", img.src);
+                            resolve();
+                        };
+
+                    });
+
+                }
                 setLeaderboard(response.data)
-                const img = new Image();
-                img.src = "/Skins/Trainer" + response.data[0].skin + ".png";
-                img.onload = () => {
-                    const palette = getPaletteSync(img, { colorCount: 8 });
-                    setColor(palette[Math.floor(Math.random() * palette.length)].hex());
-                };
             })
     }, []);
     return (
