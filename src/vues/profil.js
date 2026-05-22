@@ -287,7 +287,7 @@ function Profil() {
                             progress = Math.max(0, Math.min(100, progress));
                             setProgressExpedition(progress);
                         }
-                        setBody(e);
+                        setBody(4);
                     })
             })
         }
