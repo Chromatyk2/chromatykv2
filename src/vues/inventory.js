@@ -17,6 +17,7 @@ function Inventory(props) {
     }, []);
     const itemOrder = [
         "box",
+        "fragement",
         "honey",
         "legendary",
         "shiny",
@@ -29,8 +30,7 @@ function Inventory(props) {
         "expm",
         "expl",
         "rarecandy",
-        "megacandy",
-        "fragement"
+        "megacandy"
 
     ];
     const visibleInventory = inventory.filter(item => item.quantity > 0);
@@ -89,6 +89,27 @@ function Inventory(props) {
                 return {};
         }
     };
+    function openLootbox() {
+        if (inventory.find((item) => item.slug === "fragement").quantity - 100 >= 0) {
+            Axios.post('/api/removeFragement', {
+                user: cookies.user.data[0].id,
+                slug: "fragement"
+            }).then(function (response) {
+                Axios.post('/api/addCandy', {
+                    user: cookies.user.data[0].id,
+                    item: "Pack Safari",
+                    slug: "box",
+                    quantity: 1
+                }).then(function (response) {
+                    Axios
+                        .get("/api/getInventory/" + cookies.user.data[0].id)
+                        .then(function (response) {
+                            setInventory(response.data);
+                        })
+                })
+            })
+        }
+    }
     function openLootbox() {
         if (inventory.find((item) => item.slug === "box").quantity - 1 >= 0) {
             Axios.post('/api/removeItem', {
@@ -200,7 +221,7 @@ function Inventory(props) {
                             <p className="pseudoProfil">Inventaire</p>
                             <div className="inventoryContainer">
                                 {sortedInventory.map((val) => (
-                                    <div key={val.slug} className="honeyActions" style={val.slug === "box" ? getStyle(val.slug) : {}} onClick={val.slug === "box" ? openLootbox : undefined}>
+                                    <div key={val.slug} className="honeyActions" style={val.slug === "box" ? getStyle(val.slug) : {}} onClick={val.slug === "box" ? openLootbox : val.slug === "fragement" ? createLootbox : undefined}>
                                         <img alt={val.slug} src={getImage(val.slug)} style={val.slug !== "box" ? getStyle(val.slug) : {}} />
                                         <p>{val.item}</p>
                                         <p>x {val.quantity}</p>
