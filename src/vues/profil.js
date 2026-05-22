@@ -21,6 +21,7 @@ function Profil() {
     const [skins, setSkins] = useState([]);
     const [loadSkin, setLoadSkin] = useState(false);
     const [compagnon, setCompagnon] = useState(null);
+    const [expedition, setExpedition] = useState(null);
     const [compagnonList, setCompagnonList] = useState(null);
     const [searchParams] = useSearchParams();
     const param = searchParams.get("user");
@@ -135,7 +136,13 @@ function Profil() {
         } else {
             user = cookies.user.data[0].id;
         }
-        if (e === 3) {
+        if (e === 4) {
+            Axios.get("/api/getExpedition/" + user)
+                .then((response) => {
+                    setExpedition(response.data);
+                    setBody(e);
+                })
+        }else if (e === 3) {
             Axios.get("/api/getMaxLevelCompagnon/" + user)
                     .then((response) => {
                         setCompagnonList(response.data);
@@ -189,6 +196,19 @@ function Profil() {
             setBody(e);
         }
     }
+    function runExpedition() {
+        if (!new URLSearchParams(window.location.search).has("user")) {
+            setLoadSkin(true);
+            if (skins.length < profil[0].level) {
+                Axios.post('/api/addNewSkin', {
+                    user: cookies.user.data[0].id
+                })
+                    .then(function (response) {
+                        changePage(2);
+                    })
+            }
+        }
+    }
     return (
         <div className={"globalContainer"}>
             {compagnon &&
@@ -227,6 +247,7 @@ function Profil() {
                         <button className={body === 1 && "active"} onClick={() => changePage(1)}>Profil</button>
                         <button style={{ display: "flex", justifyContent: "center", alignItems: "center", padding: "5px" }} className={body === 2 && "active"} onClick={() => changePage(2)}>Skins {skins && profil[0].level - skins.length > 0 && <p style={{ margin: 0, marginLeft: "5px", fontSize: "15px", width: "1rem", height: "1rem" }} className={"rank"}>{skins && profil[0].level - skins.length}</p>}</button>
                         <button className={body === 3 && "active"} onClick={() => changePage(3)}>Compagnons N.100</button>
+                        {profil[0].login} === "Chromatyk" && <button className={body === 4 && "active"} onClick={() => changePage(4)}>Expédition</button>}
                     </div>         
                     <div className={"profilBody"}>
                         {body === 1 &&
@@ -296,12 +317,24 @@ function Profil() {
                                 }
                             </div>
                         }
-                        {body === 3 &&
+                        {(body === 3 || body === 4) &&
                             <div className={"skinContainer"}>
                                 {compagnonList &&
                                     compagnonList.map((val, key) => {
                                         return (
                                             <div onClick={() => changeActiveCompagnon(val.number, val.color)} loading={"lazy"} style={{ filter: val.negative === 1 ? "invert(1)" : "invert(0)", backgroundRepeat: "no-repeat", backgroundColor: val.color, backgroundImage: `url("/Sprites/${val.shiny === 1 ? "Shiny" : "Normal"}/${val.number}.gif")`, backgroundSize: "contain", backgroundPosition: "center" }} className={"profilPicture"}>
+                                            </div>
+                                        )
+                                    })
+                                }
+                            </div>
+                        }
+                        {body === 4 &&
+                            <div className={"skinContainer"}>
+                                {compagnonList &&
+                                    compagnonList.map((val, key) => {
+                                        return (
+                                            <div onClick={() => runExpedition(val.number)} loading={"lazy"} style={{ filter: val.negative === 1 ? "invert(1)" : "invert(0)", backgroundRepeat: "no-repeat", backgroundColor: val.color, backgroundImage: `url("/Sprites/${val.shiny === 1 ? "Shiny" : "Normal"}/${val.number}.gif")`, backgroundSize: "contain", backgroundPosition: "center" }} className={"profilPicture"}>
                                             </div>
                                         )
                                     })
