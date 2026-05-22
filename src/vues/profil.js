@@ -263,7 +263,7 @@ function Profil() {
             Axios.post('/api/newExpedition', {
                 user: cookies.user.data[0].id,
                 number: e,
-                date: moment(new Date()).utc().format('YYYY-MM-DD hh:mm:ss')
+                date: moment().format('YYYY-MM-DD HH:mm:ss')
             })
             .then(function (response) {
                 setExpedition(response.data);
