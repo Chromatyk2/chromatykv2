@@ -144,7 +144,7 @@ function Compagnon() {
     return (
         <div className={"globalContainerCenter"}>
             <p>Compagnon</p>
-            <div className={"fightContainer"}>
+            <div style={{overflow: "overlay"}} className={"fightContainer"}>
                 {!haveCompagnon &&
                     !chooseCompagnon &&
                     <>
