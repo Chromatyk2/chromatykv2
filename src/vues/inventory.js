@@ -89,7 +89,7 @@ function Inventory(props) {
                 return {};
         }
     };
-    function openLootbox() {
+    function createLootbox() {
         if (inventory.find((item) => item.slug === "fragement").quantity - 100 >= 0) {
             Axios.post('/api/removeFragement', {
                 user: cookies.user.data[0].id,
