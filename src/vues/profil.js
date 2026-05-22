@@ -405,7 +405,7 @@ function Profil() {
                                         })
                                     }
                                 </>
-                            </divstyle>
+                            </div>
                         }
                     </div>
                 </div>
