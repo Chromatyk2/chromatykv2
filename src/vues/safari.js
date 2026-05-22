@@ -121,6 +121,7 @@ function Fight() {
                             var rate = (f + 1) - e;
                             console.log(rate);
                             const tryCatch = Math.floor(Math.random() * rate);
+                            console.log(tryCatch);
                             setTimeout(function () {
                                 if (tryCatch == 1 || e == 3) {
                                     setTimeout(function () {
