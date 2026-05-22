@@ -216,17 +216,15 @@ function Compagnon() {
                             <div className="fightSpriteCard" style={{filter: compagnon[0].negative === 1 ? "invert(1)" : "none",backgroundSize: "contain",backgroundImage: `url(/Sprites/${compagnon[0].shiny === 1 ? "shiny" : "normal"}/${compagnon[0].number}.gif)`}}/>
                         </>
                     )}
-                {
-                    canShow && (
-                        rareCandy.quantity < 1 &&
-                        megaCandy.quantity < 1
-                            && (
+                {canShow && (
+                    <>
+                        {rareCandy.quantity < 1 && megaCandy.quantity < 1 && (
                             <div style={{ background: "none" }} className={"emptyInventory"}>
                                 <p style={{ fontSize: "18px" }} className="pseudoProfil">Tu n'as pas de Super Bonbon, récupère en sur les streams de Chromatyk</p>
                                 <a className={"twitchLink"} href="https://twitch.tv/chromatyk" target="blank_">Twitch</a>
                             </div>
-                        )
-                        (rareCandy.quantity > 0 &&
+                        )}
+                        {rareCandy.quantity > 0 &&
                             (
                                 <div onClick={() => levelupCompagnon(inventory.find(item => item.slug === "rarecandy").slug)} style={{ background: "none" }} className="fightActionsContainer">
                                     <div className="fightActions">
@@ -238,22 +236,22 @@ function Compagnon() {
                                     </div>
                                 </div>
                             )
-                        )                            
-                        (megaCandy.quantity >0 &&
-                                (
-                            <div onClick={() => levelupCompagnon(inventory.find(item => item.slug === "megacandy").slug)} style={{ filter:"hue-rotate(182deg)", background: "none" }} className="fightActionsContainer">
-                                        <div className="fightActions">
-                                            <img src="/megacandy.png" />
-                                            <p>Mega Bonbon</p>
-                                            <p>
-                                                x {inventory.find(item => item.slug === "megacandy")?.quantity}
-                                            </p>
-                                        </div>
+                        }
+                        {megaCandy.quantity > 0 &&
+                            (
+                                <div onClick={() => levelupCompagnon(inventory.find(item => item.slug === "megacandy").slug)} style={{ filter: "hue-rotate(182deg)", background: "none" }} className="fightActionsContainer">
+                                    <div className="fightActions">
+                                        <img src="/megacandy.png" />
+                                        <p>Mega Bonbon</p>
+                                        <p>
+                                            x {inventory.find(item => item.slug === "megacandy")?.quantity}
+                                        </p>
                                     </div>
+                                </div>
                             )
-                         )
-                    )
-                }
+                        }
+                    </>
+                )}
             </div>
         </div>
     )
