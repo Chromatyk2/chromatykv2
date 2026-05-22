@@ -55,7 +55,7 @@ function Inventory(props) {
                     } else {
                         var item = "Poke Ball";
                         var slug = "ball";
-                        var quantity = Math.floor((Math.random() * 10) + 1);
+                        var quantity = Math.floor((Math.random() * 5) + 1);
                     }
                     Axios.post('/api/addCandy', {
                         user: cookies.user.data[0].id,
