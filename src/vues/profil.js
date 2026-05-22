@@ -25,6 +25,7 @@ function Profil() {
     const [compagnonList, setCompagnonList] = useState(null);
     const [progresseExpedition, setProgressExpedition] = useState(null);
     const [searchParams] = useSearchParams();
+    const [remainingTime, setRemainingTime] = useState("");
     const param = searchParams.get("user");
     useEffect(() => {
         initPage();
@@ -32,6 +33,49 @@ function Profil() {
     useEffect(() => {
         initPage();
     }, []);
+    useEffect(() => {
+
+        if (expedition.length < 1) return;
+
+        const interval = setInterval(() => {
+
+            const startDate = new Date(expedition[0].date);
+            const endDate = new Date(startDate.getTime() + 4 * 60 * 60 * 1000);
+
+            const now = new Date();
+
+            const totalDuration = endDate - startDate;
+            const elapsed = now - startDate;
+
+            let percent = (elapsed / totalDuration) * 100;
+
+            // limite 0 → 100
+            percent = Math.max(0, Math.min(100, percent));
+
+            setProgressExpedition(percent);
+
+            // temps restant
+            const remaining = endDate - now;
+
+            if (remaining <= 0) {
+                setRemainingTime("Terminé");
+                clearInterval(interval);
+                return;
+            }
+
+            const hours = Math.floor(remaining / 1000 / 60 / 60);
+            const minutes = Math.floor((remaining / 1000 / 60) % 60);
+            const seconds = Math.floor((remaining / 1000) % 60);
+
+            setRemainingTime(
+                `${hours}h ${minutes}m ${seconds}s`
+            );
+
+        }, 1000);
+
+        return () => clearInterval(interval);
+
+    }, [expedition]);
     function initPage() {
         let user;
         if (new URLSearchParams(window.location.search).has("user")) {
@@ -354,6 +398,7 @@ function Profil() {
                                                 <div style={{ width: +progresseExpedition + "%" }} className={"progressBarProfilInternal"}>
                                                 </div>
                                             </div>
+                                            <p>{remainingTime}</p>
                                         </div>
                                     }
                                     {expedition.length < 1 && compagnonList &&
