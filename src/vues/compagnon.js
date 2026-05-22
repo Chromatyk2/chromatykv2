@@ -131,6 +131,9 @@ function Compagnon() {
     const rareCandy = inventory?.find(
         item => item.slug === "rarecandy"
     );
+    const megaCandy = inventory?.find(
+        item => item.slug === "megacandy"
+    );
 
     const canShow =
         haveCompagnon &&
@@ -215,12 +218,16 @@ function Compagnon() {
                     )}
                 {
                     canShow && (
-                        rareCandy.quantity < 1 ? (
+                        rareCandy.quantity < 1 &&
+                        megaCandy.quantity < 1
+                            && (
                             <div style={{ background: "none" }} className={"emptyInventory"}>
                                 <p style={{ fontSize: "18px" }} className="pseudoProfil">Tu n'as pas de Super Bonbon, récupère en sur les streams de Chromatyk</p>
                                 <a className={"twitchLink"} href="https://twitch.tv/chromatyk" target="blank_">Twitch</a>
                             </div>
-                        ) : (
+                        )
+                        (rareCandy.quantity < 1 &&
+                            (
                                 <div onClick={() => levelupCompagnon(inventory.find(item => item.slug === "rarecandy").slug)} style={{ background: "none" }} className="fightActionsContainer">
                                     <div className="fightActions">
                                         <img src="/rarecandy.png" />
@@ -230,7 +237,21 @@ function Compagnon() {
                                         </p>
                                     </div>
                                 </div>
-                        )
+                            )
+                        )                            
+                        (megaCandy.quantity < 1 &&
+                                (
+                            <div onClick={() => levelupCompagnon(inventory.find(item => item.slug === "megacandy").slug)} style={{ filter:"hue-rotate(182deg)", background: "none" }} className="fightActionsContainer">
+                                        <div className="fightActions">
+                                            <img src="/megacandy.png" />
+                                            <p>Mega Bonbon</p>
+                                            <p>
+                                                x {inventory.find(item => item.slug === "megacandy")?.quantity}
+                                            </p>
+                                        </div>
+                                    </div>
+                            )
+                         )
                     )
                 }
             </div>
