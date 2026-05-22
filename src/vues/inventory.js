@@ -19,7 +19,7 @@ function Inventory(props) {
                 user: cookies.user.data[0].id,
                 slug: "box"
             }).then(function (response) {
-                const candyTier = Math.random() * 100;
+                const candyTier = Math.random();
                 if (candyTier < 10) {
                     var item = "Bonbon L";
                     var slug = "expl";
@@ -39,16 +39,16 @@ function Inventory(props) {
                     slug: slug,
                     quantity: quantity
                 }).then(function (response) {
-                    const ballTier = Math.random() * 100;
-                    if (ballTier < 0.1) {
+                    const ballTier = Math.random();
+                    if (ballTier < 0.01) {
                         var item = "Master Ball";
                         var slug = "master";
                         var quantity = 1;
-                    } else if (ballTier < 6) {
+                    } else if (ballTier < 0.11) {
                         var item = "Hyper Ball";
                         var slug = "ultra";
                         var quantity = Math.floor((Math.random() * 5) + 1);
-                    } else if (ballTier < 36) {
+                    } else if (ballTier < 0.41) {
                         var item = "Super Ball";
                         var slug = "great";
                         var quantity = Math.floor((Math.random() * 5) + 1);
@@ -63,14 +63,14 @@ function Inventory(props) {
                         slug: slug,
                         quantity: quantity
                     }).then(function (response) {
-                        const honeyTier = Math.random() * 100;
-                        if (honeyTier < 0.01) {
+                        const honeyTier = Math.random();
+                        if (honeyTier < 0.0001) {
                             var item = "Miel Négatif";
                             var slug = "negative";
-                        } else if (honeyTier < 0.11) {
+                        } else if (honeyTier < 0.011) {
                             var item = "Miel Chromatique";
                             var slug = "shiny";
-                        } else if (honeyTier < 1.11) {
+                        } else if (honeyTier <0.0111) {
                             var item = "Miel Légendaire";
                             var slug = "legendary";
                         } else {
