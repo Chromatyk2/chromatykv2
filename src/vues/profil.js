@@ -449,7 +449,7 @@ function Profil() {
 
                                             ) : (
 
-                                                <p>Expédition validée</p>
+                                                        <p>Le compagnon a trouvé {fragementToWin} fragement !</p>
 
                                             )}
                                         </div>
