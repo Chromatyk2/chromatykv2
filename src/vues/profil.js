@@ -331,14 +331,19 @@ function Profil() {
                         }
                         {body === 4 &&
                             <div className={"skinContainer"}>
-                                {compagnonList &&
-                                    compagnonList.map((val, key) => {
-                                        return (
-                                            <div onClick={() => runExpedition(val.number)} loading={"lazy"} style={{ filter: val.negative === 1 ? "invert(1)" : "invert(0)", backgroundRepeat: "no-repeat", backgroundColor: val.color, backgroundImage: `url("/Sprites/${val.shiny === 1 ? "Shiny" : "Normal"}/${val.number}.gif")`, backgroundSize: "contain", backgroundPosition: "center" }} className={"profilPicture"}>
-                                            </div>
-                                        )
-                                    })
-                                }
+                                <>
+                                    {expedition.length > 0 &&
+                                        <p>Expedition en cours !</p>
+                                    }
+                                    {expedition.length < 1 && compagnonList &&
+                                        compagnonList.map((val, key) => {
+                                            return (
+                                                <div onClick={() => runExpedition(val.number)} loading={"lazy"} style={{ filter: val.negative === 1 ? "invert(1)" : "invert(0)", backgroundRepeat: "no-repeat", backgroundColor: val.color, backgroundImage: `url("/Sprites/${val.shiny === 1 ? "Shiny" : "Normal"}/${val.number}.gif")`, backgroundSize: "contain", backgroundPosition: "center" }} className={"profilPicture"}>
+                                                </div>
+                                            )
+                                        })
+                                    }
+                                </>
                             </div>
                         }
                     </div>
