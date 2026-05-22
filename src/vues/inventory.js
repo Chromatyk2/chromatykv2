@@ -14,6 +14,7 @@ function Inventory(props) {
         })
     }, []);
     const itemOrder = [
+        "box",
         "honey",
         "legendary",
         "shiny",
