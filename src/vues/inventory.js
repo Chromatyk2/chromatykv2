@@ -14,22 +14,19 @@ function Inventory(props) {
         })
     }, []);
     const itemOrder = [
-        "pokeball",
-        "superball",
-        "hyperball",
-        "masterball",
-
-        "smallcandy",
-        "mediumcandy",
-        "largecandy",
-
         "honey",
         "legendary",
         "shiny",
         "negative",
-
-        "Super Bonbon",
-        "Mega Bonbon"
+        "ball",
+        "great",
+        "ultra",
+        "master",
+        "exps",
+        "expm",
+        "expl",
+        "rarecandy",
+        "megacandy"
 
     ];
     const visibleInventory = inventory.filter(item => item.quantity > 0);
