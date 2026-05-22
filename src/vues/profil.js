@@ -16,6 +16,7 @@ function Profil() {
     const [index, setIndex] = useState(null);
     const [body, setBody] = useState(1);
     const [color, setColor] = useState(1);
+    const [colorList, setColorList] = useState(1);
     const [colorShiny, setColorShiny] = useState(1);
     const [skins, setSkins] = useState([]);
     const [loadSkin, setLoadSkin] = useState(false);
@@ -169,11 +170,11 @@ function Profil() {
                             img.onload = () => {
 
                                 const palette = getPaletteSync(img, { colorCount: 8 });
-                                setColor(palette[Math.floor(Math.random() * palette.length)].hex());
-                                const color = palette[Math.floor(Math.random() * palette.length)].hex();
+                                setColorList(palette[Math.floor(Math.random() * palette.length)].hex());
+                                const colorList = palette[Math.floor(Math.random() * palette.length)].hex();
                                 newSkins.push({
                                     skins: val.skin,
-                                    color: color
+                                    color: colorList
                                 });
 
                                 resolve();
@@ -298,7 +299,7 @@ function Profil() {
                                 {skins &&
                                     skins.map((val, key) => {
                                         return (                                            
-                                            <div onClick={() => changeSkin(val.skins)} loading={"lazy"} style={{ backgroundColor: val.color, backgroundRepeat: "no-repeat", backgroundImage: `url("/Skins/Trainer${val.skins}.png")`, backgroundSize: "contain",backgroundPosition: "center"}} className={"profilPicture"}>
+                                            <div onClick={() => changeSkin(val.skins)} loading={"lazy"} style={{ backgroundColor: val.colorList, backgroundRepeat: "no-repeat", backgroundImage: `url("/Skins/Trainer${val.skins}.png")`, backgroundSize: "contain",backgroundPosition: "center"}} className={"profilPicture"}>
                                             </div>
                                         )
                                     })
@@ -310,7 +311,7 @@ function Profil() {
                                 {compagnonList &&
                                     compagnonList.map((val, key) => {
                                         return (
-                                            <div onClick={() => changeActiveCompagnon(val.number)} loading={"lazy"} style={{ filter: val.negative === 1 ? "invert(1)" : "invert(0)", backgroundRepeat: "no-repeat", backgroundColor: val.color, backgroundImage: `url("/Sprites/${val.shiny === 1 ? "Shiny" : "Normal"}/${val.number}.gif")`, backgroundSize: "contain", backgroundPosition: "center" }} className={"profilPicture"}>
+                                            <div onClick={() => changeActiveCompagnon(val.number)} loading={"lazy"} style={{ filter: val.negative === 1 ? "invert(1)" : "invert(0)", backgroundRepeat: "no-repeat", backgroundColor: val.colorList, backgroundImage: `url("/Sprites/${val.shiny === 1 ? "Shiny" : "Normal"}/${val.number}.gif")`, backgroundSize: "contain", backgroundPosition: "center" }} className={"profilPicture"}>
                                             </div>
                                         )
                                     })
