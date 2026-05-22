@@ -383,7 +383,7 @@ function Profil() {
                             </div>
                         }
                         {body === 4 &&
-                            <divstyle={{ width: "100%", justifyContent:"center" }} className={"skinContainer"}>
+                            <div style={{ width: "100%", justifyContent:"center" }} className={"skinContainer"}>
                                 <>
                                     {expedition.length > 0 &&
                                         <div className={"fightContainer"}>
