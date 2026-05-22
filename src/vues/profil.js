@@ -3,6 +3,7 @@ import { useSearchParams, Link } from "react-router-dom";
 import Axios from "axios";
 import { useCookies } from 'react-cookie';
 import { getColorSync, getPaletteSync } from 'colorthief';
+import moment from "moment";
 
 
 
@@ -183,21 +184,25 @@ function Profil() {
             user = cookies.user.data[0].id;
         }
         if (e === 4) {
-            Axios.get("/api/getExpedition/" + user)
+            Axios.get("/api/getMaxLevelCompagnon/" + user)
                 .then((response) => {
-                    setExpedition(response.data);
-                    if (response.data.length > 0) {
-                        let progress = 0;
-                        const startDate = new Date(response.data[0].date);
-                        const endDate = new Date(startDate.getTime() + 4 * 60 * 60 * 1000);
-                        const now = new Date();
-                        const totalDuration = endDate - startDate;
-                        const elapsed = now - startDate;
-                        progress = (elapsed / totalDuration) * 100;
-                        progress = Math.max(0, Math.min(100, progress));
-                        setProgressExpedition(progress);
-                    }
-                    setBody(e);
+                    setCompagnonList(response.data);
+                    Axios.get("/api/getExpedition/" + user)
+                        .then((response) => {
+                            setExpedition(response.data);
+                            if (response.data.length > 0) {
+                                let progress = 0;
+                                const startDate = new Date(response.data[0].date);
+                                const endDate = new Date(startDate.getTime() + 4 * 60 * 60 * 1000);
+                                const now = new Date();
+                                const totalDuration = endDate - startDate;
+                                const elapsed = now - startDate;
+                                progress = (elapsed / totalDuration) * 100;
+                                progress = Math.max(0, Math.min(100, progress));
+                                setProgressExpedition(progress);
+                            }
+                            setBody(e);
+                        })
                 })
         }else if (e === 3) {
             Axios.get("/api/getMaxLevelCompagnon/" + user)
@@ -253,17 +258,27 @@ function Profil() {
             setBody(e);
         }
     }
-    function runExpedition() {
+    function runExpedition(e) {
         if (!new URLSearchParams(window.location.search).has("user")) {
-            setLoadSkin(true);
-            if (skins.length < profil[0].level) {
-                Axios.post('/api/addNewSkin', {
-                    user: cookies.user.data[0].id
-                })
-                    .then(function (response) {
-                        changePage(2);
-                    })
-            }
+            Axios.post('/api/addPokemon', {
+                user: cookies.user.data[0].id,
+                pokemon: e,
+                date: moment(new Date()).utc().format('YYYY-MM-DD hh:mm:ss')
+            })
+            .then(function (response) {
+                setExpedition(response.data);
+                if (response.data.length > 0) {
+                    let progress = 0;
+                    const startDate = new Date(response.data[0].date);
+                    const endDate = new Date(startDate.getTime() + 4 * 60 * 60 * 1000);
+                    const now = new Date();
+                    const totalDuration = endDate - startDate;
+                    const elapsed = now - startDate;
+                    progress = (elapsed / totalDuration) * 100;
+                    progress = Math.max(0, Math.min(100, progress));
+                    setProgressExpedition(progress);
+                }
+            })
         }
     }
     function recoverExpedition(id, shiny, negative) {
@@ -454,7 +469,8 @@ function Profil() {
                                             )}
                                         </div>
                                     }
-                                    {expedition.length < 1 && compagnonList &&
+                                    {expedition.length < 1 &&
+                                        compagnonList &&
                                         compagnonList.map((val, key) => {
                                             return (
                                                 <div onClick={() => runExpedition(val.number)} loading={"lazy"} style={{ filter: val.negative === 1 ? "invert(1)" : "invert(0)", backgroundRepeat: "no-repeat", backgroundColor: val.color, backgroundImage: `url("/Sprites/${val.shiny === 1 ? "Shiny" : "Normal"}/${val.number}.gif")`, backgroundSize: "contain", backgroundPosition: "center" }} className={"profilPicture"}>
