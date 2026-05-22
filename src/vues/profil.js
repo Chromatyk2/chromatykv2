@@ -159,8 +159,9 @@ function Profil() {
                             img.onload = () => {
 
                                 const palette = getPaletteSync(img, { colorCount: 8 });
-                                setColorList(palette[Math.floor(Math.random() * palette.length)].hex());
-                                const colorList = palette[Math.floor(Math.random() * palette.length)].hex();
+                                const color = palette[Math.floor(Math.random() * palette.length)].hex();
+                                setColorList(color);
+                                const colorList = color;
                                 newSkins.push({
                                     skins: val.skin,
                                     color: colorList
