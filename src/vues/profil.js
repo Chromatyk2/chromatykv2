@@ -425,7 +425,7 @@ function Profil() {
                                 }
                             </div>
                         }
-                        {(body === 3 || body === 4) &&
+                        {(body === 3) &&
                             <div className={"skinContainer"}>
                                 {compagnonList &&
                                     compagnonList.map((val, key) => {
