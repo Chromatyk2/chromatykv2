@@ -23,6 +23,7 @@ function Profil() {
     const [compagnon, setCompagnon] = useState(null);
     const [expedition, setExpedition] = useState(null);
     const [compagnonList, setCompagnonList] = useState(null);
+    const [progresseExpedition, setProgressExpedition] = useState(null);
     const [searchParams] = useSearchParams();
     const param = searchParams.get("user");
     useEffect(() => {
@@ -140,6 +141,19 @@ function Profil() {
             Axios.get("/api/getExpedition/" + user)
                 .then((response) => {
                     setExpedition(response.data);
+                    if (response.data.length > 0) {
+                        let progress = 0;
+                        if (expedition.length > 0) {
+                            const startDate = new Date(expedition[0].date);
+                            const endDate = new Date(startDate.getTime() + 4 * 60 * 60 * 1000);
+                            const now = new Date();
+                            const totalDuration = endDate - startDate;
+                            const elapsed = now - startDate;
+                            progress = (elapsed / totalDuration) * 100;
+                            progress = Math.max(0, Math.min(100, progress));
+                            setProgressExpedition(progress);
+                        }
+                    }
                     setBody(e);
                 })
         }else if (e === 3) {
@@ -336,6 +350,10 @@ function Profil() {
                                         <div className={"expeditionContainer"}>
                                             <p>{expedition[0].pokemon}</p>
                                             <div loading={"lazy"} style={{ width: "250px", height: "250px", filter: expedition[0].negative === 1 ? "invert(1)" : "invert(0)", backgroundRepeat: "no-repeat", backgroundImage: `url("/Sprites/${expedition[0].shiny === 1 ? "Shiny" : "Normal"}/${expedition[0].number}.gif")`, backgroundSize: "contain", backgroundPosition: "center" }}></div>
+                                            <div className={"progressBarProfilExternal"}>
+                                                <div style={{ width: +progresseExpedition + "%" }} className={"progressBarProfilInternal"}>
+                                                </div>
+                                            </div>
                                         </div>
                                     }
                                     {expedition.length < 1 && compagnonList &&
