@@ -262,7 +262,7 @@ function Profil() {
         if (!new URLSearchParams(window.location.search).has("user")) {
             Axios.post('/api/newExpedition', {
                 user: cookies.user.data[0].id,
-                pokemon: e,
+                number: e,
                 date: moment(new Date()).utc().format('YYYY-MM-DD hh:mm:ss')
             })
             .then(function (response) {
