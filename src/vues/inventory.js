@@ -6,11 +6,13 @@ import { useCookies } from 'react-cookie';
 function Inventory(props) {
     const [cookies, setCookie] = useCookies();
     const [inventory, setInventory] = useState([]);
+    const [onLoad, setOnload] = useState(true);
     useEffect(() => {
         Axios
         .get("/api/getInventory/" + cookies.user.data[0].id)
         .then(function (response) {
             setInventory(response.data);
+            setOnload(false);
         })
     }, []);
     const itemOrder = [
@@ -190,30 +192,33 @@ function Inventory(props) {
     }
     return (
         <div className="globalContainerCenter">
-
-            {sortedInventory.length > 0 ? (
+            {onLoad === false &&
                 <>
-                    <p className="pseudoProfil">Inventaire</p>
-                    <div className="inventoryContainer">
-                        {sortedInventory.map((val) => (
-                            <div key={val.slug} className="honeyActions" style={val.slug === "box" ? getStyle(val.slug) : {}} onClick={val.slug === "box" ? openLootbox : undefined}>
-                                <img alt={val.slug} src={getImage(val.slug)} style={val.slug !== "box" ? getStyle(val.slug) : {}}/>
-                                <p>{val.item}</p>
-                                <p>x {val.quantity}</p>
+                    {sortedInventory.length > 0 ? (
+                        <>
+                            <p className="pseudoProfil">Inventaire</p>
+                            <div className="inventoryContainer">
+                                {sortedInventory.map((val) => (
+                                    <div key={val.slug} className="honeyActions" style={val.slug === "box" ? getStyle(val.slug) : {}} onClick={val.slug === "box" ? openLootbox : undefined}>
+                                        <img alt={val.slug} src={getImage(val.slug)} style={val.slug !== "box" ? getStyle(val.slug) : {}} />
+                                        <p>{val.item}</p>
+                                        <p>x {val.quantity}</p>
+                                    </div>
+                                ))}
                             </div>
-                        ))}
-                    </div>
+                        </>
+                    ) : (
+                        <>
+                            <p className="pseudoProfil">
+                                Ton inventaire est vide, récupère des objets et des boosters sur les streams de Chromatyk
+                            </p>
+                            <a className="twitchLink" href="https://twitch.tv/chromatyk" target="_blank" rel="noreferrer">
+                                Twitch
+                            </a>
+                        </>
+                    )}
                 </>
-            ) : (
-                <>
-                    <p className="pseudoProfil">
-                        Ton inventaire est vide, récupère des objets et des boosters sur les streams de Chromatyk
-                    </p>
-                    <a className="twitchLink" href="https://twitch.tv/chromatyk" target="_blank" rel="noreferrer">
-                        Twitch
-                    </a>
-                </>
-            )}
+            }
         </div>
     )
 }
