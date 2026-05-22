@@ -88,11 +88,26 @@ function Inventory(props) {
                                 slug: "rarecandy",
                                 quantity: Math.floor((Math.random() * 5) + 1)
                             }).then(function (response) {
-                                Axios
-                                    .get("/api/getInventory/" + cookies.user.data[0].id)
-                                    .then(function (response) {
-                                        setInventory(response.data);
+                                const megaCanduTier = Math.random();
+                                if (megaCanduTier < 0.001) {
+                                    Axios.post('/api/addItem', {
+                                        user: cookies.user.data[0].id,
+                                        item: "Mega Bonbon",
+                                        slug: "megacandy"
+                                    }).then(function (response) {
+                                        Axios
+                                            .get("/api/getInventory/" + cookies.user.data[0].id)
+                                            .then(function (response) {
+                                                setInventory(response.data);
+                                            })
                                     })
+                                } else {
+                                    Axios
+                                        .get("/api/getInventory/" + cookies.user.data[0].id)
+                                        .then(function (response) {
+                                            setInventory(response.data);
+                                        })
+                                }
                             })
                         })
                     })
@@ -141,7 +156,7 @@ function Inventory(props) {
                                         :
                                         val.quantity > 0 &&
                                         <div className={"honeyActions"}>
-                                            <img style={{ filter: val.slug == "honey" ? "drop-shadow(white 0px 0px 5px) hue-rotate(352deg) contrast(1.1)" : val.slug == "shiny" ? "drop-shadow(gold 0px 0px 5px) hue-rotate(15deg) contrast(1.3)" : val.slug == "legendary" ? "drop-shadow(red 0px 0px 5px) hue-rotate(303deg) contrast(1.1)" : val.slug == "negative" && "drop-shadow(gold 0px 0px 5px) hue-rotate(15deg) contrast(1.3) invert(1)" }} src={"/" + val.slug == "honey" || val.slug == "shiny" || val.slug == "legendary" || val.slug == "negative" ? "honey.png" : val.slug + ".png"} />
+                                                <img style={{ filter: val.slug == "megacandy" ? "hue-rotate(182deg)" : val.slug == "honey" ? "drop-shadow(white 0px 0px 5px) hue-rotate(352deg) contrast(1.1)" : val.slug == "shiny" ? "drop-shadow(gold 0px 0px 5px) hue-rotate(15deg) contrast(1.3)" : val.slug == "legendary" ? "drop-shadow(red 0px 0px 5px) hue-rotate(303deg) contrast(1.1)" : val.slug == "negative" && "drop-shadow(gold 0px 0px 5px) hue-rotate(15deg) contrast(1.3) invert(1)" }} src={"/" + val.slug == "honey" || val.slug == "shiny" || val.slug == "legendary" || val.slug == "negative" ? "honey.png" : val.slug + ".png"} />
                                             <p>{val.item}</p>
                                             <p>x {val.quantity}</p>
                                         </div>
