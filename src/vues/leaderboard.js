@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import Axios from "axios";
 import { useCookies } from 'react-cookie';
-import { getColorSync } from 'colorthief';
+import { getColorSync, getPaletteSync } from 'colorthief';
 
 
 function Leaderboard() {
@@ -16,7 +16,8 @@ function Leaderboard() {
                 const img = new Image();
                 img.src = "/Skins/Trainer" + response.data[0].skin + ".png";
                 img.onload = () => {
-                    setColor(getColorSync(img).hex());
+                    const palette = getPaletteSync(img, { colorCount: 8 });
+                    setColor(palette[Math.floor(Math.random() * palette.length)].hex());
                 };
             })
     }, []);
