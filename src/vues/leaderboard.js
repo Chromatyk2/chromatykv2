@@ -30,7 +30,14 @@ function Leaderboard() {
                             setColorList(color);
                             const colorList = color;
                             newSkins.push({
-                                skins: val.skin,
+                                user: val.user,
+                                login: val.login,
+                                level: val.level,
+                                skin: val.skin,
+                                number: val.number,
+                                pokemon: val.pokemon,
+                                shiny: val.shiny,
+                                negative: val.negative,
                                 color: colorList
                             });
 
@@ -46,7 +53,7 @@ function Leaderboard() {
                     });
 
                 }
-                setLeaderboard(response.data)
+                setLeaderboard(newSkins)
             })
     }, []);
     return (
