@@ -159,6 +159,7 @@ function Fight() {
                                     if (fleeRate == 1) {
                                         document.getElementById("fleeFightText").style.display = "block";
                                         document.getElementById("ball").style.display = "none";
+                                        setBallStyle("");
                                         setTimeout(function () {
                                             fleeFight();
                                         }, 2000);
