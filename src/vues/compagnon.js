@@ -15,9 +15,9 @@ function Compagnon() {
     const [isNegative, setIsNegative] = useState(0);
     const [genList, setGenList] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9])
     //Pokemon
-    const [haveCompagnon, setHaveCompagnon] = useState(false);
-    const [chooseCompagnon, setChooseCompagnon] = useState(false);
-    const [compagnon, setCompagnon] = useState(false);
+    const [haveCompagnon, setHaveCompagnon] = useState();
+    const [chooseCompagnon, setChooseCompagnon] = useState();
+    const [compagnon, setCompagnon] = useState();
     const [inventory, setInventory] = useState(null);
     useEffect(() => {
         Axios
