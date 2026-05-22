@@ -31,9 +31,6 @@ function Profil() {
         initPage();
     }, [param]);
     useEffect(() => {
-        initPage();
-    }, []);
-    useEffect(() => {
 
         if (!expedition?.length) return;
 
