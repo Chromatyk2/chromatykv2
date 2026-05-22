@@ -289,7 +289,7 @@ function Profil() {
                                 {skins &&
                                     skins.map((val, key) => {
                                         return (                                            
-                                            <div onClick={() => changeSkin(val.skins, val.colorList)} loading={"lazy"} style={{ backgroundColor: val.colorList, backgroundRepeat: "no-repeat", backgroundImage: `url("/Skins/Trainer${val.skins}.png")`, backgroundSize: "contain",backgroundPosition: "center"}} className={"profilPicture"}>
+                                            <div onClick={() => changeSkin(val.skins, val.color)} loading={"lazy"} style={{ backgroundColor: val.color, backgroundRepeat: "no-repeat", backgroundImage: `url("/Skins/Trainer${val.skins}.png")`, backgroundSize: "contain",backgroundPosition: "center"}} className={"profilPicture"}>
                                             </div>
                                         )
                                     })
@@ -301,7 +301,7 @@ function Profil() {
                                 {compagnonList &&
                                     compagnonList.map((val, key) => {
                                         return (
-                                            <div onClick={() => changeActiveCompagnon(val.number, val.colorList)} loading={"lazy"} style={{ filter: val.negative === 1 ? "invert(1)" : "invert(0)", backgroundRepeat: "no-repeat", backgroundColor: val.colorList, backgroundImage: `url("/Sprites/${val.shiny === 1 ? "Shiny" : "Normal"}/${val.number}.gif")`, backgroundSize: "contain", backgroundPosition: "center" }} className={"profilPicture"}>
+                                            <div onClick={() => changeActiveCompagnon(val.number, val.color)} loading={"lazy"} style={{ filter: val.negative === 1 ? "invert(1)" : "invert(0)", backgroundRepeat: "no-repeat", backgroundColor: val.color, backgroundImage: `url("/Sprites/${val.shiny === 1 ? "Shiny" : "Normal"}/${val.number}.gif")`, backgroundSize: "contain", backgroundPosition: "center" }} className={"profilPicture"}>
                                             </div>
                                         )
                                     })
