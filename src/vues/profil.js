@@ -466,7 +466,7 @@ function Profil() {
 
                                                 <button
                                                     onClick={() => {
-                                                            recoverExpedition(expedition[0].id, expedition[0].shiny, expedition[0].negative);
+                                                            recoverExpedition(expedition[0].id, expedition[0].shiny, expedition[0].negative, expedition[0].tier);
                                                     }}
                                                 >
                                                     Récupérer
