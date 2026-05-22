@@ -511,6 +511,7 @@ p.levelProfil {
     background-blend-mode: darken;
     position: relative;
     justify-content: center;
+    background-size: cover;
 }
 .progressBarFightExternal {
     background-color: #fff;
