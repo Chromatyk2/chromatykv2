@@ -804,63 +804,81 @@ span.dexNumber {
     align-items:"center";
     justify-content:"center";
 }
-
-/* Animation */
-@keyframes myAnimation {
-    from {
-        transform: scale(0);
-    }
-
-    to {
-        transform: scale(1);
-    }
+.validExpeditionButton {
+    background: #fff3;
+    border: 2px solid #a4b3bd;
+    border-radius: 5px;
+    color: #fff;
+    font-family: Charge Vector Black;
+    letter-spacing: 1px;
+    margin: 10px;
 }
-@keyframes shake {
-    0% {
-        transform: translateX(0) rotate(0);
-    }
-
-    20% {
-        transform: translateX(-10px) rotate(-20deg);
-    }
-
-    30% {
-        transform: translateX(10px) rotate(20deg);
-    }
-
-    50% {
-        transform: translateX(-10px) rotate(-10deg);
-    }
-
-    60% {
-        transform: translateX(10px) rotate(10deg);
-    }
-
-    100% {
-        transform: translateX(0) rotate(0);
-    }
+.validExpeditionButton:hover {
+    background: #05487380;
+    border: 2px solid #054873;
+    cursor: pointer;
 }
-@keyframes catch {
-    to {
-        filter: saturate(0.8) brightness(0.8);
-    }
-}
+    /* Animation */
+    @keyframes myAnimation {
+        from {
+            transform: scale(0);
+        }
 
-/* Media Query */
-@media (max-width: 1250px) {
-    .globalContainer {
-        width: 100%;
+        to {
+            transform: scale(1);
+        }
     }
-    .fightContainer {
-        width: 100%;
+
+    @keyframes shake {
+        0% {
+            transform: translateX(0) rotate(0);
+        }
+
+        20% {
+            transform: translateX(-10px) rotate(-20deg);
+        }
+
+        30% {
+            transform: translateX(10px) rotate(20deg);
+        }
+
+        50% {
+            transform: translateX(-10px) rotate(-10deg);
+        }
+
+        60% {
+            transform: translateX(10px) rotate(10deg);
+        }
+
+        100% {
+            transform: translateX(0) rotate(0);
+        }
     }
-    .navBarContent {
-        width: 100%;
+
+    @keyframes catch {
+        to {
+            filter: saturate(0.8) brightness(0.8);
+        }
     }
-    .globalContainerCenter {
-        width: 100%;
+    /* Media Query */
+    @media (max-width: 1250px) {
+        .globalContainer {
+            width: 100%;
+        }
+
+        .fightContainer {
+            width: 100%;
+        }
+
+        .navBarContent {
+            width: 100%;
+        }
+
+        .globalContainerCenter {
+            width: 100%;
+        }
+
+        .welcomeText p {
+            margin-top: 80px;
+        }
     }
-    .welcomeText p {
-        margin-top: 80px;
-    }
-}

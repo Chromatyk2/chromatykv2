@@ -476,7 +476,7 @@ function Profil() {
 
                                             ) : !validatedExpedition ? (
 
-                                                <button
+                                                    <button className={"validExpeditionButton"}
                                                     onClick={() => {
                                                             recoverExpedition(expedition[0].id, expedition[0].shiny, expedition[0].negative, expedition[0].tier);
                                                     }}
