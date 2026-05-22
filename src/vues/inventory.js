@@ -14,66 +14,73 @@ function Inventory(props) {
         })
     }, []);
     function openLootbox() {
-        if (inventory.find((item) => item.slug == "box").quantity - 1 >= 0) {
+        if (inventory.find((item) => item.slug === "box").quantity - 1 >= 0) {
             Axios.post('/api/removeItem', {
                 user: cookies.user.data[0].id,
                 slug: "box"
             }).then(function (response) {
-
-                const honeyTier = Math.random() * 100;
-                if (honeyTier < 0.01) {
-                    var item = "Miel Négatif";
-                    var slug = "negative";
-                } else if (honeyTier < 0.11) {
-                    var item = "Miel Chromatique";
-                    var slug = "shiny";
-                } else if (honeyTier < 1.11) {
-                    var item = "Miel Légendaire";
-                    var slug = "legendary";
+                const candyTier = Math.random() * 100;
+                if (candyTier < 10) {
+                    var item = "Bonbon L";
+                    var slug = "expl";
+                    var quantity = Math.floor((Math.random() * 5) + 1);
+                } else if (candyTier < 40) {
+                    var item = "Bonbon M";
+                    var slug = "expm";
+                    var quantity = Math.floor((Math.random() * 10) + 1);
                 } else {
-                    var item = "Miel Ordinaire";
-                    var slug = "honey";
+                    var item = "Bonbon S";
+                    var slug = "exps";
+                    var quantity = 10;
                 }
-                Axios.post('/api/addItem', {
+                Axios.post('/api/addCandy', {
                     user: cookies.user.data[0].id,
                     item: item,
-                    slug: slug
+                    slug: slug,
+                    quantity: quantity
                 }).then(function (response) {
                     const ballTier = Math.random() * 100;
-                    if (ballTier < 1) {
+                    if (ballTier < 0.1) {
                         var item = "Master Ball";
                         var slug = "master";
+                        var quantity = 1;
                     } else if (ballTier < 6) {
                         var item = "Hyper Ball";
                         var slug = "ultra";
+                        var quantity = Math.floor((Math.random() * 5) + 1);
                     } else if (ballTier < 36) {
                         var item = "Super Ball";
                         var slug = "great";
+                        var quantity = Math.floor((Math.random() * 5) + 1);
                     } else {
                         var item = "Poke Ball";
                         var slug = "ball";
+                        var quantity = 5;
                     }
-                    Axios.post('/api/addItem', {
+                    Axios.post('/api/addCandy', {
                         user: cookies.user.data[0].id,
                         item: item,
-                        slug: slug
+                        slug: slug,
+                        quantity: quantity
                     }).then(function (response) {
-                        const candyTier = Math.random() * 100;
-                        if (candyTier < 1) {
-                            var item = "Bonbon L";
-                            var slug = "expl";
-                        } else if (candyTier < 40) {
-                            var item = "Bonbon M";
-                            var slug = "expm";
+                        const honeyTier = Math.random() * 100;
+                        if (honeyTier < 0.01) {
+                            var item = "Miel Négatif";
+                            var slug = "negative";
+                        } else if (honeyTier < 0.11) {
+                            var item = "Miel Chromatique";
+                            var slug = "shiny";
+                        } else if (honeyTier < 1.11) {
+                            var item = "Miel Légendaire";
+                            var slug = "legendary";
                         } else {
-                            var item = "Bonbon S";
-                            var slug = "exps";
+                            var item = "Miel Ordinaire";
+                            var slug = "honey";
                         }
-                        Axios.post('/api/addCandy', {
+                        Axios.post('/api/addItem', {
                             user: cookies.user.data[0].id,
                             item: item,
-                            slug: slug,
-                            quantity: Math.floor(Math.random() * 5)
+                            slug: slug
                         }).then(function (response) {
                             Axios.post('/api/addCandy', {
                                 user: cookies.user.data[0].id,
