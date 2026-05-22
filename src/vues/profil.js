@@ -333,7 +333,8 @@ function Profil() {
                             <div className={"skinContainer"}>
                                 <>
                                     {expedition.length > 0 &&
-                                        <p>Expedition en cours !</p>
+                                        <p>{expedition[0].pokemon}</p>
+                                        <div loading={"lazy"} style={{width:"100px",height:"100px", filter: expedition[0] === 1 ? "invert(1)" : "invert(0)", backgroundRepeat: "no-repeat", backgroundColor: val.color, backgroundImage: `url("/Sprites/${expedition[0] === 1 ? "Shiny" : "Normal"}/${val.number}.gif")`, backgroundSize: "contain", backgroundPosition: "center" }}></div>
                                     }
                                     {expedition.length < 1 && compagnonList &&
                                         compagnonList.map((val, key) => {
