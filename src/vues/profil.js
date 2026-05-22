@@ -247,7 +247,7 @@ function Profil() {
                         <button className={body === 1 && "active"} onClick={() => changePage(1)}>Profil</button>
                         <button style={{ display: "flex", justifyContent: "center", alignItems: "center", padding: "5px" }} className={body === 2 && "active"} onClick={() => changePage(2)}>Skins {skins && profil[0].level - skins.length > 0 && <p style={{ margin: 0, marginLeft: "5px", fontSize: "15px", width: "1rem", height: "1rem" }} className={"rank"}>{skins && profil[0].level - skins.length}</p>}</button>
                         <button className={body === 3 && "active"} onClick={() => changePage(3)}>Compagnons N.100</button>
-                        {profil[0].login === "Chromatyk"} && <button className={body === 4 && "active"} onClick={() => changePage(4)}>Expédition</button>}
+                        {profil[0].login === "Chromatyk" && <button className={body === 4 && "active"} onClick={() => changePage(4)}>Expédition</button>}
                     </div>         
                     <div className={"profilBody"}>
                         {body === 1 &&
