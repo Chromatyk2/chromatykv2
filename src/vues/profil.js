@@ -486,7 +486,7 @@ function Profil() {
 
                                             ) : (
 
-                                                        <p>Le compagnon a trouvé {fragementToWin} fragement !</p>
+                                                        <p>Le compagnon a trouvé <span style={{ color: "#ffc312" }} >{fragementToWin}</span> fragement !</p>
 
                                             )}
                                         </div>
