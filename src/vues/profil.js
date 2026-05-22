@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSearchParams, Link } from "react-router-dom";
 import Axios from "axios";
 import { useCookies } from 'react-cookie';
-import { getColorSync } from 'colorthief';
+import { getColorSync, getPaletteSync } from 'colorthief';
 
 
 
@@ -56,7 +56,8 @@ function Profil() {
                                     const img = new Image();
                                     img.src = "/Skins/Trainer" + response.data[0].skin + ".png";
                                     img.onload = () => {
-                                        setColor(getColorSync(img).hex());
+                                        const palette = getPaletteSync(img, { colorCount: 8 });
+                                        setColor(palette[Math.floor(Math.random() * palette.length)].hex());
                                     };
                                     Axios
                                         .get("/api/getActiveCompagnon/" + user + "/" + response.data[0].compagnon)
@@ -87,7 +88,8 @@ function Profil() {
                             img.src = "/Skins/Trainer" + response.data[0].skin + ".png";
 
                             img.onload = () => {
-                                setColor(getColorSync(img).hex());
+                                const palette = getPaletteSync(img, { colorCount: 8 });
+                                setColor(palette[Math.floor(Math.random() * palette.length)].hex());
                             };
                         })
                 })
@@ -111,7 +113,8 @@ function Profil() {
                             const img = new Image();
                             img.src = "/Skins/Trainer" + response.data[0].skin + ".png";
                             img.onload = () => {
-                                setColor(getColorSync(img).hex());
+                                const palette = getPaletteSync(img, { colorCount: 8 });
+                                setColor(palette[Math.floor(Math.random() * palette.length)].hex());
                             };
                             Axios
                                 .get("/api/getActiveCompagnon/" + cookies.user.data[0].id + "/" + response.data[0].compagnon)
@@ -165,8 +168,9 @@ function Profil() {
 
                             img.onload = () => {
 
-                                const color = getColorSync(img).hex();
-
+                                const palette = getPaletteSync(img, { colorCount: 8 });
+                                setColor(palette[Math.floor(Math.random() * palette.length)].hex());
+                                const color = palette[Math.floor(Math.random() * palette.length)].hex();
                                 newSkins.push({
                                     skins: val.skin,
                                     color: color
