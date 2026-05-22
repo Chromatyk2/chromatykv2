@@ -65,9 +65,7 @@ function HomePage(props) {
                                                 .get("/api/getShinydex")
                                                 .then(function (response) {
                                                     setShinydex(response.data.sort((a, b) => b.id - a.id))
-                                                    setTimeout(function () {
                                                         setOnload(false);
-                                                    }, 300);
                                                 })
                                         })
                                     })
@@ -79,9 +77,7 @@ function HomePage(props) {
                             .get("/api/getShinydex")
                             .then(function (response) {
                                 setShinydex(response.data.sort((a, b) => b.id - a.id))
-                                setTimeout(function () {
                                     setOnload(false);
-                                }, 300);
                             })
                     }
                 })
@@ -91,34 +87,34 @@ function HomePage(props) {
         <div className={"globalContainerCenter"}>
             {onLoad === false &&
                 <>
-                    <p clssName={"welcomeText"}>Bienvenue{typeof cookies.user !== "undefined" && "," + cookies.user.data[0].login} sur la v2 du site ! (la V1 et les cartes sont toujours disponibles <a style={{ textDecoration: "none", color: "#83d7d7" }} href="https://chromatykv2.netlify.app/" target="_blank">ICI</a>)</p>
-                    {typeof cookies.user === "undefined" &&
-                        <div className={"connectionBar"}>
-                            <p>Connectez-vous pour jouer !</p>
-                            <Login />
+            <p clssName={"welcomeText"}>Bienvenue{typeof cookies.user !== "undefined" && "," + cookies.user.data[0].login} sur la v2 du site ! (la V1 et les cartes sont toujours disponibles <a style={{textDecoration:"none", color: "#83d7d7" }} href="https://chromatykv2.netlify.app/" target="_blank">ICI</a>)</p>             
+            {typeof cookies.user === "undefined" &&
+                <div className={"connectionBar"}>
+                    <p>Connectez-vous pour jouer !</p>
+                    <Login />
+                </div>
+            }
+            <p>Rejoins les streams et viens discuter sur <a style={{ textDecoration: "none", color:"#83d7d7"}} href="https://twitch.tv/chromatyk" target="_blank">Twitch</a> !</p>
+            <p className="pseudoProfil">Dernier shiny capturé</p>
+            {shinydex &&
+                <div className={"shinydexCard"}>
+                    <div className={"shinydexName"}>#{shinydex[0].idPkm} {shinydex[0].pokemon}<br /><span
+                        className={"spanShinydex"}>{shinydex[0].surnom}</span></div>
+                    <div className={"shinydexSpriteContainer"}>
+                        <div>
+                            <img className={"shinydexSprite"} src={"/Sprites/shiny/" + shinydex[0].idPkm + ".gif"} />
                         </div>
-                    }
-                    <p>Rejoins les streams et viens discuter sur <a style={{ textDecoration: "none", color: "#83d7d7" }} href="https://twitch.tv/chromatyk" target="_blank">Twitch</a> !</p>
-                    <p className="pseudoProfil">Dernier shiny capturé</p>
-                    {shinydex &&
-                        <div className={"shinydexCard"}>
-                            <div className={"shinydexName"}>#{shinydex[0].idPkm} {shinydex[0].pokemon}<br /><span
-                                className={"spanShinydex"}>{shinydex[0].surnom}</span></div>
-                            <div className={"shinydexSpriteContainer"}>
-                                <div>
-                                    <img className={"shinydexSprite"} src={"/Sprites/shiny/" + shinydex[0].idPkm + ".gif"} />
-                                </div>
-                                {shinydex[0].lien !== null &&
-                                    <a target={"_blank"} href={shinydex[0].lien}><img className={"linkShinydex"}
-                                        src={"/youtube.png"} /></a>
-                                }
-                            </div>
-                            <div className={"description"}>
-                                {moment(shinydex[0].date).utc().format('DD/MM/YYYY')}<br /><span
-                                    className={"spanShinydex"}>{shinydex[0].version}</span><br />{shinydex[0].description}
-                            </div>
-                        </div>
-                    }
+                        {shinydex[0].lien !== null &&
+                            <a target={"_blank"} href={shinydex[0].lien}><img className={"linkShinydex"}
+                                src={"/youtube.png"} /></a>
+                        }
+                    </div>
+                    <div className={"description"}>
+                        {moment(shinydex[0].date).utc().format('DD/MM/YYYY')}<br /><span
+                            className={"spanShinydex"}>{shinydex[0].version}</span><br />{shinydex[0].description}
+                    </div>
+                </div>
+            }
                 </>
             }
         </div>        

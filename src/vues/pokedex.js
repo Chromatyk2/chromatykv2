@@ -34,9 +34,7 @@ function Pokedex() {
             .then(function (response) {
                 setPokedex(response.data)
                 setFilteredPokedex(response.data)
-                setTimeout(function () {
-                    setOnload(false);
-                }, 300);
+                setOnload(false);
             })
     }
     function filterGen(e) {

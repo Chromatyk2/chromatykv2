@@ -42,9 +42,7 @@ function Compagnon() {
                                         .then(function (response) {
                                             setInventory(response.data);
                                             setHaveCompagnon(true);
-                                            setTimeout(function () {
-                                                setOnload(false);
-                                            }, 300);
+                                            setOnload(false);
                                         })
                                 })
                         }

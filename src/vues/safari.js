@@ -50,13 +50,9 @@ function Fight() {
                                             } else {
                                                 setMaxLove(1000);
                                             }
-                                            setTimeout(function () {
-                                                setOnload(false);
-                                            }, 300);
-                                        }
-                                        setTimeout(function () {
                                             setOnload(false);
-                                        }, 300);
+                                        }
+                                        setOnload(false);
                                     })
                             })
                     })
