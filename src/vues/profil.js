@@ -292,25 +292,36 @@ function Profil() {
             })
         }
     }
-    function recoverExpedition(id, shiny, negative) {
+    function recoverExpedition(id, shiny, negative, tier) {
         if (expedition.length > 0) {
             Axios.delete('/api/deleteExpedition/' + cookies.user.data[0].id)
                 .then(function (response) {
-                    let fragementToWin;
-                    if (shiny === 1) {
-                        fragementToWin = Math.floor((Math.random() * 3) + 3)
-                    } else if (negative === 1) {
-                        fragementToWin = 5
+                    let fragmentToWin = 0;
+                    if (negative === 1) {
+                        const min = 4 + tier;
+                        const max = 6 + tier;
+                        fragmentToWin =
+                            Math.floor(Math.random() * (max - min + 1)) + min;
+
+                    } else if (shiny === 1) {   
+                        const min = 3;
+                        const max = 4 + tier;
+                        fragmentToWin =
+                            Math.floor(Math.random() * (max - min + 1)) + min;
+
                     } else {
-                        fragementToWin = Math.floor((Math.random() * 3) + 1)
+                        const min = 1;
+                        const max = 2 + tier;
+                        fragmentToWin =
+                            Math.floor(Math.random() * (max - min + 1)) + min;
                     }
                     Axios.post('/api/addCandy', {
                         user: cookies.user.data[0].id,
                         item: "Fragement de Pack",
                         slug: "fragement",
-                        quantity: fragementToWin
+                        quantity: fragmentToWin
                     }).then(function (response) {
-                        setFragementToWin(fragementToWin)
+                        setFragementToWin(fragmentToWin)
                         setValidatedExpedition(true);
                         setTimeout(function () {
                             let user;
