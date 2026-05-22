@@ -128,6 +128,32 @@ function Compagnon() {
             })
         }
     }
+    function levelMaxCompagnon(e) {
+        if (inventory.find((item) => item.slug === e).quantity - 1 >= 0) {
+            Axios.post('/api/removeItem', {
+                user: cookies.user.data[0].id,
+                slug: e
+            })
+                .then(function (response) {
+                    Axios.post('/api/levelMaxCompagnon', {
+                        id: compagnon[0].id
+                    }).then(function (response) {
+                        Axios.get('/api/getCurrentCompagnon/' + cookies.user.data[0].id)
+                            .then(function (response) {
+                                setHaveCompagnon(true)
+                                setChooseCompagnon(false)
+                                setCompagnon(response.data);
+                                Axios
+                                    .get("/api/getInventory/" + cookies.user.data[0].id)
+                                    .then(function (response) {
+                                        setInventory(response.data);
+                                        setHaveCompagnon(true)
+                                    })
+                            })
+                    })
+                })
+        }
+    }
     const rareCandy = inventory?.find(
         item => item.slug === "rarecandy"
     );
@@ -218,7 +244,7 @@ function Compagnon() {
                     )}
                 {canShow && (
                     <>
-                        <div>
+                        <div style={{display: "flex",justifyContent: "space-around",width: "100%"} }>
                             {rareCandy.quantity < 1 && megaCandy.quantity < 1 && (
                                 <div style={{ background: "none" }} className={"emptyInventory"}>
                                     <p style={{ fontSize: "18px" }} className="pseudoProfil">Tu n'as pas de Super Bonbon, récupère en sur les streams de Chromatyk</p>
@@ -240,7 +266,7 @@ function Compagnon() {
                             }
                             {megaCandy.quantity > 0 &&
                                 (
-                                    <div onClick={() => levelupCompagnon(inventory.find(item => item.slug === "megacandy").slug)} style={{ filter: "hue-rotate(182deg)", background: "none" }} className="fightActionsContainer">
+                                <div onClick={() => levelMaxCompagnon(inventory.find(item => item.slug === "megacandy").slug)} style={{ filter: "hue-rotate(182deg)", background: "none" }} className="fightActionsContainer">
                                         <div className="fightActions">
                                             <img src="/megacandy.png" />
                                             <p>Mega Bonbon</p>
