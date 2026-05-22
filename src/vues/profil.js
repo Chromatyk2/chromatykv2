@@ -187,16 +187,14 @@ function Profil() {
                     setExpedition(response.data);
                     if (response.data.length > 0) {
                         let progress = 0;
-                        if (expedition.length > 0) {
-                            const startDate = new Date(expedition[0].date);
-                            const endDate = new Date(startDate.getTime() + 4 * 60 * 60 * 1000);
-                            const now = new Date();
-                            const totalDuration = endDate - startDate;
-                            const elapsed = now - startDate;
-                            progress = (elapsed / totalDuration) * 100;
-                            progress = Math.max(0, Math.min(100, progress));
-                            setProgressExpedition(progress);
-                        }
+                        const startDate = new Date(expedition[0].date);
+                        const endDate = new Date(startDate.getTime() + 4 * 60 * 60 * 1000);
+                        const now = new Date();
+                        const totalDuration = endDate - startDate;
+                        const elapsed = now - startDate;
+                        progress = (elapsed / totalDuration) * 100;
+                        progress = Math.max(0, Math.min(100, progress));
+                        setProgressExpedition(progress);
                     }
                     setBody(e);
                 })
