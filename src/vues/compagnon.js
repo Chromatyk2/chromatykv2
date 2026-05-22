@@ -177,7 +177,7 @@ function Compagnon() {
     return (
         <div className={"globalContainerCenter"}>
             <p>Compagnon</p>
-            <div style={{ overflow: "overlay" }} className={"fightContainer"}>
+            <div style={{ backgroundImage: `url(/compagnonBack.jpg)`, overflow: "overlay" }} className={"fightContainer"}>
                 {onLoad === false &&
                     <>
                         {!haveCompagnon &&
