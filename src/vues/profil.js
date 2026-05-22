@@ -258,12 +258,13 @@ function Profil() {
             setBody(e);
         }
     }
-    function runExpedition(e) {
+    function runExpedition(e,f) {
         if (!new URLSearchParams(window.location.search).has("user")) {
             Axios.post('/api/newExpedition', {
                 user: cookies.user.data[0].id,
                 number: e,
-                date: moment().format('YYYY-MM-DD HH:mm:ss')
+                date: moment().format('YYYY-MM-DD HH:mm:ss'),
+                tier:f
             })
             .then(function (response) {
                 let user;
@@ -483,7 +484,7 @@ function Profil() {
                                         compagnonList &&
                                         compagnonList.map((val, key) => {
                                             return (
-                                                <div onClick={() => runExpedition(val.number)} loading={"lazy"} style={{ filter: val.negative === 1 ? "invert(1)" : "invert(0)", backgroundRepeat: "no-repeat", backgroundColor: val.color, backgroundImage: `url("/Sprites/${val.shiny === 1 ? "Shiny" : "Normal"}/${val.number}.gif")`, backgroundSize: "contain", backgroundPosition: "center" }} className={"profilPicture"}>
+                                                <div onClick={() => runExpedition(val.number, val.tier)} loading={"lazy"} style={{ filter: val.negative === 1 ? "invert(1)" : "invert(0)", backgroundRepeat: "no-repeat", backgroundColor: val.color, backgroundImage: `url("/Sprites/${val.shiny === 1 ? "Shiny" : "Normal"}/${val.number}.gif")`, backgroundSize: "contain", backgroundPosition: "center" }} className={"profilPicture"}>
                                                 </div>
                                             )
                                         })
