@@ -23,6 +23,7 @@ function Profil() {
     const [loadSkin, setLoadSkin] = useState(false);
     const [compagnon, setCompagnon] = useState(null);
     const [expedition, setExpedition] = useState(null);
+    const [allExpedition, setAllExpedition] = useState(null);
     const [compagnonList, setCompagnonList] = useState(null);
     const [progresseExpedition, setProgressExpedition] = useState(null);
     const [searchParams] = useSearchParams();
@@ -187,12 +188,13 @@ function Profil() {
             Axios.get("/api/getMaxLevelCompagnon/" + user)
                 .then((response) => {
                     setCompagnonList(response.data);
-                    Axios.get("/api/getExpedition/" + user)
+                    Axios.get("/api/getAllExpedition/" + user)
                         .then((response) => {
-                            setExpedition(response.data);
-                            if (response.data.length > 0) {
+                            setExpedition(response.data.find((item) => item.active === 1))
+                            setAllExpedition(response.data);
+                            if (response.data.find((item) => item.active === 1).length > 0) {
                                 let progress = 0;
-                                const startDate = new Date(response.data[0].date);
+                                const startDate = new Date(response.data.find((item) => item.active === 1) 0].date);
                                 const endDate = new Date(startDate.getTime() + 4 * 60 * 60 * 1000);
                                 const now = new Date();
                                 const totalDuration = endDate - startDate;
@@ -273,12 +275,13 @@ function Profil() {
                 } else {
                     user = cookies.user.data[0].id;
                 }
-                Axios.get("/api/getExpedition/" + user)
+                Axios.get("/api/getAllExpedition/" + user)
                     .then((response) => {
-                        setExpedition(response.data);
-                        if (response.data.length > 0) {
+                        setExpedition(response.data.find((item) => item.active === 1));
+                        setAllExpedition(response.data);
+                        if (response.data.find((item) => item.active === 1).length > 0) {
                             let progress = 0;
-                            const startDate = new Date(response.data[0].date);
+                            const startDate = new Date(response.data.find((item) => item.active === 1)[0].date);
                             const endDate = new Date(startDate.getTime() + 4 * 60 * 60 * 1000);
                             const now = new Date();
                             const totalDuration = endDate - startDate;
@@ -330,9 +333,10 @@ function Profil() {
                             } else {
                                 user = cookies.user.data[0].id;
                             }
-                            Axios.get("/api/getExpedition/" + user)
+                            Axios.get("/api/getAllExpedition/" + user)
                                 .then((response) => {
-                                    setExpedition(response.data);
+                                    setExpedition(response.data.find((item) => item.active === 1));
+                                    setAllExpedition(response.data);
                                 })
                         }, 2000);
                     })
@@ -493,7 +497,13 @@ function Profil() {
                                     }
                                     {expedition.length < 1 &&
                                         compagnonList &&
-                                        compagnonList.map((val, key) => {
+                                        compagnonList.filter(
+                                            val =>
+                                                !allExpedition.some(
+                                                    expedition => expedition.number === val.number
+                                                )
+                                        )
+                                        .map((val, key) => {
                                             return (
                                                 <div onClick={() => runExpedition(val.number, val.tier)} loading={"lazy"} style={{ filter: val.negative === 1 ? "invert(1)" : "invert(0)", backgroundRepeat: "no-repeat", backgroundColor: val.color, backgroundImage: `url("/Sprites/${val.shiny === 1 ? "Shiny" : "Normal"}/${val.number}.gif")`, backgroundSize: "contain", backgroundPosition: "center" }} className={"profilPicture"}>
                                                 </div>
