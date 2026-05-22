@@ -291,16 +291,16 @@ function Fight() {
         const tierRoll = Math.random() * 100;
         if (tierRoll < 39) {
             var tier = 1;
-            setMaxLove(50)
+            setMaxLove(125)
         } else if (tierRoll < 89) {
             var tier = 2;
-            setMaxLove(100)
+            setMaxLove(375)
         } else if (tierRoll < 99) {
             var tier = 3;
-            setMaxLove(150)
+            setMaxLove(650)
         } else {
             var tier = 4;
-            setMaxLove(250)
+            setMaxLove(1000)
         }
         Axios.get("/api/getRandomPokemon/" + tier)
             .then(function (response) {
@@ -414,21 +414,21 @@ function Fight() {
                                 </div>
                             }
                             {inventory.filter(item => item.slug === "exps" && item.quantity > 0).length > 0 &&
-                                <div onClick={() => addLove(10, "exps")} className={"fightActions"}>
+                                <div onClick={() => addLove(25, "exps")} className={"fightActions"}>
                                     < img src={"/exps.png"} />
                                     <p>Bonbon S</p>
                                     <p>x {inventory.find((item) => item.slug === "exps").quantity}</p>
                                 </div>
                             }
                             {inventory.filter(item => item.slug === "expm" && item.quantity > 0).length > 0 &&
-                                <div onClick={() => addLove(25, "expm")} className={"fightActions"}>
+                                <div onClick={() => addLove(75, "expm")} className={"fightActions"}>
                                     < img src={"/expm.png"} />
                                     <p>Bonbon M</p>
                                     <p>x {inventory.find((item) => item.slug === "expm").quantity}</p>
                                 </div>
                             }
                             {inventory.filter(item => item.slug === "expl" && item.quantity > 0).length > 0 &&
-                                <div onClick={() => addLove(50, "expl")} className={"fightActions"}>
+                                <div onClick={() => addLove(200, "expl")} className={"fightActions"}>
                                     < img src={"/expl.png"} />
                                     <p>Bonbon L</p>
                                     <p>x {inventory.find((item) => item.slug === "expl").quantity}</p>
