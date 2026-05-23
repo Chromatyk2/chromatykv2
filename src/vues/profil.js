@@ -295,9 +295,9 @@ function Profil() {
             })
         }
     }
-    function recoverExpedition(id, shiny, negative, tier) {
+    function recoverExpedition(id, shiny, negative, tier, number) {
         if (expedition.active === 1) {
-            Axios.delete('/api/closeExpedition/' + cookies.user.data[0].id)
+            Axios.post('/api/closeExpedition/' + number)
                 .then(function (response) {
                     let fragmentToWin = 0;
                     if (negative === 1) {
@@ -482,7 +482,7 @@ function Profil() {
 
                                                     <button className={"validExpeditionButton"}
                                                     onClick={() => {
-                                                            recoverExpedition(expedition.id, expedition.shiny, expedition.negative, expedition.tier);
+                                                            recoverExpedition(expedition.id, expedition.shiny, expedition.negative, expedition.tier, expedition.number);
                                                     }}
                                                 >
                                                     Récupérer
