@@ -290,7 +290,7 @@ function Profil() {
                                 endDate = new Date(startDate.getTime() + (2 + f) * 60 * 60 * 1000);
 
                             } else {
-                                endDate = new Date(startDate.getTime() + + (1 + f) * 60 * 60 * 1000);
+                                endDate = new Date(startDate.getTime() + (1 + f) * 60 * 60 * 1000);
                             }
                             const now = new Date();
                             const totalDuration = endDate - startDate;
