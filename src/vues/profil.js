@@ -44,7 +44,7 @@ function Profil() {
             const startDate = new Date(expedition.date);
             const endDate = new Date(expedition.endDate);
 
-            const now = new Date();
+            const now = new Date(now.getTime() + 2 * 60 * 60 * 1000);
 
             const totalDuration = endDate - startDate;
             const elapsed = now - startDate;
@@ -66,7 +66,7 @@ function Profil() {
                 return;
             }
 
-            const hours = Math.floor(remaining / 1000 / 60 / 60) - 2;
+            const hours = Math.floor(remaining / 1000 / 60 / 60);
             const minutes = Math.floor((remaining / 1000 / 60) % 60);
             const seconds = Math.floor((remaining / 1000) % 60);
 
