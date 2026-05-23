@@ -495,14 +495,15 @@ function Profil() {
                                             )}
                                         </div>
                                     }
-                                    {(expedition || !allExpedition?.length) &&
-                                        compagnonList &&
-                                        compagnonList.filter(
-                                            val =>
-                                                !allExpedition?.some(
-                                                    expedition => expedition.number === val.number
-                                                )
-                                        )
+                                    {compagnonList &&
+                                        compagnonList
+                                            .filter(
+                                                val =>
+                                                    !allExpedition?.some(
+                                                        expedition =>
+                                                            expedition.number === val.number
+                                                    )
+                                            )
                                         .map((val, key) => {
                                             return (
                                                 <div onClick={() => runExpedition(val.number, val.tier)} loading={"lazy"} style={{ filter: val.negative === 1 ? "invert(1)" : "invert(0)", backgroundRepeat: "no-repeat", backgroundColor: val.color, backgroundImage: `url("/Sprites/${val.shiny === 1 ? "Shiny" : "Normal"}/${val.number}.gif")`, backgroundSize: "contain", backgroundPosition: "center" }} className={"profilPicture"}>
