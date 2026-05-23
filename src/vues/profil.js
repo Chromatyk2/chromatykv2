@@ -195,7 +195,7 @@ function Profil() {
                             if (response.data.some((item) => item.active === 1)) {
                                 let progress = 0;
                                 const startDate = new Date(response.data.find((item) => item.active === 1).date);
-                                const endDate = new Date(response.data.find((item) => item.active === 1).endDate.getTime() + 4 * 60 * 60 * 1000);
+                                const endDate = new Date(response.data.find((item) => item.active === 1).endDate);
                                 const now = new Date();
                                 const totalDuration = endDate - startDate;
                                 const elapsed = now - startDate;
@@ -293,6 +293,7 @@ function Profil() {
                         if (response.data.some((item) => item.active === 1)) {
                             let progress = 0;
                             const startDate = new Date(response.data.find((item) => item.active === 1).date);
+                            const endDate = new Date(response.data.find((item) => item.active === 1).endDate);
                             const now = new Date();
                             const totalDuration = endDate - startDate;
                             const elapsed = now - startDate;
