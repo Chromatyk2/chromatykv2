@@ -296,51 +296,53 @@ function Profil() {
         }
     }
     function recoverExpedition(id, shiny, negative, tier, number) {
-        if (expedition.active === 1) {
-            Axios.post('/api/closeExpedition/' + number)
-                .then(function (response) {
-                    let fragmentToWin = 0;
-                    if (negative === 1) {
-                        const min = 4 + tier;
-                        const max = 6 + tier;
-                        fragmentToWin =
-                            Math.floor(Math.random() * (max - min + 1)) + min;
+        if (!new URLSearchParams(window.location.search).has("user")) {
+            if (expedition.active === 1) {
+                Axios.post('/api/closeExpedition/' + number)
+                    .then(function (response) {
+                        let fragmentToWin = 0;
+                        if (negative === 1) {
+                            const min = 4 + tier;
+                            const max = 6 + tier;
+                            fragmentToWin =
+                                Math.floor(Math.random() * (max - min + 1)) + min;
 
-                    } else if (shiny === 1) {   
-                        const min = 3;
-                        const max = 4 + tier;
-                        fragmentToWin =
-                            Math.floor(Math.random() * (max - min + 1)) + min;
+                        } else if (shiny === 1) {
+                            const min = 3;
+                            const max = 4 + tier;
+                            fragmentToWin =
+                                Math.floor(Math.random() * (max - min + 1)) + min;
 
-                    } else {
-                        const min = 1;
-                        const max = 2 + tier;
-                        fragmentToWin =
-                            Math.floor(Math.random() * (max - min + 1)) + min;
-                    }
-                    Axios.post('/api/addCandy', {
-                        user: cookies.user.data[0].id,
-                        item: "Fragement de Pack",
-                        slug: "fragement",
-                        quantity: fragmentToWin
-                    }).then(function (response) {
-                        setFragementToWin(fragmentToWin)
-                        setValidatedExpedition(true);
-                        setTimeout(function () {
-                            let user;
-                            if (new URLSearchParams(window.location.search).has("user")) {
-                                user = new URLSearchParams(window.location.search).get("user");
-                            } else {
-                                user = cookies.user.data[0].id;
-                            }
-                            Axios.get("/api/getAllExpedition/" + user)
-                                .then((response) => {
-                                    setExpedition(response.data.find((item) => item.active === 1));
-                                    setAllExpedition(response.data);
-                                })
-                        }, 2000);
+                        } else {
+                            const min = 1;
+                            const max = 2 + tier;
+                            fragmentToWin =
+                                Math.floor(Math.random() * (max - min + 1)) + min;
+                        }
+                        Axios.post('/api/addCandy', {
+                            user: cookies.user.data[0].id,
+                            item: "Fragement de Pack",
+                            slug: "fragement",
+                            quantity: fragmentToWin
+                        }).then(function (response) {
+                            setFragementToWin(fragmentToWin)
+                            setValidatedExpedition(true);
+                            setTimeout(function () {
+                                let user;
+                                if (new URLSearchParams(window.location.search).has("user")) {
+                                    user = new URLSearchParams(window.location.search).get("user");
+                                } else {
+                                    user = cookies.user.data[0].id;
+                                }
+                                Axios.get("/api/getAllExpedition/" + user)
+                                    .then((response) => {
+                                        setExpedition(response.data.find((item) => item.active === 1));
+                                        setAllExpedition(response.data);
+                                    })
+                            }, 2000);
+                        })
                     })
-                })
+            }
         }
     }
     return (
@@ -480,17 +482,32 @@ function Profil() {
 
                                             ) : !validatedExpedition ? (
 
-                                                    <button className={"validExpeditionButton"}
-                                                    onClick={() => {
-                                                            recoverExpedition(expedition.id, expedition.shiny, expedition.negative, expedition.tier, expedition.number);
-                                                    }}
-                                                >
-                                                    Récupérer
-                                                </button>
+                                                !new URLSearchParams(window.location.search).has("user") && (
+                                                    <button
+                                                        className={"validExpeditionButton"}
+                                                        onClick={() => {
+                                                            recoverExpedition(
+                                                                expedition.id,
+                                                                expedition.shiny,
+                                                                expedition.negative,
+                                                                expedition.tier,
+                                                                expedition.number
+                                                            );
+                                                        }}
+                                                    >
+                                                        Récupérer
+                                                    </button>
+                                                )
 
                                             ) : (
 
-                                                        <p>Le compagnon a trouvé <span style={{ color: "#ffc312" }} >{fragementToWin}</span> fragement !</p>
+                                                <p>
+                                                    Le compagnon a trouvé{" "}
+                                                    <span style={{ color: "#ffc312" }}>
+                                                        {fragementToWin}
+                                                    </span>{" "}
+                                                    fragment !
+                                                </p>
 
                                             )}
                                         </div>
