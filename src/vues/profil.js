@@ -42,7 +42,7 @@ function Profil() {
         const interval = setInterval(() => {
 
             const startDate = new Date(expedition.date);
-            const endDate = new Date(startDate.getTime() + 4 * 60 * 60 * 1000);
+            const endDate = new Date(expedition.endDate);
 
             const now = new Date();
 
@@ -195,7 +195,7 @@ function Profil() {
                             if (response.data.some((item) => item.active === 1)) {
                                 let progress = 0;
                                 const startDate = new Date(response.data.find((item) => item.active === 1).date);
-                                const endDate = new Date(startDate.getTime() + 4 * 60 * 60 * 1000);
+                                const endDate = new Date(response.data.find((item) => item.active === 1).endDate.getTime() + 4 * 60 * 60 * 1000);
                                 const now = new Date();
                                 const totalDuration = endDate - startDate;
                                 const elapsed = now - startDate;
@@ -262,11 +262,22 @@ function Profil() {
     }
     function runExpedition(e,f, negative, shiny) {
         if (!new URLSearchParams(window.location.search).has("user")) {
+            let endDate = 0;
+            if (negative === 1) {
+                endDate = new Date(moment().format('YYYY-MM-DD HH:mm:ss').getTime() + (3 + f) * 60 * 60 * 1000);
+
+            } else if (shiny === 1) {
+                endDate = new Date(moment().format('YYYY-MM-DD HH:mm:ss').getTime() + (2 + f) * 60 * 60 * 1000);
+
+            } else {
+                endDate = new Date(moment().format('YYYY-MM-DD HH:mm:ss').getTime() + (1 + f) * 60 * 60 * 1000);
+            }
             Axios.post('/api/newExpedition', {
                 user: cookies.user.data[0].id,
                 number: e,
                 date: moment().format('YYYY-MM-DD HH:mm:ss'),
-                tier:f
+                tier: f,
+                endDate:endDate
             })
             .then(function (response) {
                 let user;
@@ -282,16 +293,6 @@ function Profil() {
                         if (response.data.some((item) => item.active === 1)) {
                             let progress = 0;
                             const startDate = new Date(response.data.find((item) => item.active === 1).date);
-                            let endDate = 0;
-                            if (negative === 1) {
-                                endDate = new Date(startDate.getTime() + (3 + f) * 60 * 60 * 1000);
-
-                            } else if (shiny === 1) {
-                                endDate = new Date(startDate.getTime() + (2 + f) * 60 * 60 * 1000);
-
-                            } else {
-                                endDate = new Date(startDate.getTime() + (1 + f) * 60 * 60 * 1000);
-                            }
                             const now = new Date();
                             const totalDuration = endDate - startDate;
                             const elapsed = now - startDate;
