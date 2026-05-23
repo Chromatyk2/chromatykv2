@@ -194,7 +194,7 @@ function Profil() {
                             setAllExpedition(response.data);
                             if (response.data.some((item) => item.active === 1)) {
                                 let progress = 0;
-                                const startDate = new Date(response.data.find((item) => item.active === 1)[0].date);
+                                const startDate = new Date(response.data.find((item) => item.active === 1).date);
                                 const endDate = new Date(startDate.getTime() + 4 * 60 * 60 * 1000);
                                 const now = new Date();
                                 const totalDuration = endDate - startDate;
