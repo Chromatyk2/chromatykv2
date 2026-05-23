@@ -36,13 +36,13 @@ function Profil() {
         initPage();
     }, [param]);
     useEffect(() => {
-        console.log("Ajout Expedition")
+
         if (!expedition) return;
 
         const interval = setInterval(() => {
 
-            const startDate = new Date(expedition.date);
-            const endDate = new Date(expedition.endDate);
+            const startDate = new Date(expedition.date).toISOString();
+            const endDate = new Date(expedition.endDate).toISOString();
 
             const now = new Date();
 
@@ -291,6 +291,7 @@ function Profil() {
                         setExpedition(response.data.find((item) => item.active === 1));
                         setAllExpedition(response.data);
                         if (response.data.some((item) => item.active === 1)) {
+
                             let progress = 0;
                             const startDate = new Date(response.data.find((item) => item.active === 1).date);
                             const endDate = new Date(response.data.find((item) => item.active === 1).endDate);
