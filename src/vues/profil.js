@@ -264,13 +264,13 @@ function Profil() {
         if (!new URLSearchParams(window.location.search).has("user")) {
             let endDate = 0;
             if (negative === 1) {
-                endDate = new Date(moment().format('YYYY-MM-DD HH:mm:ss').getTime() + (3 + f) * 60 * 60 * 1000);
+                endDate = new Date(Date.now() + (3 + f) * 60 * 60 * 1000);
 
             } else if (shiny === 1) {
-                endDate = new Date(moment().format('YYYY-MM-DD HH:mm:ss').getTime() + (2 + f) * 60 * 60 * 1000);
+                endDate = new Date(Date.now() + (2 + f) * 60 * 60 * 1000);
 
             } else {
-                endDate = new Date(moment().format('YYYY-MM-DD HH:mm:ss').getTime() + (1 + f) * 60 * 60 * 1000);
+                endDate = new Date(Date.now() + (1 + f) * 60 * 60 * 1000);
             }
             Axios.post('/api/newExpedition', {
                 user: cookies.user.data[0].id,
