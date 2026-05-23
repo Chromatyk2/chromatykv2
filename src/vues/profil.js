@@ -495,7 +495,8 @@ function Profil() {
                                             )}
                                         </div>
                                     }
-                                    {compagnonList &&
+                                    {!expedition &&
+                                        compagnonList &&
                                         compagnonList
                                             .filter(
                                                 val =>
