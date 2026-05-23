@@ -66,7 +66,7 @@ function Profil() {
                 return;
             }
 
-            const hours = Math.floor(remaining / 1000 / 60 / 60);
+            const hours = Math.floor(remaining / 1000 / 60 / 60) - 2;
             const minutes = Math.floor((remaining / 1000 / 60) % 60);
             const seconds = Math.floor((remaining / 1000) % 60);
 
