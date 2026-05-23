@@ -512,7 +512,8 @@ function Profil() {
                                             )}
                                         </div>
                                     }
-                                    {!expedition &&
+                                    {!new URLSearchParams(window.location.search).has("user") &&
+                                        !expedition &&
                                         compagnonList &&
                                         compagnonList
                                             .filter(
