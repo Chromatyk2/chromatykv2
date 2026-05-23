@@ -192,7 +192,7 @@ function Profil() {
                         .then((response) => {
                             setExpedition(response.data.find((item) => item.active === 1))
                             setAllExpedition(response.data);
-                            if (response.data.find((item) => item.active === 1).length > 0) {
+                            if (response.data.some((item) => item.active === 1)) {
                                 let progress = 0;
                                 const startDate = new Date(response.data.find((item) => item.active === 1)[0].date);
                                 const endDate = new Date(startDate.getTime() + 4 * 60 * 60 * 1000);
@@ -279,7 +279,7 @@ function Profil() {
                     .then((response) => {
                         setExpedition(response.data.find((item) => item.active === 1));
                         setAllExpedition(response.data);
-                        if (response.data.find((item) => item.active === 1).length > 0) {
+                        if (response.data.some((item) => item.active === 1)) {
                             let progress = 0;
                             const startDate = new Date(response.data.find((item) => item.active === 1)[0].date);
                             const endDate = new Date(startDate.getTime() + 4 * 60 * 60 * 1000);
