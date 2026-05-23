@@ -41,8 +41,8 @@ function Profil() {
 
         const interval = setInterval(() => {
 
-            const startDate = new Date(expedition.date).toISOString();
-            const endDate = new Date(expedition.endDate).toISOString();
+            const startDate = new Date(expedition.date).replace(' ', 'T');
+            const endDate = new Date(expedition.endDate).replace(' ', 'T');
 
             const now = new Date();
 
