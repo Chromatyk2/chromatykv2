@@ -277,7 +277,7 @@ function Profil() {
                 number: e,
                 date: moment().format('YYYY-MM-DD HH:mm:ss'),
                 tier: f,
-                endDate:endDate
+                endDate: moment(endDate).format('YYYY-MM-DD HH:mm:ss')
             })
             .then(function (response) {
                 let user;
