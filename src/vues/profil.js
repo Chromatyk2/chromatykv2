@@ -281,7 +281,7 @@ function Profil() {
                         setAllExpedition(response.data);
                         if (response.data.some((item) => item.active === 1)) {
                             let progress = 0;
-                            const startDate = new Date(response.data.find((item) => item.active === 1)[0].date);
+                            const startDate = new Date(response.data.find((item) => item.active === 1).date);
                             const endDate = new Date(startDate.getTime() + 4 * 60 * 60 * 1000);
                             const now = new Date();
                             const totalDuration = endDate - startDate;
@@ -296,7 +296,7 @@ function Profil() {
         }
     }
     function recoverExpedition(id, shiny, negative, tier) {
-        if (expedition.length > 0) {
+        if (expedition.active === 1) {
             Axios.delete('/api/closeExpedition/' + cookies.user.data[0].id)
                 .then(function (response) {
                     let fragmentToWin = 0;
