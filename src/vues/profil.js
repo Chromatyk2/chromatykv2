@@ -499,7 +499,7 @@ function Profil() {
                                         compagnonList &&
                                         compagnonList.filter(
                                             val =>
-                                                !allExpedition.some(
+                                                !allExpedition?.some(
                                                     expedition => expedition.number === val.number
                                                 )
                                         )
