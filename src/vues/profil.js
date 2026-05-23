@@ -36,7 +36,7 @@ function Profil() {
         initPage();
     }, [param]);
     useEffect(() => {
-
+        console.log("Ajout Expedition")
         if (!expedition) return;
 
         const interval = setInterval(() => {
