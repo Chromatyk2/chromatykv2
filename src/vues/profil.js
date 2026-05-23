@@ -37,11 +37,11 @@ function Profil() {
     }, [param]);
     useEffect(() => {
 
-        if (!expedition?.length) return;
+        if (!expedition) return;
 
         const interval = setInterval(() => {
 
-            const startDate = new Date(expedition[0].date);
+            const startDate = new Date(expedition.date);
             const endDate = new Date(startDate.getTime() + 4 * 60 * 60 * 1000);
 
             const now = new Date();
@@ -466,10 +466,10 @@ function Profil() {
                         {body === 4 &&
                             <div style={{ width: "100%", justifyContent:"center" }} className={"skinContainer"}>
                                 <>
-                                    {expedition.length > 0 &&
+                                    {expedition &&
                                         <div style={{backgroundImage: `url(/expeditionBack.jpg)`}} className={"fightContainer"}>
-                                            <p>{expedition[0].pokemon}</p>
-                                            <div loading={"lazy"} style={{ width: "250px", height: "250px", filter: expedition[0].negative === 1 ? "invert(1)" : "invert(0)", backgroundRepeat: "no-repeat", backgroundImage: `url("/Sprites/${expedition[0].shiny === 1 ? "Shiny" : "Normal"}/${expedition[0].number}.gif")`, backgroundSize: "contain", backgroundPosition: "center" }}></div>
+                                            <p>{expedition.pokemon}</p>
+                                            <div loading={"lazy"} style={{ width: "250px", height: "250px", filter: expedition.negative === 1 ? "invert(1)" : "invert(0)", backgroundRepeat: "no-repeat", backgroundImage: `url("/Sprites/${expedition.shiny === 1 ? "Shiny" : "Normal"}/${expedition.number}.gif")`, backgroundSize: "contain", backgroundPosition: "center" }}></div>
                                             <div style={{ width: "300px"}} className={"progressBarProfilExternal"}>
                                                 <div style={{ width: +progresseExpedition + "%" }} className={"progressBarProfilInternal"}>
                                                 </div>
@@ -482,7 +482,7 @@ function Profil() {
 
                                                     <button className={"validExpeditionButton"}
                                                     onClick={() => {
-                                                            recoverExpedition(expedition[0].id, expedition[0].shiny, expedition[0].negative, expedition[0].tier);
+                                                            recoverExpedition(expedition.id, expedition.shiny, expedition.negative, expedition.tier);
                                                     }}
                                                 >
                                                     Récupérer
@@ -495,7 +495,7 @@ function Profil() {
                                             )}
                                         </div>
                                     }
-                                    {expedition.length < 1 &&
+                                    {expedition &&
                                         compagnonList &&
                                         compagnonList.filter(
                                             val =>
