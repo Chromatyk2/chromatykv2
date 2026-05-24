@@ -128,7 +128,7 @@ function Inventory(props) {
                 } else {
                     var item = "Bonbon S";
                     var slug = "exps";
-                    var quantity = Math.floor((Math.random() * 10) + 1);
+                    var quantity = Math.floor((Math.random() * 10) + 5);
                 }
                 Axios.post('/api/addCandy', {
                     user: cookies.user.data[0].id,
