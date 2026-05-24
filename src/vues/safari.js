@@ -123,7 +123,7 @@ function Fight() {
                             setOnCatch(true);
                             const catchRates = {
                                 1: {
-                                    0: 0.75,
+                                    0: 0.5,
                                     1: 1,
                                     2: 1,
                                 },
@@ -177,7 +177,7 @@ function Fight() {
                                     }, 300);
                                 }
                                 else {
-                                    const fleeRate = Math.floor((Math.random() * 5) + 1);
+                                    const fleeRate = Math.floor((Math.random() * 10) + 1);
                                     if (fleeRate == 1) {
                                         document.getElementById("fleeFightText").style.display = "block";
                                         document.getElementById("ball").style.display = "none";
