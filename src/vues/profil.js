@@ -249,11 +249,11 @@ function Profil() {
 
                         });
 
-                    }
+                        setSkins(newSkins);
+                        setBody(e);
+                        setLoadSkin(false);
 
-                    setSkins(newSkins);
-                    setBody(e);
-                    setLoadSkin(false);
+                    }
 
                 });
         } else {
