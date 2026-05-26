@@ -213,48 +213,44 @@ function Profil() {
                         setBody(e);
                     })
         } else if (e === 2) {
-            Axios
-                .get("/api/getTrainers/" + user)
+            Axios.get("/api/getTrainers/" + user)
                 .then(async (response) => {
 
-                    const newSkins = [];
+                    const skinsPromises = response.data.map((val) => {
 
-                    for (const val of response.data) {
+                        return new Promise((resolve) => {
 
-                        const img = new Image();
+                            const img = new Image();
 
-                        img.src = "/Skins/Trainer" + val.skin + ".png";
-
-                        await new Promise((resolve) => {
+                            img.src = "/Skins/Trainer" + val.skin + ".png";
 
                             img.onload = () => {
 
                                 const palette = getPaletteSync(img, { colorCount: 8 });
-                                const color = palette[Math.floor(Math.random() * palette.length)].hex();
-                                setColorList(color);
-                                const colorList = color;
-                                newSkins.push({
+
+                                const color =
+                                    palette[Math.floor(Math.random() * palette.length)].hex();
+
+                                resolve({
                                     skins: val.skin,
-                                    color: colorList
+                                    color: color
                                 });
-
-                                resolve();
-
                             };
 
                             img.onerror = () => {
                                 console.log("Erreur image :", img.src);
-                                resolve();
+
+                                resolve(null);
                             };
-
                         });
+                    });
 
-                        setSkins(newSkins);
-                        setBody(e);
-                        setLoadSkin(false);
+                    const newSkins = (await Promise.all(skinsPromises))
+                        .filter(Boolean);
 
-                    }
-
+                    setSkins(newSkins);
+                    setBody(e);
+                    setLoadSkin(false);
                 });
         } else {
             setBody(e);
