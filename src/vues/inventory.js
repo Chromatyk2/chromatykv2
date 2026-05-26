@@ -161,18 +161,27 @@ function Inventory(props) {
                         quantity: quantity
                     }).then(function (response) {
                         const honeyTier = Math.random();
-                        if (honeyTier < 0.0001) {
+
+                        if (honeyTier < 1 / 6000) {
+
                             var item = "Miel Négatif";
                             var slug = "negative";
-                        } else if (honeyTier < 0.011) {
+
+                        } else if (honeyTier < (1 / 6000) + (1 / 3000)) {
+
                             var item = "Miel Chromatique";
                             var slug = "shiny";
-                        } else if (honeyTier <0.0111) {
+
+                        } else if (honeyTier < (1 / 6000) + (1 / 3000) + 0.0001) {
+
                             var item = "Miel Légendaire";
                             var slug = "legendary";
+
                         } else {
+
                             var item = "Miel Ordinaire";
                             var slug = "honey";
+
                         }
                         Axios.post('/api/addItem', {
                             user: cookies.user.data[0].id,
