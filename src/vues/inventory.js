@@ -233,7 +233,7 @@ function Inventory(props) {
                                     <div key={val.slug} className="honeyActions" style={val.slug === "box" ? getStyle(val.slug) : {}} onClick={val.slug === "box" ? openLootbox : val.slug === "fragement" ? createLootbox : undefined}>
                                         <img alt={val.slug} src={getImage(val.slug)} style={val.slug !== "box" ? getStyle(val.slug) : {}} />
                                         <p>{val.item}</p>
-                                        <p>x {val.quantity}</p>
+                                        {val.slug === "fragement " ? <p>{val.quantity} / 100</p>  : <p>x {val.quantity}</p>}
                                     </div>
                                 ))}
                             </div>

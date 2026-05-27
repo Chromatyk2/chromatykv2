@@ -13,46 +13,37 @@ function Leaderboard() {
     useEffect(() => {
         Axios.get("/api/getLeaderBoard/")
             .then(async (response) => {
-                const newSkins = [];
+                const skinsPromises = response.data.map((val) => {
 
-                for (const val of response.data) {
+                    return new Promise((resolve) => {
 
-                    const img = new Image();
+                        const img = new Image();
 
-                    img.src = "/Skins/Trainer" + val.skin + ".png";
-
-                    await new Promise((resolve) => {
+                        img.src = "/Skins/Trainer" + val.skin + ".png";
 
                         img.onload = () => {
 
                             const palette = getPaletteSync(img, { colorCount: 8 });
-                            const color = palette[Math.floor(Math.random() * palette.length)].hex();
-                            setColorList(color);
-                            const colorList = color;
-                            newSkins.push({
-                                user: val.user,
-                                login: val.login,
-                                level: val.level,
-                                skin: val.skin,
-                                number: val.number,
-                                pokemon: val.pokemon,
-                                shiny: val.shiny,
-                                negative: val.negative,
-                                color: colorList
+
+                            const color =
+                                palette[Math.floor(Math.random() * palette.length)].hex();
+
+                            resolve({
+                                skins: val.skin,
+                                color: color
                             });
-
-                            resolve();
-
                         };
 
                         img.onerror = () => {
                             console.log("Erreur image :", img.src);
-                            resolve();
+
+                            resolve(null);
                         };
-
                     });
+                });
 
-                }
+                const newSkins = (await Promise.all(skinsPromises))
+                    .filter(Boolean);
                 setLeaderboard(newSkins)
             })
     }, []);
