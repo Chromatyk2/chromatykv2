@@ -29,7 +29,7 @@ function Leaderboard() {
                                 palette[Math.floor(Math.random() * palette.length)].hex();
 
                             resolve({
-                                skins: val.skin,
+                                ...val,
                                 color: color
                             });
                         };
