@@ -21,33 +21,34 @@ function Compagnon() {
     const [inventory, setInventory] = useState(null);
     const [onLoad, setOnload] = useState(true);
     useEffect(() => {
-        Axios
-            .get("/api/getPokedex/" + cookies.user.data[0].id)
-            .then(function (response) {
-                setPokedex(response.data)
-                setFilteredPokedex(response.data)
-                Axios.get('/api/getCurrentCompagnon/' + cookies.user.data[0].id)
-                    .then(function (response) {
-                        if (response.data.length < 1) {
-                            setHaveCompagnon(false);
-                            setOnload(false);
-                        } else {
-                            Axios.get('/api/getCurrentCompagnon/' + cookies.user.data[0].id)
-                                .then(function (response) {
-                                    setHaveCompagnon(true)
-                                    setChooseCompagnon(false)
-                                    setCompagnon(response.data);
-                                    Axios
-                                        .get("/api/getInventory/" + cookies.user.data[0].id)
-                                        .then(function (response) {
-                                            setInventory(response.data);
-                                            setHaveCompagnon(true);
-                                            setOnload(false);
-                                        })
-                                })
-                        }
-                    })
-            })
+    const userId = cookies.user.data[0].id;
+
+    Promise.all([
+        Axios.get("/api/getPokedex/" + userId),
+        Axios.get("/api/getCurrentCompagnon/" + userId)
+    ])
+        .then(([pokedexRes, compagnonRes]) => {
+            setPokedex(pokedexRes.data);
+            setFilteredPokedex(pokedexRes.data);
+
+            if (compagnonRes.data.length < 1) {
+                setHaveCompagnon(false);
+                return;
+            }
+
+            setHaveCompagnon(true);
+            setChooseCompagnon(false);
+            setCompagnon(compagnonRes.data);
+
+            return Axios.get("/api/getInventory/" + userId);
+        })
+        .then((inventoryRes) => {
+            if (inventoryRes) {
+                setInventory(inventoryRes.data);
+            }
+        })
+        .catch(console.error)
+        .finally(() => setOnload(false));
     }, []);
     function filterGen(e) {
         setGen(e);
