@@ -80,13 +80,19 @@ function Compagnon() {
             user: cookies.user.data[0].id
         })
             .then(function (response) {
+                let currentLevel;
+                if (compagnon.length > 0) {
+                    currentLevel = compagnon[0].level;
+                } else {
+                    currentLevel = 1;
+                }
                 Axios.post('/api/newCompagnon', {
                     user: cookies.user.data[0].id,
                     number: e,
                     pokemon: f,
                     shiny: g,
                     negative: h,
-                    level: 1,
+                    level: currentLevel,
                     xp: 0,
                     active: 1,
                     tier: i
