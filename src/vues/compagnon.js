@@ -20,16 +20,19 @@ function Compagnon() {
     const [compagnon, setCompagnon] = useState(null);
     const [inventory, setInventory] = useState(null);
     const [onLoad, setOnload] = useState(true);
+    const [allCompagon, setAllcompagnon] = useState(null);
     useEffect(() => {
     const userId = cookies.user.data[0].id;
 
     Promise.all([
         Axios.get("/api/getPokedex/" + userId),
-        Axios.get("/api/getCurrentCompagnon/" + userId)
+        Axios.get("/api/getCurrentCompagnon/" + userId),
+        Axios.get("/api/getAllCompagnon/" + userId)
     ])
-        .then(([pokedexRes, compagnonRes]) => {
+        .then(([pokedexRes, compagnonRes, allCompagnonRes]) => {
             setPokedex(pokedexRes.data);
             setFilteredPokedex(pokedexRes.data);
+            setAllcompagnon(allCompagnonRes.data)
 
             if (compagnonRes.data.length < 1) {
                 setHaveCompagnon(false);
@@ -77,16 +80,17 @@ function Compagnon() {
         setChooseCompagnon(true)
     }
     function changeCompagnon(e, f, g, h, i) {
+        let currentLevel;
+        if (allCompagon.find((item) => item.number === e && item.shiny === g && item.negative === h).length > 0) {
+            currentLevel = allCompagon.find((item) => item.number === e && item.shiny === g && item.negative === h).level;
+        } else {
+            currentLevel = 1;
+        }
+
         Axios.post('/api/updateCurrentCompagnon', {
             user: cookies.user.data[0].id
         })
             .then(function (response) {
-                let currentLevel;
-                if (compagnon.length > 0) {
-                    currentLevel = compagnon[0].level;
-                } else {
-                    currentLevel = 1;
-                }
                 Axios.post('/api/newCompagnon', {
                     user: cookies.user.data[0].id,
                     number: e,
