@@ -80,13 +80,10 @@ function Compagnon() {
         setChooseCompagnon(true)
     }
     function changeCompagnon(e, f, g, h, i) {
-        let currentLevel;
-        if (allCompagon.find((item) => item.number === e && item.shiny === g && item.negative === h).length > 0) {
-            currentLevel = allCompagon.find((item) => item.number === e && item.shiny === g && item.negative === h).level;
-        } else {
-            currentLevel = 1;
-        }
-
+        const currentLevel =
+            allCompagon.find(
+                (item) => item.number === e && item.shiny === g && item.negative === h
+            )?.level ?? 1;
         Axios.post('/api/updateCurrentCompagnon', {
             user: cookies.user.data[0].id
         })
