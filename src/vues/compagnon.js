@@ -258,7 +258,7 @@ function Compagnon() {
                                                 < img src={"/doll.png"} />
                                                 <p>Changer</p>
                                     </div>
-                                    {cookies.user.data[0].id === 80482655 &&
+                                    {cookies.user.data[0].id === "80482655" &&
                                         <div style={{ top: "80px" }} onClick={startFight} className={"fightActionsFlee"}>
                                             < img src={"/punch.png"} />
                                             <p>VS</p>

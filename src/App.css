@@ -512,6 +512,7 @@ p.levelProfil {
     position: relative;
     justify-content: center;
     background-size: cover;
+    border: white 3px solid;
 }
 .progressBarFightExternal {
     background-color: #fff;
