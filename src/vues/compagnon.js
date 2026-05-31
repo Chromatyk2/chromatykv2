@@ -317,7 +317,7 @@ function Compagnon() {
             )
             :
             (
-                <Fight />
+                <Fight compagnon={compagnon} />
             )
     )
 }
