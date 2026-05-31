@@ -184,7 +184,7 @@ function Compagnon() {
         rareCandy;
 
     return (
-        { onFight === false ?
+        {onFight === false ?
             (
                 <div className={"globalContainerCenter"}>
                     <p>Compagnon</p>
