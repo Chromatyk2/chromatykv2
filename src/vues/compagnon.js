@@ -22,6 +22,10 @@ function Compagnon() {
     const [inventory, setInventory] = useState(null);
     const [onLoad, setOnload] = useState(true);
     const [allCompagon, setAllcompagnon] = useState(null);
+    //Combat
+    const [onFight, setFight] = useState(false);
+
+
     useEffect(() => {
     const userId = cookies.user.data[0].id;
 
@@ -79,6 +83,9 @@ function Compagnon() {
     }
     function chooseCompgnon() {
         setChooseCompagnon(true)
+    }
+    function startFight() {
+        setOnFight(true);
     }
     function changeCompagnon(e, f, g, h, i) {
         const currentLevel =
@@ -184,7 +191,7 @@ function Compagnon() {
         rareCandy;
 
     return (
-        {onFight === false ?
+        onFight === false ?
             (
                 <div className={"globalContainerCenter"}>
                     <p>Compagnon</p>
@@ -252,7 +259,7 @@ function Compagnon() {
                                                 < img src={"/doll.png"} />
                                                 <p>Changer</p>
                                             </div>
-                                            <div style={{ top: "80px" }} onClick={chooseCompgnon} className={"fightActionsFlee"}>
+                                            <div style={{ top: "80px" }} onClick={startFight} className={"fightActionsFlee"}>
                                                 < img src={"/punch.png"} />
                                                 <p>Combattre</p>
                                             </div>
@@ -310,7 +317,6 @@ function Compagnon() {
             (
                 <Fight />
             );
-        }
     )
 }
 
