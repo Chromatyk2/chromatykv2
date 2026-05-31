@@ -22,7 +22,7 @@ function Compagnon() {
     const [onLoad, setOnload] = useState(true);
     const [allCompagon, setAllcompagnon] = useState(null);
     //Combat
-    const [onFight, setFight] = useState(false);
+    const [onFight, setOnFight] = useState(false);
 
 
     useEffect(() => {
