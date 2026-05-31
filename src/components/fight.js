@@ -14,7 +14,7 @@ function ProgressBarFight(props) {
                     <div className="fightSpriteCard" style={{ filter: props.compagnon[0].negative === 1 ? "invert(1)" : "none", backgroundSize: "contain", backgroundImage: `url(/Sprites/${props.compagnon[0].shiny === 1 ? "shiny" : "normal"}/${props.compagnon[0].number}.gif)` }} />
                 </div>
                 <div>
-                    <div className="fightSpriteCard" style={{ filter: props.compagnon[0].negative === 1 ? "invert(1)" : "none", backgroundSize: "contain", backgroundImage: `url(/Sprites/${props.compagnon[0].shiny === 1 ? "shiny" : "normal"}/${props.compagnon[0].number}.gif)` }} />
+                    <div className="fightSpriteCard" style={{backgroundSize: "contain", backgroundImage: `url(/versus.png)` }} />
                 </div>
                 <div>
                     <p className="fightName">{props.compagnon[0].pokemon}</p>
