@@ -3,6 +3,7 @@ import Axios from 'axios'
 import '../App.css'
 import moment from "moment";
 import { useCookies } from 'react-cookie';
+import Fight from '../components/fight.js'
 
 function Compagnon() {
     //Cookies
@@ -183,121 +184,133 @@ function Compagnon() {
         rareCandy;
 
     return (
-        <div className={"globalContainerCenter"}>
-            <p>Compagnon</p>
-            <div style={{ backgroundImage: `url(/compagnonBack.jpg)`, overflow: "overlay" }} className={"fightContainer"}>
-                {onLoad === false &&
-                    <>
-                        {!haveCompagnon &&
-                            !chooseCompagnon &&
+        { onFight === false ?
+            (
+                <div className={"globalContainerCenter"}>
+                    <p>Compagnon</p>
+                    <div style={{ backgroundImage: `url(/compagnonBack.jpg)`, overflow: "overlay" }} className={"fightContainer"}>
+                        {onLoad === false &&
                             <>
-                                <div onClick={chooseCompgnon} className={"honeyActionsContainer"}>
-                                    <div className={"honeyActions"}>
-                                        <img src={"/doll.png"} />
-                                        <p>Choisis ton premier compagnon</p>
-                                    </div>
-                                </div>
-                            </>
-                        }
-                        {chooseCompagnon &&
-                            <>
-                                <div style={{ position: "absolute", top: "-100px", justifyContent: "center" }} className={"dexContainer"}>
-                                    <div className={"genFilter"}>
-                                        <button className={isShiny === 0 && isNegative === 0 && "active"} onClick={() => filterForm(0)}>Normal</button>
-                                        <button className={isShiny === 1 && "active"} onClick={() => filterForm("Shiny")}>Shiny</button>
-                                        <button className={isNegative === 1 && "active"} onClick={() => filterForm(1)}>Négatif</button>
-                                    </div>
-                                    <div className={"genFilter"}>
-                                        <button className={gen === 0 && "active"} onClick={() => filterGen(0)} value={0}>Toutes</button>
-                                        {genList.map((val, key) => {
-                                            return (
-                                                <button className={gen === val && "active"} onClick={() => filterGen(val)} value={val}>Gen {val}</button>
-                                            )
-                                        })}
+                                {!haveCompagnon &&
+                                    !chooseCompagnon &&
+                                    <>
+                                        <div onClick={chooseCompgnon} className={"honeyActionsContainer"}>
+                                            <div className={"honeyActions"}>
+                                                <img src={"/doll.png"} />
+                                                <p>Choisis ton premier compagnon</p>
+                                            </div>
+                                        </div>
+                                    </>
+                                }
+                                {chooseCompagnon &&
+                                    <>
+                                        <div style={{ position: "absolute", top: "-100px", justifyContent: "center" }} className={"dexContainer"}>
+                                            <div className={"genFilter"}>
+                                                <button className={isShiny === 0 && isNegative === 0 && "active"} onClick={() => filterForm(0)}>Normal</button>
+                                                <button className={isShiny === 1 && "active"} onClick={() => filterForm("Shiny")}>Shiny</button>
+                                                <button className={isNegative === 1 && "active"} onClick={() => filterForm(1)}>Négatif</button>
+                                            </div>
+                                            <div className={"genFilter"}>
+                                                <button className={gen === 0 && "active"} onClick={() => filterGen(0)} value={0}>Toutes</button>
+                                                {genList.map((val, key) => {
+                                                    return (
+                                                        <button className={gen === val && "active"} onClick={() => filterGen(val)} value={val}>Gen {val}</button>
+                                                    )
+                                                })}
 
-                                    </div>
-                                    {filteredPokedex &&
-                                        filteredPokedex.filter(item => (item.shiny === isShiny && item.negative === isNegative)).map((val, key) => {
-                                            return (
-                                                <>
-                                                    <div onClick={() => changeCompagnon(val.pokemon, val.name, isShiny, isNegative, val.tier)} className={"dexCardCompagnon"}>
-                                                        <div className={"dexSpriteContainer"}>
-                                                            <span className={"dexNumber"}>#{val.pokemon}</span>
-                                                            <div>
-                                                                <img style={{ filter: isNegative === 1 ? "invert(1)" : "invert(0)" }} loading="lazy" className={"dexSprite"} src={isShiny === 1 ? "/Sprites/Shiny/" + val.pokemon + ".gif" : "/Sprites/Normal/" + val.pokemon + ".gif"} />
+                                            </div>
+                                            {filteredPokedex &&
+                                                filteredPokedex.filter(item => (item.shiny === isShiny && item.negative === isNegative)).map((val, key) => {
+                                                    return (
+                                                        <>
+                                                            <div onClick={() => changeCompagnon(val.pokemon, val.name, isShiny, isNegative, val.tier)} className={"dexCardCompagnon"}>
+                                                                <div className={"dexSpriteContainer"}>
+                                                                    <span className={"dexNumber"}>#{val.pokemon}</span>
+                                                                    <div>
+                                                                        <img style={{ filter: isNegative === 1 ? "invert(1)" : "invert(0)" }} loading="lazy" className={"dexSprite"} src={isShiny === 1 ? "/Sprites/Shiny/" + val.pokemon + ".gif" : "/Sprites/Normal/" + val.pokemon + ".gif"} />
+                                                                    </div>
+                                                                </div>
+                                                                <div className={"dexDescription"}>
+                                                                    <p className={"dexName"}>{val.name}</p>
+                                                                    <p className={"dexDate"}>{moment(val.date).utc().format('DD/MM/YYYY')}</p>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <div className={"dexDescription"}>
-                                                            <p className={"dexName"}>{val.name}</p>
-                                                            <p className={"dexDate"}>{moment(val.date).utc().format('DD/MM/YYYY')}</p>
+                                                        </>
+
+                                                    )
+                                                })
+                                            }
+                                        </div>
+                                    </>
+                                }
+                                {haveCompagnon &&
+                                    compagnon &&
+                                    compagnon.length > 0 &&
+                                    !chooseCompagnon && (
+                                        <>
+                                            <div style={{ top: "10px" }} onClick={chooseCompgnon} className={"fightActionsFlee"}>
+                                                < img src={"/doll.png"} />
+                                                <p>Changer</p>
+                                            </div>
+                                            <div style={{ top: "80px" }} onClick={chooseCompgnon} className={"fightActionsFlee"}>
+                                                < img src={"/punch.png"} />
+                                                <p>Combattre</p>
+                                            </div>
+                                            <p className="fightName">{compagnon[0].pokemon}</p>
+                                            <div className="tierFight">
+                                                Nv.{compagnon[0].level}
+                                            </div>
+                                            <div className="fightSpriteCard" style={{ filter: compagnon[0].negative === 1 ? "invert(1)" : "none", backgroundSize: "contain", backgroundImage: `url(/Sprites/${compagnon[0].shiny === 1 ? "shiny" : "normal"}/${compagnon[0].number}.gif)` }} />
+                                        </>
+                                    )}
+                                {canShow && (
+                                    <>
+                                        <div style={{ display: "flex", justifyContent: "space-around", width: "100%" }}>
+                                            {rareCandy?.quantity < 1 && megaCandy?.quantity < 1 && (
+                                                <div style={{ background: "none" }} className={"emptyInventory"}>
+                                                    <p style={{ fontSize: "18px" }} className="pseudoProfil">Tu n'as pas de Super Bonbon, récupère en sur les streams de Chromatyk</p>
+                                                    <a className={"twitchLink"} href="https://twitch.tv/chromatyk" target="blank_">Twitch</a>
+                                                </div>
+                                            )}
+                                            {rareCandy?.quantity > 0 &&
+                                                (
+                                                    <div onClick={() => levelupCompagnon(inventory.find(item => item.slug === "rarecandy").slug)} style={{ background: "none" }} className="fightActionsContainer">
+                                                        <div className="fightActions">
+                                                            <img src="/rarecandy.png" />
+                                                            <p>Super Bonbon</p>
+                                                            <p>
+                                                                x {inventory.find(item => item.slug === "rarecandy")?.quantity}
+                                                            </p>
                                                         </div>
                                                     </div>
-                                                </>
-
-                                            )
-                                        })
-                                    }
-                                </div>
+                                                )
+                                            }
+                                            {megaCandy?.quantity > 0 &&
+                                                (
+                                                    <div onClick={() => levelMaxCompagnon(inventory.find(item => item.slug === "megacandy").slug)} style={{ filter: "hue-rotate(182deg)", background: "none" }} className="fightActionsContainer">
+                                                        <div className="fightActions">
+                                                            <img src="/megacandy.png" />
+                                                            <p>Mega Bonbon</p>
+                                                            <p>
+                                                                x {inventory.find(item => item.slug === "megacandy")?.quantity}
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                )
+                                            }
+                                        </div>
+                                    </>
+                                )}
                             </>
                         }
-                        {haveCompagnon &&
-                            compagnon &&
-                            compagnon.length > 0 &&
-                            !chooseCompagnon && (
-                                <>
-                                    <div style={{ top: "10px" }} onClick={chooseCompgnon} className={"fightActionsFlee"}>
-                                        < img src={"/doll.png"} />
-                                        <p>Changer</p>
-                                    </div>
-                                    <p className="fightName">{compagnon[0].pokemon}</p>
-                                    <div className="tierFight">
-                                        Nv.{compagnon[0].level}
-                                    </div>
-                                    <div className="fightSpriteCard" style={{ filter: compagnon[0].negative === 1 ? "invert(1)" : "none", backgroundSize: "contain", backgroundImage: `url(/Sprites/${compagnon[0].shiny === 1 ? "shiny" : "normal"}/${compagnon[0].number}.gif)` }} />
-                                </>
-                            )}
-                        {canShow && (
-                            <>
-                                <div style={{ display: "flex", justifyContent: "space-around", width: "100%" }}>
-                                    {rareCandy?.quantity < 1 && megaCandy?.quantity < 1 && (
-                                        <div style={{ background: "none" }} className={"emptyInventory"}>
-                                            <p style={{ fontSize: "18px" }} className="pseudoProfil">Tu n'as pas de Super Bonbon, récupère en sur les streams de Chromatyk</p>
-                                            <a className={"twitchLink"} href="https://twitch.tv/chromatyk" target="blank_">Twitch</a>
-                                        </div>
-                                    )}
-                                    {rareCandy?.quantity > 0 &&
-                                        (
-                                            <div onClick={() => levelupCompagnon(inventory.find(item => item.slug === "rarecandy").slug)} style={{ background: "none" }} className="fightActionsContainer">
-                                                <div className="fightActions">
-                                                    <img src="/rarecandy.png" />
-                                                    <p>Super Bonbon</p>
-                                                    <p>
-                                                        x {inventory.find(item => item.slug === "rarecandy")?.quantity}
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        )
-                                    }
-                                    {megaCandy?.quantity > 0 &&
-                                        (
-                                            <div onClick={() => levelMaxCompagnon(inventory.find(item => item.slug === "megacandy").slug)} style={{ filter: "hue-rotate(182deg)", background: "none" }} className="fightActionsContainer">
-                                                <div className="fightActions">
-                                                    <img src="/megacandy.png" />
-                                                    <p>Mega Bonbon</p>
-                                                    <p>
-                                                        x {inventory.find(item => item.slug === "megacandy")?.quantity}
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        )
-                                    }
-                                </div>
-                            </>
-                        )}
-                    </>
-                }
-             </div>   
-        </div>  
+                    </div>
+                </div>
+            )
+            :
+            (
+                <Fight />
+            );
+        }
     )
 }
 
