@@ -316,7 +316,7 @@ function Compagnon() {
             :
             (
                 <Fight />
-            );
+            )
     )
 }
 
