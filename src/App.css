@@ -837,7 +837,7 @@ span.dexNumber {
     animation: attack 0.4s ease-out;
 }
 .hit {
-    animation: hit 0.4s ease-out;
+    animation: hit .3s, damageFlash .3s;
 }
     /* Animation */
 @keyframes attack {
@@ -855,6 +855,15 @@ span.dexNumber {
 
     100% {
         transform: translateX(0);
+    }
+}
+@keyframes damageFlash {
+    0%,100% {
+        filter: none;
+    }
+
+    50% {
+        filter: brightness(0) saturate(100%) invert(18%) sepia(96%) saturate(7495%) hue-rotate(357deg);
     }
 }
 @keyframes hit {
