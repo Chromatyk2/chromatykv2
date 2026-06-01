@@ -915,6 +915,9 @@ span.dexNumber {
     color: gold;
     font-size: 40px;
 }
+.koAnimation {
+    animation: koAnimation 1s forwards;
+}
     /* Animation */
 @keyframes koAnimation {
     0% {
