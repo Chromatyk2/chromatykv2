@@ -847,6 +847,7 @@ span.dexNumber {
     height: 20px;
     width: 70%;
     border: white solid 1px;
+    position: relative;
 }
 
 .progressBarFightInternalXp {
@@ -862,7 +863,7 @@ span.dexNumber {
     left: 0;
     position: absolute;
     right: 0;
-    top: 3px;
+    top: -22px;
 }
 .fightSpriteCardEnemy {
     background-position: 50%;
