@@ -65,6 +65,9 @@ function ProgressBarFight(props) {
                 Math.floor(maxHp / 10);
             setCurrentXp(prevXp => Math.max(0, prevXp + xpGain));
             if (currentXp + xpGain >= xpToNextLevel) {
+                Axios.post('/api/levelupCompagnon', {
+                    id: props.compagnon[0].id
+                })
                 setCurrentLevel(prevLevel => Math.max(0, prevLevel + 1));
                 setXpToLevelUp(Math.floor((20 + curentLevel * curentLevel * 2) * tierMultiplier[props.compagnon[0].tier]))
             }
