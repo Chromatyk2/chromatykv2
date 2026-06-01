@@ -98,10 +98,19 @@ function ProgressBarFight(props) {
             3: 2.5,
             4: 4
         };
+        let formMultiplier;
+        if (props.compagnon[0].shiny === 1) {
+            formMultiplier = 1.5;
+        } else if (props.compagnon[0].negative === 1) {
+            formMultiplier = 2;
+        } else {
+            formMultiplier = 1;
+
+        }
         setXpToLevelUp(
             Math.floor(
                 (20 + curentLevel * curentLevel * 2) *
-                tierMultiplier[props.compagnon[0].tier]
+                tierMultiplier[props.compagnon[0].tier] * formMultiplier
             )
         );
     }, [curentLevel]);
@@ -113,7 +122,21 @@ function ProgressBarFight(props) {
             3: 2.5,
             4: 4
         };
-        setXpToLevelUp(Math.floor((20 + curentLevel * curentLevel * 2) * tierMultiplier[props.compagnon[0].tier]))
+        let formMultiplier;
+        if (props.compagnon[0].shiny === 1) {
+            formMultiplier = 1.5;
+        } else if (props.compagnon[0].negative === 1) {
+            formMultiplier = 2;
+        } else {
+            formMultiplier = 1;
+
+        }
+        setXpToLevelUp(
+            Math.floor(
+                (20 + curentLevel * curentLevel * 2) *
+                tierMultiplier[props.compagnon[0].tier] * formMultiplier
+            )
+        );
         const tierRoll = Math.random();
         if (tierRoll < 0.01) {
             var tier = 4;
