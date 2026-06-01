@@ -860,19 +860,19 @@ span.dexNumber {
     /* Animation */
 @keyframes attack {
     0% {
-        transform: translateX(0);
+        transform: scale(1) scaleX(-1) translateX(0);
     }
 
     30% {
-        transform: translateX(-50px);
+        transform: scale(1) scaleX(-1) translateX(-50px);
     }
 
     40% {
-        transform: translateX(-60px);
+        transform: scale(1) scaleX(-1) translateX(-60px);
     }
 
     100% {
-        transform: translateX(0);
+        transform: scale(1) scaleX(-1) translateX(0);
     }
 }
 @keyframes damageFlash {
@@ -886,15 +886,15 @@ span.dexNumber {
 }
 @keyframes hit {
     0%,100% {
-        transform: translateX(0);
+        transform: scale(1) translateX(0);
     }
 
     20%,60% {
-        transform: translateX(-8px);
+        transform: scale(1) translateX(-8px);
     }
 
     40%,80% {
-        transform: translateX(8px);
+        transform: scale(1) translateX(8px);
     }
 }
     @keyframes myAnimation {
