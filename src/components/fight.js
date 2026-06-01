@@ -12,9 +12,11 @@ function ProgressBarFight(props) {
     const [baseAttack, setBaseAttack] = useState(null);
     const [currentHp, setCurrentHp] = useState(null);
     const [currentXp, setCurrentXp] = useState(0);
+    const [xpToNextLevel, setXpToLevelUp] = useState(0);
     const [maxHp, setMaxHp] = useState(null);
     const [damageText, setDamageText] = useState(null);
     const [isKO, setIsKO] = useState(false);
+    const [curentLevel, setCurrentLevel] = useState(props.compagnon[0].level);
 
     useEffect(() => {
         startFight();
@@ -48,6 +50,21 @@ function ProgressBarFight(props) {
         if (currentHp <= 0 && !isKO) {
             setIsAttacking(false);
             setIsKO(true);
+            const tierMultiplier = {
+                1: 1,
+                2: 1.5,
+                3: 2.5,
+                4: 4
+            };
+            const xpToNextLevel =
+                Math.floor((20 + curentLevel * curentLevel * 2) * tierMultiplier[props.compagnon[0].tier]);
+            const xpGain =
+                Math.floor(maxHp / 10);
+            setCurrentXp(prevXp => Math.max(0, prevXp + xpGain));
+            if (xpToNextLevel + xpGain >= xpToNextLevel) {
+                setCurrentLevel(prevLevel => Math.max(0, prevLevel + 1));
+                setXpToLevelUp(Math.floor((20 + curentLevel * curentLevel * 2) * tierMultiplier[props.compagnon[0].tier]))
+            }
             setTimeout(() => {
                 startFight();
                 setIsKO(false);
@@ -56,6 +73,13 @@ function ProgressBarFight(props) {
     }, [currentHp]);
     function startFight() {
         setHasAppeared(false)
+        const tierMultiplier = {
+            1: 1,
+            2: 1.5,
+            3: 2.5,
+            4: 4
+        };
+        setXpToLevelUp(Math.floor((20 + curentLevel * curentLevel * 2) * tierMultiplier[props.compagnon[0].tier]))
         const tierRoll = Math.random();
         if (tierRoll < 0.01) {
             var tier = 4;
@@ -147,7 +171,7 @@ function ProgressBarFight(props) {
                     <div className={"progressBarFightExternalXp"}>
                         <div style={{ width: "50%" }} className={"progressBarFightInternalXp"}>
                         </div>
-                        <p>{currentXp+" / 100"}</p>
+                        <p>{currentXp + " / " + xpToNextLevel}</p>
                     </div>
                     </div>
                 </>
