@@ -11,11 +11,13 @@ function ProgressBarFight(props) {
     const [hasAppeared, setHasAppeared] = useState(false);
     const [baseAttack, setBaseAttack] = useState(null);
     const [currentHp, setCurrentHp] = useState(null);
+    const [currentXp, setCurrentXp] = useState(0);
     const [maxHp, setMaxHp] = useState(null);
     const [damageText, setDamageText] = useState(null);
     const [isKO, setIsKO] = useState(false);
 
     useEffect(() => {
+        startFight();
         const interval = setInterval(() => {
             setIsAttacking(true);
             const attack =
@@ -45,9 +47,7 @@ function ProgressBarFight(props) {
     useEffect(() => {
         if (currentHp <= 0 && !isKO) {
             setIsAttacking(false);
-            setTimeout(() => {
-                setIsKO(true);
-            }, 500); 
+            setIsKO(true);
             setTimeout(() => {
                 startFight();
                 setIsKO(false);
@@ -147,7 +147,7 @@ function ProgressBarFight(props) {
                     <div className={"progressBarFightExternalXp"}>
                         <div style={{ width: "50%" }} className={"progressBarFightInternalXp"}>
                         </div>
-                        <p>{"50 / 100"}</p>
+                        <p>{currentXp+" / 100"}</p>
                     </div>
                     </div>
                 </>
