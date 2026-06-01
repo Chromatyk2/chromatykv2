@@ -7,68 +7,51 @@ function ProgressBarFight(props) {
     const [pokemon, setPokemon] = useState(null);
     const [shiny, setShiny] = useState(null);
     const [negative, setNegative] = useState(null);
+    const [isAttacking, setIsAttacking] = useState(false);
     const [hasAppeared, setHasAppeared] = useState(false);
     const [baseAttack, setBaseAttack] = useState(null);
+    const [currentHp, setCurrentHp] = useState(null);
     const [maxHp, setMaxHp] = useState(null);
-    const [currentHp, setCurrentHp] = useState(maxHp);
-    const [isAttacking, setIsAttacking] = useState(false);
-    const [isKO, setIsKO] = useState(false);
     const [damageText, setDamageText] = useState(null);
-    useEffect(() => {
-        startFight();
-    }, []);
-    useEffect(() => {
-        console.log("Combat effect, isKO =", isKO);
-        if (isKO) return;
+    const [isKO, setIsKO] = useState(false);
 
+    useEffect(() => {
         const interval = setInterval(() => {
             setIsAttacking(true);
-
             const attack =
                 baseAttack +
                 Math.floor(props.compagnon[0].level / 5);
-
             let damage = Math.floor(
                 attack * (0.9 + Math.random() * 0.2)
             );
-
             const critical = Math.random() < 0.05;
-
             if (critical) {
                 damage *= 2;
             }
-
             setDamageText({
                 value: damage,
                 critical
             });
-
-            setCurrentHp(prevHp =>
-                Math.max(0, prevHp - damage)
-            );
-
+            setCurrentHp(prevHp => Math.max(0, prevHp - damage));
             setTimeout(() => {
+                setTimeout(() => {
+                    setDamageText(null);
+                }, 1000);
                 setIsAttacking(false);
-            }, 300);
-
-            setTimeout(() => {
-                setDamageText(null);
-            }, 1000);
-
+            }, 300); // durée de l'animation
         }, 3000);
-
         return () => clearInterval(interval);
-    }, [pokemon]);
+    }, []);
     useEffect(() => {
         if (currentHp <= 0 && !isKO) {
             setIsAttacking(false);
             setIsKO(true);
-
             setTimeout(() => {
                 startFight();
-            }, 1000);
+                setIsKO(false);
+            }, 1000); // durée animation KO
         }
-    }, [currentHp, isKO]);
+    }, [currentHp]);
     function startFight() {
         const tierRoll = Math.random();
         if (tierRoll < 0.01) {
@@ -150,7 +133,7 @@ function ProgressBarFight(props) {
                         <div style={{ width: "30%" }}>
                         <p className="fightName">{pokemon.name}</p>
                         <div style={{display:"block",margin:"auto", backgroundColor: pokemon.tier == 1 ? "#6d6d6c" : pokemon.tier == 2 ? "#21693a" : pokemon.tier == 3 ? "#744095" : "#bfa93a" }} className={"tierFight"}>Tier {pokemon.tier}</div>
-                        <div className={`fightSpriteCardEnemy ${isKO ? "koAnimation" : ""} ${!hasAppeared ? "spawn" : ""} ${isAttacking && !isKO ? "hit" : ""}`} style={{ height: "200px", width: "100%", filter: negative === 1 && "invert(1)", backgroundSize: "contain", backgroundImage: `url(/Sprites/${shiny === 1 ? "shiny" : "normal"}/${pokemon.number}.gif)` }}>
+                        <div className={`fightSpriteCardEnemy ${isKO ? "koAnimation" : ""} ${!hasAppeared ? "spawn" : ""} ${isAttacking ? "hit" : ""}`} style={{ height: "200px", width: "100%", filter: negative === 1 && "invert(1)", backgroundSize: "contain", backgroundImage: `url(/Sprites/${shiny === 1 ? "shiny" : "normal"}/${pokemon.number}.gif)` }}>
                             {damageText && (
                                 <div className={`damageText ${damageText.critical ? "critical" : ""}`}>
                                     -{damageText.value}
