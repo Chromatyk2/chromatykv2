@@ -834,6 +834,7 @@ span.dexNumber {
     background-repeat: no-repeat;
     height: 270px;
     margin-top: 35px;
+    transform: scaleX(-1);
     width: 270px;
     display: flex;
     justify-content: center;
