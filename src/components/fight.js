@@ -19,8 +19,8 @@ function ProgressBarFight(props) {
 
     useEffect(() => {
         startFight();
-        if (pokemon) {
-            const interval = setInterval(() => {
+        const interval = setInterval(() => {
+
                 setIsAttacking(true);
                 const baseAttack =
                     props.compagnon[0].tier === 4 ? 40 :
@@ -53,7 +53,6 @@ function ProgressBarFight(props) {
             }, 1000);
             return () => clearInterval(interval);
 
-        }
     }, []);
     useEffect(() => {
         if (currentHp !== null &&
@@ -221,7 +220,7 @@ function ProgressBarFight(props) {
                             <div className="tierFight">
                             Nv.{curentLevel}
                             </div>
-                        <div className={`fightSpriteCardInvert ${!hasAppeared ? "spawnInvert" : ""} ${isAttacking ? "fightAttack" : ""}`} style={{ height: "200px", width: "100%", filter: props.compagnon[0].negative === 1 ? "invert(1)" : "none", backgroundSize: "contain", backgroundImage: `url(/Sprites/${props.compagnon[0].shiny === 1 ? "shiny" : "normal"}/${props.compagnon[0].number}.gif)` }} />
+                        <div className={`fightSpriteCardInvert ${!hasAppeared ? "spawnInvert" : ""} ${isAttacking && !isKO ? "fightAttack" : ""}`} style={{ height: "200px", width: "100%", filter: props.compagnon[0].negative === 1 ? "invert(1)" : "none", backgroundSize: "contain", backgroundImage: `url(/Sprites/${props.compagnon[0].shiny === 1 ? "shiny" : "normal"}/${props.compagnon[0].number}.gif)` }} />
                         </div>
                         <div style={{ width: "33%" }}>
                             <div className="fightSpriteCard" style={{ width: "100%", backgroundSize: "contain", backgroundImage: `url(/versus.png)` }} />
