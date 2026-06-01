@@ -9,28 +9,57 @@ function ProgressBarFight(props) {
     const [negative, setNegative] = useState(null);
     const [isAttacking, setIsAttacking] = useState(false);
     const [hasAppeared, setHasAppeared] = useState(false);
+    const [baseAttack, setBaseAttack] = useState(null);
+    const [currentHp, setCurrentHp] = useState(null);
+    const [maxHp, setMaxHp] = useState(null);
 
     useEffect(() => {
         const interval = setInterval(() => {
             setIsAttacking(true);
-
+            const attack =
+                baseAttack +
+                Math.floor(props.compagnon[0].level / 5);
+            let damage = Math.floor(
+                attack * (0.9 + Math.random() * 0.2)
+            );
+            const critical = Math.random() < 0.05;
+            if (critical) {
+                damage *= 2;
+            }
+            setCurrentHp(setCurrentHp - damage)
             setTimeout(() => {
                 setIsAttacking(false);
             }, 300); // durée de l'animation
         }, 3000);
-
         return () => clearInterval(interval);
     }, []);
     useEffect(() => {
         const tierRoll = Math.random();
         if (tierRoll < 0.01) {
             var tier = 4;
+            setCurrentHp(1200)
+            setMaxHp(1200)
         } else if (tierRoll < 0.11) {
             var tier = 3;
+            setCurrentHp(600)
+            setMaxHp(600)
         } else if (tierRoll < 0.41) {
             var tier = 2;
+            setCurrentHp(300)
+            setMaxHp(300)
         } else {
             var tier = 1;
+            setCurrentHp(150)
+            setMaxHp(150)
+        }
+        if (props.compagnon[0].tier === 4) {
+            setBaseAttack(80)
+        } else if (props.compagnon[0].tier === 3) {
+            setBaseAttack(40)
+        } else if (props.compagnon[0].tier === 2) {
+            setBaseAttack(20)
+        } else {
+            setBaseAttack(10)
         }
         Axios.get("/api/getRandomPokemon/" + tier)
             .then(function (response) {
@@ -67,9 +96,9 @@ function ProgressBarFight(props) {
                     <p>Combat</p>
                 <div style={{ flexDirection: "row", flexWrap: "wrap", backgroundImage: `url(/gym.png)`, overflow: "overlay" }} className={"fightContainer"}>
                     <div className={"progressBarFightExternalVersus"}>
-                        <div style={{ width:"50%" }} className={"progressBarFightInternal"}>
+                        <div style={{ width: (currentHp / maxHp) * 100+"%" }} className={"progressBarFightInternal"}>
                         </div>
-                        <p>{"50 / 100"}</p>
+                        <p>{currentHp +"/" + maxHp +" PV"}</p>
                     </div>
                         <div style={{ width: "30%" }}>
                             <p className="fightName">{props.compagnon[0].pokemon}</p>
