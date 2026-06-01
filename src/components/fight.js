@@ -72,9 +72,9 @@ function ProgressBarFight(props) {
             }
             const tierMultiplier = {
                 1: 1,
-                2: 1.5,
-                3: 2.5,
-                4: 4
+                2: 2,
+                3: 4,
+                4: 8
             };
             const xpToNextLevel =
                 Math.floor((20 + curentLevel * curentLevel * 2) * tierMultiplier[props.compagnon[0].tier] * formMultiplier);
@@ -99,9 +99,9 @@ function ProgressBarFight(props) {
     useEffect(() => {
         const tierMultiplier = {
             1: 1,
-            2: 1.5,
-            3: 2.5,
-            4: 4
+            2: 2,
+            3: 4,
+            4: 8
         };
         let formMultiplier;
         if (props.compagnon[0].shiny === 1) {
@@ -117,9 +117,9 @@ function ProgressBarFight(props) {
         setHasAppeared(false)
         const tierMultiplier = {
             1: 1,
-            2: 1.5,
-            3: 2.5,
-            4: 4
+            2: 2,
+            3: 4,
+            4: 8
         };
         let formMultiplier;
         if (props.compagnon[0].shiny === 1) {
@@ -179,9 +179,9 @@ function ProgressBarFight(props) {
     }
     const tierMultiplier = {
         1: 1,
-        2: 1.5,
-        3: 2.5,
-        4: 4
+        2: 2,
+        3: 4,
+        4: 8
     };
 
     const formMultiplier =
