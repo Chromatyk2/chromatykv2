@@ -50,7 +50,7 @@ function ProgressBarFight(props) {
         return () => clearInterval(interval);
     }, []);
     useEffect(() => {
-        if (currentHp <= 0 && !isKO) {
+        if (currentHp <= 0 && !isKO && pokemon) {
             setIsAttacking(false);
             setIsKO(true);
             const tierMultiplier = {
