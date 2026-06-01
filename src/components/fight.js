@@ -276,7 +276,7 @@ function ProgressBarFight(props) {
                             </div>
                         )}
                         <div className={`fightSpriteCardEnemy ${isKO ? "koAnimation" : ""} ${!hasAppeared ? "spawn" : ""} ${isAttacking ? "hit" : ""}`} style={{ height: "200px", width: "100%", filter: negative === 1 && "invert(1)", backgroundSize: "contain", backgroundImage: `url(/Sprites/${shiny === 1 ? "shiny" : "normal"}/${pokemon.number}.gif)` }}>
-                            {particles.map((particle) => (
+                            {particles?.map((particle) => (
                                 <div
                                     key={particle.id}
                                     className="hitParticle"
