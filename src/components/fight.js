@@ -8,6 +8,7 @@ function ProgressBarFight(props) {
     const [shiny, setShiny] = useState(null);
     const [negative, setNegative] = useState(null);
     const [isAttacking, setIsAttacking] = useState(false);
+    const [hasAppeared, setHasAppeared] = useState(false);
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -23,6 +24,7 @@ function ProgressBarFight(props) {
     useEffect(() => {
         Axios.get("/api/getRandomPokemon/" + props.compagnon[0].tier)
             .then(function (response) {
+                setHasAppeared(true);
                 setPokemon(response.data[0]);
                 const shiny = Math.floor((Math.random() * 4096) + 1);
                 const negative = Math.floor((Math.random() * 8192) + 1);
@@ -57,14 +59,14 @@ function ProgressBarFight(props) {
                             <div className="tierFight">
                                 Nv.{props.compagnon[0].level}
                             </div>
-                        <div className={`fightSpriteCardInvert ${isAttacking ? "fightAttack" : ""}`} style={{ height: "200px", width: "100%", filter: props.compagnon[0].negative === 1 ? "invert(1)" : "none", backgroundSize: "contain", backgroundImage: `url(/Sprites/${props.compagnon[0].shiny === 1 ? "shiny" : "normal"}/${props.compagnon[0].number}.gif)` }} />
+                        <div className={`fightSpriteCardInvert ${!hasAppeared ? "spawnInvert" : ""} ${isAttacking ? "fightAttack" : ""}`} style={{ height: "200px", width: "100%", filter: props.compagnon[0].negative === 1 ? "invert(1)" : "none", backgroundSize: "contain", backgroundImage: `url(/Sprites/${props.compagnon[0].shiny === 1 ? "shiny" : "normal"}/${props.compagnon[0].number}.gif)` }} />
                         </div>
                         <div style={{ width: "33%" }}>
                             <div className="fightSpriteCard" style={{ width: "100%", backgroundSize: "contain", backgroundImage: `url(/versus.png)` }} />
                         </div>
                         <div style={{ width: "30%" }}>
                             <p className="fightName">{pokemon.name}</p>
-                        <div className={`fightSpriteCard ${isAttacking ? "hit" : ""}`}  style={{ height: "200px", width: "100%", filter: negative === 1 && "invert(1)", backgroundSize: "contain", backgroundImage: `url(/Sprites/${shiny === 1 ? "shiny" : "normal"}/${pokemon.number}.gif)`}} />
+                        <div className={`fightSpriteCard ${!hasAppeared ? "spawn" : ""} ${isAttacking ? "hit" : ""}`}  style={{ height: "200px", width: "100%", filter: negative === 1 && "invert(1)", backgroundSize: "contain", backgroundImage: `url(/Sprites/${shiny === 1 ? "shiny" : "normal"}/${pokemon.number}.gif)`}} />
                         </div>
                     </div>
                 </>
