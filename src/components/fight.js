@@ -11,7 +11,6 @@ function ProgressBarFight(props) {
     const [hasAppeared, setHasAppeared] = useState(false);
 
     useEffect(() => {
-        setHasAppeared(true);
         const interval = setInterval(() => {
             setIsAttacking(true);
 
@@ -33,14 +32,17 @@ function ProgressBarFight(props) {
                 if (negative == 16) {
                     setShiny(0);
                     setNegative(1);
+                    setHasAppeared(true);
                     isNegative = 1;
                     isShiny = 0;
                 } else if (shiny == 16) {
+                    setHasAppeared(true);
                     setShiny(1);
                     setNegative(0);
                     isNegative = 0;
                     isShiny = 1;
                 } else {
+                    setHasAppeared(true);
                     setShiny(0);
                     setNegative(0);
                     isNegative = 0;
