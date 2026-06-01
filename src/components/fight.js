@@ -194,12 +194,19 @@ function ProgressBarFight(props) {
         tierMultiplier[props.compagnon[0].tier] *
         formMultiplier
     );
+    const exitFight = () => {
+        props.setOnFight(false);
+    };
     return (            
         <div className={"globalContainerCenter"}>
             {pokemon &&
                 <>
                     <p>Combat</p>
                 <div style={{ flexDirection: "row", flexWrap: "wrap", backgroundImage: `url(/gym.png)`, overflow: "hidden" }} className={"fightContainer"}>
+                    <div style={{ top: "10px" }} onClick={exitFight} className={"fightActionsFlee"}>
+                        < img src={"/doll.png"} />
+                        <p>Partir</p>
+                    </div>
                     <div className={"progressBarFightExternalVersus"}>
                         <div style={{ width: (currentHp / maxHp) * 100 + "%", backgroundColor: (currentHp / maxHp) * 100 < 20 ? "red" : (currentHp / maxHp) * 100 < 50 ? "orange" : "green"}} className={"progressBarFightInternal"}>
                         </div>

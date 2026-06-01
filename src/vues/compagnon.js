@@ -317,7 +317,7 @@ function Compagnon() {
             )
             :
             (
-                <Fight compagnon={compagnon} />
+                <Fight compagnon={compagnon} setOnFight={setOnFight} />
             )
     )
 }
