@@ -61,7 +61,7 @@ function ProgressBarFight(props) {
             const xpGain =
                 Math.floor(maxHp / 10);
             setCurrentXp(prevXp => Math.max(0, prevXp + xpGain));
-            if (xpToNextLevel + xpGain >= xpToNextLevel) {
+            if (currentXp + xpGain >= xpToNextLevel) {
                 setCurrentLevel(prevLevel => Math.max(0, prevLevel + 1));
                 setXpToLevelUp(Math.floor((20 + curentLevel * curentLevel * 2) * tierMultiplier[props.compagnon[0].tier]))
             }
@@ -169,7 +169,7 @@ function ProgressBarFight(props) {
                         </div>
                     </div>
                     <div className={"progressBarFightExternalXp"}>
-                        <div style={{ width: "50%" }} className={"progressBarFightInternalXp"}>
+                        <div style={{ width: (currentXp / xpToNextLevel) * 100+"%" }} className={"progressBarFightInternalXp"}>
                         </div>
                         <p>{currentXp + " / " + xpToNextLevel}</p>
                     </div>
