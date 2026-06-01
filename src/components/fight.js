@@ -3,9 +3,9 @@ import '../App.css'
 
 function ProgressBarFight(props) {
     return (            
-        <div style={{flexDirection:"row", flexWrap:"wrap"}} className={"globalContainerCenter"}>
-            <p>Compagnon</p>
-            <div style={{ backgroundImage: `url(/gym.png)`, overflow: "overlay" }} className={"fightContainer"}>
+        <div className={"globalContainerCenter"}>
+            <p>Combat</p>
+            <div style={{ flexDirection: "row", flexWrap: "wrap", backgroundImage: `url(/gym.png)`, overflow: "overlay" }} className={"fightContainer"}>
                 <div style={{width:"30%"}}>
                     <p className="fightName">{props.compagnon[0].pokemon}</p>
                     <div className="tierFight">
