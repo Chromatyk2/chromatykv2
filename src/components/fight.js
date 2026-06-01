@@ -13,11 +13,65 @@ function ProgressBarFight(props) {
     const [currentHp, setCurrentHp] = useState(null);
     const [currentXp, setCurrentXp] = useState(0);
     const [maxHp, setMaxHp] = useState(null);
-    const [damageText, setDamageText] = useState(null);
     const [isKO, setIsKO] = useState(false);
     const [curentLevel, setCurrentLevel] = useState(props.compagnon[0].level);
     const [particles, setParticles] = useState([]);
+    const [damageText, setDamageText] = useState(null);
+    const [particles, setParticles] = useState([]);
 
+    const showDamage = (damage, isCritical = false) => {
+
+        const angle =
+            (-90 + (Math.random() * 80 - 40)) * Math.PI / 180;
+
+        const distance = 120 + Math.random() * 80;
+
+        const endX = Math.cos(angle) * distance;
+        const endY = Math.sin(angle) * distance;
+
+        setDamageText({
+            value: damage,
+            critical: isCritical,
+            endX,
+            endY,
+        });
+
+        createHitParticles();
+
+        setTimeout(() => {
+            setDamageText(null);
+        }, 1000);
+    };
+
+    const createHitParticles = () => {
+
+        const newParticles = Array.from({ length: 20 }, (_, i) => ({
+            id: Date.now() + i,
+
+            startX: Math.random() * 60 - 30,
+            startY: Math.random() * 60 - 30,
+
+            offsetX: Math.random() * 250 - 125,
+            offsetY: Math.random() * 180 - 90,
+
+            size:
+                Math.random() > 0.8
+                    ? Math.random() * 12 + 10
+                    : Math.random() * 6 + 4,
+
+            rotation: Math.random() * 360,
+        }));
+
+        setParticles(prev => [...prev, ...newParticles]);
+
+        setTimeout(() => {
+            setParticles(prev =>
+                prev.filter(
+                    p => !newParticles.some(np => np.id === p.id)
+                )
+            );
+        }, 500);
+    };
     useEffect(() => {
         startFight();
         const interval = setInterval(() => {
@@ -40,19 +94,8 @@ function ProgressBarFight(props) {
                 if (critical) {
                     damage *= 2;
             }
-                const angle = Math.random() * Math.PI * 2;
-                const distance = 100 + Math.random() * 80;
-
-                setDamageText({
-                    value: damage,
-                    critical: critical,
-
-                    offsetLeft: 0,
-                    offsetTop: 0,
-
-                    endX: Math.cos(angle) * distance,
-                    endY: Math.sin(angle) * distance,
-                });
+                showDamage();
+                createHitParticles()
                 setCurrentHp(prevHp => Math.max(0, prevHp - damage));
                 setTimeout(() => {
                     setTimeout(() => {
@@ -250,26 +293,50 @@ function ProgressBarFight(props) {
                         <p className="fightName">{pokemon.name}</p>
                         <div style={{display:"block",margin:"auto", backgroundColor: pokemon.tier == 1 ? "#6d6d6c" : pokemon.tier == 2 ? "#21693a" : pokemon.tier == 3 ? "#744095" : "#bfa93a" }} className={"tierFight"}>Tier {pokemon.tier}</div>
                         
-                        <div className={`fightSpriteCardEnemy ${isKO ? "koAnimation" : ""} ${!hasAppeared ? "spawn" : ""} ${isAttacking ? "hit" : ""}`} style={{ height: "200px", width: "100%", filter: negative === 1 && "invert(1)", backgroundSize: "contain", backgroundImage: `url(/Sprites/${shiny === 1 ? "shiny" : "normal"}/${pokemon.number}.gif)` }}>
+                        <div
+                            className={`fightSpriteCardEnemy
+                                ${isKO ? "koAnimation" : ""}
+                                ${!hasAppeared ? "spawn" : ""}
+                                ${isAttacking ? "hit" : ""}`}
+                            style={{
+                                height: "200px",
+                                width: "100%",
+                                filter: negative === 1 && "invert(1)",
+                                backgroundSize: "contain",
+                                backgroundImage: `url(/Sprites/${
+                                    shiny === 1 ? "shiny" : "normal"
+                                }/${pokemon.number}.gif)`
+                            }}
+                        >
+
                             {damageText && (
                                 <div
-                                    className="damageContainer"
+                                    className={`damageText ${
+                                        damageText.critical ? "critical" : ""
+                                    }`}
                                     style={{
-                                        "--arcX": `${damageText.arcX}px`
+                                        "--endX": `${damageText.endX}px`,
+                                        "--endY": `${damageText.endY}px`,
                                     }}
                                 >
-                                    <div className="damageText">
-                                        -{damageText.value}
-                                    </div>
+                                    -{damageText.value}
                                 </div>
                             )}
+
                             {particles.map((particle) => (
                                 <div
                                     key={particle.id}
                                     className="hitParticle"
                                     style={{
-                                        "--endX": `${damageText.endX}px`,
-                                        "--endY": `${damageText.endY}px`,
+                                        left: `calc(50% + ${particle.startX}px)`,
+                                        top: `calc(50% + ${particle.startY}px)`,
+
+                                        width: `${particle.size * 2}px`,
+                                        height: `${particle.size / 2}px`,
+
+                                        "--dx": `${particle.offsetX}px`,
+                                        "--dy": `${particle.offsetY}px`,
+                                        "--rotation": `${particle.rotation}deg`,
                                     }}
                                 />
                             ))}
