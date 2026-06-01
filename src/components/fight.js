@@ -22,7 +22,17 @@ function ProgressBarFight(props) {
         return () => clearInterval(interval);
     }, []);
     useEffect(() => {
-        Axios.get("/api/getRandomPokemon/" + props.compagnon[0].tier)
+        const tierRoll = Math.random();
+        if (tierRoll < 0.01) {
+            var tier = 4;
+        } else if (tierRoll < 0.11) {
+            var tier = 3;
+        } else if (tierRoll < 0.41) {
+            var tier = 2;
+        } else {
+            var tier = 1;
+        }
+        Axios.get("/api/getRandomPokemon/" + tier)
             .then(function (response) {
                 setPokemon(response.data[0]);
                 const shiny = Math.floor((Math.random() * 4096) + 1);
@@ -67,7 +77,8 @@ function ProgressBarFight(props) {
                             <div className="fightSpriteCard" style={{ width: "100%", backgroundSize: "contain", backgroundImage: `url(/versus.png)` }} />
                         </div>
                         <div style={{ width: "30%" }}>
-                            <p className="fightName">{pokemon.name}</p>
+                        <p className="fightName">{pokemon.name}</p>
+                        <div style={{ backgroundColor: pokemon.tier == 1 ? "#6d6d6c" : pokemon.tier == 2 ? "#21693a" : pokemon.tier == 3 ? "#744095" : "#bfa93a" }} className={"tierFight"}>Tier {pokemon.tier}</div>
                         <div className={`fightSpriteCardEnemy ${!hasAppeared ? "spawn" : ""} ${isAttacking ? "hit" : ""}`}  style={{ height: "200px", width: "100%", filter: negative === 1 && "invert(1)", backgroundSize: "contain", backgroundImage: `url(/Sprites/${shiny === 1 ? "shiny" : "normal"}/${pokemon.number}.gif)`}} />
                         </div>
                     </div>
