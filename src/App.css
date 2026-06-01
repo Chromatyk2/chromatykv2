@@ -909,11 +909,13 @@ span.dexNumber {
     font-weight: bold;
     animation: damageFloat 1s forwards;
     pointer-events: none;
+    text-shadow: -3px -3px 0 #000, 3px -3px 0 #000, -3px 3px 0 #000, 3px 3px 0 #000, 0px -3px 0 #000, 0px 3px 0 #000, -3px 0px 0 #000, 3px 0px 0 #000;
 }
 
 .critical {
     color: gold;
     font-size: 40px;
+    text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000, 0px 0px 10px #ffcc00;
 }
 .koAnimation {
     animation: koAnimation 1s forwards;
