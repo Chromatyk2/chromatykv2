@@ -83,6 +83,7 @@ function ProgressBarFight(props) {
                 Math.floor(maxHp / 10);
             const newXp = currentXp + xpGain;
             if (newXp >= xpToNextLevel) {
+                setPokemon(false);
                 Axios.post('/api/levelupCompagnon', {
                     id: props.compagnon[0].id
                 })
