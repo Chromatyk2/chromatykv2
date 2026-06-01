@@ -832,7 +832,44 @@ span.dexNumber {
     border: 2px solid #054873;
     cursor: pointer;
 }
+/* Combat */
+.fightAttack {
+    animation: attack 0.4s ease-out;
+}
+.hit {
+    animation: hit 0.4s ease-out;
+}
     /* Animation */
+@keyframes attack {
+    0% {
+        transform: translateX(0);
+    }
+
+    30% {
+        transform: translateX(-50px);
+    }
+
+    40% {
+        transform: translateX(-60px);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+@keyframes hit {
+    0%,100% {
+        transform: translateX(0);
+    }
+
+    20%,60% {
+        transform: translateX(-8px);
+    }
+
+    40%,80% {
+        transform: translateX(8px);
+    }
+}
     @keyframes myAnimation {
         from {
             transform: scale(0);
