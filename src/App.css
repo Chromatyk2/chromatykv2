@@ -821,14 +821,14 @@ span.dexNumber {
 /* Combat */
 
 .progressBarFightExternalVersus {
-    background-color: #fff;
+    background-color: transparent;
     height: 20px;
     width: 100%;
     border: white solid 1px;
 }
 
-.progressBarFightExternalVersus {
-    background-color: rgb(115, 0, 9);
+.progressBarFightInternalVersus {
+    background-color: #178b34;
     height: 20px;
     transition: width 1s ease-in-out;
     color: #072851;
@@ -840,6 +840,29 @@ span.dexNumber {
     left: 0;
     position: absolute;
     right: 0;
+    top: -22px;
+}
+.progressBarFightExternalVersusXp {
+    background-color: transparent;
+    height: 20px;
+    width: 100%;
+    border: white solid 1px;
+}
+
+.progressBarFightInternalVersusXp {
+    background-color: #2483c3;
+    height: 20px;
+    transition: width 1s ease-in-out;
+    color: #072851;
+    position: relative;
+    max-width: 100%;
+}
+.progressBarFightExternalVersusXp p {
+    color: #fff;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: -22px;
 }
 .fightSpriteCardEnemy {
     background-position: 50%;
