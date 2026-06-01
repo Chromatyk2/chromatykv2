@@ -81,8 +81,8 @@ function ProgressBarFight(props) {
                 Axios.post('/api/levelupCompagnon', {
                     id: props.compagnon[0].id
                 })
-                setCurrentLevel(prevLevel => Math.max(0, prevLevel + 1));
-                setXpToLevelUp(Math.floor((20 + curentLevel * curentLevel * 2) * tierMultiplier[props.compagnon[0].tier]));
+                const newLevel = curentLevel + 1;
+                setCurrentLevel(prev => prev + 1);
                 setCurrentXp(0);
             }
             setTimeout(() => {
@@ -91,6 +91,20 @@ function ProgressBarFight(props) {
             }, 1500); // durée animation KO
         }
     }, [currentHp]);
+    useEffect(() => {
+        const tierMultiplier = {
+            1: 1,
+            2: 1.5,
+            3: 2.5,
+            4: 4
+        };
+        setXpToLevelUp(
+            Math.floor(
+                (20 + curentLevel * curentLevel * 2) *
+                tierMultiplier[props.compagnon[0].tier]
+            )
+        );
+    }, [curentLevel]);
     function startFight() {
         setHasAppeared(false)
         const tierMultiplier = {
