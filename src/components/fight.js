@@ -18,7 +18,7 @@ function ProgressBarFight(props) {
     const [damageText, setDamageText] = useState(null);
     const [particles, setParticles] = useState([]);
 
-    const showDamage = (damage, isCritical = false) => {
+    const showDamage = (damage, isCritical) => {
 
         const angle =
             (-90 + (Math.random() * 80 - 40)) * Math.PI / 180;
@@ -92,8 +92,8 @@ function ProgressBarFight(props) {
                 const critical = Math.random() < 0.05;
                 if (critical) {
                     damage *= 2;
-            }
-                showDamage();
+             }
+                showDamage(damage, critical);
                 createHitParticles()
                 setCurrentHp(prevHp => Math.max(0, prevHp - damage));
                 setTimeout(() => {
