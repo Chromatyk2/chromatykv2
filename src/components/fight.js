@@ -12,6 +12,7 @@ function ProgressBarFight(props) {
     const [baseAttack, setBaseAttack] = useState(null);
     const [currentHp, setCurrentHp] = useState(null);
     const [maxHp, setMaxHp] = useState(null);
+    const [damageText, setDamageText] = useState(null);
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -26,8 +27,15 @@ function ProgressBarFight(props) {
             if (critical) {
                 damage *= 2;
             }
+            setDamageText({
+                value: damage,
+                critical
+            });
             setCurrentHp(prevHp => Math.max(0, prevHp - damage));
             setTimeout(() => {
+                setTimeout(() => {
+                    setDamageText(null);
+                }, 1000);
                 setIsAttacking(false);
             }, 300); // durée de l'animation
         }, 3000);
@@ -113,7 +121,13 @@ function ProgressBarFight(props) {
                         <div style={{ width: "30%" }}>
                         <p className="fightName">{pokemon.name}</p>
                         <div style={{display:"block",margin:"auto", backgroundColor: pokemon.tier == 1 ? "#6d6d6c" : pokemon.tier == 2 ? "#21693a" : pokemon.tier == 3 ? "#744095" : "#bfa93a" }} className={"tierFight"}>Tier {pokemon.tier}</div>
-                        <div className={`fightSpriteCardEnemy ${!hasAppeared ? "spawn" : ""} ${isAttacking ? "hit" : ""}`}  style={{ height: "200px", width: "100%", filter: negative === 1 && "invert(1)", backgroundSize: "contain", backgroundImage: `url(/Sprites/${shiny === 1 ? "shiny" : "normal"}/${pokemon.number}.gif)`}} />
+                        <div className={`fightSpriteCardEnemy ${!hasAppeared ? "spawn" : ""} ${isAttacking ? "hit" : ""}`} style={{ height: "200px", width: "100%", filter: negative === 1 && "invert(1)", backgroundSize: "contain", backgroundImage: `url(/Sprites/${shiny === 1 ? "shiny" : "normal"}/${pokemon.number}.gif)` }}>
+                            {damageText && (
+                                <div className={`damageText ${damageText.critical ? "critical" : ""}`}>
+                                    -{damageText.value}
+                                </div>
+                            )}
+                        </div>
                     </div>
                     <div className={"progressBarFightExternalXp"}>
                         <div style={{ width: "50%" }} className={"progressBarFightInternalXp"}>

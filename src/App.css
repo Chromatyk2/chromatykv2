@@ -902,7 +902,31 @@ span.dexNumber {
 .hit {
     animation: hit .3s, damageFlash .3s;
 }
+.damageText {
+    position: absolute;
+    color: white;
+    font-size: 32px;
+    font-weight: bold;
+    animation: damageFloat 1s forwards;
+    pointer-events: none;
+}
+
+.critical {
+    color: gold;
+    font-size: 40px;
+}
     /* Animation */
+@keyframes damageFloat {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(-80px);
+    }
+}
 @keyframes attack {
     0% {
         transform: scale(1) scaleX(-1) translateX(0);
