@@ -292,55 +292,55 @@ function ProgressBarFight(props) {
                         <p className="fightName">{pokemon.name}</p>
                         <div style={{display:"block",margin:"auto", backgroundColor: pokemon.tier == 1 ? "#6d6d6c" : pokemon.tier == 2 ? "#21693a" : pokemon.tier == 3 ? "#744095" : "#bfa93a" }} className={"tierFight"}>Tier {pokemon.tier}</div>
                         <div className="fightSpriteWrapper">
-                        <div
-                            className={`fightSpriteCardEnemy
-                                ${isKO ? "koAnimation" : ""}
-                                ${!hasAppeared ? "spawn" : ""}
-                                ${isAttacking ? "hit" : ""}`}
-                            style={{
-                                height: "200px",
-                                width: "100%",
-                                filter: negative === 1 && "invert(1)",
-                                backgroundSize: "contain",
-                                backgroundImage: `url(/Sprites/${
-                                    shiny === 1 ? "shiny" : "normal"
-                                }/${pokemon.number}.gif)`
-                            }}
-                        >
-
-                            
-                        </div>
-                        {damageText && (
                             <div
-                                className={`damageText ${damageText.critical ? "critical" : ""
-                                    }`}
+                                className={`fightSpriteCardEnemy
+                                    ${isKO ? "koAnimation" : ""}
+                                    ${!hasAppeared ? "spawn" : ""}
+                                    ${isAttacking ? "hit" : ""}`}
                                 style={{
-                                    "--endX": `${damageText.endX}px`,
-                                    "--endY": `${damageText.endY}px`,
+                                    height: "200px",
+                                    width: "100%",
+                                    filter: negative === 1 && "invert(1)",
+                                    backgroundSize: "contain",
+                                    backgroundImage: `url(/Sprites/${
+                                        shiny === 1 ? "shiny" : "normal"
+                                    }/${pokemon.number}.gif)`
                                 }}
                             >
-                                -{damageText.value}
+
+                            
                             </div>
-                        )}
+                            {damageText && (
+                                <div
+                                    className={`damageText ${damageText.critical ? "critical" : ""
+                                        }`}
+                                    style={{
+                                        "--endX": `${damageText.endX}px`,
+                                        "--endY": `${damageText.endY}px`,
+                                    }}
+                                >
+                                    -{damageText.value}
+                                </div>
+                            )}
 
-                        {particles.map((particle) => (
-                            <div
-                                key={particle.id}
-                                className="hitParticle"
-                                style={{
-                                    left: `calc(50% + ${particle.startX}px)`,
-                                    top: `calc(50% + ${particle.startY}px)`,
+                            {particles.map((particle) => (
+                                <div
+                                    key={particle.id}
+                                    className="hitParticle"
+                                    style={{
+                                        left: `calc(50% + ${particle.startX}px)`,
+                                        top: `calc(50% + ${particle.startY}px)`,
 
-                                    width: `${particle.size * 2}px`,
-                                    height: `${particle.size / 2}px`,
+                                        width: `${particle.size * 2}px`,
+                                        height: `${particle.size / 2}px`,
 
-                                    "--dx": `${particle.offsetX}px`,
-                                    "--dy": `${particle.offsetY}px`,
-                                    "--rotation": `${particle.rotation}deg`,
-                                }}
-                            />
-                        ))}
-                    </div>
+                                        "--dx": `${particle.offsetX}px`,
+                                        "--dy": `${particle.offsetY}px`,
+                                        "--rotation": `${particle.rotation}deg`,
+                                    }}
+                                />
+                            ))}
+                        </div>
                     </div>
                     <div className="hpBarContainer">
                         <div
