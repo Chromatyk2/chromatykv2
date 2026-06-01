@@ -45,11 +45,13 @@ function ProgressBarFight(props) {
     useEffect(() => {
         if (currentHp <= 0 && !isKO) {
             setIsAttacking(false);
-            setIsKO(true);
+            setTimeout(() => {
+                setIsKO(true);
+            }, 500); 
             setTimeout(() => {
                 startFight();
                 setIsKO(false);
-            }, 1000); // durée animation KO
+            }, 1500); // durée animation KO
         }
     }, [currentHp]);
     function startFight() {
