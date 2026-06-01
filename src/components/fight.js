@@ -88,8 +88,8 @@ function ProgressBarFight(props) {
                     </div>
                     <div className={"progressBarFightExternalXp"}>
                         <div style={{ width: "50%" }} className={"progressBarFightInternalXp"}>
-                            <p>{"50 / 100"}</p>
                         </div>
+                        <p>{"50 / 100"}</p>
                     </div>
                     </div>
                 </>
