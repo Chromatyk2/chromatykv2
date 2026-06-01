@@ -247,19 +247,11 @@ function ProgressBarFight(props) {
                         
                         <div className={`fightSpriteCardEnemy ${isKO ? "koAnimation" : ""} ${!hasAppeared ? "spawn" : ""} ${isAttacking ? "hit" : ""}`} style={{ height: "200px", width: "100%", filter: negative === 1 && "invert(1)", backgroundSize: "contain", backgroundImage: `url(/Sprites/${shiny === 1 ? "shiny" : "normal"}/${pokemon.number}.gif)` }}>
                             {damageText && (
-                                <div
-                                    className={`damageText ${damageText.critical ? "critical" : ""}`}
-                                    style={{
-                                        left: `${damageText.offsetLeft * 2}px`,
-                                        top: `${damageText.offsetTop * 2}px`,
-                                        "--offsetX": `${damageText.driftX}px`,
-                                        "--rotation": `${damageText.rotation}deg`,
-                                        "--arcX": `${Math.random() * 120 - 60}px`
-                                    }}
-                                >
-                                    -{damageText.value}
-                                </div>
-                            )}
+                            <div
+                                className={`damageText ${damageText.critical ? "critical" : ""}`}>
+                                -{damageText.value}
+                            </div>
+                        )}
                         </div>
                     </div>
                     <div className="hpBarContainer">
