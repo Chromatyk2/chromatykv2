@@ -248,8 +248,8 @@ function ProgressBarFight(props) {
                             <div
                                 className={`damageText ${damageText.critical ? "critical" : ""}`}
                                 style={{
-                                    left: `-${damageText.offsetLeft}px`,
-                                    top: `-${damageText.offsetTop}px`,
+                                    left: `${damageText.offsetLeft * 2}px`,
+                                    top: `${damageText.offsetTop * 2}px`,
                                     "--offsetX": `${damageText.driftX}px`,
                                     "--rotation": `${damageText.rotation}deg`,
                                     "--arcX": `${Math.random() * 120 - 60}px`
