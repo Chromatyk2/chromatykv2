@@ -258,13 +258,10 @@ function Compagnon() {
                                                 < img src={"/doll.png"} />
                                                 <p>Changer</p>
                                     </div>
-                                    {cookies.user.data[0].id === "80482655" &&
                                         <div style={{ top: "80px" }} onClick={startFight} className={"fightActionsFlee"}>
                                             < img src={"/exp.png"} />
                                             <p>XP</p>
                                         </div>
-
-                                    }
                                             <p className="fightName">{compagnon[0].pokemon}</p>
                                             <div className="tierFight">
                                                 Nv.{compagnon[0].level}
