@@ -12,20 +12,19 @@ function ProgressBarFight(props) {
 
     useEffect(() => {
         const interval = setInterval(() => {
-            setHasAppeared(false);
             setIsAttacking(true);
+            setHasAppeared(true);
 
             setTimeout(() => {
                 setIsAttacking(false);
             }, 300); // durée de l'animation
-        }, 1000);
+        }, 3000);
 
         return () => clearInterval(interval);
     }, []);
     useEffect(() => {
         Axios.get("/api/getRandomPokemon/" + props.compagnon[0].tier)
             .then(function (response) {
-                setHasAppeared(true);
                 setPokemon(response.data[0]);
                 const shiny = Math.floor((Math.random() * 4096) + 1);
                 const negative = Math.floor((Math.random() * 8192) + 1);
