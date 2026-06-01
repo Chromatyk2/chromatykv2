@@ -840,16 +840,16 @@ span.dexNumber {
     left: 0;
     position: absolute;
     right: 0;
-    top: -22px;
+    top: 3px;
 }
-.progressBarFightExternalVersusXp {
+.progressBarFightExternalXp {
     background-color: transparent;
     height: 20px;
     width: 100%;
     border: white solid 1px;
 }
 
-.progressBarFightInternalVersusXp {
+.progressBarFightInternalXp {
     background-color: #2483c3;
     height: 20px;
     transition: width 1s ease-in-out;
@@ -857,12 +857,12 @@ span.dexNumber {
     position: relative;
     max-width: 100%;
 }
-.progressBarFightExternalVersusXp p {
+.progressBarFightExternalXp p {
     color: #fff;
     left: 0;
     position: absolute;
     right: 0;
-    top: -22px;
+    top: 3px;
 }
 .fightSpriteCardEnemy {
     background-position: 50%;
