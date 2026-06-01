@@ -21,9 +21,14 @@ function ProgressBarFight(props) {
     const createHitParticles = () => {
         const newParticles = Array.from({ length: 12 }, (_, i) => ({
             id: Date.now() + i,
-            offsetX: Math.random() * 80 - 40,
-            offsetY: -(Math.random() * 80 + 20),
-            size: Math.random() * 8 + 4,
+
+            startX: Math.random() * 40 - 20,
+            startY: Math.random() * 40 - 20,
+
+            offsetX: Math.random() * 160 - 80,
+            offsetY: -(Math.random() * 120 + 40),
+
+            size: Math.random() * 10 + 4,
             rotation: Math.random() * 360,
         }));
 
@@ -277,10 +282,12 @@ function ProgressBarFight(props) {
                                     key={particle.id}
                                     className="hitParticle"
                                     style={{
-                                        left: "50%",
-                                        top: "50%",
+                                        left: `calc(50% + ${particle.startX}px)`,
+                                        top: `calc(50% + ${particle.startY}px)`,
+
                                         width: `${particle.size}px`,
                                         height: `${particle.size}px`,
+
                                         "--dx": `${particle.offsetX}px`,
                                         "--dy": `${particle.offsetY}px`,
                                         "--rotation": `${particle.rotation}deg`,
