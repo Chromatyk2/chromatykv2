@@ -819,6 +819,28 @@ span.dexNumber {
     cursor: pointer;
 }
 /* Combat */
+
+.progressBarFightExternalVersus {
+    background-color: #fff;
+    height: 20px;
+    width: 100%;
+    border: white solid 1px;
+}
+
+.progressBarFightExternalVersus {
+    background-color: rgb(115, 0, 9);
+    height: 20px;
+    transition: width 1s ease-in-out;
+    color: #072851;
+    position: relative;
+    max-width: 100%;
+}
+.progressBarFightExternalVersus p {
+    color: #fff;
+    left: 0;
+    position: absolute;
+    right: 0;
+}
 .fightSpriteCardEnemy {
     background-position: 50%;
     background-repeat: no-repeat;

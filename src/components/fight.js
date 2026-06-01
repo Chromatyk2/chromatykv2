@@ -65,7 +65,16 @@ function ProgressBarFight(props) {
             {pokemon &&
                 <>
                     <p>Combat</p>
-                    <div style={{ flexDirection: "row", flexWrap: "wrap", backgroundImage: `url(/gym.png)`, overflow: "overlay" }} className={"fightContainer"}>
+                <div style={{ flexDirection: "row", flexWrap: "wrap", backgroundImage: `url(/gym.png)`, overflow: "overlay" }} className={"fightContainer"}>
+                    <div className={"progressBarFightExternalVersus"}>
+                        <div style={{ width:"50%" }} className={"progressBarFightInternal"}>
+                            <p>{"50 / 100"}</p>
+                            <div class="heart">
+                                <div style={{ backgroundColor: "#rgb(115, 0, 9)" }} class="heartInt">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                         <div style={{ width: "30%" }}>
                             <p className="fightName">{props.compagnon[0].pokemon}</p>
                             <div className="tierFight">
@@ -78,7 +87,7 @@ function ProgressBarFight(props) {
                         </div>
                         <div style={{ width: "30%" }}>
                         <p className="fightName">{pokemon.name}</p>
-                        <div style={{ backgroundColor: pokemon.tier == 1 ? "#6d6d6c" : pokemon.tier == 2 ? "#21693a" : pokemon.tier == 3 ? "#744095" : "#bfa93a" }} className={"tierFight"}>Tier {pokemon.tier}</div>
+                        <div style={{display:"block",margin:"auto", backgroundColor: pokemon.tier == 1 ? "#6d6d6c" : pokemon.tier == 2 ? "#21693a" : pokemon.tier == 3 ? "#744095" : "#bfa93a" }} className={"tierFight"}>Tier {pokemon.tier}</div>
                         <div className={`fightSpriteCardEnemy ${!hasAppeared ? "spawn" : ""} ${isAttacking ? "hit" : ""}`}  style={{ height: "200px", width: "100%", filter: negative === 1 && "invert(1)", backgroundSize: "contain", backgroundImage: `url(/Sprites/${shiny === 1 ? "shiny" : "normal"}/${pokemon.number}.gif)`}} />
                         </div>
                     </div>
