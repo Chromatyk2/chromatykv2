@@ -18,30 +18,6 @@ function ProgressBarFight(props) {
     const [curentLevel, setCurrentLevel] = useState(props.compagnon[0].level);
     const [particles, setParticles] = useState([]);
 
-    const createHitParticles = () => {
-        const newParticles = Array.from({ length: 12 }, (_, i) => ({
-            id: Date.now() + i,
-
-            startX: Math.random() * 40 - 20,
-            startY: Math.random() * 40 - 20,
-
-            offsetX: Math.random() * 160 - 80,
-            offsetY: -(Math.random() * 120 + 40),
-
-            size: Math.random() * 10 + 4,
-            rotation: Math.random() * 360,
-        }));
-
-        setParticles(prev => [...prev, ...newParticles]);
-
-        setTimeout(() => {
-            setParticles(prev =>
-                prev.filter(
-                    p => !newParticles.some(np => np.id === p.id)
-                )
-            );
-        }, 500);
-    };
     useEffect(() => {
         startFight();
         const interval = setInterval(() => {
@@ -63,16 +39,20 @@ function ProgressBarFight(props) {
                 const critical = Math.random() < 0.05;
                 if (critical) {
                     damage *= 2;
-                }
+            }
+                const angle = Math.random() * Math.PI * 2;
+                const distance = 100 + Math.random() * 80;
+
                 setDamageText({
                     value: damage,
                     critical: critical,
-                    offsetLeft: Math.random() * 80 - 40,
-                    offsetTop: Math.random() * 40 - 20,
-                    driftX: Math.random() * 100 - 50,
-                    rotation: Math.random() * 30 - 15,
+
+                    offsetLeft: 0,
+                    offsetTop: 0,
+
+                    endX: Math.cos(angle) * distance,
+                    endY: Math.sin(angle) * distance,
                 });
-                createHitParticles();
                 setCurrentHp(prevHp => Math.max(0, prevHp - damage));
                 setTimeout(() => {
                     setTimeout(() => {
@@ -288,16 +268,8 @@ function ProgressBarFight(props) {
                                     key={particle.id}
                                     className="hitParticle"
                                     style={{
-                                        left: `calc(50% + ${particle.startX}px)`,
-                                        top: `calc(50% + ${particle.startY}px)`,
-                                        offsetLeft: Math.random() * 80 - 40,
-                                        offsetTop: Math.random() * 30 - 15,
-                                        width: `${particle.size}px`,
-                                        height: `${particle.size}px`,
-
-                                        "--dx": `${particle.offsetX}px`,
-                                        "--dy": `${particle.offsetY}px`,
-                                        "--rotation": `${particle.rotation}deg`,
+                                        "--endX": `${damageText.endX}px`,
+                                        "--endY": `${damageText.endY}px`,
                                     }}
                                 />
                             ))}
