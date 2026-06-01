@@ -23,10 +23,10 @@ function ProgressBarFight(props) {
         const interval = setInterval(() => {
             setIsAttacking(true);
             const baseAttack =
-                props.compagnon[0].tier === 4 ? 16 :
-                    props.compagnon[0].tier === 3 ? 8 :
-                        props.compagnon[0].tier === 2 ? 4 :
-                            2;
+                props.compagnon[0].tier === 4 ? 40 :
+                    props.compagnon[0].tier === 3 ? 20 :
+                        props.compagnon[0].tier === 2 ? 10 :
+                            5;
             const attack =
                 baseAttack + Math.floor(props.compagnon[0].level / 4);
             const minDamage = Math.floor(attack * 0.8);
