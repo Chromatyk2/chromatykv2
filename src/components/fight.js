@@ -16,6 +16,7 @@ function ProgressBarFight(props) {
     const [damageText, setDamageText] = useState(null);
 
     useEffect(() => {
+        console.log("Combat effect, isKO =", isKO);
         if (isKO) return;
 
         const interval = setInterval(() => {
@@ -57,6 +58,7 @@ function ProgressBarFight(props) {
         return () => clearInterval(interval);
     }, [isKO, props.compagnon, baseAttack]);
     useEffect(() => {
+        console.log("currentHp =", currentHp, "isKO =", isKO);
         if (currentHp <= 0 && !isKO) {
             setIsAttacking(false);
             setIsKO(true);
