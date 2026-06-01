@@ -12,7 +12,6 @@ function ProgressBarFight(props) {
     const [baseAttack, setBaseAttack] = useState(null);
     const [currentHp, setCurrentHp] = useState(null);
     const [currentXp, setCurrentXp] = useState(0);
-    const [xpToNextLevel, setXpToLevelUp] = useState(0);
     const [maxHp, setMaxHp] = useState(null);
     const [damageText, setDamageText] = useState(null);
     const [isKO, setIsKO] = useState(false);
@@ -54,7 +53,10 @@ function ProgressBarFight(props) {
         return () => clearInterval(interval);
     }, []);
     useEffect(() => {
-        if (currentHp <= 0 && !isKO && pokemon) {
+        if (currentHp !== null &&
+            currentHp <= 0 &&
+            !isKO &&
+            pokemon) {
             setIsAttacking(false);
             setIsKO(true);
             let formMultiplier;
@@ -76,14 +78,15 @@ function ProgressBarFight(props) {
                 Math.floor((20 + curentLevel * curentLevel * 2) * tierMultiplier[props.compagnon[0].tier] * formMultiplier);
             const xpGain =
                 Math.floor(maxHp / 10);
-            setCurrentXp(prevXp => Math.max(0, prevXp + xpGain));
-            if (currentXp + xpGain >= xpToNextLevel) {
+            const newXp = currentXp + xpGain;
+            if (newXp >= xpToNextLevel) {
                 Axios.post('/api/levelupCompagnon', {
                     id: props.compagnon[0].id
                 })
-                const newLevel = curentLevel + 1;
                 setCurrentLevel(prev => prev + 1);
-                setCurrentXp(0);
+                setCurrentXp(newXp - xpToNextLevel);
+            } else {
+                setCurrentXp(newXp);
             }
             setTimeout(() => {
                 startFight();
@@ -107,12 +110,6 @@ function ProgressBarFight(props) {
             formMultiplier = 1;
 
         }
-        setXpToLevelUp(
-            Math.floor(
-                (20 + curentLevel * curentLevel * 2) *
-                tierMultiplier[props.compagnon[0].tier] * formMultiplier
-            )
-        );
     }, [curentLevel]);
     function startFight() {
         setHasAppeared(false)
@@ -131,12 +128,6 @@ function ProgressBarFight(props) {
             formMultiplier = 1;
 
         }
-        setXpToLevelUp(
-            Math.floor(
-                (20 + curentLevel * curentLevel * 2) *
-                tierMultiplier[props.compagnon[0].tier] * formMultiplier
-            )
-        );
         const tierRoll = Math.random();
         if (tierRoll < 0.01) {
             var tier = 4;
@@ -184,6 +175,25 @@ function ProgressBarFight(props) {
             })
 
     }
+    const tierMultiplier = {
+        1: 1,
+        2: 1.5,
+        3: 2.5,
+        4: 4
+    };
+
+    const formMultiplier =
+        props.compagnon[0].negative === 1
+            ? 2
+            : props.compagnon[0].shiny === 1
+                ? 1.5
+                : 1;
+
+    const xpToNextLevel = Math.floor(
+        (20 + curentLevel * curentLevel * 2) *
+        tierMultiplier[props.compagnon[0].tier] *
+        formMultiplier
+    );
     return (            
         <div className={"globalContainerCenter"}>
             {pokemon &&
