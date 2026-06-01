@@ -1027,6 +1027,27 @@ span.dexNumber {
 .koAnimation {
     animation: koAnimation 1s forwards;
 }
+.hitParticle {
+    position: absolute;
+    background: #ffae00;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 50;
+    box-shadow: 0 0 4px #ffae00, 0 0 8px #ff4500;
+    animation: particleBurst 500ms ease-out forwards;
+}
+
+@keyframes particleBurst {
+    0% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1) rotate(0deg);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate( calc(-50% + var(--dx)), calc(-50% + var(--dy)) ) scale(0) rotate(var(--rotation));
+    }
+}
     /* Animation */
 @keyframes koAnimation {
     0% {

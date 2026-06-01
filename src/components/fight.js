@@ -16,8 +16,27 @@ function ProgressBarFight(props) {
     const [damageText, setDamageText] = useState(null);
     const [isKO, setIsKO] = useState(false);
     const [curentLevel, setCurrentLevel] = useState(props.compagnon[0].level);
-    const [particles, setParticles] = useState(null);
+    const [particles, setParticles] = useState([]);
 
+    const createHitParticles = () => {
+        const newParticles = Array.from({ length: 12 }, (_, i) => ({
+            id: Date.now() + i,
+            offsetX: Math.random() * 80 - 40,
+            offsetY: -(Math.random() * 80 + 20),
+            size: Math.random() * 8 + 4,
+            rotation: Math.random() * 360,
+        }));
+
+        setParticles(prev => [...prev, ...newParticles]);
+
+        setTimeout(() => {
+            setParticles(prev =>
+                prev.filter(
+                    p => !newParticles.some(np => np.id === p.id)
+                )
+            );
+        }, 500);
+    };
     useEffect(() => {
         startFight();
         const interval = setInterval(() => {
@@ -48,6 +67,7 @@ function ProgressBarFight(props) {
                     driftX: Math.random() * 100 - 50,
                     rotation: Math.random() * 30 - 15,
                 });
+                createHitParticles();
                 setCurrentHp(prevHp => Math.max(0, prevHp - damage));
                 setTimeout(() => {
                     setTimeout(() => {
@@ -247,11 +267,26 @@ function ProgressBarFight(props) {
                         
                         <div className={`fightSpriteCardEnemy ${isKO ? "koAnimation" : ""} ${!hasAppeared ? "spawn" : ""} ${isAttacking ? "hit" : ""}`} style={{ height: "200px", width: "100%", filter: negative === 1 && "invert(1)", backgroundSize: "contain", backgroundImage: `url(/Sprites/${shiny === 1 ? "shiny" : "normal"}/${pokemon.number}.gif)` }}>
                             {damageText && (
-                            <div
-                                className={`damageText ${damageText.critical ? "critical" : ""}`}>
-                                -{damageText.value}
-                            </div>
-                        )}
+                                <div
+                                    className={`damageText ${damageText.critical ? "critical" : ""}`}>
+                                    -{damageText.value}
+                                </div>
+                            )}
+                            {particles.map((particle) => (
+                                <div
+                                    key={particle.id}
+                                    className="hitParticle"
+                                    style={{
+                                        left: "50%",
+                                        top: "50%",
+                                        width: `${particle.size}px`,
+                                        height: `${particle.size}px`,
+                                        "--dx": `${particle.offsetX}px`,
+                                        "--dy": `${particle.offsetY}px`,
+                                        "--rotation": `${particle.rotation}deg`,
+                                    }}
+                                />
+                            ))}
                         </div>
                     </div>
                     <div className="hpBarContainer">
