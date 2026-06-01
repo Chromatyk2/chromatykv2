@@ -239,7 +239,7 @@ function ProgressBarFight(props) {
                     <div className={"progressBarFightExternalXp"}>
                         <div style={{ width: (currentXp / xpToNextLevel) * 100+"%" }} className={"progressBarFightInternalXp"}>
                         </div>
-                        <p>{currentXp + " / " + xpToNextLevel}</p>
+                        <p>{(currentXp / xpToNextLevel) * 100 + " %"}</p>
                     </div>
                     </div>
                 </>
