@@ -15,7 +15,6 @@ function ProgressBarFight(props) {
     const [maxHp, setMaxHp] = useState(null);
     const [isKO, setIsKO] = useState(false);
     const [curentLevel, setCurrentLevel] = useState(props.compagnon[0].level);
-    const [particles, setParticles] = useState([]);
     const [damageText, setDamageText] = useState(null);
     const [particles, setParticles] = useState([]);
 
