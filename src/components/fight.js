@@ -209,10 +209,22 @@ function ProgressBarFight(props) {
                         < img src={"/doll.png"} />
                         <p>Partir</p>
                     </div>
-                    <div className={"progressBarFightExternalVersus"}>
-                        <div style={{ width: (currentHp / maxHp) * 100 + "%", backgroundColor: (currentHp / maxHp) * 100 < 20 ? "red" : (currentHp / maxHp) * 100 < 50 ? "orange" : "green"}} className={"progressBarFightInternal"}>
-                        </div>
-                        <p>{currentHp +"/" + maxHp +" PV"}</p>
+                    <div className="hpBarContainer">
+                        <div
+                            className="hpBar"
+                            style={{
+                                width: `${(currentHp / maxHp) * 100}%`,
+                                background:
+                                    (currentHp / maxHp) * 100 < 20
+                                        ? "linear-gradient(90deg,#ff0000,#ff4d4d)"
+                                        : (currentHp / maxHp) * 100 < 50
+                                            ? "linear-gradient(90deg,#ff8c00,#ffd000)"
+                                            : "linear-gradient(90deg,#00b83f,#42ff87)"
+                            }}
+                        />
+                        <span className="hpText">
+                            {currentHp}/{maxHp} PV
+                        </span>
                     </div>
                         <div style={{ width: "30%" }}>
                             <p className="fightName">{props.compagnon[0].pokemon}</p>
