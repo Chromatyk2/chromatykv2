@@ -84,7 +84,7 @@ function ProgressBarFight(props) {
                     id: props.compagnon[0].id
                 })
                 setCurrentLevel(prev => prev + 1);
-                setCurrentXp(newXp - xpToNextLevel);
+                setCurrentXp(0);
             } else {
                 setCurrentXp(newXp);
             }
