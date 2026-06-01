@@ -270,6 +270,7 @@ function ProgressBarFight(props) {
                                     top: `${damageText.offsetTop}px`,
                                     "--offsetX": `${damageText.driftX}px`,
                                     "--rotation": `${damageText.rotation}deg`,
+                                    "--arcX": `${Math.random() * 120 - 60}px`
                                 }}
                             >
                                 -{damageText.value}
