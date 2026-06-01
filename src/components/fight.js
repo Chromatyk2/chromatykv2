@@ -13,6 +13,7 @@ function ProgressBarFight(props) {
     const [currentHp, setCurrentHp] = useState(null);
     const [maxHp, setMaxHp] = useState(null);
     const [damageText, setDamageText] = useState(null);
+    const [isKO, setIsKO] = useState(false);
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -35,15 +36,22 @@ function ProgressBarFight(props) {
             setTimeout(() => {
                 setTimeout(() => {
                     setDamageText(null);
-                    if (prevHp => Math.max(0, prevHp - damage) < 1) {
-                        startFight();
-                    }
                 }, 1000);
                 setIsAttacking(false);
             }, 300); // durée de l'animation
         }, 3000);
         return () => clearInterval(interval);
     }, []);
+    useEffect(() => {
+        if (currentHp <= 0 && !isKO) {
+            setIsKO(true);
+
+            setTimeout(() => {
+                startFight();
+                setIsKO(false);
+            }, 1000); // durée animation KO
+        }
+    }, [currentHp]);
     useEffect(() => {
         startFight();
     }, []);
@@ -128,7 +136,7 @@ function ProgressBarFight(props) {
                         <div style={{ width: "30%" }}>
                         <p className="fightName">{pokemon.name}</p>
                         <div style={{display:"block",margin:"auto", backgroundColor: pokemon.tier == 1 ? "#6d6d6c" : pokemon.tier == 2 ? "#21693a" : pokemon.tier == 3 ? "#744095" : "#bfa93a" }} className={"tierFight"}>Tier {pokemon.tier}</div>
-                        <div className={`fightSpriteCardEnemy ${!hasAppeared ? "spawn" : ""} ${isAttacking ? "hit" : ""}`} style={{ height: "200px", width: "100%", filter: negative === 1 && "invert(1)", backgroundSize: "contain", backgroundImage: `url(/Sprites/${shiny === 1 ? "shiny" : "normal"}/${pokemon.number}.gif)` }}>
+                        <div className={`fightSpriteCardEnemy ${isKO ? "koAnimation" : ""} ${!hasAppeared ? "spawn" : ""} ${isAttacking ? "hit" : ""}`} style={{ height: "200px", width: "100%", filter: negative === 1 && "invert(1)", backgroundSize: "contain", backgroundImage: `url(/Sprites/${shiny === 1 ? "shiny" : "normal"}/${pokemon.number}.gif)` }}>
                             {damageText && (
                                 <div className={`damageText ${damageText.critical ? "critical" : ""}`}>
                                     -{damageText.value}

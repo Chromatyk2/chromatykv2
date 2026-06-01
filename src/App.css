@@ -915,7 +915,21 @@ span.dexNumber {
     color: gold;
     font-size: 40px;
 }
+.koAnimation {
+    animation: koAnimation 1s forwards;
+}
     /* Animation */
+0% {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+100% {
+    opacity: 0;
+    transform: translateY(150px);
+}
+
+}
 @keyframes damageFloat {
     0% {
         transform: translateY(0);
