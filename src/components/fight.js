@@ -23,13 +23,12 @@ function ProgressBarFight(props) {
         const interval = setInterval(() => {
             setIsAttacking(true);
             const baseAttack =
-                props.compagnon[0].tier === 4 ? 80 :
-                    props.compagnon[0].tier === 3 ? 40 :
-                        props.compagnon[0].tier === 2 ? 20 :
-                            10;
+                props.compagnon[0].tier === 4 ? 16 :
+                    props.compagnon[0].tier === 3 ? 8 :
+                        props.compagnon[0].tier === 2 ? 4 :
+                            2;
             const attack =
-                baseAttack +
-                Math.floor(props.compagnon[0].level / 5);
+                baseAttack + Math.floor(props.compagnon[0].level / 4);
             const minDamage = Math.floor(attack * 0.8);
             const maxDamage = Math.floor(attack * 1.2);
 
@@ -58,6 +57,15 @@ function ProgressBarFight(props) {
         if (currentHp <= 0 && !isKO && pokemon) {
             setIsAttacking(false);
             setIsKO(true);
+            let formMultiplier;
+            if (props.compagnon[0].shiny === 1) {
+                formMultiplier = 1.5;
+            } else if (props.compagnon[0].negative === 1) {
+                formMultiplier = 2;
+            } else {
+                formMultiplier = 1;
+
+            }
             const tierMultiplier = {
                 1: 1,
                 2: 1.5,
@@ -65,7 +73,7 @@ function ProgressBarFight(props) {
                 4: 4
             };
             const xpToNextLevel =
-                Math.floor((20 + curentLevel * curentLevel * 2) * tierMultiplier[props.compagnon[0].tier]);
+                Math.floor((20 + curentLevel * curentLevel * 2) * tierMultiplier[props.compagnon[0].tier] * formMultiplier);
             const xpGain =
                 Math.floor(maxHp / 10);
             setCurrentXp(prevXp => Math.max(0, prevXp + xpGain));
@@ -74,7 +82,8 @@ function ProgressBarFight(props) {
                     id: props.compagnon[0].id
                 })
                 setCurrentLevel(prevLevel => Math.max(0, prevLevel + 1));
-                setXpToLevelUp(Math.floor((20 + curentLevel * curentLevel * 2) * tierMultiplier[props.compagnon[0].tier]))
+                setXpToLevelUp(Math.floor((20 + curentLevel * curentLevel * 2) * tierMultiplier[props.compagnon[0].tier]));
+                setCurrentXp(0);
             }
             setTimeout(() => {
                 startFight();
