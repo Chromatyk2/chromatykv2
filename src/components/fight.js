@@ -22,6 +22,11 @@ function ProgressBarFight(props) {
         startFight();
         const interval = setInterval(() => {
             setIsAttacking(true);
+            const baseAttack =
+                props.compagnon[0].tier === 4 ? 80 :
+                    props.compagnon[0].tier === 3 ? 40 :
+                        props.compagnon[0].tier === 2 ? 20 :
+                            10;
             const attack =
                 baseAttack +
                 Math.floor(props.compagnon[0].level / 5);
@@ -103,15 +108,6 @@ function ProgressBarFight(props) {
             var tier = 1;
             setCurrentHp(150)
             setMaxHp(150)
-        }
-        if (props.compagnon[0].tier === 4) {
-            setBaseAttack(80)
-        } else if (props.compagnon[0].tier === 3) {
-            setBaseAttack(40)
-        } else if (props.compagnon[0].tier === 2) {
-            setBaseAttack(20)
-        } else {
-            setBaseAttack(10)
         }
         Axios.get("/api/getRandomPokemon/" + tier)
             .then(function (response) {
