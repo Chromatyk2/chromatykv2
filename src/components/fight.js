@@ -96,7 +96,7 @@ function ProgressBarFight(props) {
                     <p>Combat</p>
                 <div style={{ flexDirection: "row", flexWrap: "wrap", backgroundImage: `url(/gym.png)`, overflow: "overlay" }} className={"fightContainer"}>
                     <div className={"progressBarFightExternalVersus"}>
-                        <div style={{ width: (currentHp / maxHp) * 100+"%" }} className={"progressBarFightInternal"}>
+                        <div style={{ width: (currentHp / maxHp) * 100 + "%", backgroundColor: (currentHp / maxHp) * 100 < 20 ? "red" : (currentHp / maxHp) * 100 < 50 ? "orange" : "green"}} className={"progressBarFightInternal"}>
                         </div>
                         <p>{currentHp +"/" + maxHp +" PV"}</p>
                     </div>
