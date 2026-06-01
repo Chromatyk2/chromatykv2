@@ -992,30 +992,44 @@ span.dexNumber {
 .hit {
     animation: hit .3s, damageFlash .3s;
 }
-.damageText {
+.damageContainer {
     position: absolute;
-    animation: damageFloat 1s ease-out forwards;
-    text-shadow: -3px -3px 0 #000, 3px -3px 0 #000, -3px 3px 0 #000, 3px 3px 0 #000, 0px -3px 0 #000, 0px 3px 0 #000, -3px 0px 0 #000, 3px 0px 0 #000;
+    animation: moveX 900ms linear forwards;
 }
 
-@keyframes damageFloat {
+.damageText {
+    animation: moveY 900ms ease-out forwards;
+    transform: rotate(var(--rotation));
+}
+
+@keyframes moveX {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(var(--arcX));
+    }
+}
+
+@keyframes moveY {
     0% {
+        transform: translateY(0) scale(0.4);
         opacity: 0;
-        transform: translate(0, 0);
     }
 
-    20% {
+    15% {
         opacity: 1;
-        transform: translate(calc(var(--arcX) * 0.25), -50px);
+        transform: translateY(-40px) scale(1.4);
     }
 
-    60% {
-        transform: translate(calc(var(--arcX) * 0.75), -120px);
+    50% {
+        transform: translateY(-160px) scale(1);
     }
 
     100% {
         opacity: 0;
-        transform: translate(var(--arcX), -80px);
+        transform: translateY(-80px) scale(0.8);
     }
 }
 
