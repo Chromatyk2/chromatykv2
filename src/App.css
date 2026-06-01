@@ -994,6 +994,18 @@ span.dexNumber {
 .fightSpriteCardEnemy.hit {
     animation: hit 250ms cubic-bezier(.2,.8,.3,1), damageFlash 250ms ease-out;
 }
+.fightSpriteWrapper {
+    position: relative;
+}
+
+.fightSpriteCardEnemy {
+    position: relative;
+}
+
+.damageText,
+.hitParticle {
+    position: absolute;
+}
 .damageText {
     position: absolute;
     left: 50%;

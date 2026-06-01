@@ -291,7 +291,7 @@ function ProgressBarFight(props) {
                         <div style={{ position:"relative", width: "30%" }}>
                         <p className="fightName">{pokemon.name}</p>
                         <div style={{display:"block",margin:"auto", backgroundColor: pokemon.tier == 1 ? "#6d6d6c" : pokemon.tier == 2 ? "#21693a" : pokemon.tier == 3 ? "#744095" : "#bfa93a" }} className={"tierFight"}>Tier {pokemon.tier}</div>
-                        
+                        <div className="fightSpriteWrapper">
                         <div
                             className={`fightSpriteCardEnemy
                                 ${isKO ? "koAnimation" : ""}
@@ -308,38 +308,39 @@ function ProgressBarFight(props) {
                             }}
                         >
 
-                            {damageText && (
-                                <div
-                                    className={`damageText ${
-                                        damageText.critical ? "critical" : ""
-                                    }`}
-                                    style={{
-                                        "--endX": `${damageText.endX}px`,
-                                        "--endY": `${damageText.endY}px`,
-                                    }}
-                                >
-                                    -{damageText.value}
-                                </div>
-                            )}
-
-                            {particles.map((particle) => (
-                                <div
-                                    key={particle.id}
-                                    className="hitParticle"
-                                    style={{
-                                        left: `calc(50% + ${particle.startX}px)`,
-                                        top: `calc(50% + ${particle.startY}px)`,
-
-                                        width: `${particle.size * 2}px`,
-                                        height: `${particle.size / 2}px`,
-
-                                        "--dx": `${particle.offsetX}px`,
-                                        "--dy": `${particle.offsetY}px`,
-                                        "--rotation": `${particle.rotation}deg`,
-                                    }}
-                                />
-                            ))}
+                            
                         </div>
+                        {damageText && (
+                            <div
+                                className={`damageText ${damageText.critical ? "critical" : ""
+                                    }`}
+                                style={{
+                                    "--endX": `${damageText.endX}px`,
+                                    "--endY": `${damageText.endY}px`,
+                                }}
+                            >
+                                -{damageText.value}
+                            </div>
+                        )}
+
+                        {particles.map((particle) => (
+                            <div
+                                key={particle.id}
+                                className="hitParticle"
+                                style={{
+                                    left: `calc(50% + ${particle.startX}px)`,
+                                    top: `calc(50% + ${particle.startY}px)`,
+
+                                    width: `${particle.size * 2}px`,
+                                    height: `${particle.size / 2}px`,
+
+                                    "--dx": `${particle.offsetX}px`,
+                                    "--dy": `${particle.offsetY}px`,
+                                    "--rotation": `${particle.rotation}deg`,
+                                }}
+                            />
+                        ))}
+                    </div>
                     </div>
                     <div className="hpBarContainer">
                         <div
