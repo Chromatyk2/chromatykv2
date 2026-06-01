@@ -11,9 +11,9 @@ function ProgressBarFight(props) {
     const [hasAppeared, setHasAppeared] = useState(false);
 
     useEffect(() => {
+        setHasAppeared(true);
         const interval = setInterval(() => {
             setIsAttacking(true);
-            setHasAppeared(true);
 
             setTimeout(() => {
                 setIsAttacking(false);
