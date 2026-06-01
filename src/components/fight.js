@@ -141,7 +141,7 @@ function ProgressBarFight(props) {
             {pokemon &&
                 <>
                     <p>Combat</p>
-                <div style={{ flexDirection: "row", flexWrap: "wrap", backgroundImage: `url(/gym.png)`, overflow: "overlay" }} className={"fightContainer"}>
+                <div style={{ flexDirection: "row", flexWrap: "wrap", backgroundImage: `url(/gym.png)`, overflow: "hidden" }} className={"fightContainer"}>
                     <div className={"progressBarFightExternalVersus"}>
                         <div style={{ width: (currentHp / maxHp) * 100 + "%", backgroundColor: (currentHp / maxHp) * 100 < 20 ? "red" : (currentHp / maxHp) * 100 < 50 ? "orange" : "green"}} className={"progressBarFightInternal"}>
                         </div>
@@ -150,7 +150,7 @@ function ProgressBarFight(props) {
                         <div style={{ width: "30%" }}>
                             <p className="fightName">{props.compagnon[0].pokemon}</p>
                             <div className="tierFight">
-                                Nv.{props.compagnon[0].level}
+                            Nv.{curentLevel}
                             </div>
                         <div className={`fightSpriteCardInvert ${!hasAppeared ? "spawnInvert" : ""} ${isAttacking ? "fightAttack" : ""}`} style={{ height: "200px", width: "100%", filter: props.compagnon[0].negative === 1 ? "invert(1)" : "none", backgroundSize: "contain", backgroundImage: `url(/Sprites/${props.compagnon[0].shiny === 1 ? "shiny" : "normal"}/${props.compagnon[0].number}.gif)` }} />
                         </div>
