@@ -290,7 +290,8 @@ function ProgressBarFight(props) {
                                     style={{
                                         left: `calc(50% + ${particle.startX}px)`,
                                         top: `calc(50% + ${particle.startY}px)`,
-
+                                        offsetLeft: Math.random() * 80 - 40,
+                                        offsetTop: Math.random() * 30 - 15,
                                         width: `${particle.size}px`,
                                         height: `${particle.size}px`,
 

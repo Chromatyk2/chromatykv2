@@ -998,7 +998,7 @@ span.dexNumber {
 }
 
 .damageText {
-    animation: moveY 900ms ease-out forwards;
+    animation: moveY 900ms ease-out forwards, damageFloat 1s ease-out forwards;
     transform: rotate(var(--rotation));
 }
 
@@ -1012,24 +1012,24 @@ span.dexNumber {
     }
 }
 
-@keyframes moveY {
+@keyframes damageFloat {
     0% {
-        transform: translateY(0) scale(0.4);
         opacity: 0;
+        transform: translate(0, 0) scale(0.5);
     }
 
     15% {
         opacity: 1;
-        transform: translateY(-40px) scale(1.4);
+        transform: translate( calc(var(--arcX) * 0.2), -40px ) scale(1.2);
     }
 
     50% {
-        transform: translateY(-160px) scale(1);
+        transform: translate( calc(var(--arcX) * 0.8), -140px ) scale(1);
     }
 
     100% {
         opacity: 0;
-        transform: translateY(-80px) scale(0.8);
+        transform: translate( var(--arcX), -60px ) scale(0.8);
     }
 }
 
@@ -1074,15 +1074,6 @@ span.dexNumber {
     100% {
         opacity: 0;
         transform: translateY(150px);
-    }
-}
-@keyframes damageFloat {
-    0% {
-        transform: translateY(0);
-    }
-
-    100% {
-        transform: translateY(-80px);
     }
 }
 @keyframes attack {
