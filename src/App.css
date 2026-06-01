@@ -994,12 +994,24 @@ span.dexNumber {
 }
 .damageText {
     position: absolute;
-    color: white;
-    font-size: 32px;
-    font-weight: bold;
-    animation: damageFloat 1s forwards;
-    pointer-events: none;
-    text-shadow: -3px -3px 0 #000, 3px -3px 0 #000, -3px 3px 0 #000, 3px 3px 0 #000, 0px -3px 0 #000, 0px 3px 0 #000, -3px 0px 0 #000, 3px 0px 0 #000;
+    animation: damageFloat 1s ease-out forwards;
+}
+
+@keyframes damageFloat {
+    0% {
+        opacity: 0;
+        transform: translateY(0) scale(0.5);
+    }
+
+    20% {
+        opacity: 1;
+        transform: translateY(-10px) scale(1.2);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate(var(--offsetX), -120px) rotate(var(--rotation)) scale(0.8);
+    }
 }
 
 .critical {

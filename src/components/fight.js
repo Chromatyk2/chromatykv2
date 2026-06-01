@@ -41,7 +41,11 @@ function ProgressBarFight(props) {
                 }
                 setDamageText({
                     value: damage,
-                    critical
+                    critical: critical,
+                    offsetLeft: Math.random() * 80 - 40,
+                    offsetTop: Math.random() * 40 - 20,
+                    driftX: Math.random() * 100 - 50,
+                    rotation: Math.random() * 30 - 15,
                 });
                 setCurrentHp(prevHp => Math.max(0, prevHp - damage));
                 setTimeout(() => {
@@ -240,7 +244,15 @@ function ProgressBarFight(props) {
                         <p className="fightName">{pokemon.name}</p>
                         <div style={{display:"block",margin:"auto", backgroundColor: pokemon.tier == 1 ? "#6d6d6c" : pokemon.tier == 2 ? "#21693a" : pokemon.tier == 3 ? "#744095" : "#bfa93a" }} className={"tierFight"}>Tier {pokemon.tier}</div>
                         {damageText && (
-                            <div className={`damageText ${damageText.critical ? "critical" : ""}`}>
+                            <div
+                                className={`damageText ${damageText.critical ? "critical" : ""}`}
+                                style={{
+                                    left: `${damageText.offsetLeft}px`,
+                                    top: `${damageText.offsetTop}px`,
+                                    "--offsetX": `${damageText.driftX}px`,
+                                    "--rotation": `${damageText.rotation}deg`,
+                                }}
+                            >
                                 -{damageText.value}
                             </div>
                         )}
