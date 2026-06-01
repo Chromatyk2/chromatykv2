@@ -192,7 +192,7 @@ function Inventory(props) {
                                 user: cookies.user.data[0].id,
                                 item: "Super Bonbon",
                                 slug: "rarecandy",
-                                quantity: Math.floor((Math.random() * 5) + 1)
+                                quantity: Math.floor((Math.random() * 3) + 1)
                             }).then(function (response) {
                                 const megaCanduTier = Math.random();
                                 if (megaCanduTier < 0.001) {
