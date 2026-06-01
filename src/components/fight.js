@@ -14,7 +14,9 @@ function ProgressBarFight(props) {
     const [isAttacking, setIsAttacking] = useState(false);
     const [isKO, setIsKO] = useState(false);
     const [damageText, setDamageText] = useState(null);
-
+    useEffect(() => {
+        startFight();
+    }, []);
     useEffect(() => {
         console.log("Combat effect, isKO =", isKO);
         if (isKO) return;
@@ -56,9 +58,8 @@ function ProgressBarFight(props) {
         }, 3000);
 
         return () => clearInterval(interval);
-    }, [isKO, props.compagnon, baseAttack]);
+    }, [pokemon]);
     useEffect(() => {
-        console.log("currentHp =", currentHp, "isKO =", isKO);
         if (currentHp <= 0 && !isKO) {
             setIsAttacking(false);
             setIsKO(true);
