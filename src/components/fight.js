@@ -55,6 +55,7 @@ function ProgressBarFight(props) {
         }
     }, [currentHp]);
     function startFight() {
+        setHasAppeared(false)
         const tierRoll = Math.random();
         if (tierRoll < 0.01) {
             var tier = 4;
