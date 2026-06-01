@@ -25,9 +25,12 @@ function ProgressBarFight(props) {
             const attack =
                 baseAttack +
                 Math.floor(props.compagnon[0].level / 5);
+            const minDamage = Math.floor(attack * 0.8);
+            const maxDamage = Math.floor(attack * 1.2);
+
             let damage = Math.floor(
-                attack * (0.9 + Math.random() * 0.2)
-            );
+                Math.random() * (maxDamage - minDamage + 1)
+            ) + minDamage;
             const critical = Math.random() < 0.05;
             if (critical) {
                 damage *= 2;
