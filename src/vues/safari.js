@@ -387,7 +387,7 @@ function Fight() {
                             />
 
                             <span className="loveText">
-                                {currentLove}/{maxLove} ♥
+                                {currentLove}/{maxLove}
                             </span>
 
                             <div className="heart">
