@@ -830,6 +830,13 @@ span.dexNumber {
     background: linear-gradient( to bottom, #111, #222 );
     box-shadow: inset 0 2px 4px rgba(255,255,255,0.15), inset 0 -2px 4px rgba(0,0,0,0.6), 0 0 10px rgba(0,0,0,0.5);
 }
+.hpBarContainer::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient( 90deg, transparent, transparent calc(10% - 3px), rgba(255,255,255,0.4) calc(10% - 3px), rgba(255,255,255,0.9) calc(10% - 1px), rgba(0,0,0,0.7) 10% );
+    z-index: 2;
+}
 
 .hpBar {
     height: 100%;
@@ -839,17 +846,17 @@ span.dexNumber {
     box-shadow: inset 0 2px 6px rgba(255,255,255,0.3), 0 0 15px rgba(0,255,100,0.4);
 }
 
-    /* Effet brillant */
-    .hpBar::after {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: -50%;
-        width: 50%;
-        height: 100%;
-        background: linear-gradient( 90deg, transparent, rgba(255,255,255,0.35), transparent );
-        animation: shine 2s infinite;
-    }
+/* Effet brillant */
+.hpBar::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -50%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient( 90deg, transparent, rgba(255,255,255,0.35), transparent );
+    animation: shine 2s infinite;
+}
 
 .hpText {
     position: absolute;
@@ -871,9 +878,10 @@ span.dexNumber {
     }
 
     to {
-        left: 150%;
+        left: 65%;
     }
 }
+
 .progressBarFightExternalXp {
     background-color: transparent;
     height: 20px;
