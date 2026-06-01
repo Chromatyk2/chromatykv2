@@ -12,6 +12,7 @@ function ProgressBarFight(props) {
 
     useEffect(() => {
         const interval = setInterval(() => {
+            setHasAppeared(false);
             setIsAttacking(true);
 
             setTimeout(() => {
