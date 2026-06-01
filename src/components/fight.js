@@ -82,7 +82,6 @@ function ProgressBarFight(props) {
                 Math.floor(maxHp / 10);
             const newXp = currentXp + xpGain;
             if (newXp >= xpToNextLevel) {
-                setPokemon(false);
                 Axios.post('/api/levelupCompagnon', {
                     id: props.compagnon[0].id
                 })
@@ -229,11 +228,7 @@ function ProgressBarFight(props) {
                         <p className="fightName">{pokemon.name}</p>
                         <div style={{display:"block",margin:"auto", backgroundColor: pokemon.tier == 1 ? "#6d6d6c" : pokemon.tier == 2 ? "#21693a" : pokemon.tier == 3 ? "#744095" : "#bfa93a" }} className={"tierFight"}>Tier {pokemon.tier}</div>
                         <div className={`fightSpriteCardEnemy ${isKO ? "koAnimation" : ""} ${!hasAppeared ? "spawn" : ""} ${isAttacking ? "hit" : ""}`} style={{ height: "200px", width: "100%", filter: negative === 1 && "invert(1)", backgroundSize: "contain", backgroundImage: `url(/Sprites/${shiny === 1 ? "shiny" : "normal"}/${pokemon.number}.gif)` }}>
-                            {damageText && (
-                                <div className={`damageText ${damageText.critical ? "critical" : ""}`}>
-                                    -{damageText.value}
-                                </div>
-                            )}
+                            
                         </div>
                     </div>
                     <div className={"progressBarFightExternalXp"}>
