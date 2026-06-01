@@ -377,15 +377,34 @@ function Fight() {
                                     }
                                     {(shiny === 1 || negative === 1) && <img style={{ width: "30px", filter: negative === 1 ? "invert(1)" : "invert(0)" }} src={"/star.png"} alt={"Shiny"} />} {pokemon.name}</p>
                                 <div style={{ backgroundColor: pokemon.tier == 1 ? "#6d6d6c" : pokemon.tier == 2 ? "#21693a" : pokemon.tier == 3 ? "#744095" : "#bfa93a" }} className={"tierFight"}>Tier {pokemon.tier}</div>
-                                <div className={"progressBarFightExternal"}>
-                                    <div style={{ width: +parseFloat(currentLove / maxLove * 100).toFixed(2) + "%" }} className={"progressBarFightInternal"}>
-                                        <p>{currentLove + "/" + maxLove}</p>
-                                        <div class="heart">
-                                            <div style={{ backgroundColor: "#rgb(115, 0, 9)" }} class="heartInt">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                        <div className="loveBarContainer">
+
+                            <div
+                                className="loveBar"
+                                style={{
+                                    width: `${(currentLove / maxLove) * 100}%`
+                                }}
+                            />
+
+                            <span className="loveText">
+                                {currentLove}/{maxLove} ♥
+                            </span>
+
+                            <div className="heart">
+                                <div
+                                    className="heartInt"
+                                    style={{
+                                        background:
+                                            (currentLove / maxLove) * 100 < 30
+                                                ? "#ff5c8a"
+                                                : (currentLove / maxLove) * 100 < 70
+                                                    ? "#ff2d95"
+                                                    : "#ff1493"
+                                    }}
+                                />
+                            </div>
+
+                        </div>
                                 <div style={{ filter: negative === 1 && "invert(1)", backgroundSize: onCatch ? "0" : "contain", backgroundImage: `url(/Sprites/${shiny === 1 ? "shiny" : "normal"}/${pokemon.number}.gif)` }} className={"fightSpriteCard"}>
                                     <div id={"ball"} style={{ display: onCatch ? "block" : "none", background: ballStyle }} class="pokeball"></div>
                                 </div>

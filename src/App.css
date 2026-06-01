@@ -478,27 +478,95 @@ p.levelProfil {
 }
 
 /* Combat */
+.loveBarContainer {
+    position: relative;
+    width: 70%;
+    height: 34px;
+    border: 2px solid #ff9ecf;
+    border-radius: 18px;
+    overflow: visible;
+    background: linear-gradient( to bottom, #2a1a24, #1a1016 );
+    box-shadow: inset 0 2px 4px rgba(255,255,255,.1), inset 0 -2px 4px rgba(0,0,0,.5), 0 0 12px rgba(255,20,147,.35);
+}
+.loveBarContainer::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient( 90deg, transparent, transparent calc(10% - 2px), rgba(255,255,255,.2) calc(10% - 2px), rgba(255,255,255,.2) 10% );
+    pointer-events: none;
+    z-index: 2;
+}
+.loveBar {
+    height: 100%;
+    border-radius: 16px;
+    position: relative;
+    background: linear-gradient( 90deg, #ff9ecf, #ff4da6, #ff1493 );
+    transition: width .8s ease;
+    box-shadow: inset 0 2px 4px rgba(255,255,255,.3), 0 0 15px rgba(255,20,147,.5);
+}
+.loveBar::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -50%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient( 90deg, transparent, rgba(255,255,255,.4), transparent );
+    animation: loveShine 2s infinite;
+}
+.loveText {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+    letter-spacing: 1px;
+    text-shadow: 0 0 5px black, 0 0 10px black;
+    z-index: 3;
+}
 .heart {
     align-items: center;
-    background: white;
-    display: flex;
-    height: 40px;
     justify-content: center;
+    display: flex;
     position: absolute;
-    right: -25px;
-    top: -8px;
-    aspect-ratio: 1;
-    clip-path: shape(from 50% 91%, line to 90% 50%, arc to 50% 9% of 1%, arc to 10% 50% of 1%);
+    right: -26px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 42px;
+    height: 42px;
+    background: #ffffff;
+    clip-path: shape( from 50% 91%, line to 90% 50%, arc to 50% 9% of 1%, arc to 10% 50% of 1% );
+    box-shadow: 0 0 10px rgba(255,255,255,.8), 0 0 20px rgba(255,20,147,.7);
+    animation: heartBeat 1s infinite alternate;
+    z-index: 5;
 }
-
 .heartInt {
-    aspect-ratio: 1;
-    clip-path: shape(from 50% 91%, line to 90% 50%, arc to 50% 9% of 1%, arc to 10% 50% of 1%);
-    height: 33px;
-    background: #730009;
     position: absolute;
-    left: 3.5px;
-    top: 3px;
+    width: 34px;
+    height: 34px;
+    clip-path: inherit;
+    transition: background .3s ease;
+    box-shadow: inset 0 2px 4px rgba(255,255,255,.4), 0 0 10px rgba(255,20,147,.8);
+}
+@keyframes heartBeat {
+    from {
+        transform: translateY(-50%) scale(1);
+    }
+
+    to {
+        transform: translateY(-50%) scale(1.12);
+    }
+}
+@keyframes loveShine {
+    from {
+        left: -50%;
+    }
+
+    to {
+        left: 150%;
+    }
 }
 .fightContainer {
     align-items: center;
@@ -514,26 +582,7 @@ p.levelProfil {
     background-size: cover;
     border: white 3px solid;
 }
-.progressBarFightExternal {
-    background-color: #fff;
-    height: 20px;
-    width: 300px;
-    border: white solid 1px;
-}
-.progressBarFightInternal {
-    background-color: rgb(115, 0, 9);
-    height: 20px;
-    transition: width 1s ease-in-out;
-    color: #072851;
-    position: relative;
-    max-width: 100%;
-}
-    .progressBarFightInternal p {
-        color: #fff;
-        left: 0;
-        position: absolute;
-        right: 0;
-    }
+
 
 .fightActionsContainer {
     display: flex;
