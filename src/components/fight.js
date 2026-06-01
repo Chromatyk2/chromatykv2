@@ -50,7 +50,7 @@ function ProgressBarFight(props) {
                 }, 1000);
                 setIsAttacking(false);
             }, 300); // durée de l'animation
-        }, 3000);
+        }, 1000);
         return () => clearInterval(interval);
     }, []);
     useEffect(() => {
