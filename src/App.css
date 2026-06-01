@@ -1022,6 +1022,25 @@ span.dexNumber {
 .koAnimation {
     animation: koAnimation 1s forwards;
 }
+.hitParticle {
+    position: absolute;
+    border-radius: 50%;
+    background: #ff4444;
+    pointer-events: none;
+    animation: particleBurst 400ms ease-out forwards;
+}
+
+@keyframes particleBurst {
+    from {
+        opacity: 1;
+        transform: translate(0, 0) scale(1);
+    }
+
+    to {
+        opacity: 0;
+        transform: translate(var(--dx), var(--dy)) scale(0);
+    }
+}
     /* Animation */
 @keyframes koAnimation {
     0% {
@@ -1061,12 +1080,14 @@ span.dexNumber {
     }
 }
 @keyframes damageFlash {
-    0%,100% {
+    0%, 100% {
+        opacity: 1;
         filter: none;
     }
 
     50% {
-        filter: brightness(0) saturate(100%) invert(18%) sepia(96%) saturate(7495%) hue-rotate(357deg);
+        opacity: 0.75;
+        filter: sepia(100%) saturate(800%) hue-rotate(-40deg) brightness(1.1);
     }
 }
 @keyframes hit {

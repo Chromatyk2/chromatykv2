@@ -16,6 +16,7 @@ function ProgressBarFight(props) {
     const [damageText, setDamageText] = useState(null);
     const [isKO, setIsKO] = useState(false);
     const [curentLevel, setCurrentLevel] = useState(props.compagnon[0].level);
+    const [particles, setParticles] = useState(null);
 
     useEffect(() => {
         startFight();
@@ -47,6 +48,24 @@ function ProgressBarFight(props) {
                     driftX: Math.random() * 100 - 50,
                     rotation: Math.random() * 30 - 15,
                 });
+                const createHitParticles = (x, y) => {
+                    const particles = Array.from({ length: 8 }, (_, i) => ({
+                        id: Date.now() + i,
+                        x,
+                        y,
+                        dx: Math.random() * 80 - 40,
+                        dy: -(Math.random() * 60 + 20),
+                        size: Math.random() * 8 + 4,
+                    }));
+
+                    setParticles(prev => [...prev, ...particles]);
+
+                    setTimeout(() => {
+                        setParticles(prev =>
+                            prev.filter(p => !particles.some(np => np.id === p.id))
+                        );
+                    }, 400);
+                };
                 setCurrentHp(prevHp => Math.max(0, prevHp - damage));
                 setTimeout(() => {
                     setTimeout(() => {
@@ -257,7 +276,20 @@ function ProgressBarFight(props) {
                             </div>
                         )}
                         <div className={`fightSpriteCardEnemy ${isKO ? "koAnimation" : ""} ${!hasAppeared ? "spawn" : ""} ${isAttacking ? "hit" : ""}`} style={{ height: "200px", width: "100%", filter: negative === 1 && "invert(1)", backgroundSize: "contain", backgroundImage: `url(/Sprites/${shiny === 1 ? "shiny" : "normal"}/${pokemon.number}.gif)` }}>
-                            
+                            {particles.map((particle) => (
+                                <div
+                                    key={particle.id}
+                                    className="hitParticle"
+                                    style={{
+                                        left: particle.x,
+                                        top: particle.y,
+                                        "--dx": `${particle.dx}px`,
+                                        "--dy": `${particle.dy}px`,
+                                        width: `${particle.size}px`,
+                                        height: `${particle.size}px`,
+                                    }}
+                                />
+                            ))}
                         </div>
                     </div>
                     <div className="hpBarContainer">
