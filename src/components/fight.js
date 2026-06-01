@@ -7,51 +7,65 @@ function ProgressBarFight(props) {
     const [pokemon, setPokemon] = useState(null);
     const [shiny, setShiny] = useState(null);
     const [negative, setNegative] = useState(null);
-    const [isAttacking, setIsAttacking] = useState(false);
     const [hasAppeared, setHasAppeared] = useState(false);
     const [baseAttack, setBaseAttack] = useState(null);
-    const [currentHp, setCurrentHp] = useState(null);
     const [maxHp, setMaxHp] = useState(null);
-    const [damageText, setDamageText] = useState(null);
+    const [currentHp, setCurrentHp] = useState(maxHp);
+    const [isAttacking, setIsAttacking] = useState(false);
     const [isKO, setIsKO] = useState(false);
+    const [damageText, setDamageText] = useState(null);
 
     useEffect(() => {
+        if (isKO) return;
+
         const interval = setInterval(() => {
             setIsAttacking(true);
+
             const attack =
                 baseAttack +
                 Math.floor(props.compagnon[0].level / 5);
+
             let damage = Math.floor(
                 attack * (0.9 + Math.random() * 0.2)
             );
+
             const critical = Math.random() < 0.05;
+
             if (critical) {
                 damage *= 2;
             }
+
             setDamageText({
                 value: damage,
                 critical
             });
-            setCurrentHp(prevHp => Math.max(0, prevHp - damage));
+
+            setCurrentHp(prevHp =>
+                Math.max(0, prevHp - damage)
+            );
+
             setTimeout(() => {
-                setTimeout(() => {
-                    setDamageText(null);
-                }, 1000);
                 setIsAttacking(false);
-            }, 300); // durée de l'animation
+            }, 300);
+
+            setTimeout(() => {
+                setDamageText(null);
+            }, 1000);
+
         }, 3000);
+
         return () => clearInterval(interval);
-    }, []);
+    }, [isKO, props.compagnon, baseAttack]);
     useEffect(() => {
         if (currentHp <= 0 && !isKO) {
+            setIsAttacking(false);
             setIsKO(true);
 
             setTimeout(() => {
                 startFight();
-                setIsKO(false);
-            }, 1000); // durée animation KO
+            }, 1000);
         }
-    }, [currentHp]);
+    }, [currentHp, isKO]);
     function startFight() {
         const tierRoll = Math.random();
         if (tierRoll < 0.01) {
