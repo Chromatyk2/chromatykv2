@@ -19,38 +19,41 @@ function ProgressBarFight(props) {
 
     useEffect(() => {
         startFight();
-        const interval = setInterval(() => {
-            setIsAttacking(true);
-            const baseAttack =
-                props.compagnon[0].tier === 4 ? 40 :
-                    props.compagnon[0].tier === 3 ? 20 :
-                        props.compagnon[0].tier === 2 ? 10 :
-                            5;
-            const attack =
-                baseAttack + Math.floor(props.compagnon[0].level / 4);
-            const minDamage = Math.floor(attack * 0.8);
-            const maxDamage = Math.floor(attack * 1.2);
+        if (pokemon) {
+            const interval = setInterval(() => {
+                setIsAttacking(true);
+                const baseAttack =
+                    props.compagnon[0].tier === 4 ? 40 :
+                        props.compagnon[0].tier === 3 ? 20 :
+                            props.compagnon[0].tier === 2 ? 10 :
+                                5;
+                const attack =
+                    baseAttack + Math.floor(props.compagnon[0].level / 4);
+                const minDamage = Math.floor(attack * 0.8);
+                const maxDamage = Math.floor(attack * 1.2);
 
-            let damage = Math.floor(
-                Math.random() * (maxDamage - minDamage + 1)
-            ) + minDamage;
-            const critical = Math.random() < 0.05;
-            if (critical) {
-                damage *= 2;
-            }
-            setDamageText({
-                value: damage,
-                critical
-            });
-            setCurrentHp(prevHp => Math.max(0, prevHp - damage));
-            setTimeout(() => {
+                let damage = Math.floor(
+                    Math.random() * (maxDamage - minDamage + 1)
+                ) + minDamage;
+                const critical = Math.random() < 0.05;
+                if (critical) {
+                    damage *= 2;
+                }
+                setDamageText({
+                    value: damage,
+                    critical
+                });
+                setCurrentHp(prevHp => Math.max(0, prevHp - damage));
                 setTimeout(() => {
-                    setDamageText(null);
-                }, 1000);
-                setIsAttacking(false);
-            }, 300); // durée de l'animation
-        }, 1000);
-        return () => clearInterval(interval);
+                    setTimeout(() => {
+                        setDamageText(null);
+                    }, 1000);
+                    setIsAttacking(false);
+                }, 300); // durée de l'animation
+            }, 1000);
+            return () => clearInterval(interval);
+
+        }
     }, []);
     useEffect(() => {
         if (currentHp !== null &&
