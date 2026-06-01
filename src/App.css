@@ -991,8 +991,8 @@ span.dexNumber {
 .fightAttack {
     animation: attack 0.4s ease-out;
 }
-.hit {
-    animation: hit .3s, damageFlash .3s;
+.fightSpriteCardEnemy.hit {
+    animation: hit 250ms cubic-bezier(.2,.8,.3,1), damageFlash 250ms ease-out;
 }
 .damageText {
     position: absolute;
@@ -1044,8 +1044,6 @@ span.dexNumber {
 }
 .hitParticle {
     position: absolute;
-    width: 8px;
-    height: 3px;
     background: #ffb000;
     border-radius: 2px;
     pointer-events: none;
@@ -1055,6 +1053,7 @@ span.dexNumber {
 }
 
 @keyframes particleBurst {
+
     0% {
         opacity: 1;
         transform: translate(-50%, -50%) rotate(var(--rotation)) scale(1);
@@ -1094,28 +1093,39 @@ span.dexNumber {
         transform: scale(1) scaleX(-1) translateX(0);
     }
 }
+@keyframes hit {
+
+    0% {
+        transform: translateX(0) scale(1);
+    }
+
+    15% {
+        transform: translateX(-12px) scale(0.92, 1.08);
+    }
+
+    35% {
+        transform: translateX(8px) scale(1.05, 0.95);
+    }
+
+    55% {
+        transform: translateX(-4px) scale(0.98, 1.02);
+    }
+
+    100% {
+        transform: translateX(0) scale(1);
+    }
+}
+
 @keyframes damageFlash {
+
     0%, 100% {
         opacity: 1;
         filter: none;
     }
 
-    50% {
-        opacity: 0.75;
-        filter: sepia(100%) saturate(800%) hue-rotate(-40deg) brightness(1.1);
-    }
-}
-@keyframes hit {
-    0%,100% {
-        transform: scale(1) translateX(0);
-    }
-
-    20%,60% {
-        transform: scale(1) translateX(-8px);
-    }
-
-    40%,80% {
-        transform: scale(1) translateX(8px);
+    30% {
+        opacity: 0.65;
+        filter: brightness(0.6) sepia(1) saturate(15) hue-rotate(-40deg);
     }
 }
     @keyframes myAnimation {
