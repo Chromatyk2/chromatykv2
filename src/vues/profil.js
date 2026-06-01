@@ -383,11 +383,7 @@ function Profil() {
                         <p>EXP</p>
                         <p>{profil[0].xp}/{100 * ((profil[0].level + 1) * (profil[0].level + 2)) / 4}</p>
                     </div>
-                    <div className={"progressBarProfilExternal"}>
-                        <div style={{ width: +parseFloat(profil[0].xp / (100 * ((profil[0].level + 1) * (profil[0].level + 2)) / 4) * 100).toFixed(2) + "%" }} className={"progressBarProfilInternal"}>
-                        </div>
-                    </div>
-                    <div className="hpBarContainer">
+                    <div style={{width:"100%"}} className="hpBarContainer">
                         <div
                             className="hpBar"
                             style={{
@@ -395,9 +391,6 @@ function Profil() {
                                 background: "linear-gradient(90deg,rgba(36, 70, 171, 1) 0%, rgba(2, 194, 232, 1) 100%)"
                             }}
                         />
-                        <span className="hpText">
-                            <p>{profil[0].xp}/{100 * ((profil[0].level + 1) * (profil[0].level + 2)) / 4}</p>
-                        </span>
                     </div>
                     <div className={"filterProfil"}>
                         <button className={body === 1 && "active"} onClick={() => changePage(1)}>Profil</button>
@@ -492,10 +485,6 @@ function Profil() {
                                         <div style={{backgroundImage: `url(/expeditionBack.jpg)`}} className={"fightContainer"}>
                                             <p>{expedition.pokemon}</p>
                                             <div loading={"lazy"} style={{ width: "250px", height: "250px", filter: expedition.negative === 1 ? "invert(1)" : "invert(0)", backgroundRepeat: "no-repeat", backgroundImage: `url("/Sprites/${expedition.shiny === 1 ? "Shiny" : "Normal"}/${expedition.number}.gif")`, backgroundSize: "contain", backgroundPosition: "center" }}></div>
-                                            <div style={{ width: "300px"}} className={"progressBarProfilExternal"}>
-                                                <div style={{ width: +progresseExpedition + "%" }} className={"progressBarProfilInternal"}>
-                                                </div>
-                                            </div>
                                             <div className="hpBarContainer">
                                                 <div
                                                     className="hpBar"
