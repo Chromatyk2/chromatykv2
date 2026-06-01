@@ -32,7 +32,7 @@ function ProgressBarFight(props) {
                     isShiny = 0;
                 }
             })
-    })
+    }, []);
     return (            
         <div className={"globalContainerCenter"}>
             {pokemon &&
