@@ -995,6 +995,7 @@ span.dexNumber {
 .damageText {
     position: absolute;
     animation: damageFloat 1s ease-out forwards;
+    text-shadow: -3px -3px 0 #000, 3px -3px 0 #000, -3px 3px 0 #000, 3px 3px 0 #000, 0px -3px 0 #000, 0px 3px 0 #000, -3px 0px 0 #000, 3px 0px 0 #000;
 }
 
 @keyframes damageFloat {
