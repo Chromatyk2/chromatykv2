@@ -26,7 +26,7 @@ function ProgressBarFight(props) {
             if (critical) {
                 damage *= 2;
             }
-            setCurrentHp(setCurrentHp - damage)
+            setCurrentHp(currentHp - damage)
             setTimeout(() => {
                 setIsAttacking(false);
             }, 300); // durée de l'animation

@@ -840,7 +840,7 @@ span.dexNumber {
     left: 0;
     position: absolute;
     right: 0;
-    top: 3px;
+    top: 10px;
 }
 .progressBarFightExternalXp {
     background-color: transparent;
