@@ -248,10 +248,17 @@ function ProgressBarFight(props) {
                             
                         </div>
                     </div>
-                    <div className={"progressBarFightExternalXp"}>
-                        <div style={{ width: (currentXp / xpToNextLevel) * 100+"%" }} className={"progressBarFightInternalXp"}>
-                        </div>
-                        <p>{parseFloat((currentXp / xpToNextLevel) * 100).toFixed(2) + " %"}</p>
+                    <div className="hpBarContainer">
+                        <div
+                            className="hpBar"
+                            style={{
+                                width: `${(currentXp / xpToNextLevel) * 100}%`,
+                                background:"linear-gradient(90deg,rgba(36, 70, 171, 1) 0%, rgba(2, 194, 232, 1) 100%)"
+                            }}
+                        />
+                        <span className="hpText">
+                            <p>{parseFloat((currentXp / xpToNextLevel) * 100).toFixed(2) + " %"}</p>
+                        </span>
                     </div>
                     </div>
                 </>
