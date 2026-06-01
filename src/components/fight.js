@@ -35,6 +35,9 @@ function ProgressBarFight(props) {
             setTimeout(() => {
                 setTimeout(() => {
                     setDamageText(null);
+                    if (prevHp => Math.max(0, prevHp - damage) < 1) {
+                        startFight();
+                    }
                 }, 1000);
                 setIsAttacking(false);
             }, 300); // durée de l'animation
@@ -42,6 +45,9 @@ function ProgressBarFight(props) {
         return () => clearInterval(interval);
     }, []);
     useEffect(() => {
+        startFight();
+    }, []);
+    function startFight() {
         const tierRoll = Math.random();
         if (tierRoll < 0.01) {
             var tier = 4;
@@ -96,7 +102,8 @@ function ProgressBarFight(props) {
                     isShiny = 0;
                 }
             })
-    }, []);
+
+    }
     return (            
         <div className={"globalContainerCenter"}>
             {pokemon &&
