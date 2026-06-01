@@ -79,7 +79,7 @@ function ProgressBarFight(props) {
             const xpToNextLevel =
                 Math.floor((20 + curentLevel * curentLevel * 2) * tierMultiplier[props.compagnon[0].tier] * formMultiplier);
             const xpGain =
-                Math.floor(maxHp / 5);
+                Math.floor(maxHp / 8);
             const newXp = currentXp + xpGain;
             if (newXp >= xpToNextLevel) {
                 Axios.post('/api/levelupCompagnon', {
