@@ -632,7 +632,20 @@ fightActionsFlee img {
     justify-content: center;
     align-items: center;
 }
-
+.fightSpriteCardInvert {
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+    animation-name: spawnInvert;
+    background-position: 50%;
+    background-repeat: no-repeat;
+    height: 270px;
+    margin-top: 35px;
+    transform: scale(0);
+    width: 270px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .fightActions p {
     font-size: 13px;
     margin: 0;
@@ -829,7 +842,15 @@ span.dexNumber {
             transform: scale(1);
         }
     }
+    @keyframes spawnInvert {
+        from {
+            transform: scale(0) scaleX(-1);
+        }
 
+        to {
+            transform: scale(1) scaleX(-1);
+        }
+    }
     @keyframes shake {
         0% {
             transform: translateX(0) rotate(0);
