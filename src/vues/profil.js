@@ -387,6 +387,18 @@ function Profil() {
                         <div style={{ width: +parseFloat(profil[0].xp / (100 * ((profil[0].level + 1) * (profil[0].level + 2)) / 4) * 100).toFixed(2) + "%" }} className={"progressBarProfilInternal"}>
                         </div>
                     </div>
+                    <div className="hpBarContainer">
+                        <div
+                            className="hpBar"
+                            style={{
+                                width: `${parseFloat(profil[0].xp / (100 * ((profil[0].level + 1) * (profil[0].level + 2)) / 4) * 100).toFixed(2) }%`,
+                                background: "linear-gradient(90deg,rgba(36, 70, 171, 1) 0%, rgba(2, 194, 232, 1) 100%)"
+                            }}
+                        />
+                        <span className="hpText">
+                            <p>{profil[0].xp}/{100 * ((profil[0].level + 1) * (profil[0].level + 2)) / 4}</p>
+                        </span>
+                    </div>
                     <div className={"filterProfil"}>
                         <button className={body === 1 && "active"} onClick={() => changePage(1)}>Profil</button>
                         <button style={{ display: "flex", justifyContent: "center", alignItems: "center", padding: "5px" }} className={body === 2 && "active"} onClick={() => changePage(2)}>Skins {skins && profil[0].level - skins.length > 0 && <p style={{ margin: 0, marginLeft: "5px", fontSize: "15px", width: "1rem", height: "1rem" }} className={"rank"}>{skins && profil[0].level - skins.length}</p>}</button>
@@ -483,6 +495,15 @@ function Profil() {
                                             <div style={{ width: "300px"}} className={"progressBarProfilExternal"}>
                                                 <div style={{ width: +progresseExpedition + "%" }} className={"progressBarProfilInternal"}>
                                                 </div>
+                                            </div>
+                                            <div className="hpBarContainer">
+                                                <div
+                                                    className="hpBar"
+                                                    style={{
+                                                        width: `${progresseExpedition}%`,
+                                                        background: "linear-gradient(90deg,rgba(36, 70, 171, 1) 0%, rgba(2, 194, 232, 1) 100%)"
+                                                    }}
+                                                />
                                             </div>
                                             {!finished ? (
 
