@@ -29,9 +29,9 @@ export default function ShadowSmoke() {
                 </filter>
 
                 <radialGradient id="shadowRed">
-                    <stop offset="0%" stopColor="#ff1a1a" stopOpacity="0.7" />
+                    <stop offset="0%" stopColor="#880000" stopOpacity="0.7" />
                     <stop offset="40%" stopColor="#880000" stopOpacity="0.4" />
-                    <stop offset="100%" stopColor="#000000" stopOpacity="0" />
+                    <stop offset="100%" stopColor="#880000" stopOpacity="0" />
                 </radialGradient>
 
                 <radialGradient id="shadowBlack">
