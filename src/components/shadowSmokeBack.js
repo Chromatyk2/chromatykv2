@@ -29,9 +29,9 @@ export default function ShadowSmokeBack() {
                 </filter>
 
                 <radialGradient id="shadowRed">
-                    <stop offset="0%" stopColor="#880000" stopOpacity="0.7" />
-                    <stop offset="40%" stopColor="#880000" stopOpacity="0.4" />
-                    <stop offset="100%" stopColor="#880000" stopOpacity="0" />
+                    <stop offset="0%" stopColor="#000" stopOpacity="0.7" />
+                    <stop offset="40%" stopColor="#4d1f82" stopOpacity="0.4" />
+                    <stop offset="100%" stopColor="#000" stopOpacity="0" />
                 </radialGradient>
             </defs>
             {/* Couche rouge */}
