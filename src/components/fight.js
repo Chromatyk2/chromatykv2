@@ -329,23 +329,23 @@ function ProgressBarFight(props) {
                         < img src={"/doll.png"} />
                         <p>Partir</p>
                     </div>
-                    {sessionReward.length > 0 &&
-                        <div className={"rewardFightContainer"}>
-                            <p style={{ width: "100%", margin: "0" }}>Récompense de session :</p>
-                            {sessionReward.map(reward => (
-                                <div
-                                    key={reward.item}
-                                    style={{ top: "10px" }}
-                                    className="rewardItem"
-                                >
-                                    <img src={reward.image} alt={reward.item} />
-                                    <p>
-                                        x{reward.quantity}
-                                    </p>
-                                </div>
-                            ))}
-                        </div>
-                    }
+                    <div className={"rewardFightContainer"}>
+                        <p style={{ width: "100%", margin: "0" }}>Récompense de session :</p>
+                        {sessionReward.length > 0 &&
+                                {sessionReward.map(reward => (
+                                    <div
+                                        key={reward.item}
+                                        style={{ top: "10px" }}
+                                        className="rewardItem"
+                                    >
+                                        <img src={reward.image} alt={reward.item} />
+                                        <p>
+                                            x{reward.quantity}
+                                        </p>
+                                    </div>
+                                ))}
+                        }
+                     </div>
                         <div style={{ width: "30%" }}>
                         <p style={{ margin: 0, fontSize: "17px" }} className="fightName">{props.compagnon[0].pokemon}</p>
                             <div className="tierFight">
