@@ -1,7 +1,7 @@
-export default function ShadowSmoke() {
+export default function ShadowSmokeFront() {
     return (
         <svg
-            className="shadowSmoke"
+            className="shadowSmokeFront"
             viewBox="0 0 600 600"
             preserveAspectRatio="none"
         >
@@ -27,13 +27,6 @@ export default function ShadowSmoke() {
                         scale="70"
                     />
                 </filter>
-
-                <radialGradient id="shadowRed">
-                    <stop offset="0%" stopColor="#880000" stopOpacity="0.7" />
-                    <stop offset="40%" stopColor="#880000" stopOpacity="0.4" />
-                    <stop offset="100%" stopColor="#880000" stopOpacity="0" />
-                </radialGradient>
-
                 <radialGradient id="shadowBlack">
                     <stop offset="0%" stopColor="#000000" stopOpacity="0.8" />
                     <stop offset="60%" stopColor="#111111" stopOpacity="0.3" />
@@ -75,44 +68,6 @@ export default function ShadowSmoke() {
                         rx="110"
                         ry="170"
                         fill="url(#shadowBlack)"
-                    />
-                </g>
-            </g>
-
-            {/* Couche rouge */}
-            <g filter="url(#shadowDistort)">
-                <g>
-                    <animateTransform
-                        attributeName="transform"
-                        type="rotate"
-                        from="360 300 300"
-                        to="0 300 300"
-                        dur="12s"
-                        repeatCount="indefinite"
-                    />
-
-                    <ellipse
-                        cx="300"
-                        cy="260"
-                        rx="130"
-                        ry="190"
-                        fill="url(#shadowRed)"
-                    />
-
-                    <ellipse
-                        cx="240"
-                        cy="330"
-                        rx="90"
-                        ry="120"
-                        fill="url(#shadowRed)"
-                    />
-
-                    <ellipse
-                        cx="370"
-                        cy="340"
-                        rx="80"
-                        ry="130"
-                        fill="url(#shadowRed)"
                     />
                 </g>
             </g>

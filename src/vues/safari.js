@@ -3,7 +3,8 @@ import Axios from 'axios'
 import '../App.css'
 import moment from "moment";
 import { useCookies } from 'react-cookie';
-import ShadowSmoke from "../components/shadowSmoke";
+import ShadowSmokeFront from "../components/shadowSmokeFront";
+import ShadowSmokeBack from "../components/shadowSmokeBack";
 
 
 function Fight() {
@@ -410,7 +411,8 @@ function Fight() {
 
                                 </div>
                                 <div ref={pokemonContainerRef} style={{ visibility: onCatch ? "hidden" : "visible" }} className={`fightSpriteCard`}>
-                                    {negative === 1 && <ShadowSmoke targetRef={pokemonContainerRef} />}
+                                    {negative === 1 && <ShadowSmokeBack targetRef={pokemonContainerRef} />}
+                                    {negative === 1 && <ShadowSmokeFront targetRef={pokemonContainerRef} />}
                                     <img className={negative === 1 ? " shadowPokemon" : ""}
                                         src={`/Sprites/${shiny === 1 ? "shiny" : "normal"}/${pokemon.number}.gif`}
                                         alt=""
