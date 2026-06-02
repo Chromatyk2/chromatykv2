@@ -503,7 +503,7 @@ function Profil() {
                             <div style={{ width: "100%", justifyContent:"center" }} className={"skinContainer"}>
                                 <>
                                     {expedition &&
-                                        <div style={{backgroundImage: `url(/expeditionBack.jpg)`}} className={"fightContainer"}>
+                                        <div style={{backgroundImage: `url(/expeditionBack.png)`}} className={"fightContainer"}>
                                             <p>{expedition.pokemon}</p>
                                             <div loading={"lazy"} style={{ width: "250px", height: "250px", filter: expedition.negative === 1 ? "invert(1)" : "invert(0)", backgroundRepeat: "no-repeat", backgroundImage: `url("/Sprites/${expedition.shiny === 1 ? "Shiny" : "Normal"}/${expedition.number}.gif")`, backgroundSize: "contain", backgroundPosition: "center" }}></div>
                                             <div className="hpBarContainer">
