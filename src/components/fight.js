@@ -386,7 +386,9 @@ function ProgressBarFight(props) {
                             <span className="hpText">
                                 {currentHp}/{maxHp} PV
                             </span>
-                        </div>                        <div className="fightSpriteWrapper">
+                        </div>
+                        <div style={{ display: "block", margin: "auto", backgroundColor: pokemon.tier == 1 ? "#6d6d6c" : pokemon.tier == 2 ? "#21693a" : pokemon.tier == 3 ? "#744095" : "#bfa93a" }} className={"tierFight"}>Tier {pokemon.tier}</div>
+                        <div className="fightSpriteWrapper">
                             <div
                                 className={`fightSpriteCardEnemy
                                     ${isKO ? "koAnimation" : ""}
