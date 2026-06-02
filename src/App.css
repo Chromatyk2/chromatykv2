@@ -713,17 +713,16 @@ fightActionsFlee img {
 }
 
 @keyframes shadowPulse {
-
     0% {
-        filter: grayscale(85%) brightness(.40) contrast(1.8) saturate(.3) drop-shadow(0 0 15px #2c245c);
+        filter: invert(.85) hue-rotate(260deg) saturate(1.4) drop-shadow(0 0 15px #7a00ff);
     }
 
     50% {
-        filter: grayscale(70%) brightness(.55) contrast(2) saturate(.5) drop-shadow(0 0 35px #5a48c9);
+        filter: invert(.95) hue-rotate(280deg) saturate(2) drop-shadow(0 0 40px #ff00ff);
     }
 
     100% {
-        filter: grayscale(85%) brightness(.40) contrast(1.8) saturate(.3) drop-shadow(0 0 15px #2c245c);
+        filter: invert(.85) hue-rotate(260deg) saturate(1.4) drop-shadow(0 0 15px #7a00ff);
     }
 }
 
