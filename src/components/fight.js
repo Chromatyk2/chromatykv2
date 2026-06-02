@@ -283,8 +283,27 @@ function ProgressBarFight(props) {
                             <div className="tierFight">
                             Nv.{curentLevel}
                             </div>
-                        <div className={`fightSpriteCardInvert ${!hasAppeared ? "spawnInvert" : ""} ${isAttacking && !isKO ? "fightAttack" : ""}`} style={{ height: "200px", width: "100%", filter: props.compagnon[0].negative === 1 ? "invert(1)" : "none", backgroundSize: "contain", backgroundImage: `url(/Sprites/${props.compagnon[0].shiny === 1 ? "shiny" : "normal"}/${props.compagnon[0].number}.gif)` }} />
+                        <div className={`fightSpriteCard ${props.compagnon[0].negative === 1 ? "shadowPokemon" : ""}`}>
+                            {props.compagnon[0].negative === 1 && (
+                                <>
+                                    <div className="shadowAura" />
+                                    <div className="redCloudsBack">
+                                        <span />
+                                        <span />
+                                        <span />
+                                    </div>
+                                    <div className="energyRing ring1" />
+                                    <div className="lightningBurst">
+                                        <span />
+                                        <span />
+                                        <span />
+                                        <span />
+                                    </div>
+                                </>
+                            )}
+                            <img className={`fightSpriteCardInvert ${!hasAppeared ? "spawnInvert" : ""} ${isAttacking && !isKO ? "fightAttack" : ""}`} src={`/Sprites/${props.compagnon[0].shiny === 1 ? "shiny" : "normal"}/${props.compagnon[0].number}.gif`} alt="" />
                         </div>
+                    </div>
                         <div style={{ width: "33%" }}>
                             <div className="fightSpriteCard" style={{ width: "100%", backgroundSize: "contain", backgroundImage: `url(/versus.png)` }} />
                         </div>
