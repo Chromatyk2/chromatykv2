@@ -13,7 +13,7 @@ function ProgressBarFight(props) {
     const [hasAppeared, setHasAppeared] = useState(false);
     const [baseAttack, setBaseAttack] = useState(null);
     const [currentHp, setCurrentHp] = useState(null);
-    const [currentXp, setCurrentXp] = useState(0);
+    const [currentXp, setCurrentXp] = useState(props.compagnon[0].xp);
     const [maxHp, setMaxHp] = useState(null);
     const [isKO, setIsKO] = useState(false);
     const [curentLevel, setCurrentLevel] = useState(props.compagnon[0].level);
@@ -114,6 +114,59 @@ function ProgressBarFight(props) {
             currentHp <= 0 &&
             !isKO &&
             pokemon) {
+
+            if (Math.random() < 0.5) {
+                const userId = cookies.user.data[0].id;
+                const roll = Math.random();
+                let reward = null;
+                // 1/1000
+                if (roll < 0.0005) {
+                    reward = {
+                        item: "Pack Safari",
+                        slug: "box",
+                        image: "/box.png"
+                    };
+                }
+                // 1/500
+                else if (roll < 0.0015) {
+                    reward = {
+                        item: "Fragement de Pack",
+                        slug: "fragement",
+                        image: "/fragment.png"
+                    };
+                }
+                // 1/100
+                else if (roll < 0.0035) {
+                    reward = {
+                        item: "Booster",
+                        slug: "booster",
+                        image: "/booster.png"
+                    };
+                }
+
+                if (reward) {
+                    Axios.post('/api/addCandy', {
+                        user: cookies.user.data[0].id,
+                        item: reward.item,
+                        slug: reward.slug,
+                        quantity: 1
+                    });
+
+                    setSessionReward(prev => {
+                        const existing = prev.find(r => r.item === reward.item);
+
+                        if (existing) {
+                            return prev.map(r =>
+                                r.item === reward.item
+                                    ? { ...r, quantity: r.quantity + 1 }
+                                    : r
+                            );
+                        }
+
+                        return [...prev, { ...reward, quantity: 1 }];
+                    });
+                }
+            }
             setIsAttacking(false);
             setIsKO(true);
             let formMultiplier;
@@ -140,61 +193,14 @@ function ProgressBarFight(props) {
                 Axios.post('/api/levelupCompagnon', {
                     id: props.compagnon[0].id
                 })
-                if (Math.random() < 0.5) {
-                    const userId = cookies.user.data[0].id;
-                    const roll = Math.random();
-                    let reward = null;
-                    // 1/1000
-                    if (roll < 0.0005) {
-                        reward = {
-                            item: "Pack Safari",
-                            slug: "box",
-                            image: "/box.png"
-                        };
-                    }
-                    // 1/500
-                    else if (roll < 0.0015) {
-                        reward = {
-                            item: "Fragement de Pack",
-                            slug: "fragement",
-                            image: "/fragment.png"
-                        };
-                    }
-                    // 1/100
-                    else if (roll < 0.0035) {
-                        reward = {
-                            item: "Booster",
-                            slug: "booster",
-                            image: "/booster.png"
-                        };
-                    }
-
-                    if (reward) {
-                        Axios.post('/api/addCandy', {
-                            user: cookies.user.data[0].id,
-                            item: reward.item,
-                            slug: reward.slug,
-                            quantity: 1
-                        });
-
-                        setSessionReward(prev => {
-                            const existing = prev.find(r => r.item === reward.item);
-
-                            if (existing) {
-                                return prev.map(r =>
-                                    r.item === reward.item
-                                        ? { ...r, quantity: r.quantity + 1 }
-                                        : r
-                                );
-                            }
-
-                            return [...prev, { ...reward, quantity: 1 }];
-                        });
-                    }
-                }
                 setCurrentLevel(prev => prev + 1);
                 setCurrentXp(0);
             } else {
+
+                Axios.post('/api/updateXpCompagnon', {
+                    xp: xpGain,
+                    id: props.compagnon[0].id
+                })
                 setCurrentXp(newXp);
             }
             setTimeout(() => {
