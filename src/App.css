@@ -694,6 +694,7 @@ fightActionsFlee img {
     }
 .shadowPokemon img {
     animation: shadowPulse 2.5s infinite ease-in-out, shadowFloat 3s infinite ease-in-out, corruptionFlash 8s infinite;
+    filter: brightness(.55) contrast(1.6) saturate(.4) hue-rotate(260deg) drop-shadow(0 0 15px #6a00ff) drop-shadow(0 0 35px #b000ff);
 }
 @keyframes corruptionFlash {
 
@@ -843,29 +844,26 @@ fightActionsFlee img {
     }
         .lightningBurst span:nth-child(1) {
             top: 30px;
-            left: 120px;
-            transform: rotate(20deg);
+            left: 170px;
+            transform: rotate(25deg);
         }
 
         .lightningBurst span:nth-child(2) {
-            top: 110px;
+            top: 150px;
             left: 40px;
             transform: rotate(-70deg);
-            animation-delay: .7s;
         }
 
         .lightningBurst span:nth-child(3) {
-            top: 70px;
-            left: 190px;
-            transform: rotate(65deg);
-            animation-delay: 1.4s;
+            top: 90px;
+            left: 290px;
+            transform: rotate(70deg);
         }
 
         .lightningBurst span:nth-child(4) {
-            top: 150px;
-            left: 120px;
+            top: 230px;
+            left: 170px;
             transform: rotate(160deg);
-            animation-delay: 2.1s;
         }
 @keyframes burst {
 
