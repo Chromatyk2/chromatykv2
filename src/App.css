@@ -693,6 +693,8 @@ fightActionsFlee img {
         height: auto;
         position: relative;
         z-index: 20;
+        width: 250px;
+        height: stretch;
     }
 .shadowPokemon img {
     animation: shadowPulse 2.5s infinite ease-in-out, shadowFloat 3s infinite ease-in-out, corruptionFlash 8s infinite;
