@@ -329,23 +329,23 @@ function ProgressBarFight(props) {
                         < img src={"/doll.png"} />
                         <p>Partir</p>
                     </div>
-                    <div className="hpBarContainer">
-                        <div
-                            className="hpBar"
-                            style={{
-                                width: `${(currentHp / maxHp) * 100}%`,
-                                background:
-                                    (currentHp / maxHp) * 100 < 20
-                                        ? "linear-gradient(90deg,#ff0000,#ff4d4d)"
-                                        : (currentHp / maxHp) * 100 < 50
-                                            ? "linear-gradient(90deg,#ff8c00,#ffd000)"
-                                            : "linear-gradient(90deg,#00b83f,#42ff87)"
-                            }}
-                        />
-                        <span className="hpText">
-                            {currentHp}/{maxHp} PV
-                        </span>
-                    </div>
+                    {sessionReward.length > 0 &&
+                        <div className={"rewardFightContainer"}>
+                            <p style={{ width: "100%", margin: "0" }}>Récompense de session :</p>
+                            {sessionReward.map(reward => (
+                                <div
+                                    key={reward.item}
+                                    style={{ top: "10px" }}
+                                    className="rewardItem"
+                                >
+                                    <img src={reward.image} alt={reward.item} />
+                                    <p>
+                                        x{reward.quantity}
+                                    </p>
+                                </div>
+                            ))}
+                        </div>
+                    }
                         <div style={{ width: "30%" }}>
                             <p className="fightName">{props.compagnon[0].pokemon}</p>
                             <div className="tierFight">
@@ -370,6 +370,18 @@ function ProgressBarFight(props) {
                         </div>
                         <div style={{ position:"relative", width: "30%" }}>
                         <p className="fightName">{pokemon.name}</p>
+                        <div className="hpBarContainer">
+                            <div
+                                className="hpBar"
+                                style={{
+                                    width: `${(currentXp / xpToNextLevel) * 100}%`,
+                                    background: "linear-gradient(90deg,rgba(36, 70, 171, 1) 0%, rgba(2, 194, 232, 1) 100%)"
+                                }}
+                            />
+                            <span className="hpText">
+                                <p>{parseFloat((currentXp / xpToNextLevel) * 100).toFixed(2) + " %"}</p>
+                            </span>
+                        </div>
                         <div style={{display:"block",margin:"auto", backgroundColor: pokemon.tier == 1 ? "#6d6d6c" : pokemon.tier == 2 ? "#21693a" : pokemon.tier == 3 ? "#744095" : "#bfa93a" }} className={"tierFight"}>Tier {pokemon.tier}</div>
                         <div className="fightSpriteWrapper">
                             <div
@@ -422,36 +434,7 @@ function ProgressBarFight(props) {
                             ))}
                         </div>
                     </div>
-                    <div className="hpBarContainer">
-                        <div
-                            className="hpBar"
-                            style={{
-                                width: `${(currentXp / xpToNextLevel) * 100}%`,
-                                background:"linear-gradient(90deg,rgba(36, 70, 171, 1) 0%, rgba(2, 194, 232, 1) 100%)"
-                            }}
-                        />
-                        <span className="hpText">
-                            <p>{parseFloat((currentXp / xpToNextLevel) * 100).toFixed(2) + " %"}</p>
-                        </span>
-                    </div>
                 </div>
-                {sessionReward.length > 0 &&
-                    <div className={"rewardFightContainer"}>
-                        <p style={{ width: "100%", margin: "0" }}>Récompense de session :</p>
-                        {sessionReward.map(reward => (
-                            <div
-                                key={reward.item}
-                                style={{ top: "10px" }}
-                                className="rewardItem"
-                            >
-                                <img src={reward.image} alt={reward.item} />
-                                <p>
-                                    x{reward.quantity}
-                                </p>
-                            </div>
-                        ))}
-                    </div>                    
-                }
                 </>
             }
         </div>
