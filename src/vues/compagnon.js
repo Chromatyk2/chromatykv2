@@ -276,7 +276,6 @@ function Compagnon() {
                                                     <span />
                                                 </div>
                                                 <div className="energyRing ring1" />
-                                                <div className="energyRing ring2" />
 
                                                 <div className="lightningBurst">
                                                     <span />

@@ -870,25 +870,6 @@ fightActionsFlee img {
         transform: rotateX(75deg) rotateZ(360deg);
     }
 }
-.ring2 {
-    width: 260px;
-    height: 260px;
-    border-left: 2px solid #000000;
-    border-right: 2px solid #000000;
-    filter: drop-shadow(0 0 8px #ff00ff);
-    animation: rotateRing2 2.5s linear infinite reverse;
-}
-
-@keyframes rotateRing2 {
-
-    from {
-        transform: rotateY(75deg) rotateZ(0deg);
-    }
-
-    to {
-        transform: rotateY(75deg) rotateZ(360deg);
-    }
-}
 .energyRing::before {
     content: "";
     position: absolute;
