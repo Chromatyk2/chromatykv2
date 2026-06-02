@@ -9,14 +9,7 @@ export default function ShadowSmoke() {
                 <filter id="smoke">
                     <feGaussianBlur stdDeviation="18" />
                 </filter>
-                <filter id="lightningGlow">
-                    <feGaussianBlur stdDeviation="4" result="blur" />
 
-                    <feMerge>
-                        <feMergeNode in="blur" />
-                        <feMergeNode in="SourceGraphic" />
-                    </feMerge>
-                </filter>
                 <radialGradient id="blackSmoke">
                     <stop offset="0%" stopColor="#000000" stopOpacity="0.7" />
                     <stop offset="100%" stopColor="#000000" stopOpacity="0" />
@@ -190,108 +183,6 @@ export default function ShadowSmoke() {
                     />
                 </ellipse>
             </g>
-            <ellipse
-                cx="300"
-                cy="300"
-                rx="180"
-                ry="240"
-                fill="#ff0000"
-                opacity="0"
-            >
-                <animate
-                    attributeName="opacity"
-                    values="0;0;0.05;0;0"
-                    dur="4.7s"
-                    repeatCount="indefinite"
-                />
-            </ellipse>
-            <path
-                d="M260 330
-       L280 300
-       L270 295
-       L305 255
-       L290 250
-       L320 220"
-                fill="none"
-                stroke="#ff0000"
-                strokeWidth="3"
-                strokeLinecap="round"
-                filter="url(#lightningGlow)"
-            >
-                <animate
-                    attributeName="opacity"
-                    values="
-            0;
-            0;
-            0;
-            1;
-            0.8;
-            0;
-            0;
-            0
-        "
-                    dur="4.7s"
-                    repeatCount="indefinite"
-                />
-            </path>
-            <path
-                d="M350 320
-       L330 290
-       L345 280
-       L315 245
-       L330 235
-       L300 205"
-                fill="none"
-                stroke="#ff2222"
-                strokeWidth="2"
-                strokeLinecap="round"
-                filter="url(#lightningGlow)"
-            >
-                <animate
-                    attributeName="opacity"
-                    values="
-            0;
-            0;
-            1;
-            0.4;
-            0;
-            0;
-            0
-        "
-                    dur="6.2s"
-                    begin="1.4s"
-                    repeatCount="indefinite"
-                />
-            </path>
-            <path
-                d="M290 380
-       L310 350
-       L295 345
-       L325 310
-       L315 300
-       L350 270"
-                fill="none"
-                stroke="#cc0000"
-                strokeWidth="2"
-                strokeLinecap="round"
-                filter="url(#lightningGlow)"
-            >
-                <animate
-                    attributeName="opacity"
-                    values="
-            0;
-            0;
-            0;
-            0;
-            1;
-            0;
-            0
-        "
-                    dur="5.3s"
-                    begin="2.8s"
-                    repeatCount="indefinite"
-                />
-            </path>
         </svg>
     );
 }

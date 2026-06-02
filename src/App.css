@@ -727,6 +727,7 @@ fightActionsFlee img {
     z-index: 1;
     overflow: visible;
 }
+
 .fightActions p {
     font-size: 13px;
     margin: 0;
