@@ -378,7 +378,7 @@ function Profil() {
     }
     return (
         <div className={"globalContainer"}>
-            {compagnon &&
+            {profil && compagnon &&
                 <div className={"profilContainer"}>
                     <div class={"profilHeaderContainer"}>
                         <div className={"profilHeader"}>
