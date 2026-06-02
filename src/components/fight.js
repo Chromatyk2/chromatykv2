@@ -332,7 +332,7 @@ function ProgressBarFight(props) {
                     <div className={"rewardFightContainer"}>
                         <p style={{ width: "100%", margin: "0" }}>Récompense de session :</p>
                         {sessionReward.length > 0 &&
-                                {sessionReward.map(reward => (
+                                sessionReward.map(reward => (
                                     <div
                                         key={reward.item}
                                         style={{ top: "10px" }}
@@ -343,7 +343,7 @@ function ProgressBarFight(props) {
                                             x{reward.quantity}
                                         </p>
                                     </div>
-                                ))}
+                                ))
                         }
                      </div>
                         <div style={{ width: "30%" }}>
