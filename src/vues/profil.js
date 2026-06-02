@@ -21,7 +21,7 @@ function Profil() {
     const [colorShiny, setColorShiny] = useState(1);
     const [skins, setSkins] = useState([]);
     const [loadSkin, setLoadSkin] = useState(false);
-    const [compagnon, setCompagnon] = useState(null);
+    const [compagnon, setCompagnon] = useState([]);
     const [expedition, setExpedition] = useState(null);
     const [allExpedition, setAllExpedition] = useState(null);
     const [compagnonList, setCompagnonList] = useState(null);
@@ -142,7 +142,7 @@ function Profil() {
                     })
             });
     }
-    function changeSkin(e,f) {
+    function changeSkin(e, f) {
         if (!new URLSearchParams(window.location.search).has("user")) {
             Axios.post('/api/addProfil', {
                 user: cookies.user.data[0].id,
@@ -162,7 +162,7 @@ function Profil() {
                 })
         }
     }
-    function changeActiveCompagnon(e,f) {
+    function changeActiveCompagnon(e, f) {
         if (!new URLSearchParams(window.location.search).has("user")) {
             Axios.post('/api/addProfil', {
                 user: cookies.user.data[0].id,
@@ -189,14 +189,14 @@ function Profil() {
     }
     function addSkin() {
         if (!new URLSearchParams(window.location.search).has("user")) {
-        setLoadSkin(true);
-        if (skins.length < profil[0].level) {
-            Axios.post('/api/addNewSkin', {
-                user: cookies.user.data[0].id
-            })
-                .then(function (response) {
-                    changePage(2);
-            })
+            setLoadSkin(true);
+            if (skins.length < profil[0].level) {
+                Axios.post('/api/addNewSkin', {
+                    user: cookies.user.data[0].id
+                })
+                    .then(function (response) {
+                        changePage(2);
+                    })
             }
         }
     }
@@ -229,12 +229,12 @@ function Profil() {
                             setBody(e);
                         })
                 })
-        }else if (e === 3) {
+        } else if (e === 3) {
             Axios.get("/api/getMaxLevelCompagnon/" + user)
-                    .then((response) => {
-                        setCompagnonList(response.data);
-                        setBody(e);
-                    })
+                .then((response) => {
+                    setCompagnonList(response.data);
+                    setBody(e);
+                })
         } else if (e === 2) {
             Axios.get("/api/getTrainers/" + user)
                 .then(async (response) => {
@@ -279,7 +279,7 @@ function Profil() {
             setBody(e);
         }
     }
-    function runExpedition(e,f, negative, shiny) {
+    function runExpedition(e, f, negative, shiny) {
         if (!new URLSearchParams(window.location.search).has("user")) {
             let endDate = 0;
             if (negative === 1) {
@@ -298,32 +298,32 @@ function Profil() {
                 tier: f,
                 endDate: moment(endDate).format('YYYY-MM-DD HH:mm:ss')
             })
-            .then(function (response) {
-                let user;
-                if (new URLSearchParams(window.location.search).has("user")) {
-                    user = new URLSearchParams(window.location.search).get("user");
-                } else {
-                    user = cookies.user.data[0].id;
-                }
-                Axios.get("/api/getAllExpedition/" + user)
-                    .then((response) => {
-                        setExpedition(response.data.find((item) => item.active === 1));
-                        setAllExpedition(response.data);
-                        if (response.data.some((item) => item.active === 1)) {
+                .then(function (response) {
+                    let user;
+                    if (new URLSearchParams(window.location.search).has("user")) {
+                        user = new URLSearchParams(window.location.search).get("user");
+                    } else {
+                        user = cookies.user.data[0].id;
+                    }
+                    Axios.get("/api/getAllExpedition/" + user)
+                        .then((response) => {
+                            setExpedition(response.data.find((item) => item.active === 1));
+                            setAllExpedition(response.data);
+                            if (response.data.some((item) => item.active === 1)) {
 
-                            let progress = 0;
-                            const startDate = new Date(response.data.find((item) => item.active === 1).date);
-                            const endDate = new Date(response.data.find((item) => item.active === 1).endDate);
-                            const now = new Date();
-                            const totalDuration = endDate - startDate;
-                            const elapsed = now - startDate;
-                            progress = (elapsed / totalDuration) * 100;
-                            progress = Math.max(0, Math.min(100, progress));
-                            setProgressExpedition(progress);
-                        }
-                        setBody(4);
-                    })
-            })
+                                let progress = 0;
+                                const startDate = new Date(response.data.find((item) => item.active === 1).date);
+                                const endDate = new Date(response.data.find((item) => item.active === 1).endDate);
+                                const now = new Date();
+                                const totalDuration = endDate - startDate;
+                                const elapsed = now - startDate;
+                                progress = (elapsed / totalDuration) * 100;
+                                progress = Math.max(0, Math.min(100, progress));
+                                setProgressExpedition(progress);
+                            }
+                            setBody(4);
+                        })
+                })
         }
     }
     function recoverExpedition(id, shiny, negative, tier, number) {
@@ -400,17 +400,17 @@ function Profil() {
                                 </div>
                                 {/*<img className={"profilPicture"} style={{ background: color }} src={"/Skins/Trainer"+profil[0].skin+".png"} />*/}
                             </div>
-                         }
+                        }
                     </div>
                     <div className={"textProgressProfil"}>
                         <p>EXP</p>
                         <p>{profil[0].xp}/{100 * ((profil[0].level + 1) * (profil[0].level + 2)) / 4}</p>
                     </div>
-                    <div style={{width:"100%"}} className="hpBarContainer">
+                    <div style={{ width: "100%" }} className="hpBarContainer">
                         <div
                             className="hpBar"
                             style={{
-                                width: `${parseFloat(profil[0].xp / (100 * ((profil[0].level + 1) * (profil[0].level + 2)) / 4) * 100).toFixed(2) }%`,
+                                width: `${parseFloat(profil[0].xp / (100 * ((profil[0].level + 1) * (profil[0].level + 2)) / 4) * 100).toFixed(2)}%`,
                                 background: "linear-gradient(90deg,rgba(36, 70, 171, 1) 0%, rgba(2, 194, 232, 1) 100%)"
                             }}
                         />
@@ -420,11 +420,11 @@ function Profil() {
                         <button style={{ display: "flex", justifyContent: "center", alignItems: "center", padding: "5px" }} className={body === 2 && "active"} onClick={() => changePage(2)}>Skins {skins && profil[0].level - skins.length > 0 && <p style={{ margin: 0, marginLeft: "5px", fontSize: "15px", width: "1rem", height: "1rem" }} className={"rank"}>{skins && profil[0].level - skins.length}</p>}</button>
                         <button className={body === 3 && "active"} onClick={() => changePage(3)}>Compagnons N.100</button>
                         {<button className={body === 4 && "active"} onClick={() => changePage(4)}>Expédition</button>}
-                    </div>         
+                    </div>
                     <div className={"profilBody"}>
                         {body === 1 &&
                             <>
-                            <p style={{alignItems:"center", display:"flex", gap:"15px", width: "100%", textAlign: "left", fontSize: "15px" }}>Progression <Link class="showPokedex leaderboardHeaderContainerLink" to={"/pokedex?user=" + profil[0].user}>Voir</Link></p>
+                                <p style={{ alignItems: "center", display: "flex", gap: "15px", width: "100%", textAlign: "left", fontSize: "15px" }}>Progression <Link class="showPokedex leaderboardHeaderContainerLink" to={"/pokedex?user=" + profil[0].user}>Voir</Link></p>
                                 {profil &&
                                     <>
                                         {profil.length > 0 &&
@@ -481,8 +481,8 @@ function Profil() {
                             <div className={"skinContainer"}>
                                 {skins &&
                                     skins.map((val, key) => {
-                                        return (                                            
-                                            <div onClick={() => changeSkin(val.skins, val.color)} loading={"lazy"} style={{ backgroundColor: val.color, backgroundRepeat: "no-repeat", backgroundImage: `url("/Skins/Trainer${val.skins}.png")`, backgroundSize: "contain",backgroundPosition: "center"}} className={"profilPicture"}>
+                                        return (
+                                            <div onClick={() => changeSkin(val.skins, val.color)} loading={"lazy"} style={{ backgroundColor: val.color, backgroundRepeat: "no-repeat", backgroundImage: `url("/Skins/Trainer${val.skins}.png")`, backgroundSize: "contain", backgroundPosition: "center" }} className={"profilPicture"}>
                                             </div>
                                         )
                                     })
@@ -502,10 +502,10 @@ function Profil() {
                             </div>
                         }
                         {body === 4 &&
-                            <div style={{ width: "100%", justifyContent:"center" }} className={"skinContainer"}>
+                            <div style={{ width: "100%", justifyContent: "center" }} className={"skinContainer"}>
                                 <>
                                     {expedition &&
-                                        <div style={{backgroundImage: `url(/expeditionBack.png)`}} className={"fightContainer"}>
+                                        <div style={{ backgroundImage: `url(/expeditionBack.png)` }} className={"fightContainer"}>
                                             <p>{expedition.pokemon}</p>
                                             <div className={`fightSpriteCard ${expedition.negative === 1 ? "shadowPokemon" : ""}`}>
                                                 {expedition.negative === 1 && (
@@ -575,12 +575,12 @@ function Profil() {
                                                             expedition.number === val.number
                                                     )
                                             )
-                                        .map((val, key) => {
-                                            return (
-                                                <div onClick={() => runExpedition(val.number, val.tier, val.negative, val.shiny)} loading={"lazy"} style={{ filter: val.negative === 1 ? "invert(1)" : "invert(0)", backgroundRepeat: "no-repeat", backgroundColor: val.color, backgroundImage: `url("/Sprites/${val.shiny === 1 ? "Shiny" : "Normal"}/${val.number}.gif")`, backgroundSize: "contain", backgroundPosition: "center" }} className={"profilPicture"}>
-                                                </div>
-                                            )
-                                        })
+                                            .map((val, key) => {
+                                                return (
+                                                    <div onClick={() => runExpedition(val.number, val.tier, val.negative, val.shiny)} loading={"lazy"} style={{ filter: val.negative === 1 ? "invert(1)" : "invert(0)", backgroundRepeat: "no-repeat", backgroundColor: val.color, backgroundImage: `url("/Sprites/${val.shiny === 1 ? "Shiny" : "Normal"}/${val.number}.gif")`, backgroundSize: "contain", backgroundPosition: "center" }} className={"profilPicture"}>
+                                                    </div>
+                                                )
+                                            })
                                     }
                                 </>
                             </div>
