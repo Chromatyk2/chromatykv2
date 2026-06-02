@@ -270,8 +270,12 @@ function Compagnon() {
                                         {compagnon[0].negative === 1 && (
                                             <>
                                                 <div className="shadowAura" />
-                                                <div className="redAura" />
-
+                                                <div className="redClouds">
+                                                    <span />
+                                                    <span />
+                                                    <span />
+                                                    <span />
+                                                </div>
                                                 <div className="energyRing ring1" />
                                                 <div className="energyRing ring2" />
 
