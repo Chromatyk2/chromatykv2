@@ -407,18 +407,20 @@ function Fight() {
 
                         </div>
                         <div style={{ visibility: onCatch ? "hidden" : "visible" }} className={`fightSpriteCard ${negative === 1 ? "shadowPokemon" : ""}`}>
-                            {negative === 1 && (
-                                <>
-                                    <div className="shadowAura" />
-                                    <div className="redCloudsBack">
-                                        <span />
-                                        <span />
-                                        <span />
-                                    </div>
-                                </>
-                            )}
+                            {negative === 1 &&
+                                [...Array(10)].map((_, i) => (
+                                    <span
+                                        key={i}
+                                        className="smokeParticle"
+                                        style={{
+                                            "--x": `${Math.random() * 80 - 40}px`,
+                                            "--delay": `${Math.random() * 4}s`,
+                                            "--duration": `${4 + Math.random() * 3}s`,
+                                            "--size": `${20 + Math.random() * 30}px`,
+                                        }}
+                                    />
+                                ))}
                             <img src={`/Sprites/${shiny === 1 ? "shiny" : "normal"}/${pokemon.number}.gif`} alt="" />
-
                         </div>
                         <div id={"ball"} style={{ display: onCatch ? "block" : "none", background: ballStyle }} class="pokeball"></div>
                             </>

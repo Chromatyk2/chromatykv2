@@ -696,83 +696,11 @@ fightActionsFlee img {
         height: stretch;
     }
 .shadowPokemon img {
-    animation: shadowPulse 2.5s infinite ease-in-out, shadowFloat 3s infinite ease-in-out, corruptionFlash 8s infinite;
+    animation: shadowPulse 2.5s infinite ease-in-out;
     filter: brightness(.55) contrast(1.6) saturate(.4) hue-rotate(260deg) drop-shadow(0 0 15px #6a00ff) drop-shadow(0 0 35px #b000ff);
     width: 250px;
     position: relative;
     z-index: 20;
-}
-.redCloudsBack {
-    position: absolute;
-    width: 350px;
-    height: 350px;
-    z-index: 21;
-}
-.redCloudsFront {
-    position: absolute;
-    width: 350px;
-    height: 350px;
-    z-index: 25;
-}
-    .redCloudsFront span {
-        opacity: .4;
-    }
-.redCloudsBack span {
-    opacity: .8;
-}
-.redCloudsBack span{
-    animation: smokeMove 8s ease-in-out infinite;
-    background: radial-gradient(circle, #a852d4b3 0, #412a6080 35%, #a852d4b3 70%, #0000 100%);
-    border-radius: 50%;
-    filter: blur(50px);
-    height: 140px;
-    position: absolute;
-    width: 140px;
-}
-        .redCloudsBack span:nth-child(1) {
-            top: 40px;
-            left: 20px;
-        }
-
-        .redCloudsBack span:nth-child(2) {
-            top: 180px;
-            left: 50px;
-        }
-
-        .redCloudsBack span:nth-child(3) {
-            top: 120px;
-            left: 200px;
-        }
-@keyframes smokeMove {
-
-    0% {
-        transform: translate(0,0) scale(1);
-        opacity: 1;
-    }
-
-    50% {
-        transform: translate(15px,-10px) scale(1.2);
-        opacity: 1;
-    }
-
-    100% {
-        transform: translate(0,0) scale(1);
-        opacity: 1;
-    }
-}
-@keyframes corruptionFlash {
-
-    0%, 96%, 100% {
-        opacity: 1;
-    }
-
-    97% {
-        opacity: .8;
-    }
-
-    98% {
-        opacity: 1;
-    }
 }
 
 @keyframes shadowPulse {
@@ -789,46 +717,39 @@ fightActionsFlee img {
         filter: saturate(1.2) invert(1) grayscale(0.7) hue-rotate(200deg) drop-shadow(0 0 10px rgba(0,0,0,.9)) drop-shadow(0 0 20px rgba(40,0,0,.8));
     }
 }
-
-@keyframes shadowFloat {
-
-    0% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(-4px);
-    }
-
-    100% {
-        transform: translateY(0);
-    }
-}
-.shadowAura {
+.smokeParticle {
     position: absolute;
-    width: 320px;
-    height: 320px;
+    left: 50%;
+    bottom: 30%;
+    width: var(--size);
+    height: var(--size);
     border-radius: 50%;
-    background: radial-gradient( circle, rgba(180,0,255,.5) 0%, rgba(80,0,120,.25) 40%, transparent 70% );
-    filter: blur(40px);
-    animation: auraPulse 4s infinite ease-in-out;
+    pointer-events: none;
+    background: radial-gradient( circle, rgba(180, 90, 255, 0.7) 0%, rgba(120, 0, 255, 0.45) 50%, transparent 100% );
+    filter: blur(10px);
+    animation: smokeRise var(--duration) ease-out infinite;
+    animation-delay: var(--delay);
     z-index: 1;
 }
-@keyframes auraPulse {
 
+@keyframes smokeRise {
     0% {
-        transform: scale(1);
-        opacity: .5;
+        opacity: 0;
+        transform: translate(-50%, 0) translateX(0) scale(0.4);
+    }
+
+    15% {
+        opacity: 0.7;
     }
 
     50% {
-        transform: scale(1.25);
-        opacity: 1;
+        opacity: 0.5;
+        transform: translate(-50%, -40px) translateX(var(--x)) scale(1);
     }
 
     100% {
-        transform: scale(1);
-        opacity: .5;
+        opacity: 0;
+        transform: translate(-50%, -100px) translateX(calc(var(--x) * 1.5)) scale(1.8);
     }
 }
 .fightActions p {
