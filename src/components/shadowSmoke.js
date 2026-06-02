@@ -1,105 +1,137 @@
-import { useEffect, useState } from "react";
-import Particles, { initParticlesEngine } from "@tsparticles/react";
+import Particles from "@tsparticles/react";
 import { loadSlim } from "@tsparticles/slim";
 
+const particlesInit = async (engine) => {
+    await loadSlim(engine);
+};
+
 export default function ShadowSmoke() {
-    const [init, setInit] = useState(false);
-
-    useEffect(() => {
-        initParticlesEngine(async (engine) => {
-            await loadSlim(engine);
-        }).then(() => {
-            setInit(true);
-        });
-    }, []);
-
-    if (!init) return null;
-
     return (
         <Particles
             id="shadowSmoke"
+            init={particlesInit}
             options={{
                 fullScreen: false,
-                fpsLimit: 60,
+                background: {
+                    color: "transparent",
+                },
 
                 particles: {
                     number: {
-                        value: 40,
+                        value: 0,
                     },
 
                     color: {
                         value: [
-                            "#ff0000",
-                            "#990000",
-                            "#330000",
                             "#000000",
+                            "#120000",
+                            "#330000",
+                            "#660000",
+                            "#aa0000",
                         ],
-                    },
-
-                    opacity: {
-                        value: {
-                            min: 0.05,
-                            max: 0.4,
-                        },
-                        animation: {
-                            enable: true,
-                            speed: 0.3,
-                            minimumValue: 0,
-                            sync: false,
-                        },
-                    },
-
-                    size: {
-                        value: {
-                            min: 10,
-                            max: 35,
-                        },
-                        animation: {
-                            enable: true,
-                            speed: 2,
-                            minimumValue: 0,
-                        },
-                    },
-
-                    move: {
-                        enable: true,
-                        direction: "top",
-                        speed: {
-                            min: 0.5,
-                            max: 2,
-                        },
-                        random: true,
-                        straight: false,
-                        outModes: {
-                            default: "destroy",
-                        },
                     },
 
                     shape: {
                         type: "circle",
                     },
 
-                    blur: {
-                        value: 8,
-                    },
-                },
-
-                emitters: {
-                    position: {
-                        x: 50,
-                        y: 75,
-                    },
-
-                    rate: {
-                        quantity: 5,
-                        delay: 0.08,
+                    opacity: {
+                        value: {
+                            min: 0.05,
+                            max: 0.3,
+                        },
+                        animation: {
+                            enable: true,
+                            speed: 0.5,
+                            startValue: "max",
+                            destroy: "min",
+                        },
                     },
 
                     size: {
-                        width: 40,
-                        height: 10,
+                        value: {
+                            min: 15,
+                            max: 50,
+                        },
+                        animation: {
+                            enable: true,
+                            speed: 4,
+                            startValue: "min",
+                            destroy: "max",
+                        },
+                    },
+
+                    move: {
+                        enable: true,
+
+                        speed: {
+                            min: 0.5,
+                            max: 2,
+                        },
+
+                        random: true,
+
+                        direction: "none",
+
+                        outModes: {
+                            default: "destroy",
+                        },
+
+                        attract: {
+                            enable: true,
+                            rotateX: 600,
+                            rotateY: 1200,
+                        },
+
+                        trail: {
+                            enable: false,
+                        },
+                    },
+
+                    life: {
+                        duration: {
+                            value: 3,
+                        },
                     },
                 },
+
+                emitters: [
+                    {
+                        position: {
+                            x: 20,
+                            y: 70,
+                        },
+
+                        rate: {
+                            quantity: 2,
+                            delay: 0.05,
+                        },
+                    },
+
+                    {
+                        position: {
+                            x: 80,
+                            y: 70,
+                        },
+
+                        rate: {
+                            quantity: 2,
+                            delay: 0.05,
+                        },
+                    },
+
+                    {
+                        position: {
+                            x: 50,
+                            y: 50,
+                        },
+
+                        rate: {
+                            quantity: 3,
+                            delay: 0.08,
+                        },
+                    },
+                ],
 
                 detectRetina: true,
             }}

@@ -719,9 +719,10 @@ fightActionsFlee img {
 }
 #shadowSmoke {
     position: absolute !important;
-    inset: -40px;
-    width: calc(100% + 80px);
-    height: calc(100% + 80px);
+    left: -120px;
+    top: -120px;
+    width: calc(100% + 240px);
+    height: calc(100% + 240px);
     pointer-events: none;
     z-index: 1;
 }
