@@ -668,39 +668,64 @@ fightActionsFlee img {
     width: 35px;
     margin: 7px;
 }
-.shadowPokemon {
+.fightSpriteCard {
     position: relative;
     width: 250px;
     height: 250px;
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 35px;
     perspective: 1000px;
+    transform-style: preserve-3d;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+    animation-name: myAnimation;
 }
-    .shadowPokemon img {
-        filter: brightness(0.6) contrast(1.6) saturate(0.4) hue-rotate(260deg);
-        animation: shadowPulse 2s ease-in-out infinite, shadowFloat 3s ease-in-out infinite;
-        max-width: 180px;
-        max-height: 180px;
+
+    .fightSpriteCard img {
+        width: 250px;
+        height: 250px;
+        object-fit: contain;
         width: auto;
         height: auto;
         position: relative;
         z-index: 20;
     }
+.shadowPokemon img {
+    animation: shadowPulse 2.5s infinite ease-in-out, shadowFloat 3s infinite ease-in-out, corruptionFlash 8s infinite;
+}
+@keyframes corruptionFlash {
+
+    0%, 96%, 100% {
+        opacity: 1;
+    }
+
+    97% {
+        opacity: .8;
+        filter: brightness(2) contrast(2) hue-rotate(320deg) drop-shadow(0 0 50px #ff00ff);
+    }
+
+    98% {
+        opacity: 1;
+    }
+}
+
 @keyframes shadowPulse {
 
     0% {
-        filter: brightness(0.55) contrast(1.5) saturate(0.3) hue-rotate(250deg) drop-shadow(0 0 10px #5d00ff);
+        filter: brightness(.55) contrast(1.5) saturate(.4) hue-rotate(250deg) drop-shadow(0 0 10px #6a00ff);
     }
 
     50% {
-        filter: brightness(0.7) contrast(1.8) saturate(0.8) hue-rotate(280deg) drop-shadow(0 0 30px #d000ff);
+        filter: brightness(.75) contrast(1.8) saturate(.8) hue-rotate(280deg) drop-shadow(0 0 25px #d000ff);
     }
 
     100% {
-        filter: brightness(0.55) contrast(1.5) saturate(0.3) hue-rotate(250deg) drop-shadow(0 0 10px #5d00ff);
+        filter: brightness(.55) contrast(1.5) saturate(.4) hue-rotate(250deg) drop-shadow(0 0 10px #6a00ff);
     }
 }
+
 @keyframes shadowFloat {
 
     0% {
@@ -717,161 +742,153 @@ fightActionsFlee img {
 }
 .shadowAura {
     position: absolute;
-    width: 220px;
-    height: 220px;
+    width: 320px;
+    height: 320px;
     border-radius: 50%;
-    background: radial-gradient( circle, rgba(170,0,255,.55) 0%, rgba(80,0,120,.35) 40%, transparent 70% );
+    background: radial-gradient( circle, rgba(170,0,255,.7) 0%, rgba(100,0,150,.4) 40%, transparent 75% );
     filter: blur(25px);
-    animation: auraSmoke 5s ease-in-out infinite alternate;
+    animation: auraPulse 4s infinite ease-in-out;
     z-index: 1;
 }
-@keyframes auraSmoke {
+
+@keyframes auraPulse {
 
     0% {
-        transform: scale(1) rotate(0deg);
+        transform: scale(1);
         opacity: .5;
     }
 
     50% {
-        transform: scale(1.2) rotate(180deg);
-        opacity: .9;
+        transform: scale(1.25);
+        opacity: 1;
     }
 
     100% {
-        transform: scale(1.05) rotate(360deg);
-        opacity: .6;
+        transform: scale(1);
+        opacity: .5;
     }
 }
-.orbite {
+.energyRing {
     position: absolute;
-    width: 180px;
-    height: 180px;
-    pointer-events: none;
+    width: 320px;
+    height: 320px;
+    border-radius: 50%;
     z-index: 5;
+    pointer-events: none;
 }
-.orbite1 {
-    animation: orbit1 4s linear infinite;
+.ring1 {
+    border-top: 3px solid #ff00ff;
+    border-bottom: 3px solid #7a00ff;
+    filter: drop-shadow(0 0 8px #ff00ff) drop-shadow(0 0 20px #ff00ff);
+    animation: rotateRing1 4s linear infinite;
 }
 
-@keyframes orbit1 {
+@keyframes rotateRing1 {
 
     from {
-        transform: rotateX(70deg) rotateZ(0deg);
+        transform: rotateX(75deg) rotateZ(0deg);
     }
 
     to {
-        transform: rotateX(70deg) rotateZ(360deg);
+        transform: rotateX(75deg) rotateZ(360deg);
     }
 }
-.orbite2 {
-    animation: orbit2 3s linear infinite reverse;
+.ring2 {
+    width: 260px;
+    height: 260px;
+    border-left: 2px solid #ff00ff;
+    border-right: 2px solid #7a00ff;
+    filter: drop-shadow(0 0 8px #ff00ff);
+    animation: rotateRing2 2.5s linear infinite reverse;
 }
 
-@keyframes orbit2 {
+@keyframes rotateRing2 {
 
     from {
-        transform: rotateY(70deg) rotateZ(0deg);
+        transform: rotateY(75deg) rotateZ(0deg);
     }
 
     to {
-        transform: rotateY(70deg) rotateZ(360deg);
+        transform: rotateY(75deg) rotateZ(360deg);
     }
 }
-.orbite3 {
-    animation: orbit3 5s linear infinite;
-}
-
-@keyframes orbit3 {
-
-    from {
-        transform: rotateX(-70deg) rotateZ(0deg);
-    }
-
-    to {
-        transform: rotateX(-70deg) rotateZ(360deg);
-    }
-}
-.particule {
+.energyRing::before {
+    content: "";
     position: absolute;
     top: 50%;
-    left: 50%;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: #d000ff;
-    box-shadow: 0 0 10px #d000ff, 0 0 20px #d000ff, 0 0 40px #ff00ff;
-    transform: translate(-50%, -50%) translateX(80px);
+    right: -8px;
+    width: 45px;
+    height: 6px;
+    border-radius: 999px;
+    background: white;
+    box-shadow: 0 0 5px white, 0 0 15px #ff00ff, 0 0 30px #ff00ff;
 }
-.lightning {
+.lightningBurst {
     position: absolute;
-    width: 250px;
-    height: 250px;
+    width: 350px;
+    height: 350px;
     z-index: 15;
     pointer-events: none;
-    animation: lightningFlash 3s infinite;
 }
-    .lightning::before,
-    .lightning::after {
-        content: "";
+
+    .lightningBurst span {
         position: absolute;
+        width: 6px;
+        height: 140px;
         background: white;
         opacity: 0;
-        filter: blur(1px) drop-shadow(0 0 8px #ff00ff);
+        border-radius: 999px;
+        box-shadow: 0 0 5px white, 0 0 10px #ff00ff, 0 0 30px #ff00ff;
+        animation: burst 4s infinite;
     }
-    .lightning::before {
-        width: 3px;
-        height: 100px;
-        top: 20%;
-        left: 50%;
-        transform: rotate(25deg);
-    }
+        .lightningBurst span:nth-child(1) {
+            top: 30px;
+            left: 120px;
+            transform: rotate(20deg);
+        }
 
-    .lightning::after {
-        width: 3px;
-        height: 80px;
-        top: 40%;
-        left: 40%;
-        transform: rotate(-40deg);
-    }
-@keyframes lightningFlash {
+        .lightningBurst span:nth-child(2) {
+            top: 110px;
+            left: 40px;
+            transform: rotate(-70deg);
+            animation-delay: .7s;
+        }
 
-    0%, 70%, 100% {
+        .lightningBurst span:nth-child(3) {
+            top: 70px;
+            left: 190px;
+            transform: rotate(65deg);
+            animation-delay: 1.4s;
+        }
+
+        .lightningBurst span:nth-child(4) {
+            top: 150px;
+            left: 120px;
+            transform: rotate(160deg);
+            animation-delay: 2.1s;
+        }
+@keyframes burst {
+
+    0%, 90%, 100% {
         opacity: 0;
     }
 
-    71% {
+    91% {
         opacity: 1;
     }
 
-    72% {
+    92% {
         opacity: 0;
     }
 
-    74% {
+    93% {
         opacity: 1;
     }
 
-    76% {
+    94% {
         opacity: 0;
     }
 }
-.fightSpriteCard {
-    position: relative;
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    animation-duration: 2s;
-    animation-fill-mode: forwards;
-    animation-name: myAnimation;
-    margin-top: 35px;
-    transform-style: preserve-3d;
-    perspective: 1000px;
-}
-
-    .fightSpriteCard img {
-        position: relative;
-        z-index: 20;
-    }
 .fightActions p {
     font-size: 13px;
     margin: 0;
