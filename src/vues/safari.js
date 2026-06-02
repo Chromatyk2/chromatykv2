@@ -405,7 +405,7 @@ function Fight() {
                             </div>
 
                         </div>
-                        <div className={`fightSpriteCard ${negative === 1 ? "shadowPokemon" : ""}`}>
+                        <div style={{ visibility: onCatch ? "hidden" : "visible" }} className={`fightSpriteCard ${negative === 1 ? "shadowPokemon" : ""}`}>
                             {negative === 1 && (
                                 <>
                                     <div className="shadowAura" />
@@ -424,9 +424,9 @@ function Fight() {
                                 </>
                             )}
                             <img src={`/Sprites/${shiny === 1 ? "shiny" : "normal"}/${pokemon.number}.gif`} alt="" />
-                            <div id={"ball"} style={{ display: onCatch ? "block" : "none", background: ballStyle }} class="pokeball"></div>
 
                         </div>
+                        <div id={"ball"} style={{ display: onCatch ? "block" : "none", background: ballStyle }} class="pokeball"></div>
                             </>
                         }
                         {pokemon &&
