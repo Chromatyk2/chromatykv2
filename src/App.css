@@ -695,7 +695,7 @@ fightActionsFlee img {
         width: 250px;
         height: stretch;
     }
-.shadowPokemon img {
+.shadowPokemon{
     animation: shadowPulse 2.5s infinite ease-in-out;
     filter: brightness(.55) contrast(1.6) saturate(.4) hue-rotate(260deg) drop-shadow(0 0 15px #6a00ff) drop-shadow(0 0 35px #b000ff);
     width: 250px;
