@@ -479,6 +479,23 @@ p.levelProfil {
 }
 
 /* Combat */
+.rewardFightContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+.rewardItem p {
+    margin: 0;
+    font-size: 10px;
+}
+.rewardItem {
+    background-color: #ffffff80;
+    height: 65px;
+    right: 10px;
+    width: 65px;
+    border-radius: 5px;
+}
 .loveBarContainer {
     background: linear-gradient(180deg, #2a1a24, #1a1016);
     border: 2px solid #ff9ecf;

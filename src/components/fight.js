@@ -19,6 +19,7 @@ function ProgressBarFight(props) {
     const [curentLevel, setCurrentLevel] = useState(props.compagnon[0].level);
     const [damageText, setDamageText] = useState(null);
     const [particles, setParticles] = useState([]);
+    const [sessionReward, setSessionReward] = useState([]);
 
     const showDamage = (damage, isCritical) => {
 
@@ -141,12 +142,30 @@ function ProgressBarFight(props) {
                 })
                 if (Math.random() < 0.001) {
                     const userId = cookies.user.data[0].id;
+                    const reward = Math.random() < 0.5
+                        ? { item: "Fragement de Pack", slug: "fragement" }
+                        : { item: "Booster", slug: "booster" };
+
                     Axios.post('/api/addCandy', {
                         user: userId,
-                        item: "Fragement de Pack",
-                        slug: "fragement",
+                        item: reward.item,
+                        slug: reward.slug,
                         quantity: 1
-                    })
+                    });
+
+                    setSessionReward(prev => {
+                        const existing = prev.find(r => r.item === reward.item);
+
+                        if (existing) {
+                            return prev.map(r =>
+                                r.item === reward.item
+                                    ? { ...r, quantity: r.quantity + 1 }
+                                    : r
+                            );
+                        }
+
+                        return [...prev, { item: reward.item, quantity: 1 }];
+                    });
                 }
                 setCurrentLevel(prev => prev + 1);
                 setCurrentXp(0);
@@ -379,15 +398,22 @@ function ProgressBarFight(props) {
                     </div>
                 </div>
                 <div className={"rewardFightContainer"}>
-                    <p>Récompense de session :</p>
-                    <div style={{ top: "10px" }} onClick={exitFight} className={"rewardItem"}>
-                        < img src={"/doll.png"} />
-                        <p>Partir</p>
-                    </div>
-                    <div style={{ top: "10px" }} onClick={exitFight} className={"rewardItem"}>
-                        < img src={"/doll.png"} />
-                        <p>Partir</p>
-                    </div>
+                    <p style={{width:"100%",margin:"0"}}>Récompense de session :</p>
+                    {sessionReward.map(reward => (
+                        <div
+                            key={reward.item}
+                            style={{ top: "10px" }}
+                            className="rewardItem"
+                        >
+                            <img
+                                src={`/+${reward.item === "Booster" ? "booster" : "fragment"}.png`}
+                                alt={reward.item}
+                            />
+                            <p>
+                                x{reward.quantity}
+                            </p>
+                        </div>
+                    ))}
                 </div>
                 </>
             }
