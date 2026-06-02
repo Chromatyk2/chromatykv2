@@ -406,21 +406,26 @@ function Fight() {
                             </div>
 
                         </div>
-                        <div style={{ visibility: onCatch ? "hidden" : "visible" }} className={`fightSpriteCard ${negative === 1 ? "shadowPokemon" : ""}`}>
-                            {negative === 1 &&
-                                [...Array(10)].map((_, i) => (
-                                    <span
-                                        key={i}
-                                        className="smokeParticle"
-                                        style={{
-                                            "--x": `${Math.random() * 80 - 40}px`,
-                                            "--delay": `${Math.random() * 4}s`,
-                                            "--duration": `${4 + Math.random() * 3}s`,
-                                            "--size": `${20 + Math.random() * 30}px`,
-                                        }}
-                                    />
-                                ))}
-                            <img src={`/Sprites/${shiny === 1 ? "shiny" : "normal"}/${pokemon.number}.gif`} alt="" />
+                        <div
+                            style={{ visibility: onCatch ? "hidden" : "visible" }}
+                            className={`fightSpriteCard ${negative === 1 ? "shadowPokemon flamePokemon" : ""
+                                }`}
+                        >
+                            {[...Array(15)].map((_, i) => (
+                                <span
+                                    key={i}
+                                    className="flameParticle"
+                                    style={{
+                                        "--delay": `${i * 0.15}s`,
+                                        "--x": `${Math.random() * 120 - 60}px`,
+                                    }}
+                                />
+                            ))}
+
+                            <img
+                                src={`/Sprites/${shiny === 1 ? "shiny" : "normal"}/${pokemon.number}.gif`}
+                                alt=""
+                            />
                         </div>
                         <div id={"ball"} style={{ display: onCatch ? "block" : "none", background: ballStyle }} class="pokeball"></div>
                             </>
