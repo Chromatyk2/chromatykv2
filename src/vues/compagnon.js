@@ -56,7 +56,7 @@ function Compagnon() {
         })
         .catch(console.error)
         .finally(() => setOnload(false));
-    }, []);
+    }, [onFight]);
     function filterGen(e) {
         setGen(e);
         if (e > 0) {
