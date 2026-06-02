@@ -21,9 +21,9 @@ export default function ShadowSmoke() {
                         result="noise"
                     >
                         <animate
-                            attributeName="baseFrequency"
-                            values="0.01;0.02;0.015;0.01"
-                            dur="8s"
+                            attributeName="seed"
+                            values="8;9;10;11;12;13;14;15"
+                            dur="12s"
                             repeatCount="indefinite"
                         />
                     </feTurbulence>
@@ -51,14 +51,6 @@ export default function ShadowSmoke() {
             {/* Couche noire */}
             <g filter="url(#shadowDistort)">
                 <g>
-                    <animateTransform
-                        attributeName="transform"
-                        type="rotate"
-                        from="0 300 300"
-                        to="360 300 300"
-                        dur="18s"
-                        repeatCount="indefinite"
-                    />
 
                     <ellipse
                         cx="300"
@@ -89,14 +81,6 @@ export default function ShadowSmoke() {
             {/* Couche rouge */}
             <g filter="url(#shadowDistort)">
                 <g>
-                    <animateTransform
-                        attributeName="transform"
-                        type="rotate"
-                        from="360 300 300"
-                        to="0 300 300"
-                        dur="12s"
-                        repeatCount="indefinite"
-                    />
 
                     <ellipse
                         cx="300"
