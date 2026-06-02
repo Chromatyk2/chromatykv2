@@ -15,18 +15,11 @@ export default function ShadowSmoke() {
                 >
                     <feTurbulence
                         type="fractalNoise"
-                        baseFrequency="0.01"
+                        baseFrequency="0.015"
                         numOctaves="4"
                         seed="8"
                         result="noise"
-                    >
-                        <animate
-                            attributeName="baseFrequency"
-                            values="0.01;0.02;0.015;0.01"
-                            dur="8s"
-                            repeatCount="indefinite"
-                        />
-                    </feTurbulence>
+                    />
 
                     <feDisplacementMap
                         in="SourceGraphic"
