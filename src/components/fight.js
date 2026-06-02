@@ -435,21 +435,23 @@ function ProgressBarFight(props) {
                         </span>
                     </div>
                 </div>
-                <div className={"rewardFightContainer"}>
-                    <p style={{width:"100%",margin:"0"}}>Récompense de session :</p>
-                    {sessionReward.map(reward => (
-                        <div
-                            key={reward.item}
-                            style={{ top: "10px" }}
-                            className="rewardItem"
-                        >
-                            <img src={reward.image} alt={reward.item} />
-                            <p>
-                                x{reward.quantity}
-                            </p>
-                        </div>
-                    ))}
-                </div>
+                {sessionReward.length > 0 &&
+                    <div className={"rewardFightContainer"}>
+                        <p style={{ width: "100%", margin: "0" }}>Récompense de session :</p>
+                        {sessionReward.map(reward => (
+                            <div
+                                key={reward.item}
+                                style={{ top: "10px" }}
+                                className="rewardItem"
+                            >
+                                <img src={reward.image} alt={reward.item} />
+                                <p>
+                                    x{reward.quantity}
+                                </p>
+                            </div>
+                        ))}
+                    </div>                    
+                }
                 </>
             }
         </div>
