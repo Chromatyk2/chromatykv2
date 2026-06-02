@@ -1,82 +1,128 @@
-export default function ShadowSmoke() {
-    const smoke = [];
+import { useEffect, useRef } from "react";
 
-    for (let i = 0; i < 15; i++) {
-        const x = 280 + Math.random() * 40;
-        const duration = 3 + Math.random() * 3;
-        const delay = Math.random() * 5;
+export default function ShadowFlames() {
+    const canvasRef = useRef(null);
 
-        const drift1 = (Math.random() - 0.5) * 30;
-        const drift2 = (Math.random() - 0.5) * 60;
-        const drift3 = (Math.random() - 0.5) * 80;
+    useEffect(() => {
+        const canvas = canvasRef.current;
+        const ctx = canvas.getContext("2d");
 
-        const isRed = Math.random() < 0.2;
+        const particles = [];
 
-        smoke.push(
-            <g key={i}>
-                <animateTransform
-                    attributeName="transform"
-                    type="translate"
-                    values={`
-                        0 0;
-                        ${drift1} -40;
-                        ${drift2} -100;
-                        ${drift3} -180
-                    `}
-                    dur={`${duration}s`}
-                    begin={`${delay}s`}
-                    repeatCount="indefinite"
-                />
+        canvas.width = 400;
+        canvas.height = 400;
 
-                <animate
-                    attributeName="opacity"
-                    values="1;0.8;0.4;0"
-                    dur={`${duration}s`}
-                    begin={`${delay}s`}
-                    repeatCount="indefinite"
-                />
+        class Particle {
+            constructor() {
+                this.x = 200 + (Math.random() - 0.5) * 40;
+                this.y = 250;
 
-                <animateTransform
-                    attributeName="transform"
-                    additive="sum"
-                    type="scale"
-                    values="
-                        0.5;
-                        1;
-                        1.5;
-                        2
-                    "
-                    dur={`${duration}s`}
-                    begin={`${delay}s`}
-                    repeatCount="indefinite"
-                />
+                this.size = 10 + Math.random() * 25;
 
-                <ellipse
-                    cx={x}
-                    cy="320"
-                    rx={isRed ? 18 : 25}
-                    ry={isRed ? 25 : 35}
-                    fill={isRed ? "#aa0000" : "#000000"}
-                />
-            </g>
-        );
-    }
+                this.vx = (Math.random() - 0.5) * 1.5;
+                this.vy = -1 - Math.random() * 2;
+
+                this.life = 100;
+                this.maxLife = this.life;
+
+                this.red = Math.random() < 0.25;
+            }
+
+            update() {
+                this.x += this.vx;
+
+                this.x += Math.sin(this.life * 0.1) * 0.4;
+
+                this.y += this.vy;
+
+                this.size += 0.15;
+
+                this.life--;
+            }
+
+            draw() {
+                const alpha = this.life / this.maxLife;
+
+                ctx.beginPath();
+
+                const gradient = ctx.createRadialGradient(
+                    this.x,
+                    this.y,
+                    0,
+                    this.x,
+                    this.y,
+                    this.size
+                );
+
+                if (this.red) {
+                    gradient.addColorStop(
+                        0,
+                        `rgba(255,0,0,${alpha})`
+                    );
+
+                    gradient.addColorStop(
+                        1,
+                        `rgba(120,0,0,0)`
+                    );
+                } else {
+                    gradient.addColorStop(
+                        0,
+                        `rgba(0,0,0,${alpha})`
+                    );
+
+                    gradient.addColorStop(
+                        1,
+                        `rgba(0,0,0,0)`
+                    );
+                }
+
+                ctx.fillStyle = gradient;
+
+                ctx.arc(
+                    this.x,
+                    this.y,
+                    this.size,
+                    0,
+                    Math.PI * 2
+                );
+
+                ctx.fill();
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(
+                0,
+                0,
+                canvas.width,
+                canvas.height
+            );
+
+            if (particles.length < 150) {
+                particles.push(new Particle());
+            }
+
+            for (let i = particles.length - 1; i >= 0; i--) {
+                const p = particles[i];
+
+                p.update();
+                p.draw();
+
+                if (p.life <= 0) {
+                    particles.splice(i, 1);
+                }
+            }
+
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+    }, []);
 
     return (
-        <svg
-            className="shadowSmoke"
-            viewBox="0 0 600 600"
-            preserveAspectRatio="none"
-        >
-            <defs>
-                <filter id="smokeBlur">
-                    <feGaussianBlur stdDeviation="4" />
-                </filter>
-            </defs>
-
-            <g filter="url(#smokeBlur)">
-                {smoke}
-            </g>
-        </svg>
+        <canvas
+            ref={canvasRef}
+            className="shadowFlames"
+        />
     );
 }

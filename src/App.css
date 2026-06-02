@@ -717,14 +717,15 @@ fightActionsFlee img {
         filter: saturate(1.2) invert(1) grayscale(0.7) hue-rotate(200deg) drop-shadow(0 0 10px rgba(0,0,0,.9)) drop-shadow(0 0 20px rgba(40,0,0,.8));
     }
 }
-.shadowSmoke {
+.shadowFlames {
     position: absolute;
-    left: -120px;
-    top: -120px;
-    width: calc(100% + 240px);
-    height: calc(100% + 240px);
+    left: 50%;
+    top: 50%;
+    width: 400px;
+    height: 400px;
+    transform: translate(-50%, -50%);
     pointer-events: none;
-    z-index: 3;
+    z-index: 1;
 }
 
 .fightActions p {
