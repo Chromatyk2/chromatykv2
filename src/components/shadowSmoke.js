@@ -1,142 +1,143 @@
-import { useEffect, useRef } from "react";
-
-export default function ShadowFlames() {
-    const canvasRef = useRef(null);
-
-
-    useEffect(() => {
-        const canvas = canvasRef.current;
-        const ctx = canvas.getContext("2d");
-
-        const particles = [];
-
-        canvas.width = 400;
-        canvas.height = 400;
-
-        class Particle {
-            constructor() {
-                const emitters = [
-                    { x: 190, y: 220 },
-                    { x: 210, y: 220 },
-                    { x: 200, y: 240 },
-                ];
-
-                const emitter =
-                    emitters[Math.floor(Math.random() * emitters.length)];
-
-                this.x = emitter.x;
-                this.y = emitter.y;
-                this.x = 200 + (Math.random() - 0.5) * 10;
-                this.y = 220 + (Math.random() - 0.5) * 10;
-
-                this.size = 2 + Math.random() * 4;
-
-                this.vx = (Math.random() - 0.5) * 1.5;
-                this.vy = -1 - Math.random() * 2;
-
-                this.life = 100;
-                this.maxLife = this.life;
-
-                this.red = Math.random() < 0.25;
-            }
-
-            update() {
-                this.x += this.vx;
-                this.x += Math.sin(this.life * 0.08) * 0.8;
-
-                this.y += this.vy;
-
-                this.size += 0.3;
-
-                this.life--;
-            }
-
-            draw() {
-                const alpha = Math.min(
-                    1,
-                    (this.life / this.maxLife) * 1.5
-                );
-
-                ctx.beginPath();
-
-                const gradient = ctx.createRadialGradient(
-                    this.x,
-                    this.y,
-                    0,
-                    this.x,
-                    this.y,
-                    this.size
-                );
-
-                if (this.red) {
-                    gradient.addColorStop(
-                        0,
-                        `rgba(0,0,0,${alpha * 1.5})`
-                    );
-
-                    gradient.addColorStop(
-                        1,
-                        `rgba(120,0,0,0)`
-                    );
-                } else {
-                    gradient.addColorStop(
-                        0,
-                        `rgba(0,0,0,${alpha * 1.5})`
-                    );
-
-                    gradient.addColorStop(
-                        1,
-                        `rgba(0,0,0,0)`
-                    );
-                }
-
-                ctx.fillStyle = gradient;
-
-                ctx.arc(
-                    this.x,
-                    this.y,
-                    this.size,
-                    0,
-                    Math.PI * 2
-                );
-
-                ctx.fill();
-            }
-        }
-
-        function animate() {
-            ctx.clearRect(
-                0,
-                0,
-                canvas.width,
-                canvas.height
-            );
-
-            if (particles.length < 150) {
-                particles.push(new Particle());
-            }
-
-            for (let i = particles.length - 1; i >= 0; i--) {
-                const p = particles[i];
-
-                p.update();
-                p.draw();
-
-                if (p.life <= 0) {
-                    particles.splice(i, 1);
-                }
-            }
-
-            requestAnimationFrame(animate);
-        }
-
-        animate();
-    }, []);
-
+export default function ShadowSmoke() {
     return (
-        <canvas
-            ref={canvasRef}
-            className="shadowFlames"
-        />
+        <svg
+            className="shadowSmoke"
+            viewBox="0 0 600 600"
+            preserveAspectRatio="none"
+        >
+            <defs>
+                <filter
+                    id="shadowDistort"
+                    x="-50%"
+                    y="-50%"
+                    width="200%"
+                    height="200%"
+                >
+                    <feTurbulence
+                        type="fractalNoise"
+                        baseFrequency="0.01"
+                        numOctaves="4"
+                        seed="8"
+                        result="noise"
+                    >
+                        <animate
+                            attributeName="baseFrequency"
+                            values="0.01;0.02;0.015;0.01"
+                            dur="8s"
+                            repeatCount="indefinite"
+                        />
+                    </feTurbulence>
+
+                    <feDisplacementMap
+                        in="SourceGraphic"
+                        in2="noise"
+                        scale="70"
+                    />
+                </filter>
+
+                <radialGradient id="shadowRed">
+                    <stop offset="0%" stopColor="#ff1a1a" stopOpacity="0.7" />
+                    <stop offset="40%" stopColor="#880000" stopOpacity="0.4" />
+                    <stop offset="100%" stopColor="#000000" stopOpacity="0" />
+                </radialGradient>
+
+                <radialGradient id="shadowBlack">
+                    <stop offset="0%" stopColor="#000000" stopOpacity="0.8" />
+                    <stop offset="60%" stopColor="#111111" stopOpacity="0.3" />
+                    <stop offset="100%" stopColor="#000000" stopOpacity="0" />
+                </radialGradient>
+            </defs>
+
+            {/* Couche noire */}
+            <g filter="url(#shadowDistort)">
+                <g>
+                    <animateTransform
+                        attributeName="transform"
+                        type="rotate"
+                        from="0 300 300"
+                        to="360 300 300"
+                        dur="18s"
+                        repeatCount="indefinite"
+                    />
+
+                    <ellipse
+                        cx="300"
+                        cy="300"
+                        rx="160"
+                        ry="230"
+                        fill="url(#shadowBlack)"
+                    />
+
+                    <ellipse
+                        cx="220"
+                        cy="250"
+                        rx="100"
+                        ry="180"
+                        fill="url(#shadowBlack)"
+                    />
+
+                    <ellipse
+                        cx="380"
+                        cy="260"
+                        rx="110"
+                        ry="170"
+                        fill="url(#shadowBlack)"
+                    />
+                </g>
+            </g>
+
+            {/* Couche rouge */}
+            <g filter="url(#shadowDistort)">
+                <g>
+                    <animateTransform
+                        attributeName="transform"
+                        type="rotate"
+                        from="360 300 300"
+                        to="0 300 300"
+                        dur="12s"
+                        repeatCount="indefinite"
+                    />
+
+                    <ellipse
+                        cx="300"
+                        cy="260"
+                        rx="130"
+                        ry="190"
+                        fill="url(#shadowRed)"
+                    />
+
+                    <ellipse
+                        cx="240"
+                        cy="330"
+                        rx="90"
+                        ry="120"
+                        fill="url(#shadowRed)"
+                    />
+
+                    <ellipse
+                        cx="370"
+                        cy="340"
+                        rx="80"
+                        ry="130"
+                        fill="url(#shadowRed)"
+                    />
+                </g>
+            </g>
+
+            {/* Noyau central */}
+            <circle
+                cx="300"
+                cy="300"
+                r="90"
+                fill="rgba(0,0,0,0.35)"
+            >
+                <animate
+                    attributeName="r"
+                    values="90;105;90"
+                    dur="2s"
+                    repeatCount="indefinite"
+                />
+            </circle>
+        </svg>
     );
 }
