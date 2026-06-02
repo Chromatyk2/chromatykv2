@@ -347,7 +347,7 @@ function ProgressBarFight(props) {
                         </div>
                     }
                         <div style={{ width: "30%" }}>
-                        <p style={{margin:0}} className="fightName">{props.compagnon[0].pokemon}</p>
+                        <p style={{ margin: 0, fontSize: "17px" }} className="fightName">{props.compagnon[0].pokemon}</p>
                             <div className="tierFight">
                             Nv.{curentLevel}
                             </div>
@@ -369,7 +369,7 @@ function ProgressBarFight(props) {
                             <div className="fightSpriteCard" style={{ width: "100%", backgroundSize: "contain", backgroundImage: `url(/versus.png)` }} />
                         </div>
                         <div style={{ position:"relative", width: "30%" }}>
-                        <p style={{ margin: 0 }} className="fightName">{pokemon.name}</p>
+                        <p style={{ margin: 0, fontSize: "17px" }} className="fightName">{pokemon.name}</p>
                         <div className="hpBarContainer">
                             <div
                                 className="hpBar"
