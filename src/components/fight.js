@@ -283,7 +283,7 @@ function ProgressBarFight(props) {
                             <div className="tierFight">
                             Nv.{curentLevel}
                             </div>
-                        <div className={`fightSpriteCard ${props.compagnon[0].negative === 1 ? "shadowPokemon" : ""}`}>
+                        <div className={`fightSpriteCard ${props.compagnon[0].negative === 1 ? "shadowPokemon" : ""} ${!hasAppeared ? "spawnInvert" : ""} ${isAttacking && !isKO ? "fightAttack" : ""}`}>
                             {props.compagnon[0].negative === 1 && (
                                 <>
                                     <div className="shadowAura" />
@@ -301,7 +301,7 @@ function ProgressBarFight(props) {
                                     </div>
                                 </>
                             )}
-                            <img className={`fightSpriteCardInvert ${!hasAppeared ? "spawnInvert" : ""} ${isAttacking && !isKO ? "fightAttack" : ""}`} src={`/Sprites/${props.compagnon[0].shiny === 1 ? "shiny" : "normal"}/${props.compagnon[0].number}.gif`} alt="" />
+                            <img src={`/Sprites/${props.compagnon[0].shiny === 1 ? "shiny" : "normal"}/${props.compagnon[0].number}.gif`} alt="" />
                         </div>
                     </div>
                         <div style={{ width: "33%" }}>
