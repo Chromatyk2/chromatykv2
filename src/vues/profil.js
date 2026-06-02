@@ -113,26 +113,28 @@ function Profil() {
                                     Axios.get("/api/getMaxLevelCompagnon/" + user)
                                         .then((response) => {
                                             setCompagnonList(response.data);
-                                            Axios
-                                                .get("/api/getActiveCompagnon/" + user + "/" + response.data[0].compagnon)
-                                                .then(function (response) {
-                                                    setCompagnon(response.data);
-                                                    Axios.get("/api/getAllExpedition/" + user)
-                                                        .then((response) => {
-                                                            setExpedition(response.data.find((item) => item.active === 1))
-                                                            setAllExpedition(response.data);
-                                                            if (response.data.some((item) => item.active === 1)) {
-                                                                let progress = 0;
-                                                                const startDate = new Date(response.data.find((item) => item.active === 1).date);
-                                                                const endDate = new Date(response.data.find((item) => item.active === 1).endDate);
-                                                                const now = new Date();
-                                                                const totalDuration = endDate - startDate;
-                                                                const elapsed = now - startDate;
-                                                                progress = (elapsed / totalDuration) * 100;
-                                                                progress = Math.max(0, Math.min(100, progress));
-                                                                setProgressExpedition(progress);
-                                                            }
-                                                        })
+                                            if (response.data.length > 0) {
+                                                Axios
+                                                    .get("/api/getActiveCompagnon/" + user + "/" + response.data[0].compagnon)
+                                                    .then(function (response) {
+                                                        setCompagnon(response.data);
+                                                    })
+                                            }
+                                            Axios.get("/api/getAllExpedition/" + user)
+                                                .then((response) => {
+                                                    setExpedition(response.data.find((item) => item.active === 1))
+                                                    setAllExpedition(response.data);
+                                                    if (response.data.some((item) => item.active === 1)) {
+                                                        let progress = 0;
+                                                        const startDate = new Date(response.data.find((item) => item.active === 1).date);
+                                                        const endDate = new Date(response.data.find((item) => item.active === 1).endDate);
+                                                        const now = new Date();
+                                                        const totalDuration = endDate - startDate;
+                                                        const elapsed = now - startDate;
+                                                        progress = (elapsed / totalDuration) * 100;
+                                                        progress = Math.max(0, Math.min(100, progress));
+                                                        setProgressExpedition(progress);
+                                                    }
                                                 })
                                         })
                                 })
