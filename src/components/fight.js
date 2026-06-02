@@ -292,7 +292,6 @@ function ProgressBarFight(props) {
                                         <span />
                                         <span />
                                     </div>
-                                    <div className="energyRing ring1" />
                                     <div className="lightningBurst">
                                         <span />
                                         <span />
