@@ -266,8 +266,15 @@ function Compagnon() {
                                             <div className="tierFight">
                                                 Nv.{compagnon[0].level}
                                             </div>
-                                            <div className="fightSpriteCard" style={{ filter: compagnon[0].negative === 1 ? "invert(1)" : "none", backgroundSize: "contain", backgroundImage: `url(/Sprites/${compagnon[0].shiny === 1 ? "shiny" : "normal"}/${compagnon[0].number}.gif)` }} />
-                                        </>
+                                    <div className="fightSpriteCard">
+                                        <img
+                                            src={`/Sprites/${compagnon[0].shiny === 1 ? "shiny" : "normal"}/${compagnon[0].number}.gif`}
+                                            alt=""
+                                            style={{
+                                                filter: compagnon[0].negative === 1 ? "invert(1)" : "none"
+                                            }}
+                                        />
+                                    </div>                                        </>
                                     )}
                                 {canShow && (
                                     <>
