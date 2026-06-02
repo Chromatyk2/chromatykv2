@@ -266,7 +266,7 @@ function Compagnon() {
                                             <div className="tierFight">
                                                 Nv.{compagnon[0].level}
                                             </div>
-                                    <div className="fightSpriteCard">
+                                    <div className={`fightSpriteCard ${compagnon[0].negative === 1 ? "shadowPokemon" : ""}`}>
                                         <img
                                             src={`/Sprites/${compagnon[0].shiny === 1 ? "shiny" : "normal"}/${compagnon[0].number}.gif`}
                                             alt=""
