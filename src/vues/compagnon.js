@@ -257,41 +257,35 @@ function Compagnon() {
                                             <div style={{ top: "10px" }} onClick={chooseCompgnon} className={"fightActionsFlee"}>
                                                 < img src={"/doll.png"} />
                                                 <p>Changer</p>
-                                    </div>
-                                        <div style={{ top: "80px" }} onClick={startFight} className={"fightActionsFlee"}>
-                                            < img src={"/exp.png"} />
-                                            <p>XP</p>
-                                        </div>
-                                            <p className="fightName">{compagnon[0].pokemon}</p>
-                                            <div className="tierFight">
-                                                Nv.{compagnon[0].level}
                                             </div>
-                                    <div className={`fightSpriteCard ${compagnon[0].negative === 1 ? "shadowPokemon" : ""}`}>
-                                        {compagnon[0].negative === 1 && (
-                                            <>
-                                                <div className="shadowAura" />
-                                                <div className="redCloudsBack">
-                                                    <span />
-                                                    <span />
-                                                    <span />
+                                                <div style={{ top: "80px" }} onClick={startFight} className={"fightActionsFlee"}>
+                                                    < img src={"/exp.png"} />
+                                                    <p>XP</p>
                                                 </div>
-                                                <div className="energyRing ring1" />
-
-                                                <div className="lightningBurst">
-                                                    <span />
-                                                    <span />
-                                                    <span />
-                                                    <span />
-                                                </div>
-                                            </>
-                                        )}
-
-                                                <img
-                                                    src={`/Sprites/${compagnon[0].shiny === 1 ? "shiny" : "normal"
-                                                        }/${compagnon[0].number}.gif`}
-                                                    alt=""
-                                        />
-                                            </div>
+                                                    <p className="fightName">{compagnon[0].pokemon}</p>
+                                                    <div className="tierFight">
+                                                        Nv.{compagnon[0].level}
+                                                    </div>
+                                            <div className={`fightSpriteCard ${compagnon[0].negative === 1 ? "shadowPokemon" : ""}`}>
+                                                {compagnon[0].negative === 1 && (
+                                                    <>
+                                                        <div className="shadowAura" />
+                                                        <div className="redCloudsBack">
+                                                            <span />
+                                                            <span />
+                                                            <span />
+                                                        </div>
+                                                        <div className="energyRing ring1" />
+                                                        <div className="lightningBurst">
+                                                            <span />
+                                                            <span />
+                                                            <span />
+                                                            <span />
+                                                        </div>
+                                                    </>
+                                                )}
+                                                <img src={`/Sprites/${compagnon[0].shiny === 1 ? "shiny" : "normal"}/${compagnon[0].number}.gif`}alt=""/>
+                                             </div>
                                         </>
                                     )}
                                 {canShow && (

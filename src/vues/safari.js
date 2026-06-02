@@ -405,9 +405,28 @@ function Fight() {
                             </div>
 
                         </div>
-                                <div style={{ filter: negative === 1 && "invert(1)", backgroundSize: onCatch ? "0" : "contain", backgroundImage: `url(/Sprites/${shiny === 1 ? "shiny" : "normal"}/${pokemon.number}.gif)` }} className={"fightSpriteCard"}>
-                                    <div id={"ball"} style={{ display: onCatch ? "block" : "none", background: ballStyle }} class="pokeball"></div>
-                                </div>
+                        <div className={`fightSpriteCard ${negative === 1 ? "shadowPokemon" : ""}`}>
+                            {negative === 1 && (
+                                <>
+                                    <div className="shadowAura" />
+                                    <div className="redCloudsBack">
+                                        <span />
+                                        <span />
+                                        <span />
+                                    </div>
+                                    <div className="energyRing ring1" />
+                                    <div className="lightningBurst">
+                                        <span />
+                                        <span />
+                                        <span />
+                                        <span />
+                                    </div>
+                                </>
+                            )}
+                            <img src={`/Sprites/${shiny === 1 ? "shiny" : "normal"}/${pokemon.number}.gif`} alt="" />
+                            <div id={"ball"} style={{ display: onCatch ? "block" : "none", background: ballStyle }} class="pokeball"></div>
+
+                        </div>
                             </>
                         }
                         {pokemon &&
