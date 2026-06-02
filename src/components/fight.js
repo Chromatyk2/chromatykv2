@@ -79,23 +79,27 @@ function ProgressBarFight(props) {
         const interval = setInterval(() => {
 
                 setIsAttacking(true);
+                const tierMultiplier =
+                    props.compagnon[0].tier === 4 ? 3 :
+                        props.compagnon[0].tier === 3 ? 2 :
+                            props.compagnon[0].tier === 2 ? 1.5 :
+                                1;
                 const baseAttack =
-                    props.compagnon[0].tier === 4 ? 40 :
-                        props.compagnon[0].tier === 3 ? 20 :
-                            props.compagnon[0].tier === 2 ? 10 :
-                                5;
-                const attack =
-                    baseAttack + Math.floor(props.compagnon[0].level / 4);
+                    11 + (props.compagnon[0].level - 1) * (22.33 / 99);
+
+                const attack = baseAttack * tierMultiplier;
+
                 const minDamage = Math.floor(attack * 0.8);
                 const maxDamage = Math.floor(attack * 1.2);
 
                 let damage = Math.floor(
                     Math.random() * (maxDamage - minDamage + 1)
                 ) + minDamage;
+
                 const critical = Math.random() < 0.05;
                 if (critical) {
                     damage *= 2;
-             }
+                }
                 showDamage(damage, critical);
                 createHitParticles()
                 setCurrentHp(prevHp => Math.max(0, prevHp - damage));
@@ -114,65 +118,62 @@ function ProgressBarFight(props) {
             currentHp <= 0 &&
             !isKO &&
             pokemon) {
+            const userId = cookies.user.data[0].id;
+            const tierMultiplier =
+                pokemon.tier === 4 ? 2 :
+                    pokemon.tier === 3 ? 1.75 :
+                        pokemon.tier === 2 ? 1.5 :
+                            1.25;
 
-            if (Math.random() < 0.5) {
-                const userId = cookies.user.data[0].id;
-                const tierMultiplier =
-                    pokemon.tier === 4 ? 2 :
-                        pokemon.tier === 3 ? 1.75 :
-                            pokemon.tier === 2 ? 1.5 :
-                                1.25;
+            const packChance = 0.000142 * (tierMultiplier / 2);
+            const fragmentChance = 0.000569 * (tierMultiplier / 2);
+            const boosterChance = 0.00341 * (tierMultiplier / 2);
 
-                const packChance = 0.00025 * tierMultiplier;
-                const fragmentChance = 0.0005 * tierMultiplier;
-                const boosterChance = 0.001 * tierMultiplier;
+            const roll = Math.random();
 
-                const roll = Math.random();
+            let reward = null;
 
-                let reward = null;
+            if (roll < packChance) {
+                reward = {
+                    item: "Pack Safari",
+                    slug: "box",
+                    image: "/box.png"
+                };
+            } else if (roll < packChance + fragmentChance) {
+                reward = {
+                    item: "Fragement de Pack",
+                    slug: "fragement",
+                    image: "/fragment.png"
+                };
+            } else if (roll < packChance + fragmentChance + boosterChance) {
+                reward = {
+                    item: "Booster",
+                    slug: "booster",
+                    image: "/booster.png"
+                };
+            }
 
-                if (roll < packChance) {
-                    reward = {
-                        item: "Pack Safari",
-                        slug: "box",
-                        image: "/box.png"
-                    };
-                } else if (roll < packChance + fragmentChance) {
-                    reward = {
-                        item: "Fragement de Pack",
-                        slug: "fragement",
-                        image: "/fragment.png"
-                    };
-                } else if (roll < packChance + fragmentChance + boosterChance) {
-                    reward = {
-                        item: "Booster",
-                        slug: "booster",
-                        image: "/booster.png"
-                    };
-                }
+            if (reward) {
+                Axios.post('/api/addCandy', {
+                    user: cookies.user.data[0].id,
+                    item: reward.item,
+                    slug: reward.slug,
+                    quantity: 1
+                });
 
-                if (reward) {
-                    Axios.post('/api/addCandy', {
-                        user: cookies.user.data[0].id,
-                        item: reward.item,
-                        slug: reward.slug,
-                        quantity: 1
-                    });
+                setSessionReward(prev => {
+                    const existing = prev.find(r => r.item === reward.item);
 
-                    setSessionReward(prev => {
-                        const existing = prev.find(r => r.item === reward.item);
+                    if (existing) {
+                        return prev.map(r =>
+                            r.item === reward.item
+                                ? { ...r, quantity: r.quantity + 1 }
+                                : r
+                        );
+                    }
 
-                        if (existing) {
-                            return prev.map(r =>
-                                r.item === reward.item
-                                    ? { ...r, quantity: r.quantity + 1 }
-                                    : r
-                            );
-                        }
-
-                        return [...prev, { ...reward, quantity: 1 }];
-                    });
-                }
+                    return [...prev, { ...reward, quantity: 1 }];
+                });
             }
             setIsAttacking(false);
             setIsKO(true);
