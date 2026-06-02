@@ -575,7 +575,7 @@ p.levelProfil {
     border-radius: 10px;
     display: flex;
     flex-flow: column;
-    height: 61vh;
+    height: 540px;
     width: 75%;
     background-blend-mode: darken;
     position: relative;
