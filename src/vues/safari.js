@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Axios from 'axios'
 import '../App.css'
 import moment from "moment";
@@ -9,6 +9,7 @@ import ShadowSmoke from "../components/shadowSmoke";
 function Fight() {
     //Cookies
     const [cookies, setCookie] = useCookies();
+    const pokemonContainerRef = useRef(null);
     //Safari
     const [pokedex, setPokedex] = useState(false);
     const [onCatch, setOnCatch] = useState(false);
@@ -414,7 +415,7 @@ function Fight() {
                                         src={`/Sprites/${shiny === 1 ? "shiny" : "normal"}/${pokemon.number}.gif`}
                                         alt=""
                                     />
-                                </divref>
+                                </div>
                                 <div id={"ball"} style={{ display: onCatch ? "block" : "none", background: ballStyle }} class="pokeball"></div>
                             </>
                         }
