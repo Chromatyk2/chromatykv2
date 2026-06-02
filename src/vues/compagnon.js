@@ -270,8 +270,7 @@ function Compagnon() {
                                         {compagnon[0].negative === 1 && (
                                             <>
                                                 <div className="shadowAura" />
-                                                <div className="redClouds">
-                                                    <span />
+                                                <div className="redCloudsBack">
                                                     <span />
                                                     <span />
                                                     <span />
@@ -292,7 +291,12 @@ function Compagnon() {
                                                     src={`/Sprites/${compagnon[0].shiny === 1 ? "shiny" : "normal"
                                                         }/${compagnon[0].number}.gif`}
                                                     alt=""
-                                                />
+                                        />
+                                        <div className="redCloudsFront">
+                                            <span />
+                                            <span />
+                                            <span />
+                                        </div>
                                             </div>
                                         </>
                                     )}
