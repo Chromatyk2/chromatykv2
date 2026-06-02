@@ -411,12 +411,12 @@ function Fight() {
                                 </div>
                                 <div ref={pokemonContainerRef} style={{ visibility: onCatch ? "hidden" : "visible" }} className={`fightSpriteCard`}>
                             {negative === 1 && <ShadowSmoke targetRef={pokemonContainerRef} />}
-                                    <img
+                            <img className={negative === 1 ? " shadowPokemon" : ""}
                                         src={`/Sprites/${shiny === 1 ? "shiny" : "normal"}/${pokemon.number}.gif`}
                                         alt=""
                                     />
                                 </div>
-                        <div id={"ball"} style={{ display: onCatch ? "block" : "none", background: ballStyle }} className={`pokeball ${negative === 1 ? " shadowPokemon" : ""}`}></div>
+                                <div id={"ball"} style={{ display: onCatch ? "block" : "none", background: ballStyle }} class="pokeball"></div>
                             </>
                         }
                         {pokemon &&
