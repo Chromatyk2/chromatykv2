@@ -12,6 +12,8 @@
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.2",
     "@testing-library/user-event": "^13.5.0",
+    "@tsparticles/react": "^4.1.2",
+    "@tsparticles/slim": "^4.1.2",
     "axios": "^1.16.1",
     "color-thief-react": "^2.1.0",
     "colorthief": "^3.3.1",

@@ -3,6 +3,8 @@ import Axios from 'axios'
 import '../App.css'
 import moment from "moment";
 import { useCookies } from 'react-cookie';
+import ShadowSmoke from "../components/shadowSmoke";
+
 
 function Fight() {
     //Cookies
@@ -377,67 +379,43 @@ function Fight() {
                                     }
                                     {(shiny === 1 || negative === 1) && <img style={{ width: "30px", filter: negative === 1 ? "invert(1)" : "invert(0)" }} src={"/star.png"} alt={"Shiny"} />} {pokemon.name}</p>
                                 <div style={{ backgroundColor: pokemon.tier == 1 ? "#6d6d6c" : pokemon.tier == 2 ? "#21693a" : pokemon.tier == 3 ? "#744095" : "#bfa93a" }} className={"tierFight"}>Tier {pokemon.tier}</div>
-                        <div className="loveBarContainer">
+                                <div className="loveBarContainer">
 
-                            <div
-                                className="loveBar"
-                                style={{
-                                    width: `${(currentLove / maxLove) * 100}%`,
-                                    maxWidth:'100%'
-                                }}
-                            />
-
-                            <span className="loveText">
-                                {currentLove}/{maxLove}
-                            </span>
-
-                            <div className="heart">
-                                <div
-                                    className="heartInt"
-                                    style={{
-                                        background:
-                                            (currentLove / maxLove) * 100 < 30
-                                                ? "#ff5c8a"
-                                                : (currentLove / maxLove) * 100 < 70
-                                                    ? "#ff2d95"
-                                                    : "#ff1493"
-                                    }}
-                                />
-                            </div>
-
-                        </div>
-                        <div
-                            style={{ visibility: onCatch ? "hidden" : "visible" }}
-                            className={`fightSpriteCard ${negative === 1 ? "shadowPokemon flamePokemon" : ""
-                                }`}
-                        >
-                            {[...Array(15)].map((_, i) => (
-                                <>
-                                    <span
-                                        key={i}
-                                        className="flameParticleBack"
+                                    <div
+                                        className="loveBar"
                                         style={{
-                                            "--delay": `${i * 0.15}s`,
-                                            "--x": `${Math.random() * 120 - 60}px`,
+                                            width: `${(currentLove / maxLove) * 100}%`,
+                                            maxWidth:'100%'
                                         }}
                                     />
-                                    <span
-                                        key={i}
-                                        className="flameParticleFront"
-                                        style={{
-                                            "--delay": `${i * 0.15}s`,
-                                            "--x": `${Math.random() * 120 - 60}px`,
-                                        }}
-                                    />
-                                </>
-                            ))}
 
-                            <img
-                                src={`/Sprites/${shiny === 1 ? "shiny" : "normal"}/${pokemon.number}.gif`}
-                                alt=""
-                            />
-                        </div>
-                        <div id={"ball"} style={{ display: onCatch ? "block" : "none", background: ballStyle }} class="pokeball"></div>
+                                    <span className="loveText">
+                                        {currentLove}/{maxLove}
+                                    </span>
+
+                                    <div className="heart">
+                                        <div
+                                            className="heartInt"
+                                            style={{
+                                                background:
+                                                    (currentLove / maxLove) * 100 < 30
+                                                        ? "#ff5c8a"
+                                                        : (currentLove / maxLove) * 100 < 70
+                                                            ? "#ff2d95"
+                                                            : "#ff1493"
+                                            }}
+                                        />
+                                    </div>
+
+                                </div>
+                        <div style={{ visibility: onCatch ? "hidden" : "visible" }} className={`fightSpriteCard ${negative === 1 ? "shadowPokemon" : ""}`}>
+                            {negative === 1 && <ShadowSmoke />}
+                                    <img
+                                        src={`/Sprites/${shiny === 1 ? "shiny" : "normal"}/${pokemon.number}.gif`}
+                                        alt=""
+                                    />
+                                </div>
+                                <div id={"ball"} style={{ display: onCatch ? "block" : "none", background: ballStyle }} class="pokeball"></div>
                             </>
                         }
                         {pokemon &&
