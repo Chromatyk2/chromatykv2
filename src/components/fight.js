@@ -145,7 +145,7 @@ function ProgressBarFight(props) {
                     const roll = Math.random();
                     let reward = null;
                     // 1/1000
-                    if (roll < 1 / 1000) {
+                    if (roll < 0.0005) {
                         reward = {
                             item: "Pack Safari",
                             slug: "box",
@@ -153,7 +153,7 @@ function ProgressBarFight(props) {
                         };
                     }
                     // 1/500
-                    else if (roll < (1 / 1000) + (1 / 500)) {
+                    else if (roll < 0.0015) {
                         reward = {
                             item: "Fragement de Pack",
                             slug: "fragement",
@@ -161,7 +161,7 @@ function ProgressBarFight(props) {
                         };
                     }
                     // 1/100
-                    else if (roll < (1 / 1000) + (1 / 500) + (1 / 100)) {
+                    else if (roll < 0.0035) {
                         reward = {
                             item: "Booster",
                             slug: "booster",
