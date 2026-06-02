@@ -385,7 +385,7 @@ function ProgressBarFight(props) {
                                 }}
                             />
                             <span className="hpText">
-                                {currentHp}/{maxHp} PV
+                                {currentHp} PV
                             </span>
                         </div>
                         <div style={{ width: "50%", display: "block", margin: "auto", backgroundColor: pokemon.tier == 1 ? "#6d6d6c" : pokemon.tier == 2 ? "#21693a" : pokemon.tier == 3 ? "#744095" : "#bfa93a" }} className={"tierFight"}>Tier {pokemon.tier}</div>
