@@ -382,7 +382,8 @@ function Fight() {
                             <div
                                 className="loveBar"
                                 style={{
-                                    width: `${(currentLove / maxLove) * 100}%`
+                                    width: `${(currentLove / maxLove) * 100}%`,
+                                    maxWidth:'100%'
                                 }}
                             />
 

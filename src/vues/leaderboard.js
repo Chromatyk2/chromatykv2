@@ -71,7 +71,7 @@ function Leaderboard() {
                                     <div className={"profilHeader"}>
                                         <div className={"profilInfos"}>
                                             <p style={{ fontSize: "14px", textAlign: "end" }}>{val.pokemon}</p>
-                                            <p style={{ fontSize: "12px", textAlign: "end" }} className={"levelProfil"}>{val.shiny === 1 ? "Shiny" : val.negative === 1 ? "Négatif" : "Classique"}</p>
+                                            <p style={{ fontSize: "12px", textAlign: "end" }} className={"levelProfil"}>{val.shiny === 1 ? "Shiny" : val.negative === 1 ? "Obscur" : "Classique"}</p>
                                         </div>
                                             <div style={{ width: "40px", height: "40px", filter: val.negative === 1 ? "invert(1)" : "invert(0)", backgroundColor: val.color, backgroundImage: `url("/Sprites/${val.shiny === 1 ? "Shiny" : "Normal"}/${val.number}.gif")`, backgroundRepeat: "no-repeat", backgroundSize: "contain", backgroundPosition: "center" }} className={"compagnonPicture"}>
                                         </div>

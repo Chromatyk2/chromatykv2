@@ -392,7 +392,7 @@ function Profil() {
                             <div className={"profilHeader"}>
                                 <div className={"profilInfos"}>
                                     <p style={{ textAlign: "end" }}>{compagnon[0].pokemon}</p>
-                                    <p style={{ textAlign: "end" }} className={"levelProfil"}>{compagnon[0].shiny === 1 ? "Shiny" : compagnon[0].negative === 1 ? "Négatif" : "Classique"}</p>
+                                    <p style={{ textAlign: "end" }} className={"levelProfil"}>{compagnon[0].shiny === 1 ? "Shiny" : compagnon[0].negative === 1 ? "Obscur" : "Classique"}</p>
                                 </div>
                                 <div style={{ filter: compagnon[0].negative === 1 ? "invert(1)" : "invert(0)", backgroundColor: color, backgroundImage: `url("/Sprites/${compagnon[0].shiny === 1 ? "Shiny" : "Normal"}/${compagnon[0].number}.gif")`, backgroundRepeat: "no-repeat", backgroundSize: "contain", backgroundPosition: "center" }} className={"compagnonPicture"}>
                                 </div>
@@ -452,7 +452,7 @@ function Profil() {
                                                 <div className={"boxProfilLarge"}>
                                                     <div className={"profilHeader"}>
                                                         <div className={"profilDex"}>
-                                                            <p>Pokédex Négatif</p>
+                                                            <p>Pokédex Obscur</p>
                                                             <p className={"levelProfil"}>{profil.filter(item => (item.negative === 1)).length}  / {maxPokedex}</p>
                                                         </div>
                                                         <img src={"/Badge/lv" + imagesShiny[Math.min(imagesShiny.length - 1, Math.floor((profil.filter(item => (item.negative === 1)).length / maxPokedex) * imagesShiny.length))] + "n.png"} />
@@ -505,8 +505,26 @@ function Profil() {
                                     {expedition &&
                                         <div style={{backgroundImage: `url(/expeditionBack.png)`}} className={"fightContainer"}>
                                             <p>{expedition.pokemon}</p>
-                                            <div loading={"lazy"} style={{ width: "250px", height: "250px", filter: expedition.negative === 1 ? "invert(1)" : "invert(0)", backgroundRepeat: "no-repeat", backgroundImage: `url("/Sprites/${expedition.shiny === 1 ? "Shiny" : "Normal"}/${expedition.number}.gif")`, backgroundSize: "contain", backgroundPosition: "center" }}></div>
-                                            <div className="hpBarContainer">
+                                            <div className={`fightSpriteCard ${compagnon[0].negative === 1 ? "shadowPokemon" : ""}`}>
+                                                {compagnon[0].negative === 1 && (
+                                                    <>
+                                                        <div className="shadowAura" />
+                                                        <div className="redCloudsBack">
+                                                            <span />
+                                                            <span />
+                                                            <span />
+                                                        </div>
+                                                        <div className="energyRing ring1" />
+                                                        <div className="lightningBurst">
+                                                            <span />
+                                                            <span />
+                                                            <span />
+                                                            <span />
+                                                        </div>
+                                                    </>
+                                                )}
+                                                <img src={`/Sprites/${compagnon[0].shiny === 1 ? "shiny" : "normal"}/${compagnon[0].number}.gif`} alt="" />
+                                            </div>                                            <div className="hpBarContainer">
                                                 <div
                                                     className="hpBar"
                                                     style={{

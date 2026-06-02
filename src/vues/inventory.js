@@ -164,7 +164,7 @@ function Inventory(props) {
 
                         if (honeyTier < 1 / 6000) {
 
-                            var item = "Miel Négatif";
+                            var item = "Miel Obscure";
                             var slug = "negative";
 
                         } else if (honeyTier < (1 / 6000) + (1 / 3000)) {

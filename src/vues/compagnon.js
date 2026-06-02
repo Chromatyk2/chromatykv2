@@ -214,7 +214,7 @@ function Compagnon() {
                                             <div className={"genFilter"}>
                                                 <button className={isShiny === 0 && isNegative === 0 && "active"} onClick={() => filterForm(0)}>Normal</button>
                                                 <button className={isShiny === 1 && "active"} onClick={() => filterForm("Shiny")}>Shiny</button>
-                                                <button className={isNegative === 1 && "active"} onClick={() => filterForm(1)}>Négatif</button>
+                                                <button className={isNegative === 1 && "active"} onClick={() => filterForm(1)}>Obscur</button>
                                             </div>
                                             <div className={"genFilter"}>
                                                 <button className={gen === 0 && "active"} onClick={() => filterGen(0)} value={0}>Toutes</button>
