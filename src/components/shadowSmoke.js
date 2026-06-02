@@ -3,6 +3,7 @@ import { useEffect, useRef } from "react";
 export default function ShadowFlames() {
     const canvasRef = useRef(null);
 
+
     useEffect(() => {
         const canvas = canvasRef.current;
         const ctx = canvas.getContext("2d");
@@ -14,10 +15,21 @@ export default function ShadowFlames() {
 
         class Particle {
             constructor() {
-                this.x = 200 + (Math.random() - 0.5) * 40;
-                this.y = 250;
+                const emitters = [
+                    { x: 190, y: 220 },
+                    { x: 210, y: 220 },
+                    { x: 200, y: 240 },
+                ];
 
-                this.size = 10 + Math.random() * 25;
+                const emitter =
+                    emitters[Math.floor(Math.random() * emitters.length)];
+
+                this.x = emitter.x;
+                this.y = emitter.y;
+                this.x = 200 + (Math.random() - 0.5) * 10;
+                this.y = 220 + (Math.random() - 0.5) * 10;
+
+                this.size = 2 + Math.random() * 4;
 
                 this.vx = (Math.random() - 0.5) * 1.5;
                 this.vy = -1 - Math.random() * 2;
@@ -30,18 +42,20 @@ export default function ShadowFlames() {
 
             update() {
                 this.x += this.vx;
-
-                this.x += Math.sin(this.life * 0.1) * 0.4;
+                this.x += Math.sin(this.life * 0.08) * 0.8;
 
                 this.y += this.vy;
 
-                this.size += 0.15;
+                this.size += 0.3;
 
                 this.life--;
             }
 
             draw() {
-                const alpha = this.life / this.maxLife;
+                const alpha = Math.min(
+                    1,
+                    (this.life / this.maxLife) * 1.5
+                );
 
                 ctx.beginPath();
 
@@ -57,7 +71,7 @@ export default function ShadowFlames() {
                 if (this.red) {
                     gradient.addColorStop(
                         0,
-                        `rgba(255,0,0,${alpha})`
+                        `rgba(0,0,0,${alpha * 1.5})`
                     );
 
                     gradient.addColorStop(
@@ -67,7 +81,7 @@ export default function ShadowFlames() {
                 } else {
                     gradient.addColorStop(
                         0,
-                        `rgba(0,0,0,${alpha})`
+                        `rgba(0,0,0,${alpha * 1.5})`
                     );
 
                     gradient.addColorStop(
