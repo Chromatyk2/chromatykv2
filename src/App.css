@@ -719,16 +719,16 @@ fightActionsFlee img {
 .redCloudsBack span {
     opacity: .8;
 }
-    .redCloudsBack span,
-    .redCloudsFront span {
-        position: absolute;
-        width: 140px;
-        height: 140px;
-        border-radius: 50%;
-        background: radial-gradient( circle, rgba(255,50,50,.7) 0%, rgba(180,0,0,.5) 35%, rgba(40,0,0,.2) 70%, transparent 100% );
-        filter: blur(20px);
-        animation: smokeMove 8s infinite ease-in-out;
-    }
+.redCloudsBack span,
+.redCloudsFront span {
+    animation: smokeMove 8s ease-in-out infinite;
+    background: radial-gradient(circle, #a852d4b3 0, #412a6080 35%, #a852d4b3 70%, #0000 100%);
+    border-radius: 50%;
+    filter: blur(50px);
+    height: 140px;
+    position: absolute;
+    width: 140px;
+}
         .redCloudsBack span:nth-child(1) {
             top: 40px;
             left: 20px;
@@ -791,16 +791,16 @@ fightActionsFlee img {
 
 @keyframes shadowPulse {
     0% {
-        filter: saturate(1.2) invert(1) hue-rotate(220deg) drop-shadow(0 0 10px rgba(0,0,0,.9)) drop-shadow(0 0 20px rgba(40,0,0,.8));
+        filter: saturate(1.2) invert(1) hue-rotate(200deg) drop-shadow(0 0 10px rgba(0,0,0,.9)) drop-shadow(0 0 20px rgba(40,0,0,.8));
         ;
     }
 
     50% {
-        filter: saturate(1.8) invert(1) hue-rotate(250deg)drop-shadow(0 0 20px rgba(0,0,0,.95)) drop-shadow(0 0 35px rgba(80,0,0,.9)) drop-shadow(0 0 50px rgba(120,0,0,.7));
+        filter: saturate(1.8) invert(1) hue-rotate(255deg)drop-shadow(0 0 20px rgba(0,0,0,.95)) drop-shadow(0 0 35px rgba(80,0,0,.9)) drop-shadow(0 0 50px rgba(120,0,0,.7));
     }
 
     100% {
-        filter: saturate(1.2) invert(1) hue-rotate(220deg) drop-shadow(0 0 10px rgba(0,0,0,.9)) drop-shadow(0 0 20px rgba(40,0,0,.8));
+        filter: saturate(1.2) invert(1) hue-rotate(200deg) drop-shadow(0 0 10px rgba(0,0,0,.9)) drop-shadow(0 0 20px rgba(40,0,0,.8));
     }
 }
 

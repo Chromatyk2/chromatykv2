@@ -292,13 +292,6 @@ function Compagnon() {
                                                         }/${compagnon[0].number}.gif`}
                                                     alt=""
                                         />
-                                        {compagnon[0].negative === 1 && (
-                                            <div className="redCloudsFront">
-                                                <span />
-                                                <span />
-                                                <span />
-                                            </div>
-                                        )}
                                             </div>
                                         </>
                                     )}
