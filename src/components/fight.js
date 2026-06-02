@@ -254,19 +254,19 @@ function ProgressBarFight(props) {
         const tierRoll = Math.random();
         if (tierRoll < 0.01) {
             var tier = 4;
-            setCurrentHp(1200)
+            setCurrentHp(12000)
             setMaxHp(12000)
         } else if (tierRoll < 0.11) {
             var tier = 3;
-            setCurrentHp(600)
+            setCurrentHp(6000)
             setMaxHp(6000)
         } else if (tierRoll < 0.41) {
             var tier = 2;
-            setCurrentHp(300)
+            setCurrentHp(3000)
             setMaxHp(3000)
         } else {
             var tier = 1;
-            setCurrentHp(150)
+            setCurrentHp(1500)
             setMaxHp(1500)
         }
         Axios.get("/api/getRandomPokemon/" + tier)
