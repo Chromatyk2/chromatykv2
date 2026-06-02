@@ -140,32 +140,57 @@ function ProgressBarFight(props) {
                 Axios.post('/api/levelupCompagnon', {
                     id: props.compagnon[0].id
                 })
-                if (Math.random() < 0.001) {
+                if (Math.random() < 0.5) {
                     const userId = cookies.user.data[0].id;
-                    const reward = Math.random() < 0.5
-                        ? { item: "Fragement de Pack", slug: "fragement" }
-                        : { item: "Booster", slug: "booster" };
+                    const roll = Math.random();
+                    let reward = null;
+                    // 1/1000
+                    if (roll < 1 / 1000) {
+                        reward = {
+                            item: "Pack Safari",
+                            slug: "box",
+                            image: "/box.png"
+                        };
+                    }
+                    // 1/500
+                    else if (roll < (1 / 1000) + (1 / 500)) {
+                        reward = {
+                            item: "Fragement de Pack",
+                            slug: "fragement",
+                            image: "/fragment.png"
+                        };
+                    }
+                    // 1/100
+                    else if (roll < (1 / 1000) + (1 / 500) + (1 / 100)) {
+                        reward = {
+                            item: "Booster",
+                            slug: "booster",
+                            image: "/booster.png"
+                        };
+                    }
 
-                    Axios.post('/api/addCandy', {
-                        user: userId,
-                        item: reward.item,
-                        slug: reward.slug,
-                        quantity: 1
-                    });
+                    if (reward) {
+                        Axios.post('/api/addCandy', {
+                            user: cookies.user.data[0].id,
+                            item: reward.item,
+                            slug: reward.slug,
+                            quantity: 1
+                        });
 
-                    setSessionReward(prev => {
-                        const existing = prev.find(r => r.item === reward.item);
+                        setSessionReward(prev => {
+                            const existing = prev.find(r => r.item === reward.item);
 
-                        if (existing) {
-                            return prev.map(r =>
-                                r.item === reward.item
-                                    ? { ...r, quantity: r.quantity + 1 }
-                                    : r
-                            );
-                        }
+                            if (existing) {
+                                return prev.map(r =>
+                                    r.item === reward.item
+                                        ? { ...r, quantity: r.quantity + 1 }
+                                        : r
+                                );
+                            }
 
-                        return [...prev, { item: reward.item, quantity: 1 }];
-                    });
+                            return [...prev, { ...reward, quantity: 1 }];
+                        });
+                    }
                 }
                 setCurrentLevel(prev => prev + 1);
                 setCurrentXp(0);
@@ -405,10 +430,7 @@ function ProgressBarFight(props) {
                             style={{ top: "10px" }}
                             className="rewardItem"
                         >
-                            <img
-                                src={`/+${reward.item === "Booster" ? "booster" : "fragment"}.png`}
-                                alt={reward.item}
-                            />
+                            <img src={reward.image} alt={reward.item} />
                             <p>
                                 x{reward.quantity}
                             </p>
