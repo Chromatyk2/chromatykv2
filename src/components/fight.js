@@ -115,7 +115,7 @@ function ProgressBarFight(props) {
             !isKO &&
             pokemon) {
 
-            if (Math.random() < 0.99) {
+            if (Math.random() < 0.5) {
                 const userId = cookies.user.data[0].id;
                 const tierMultiplier =
                     pokemon.tier === 4 ? 2 :
@@ -123,9 +123,9 @@ function ProgressBarFight(props) {
                             pokemon.tier === 2 ? 1.5 :
                                 1.25;
 
-                const packChance = 1 * tierMultiplier;
-                const fragmentChance = 1 * tierMultiplier;
-                const boosterChance = 1 * tierMultiplier;
+                const packChance = 0.00025 * tierMultiplier;
+                const fragmentChance = 0.0005 * tierMultiplier;
+                const boosterChance = 0.001 * tierMultiplier;
 
                 const roll = Math.random();
 
