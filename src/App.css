@@ -592,7 +592,6 @@ p.levelProfil {
     margin-top: 20px;
     flex-wrap: wrap;
     background: rgba(0, 0, 0, 0.4);
-    padding: 15px 0 15px 0;
     border-radius: 10px;
     min-height: 100px;
 }
