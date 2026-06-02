@@ -261,11 +261,13 @@ function Compagnon() {
                                                 <div style={{ top: "80px" }} onClick={startFight} className={"fightActionsFlee"}>
                                                     < img src={"/exp.png"} />
                                                     <p>XP</p>
+                                            </div>
+                                            <div style={{ maxWidth: "fit-content", minWidth: "200px", backgroundColor: "rgba(0, 0, 0, 0.5)"; borderRadius: "10px" }}>
+                                                <p className="fightName">{compagnon[0].pokemon}</p>
+                                                <div className="tierFight">
+                                                    Nv.{compagnon[0].level}
                                                 </div>
-                                                    <p className="fightName">{compagnon[0].pokemon}</p>
-                                                    <div className="tierFight">
-                                                        Nv.{compagnon[0].level}
-                                                    </div>
+                                            </div>
                                             <div className={`fightSpriteCard ${compagnon[0].negative === 1 ? "shadowPokemon" : ""}`}>
                                                 {compagnon[0].negative === 1 && (
                                                     <>
