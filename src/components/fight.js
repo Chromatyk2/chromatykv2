@@ -377,7 +377,18 @@ function ProgressBarFight(props) {
                             <p>{parseFloat((currentXp / xpToNextLevel) * 100).toFixed(2) + " %"}</p>
                         </span>
                     </div>
+                </div>
+                <div className={"rewardFightContainer"}>
+                    <p>Récompense de session :</p>
+                    <div style={{ top: "10px" }} onClick={exitFight} className={"rewardItem"}>
+                        < img src={"/doll.png"} />
+                        <p>Partir</p>
                     </div>
+                    <div style={{ top: "10px" }} onClick={exitFight} className={"rewardItem"}>
+                        < img src={"/doll.png"} />
+                        <p>Partir</p>
+                    </div>
+                </div>
                 </>
             }
         </div>
