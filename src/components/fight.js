@@ -117,26 +117,33 @@ function ProgressBarFight(props) {
 
             if (Math.random() < 0.5) {
                 const userId = cookies.user.data[0].id;
+                const tierMultiplier =
+                    pokemon.tier === 4 ? 2 :
+                        pokemon.tier === 3 ? 1.75 :
+                            pokemon.tier === 2 ? 1.5 :
+                                1.25;
+
+                const packChance = 0.00025 * tierMultiplier;
+                const fragmentChance = 0.0005 * tierMultiplier;
+                const boosterChance = 0.001 * tierMultiplier;
+
                 const roll = Math.random();
+
                 let reward = null;
-                // 1/1000
-                if (roll < 0.0005) {
+
+                if (roll < packChance) {
                     reward = {
                         item: "Pack Safari",
                         slug: "box",
                         image: "/box.png"
                     };
-                }
-                // 1/500
-                else if (roll < 0.0015) {
+                } else if (roll < packChance + fragmentChance) {
                     reward = {
                         item: "Fragement de Pack",
                         slug: "fragement",
                         image: "/fragment.png"
                     };
-                }
-                // 1/100
-                else if (roll < 0.0035) {
+                } else if (roll < packChance + fragmentChance + boosterChance) {
                     reward = {
                         item: "Booster",
                         slug: "booster",
