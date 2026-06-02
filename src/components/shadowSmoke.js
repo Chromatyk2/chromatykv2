@@ -21,9 +21,9 @@ export default function ShadowSmoke() {
                         result="noise"
                     >
                         <animate
-                            attributeName="seed"
-                            values="8;9;10;11;12;13;14;15"
-                            dur="12s"
+                            attributeName="baseFrequency"
+                            values="0.01;0.02;0.015;0.01"
+                            dur="8s"
                             repeatCount="indefinite"
                         />
                     </feTurbulence>
@@ -51,6 +51,14 @@ export default function ShadowSmoke() {
             {/* Couche noire */}
             <g filter="url(#shadowDistort)">
                 <g>
+                    <animateTransform
+                        attributeName="transform"
+                        type="rotate"
+                        from="0 300 300"
+                        to="360 300 300"
+                        dur="18s"
+                        repeatCount="indefinite"
+                    />
 
                     <ellipse
                         cx="300"
@@ -81,6 +89,14 @@ export default function ShadowSmoke() {
             {/* Couche rouge */}
             <g filter="url(#shadowDistort)">
                 <g>
+                    <animateTransform
+                        attributeName="transform"
+                        type="rotate"
+                        from="360 300 300"
+                        to="0 300 300"
+                        dur="12s"
+                        repeatCount="indefinite"
+                    />
 
                     <ellipse
                         cx="300"
@@ -107,21 +123,6 @@ export default function ShadowSmoke() {
                     />
                 </g>
             </g>
-
-            {/* Noyau central */}
-            <circle
-                cx="300"
-                cy="300"
-                r="90"
-                fill="rgba(0,0,0,0.35)"
-            >
-                <animate
-                    attributeName="r"
-                    values="90;105;90"
-                    dur="2s"
-                    repeatCount="indefinite"
-                />
-            </circle>
         </svg>
     );
 }
