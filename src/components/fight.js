@@ -448,7 +448,7 @@ function ProgressBarFight(props) {
                             }}
                         />
                         <span className="hpText">
-                            <p>{parseFloat((currentXp / xpToNextLevel) * 100).toFixed(2) + " %"}</p>
+                            <p style={{ fontSize:"16px"} }>{parseFloat((currentXp / xpToNextLevel) * 100).toFixed(2) + " %"}</p>
                         </span>
                     </div>
                 </div>
