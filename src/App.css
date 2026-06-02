@@ -669,92 +669,193 @@ fightActionsFlee img {
     margin: 7px;
 }
 .shadowPokemon img {
-    filter: brightness(0.55) contrast(1.5) saturate(0.5) hue-rotate(260deg);
-    animation: shadowPulse 2s infinite alternate;
+    filter: brightness(0.6) contrast(1.6) saturate(0.4) hue-rotate(260deg);
+    animation: shadowPulse 2s ease-in-out infinite, shadowFloat 3s ease-in-out infinite;
 }
-
 @keyframes shadowPulse {
-    from {
-        filter: brightness(0.5) contrast(1.4) saturate(0.4) hue-rotate(250deg) drop-shadow(0 0 10px #6a00ff);
+
+    0% {
+        filter: brightness(0.55) contrast(1.5) saturate(0.3) hue-rotate(250deg) drop-shadow(0 0 10px #5d00ff);
     }
 
-    to {
-        filter: brightness(0.7) contrast(1.8) saturate(0.7) hue-rotate(280deg) drop-shadow(0 0 25px #b100ff);
+    50% {
+        filter: brightness(0.7) contrast(1.8) saturate(0.8) hue-rotate(280deg) drop-shadow(0 0 30px #d000ff);
+    }
+
+    100% {
+        filter: brightness(0.55) contrast(1.5) saturate(0.3) hue-rotate(250deg) drop-shadow(0 0 10px #5d00ff);
     }
 }
-.shadowPokemon {
-    position: relative;
-}
+@keyframes shadowFloat {
 
-    .shadowPokemon::before {
-        content: "";
-        position: absolute;
-        inset: -30px;
-        background: radial-gradient(circle, rgba(140,0,255,.5) 0%, transparent 70%);
-        filter: blur(25px);
-        animation: smokeAura 4s infinite alternate ease-in-out;
-        pointer-events: none;
-        z-index: -1;
+    0% {
+        transform: translateY(0);
     }
 
-@keyframes smokeAura {
-    from {
-        transform: scale(1) translate(-8px, -5px);
-        opacity: .6;
+    50% {
+        transform: translateY(-4px);
     }
 
-    to {
-        transform: scale(1.25) translate(8px, 5px);
-        opacity: 1;
+    100% {
+        transform: translateY(0);
     }
 }
-.shadowPokemon::after {
-    content: "";
+.shadowAura {
     position: absolute;
-    inset: -20px;
-    background: linear-gradient( 135deg, transparent 45%, rgba(255,255,255,.9) 50%, transparent 55% );
-    opacity: 0;
-    animation: lightning 1.5s infinite;
-    pointer-events: none;
+    width: 180%;
+    height: 180%;
+    border-radius: 50%;
+    background: radial-gradient( circle, rgba(170,0,255,.55) 0%, rgba(80,0,120,.35) 40%, transparent 70% );
+    filter: blur(25px);
+    animation: auraSmoke 5s ease-in-out infinite alternate;
+    z-index: 1;
 }
-@keyframes lightning {
-    0%, 80%, 100% {
-        opacity: 0;
+@keyframes auraSmoke {
+
+    0% {
+        transform: scale(1) rotate(0deg);
+        opacity: .5;
     }
 
-    81% {
+    50% {
+        transform: scale(1.2) rotate(180deg);
         opacity: .9;
     }
 
-    82% {
+    100% {
+        transform: scale(1.05) rotate(360deg);
+        opacity: .6;
+    }
+}
+.orbite {
+    position: absolute;
+    width: 220px;
+    height: 220px;
+    pointer-events: none;
+    z-index: 5;
+}
+.orbite1 {
+    animation: orbit1 4s linear infinite;
+}
+
+@keyframes orbit1 {
+
+    from {
+        transform: rotateX(70deg) rotateZ(0deg);
+    }
+
+    to {
+        transform: rotateX(70deg) rotateZ(360deg);
+    }
+}
+.orbite2 {
+    animation: orbit2 3s linear infinite reverse;
+}
+
+@keyframes orbit2 {
+
+    from {
+        transform: rotateY(70deg) rotateZ(0deg);
+    }
+
+    to {
+        transform: rotateY(70deg) rotateZ(360deg);
+    }
+}
+.orbite3 {
+    animation: orbit3 5s linear infinite;
+}
+
+@keyframes orbit3 {
+
+    from {
+        transform: rotateX(-70deg) rotateZ(0deg);
+    }
+
+    to {
+        transform: rotateX(-70deg) rotateZ(360deg);
+    }
+}
+.particule {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #d000ff;
+    box-shadow: 0 0 10px #d000ff, 0 0 20px #d000ff, 0 0 40px #ff00ff;
+    transform: translate(-50%, -50%) translateX(110px);
+}
+.lightning {
+    position: absolute;
+    width: 180%;
+    height: 180%;
+    z-index: 15;
+    pointer-events: none;
+    animation: lightningFlash 3s infinite;
+}
+    .lightning::before,
+    .lightning::after {
+        content: "";
+        position: absolute;
+        background: white;
+        opacity: 0;
+        filter: blur(1px) drop-shadow(0 0 8px #ff00ff);
+    }
+    .lightning::before {
+        width: 3px;
+        height: 100px;
+        top: 20%;
+        left: 50%;
+        transform: rotate(25deg);
+    }
+
+    .lightning::after {
+        width: 3px;
+        height: 80px;
+        top: 40%;
+        left: 40%;
+        transform: rotate(-40deg);
+    }
+@keyframes lightningFlash {
+
+    0%, 70%, 100% {
         opacity: 0;
     }
 
-    84% {
+    71% {
         opacity: 1;
     }
 
-    86% {
+    72% {
+        opacity: 0;
+    }
+
+    74% {
+        opacity: 1;
+    }
+
+    76% {
         opacity: 0;
     }
 }
 .fightSpriteCard {
+    position: relative;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
     animation-duration: 2s;
     animation-fill-mode: forwards;
     animation-name: myAnimation;
     margin-top: 35px;
-    transform: scale(0);
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
+    transform-style: preserve-3d;
+    perspective: 1000px;
 }
 
     .fightSpriteCard img {
-        max-width: 270px;
-        max-height: 270px;
-        width: auto;
-        height: auto;
-        display: block;
+        position: relative;
+        z-index: 20;
     }
 .fightActions p {
     font-size: 13px;

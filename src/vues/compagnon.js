@@ -267,14 +267,34 @@ function Compagnon() {
                                                 Nv.{compagnon[0].level}
                                             </div>
                                     <div className={`fightSpriteCard ${compagnon[0].negative === 1 ? "shadowPokemon" : ""}`}>
+
+                                        {compagnon[0].negative === 1 && (
+                                            <>
+                                                <div className="shadowAura"></div>
+
+                                                <div className="orbite orbite1">
+                                                    <div className="particule"></div>
+                                                </div>
+
+                                                <div className="orbite orbite2">
+                                                    <div className="particule"></div>
+                                                </div>
+
+                                                <div className="orbite orbite3">
+                                                    <div className="particule"></div>
+                                                </div>
+
+                                                <div className="lightning"></div>
+                                            </>
+                                        )}
+
                                         <img
                                             src={`/Sprites/${compagnon[0].shiny === 1 ? "shiny" : "normal"}/${compagnon[0].number}.gif`}
                                             alt=""
-                                            style={{
-                                                filter: compagnon[0].negative === 1 ? "invert(1)" : "none"
-                                            }}
                                         />
-                                    </div>                                        </>
+
+                                    </div>
+                                </>
                                     )}
                                 {canShow && (
                                     <>
