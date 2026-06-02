@@ -6,138 +6,183 @@ export default function ShadowSmoke() {
             preserveAspectRatio="none"
         >
             <defs>
-                <filter
-                    id="shadowDistort"
-                    x="-50%"
-                    y="-50%"
-                    width="200%"
-                    height="200%"
-                >
-                    <feTurbulence
-                        type="fractalNoise"
-                        baseFrequency="0.01"
-                        numOctaves="4"
-                        seed="8"
-                        result="noise"
-                    >
-                        <animate
-                            attributeName="baseFrequency"
-                            values="0.01;0.02;0.015;0.01"
-                            dur="8s"
-                            repeatCount="indefinite"
-                        />
-                    </feTurbulence>
-
-                    <feDisplacementMap
-                        in="SourceGraphic"
-                        in2="noise"
-                        scale="70"
-                    />
+                <filter id="smoke">
+                    <feGaussianBlur stdDeviation="18" />
                 </filter>
 
-                <radialGradient id="shadowRed">
-                    <stop offset="0%" stopColor="#ff1a1a" stopOpacity="0.7" />
-                    <stop offset="40%" stopColor="#880000" stopOpacity="0.4" />
+                <radialGradient id="blackSmoke">
+                    <stop offset="0%" stopColor="#000000" stopOpacity="0.7" />
                     <stop offset="100%" stopColor="#000000" stopOpacity="0" />
                 </radialGradient>
 
-                <radialGradient id="shadowBlack">
-                    <stop offset="0%" stopColor="#000000" stopOpacity="0.8" />
-                    <stop offset="60%" stopColor="#111111" stopOpacity="0.3" />
-                    <stop offset="100%" stopColor="#000000" stopOpacity="0" />
+                <radialGradient id="redSmoke">
+                    <stop offset="0%" stopColor="#cc0000" stopOpacity="0.5" />
+                    <stop offset="100%" stopColor="#cc0000" stopOpacity="0" />
                 </radialGradient>
             </defs>
 
-            {/* Couche noire */}
-            <g filter="url(#shadowDistort)">
-                <g>
+            {/* Volute 1 */}
+            <g filter="url(#smoke)">
+                <ellipse
+                    cx="300"
+                    cy="420"
+                    rx="45"
+                    ry="75"
+                    fill="url(#blackSmoke)"
+                >
                     <animateTransform
                         attributeName="transform"
-                        type="rotate"
-                        from="0 300 300"
-                        to="360 300 300"
-                        dur="18s"
+                        type="translate"
+                        values="
+                            0 0;
+                            -20 -60;
+                            15 -140;
+                            -10 -220
+                        "
+                        dur="4.5s"
                         repeatCount="indefinite"
                     />
 
-                    <ellipse
-                        cx="300"
-                        cy="300"
-                        rx="160"
-                        ry="230"
-                        fill="url(#shadowBlack)"
+                    <animate
+                        attributeName="opacity"
+                        values="0;0.55;0.4;0"
+                        dur="4.5s"
+                        repeatCount="indefinite"
                     />
-
-                    <ellipse
-                        cx="220"
-                        cy="250"
-                        rx="100"
-                        ry="180"
-                        fill="url(#shadowBlack)"
-                    />
-
-                    <ellipse
-                        cx="380"
-                        cy="260"
-                        rx="110"
-                        ry="170"
-                        fill="url(#shadowBlack)"
-                    />
-                </g>
+                </ellipse>
             </g>
 
-            {/* Couche rouge */}
-            <g filter="url(#shadowDistort)">
-                <g>
+            {/* Volute 2 */}
+            <g filter="url(#smoke)">
+                <ellipse
+                    cx="260"
+                    cy="430"
+                    rx="35"
+                    ry="60"
+                    fill="url(#blackSmoke)"
+                >
                     <animateTransform
                         attributeName="transform"
-                        type="rotate"
-                        from="360 300 300"
-                        to="0 300 300"
-                        dur="12s"
+                        type="translate"
+                        values="
+                            0 0;
+                            25 -80;
+                            -15 -170;
+                            20 -260
+                        "
+                        dur="5.2s"
+                        begin="0.8s"
                         repeatCount="indefinite"
                     />
 
-                    <ellipse
-                        cx="300"
-                        cy="260"
-                        rx="130"
-                        ry="190"
-                        fill="url(#shadowRed)"
+                    <animate
+                        attributeName="opacity"
+                        values="0;0.45;0.25;0"
+                        dur="5.2s"
+                        begin="0.8s"
+                        repeatCount="indefinite"
                     />
-
-                    <ellipse
-                        cx="240"
-                        cy="330"
-                        rx="90"
-                        ry="120"
-                        fill="url(#shadowRed)"
-                    />
-
-                    <ellipse
-                        cx="370"
-                        cy="340"
-                        rx="80"
-                        ry="130"
-                        fill="url(#shadowRed)"
-                    />
-                </g>
+                </ellipse>
             </g>
 
-            {/* Noyau central */}
-            <circle
-                cx="300"
-                cy="300"
-                r="90"
-                fill="rgba(0,0,0,0.35)"
-            >
-                <animate
-                    attributeName="r"
-                    values="90;105;90"
-                    dur="2s"
-                    repeatCount="indefinite"
-                />
-            </circle>
+            {/* Volute 3 */}
+            <g filter="url(#smoke)">
+                <ellipse
+                    cx="340"
+                    cy="425"
+                    rx="40"
+                    ry="65"
+                    fill="url(#blackSmoke)"
+                >
+                    <animateTransform
+                        attributeName="transform"
+                        type="translate"
+                        values="
+                            0 0;
+                            -15 -70;
+                            30 -160;
+                            -20 -250
+                        "
+                        dur="4.8s"
+                        begin="1.4s"
+                        repeatCount="indefinite"
+                    />
+
+                    <animate
+                        attributeName="opacity"
+                        values="0;0.5;0.35;0"
+                        dur="4.8s"
+                        begin="1.4s"
+                        repeatCount="indefinite"
+                    />
+                </ellipse>
+            </g>
+
+            {/* Volute rouge 1 */}
+            <g filter="url(#smoke)">
+                <ellipse
+                    cx="290"
+                    cy="410"
+                    rx="30"
+                    ry="50"
+                    fill="url(#redSmoke)"
+                >
+                    <animateTransform
+                        attributeName="transform"
+                        type="translate"
+                        values="
+                            0 0;
+                            10 -50;
+                            -15 -120;
+                            5 -180
+                        "
+                        dur="3.8s"
+                        begin="0.4s"
+                        repeatCount="indefinite"
+                    />
+
+                    <animate
+                        attributeName="opacity"
+                        values="0;0.35;0.2;0"
+                        dur="3.8s"
+                        begin="0.4s"
+                        repeatCount="indefinite"
+                    />
+                </ellipse>
+            </g>
+
+            {/* Volute rouge 2 */}
+            <g filter="url(#smoke)">
+                <ellipse
+                    cx="330"
+                    cy="430"
+                    rx="25"
+                    ry="45"
+                    fill="url(#redSmoke)"
+                >
+                    <animateTransform
+                        attributeName="transform"
+                        type="translate"
+                        values="
+                            0 0;
+                            -20 -40;
+                            10 -110;
+                            -5 -170
+                        "
+                        dur="4.2s"
+                        begin="2s"
+                        repeatCount="indefinite"
+                    />
+
+                    <animate
+                        attributeName="opacity"
+                        values="0;0.25;0.15;0"
+                        dur="4.2s"
+                        begin="2s"
+                        repeatCount="indefinite"
+                    />
+                </ellipse>
+            </g>
         </svg>
     );
 }
