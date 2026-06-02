@@ -1223,7 +1223,6 @@ span.dexNumber {
 .fightSpriteCardEnemy {
     background-position: 50%;
     background-repeat: no-repeat;
-    height: 270px;
     margin-top: 35px;
     width: 270px;
     display: flex;
@@ -1235,7 +1234,6 @@ span.dexNumber {
 .fightSpriteCardInvert {
     background-position: 50%;
     background-repeat: no-repeat;
-    height: 270px;
     margin-top: 35px;
     transform: scaleX(-1);
     width: 270px;
