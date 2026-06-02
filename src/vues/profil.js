@@ -505,8 +505,8 @@ function Profil() {
                                     {expedition &&
                                         <div style={{backgroundImage: `url(/expeditionBack.png)`}} className={"fightContainer"}>
                                             <p>{expedition.pokemon}</p>
-                                            <div className={`fightSpriteCard ${compagnon[0].negative === 1 ? "shadowPokemon" : ""}`}>
-                                                {compagnon[0].negative === 1 && (
+                                            <div className={`fightSpriteCard ${expedition.negative === 1 ? "shadowPokemon" : ""}`}>
+                                                {expedition.negative === 1 && (
                                                     <>
                                                         <div className="shadowAura" />
                                                         <div className="redCloudsBack">
@@ -523,7 +523,7 @@ function Profil() {
                                                         </div>
                                                     </>
                                                 )}
-                                                <img src={`/Sprites/${compagnon[0].shiny === 1 ? "shiny" : "normal"}/${compagnon[0].number}.gif`} alt="" />
+                                                <img src={`/Sprites/${expedition.shiny === 1 ? "shiny" : "normal"}/${expedition.number}.gif`} alt="" />
                                             </div>                                            <div className="hpBarContainer">
                                                 <div
                                                     className="hpBar"
