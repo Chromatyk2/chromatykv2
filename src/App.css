@@ -723,19 +723,31 @@ fightActionsFlee img {
     filter: drop-shadow(0 0 5px #ff9900) drop-shadow(0 0 15px #ff5500) drop-shadow(0 0 30px #ff2200);
 }
 
-.flameParticle {
-    position: absolute;
-    left: 50%;
-    bottom: 30%;
-    width: 18px;
-    height: 30px;
-    border-radius: 50% 50% 30% 30%;
-    background: linear-gradient( to top, #ff2200, #ff8800, #ffff99 );
-    filter: blur(4px);
-    opacity: 0;
+.flameParticleBack {
     animation: flameRise 2s linear infinite;
     animation-delay: var(--delay);
+    background: linear-gradient(0deg, #000000, #6d2998, #e499ff);
+    border-radius: 50% 50% 30% 30%;
+    bottom: -50px;
+    filter: blur(4px);
+    height: 160px;
+    left: 52px;
+    position: absolute;
+    width: 160px;
     z-index: 1;
+}
+.flameParticleFront {
+    animation: flameRise 2s linear infinite;
+    animation-delay: var(--delay);
+    background: linear-gradient(0deg, #000000, #6d2998, #e499ff);
+    border-radius: 50% 50% 30% 30%;
+    bottom: -9px;
+    filter: blur(4px);
+    height: 10px;
+    left: 65px;
+    position: absolute;
+    width: 130px;
+    z-index: 3;
 }
 @keyframes flameRise {
     0% {

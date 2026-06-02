@@ -412,14 +412,24 @@ function Fight() {
                                 }`}
                         >
                             {[...Array(15)].map((_, i) => (
-                                <span
-                                    key={i}
-                                    className="flameParticle"
-                                    style={{
-                                        "--delay": `${i * 0.15}s`,
-                                        "--x": `${Math.random() * 120 - 60}px`,
-                                    }}
-                                />
+                                <>
+                                    <span
+                                        key={i}
+                                        className="flameParticleBack"
+                                        style={{
+                                            "--delay": `${i * 0.15}s`,
+                                            "--x": `${Math.random() * 120 - 60}px`,
+                                        }}
+                                    />
+                                    <span
+                                        key={i}
+                                        className="flameParticleFront"
+                                        style={{
+                                            "--delay": `${i * 0.15}s`,
+                                            "--x": `${Math.random() * 120 - 60}px`,
+                                        }}
+                                    />
+                                </>
                             ))}
 
                             <img
