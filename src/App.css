@@ -484,17 +484,21 @@ p.levelProfil {
     flex-wrap: wrap;
     justify-content: center;
     gap: 10px;
+    width:100%
 }
 .rewardItem p {
     margin: 0;
     font-size: 10px;
 }
 .rewardItem {
-    background-color: #ffffff80;
-    height: 65px;
+    background-color: #00000080;
+    height: 50px;
     right: 10px;
-    width: 65px;
+    width: 50px;
     border-radius: 5px;
+}
+.rewardItem img{
+    width: 25px;
 }
 .loveBarContainer {
     background: linear-gradient(180deg, #2a1a24, #1a1016);
