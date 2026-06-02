@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import '../App.css'
 import Axios from 'axios'
+import { useCookies } from 'react-cookie';
 
 
 function ProgressBarFight(props) {
+    const [cookies, setCookie] = useCookies();
     const [pokemon, setPokemon] = useState(null);
     const [shiny, setShiny] = useState(null);
     const [negative, setNegative] = useState(null);
@@ -137,6 +139,15 @@ function ProgressBarFight(props) {
                 Axios.post('/api/levelupCompagnon', {
                     id: props.compagnon[0].id
                 })
+                if (Math.random() < 0.001) {
+                    const userId = cookies.user.data[0].id;
+                    Axios.post('/api/addCandy', {
+                        user: userId,
+                        item: "Fragement de Pack",
+                        slug: "fragement",
+                        quantity: 1
+                    })
+                }
                 setCurrentLevel(prev => prev + 1);
                 setCurrentXp(0);
             } else {
