@@ -303,12 +303,6 @@ function ProgressBarFight(props) {
                                         <span />
                                         <span />
                                     </div>
-                                    <div className="lightningBurst">
-                                        <span />
-                                        <span />
-                                        <span />
-                                        <span />
-                                    </div>
                                 </>
                             )}
                             <img style={{ width: "100%" }} src={`/Sprites/${props.compagnon[0].shiny === 1 ? "shiny" : "normal"}/${props.compagnon[0].number}.gif`} alt="" />

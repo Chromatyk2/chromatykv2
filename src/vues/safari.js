@@ -415,13 +415,6 @@ function Fight() {
                                         <span />
                                         <span />
                                     </div>
-                                    <div className="energyRing ring1" />
-                                    <div className="lightningBurst">
-                                        <span />
-                                        <span />
-                                        <span />
-                                        <span />
-                                    </div>
                                 </>
                             )}
                             <img src={`/Sprites/${shiny === 1 ? "shiny" : "normal"}/${pokemon.number}.gif`} alt="" />

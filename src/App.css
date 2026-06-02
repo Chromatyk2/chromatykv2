@@ -706,7 +706,7 @@ fightActionsFlee img {
     position: absolute;
     width: 350px;
     height: 350px;
-    z-index: 5;
+    z-index: 21;
 }
 .redCloudsFront {
     position: absolute;
@@ -720,8 +720,7 @@ fightActionsFlee img {
 .redCloudsBack span {
     opacity: .8;
 }
-.redCloudsBack span,
-.redCloudsFront span {
+.redCloudsBack span{
     animation: smokeMove 8s ease-in-out infinite;
     background: radial-gradient(circle, #a852d4b3 0, #412a6080 35%, #a852d4b3 70%, #0000 100%);
     border-radius: 50%;
@@ -743,20 +742,6 @@ fightActionsFlee img {
         .redCloudsBack span:nth-child(3) {
             top: 120px;
             left: 200px;
-        }
-        .redCloudsFront span:nth-child(1) {
-            top: 70px;
-            left: 180px;
-        }
-
-        .redCloudsFront span:nth-child(2) {
-            top: 180px;
-            left: 170px;
-        }
-
-        .redCloudsFront span:nth-child(3) {
-            top: 20px;
-            left: 100px;
         }
 @keyframes smokeMove {
 
@@ -844,105 +829,6 @@ fightActionsFlee img {
     100% {
         transform: scale(1);
         opacity: .5;
-    }
-}
-.energyRing {
-    position: absolute;
-    width: 320px;
-    height: 320px;
-    border-radius: 50%;
-    z-index: 5;
-    pointer-events: none;
-}
-.ring1 {
-    border-bottom: 3px solid #372f3f;
-    border-top: 3px solid #000000;
-    filter: drop-shadow(0 0 8px #ff00ff) drop-shadow(0 0 20px #ff00ff);
-    animation: rotateRing1 4s linear infinite;
-}
-
-@keyframes rotateRing1 {
-
-    from {
-        transform: rotateX(75deg) rotateZ(0deg);
-    }
-
-    to {
-        transform: rotateX(75deg) rotateZ(360deg);
-    }
-}
-.energyRing::before {
-    content: "";
-    position: absolute;
-    top: 50%;
-    right: -8px;
-    width: 45px;
-    height: 6px;
-    background: #000000;
-    border-radius: 999px;
-    box-shadow: 0 0 5px #000000, 0 0 15px #030303, 0 0 30px #000000;
-}
-.lightningBurst {
-    position: absolute;
-    width: 350px;
-    height: 350px;
-    z-index: 15;
-    pointer-events: none;
-}
-
-    .lightningBurst span {
-        position: absolute;
-        width: 6px;
-        height: 140px;
-        background: #000000;
-        opacity: 0;
-        border-radius: 999px;
-        box-shadow: 0 0 5px white, 0 0 10px #ff00ff, 0 0 30px #ff00ff;
-        animation: burst 4s infinite;
-    }
-        .lightningBurst span:nth-child(1) {
-            top: 30px;
-            left: 170px;
-            transform: rotate(25deg);
-        }
-
-        .lightningBurst span:nth-child(2) {
-            top: 150px;
-            left: 40px;
-            transform: rotate(-70deg);
-        }
-
-        .lightningBurst span:nth-child(3) {
-            top: 90px;
-            left: 290px;
-            transform: rotate(70deg);
-        }
-
-        .lightningBurst span:nth-child(4) {
-            top: 230px;
-            left: 170px;
-            transform: rotate(160deg);
-        }
-@keyframes burst {
-
-    0%, 90%, 100% {
-        opacity: 0;
-    }
-
-    91% {
-        opacity: 1;
-    }
-
-    92% {
-        opacity: 0;
-    }
-
-    93% {
-        opacity: 1;
-    }
-
-    94% {
-        opacity: 0;
     }
 }
 .fightActions p {

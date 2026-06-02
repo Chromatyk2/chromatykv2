@@ -277,13 +277,6 @@ function Compagnon() {
                                                             <span />
                                                             <span />
                                                         </div>
-                                                        <div className="energyRing ring1" />
-                                                        <div className="lightningBurst">
-                                                            <span />
-                                                            <span />
-                                                            <span />
-                                                            <span />
-                                                        </div>
                                                     </>
                                                 )}
                                                 <img src={`/Sprites/${compagnon[0].shiny === 1 ? "shiny" : "normal"}/${compagnon[0].number}.gif`}alt=""/>

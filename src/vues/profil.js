@@ -514,13 +514,6 @@ function Profil() {
                                                             <span />
                                                             <span />
                                                         </div>
-                                                        <div className="energyRing ring1" />
-                                                        <div className="lightningBurst">
-                                                            <span />
-                                                            <span />
-                                                            <span />
-                                                            <span />
-                                                        </div>
                                                     </>
                                                 )}
                                                 <img src={`/Sprites/${expedition.shiny === 1 ? "shiny" : "normal"}/${expedition.number}.gif`} alt="" />
