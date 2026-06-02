@@ -701,6 +701,79 @@ fightActionsFlee img {
     position: relative;
     z-index: 20;
 }
+.redCloudsBack {
+    position: absolute;
+    width: 350px;
+    height: 350px;
+    z-index: 5;
+}
+.redCloudsFront {
+    position: absolute;
+    width: 350px;
+    height: 350px;
+    z-index: 25;
+}
+    .redCloudsFront span {
+        opacity: .4;
+    }
+.redCloudsBack span {
+    opacity: .8;
+}
+    .redCloudsBack span,
+    .redCloudsFront span {
+        position: absolute;
+        width: 140px;
+        height: 140px;
+        border-radius: 50%;
+        background: radial-gradient( circle, rgba(255,50,50,.7) 0%, rgba(180,0,0,.5) 35%, rgba(40,0,0,.2) 70%, transparent 100% );
+        filter: blur(20px);
+        animation: smokeMove 8s infinite ease-in-out;
+    }
+        .redCloudsBack span:nth-child(1) {
+            top: 40px;
+            left: 20px;
+        }
+
+        .redCloudsBack span:nth-child(2) {
+            top: 180px;
+            left: 50px;
+        }
+
+        .redCloudsBack span:nth-child(3) {
+            top: 120px;
+            left: 200px;
+        }
+        .redCloudsFront span:nth-child(1) {
+            top: 70px;
+            left: 180px;
+        }
+
+        .redCloudsFront span:nth-child(2) {
+            top: 180px;
+            left: 170px;
+        }
+
+        .redCloudsFront span:nth-child(3) {
+            top: 20px;
+            left: 100px;
+        }
+@keyframes smokeMove {
+
+    0% {
+        transform: translate(0,0) scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: translate(15px,-10px) scale(1.2);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(0,0) scale(1);
+        opacity: 1;
+    }
+}
 @keyframes corruptionFlash {
 
     0%, 96%, 100% {

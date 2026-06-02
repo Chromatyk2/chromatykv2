@@ -270,6 +270,11 @@ function Compagnon() {
                                         {compagnon[0].negative === 1 && (
                                             <>
                                                 <div className="shadowAura" />
+                                                <div className="redCloudsBack">
+                                                    <span />
+                                                    <span />
+                                                    <span />
+                                                </div>
                                                 <div className="energyRing ring1" />
                                                 <div className="energyRing ring2" />
 
@@ -287,6 +292,13 @@ function Compagnon() {
                                                         }/${compagnon[0].number}.gif`}
                                                     alt=""
                                         />
+                                        {compagnon[0].negative === 1 && (
+                                            <div className="redCloudsFront">
+                                                <span />
+                                                <span />
+                                                <span />
+                                            </div>
+                                        )}
                                             </div>
                                         </>
                                     )}
