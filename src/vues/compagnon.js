@@ -262,7 +262,7 @@ function Compagnon() {
                                                     < img src={"/exp.png"} />
                                                     <p>XP</p>
                                             </div>
-                                            <div style={{ maxWidth: "fit-content", minWidth: "200px", backgroundColor: "rgba(0, 0, 0, 0.5)"; borderRadius: "10px" }}>
+                                            <div style={{ maxWidth: "fit-content", minWidth: "200px", backgroundColor: "rgba(0, 0, 0, 0.5)", borderRadius: "10px" }}>
                                                 <p className="fightName">{compagnon[0].pokemon}</p>
                                                 <div className="tierFight">
                                                     Nv.{compagnon[0].level}
