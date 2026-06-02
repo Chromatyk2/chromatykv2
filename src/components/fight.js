@@ -87,7 +87,7 @@ function ProgressBarFight(props) {
                 const baseAttack =
                     11 + (props.compagnon[0].level - 1) * (22.33 / 99);
 
-                const attack = baseAttack * tierMultiplier;
+                const attack = baseAttack * tierMultiplier * 10;
 
                 const minDamage = Math.floor(attack * 0.8);
                 const maxDamage = Math.floor(attack * 1.2);
@@ -255,19 +255,19 @@ function ProgressBarFight(props) {
         if (tierRoll < 0.01) {
             var tier = 4;
             setCurrentHp(1200)
-            setMaxHp(1200)
+            setMaxHp(12000)
         } else if (tierRoll < 0.11) {
             var tier = 3;
             setCurrentHp(600)
-            setMaxHp(600)
+            setMaxHp(6000)
         } else if (tierRoll < 0.41) {
             var tier = 2;
             setCurrentHp(300)
-            setMaxHp(300)
+            setMaxHp(3000)
         } else {
             var tier = 1;
             setCurrentHp(150)
-            setMaxHp(150)
+            setMaxHp(1500)
         }
         Axios.get("/api/getRandomPokemon/" + tier)
             .then(function (response) {
