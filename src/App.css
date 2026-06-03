@@ -43,10 +43,9 @@ header.App-header p {
     height: -webkit-fill-available;
     height: -moz-available;
     min-height: 100vh;
-    justify-content: center;
+    justify-content: flex-start;
     margin: auto;
     width: 50%;
-    padding-top: min(70px);
 }
 .globalContainerCenter p {
     font-size: 20px;
@@ -59,7 +58,7 @@ header.App-header p {
     height: -webkit-fill-available;
     height: -moz-available;
     min-height: 100vh;
-    justify-content: center;
+    justify-content: flex-start;
     width: 50%;
 }
 .globalContainer p {
@@ -1184,7 +1183,6 @@ button.openBoosterButton span {
     flex-wrap: wrap;
     justify-content: center;
     gap: 30px;
-    padding: 20px;
 }
 .boosterCard {
     width: 220px;
