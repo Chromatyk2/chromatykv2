@@ -12,9 +12,10 @@ function Cards() {
     const [progress, setProgress] = useState({})
     const [now, setNow] = useState(Date.now());
     const [boosterCurrency, setBoosterCurrency] = useState(0);
-    const [openedCards, setOpenedCards] = useState([]);
-    const [currentCard, setCurrentCard] = useState(0);
     const [opening, setOpening] = useState(false);
+    const [openedCards, setOpenedCards] = useState([]);
+    const [revealedCards, setRevealedCards] = useState([]);
+    const [currentReveal, setCurrentReveal] = useState(0);
     const userId = cookies.user.data[0].id;
 
     useEffect(() => {
@@ -76,28 +77,61 @@ function Cards() {
 
     const openBooster = async (setTcgdexId) => {
 
-        const { data } = await Axios.post(
-            "/api/card/openBooster",
-            {
-                userId,
-                setTcgdexId
-            }
-        );
+        try {
 
-        if (!data.success) {
+            const { data } = await Axios.post(
+                "/api/card/openBooster",
+                {
+                    userId,
+                    setTcgdexId
+                }
+            );
+
+            if (!data.success) {
+                alert(data.message);
+                return;
+            }
+
+            setBoosterCurrency(
+                data.boosterCurrency
+            );
+
+            setOpenedCards(
+                data.openedCards
+            );
+
+            setRevealedCards(
+                new Array(
+                    data.openedCards.length
+                ).fill(false)
+            );
+
+            setCurrentReveal(0);
+
+            setOpening(true);
+
+        } catch (err) {
+
+            console.error(err);
+
+        }
+
+    };
+    const revealCard = (index) => {
+
+        if (index !== currentReveal) {
             return;
         }
 
-        setBoosterCurrency(
-            data.boosterCurrency
-        );
+        const updated = [...revealedCards];
 
-        setOpenedCards(
-            data.openedCards
+        updated[index] = true;
+
+        setRevealedCards(updated);
+
+        setCurrentReveal(
+            currentReveal + 1
         );
-        setOpenedCards(data.openedCards);
-        setCurrentCard(0);
-        setOpening(true);
 
     };
     return (
@@ -205,32 +239,81 @@ function Cards() {
 
                         <div className="openingOverlay">
 
-                            <img
-                                className="cardReveal"
-                                src={
-                                    openedCards[currentCard]
-                                        ?.image + "/high.webp"
+                            <div className="openingContent">
+
+                                <h2>
+                                    Booster ouvert !
+                                </h2>
+
+                                <div className="cardGrid">
+
+                                    {openedCards.map(
+                                        (card, index) => (
+
+                                            <div
+                                                key={card.tcgdex_id}
+                                                className={
+                                                    revealedCards[index]
+                                                        ? "card flipped"
+                                                        : "card"
+                                                }
+                                                onClick={() =>
+                                                    revealCard(index)
+                                                }
+                                            >
+
+                                                <div className="cardInner">
+
+                                                    <div className="cardFront">
+
+                                                        <img
+                                                            src="/card-back.webp"
+                                                            alt=""
+                                                        />
+
+                                                    </div>
+
+                                                    <div
+                                                        className={
+                                                            Number(card.tier) >= 5
+                                                                ? "cardBack rare"
+                                                                : "cardBack"
+                                                        }
+                                                    >
+
+                                                        <img
+                                                            src={`${card.image}/high.webp`}
+                                                            alt=""
+                                                        />
+
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+
+                                        ))}
+
+                                </div>
+
+                                {
+                                    revealedCards.every(
+                                        card => card
+                                    ) && (
+
+                                        <button
+                                            className="closeOpeningButton"
+                                            onClick={() =>
+                                                setOpening(false)
+                                            }
+                                        >
+                                            Continuer
+                                        </button>
+
+                                    )
                                 }
-                                alt=""
-                                onClick={() => {
 
-                                    if (
-                                        currentCard <
-                                        openedCards.length - 1
-                                    ) {
-
-                                        setCurrentCard(
-                                            currentCard + 1
-                                        );
-
-                                    } else {
-
-                                        setOpening(false);
-
-                                    }
-
-                                }}
-                            />
+                            </div>
 
                         </div>
 
