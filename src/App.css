@@ -1156,126 +1156,37 @@ span.dexNumber {
     gap: 30px;
     padding: 20px;
 }
-
-.packCard {
-    position: relative;
-    width: 280px;
-    height: 400px;
+.boosterCard {
+    width: 320px;
     border-radius: 24px;
     overflow: hidden;
-    cursor: pointer;
-    transition: .25s;
+    background: #111;
     box-shadow: 0 10px 30px rgba(0,0,0,.4);
+    transition: .25s;
 }
-
-    .packCard:hover {
-        transform: translateY(-8px) scale(1.02);
+    .boosterCard:hover {
+        transform: translateY(-8px);
         box-shadow: 0 20px 40px rgba(0,0,0,.6);
     }
-
-.packImage {
+.boosterImage {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: brightness(0.6);
+    display: block;
 }
-
-.packOverlay {
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
+.boosterFooter {
     padding: 20px;
-    background: linear-gradient( transparent, rgba(0,0,0,.95) );
+    background: rgba(10,10,10,.95);
 }
-
-.packTitle {
-    color: white;
-    font-size: 15px;
-    text-align: center;
-    margin-bottom: 15px;
-}
-
-.packStats {
+.progressInfos {
     display: flex;
     justify-content: space-between;
-    color: white;
-    margin-bottom: 10px;
-    font-weight: bold;
-}
-.packStats span {
-    font-size: 17px;
-}
-.progressContainer {
-    width: 100%;
-    height: 14px;
-    border-radius: 50px;
-    overflow: hidden;
-    background: #222;
-    margin-bottom: 20px;
-}
-
-.progressFill {
-    height: 100%;
-    border-radius: 50px;
-    background: linear-gradient( 90deg, #2446ab 0%, #02c2e8 100% );
-}
-
-.openPackButton {
-    width: 100%;
-    border: none;
-    border-radius: 14px;
-    padding: 5px;
-    font-size: 18px;
-    font-weight: bold;
-    color: white;
-    cursor: pointer;
-    background: rgba(255, 255, 255, 0.5);
-    transition: .2s;
-    font-family: 'Charge Vector Black';
-    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000, 0 0 6px #fff9;
-}
-
-    .openPackButton:hover {
-        transform: scale(1.03);
-    }
-.hotBadge {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    background: #ff3b30;
-    color: white;
-    font-weight: bold;
-    padding: 8px 14px;
-    border-radius: 999px;
-    z-index: 10;
-    box-shadow: 0 0 20px rgba(255,59,48,.7);
-    font-size: 17px;
-}
-
-.rotationTimer {
-    color: white;
-    text-align: center;
-    margin-bottom: 12px;
-    font-size: 14px;
-    opacity: .9;
-}
-.openPackButton.disabled {
-    opacity: .5;
-    cursor: not-allowed;
-    background: #666;
-}
-.buttonContent {
-    display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 8px;
+    margin-bottom: 12px;
+    color: white;
+    font-weight: bold;
 }
-
-.buttonBoosterIcon {
-    width: 24px;
-    height: 24px;
-}
+    .progressInfos span {
+        font-size: 18px;
+    }
 .openingOverlay {
     position: fixed;
     inset: 0;
@@ -1284,6 +1195,56 @@ span.dexNumber {
     align-items: center;
     background: rgba(0,0,0,.95);
     z-index: 999999;
+}
+.openBoosterButton {
+    width: 100%;
+    border: none;
+    border-radius: 14px;
+    padding: 12px;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+    background: linear-gradient( 135deg, #2446ab, #02c2e8 );
+    transition: .2s;
+    font-family: 'Charge Vector Black';
+}
+    .openBoosterButton:hover {
+        transform: scale(1.03);
+    }
+    .openBoosterButton.disabled {
+        opacity: .5;
+        cursor: not-allowed;
+    }
+.hotBadge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    z-index: 10;
+    padding: 8px 16px;
+    border-radius: 999px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    background: linear-gradient( 135deg, #ff3b30, #ff8800 );
+    box-shadow: 0 0 20px rgba(255,120,0,.7);
+}
+.rotationTimer {
+    color: white;
+    text-align: center;
+    margin-bottom: 15px;
+    font-size: 14px;
+    opacity: .85;
+}
+.buttonContent {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+.buttonBoosterIcon {
+    width: 24px;
+    height: 24px;
 }
 .openingWrapper {
     display: flex;

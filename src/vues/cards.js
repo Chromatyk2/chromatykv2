@@ -158,68 +158,96 @@ function Cards() {
                     return (
                         <div
                             key={set.id}
-                            className="packCard"
+                            className="boosterCard"
                         >
+
                             {isHot && (
                                 <div className="hotBadge">
                                     🔥 HOT
                                 </div>
                             )}
+
                             <img
                                 src={set.logo}
                                 alt={set.name}
-                                className="packImage"
+                                className="boosterImage"
                             />
-                            <div className="packOverlay">
-                                <h2 className="packTitle">
-                                    {set.name}
-                                </h2>
+
+                            <div className="boosterFooter">
+
                                 {!isHot && (
                                     <div className="rotationTimer">
                                         ⏳ {getRemainingTime(set.end_date)}
                                     </div>
                                 )}
-                                <div className="packStats">
+
+                                <div className="progressInfos">
+
                                     <span>
-                                        {stats.owned} / {stats.total}
+                                        {stats.owned}
+                                        {" / "}
+                                        {stats.total}
                                     </span>
+
                                     <span>
                                         {stats.percent}%
                                     </span>
+
                                 </div>
-                                <div className="hpBarContainer">
+
+                                <div className="progressBarContainer">
+
                                     <div
-                                        className="hpBar"
+                                        className="progressBar"
                                         style={{
-                                            width: `${stats.percent}%`,
-                                            background: "linear-gradient(90deg,rgba(36, 70, 171, 1) 0%, rgba(2, 194, 232, 1) 100%)"
+                                            width:
+                                                `${stats.percent}%`
                                         }}
                                     />
-                                    <span className="hpText">
-                                        <p style={{ fontSize: "16px" }}>{parseFloat(stats.percent).toFixed(2) + " %"}</p>
-                                    </span>
+
                                 </div>
 
                                 <button
-                                    className={`openPackButton ${boosterCurrency <= 0 ? "disabled" : ""
+                                    className={`openBoosterButton ${boosterCurrency <= 0
+                                            ? "disabled"
+                                            : ""
                                         }`}
-                                    disabled={boosterCurrency <= 0}
-                                    onClick={() => openBooster(set.tcgdex_id)}
+                                    disabled={
+                                        boosterCurrency <= 0
+                                    }
+                                    onClick={() =>
+                                        openBooster(
+                                            set.tcgdex_id
+                                        )
+                                    }
                                 >
-                                    {boosterCurrency > 0 ? (
-                                        <span className="buttonContent">
-                                            Ouvrir x {boosterCurrency}
-                                            <img
-                                                src="/booster.png"
-                                                alt="Booster"
-                                                className="buttonBoosterIcon"
-                                            />
-                                        </span>
-                                    ) : (
-                                        "Aucun booster disponible"
-                                    )}
+
+                                    {
+                                        boosterCurrency > 0
+                                            ? (
+                                                <span className="buttonContent">
+
+                                                    Ouvrir x {
+                                                        boosterCurrency
+                                                    }
+
+                                                    <img
+                                                        src="/booster.png"
+                                                        alt=""
+                                                        className="buttonBoosterIcon"
+                                                    />
+
+                                                </span>
+                                            )
+                                            : (
+                                                "Aucun booster disponible"
+                                            )
+                                    }
+
                                 </button>
+
                             </div>
+
                         </div>
                     );
                 })}
