@@ -281,16 +281,12 @@ function Profil() {
     }
     function runExpedition(e, f, negative, shiny) {
         if (!new URLSearchParams(window.location.search).has("user")) {
-            let endDate = 0;
-            if (negative === 1) {
-                endDate = new Date(Date.now() + (3 + f) * 60 * 60 * 1000);
+            const hours =
+                negative === 1 ? 3 + f :
+                    shiny === 1 ? 2 + f :
+                        1 + f;
 
-            } else if (shiny === 1) {
-                endDate = new Date(Date.now() + (2 + f) * 60 * 60 * 1000);
-
-            } else {
-                endDate = new Date(Date.now() + (1 + f) * 60 * 60 * 1000);
-            }
+            const endDate = new Date(Date.now() + hours * 60 * 60 * 1000);
             Axios.post('/api/newExpedition', {
                 user: cookies.user.data[0].id,
                 number: e,
@@ -331,25 +327,36 @@ function Profil() {
             if (expedition.active === 1) {
                 Axios.post('/api/closeExpedition/' + number)
                     .then(function (response) {
-                        let fragmentToWin = 0;
-                        if (negative === 1) {
-                            const min = 4 + tier;
-                            const max = 6 + tier;
-                            fragmentToWin =
-                                Math.floor(Math.random() * (max - min + 1)) + min;
+                        const rewards = {
+                            normal: {
+                                1: [1, 3],
+                                2: [2, 4],
+                                3: [4, 6],
+                                4: [6, 8]
+                            },
+                            shiny: {
+                                1: [2, 4],
+                                2: [4, 6],
+                                3: [7, 10],
+                                4: [11, 14]
+                            },
+                            negative: {
+                                1: [3, 5],
+                                2: [6, 8],
+                                3: [11, 14],
+                                4: [27, 31]
+                            }
+                        };
 
-                        } else if (shiny === 1) {
-                            const min = 3;
-                            const max = 4 + tier;
-                            fragmentToWin =
-                                Math.floor(Math.random() * (max - min + 1)) + min;
+                        const form =
+                            negative === 1 ? "negative" :
+                                shiny === 1 ? "shiny" :
+                                    "normal";
 
-                        } else {
-                            const min = 1;
-                            const max = 2 + tier;
-                            fragmentToWin =
-                                Math.floor(Math.random() * (max - min + 1)) + min;
-                        }
+                        const [min, max] = rewards[form][tier];
+
+                        const fragmentToWin =
+                            Math.floor(Math.random() * (max - min + 1)) + min;
                         Axios.post('/api/addCandy', {
                             user: cookies.user.data[0].id,
                             item: "Fragement de Pack",
