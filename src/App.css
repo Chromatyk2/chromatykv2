@@ -1182,6 +1182,7 @@ button.openBoosterButton span {
     background: rgba(5, 72, 115, 0.5);
     padding: 20px;
     min-height: 116px;
+    padding: 10px;
 }
 .progressInfos {
     display: flex;
@@ -1215,6 +1216,7 @@ button.openBoosterButton span {
     background: rgba(0,0,0,0.5);
     transition: .2s;
     font-family: 'Charge Vector Black';
+    margin-top: 10px;
 }
     .openBoosterButton:hover {
         transform: scale(1.03);
@@ -1242,6 +1244,7 @@ button.openBoosterButton span {
     margin-bottom: 15px;
     font-size: 14px;
     opacity: .85;
+    min-height: 19px;
 }
 .buttonContent {
     display: flex;

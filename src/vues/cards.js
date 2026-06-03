@@ -175,11 +175,13 @@ function Cards() {
 
                             <div className="boosterFooter">
 
-                                {!isHot && (
-                                    <div className="rotationTimer">
-                                        ⏳ {getRemainingTime(set.end_date)}
-                                    </div>
-                                )}
+                                <div className="rotationTimer">
+                                    {!isHot && (
+                                        <>
+                                            ⏳ {getRemainingTime(set.end_date)}
+                                        </>
+                                    )}
+                                </div>
 
                                 <div className="progressInfos">
 
