@@ -29,7 +29,7 @@ div {
     min-height: 100vh;
 }
 header.App-header p {
-    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000, 0 0 6px #fff9;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 }
 .App-link {
   color: #61dafb;
