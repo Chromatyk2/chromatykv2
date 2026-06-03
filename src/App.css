@@ -46,6 +46,7 @@ header.App-header p {
     justify-content: center;
     margin: auto;
     width: 50%;
+    padding-top: min(70px);
 }
 .globalContainerCenter p {
     font-size: 20px;
