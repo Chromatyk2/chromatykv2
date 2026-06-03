@@ -1148,6 +1148,22 @@ span.dexNumber {
 }
 
 /* Cartes Boutique*/
+.viewSwitcher {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+.viewSwitcher button {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+}
+.viewSwitcher .active {
+    background: linear-gradient( 90deg, #2446ab, #02c2e8 );
+    color: white;
+}
 img.boosterImage {
     filter: brightness(0.8);
 }

@@ -16,6 +16,7 @@ function Cards() {
     const [opening, setOpening] = useState(false);
     const [isShop, setIsShop] = useState(true);
     const [openedCards, setOpenedCards] = useState([]);
+    const [ownedSets, setOwnedSets] = useState([]);
     const [currentCard, setCurrentCard] = useState(0);
     const [revealed, setRevealed] = useState(false);
     const [showNewBadge,setShowNewBadge] =useState(false);
@@ -91,6 +92,7 @@ function Cards() {
             setProgress(data.progress);
             setBoosterCurrency(data.boosterCurrency);
             setGlobalProgress(data.globalProgress);
+            setOwnedSets(data.ownedSets);
         };
         loadData();
     }, [userId]);
@@ -174,7 +176,34 @@ function Cards() {
                     </div>
                 )
             }
-            {isShop === true &&
+            <div className="viewSwitcher">
+                <button
+                    className={
+                        isShop === true
+                            ? "active"
+                            : ""
+                    }
+                    onClick={() =>
+                        setIsShop(false)
+                    }
+                >
+                    Boutique
+                </button>
+                <button
+                    className={
+                        isShop === false
+                            ? "active"
+                            : ""
+                    }
+                    onClick={() =>
+                        setIsShop(true)
+                    }
+                >
+                    Collection
+                </button>
+
+            </div>
+            {isShop === true ?
                 <div className="rotationGrid">
                     {sortedSets.map(set => {
                         const isHot =
@@ -326,6 +355,41 @@ function Cards() {
                             </div>
                         )
                     }
+                </div>
+                :
+                <div className="collectionGrid">
+
+                    {ownedSets.map(set => (
+                        <div
+                            key={set.tcgdex_id}
+                            className="collectionSetCard"
+                        >
+                            <img
+                                src={set.logo}
+                                alt={set.name}
+                            />
+                            <h3>
+                                {set.name}
+                            </h3>
+                            <p>
+                                {set.owned}
+                                {" / "}
+                                {set.card_count}
+
+                            </p>
+                            <div
+                                className="progressBarContainer"
+                            >
+                                <div
+                                    className="progressBar"
+                                    style={{
+                                        width:
+                                            `${set.percent}%`
+                                    }}
+                                />
+                            </div>
+                        </div>
+                    ))}
                 </div>
             }
         </div>
