@@ -14,6 +14,7 @@ function Cards() {
     const [boosterCurrency, setBoosterCurrency] = useState(0);
     const userId = cookies.user.data[0].id;
     const [opening, setOpening] = useState(false);
+    const [isShop, setIsShop] = useState(true);
     const [openedCards, setOpenedCards] = useState([]);
     const [currentCard, setCurrentCard] = useState(0);
     const [revealed, setRevealed] = useState(false);
@@ -173,158 +174,160 @@ function Cards() {
                     </div>
                 )
             }
-            <div className="rotationGrid">
-                {sortedSets.map(set => {
-                    const isHot =
-                        new Date(set.release_date).getTime() ===
-                        newestReleaseDate;
-                    const stats = progress[set.tcgdex_id] || {
-                        owned: 0,
-                        total: set.card_count,
-                        percent: 0
-                    };
-                    return (
-                        <div key={set.id} className="boosterCard">
-                            {isHot && (
-                                <div className="hotBadge">
-                                    🔥 HOT
-                                </div>
-                            )}
-                            <img
-                                src={set.logo}
-                                alt={set.name}
-                                className="boosterImage"
-                            />
-                            <div className="boosterFooter">
+            {isShop === true &&
+                <div className="rotationGrid">
+                    {sortedSets.map(set => {
+                        const isHot =
+                            new Date(set.release_date).getTime() ===
+                            newestReleaseDate;
+                        const stats = progress[set.tcgdex_id] || {
+                            owned: 0,
+                            total: set.card_count,
+                            percent: 0
+                        };
+                        return (
+                            <div key={set.id} className="boosterCard">
+                                {isHot && (
+                                    <div className="hotBadge">
+                                        🔥 HOT
+                                    </div>
+                                )}
+                                <img
+                                    src={set.logo}
+                                    alt={set.name}
+                                    className="boosterImage"
+                                />
+                                <div className="boosterFooter">
 
-                                <div className="rotationTimer">
-                                    {!isHot && (
-                                        <>
-                                            ⏳ {getRemainingTime(set.end_date)}
-                                        </>
-                                    )}
-                                </div>
-                                <div className="progressInfos">
-                                    <span>
-                                        {stats.owned}
-                                        {" / "}
-                                        {stats.total}
-                                    </span>
-                                    <span>
-                                        {stats.percent}%
-                                    </span>
-                                </div>
-                                <div className="hpBarContainer">
-                                    <div
-                                        className="hpBar"
-                                        style={{
-                                            width: `${stats.percent}%`,
-                                            background: "linear-gradient(90deg,rgba(36, 70, 171, 1) 0%, rgba(2, 194, 232, 1) 100%)"
-                                        }}
-                                    />
-                                    <span className="hpText">
-                                        <p style={{ fontSize: "16px" }}>{parseFloat(stats.percent).toFixed(2) + " %"}</p>
-                                    </span>
-                                </div>
+                                    <div className="rotationTimer">
+                                        {!isHot && (
+                                            <>
+                                                ⏳ {getRemainingTime(set.end_date)}
+                                            </>
+                                        )}
+                                    </div>
+                                    <div className="progressInfos">
+                                        <span>
+                                            {stats.owned}
+                                            {" / "}
+                                            {stats.total}
+                                        </span>
+                                        <span>
+                                            {stats.percent}%
+                                        </span>
+                                    </div>
+                                    <div className="hpBarContainer">
+                                        <div
+                                            className="hpBar"
+                                            style={{
+                                                width: `${stats.percent}%`,
+                                                background: "linear-gradient(90deg,rgba(36, 70, 171, 1) 0%, rgba(2, 194, 232, 1) 100%)"
+                                            }}
+                                        />
+                                        <span className="hpText">
+                                            <p style={{ fontSize: "16px" }}>{parseFloat(stats.percent).toFixed(2) + " %"}</p>
+                                        </span>
+                                    </div>
 
-                                <div className="progressBarContainer">
+                                    <div className="progressBarContainer">
 
-                                    <div
-                                        className="progressBar"
-                                        style={{
-                                            width:
-                                                `${stats.percent}%`
-                                        }}
-                                    />
+                                        <div
+                                            className="progressBar"
+                                            style={{
+                                                width:
+                                                    `${stats.percent}%`
+                                            }}
+                                        />
 
-                                </div>
+                                    </div>
 
-                                <button
-                                    className={`openBoosterButton ${boosterCurrency <= 0
-                                            ? "disabled"
-                                            : ""
-                                        }`}
-                                    disabled={
-                                        boosterCurrency <= 0
-                                    }
-                                    onClick={() =>
-                                        openBooster(
-                                            set.tcgdex_id
-                                        )
-                                    }
-                                >
-
-                                    {
-                                        boosterCurrency > 0
-                                            ? (
-                                                <span className="buttonContent">
-
-                                                    Ouvrir x {
-                                                        boosterCurrency
-                                                    }
-
-                                                    <img
-                                                        src="/booster.png"
-                                                        alt=""
-                                                        className="buttonBoosterIcon"
-                                                    />
-
-                                                </span>
+                                    <button
+                                        className={`openBoosterButton ${boosterCurrency <= 0
+                                                ? "disabled"
+                                                : ""
+                                            }`}
+                                        disabled={
+                                            boosterCurrency <= 0
+                                        }
+                                        onClick={() =>
+                                            openBooster(
+                                                set.tcgdex_id
                                             )
-                                            : (
-                                                "Aucun booster disponible"
-                                            )
-                                    }
+                                        }
+                                    >
 
-                                </button>
+                                        {
+                                            boosterCurrency > 0
+                                                ? (
+                                                    <span className="buttonContent">
+
+                                                        Ouvrir x {
+                                                            boosterCurrency
+                                                        }
+
+                                                        <img
+                                                            src="/booster.png"
+                                                            alt=""
+                                                            className="buttonBoosterIcon"
+                                                        />
+
+                                                    </span>
+                                                )
+                                                : (
+                                                    "Aucun booster disponible"
+                                                )
+                                        }
+
+                                    </button>
+
+                                </div>
 
                             </div>
-
-                        </div>
-                    );
-                })}
-                {
-                    opening && (
-                        <div className={`openingOverlay  ${revealed ? `tierBg${openedCards[currentCard]?.tier || 1}` : ""}`} onClick={nextCard}>
-                            <div className="openingWrapper">
-                                <div className={`card ${revealed ? "flipped" : ""} ${revealed ? `tier${openedCards[currentCard]?.tier || 1}` : ""}`}>
-                                    <div className="cardInner">
-                                        <div className="cardFront">
-                                            <img src="/backCard.png" alt=""/>
-                                        </div>
-                                        <div className="cardBack">
-                                            <img src={openedCards[currentCard]?.image +"/high.webp"}alt=""/>
-                                            {
-                                                showNewBadge &&
-                                                openedCards[currentCard]?.isNew && (
-                                                    <div className="newBadge">
-                                                        ✨ NEW ✨
-                                                    </div>
-                                                )
-                                            }
+                        );
+                    })}
+                    {
+                        opening && (
+                            <div className={`openingOverlay  ${revealed ? `tierBg${openedCards[currentCard]?.tier || 1}` : ""}`} onClick={nextCard}>
+                                <div className="openingWrapper">
+                                    <div className={`card ${revealed ? "flipped" : ""} ${revealed ? `tier${openedCards[currentCard]?.tier || 1}` : ""}`}>
+                                        <div className="cardInner">
+                                            <div className="cardFront">
+                                                <img src="/backCard.png" alt=""/>
+                                            </div>
+                                            <div className="cardBack">
+                                                <img src={openedCards[currentCard]?.image +"/high.webp"}alt=""/>
+                                                {
+                                                    showNewBadge &&
+                                                    openedCards[currentCard]?.isNew && (
+                                                        <div className="newBadge">
+                                                            ✨ NEW ✨
+                                                        </div>
+                                                    )
+                                                }
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div className="cardInfos">
-                                    Carte
-                                    {" "}
-                                    {currentCard + 1}
-                                    {" / "}
-                                    {openedCards.length}
-                                </div>
-                                <div className="hint">
-                                    {
-                                        !revealed
-                                            ? "Cliquer pour retourner"
-                                            : "Cliquer pour continuer"
-                                    }
+                                    <div className="cardInfos">
+                                        Carte
+                                        {" "}
+                                        {currentCard + 1}
+                                        {" / "}
+                                        {openedCards.length}
+                                    </div>
+                                    <div className="hint">
+                                        {
+                                            !revealed
+                                                ? "Cliquer pour retourner"
+                                                : "Cliquer pour continuer"
+                                        }
 
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    )
-                }
-            </div>
+                        )
+                    }
+                </div>
+            }
         </div>
     )
 }
