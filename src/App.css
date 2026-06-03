@@ -1299,6 +1299,33 @@ span.dexNumber {
         width: 100%;
         border-radius: 12px;
     }
+.openingOverlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.95);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 99999;
+}
+
+.cardReveal {
+    width: min(90vw,400px);
+    cursor: pointer;
+    animation: reveal .4s ease;
+}
+@keyframes reveal {
+
+    from {
+        opacity: 0;
+        transform: scale(.7) rotateY(90deg);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1) rotateY(0deg);
+    }
+}
 @keyframes particleBurst {
 
     0% {

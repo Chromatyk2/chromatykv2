@@ -13,6 +13,8 @@ function Cards() {
     const [now, setNow] = useState(Date.now());
     const [boosterCurrency, setBoosterCurrency] = useState(0);
     const [openedCards, setOpenedCards] = useState([]);
+    const [currentCard, setCurrentCard] = useState(0);
+    const [opening, setOpening] = useState(false);
     const userId = cookies.user.data[0].id;
 
     useEffect(() => {
@@ -93,6 +95,9 @@ function Cards() {
         setOpenedCards(
             data.openedCards
         );
+        setOpenedCards(data.openedCards);
+        setCurrentCard(0);
+        setOpening(true);
 
     };
     return (
@@ -196,42 +201,42 @@ function Cards() {
 
                 })}
                 {
-                    openedCards.length > 0 && (
+                    opening && (
 
-                        <div className="openedCardsContainer">
+                        <div className="openingOverlay">
 
-                            <h2>
-                                Cartes obtenues
-                            </h2>
+                            <img
+                                className="cardReveal"
+                                src={
+                                    openedCards[currentCard]
+                                        ?.image + "/high.webp"
+                                }
+                                alt=""
+                                onClick={() => {
 
-                            <div className="openedCardsGrid">
+                                    if (
+                                        currentCard <
+                                        openedCards.length - 1
+                                    ) {
 
-                                {openedCards.map(card => (
+                                        setCurrentCard(
+                                            currentCard + 1
+                                        );
 
-                                    <div
-                                        key={card.tcgdex_id}
-                                        className="openedCard"
-                                    >
+                                    } else {
 
-                                        <img
-                                            src={`${card.image}/high.webp`}
-                                            alt={card.tcgdex_id}
-                                        />
+                                        setOpening(false);
 
-                                        <p>
-                                            {card.rarity}
-                                        </p>
+                                    }
 
-                                    </div>
-
-                                ))}
-
-                            </div>
+                                }}
+                            />
 
                         </div>
 
                     )
                 }
+
             </div>
         </div>
     )
