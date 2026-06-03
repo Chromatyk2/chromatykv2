@@ -17,17 +17,9 @@ function Cards() {
     const [openedCards, setOpenedCards] = useState([]);
     const [currentCard, setCurrentCard] = useState(0);
     const [revealed, setRevealed] = useState(false);
-    const [showNewBadge,
-        setShowNewBadge] =
-        useState(false);
-    const [isTransitioning,
-        setIsTransitioning] =
-        useState(false);
-    const startOpening = (cards) => {
-        setOpenedCards(cards);
-        setCurrentCard(0);
-        setRevealed(false);
-        setOpening(true);
+    const [showNewBadge,setShowNewBadge] =useState(false);
+    const [isTransitioning,setIsTransitioning] =useState(false);
+    const startOpening = (cards) => {setOpenedCards(cards);setCurrentCard(0);setRevealed(false);setOpening(true);
 
     };
     const nextCard = () => {
@@ -233,7 +225,7 @@ function Cards() {
                 })}
                 {
                     opening && (
-                        <div className={`openingOverlay ${revealed ? `tierBg${openedCards[currentCard]?.tier || 1}`: ""}`}>
+                        <div className={`openingOverlay  ${revealed ? `tierBg${openedCards[currentCard]?.tier || 1}` : ""}`} onClick={nextCard}>
                             <div className="openingWrapper">
                                 <div className={`card ${revealed ? "flipped" : ""} ${revealed ? `tier${openedCards[currentCard]?.tier || 1}` : ""}`}>
                                     <div className="cardInner">
