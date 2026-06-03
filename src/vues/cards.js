@@ -177,31 +177,12 @@ function Cards() {
                 )
             }
             <div className="viewSwitcher">
-                <button
-                    className={
-                        isShop === true
-                            ? "active"
-                            : ""
-                    }
-                    onClick={() =>
-                        setIsShop(true)
-                    }
-                >
+                <button className={isShop === true ? "active" : ""} onClick={() =>setIsShop(true)}>
                     Boutique
                 </button>
-                <button
-                    className={
-                        isShop === false
-                            ? "active"
-                            : ""
-                    }
-                    onClick={() =>
-                        setIsShop(false)
-                    }
-                >
+                <button className={isShop === false ? "active" : ""} onClick={() =>setIsShop(false)}>
                     Collection
                 </button>
-
             </div>
             {isShop === true ?
                 <div className="rotationGrid">
@@ -358,20 +339,46 @@ function Cards() {
                 </div>
                 :
                 <div className="collectionGrid">
-                    {ownedSets.map(set => (
-                        <div key={set.tcgdex_id} className="collectionSetCard">
-                            <img src={set.logo} alt={set.name}/>
-                            <h3>
-                                {set.name}
-                            </h3>
-                            <p>
-                                {set.owned}
-                                {" / "}
-                                {set.card_count}
-
-                            </p>
-                            <div className="progressBarContainer">
-                                <div className="progressBar"style={{width:`${set.percent}%`}}/>
+                    {ownedSets?.map(set => (
+                        <div key={set.tcgdex_id} className="boosterCard">
+                            <img src={set.logo} alt={set.name} className="boosterImage" />
+                            <div className="boosterFooter">
+                                <div className="progressInfos">
+                                    <span>
+                                        {set.owned}
+                                        {" / "}
+                                        {set.card_count}
+                                    </span>
+                                    <span>
+                                        {set.percent}%
+                                    </span>
+                                </div>
+                                <div className="hpBarContainer">
+                                    <div
+                                        className="hpBar"
+                                        style={{
+                                            width: `${set.percent}%`,
+                                            background: "linear-gradient(90deg,rgba(36, 70, 171, 1) 0%, rgba(2, 194, 232, 1) 100%)"
+                                        }}
+                                    />
+                                    <span className="hpText">
+                                        <p style={{ fontSize: "16px" }}>{parseFloat(set.percent).toFixed(2) + " %"}</p>
+                                    </span>
+                                </div>
+                                <div className="progressBarContainer">
+                                    <div
+                                        className="progressBar"
+                                        style={{
+                                            width:
+                                                `${set.percent}%`
+                                        }}
+                                    />
+                                </div>
+                                <button className={`openBoosterButton`}>
+                                    <span className="buttonContent">
+                                        Voir les cartes
+                                    </span>
+                                </button>
                             </div>
                         </div>
                     ))}
