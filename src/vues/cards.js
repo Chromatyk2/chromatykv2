@@ -25,26 +25,25 @@ function Cards() {
     return (
         <div className={"globalContainerCenter"}>
             {rotationSets.map(set => {
-
                 const stats = progress[set.tcgdex_id];
-
                 return (
                     <div key={set.id}>
-
                         <img
                             src={set.logo}
                             alt={set.name}
                             width={250}
                         />
-
                         <h3>{set.name}</h3>
+                        <progress
+                            value={stats?.owned || 0}
+                            max={stats?.total || set.card_count}
+                        />
 
                         <p>
-                            {stats.owned.lenght} / {stats.total}
+                            {stats?.owned || 0} / {stats?.total || set.card_count}
                             {" "}
-                            ({(stats.total / stats.owned.lenght) * 100}%)
+                            ({stats?.percent || 0}%)
                         </p>
-
                     </div>
                 );
 
