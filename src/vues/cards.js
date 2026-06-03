@@ -10,7 +10,9 @@ function Cards() {
     const [collection, setCollection] = useState([])
     const [rotationSets, setRotationSets] = useState([])
     const [progress, setProgress] = useState({})
+    const [now, setNow] = useState(Date.now());
     const userId = cookies.user.data[0].id;
+
     useEffect(() => {
         const loadData = async () => {
             const { data } = await Axios.get(
@@ -22,11 +24,59 @@ function Cards() {
         };
         loadData();
     }, [userId]);
+    useEffect(() => {
+
+        const interval = setInterval(() => {
+            setNow(Date.now());
+        }, 1000);
+
+        return () => clearInterval(interval);
+
+    }, []);
+    const sortedSets = [...rotationSets].sort((a, b) =>
+        new Date(b.release_date) -
+        new Date(a.release_date)
+    );
+
+    const newestReleaseDate = Math.max(
+        ...rotationSets.map(set =>
+            new Date(set.release_date).getTime()
+        )
+    );
+
+    function getRemainingTime(endDate) {
+
+        const diff =
+            new Date(endDate).getTime() - now;
+
+        if (diff <= 0) {
+            return "Terminé";
+        }
+
+        const days =
+            Math.floor(diff / (1000 * 60 * 60 * 24));
+
+        const hours =
+            Math.floor(
+                (diff / (1000 * 60 * 60)) % 24
+            );
+
+        const minutes =
+            Math.floor(
+                (diff / (1000 * 60)) % 60
+            );
+
+        return `${days}j ${hours}h ${minutes}m`;
+    }
     return (
         <div className={"globalContainerCenter"}>
             <div className="rotationGrid">
 
-                {rotationSets.map(set => {
+                {sortedSets.map(set => {
+
+                    const isHot =
+                        new Date(set.release_date).getTime() ===
+                        newestReleaseDate;
 
                     const stats = progress[set.tcgdex_id] || {
                         owned: 0,
@@ -41,6 +91,12 @@ function Cards() {
                             className="packCard"
                         >
 
+                            {isHot && (
+                                <div className="hotBadge">
+                                    🔥 HOT
+                                </div>
+                            )}
+
                             <img
                                 src={set.logo}
                                 alt={set.name}
@@ -52,6 +108,12 @@ function Cards() {
                                 <h2 className="packTitle">
                                     {set.name}
                                 </h2>
+
+                                {!isHot && (
+                                    <div className="rotationTimer">
+                                        ⏳ {getRemainingTime(set.end_date)}
+                                    </div>
+                                )}
 
                                 <div className="packStats">
 
@@ -78,12 +140,6 @@ function Cards() {
 
                                 <button
                                     className="openPackButton"
-                                    onClick={() => {
-                                        console.log(
-                                            "Ouverture du pack",
-                                            set.tcgdex_id
-                                        );
-                                    }}
                                 >
                                     OUVRIR
                                 </button>
