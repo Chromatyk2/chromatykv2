@@ -1098,7 +1098,7 @@ span.dexNumber {
     font-weight: bold;
     pointer-events: none;
     z-index: 100;
-    text-shadow: -3px -3px 0 #000, 3px -3px 0 #000, -3px 3px 0 #000, 3px 3px 0 #000;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000, 0 0 6px #fff9;
     animation: damageFloat 1s ease-out forwards;
 }
 .damageText.critical {
