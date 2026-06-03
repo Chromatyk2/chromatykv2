@@ -127,15 +127,18 @@ function Cards() {
 
                                 </div>
 
-                                <div className="progressContainer">
 
+                                <div style={{ width: "70%" }} className="hpBarContainer">
                                     <div
-                                        className="progressFill"
+                                        className="hpBar"
                                         style={{
-                                            width: `${stats.percent}%`
+                                            width: `${stats.percent}%`,
+                                            background: "linear-gradient(90deg,rgba(36, 70, 171, 1) 0%, rgba(2, 194, 232, 1) 100%)"
                                         }}
                                     />
-
+                                    <span className="hpText">
+                                        <p style={{ fontSize: "16px" }}>{parseFloat(stats.percent).toFixed(2) + " %"}</p>
+                                    </span>
                                 </div>
 
                                 <button
