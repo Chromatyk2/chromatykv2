@@ -38,33 +38,29 @@ function Cards() {
 
                         <div
                             key={set.id}
-                            className="bannerCard"
+                            className="packCard"
                         >
 
-                            <div className="bannerImageContainer">
+                            <img
+                                src={set.logo}
+                                alt={set.name}
+                                className="packImage"
+                            />
 
-                                <img
-                                    src={set.logo}
-                                    alt={set.name}
-                                    className="bannerImage"
-                                />
+                            <div className="packOverlay">
 
-                            </div>
-
-                            <div className="bannerContent">
-
-                                <h3 className="bannerTitle">
+                                <h2 className="packTitle">
                                     {set.name}
-                                </h3>
+                                </h2>
 
-                                <div className="bannerStats">
+                                <div className="packStats">
 
                                     <span>
                                         {stats.owned} / {stats.total}
                                     </span>
 
                                     <span>
-                                        {stats.percent.toFixed(1)}%
+                                        {stats.percent}%
                                     </span>
 
                                 </div>
@@ -79,6 +75,18 @@ function Cards() {
                                     />
 
                                 </div>
+
+                                <button
+                                    className="openPackButton"
+                                    onClick={() => {
+                                        console.log(
+                                            "Ouverture du pack",
+                                            set.tcgdex_id
+                                        );
+                                    }}
+                                >
+                                    OUVRIR
+                                </button>
 
                             </div>
 
