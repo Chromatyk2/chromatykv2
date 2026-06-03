@@ -120,7 +120,7 @@ function ProgressBarFight(props) {
             pokemon) {
             const userId = cookies.user.data[0].id;
             const tierMultiplierattack =
-                pokemon.tier === 4 ? 2 :
+                pokemon.tier === 4 ? 100 :
                     pokemon.tier === 3 ? 1.75 :
                         pokemon.tier === 2 ? 1.5 :
                             1.25;
@@ -192,10 +192,15 @@ function ProgressBarFight(props) {
                 3: 4,
                 4: 8
             };
+            const xpGainByTier = {
+                1: 18,
+                2: 37,
+                3: 75,
+                4: 500
+            };
             const xpToNextLevel =
                 Math.floor((20 + curentLevel * curentLevel * 2) * tierMultiplier[props.compagnon[0].tier] * formMultiplier);
-            const xpGain =
-                Math.floor(maxHp / 80);
+            const xpGain = xpGainByTier[pokemon.tier];
             const newXp = currentXp + xpGain;
             if (newXp >= xpToNextLevel) {
                 Axios.post('/api/levelupCompagnon', {
