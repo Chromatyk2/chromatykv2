@@ -1276,7 +1276,29 @@ span.dexNumber {
     width: 24px;
     height: 24px;
 }
+.openedCardsContainer {
+    margin-top: 40px;
+}
 
+.openedCardsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 20px;
+}
+
+.openedCard {
+    text-align: center;
+    transition: .2s;
+}
+
+    .openedCard:hover {
+        transform: scale(1.05);
+    }
+
+    .openedCard img {
+        width: 100%;
+        border-radius: 12px;
+    }
 @keyframes particleBurst {
 
     0% {

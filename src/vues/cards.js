@@ -12,6 +12,7 @@ function Cards() {
     const [progress, setProgress] = useState({})
     const [now, setNow] = useState(Date.now());
     const [boosterCurrency, setBoosterCurrency] = useState(0);
+    const [openedCards, setOpenedCards] = useState([]);
     const userId = cookies.user.data[0].id;
 
     useEffect(() => {
@@ -73,32 +74,25 @@ function Cards() {
 
     const openBooster = async (setTcgdexId) => {
 
-        try {
-
-            const { data } = await Axios.post(
-                "/api/card/openBooster",
-                {
-                    userId,
-                    setTcgdexId
-                }
-            );
-
-            if (!data.success) {
-
-                alert(data.message);
-                return;
-
+        const { data } = await Axios.post(
+            "/api/card/openBooster",
+            {
+                userId,
+                setTcgdexId
             }
+        );
 
-            setBoosterCurrency(
-                data.boosterCurrency
-            );
-
-        } catch (err) {
-
-            console.error(err);
-
+        if (!data.success) {
+            return;
         }
+
+        setBoosterCurrency(
+            data.boosterCurrency
+        );
+
+        setOpenedCards(
+            data.openedCards
+        );
 
     };
     return (
@@ -201,7 +195,43 @@ function Cards() {
                     );
 
                 })}
+                {
+                    openedCards.length > 0 && (
 
+                        <div className="openedCardsContainer">
+
+                            <h2>
+                                Cartes obtenues
+                            </h2>
+
+                            <div className="openedCardsGrid">
+
+                                {openedCards.map(card => (
+
+                                    <div
+                                        key={card.tcgdex_id}
+                                        className="openedCard"
+                                    >
+
+                                        <img
+                                            src={`${card.image}/high.webp`}
+                                            alt={card.tcgdex_id}
+                                        />
+
+                                        <p>
+                                            {card.rarity}
+                                        </p>
+
+                                    </div>
+
+                                ))}
+
+                            </div>
+
+                        </div>
+
+                    )
+                }
             </div>
         </div>
     )
