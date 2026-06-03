@@ -17,6 +17,9 @@ function Cards() {
     const [openedCards, setOpenedCards] = useState([]);
     const [currentCard, setCurrentCard] = useState(0);
     const [revealed, setRevealed] = useState(false);
+    const [showNewBadge,
+        setShowNewBadge] =
+        useState(false);
     const [isTransitioning,
         setIsTransitioning] =
         useState(false);
@@ -93,6 +96,25 @@ function Cards() {
         };
         loadData();
     }, [userId]);
+    useEffect(() => {
+
+        if (revealed) {
+
+            const timeout =
+                setTimeout(() => {
+
+                    setShowNewBadge(true);
+
+                }, 500);
+
+            return () =>
+                clearTimeout(timeout);
+
+        }
+
+        setShowNewBadge(false);
+
+    }, [revealed]);
     useEffect(() => {
 
         const interval = setInterval(() => {
@@ -211,17 +233,23 @@ function Cards() {
                 })}
                 {
                     opening && (
-                        <div
-                            className={`openingOverlay tierBg${openedCards[currentCard] ?.tier || 1}`} onClick={nextCard}>
+                        <div className={`openingOverlay ${revealed ? `tierBg${openedCards[currentCard]?.tier || 1}`: ""}`}>
                             <div className="openingWrapper">
-                                <div key={currentCard} className={`card ${revealed ? "flipped" : ""} tier${openedCards[currentCard]?.tier || 1}`}>
+                                <div className={`card ${revealed ? "flipped" : ""} ${revealed ? `tier${openedCards[currentCard]?.tier || 1}` : ""}`}>
                                     <div className="cardInner">
                                         <div className="cardFront">
                                             <img src="/backCard.png" alt=""/>
                                         </div>
                                         <div className="cardBack">
-                                            <img
-                                                src={openedCards[currentCard]?.image +"/high.webp"}alt=""/>
+                                            <img src={openedCards[currentCard]?.image +"/high.webp"}alt=""/>
+                                            {
+                                                showNewBadge &&
+                                                openedCards[currentCard]?.isNew && (
+                                                    <div className="newBadge">
+                                                        ✨ NEW ✨
+                                                    </div>
+                                                )
+                                            }
                                         </div>
                                     </div>
                                 </div>
