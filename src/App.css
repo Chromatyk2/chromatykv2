@@ -1155,14 +1155,16 @@ span.dexNumber {
     margin-bottom: 25px;
 }
 .viewSwitcher button {
-    padding: 12px 24px;
     border: none;
     border-radius: 12px;
     cursor: pointer;
+    padding: 12px 24px;
+    font-family: Charge Vector Black;
+    margin-top: 10px;
 }
 .viewSwitcher .active {
-    background: linear-gradient( 90deg, #2446ab, #02c2e8 );
-    color: white;
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
 }
 img.boosterImage {
     filter: brightness(0.8);

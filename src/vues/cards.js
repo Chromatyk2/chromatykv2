@@ -184,7 +184,7 @@ function Cards() {
                             : ""
                     }
                     onClick={() =>
-                        setIsShop(false)
+                        setIsShop(true)
                     }
                 >
                     Boutique
@@ -196,7 +196,7 @@ function Cards() {
                             : ""
                     }
                     onClick={() =>
-                        setIsShop(true)
+                        setIsShop(false)
                     }
                 >
                     Collection
@@ -358,16 +358,9 @@ function Cards() {
                 </div>
                 :
                 <div className="collectionGrid">
-
                     {ownedSets.map(set => (
-                        <div
-                            key={set.tcgdex_id}
-                            className="collectionSetCard"
-                        >
-                            <img
-                                src={set.logo}
-                                alt={set.name}
-                            />
+                        <div key={set.tcgdex_id} className="collectionSetCard">
+                            <img src={set.logo} alt={set.name}/>
                             <h3>
                                 {set.name}
                             </h3>
@@ -377,16 +370,8 @@ function Cards() {
                                 {set.card_count}
 
                             </p>
-                            <div
-                                className="progressBarContainer"
-                            >
-                                <div
-                                    className="progressBar"
-                                    style={{
-                                        width:
-                                            `${set.percent}%`
-                                    }}
-                                />
+                            <div className="progressBarContainer">
+                                <div className="progressBar"style={{width:`${set.percent}%`}}/>
                             </div>
                         </div>
                     ))}
