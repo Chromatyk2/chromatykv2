@@ -1180,6 +1180,7 @@ button.openBoosterButton span {
 .boosterImage {
     width: 100%;
     display: block;
+    filter: brightness(0.8);
 }
 .boosterFooter {
     background: rgba(5, 72, 115, 0.5);
