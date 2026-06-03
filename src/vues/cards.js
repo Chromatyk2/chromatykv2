@@ -26,7 +26,7 @@ function Cards() {
         <div className={"globalContainerCenter"}>
             {rotationSets.map(set => {
 
-                const stats = progress[set.id];
+                const stats = progress[set.tcgdex_id];
 
                 return (
                     <div key={set.id}>
