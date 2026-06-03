@@ -267,7 +267,7 @@ function Cards() {
                                                     <div className="cardFront">
 
                                                         <img
-                                                            src="/card-back.webp"
+                                                            src="/backCard.png"
                                                             alt=""
                                                         />
 
