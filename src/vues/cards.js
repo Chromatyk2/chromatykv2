@@ -214,7 +214,7 @@ function Cards() {
                                 <div key={currentCard} className={`card ${revealed ? "flipped" : ""} tier${openedCards[currentCard]?.tier || 1}`}>
                                     <div className="cardInner">
                                         <div className="cardFront">
-                                            <img src="/card-back.webp" alt=""/>
+                                            <img src="/backCard.png" alt=""/>
                                         </div>
                                         <div className="cardBack">
                                             <img
