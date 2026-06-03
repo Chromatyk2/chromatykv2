@@ -110,9 +110,9 @@ function NavBar(props) {
                     <img src={"/shiny.png"} />
                     <p>Shiny Dex</p>
                 </Link>
-                <Link onClick={deployNav} className="navLink linkFromNav" to="https://chromatykv2.netlify.app/">
+                <Link onClick={deployNav} className="navLink linkFromNav" to="/cartes">
                     <img src={"/card.png"} />
-                    <p>V1 + Cartes</p>
+                    <p>Cartes</p>
                 </Link>
             </div>
             <div onClick={deployNav} className="halfCircle">
