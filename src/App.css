@@ -1148,6 +1148,11 @@ span.dexNumber {
 }
 
 /* Cartes Boutique*/
+button.openBoosterButton span {
+    font-size: 18px;
+    font-family: Charge Vector Black;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000, 0 0 6px #fff9;
+}
 .rotationGrid {
     width: 100%;
     display: flex;
@@ -1174,9 +1179,9 @@ span.dexNumber {
     display: block;
 }
 .boosterFooter {
+    background: rgba(5, 72, 115, 0.5);
     padding: 20px;
-    background: rgba(10,10,10,.95);
-    position: relative;
+    min-height: 116px;
 }
 .progressInfos {
     display: flex;
@@ -1207,7 +1212,7 @@ span.dexNumber {
     font-weight: bold;
     color: white;
     cursor: pointer;
-    background: linear-gradient( 135deg, #2446ab, #02c2e8 );
+    background: rgba(0,0,0,0.5);
     transition: .2s;
     font-family: 'Charge Vector Black';
 }
