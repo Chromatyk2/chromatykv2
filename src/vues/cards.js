@@ -12,12 +12,59 @@ function Cards() {
     const [progress, setProgress] = useState({})
     const [now, setNow] = useState(Date.now());
     const [boosterCurrency, setBoosterCurrency] = useState(0);
-    const [openedCards, setOpenedCards] = useState([]);
+    const userId = cookies.user.data[0].id;
     const [opening, setOpening] = useState(false);
+    const [openedCards, setOpenedCards] = useState([]);
     const [currentCard, setCurrentCard] = useState(0);
     const [revealed, setRevealed] = useState(false);
-    const userId = cookies.user.data[0].id;
 
+    const startOpening = (cards) => {
+
+        setOpenedCards(cards);
+        setCurrentCard(0);
+        setRevealed(false);
+        setOpening(true);
+
+    };
+
+    const nextCard = () => {
+
+        if (!revealed) {
+
+            setRevealed(true);
+            return;
+
+        }
+
+        if (
+            currentCard <
+            openedCards.length - 1
+        ) {
+
+            setCurrentCard(
+                currentCard + 1
+            );
+
+            setRevealed(false);
+
+        } else {
+
+            setOpening(false);
+
+        }
+
+    };
+    const { data } = await Axios.post(
+        "/api/card/openBooster",
+        {
+            userId,
+            setTcgdexId
+        }
+    );
+
+    startOpening(
+        data.openedCards
+    );
     useEffect(() => {
         const loadData = async () => {
             const { data } = await Axios.get(
@@ -74,67 +121,6 @@ function Cards() {
 
         return `${days}j ${hours}h ${minutes}m`;
     }
-
-    const openBooster = async (setTcgdexId) => {
-
-        try {
-
-            const { data } = await Axios.post(
-                "/api/card/openBooster",
-                {
-                    userId,
-                    setTcgdexId
-                }
-            );
-
-            if (!data.success) {
-                alert(data.message);
-                return;
-            }
-
-            setBoosterCurrency(
-                data.boosterCurrency
-            );
-
-            setOpenedCards(data.openedCards);
-            setCurrentCard(0);
-            setRevealed(false);
-            setOpening(true);
-
-        } catch (err) {
-
-            console.error(err);
-
-        }
-
-    };
-    const nextCard = () => {
-
-        if (!revealed) {
-
-            setRevealed(true);
-            return;
-
-        }
-
-        if (
-            currentCard <
-            openedCards.length - 1
-        ) {
-
-            setCurrentCard(
-                currentCard + 1
-            );
-
-            setRevealed(false);
-
-        } else {
-
-            setOpening(false);
-
-        }
-
-    };
     return (
         <div className={"globalContainerCenter"}>
             <div className="rotationGrid">
@@ -239,61 +225,81 @@ function Cards() {
                     opening && (
 
                         <div
-                            className="openingOverlay"
+                            className={`
+                openingOverlay
+                tierBg${openedCards[currentCard]
+                                    ?.tier || 1
+                                }
+            `}
                             onClick={nextCard}
                         >
 
-                            <div
-                                className={
-                                    revealed
-                                        ? "card flipped"
-                                        : "card"
-                                }
-                            >
+                            <div className="openingWrapper">
 
-                                <div className="cardInner">
-
-                                    <div className="cardFront">
-
-                                        <img
-                                            src="/cardBack.png"
-                                            alt=""
-                                        />
-
-                                    </div>
-
-                                    <div
-                                        className={
-                                            openedCards[currentCard]
-                                                ?.tier >= 5
-                                                ? "cardBack rare"
-                                                : "cardBack"
+                                <div
+                                    className={`
+                        card
+                        ${revealed
+                                            ? "flipped"
+                                            : ""
                                         }
-                                    >
+                        tier${openedCards[
+                                            currentCard
+                                        ]?.tier || 1
+                                        }
+                    `}
+                                >
 
-                                        <img
-                                            src={
-                                                openedCards[
-                                                    currentCard
-                                                ]?.image +
-                                                "/high.webp"
-                                            }
-                                            alt=""
-                                        />
+                                    <div className="cardInner">
+
+                                        <div className="cardFront">
+
+                                            <img
+                                                src="/card-back.webp"
+                                                alt=""
+                                            />
+
+                                        </div>
+
+                                        <div className="cardBack">
+
+                                            <img
+                                                src={
+                                                    openedCards[
+                                                        currentCard
+                                                    ]?.image +
+                                                    "/high.webp"
+                                                }
+                                                alt=""
+                                            />
+
+                                        </div>
 
                                     </div>
 
                                 </div>
 
+                                <div className="cardInfos">
+
+                                    Carte
+                                    {" "}
+                                    {currentCard + 1}
+                                    {" / "}
+                                    {openedCards.length}
+
+                                </div>
+
+                                <div className="hint">
+
+                                    {
+                                        !revealed
+                                            ? "Cliquer pour retourner"
+                                            : "Cliquer pour continuer"
+                                    }
+
+                                </div>
+
                             </div>
-
-                            <p>
-
-                                Carte {currentCard + 1}
-                                {" / "}
-                                {openedCards.length}
-
-                            </p>
 
                         </div>
 

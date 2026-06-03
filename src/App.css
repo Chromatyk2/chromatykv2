@@ -1279,35 +1279,30 @@ span.dexNumber {
 .openingOverlay {
     position: fixed;
     inset: 0;
-    background: rgba(0,0,0,.95);
-    z-index: 99999;
     display: flex;
     justify-content: center;
     align-items: center;
+    background: rgba(0,0,0,.95);
+    z-index: 999999;
 }
-.openingContent {
-    width: 90%;
-    max-width: 1400px;
-    text-align: center;
-}
-.cardGrid {
+.openingWrapper {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
     gap: 20px;
-    flex-wrap: wrap;
 }
 .card {
-    width: 220px;
-    height: 310px;
-    perspective: 1000px;
+    width: 350px;
+    height: 500px;
+    perspective: 1500px;
     cursor: pointer;
 }
 .cardInner {
     width: 100%;
     height: 100%;
     position: relative;
-    transform-style: preserve-3d;
     transition: transform .8s;
+    transform-style: preserve-3d;
 }
 .card.flipped .cardInner {
     transform: rotateY(180deg);
@@ -1319,31 +1314,132 @@ span.dexNumber {
     height: 100%;
     backface-visibility: hidden;
 }
+.cardBack {
+    transform: rotateY(180deg);
+}
     .cardFront img,
     .cardBack img {
         width: 100%;
         height: 100%;
         object-fit: contain;
     }
-.cardBack {
-    transform: rotateY(180deg);
+.tier3 {
+    animation: pulse 1.5s infinite;
 }
-.rare {
-    animation: glow 1.5s infinite;
-}
-@keyframes glow {
+@keyframes pulse {
 
-    0% {
-        filter: drop-shadow( 0 0 5px gold );
+    0%,100% {
+        transform: scale(1);
     }
 
     50% {
-        filter: drop-shadow( 0 0 25px gold );
+        transform: scale(1.03);
+    }
+}
+.tier4 {
+    filter: drop-shadow( 0 0 20px #00c8ff );
+}
+.tier5 {
+    animation: glowGold 1.5s infinite, shake .3s infinite;
+}
+@keyframes shake {
+
+    0% {
+        transform: rotate(-1deg);
+    }
+
+    50% {
+        transform: rotate(1deg);
     }
 
     100% {
-        filter: drop-shadow( 0 0 5px gold );
+        transform: rotate(-1deg);
     }
+}
+@keyframes glowGold {
+
+    0% {
+        filter: drop-shadow( 0 0 10px gold );
+    }
+
+    50% {
+        filter: drop-shadow( 0 0 40px gold );
+    }
+
+    100% {
+        filter: drop-shadow( 0 0 10px gold );
+    }
+}
+.tier6 {
+    animation: legendaryGlow 1s infinite;
+}
+@keyframes legendaryGlow {
+
+    0% {
+        filter: drop-shadow( 0 0 20px gold );
+    }
+
+    50% {
+        filter: drop-shadow( 0 0 80px gold );
+    }
+
+    100% {
+        filter: drop-shadow( 0 0 20px gold );
+    }
+}
+.tier7 {
+    animation: mythicalGlow .8s infinite;
+}
+@keyframes mythicalGlow {
+
+    0% {
+        filter: drop-shadow( 0 0 20px #ff00ff );
+    }
+
+    50% {
+        filter: drop-shadow( 0 0 120px #00ffff );
+    }
+
+    100% {
+        filter: drop-shadow( 0 0 20px #ff00ff );
+    }
+}
+.tierBg6 {
+    background: radial-gradient( circle, rgba(255,215,0,.15), rgba(0,0,0,.95) );
+}
+.tierBg7 {
+    animation: rainbowBg 5s linear infinite;
+}
+@keyframes rainbowBg {
+
+    0% {
+        background: #220022;
+    }
+
+    25% {
+        background: #002244;
+    }
+
+    50% {
+        background: #224400;
+    }
+
+    75% {
+        background: #440022;
+    }
+
+    100% {
+        background: #220022;
+    }
+}
+.cardInfos {
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+}
+.hint {
+    color: #ccc;
+    font-size: 18px;
 }
 @keyframes particleBurst {
 
