@@ -40,9 +40,9 @@ function Cards() {
                         <h3>{set.name}</h3>
 
                         <p>
-                            {stats.owned} / {stats.total}
+                            {stats.owned.lenght} / {stats.total}
                             {" "}
-                            ({stats.percent}%)
+                            ({(stats.total / stats.owned.lenght) * 100}%)
                         </p>
 
                     </div>
