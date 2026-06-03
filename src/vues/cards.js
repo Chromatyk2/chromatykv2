@@ -180,9 +180,18 @@ function Cards() {
                                     disabled={boosterCurrency <= 0}
                                     onClick={() => openBooster(set.tcgdex_id)}
                                 >
-                                    {boosterCurrency > 0
-                                        ? `Ouvrir (${boosterCurrency})`
-                                        : "Aucun booster disponible"}
+                                    {boosterCurrency > 0 ? (
+                                        <span className="buttonContent">
+                                            Ouvrir x {boosterCurrency}
+                                            <img
+                                                src="/booster.png"
+                                                alt="Booster"
+                                                className="buttonBoosterIcon"
+                                            />
+                                        </span>
+                                    ) : (
+                                        "Aucun booster disponible"
+                                    )}
                                 </button>
 
                             </div>

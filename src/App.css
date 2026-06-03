@@ -1263,6 +1263,17 @@ span.dexNumber {
     cursor: not-allowed;
     background: #666;
 }
+.buttonContent {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.buttonBoosterIcon {
+    width: 24px;
+    height: 24px;
+}
 
 @keyframes particleBurst {
 
