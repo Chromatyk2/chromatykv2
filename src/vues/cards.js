@@ -18,7 +18,8 @@ function Cards() {
     const [currentCard, setCurrentCard] = useState(0);
     const [revealed, setRevealed] = useState(false);
     const [showNewBadge,setShowNewBadge] =useState(false);
-    const [isTransitioning,setIsTransitioning] =useState(false);
+    const [isTransitioning, setIsTransitioning] = useState(false);
+    const [globalProgress,setGlobalProgress] =useState(null);
     const startOpening = (cards) => {setOpenedCards(cards);setCurrentCard(0);setRevealed(false);setOpening(true);
 
     };
@@ -85,6 +86,7 @@ function Cards() {
             setRotationSets(data.rotationSets);
             setProgress(data.progress);
             setBoosterCurrency(data.boosterCurrency);
+            setGlobalProgress(data.globalProgress);
         };
         loadData();
     }, [userId]);
@@ -145,6 +147,29 @@ function Cards() {
     }
     return (
         <div className={"globalContainerCenter"}>
+            {
+                globalProgress && (
+                    <div className="globalProgressCard">
+                        <h2>
+                            Collection Globale
+                        </h2>
+                        <p>
+                            {globalProgress.owned}
+                            {" / "}
+                            {globalProgress.total}
+                        </p>
+                        <div className="hpBarContainer">
+                            <div className="hpBar" style={{width:`${globalProgress.percent}%`,background:"linear-gradient(90deg,rgba(36,70,171,1) 0%, rgba(2,194,232,1) 100%)"}}/>
+                            <span className="hpText">
+                                <p style={{fontSize: "16px"}}>
+                                    {parseFloat(globalProgress.percent).toFixed(2)}
+                                    {" %"}
+                                </p>
+                            </span>
+                        </div>
+                    </div>
+                )
+            }
             <div className="rotationGrid">
                 {sortedSets.map(set => {
                     const isHot =
@@ -156,23 +181,17 @@ function Cards() {
                         percent: 0
                     };
                     return (
-                        <div
-                            key={set.id}
-                            className="boosterCard"
-                        >
-
+                        <div key={set.id} className="boosterCard">
                             {isHot && (
                                 <div className="hotBadge">
                                     🔥 HOT
                                 </div>
                             )}
-
                             <img
                                 src={set.logo}
                                 alt={set.name}
                                 className="boosterImage"
                             />
-
                             <div className="boosterFooter">
 
                                 <div className="rotationTimer">
@@ -182,19 +201,15 @@ function Cards() {
                                         </>
                                     )}
                                 </div>
-
                                 <div className="progressInfos">
-
                                     <span>
                                         {stats.owned}
                                         {" / "}
                                         {stats.total}
                                     </span>
-
                                     <span>
                                         {stats.percent}%
                                     </span>
-
                                 </div>
                                 <div className="hpBarContainer">
                                     <div
