@@ -120,7 +120,7 @@ function ProgressBarFight(props) {
             pokemon) {
             const userId = cookies.user.data[0].id;
             const tierMultiplierattack =
-                pokemon.tier === 4 ? 100 :
+                pokemon.tier === 4 ? 58.65 :
                     pokemon.tier === 3 ? 1.75 :
                         pokemon.tier === 2 ? 1.5 :
                             1.25;
