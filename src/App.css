@@ -1147,6 +1147,79 @@ span.dexNumber {
     animation: particleBurst 500ms ease-out forwards;
 }
 
+/* Cartes Boutique*/
+.rotationGrid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 24px;
+    width: 100%;
+    padding: 20px;
+}
+
+.bannerCard {
+    width: 350px;
+    background: #1d1f2b;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0,0,0,.4), 0 0 40px rgba(0,180,255,.15);
+    transition: .25s;
+    cursor: pointer;
+}
+
+    .bannerCard:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 0 25px rgba(0,0,0,.5), 0 0 50px rgba(0,180,255,.35);
+    }
+
+.bannerImageContainer {
+    height: 180px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: radial-gradient( circle, rgba(25,29,55,1) 0%, rgba(12,14,24,1) 100% );
+}
+
+.bannerImage {
+    width: 80%;
+    max-height: 150px;
+    object-fit: contain;
+}
+
+.bannerContent {
+    padding: 20px;
+}
+
+.bannerTitle {
+    color: white;
+    margin: 0 0 15px;
+    text-align: center;
+    font-size: 22px;
+}
+
+.bannerStats {
+    display: flex;
+    justify-content: space-between;
+    color: #cfcfcf;
+    margin-bottom: 10px;
+}
+
+.progressContainer {
+    width: 100%;
+    height: 16px;
+    background: #111;
+    border-radius: 50px;
+    overflow: hidden;
+}
+
+.progressFill {
+    height: 100%;
+    border-radius: 50px;
+    background: linear-gradient( 90deg, #2446ab 0%, #02c2e8 100% );
+    transition: .5s;
+}
+
+
 @keyframes particleBurst {
 
     0% {

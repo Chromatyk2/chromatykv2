@@ -24,40 +24,71 @@ function Cards() {
     }, [userId]);
     return (
         <div className={"globalContainerCenter"}>
-            {rotationSets.map(set => {
+            <div className="rotationGrid">
 
-                const stats = progress[set.tcgdex_id] || {
-                    owned: 0,
-                    total: set.card_count,
-                    percent: 0
-                };
+                {rotationSets.map(set => {
 
-                return (
-                    <div key={set.id}>
+                    const stats = progress[set.tcgdex_id] || {
+                        owned: 0,
+                        total: set.card_count,
+                        percent: 0
+                    };
 
-                        <img src={set.logo} alt={set.name} width={250}/>
-                        <h3>
-                            {set.name}
-                        </h3>
-                        <p>
-                            {stats.owned} / {stats.total}
-                        </p>
-                        <div style={{ width: "70%" }} className="hpBarContainer">
-                            <div
-                                className="hpBar"
-                                style={{
-                                    width: `${stats.percent}%`,
-                                    background: "linear-gradient(90deg,rgba(36, 70, 171, 1) 0%, rgba(2, 194, 232, 1) 100%)"
-                                }}
-                            />
-                            <span className="hpText">
-                                <p style={{ fontSize: "16px" }}>{parseFloat(stats.percent).toFixed(2) + " %"}</p>
-                            </span>
+                    return (
+
+                        <div
+                            key={set.id}
+                            className="bannerCard"
+                        >
+
+                            <div className="bannerImageContainer">
+
+                                <img
+                                    src={set.logo}
+                                    alt={set.name}
+                                    className="bannerImage"
+                                />
+
+                            </div>
+
+                            <div className="bannerContent">
+
+                                <h3 className="bannerTitle">
+                                    {set.name}
+                                </h3>
+
+                                <div className="bannerStats">
+
+                                    <span>
+                                        {stats.owned} / {stats.total}
+                                    </span>
+
+                                    <span>
+                                        {stats.percent.toFixed(1)}%
+                                    </span>
+
+                                </div>
+
+                                <div className="progressContainer">
+
+                                    <div
+                                        className="progressFill"
+                                        style={{
+                                            width: `${stats.percent}%`
+                                        }}
+                                    />
+
+                                </div>
+
+                            </div>
+
                         </div>
-                    </div>
-                );
 
-            })}
+                    );
+
+                })}
+
+            </div>
         </div>
     )
 }
