@@ -35,22 +35,25 @@ function Cards() {
                 return (
                     <div key={set.id}>
 
-                        <img
-                            src={set.logo}
-                            alt={set.name}
-                            width={250}
-                        />
-
-                        <h3>{set.name}</h3>
-
+                        <img src={set.logo} alt={set.name} width={250}/>
+                        <h3>
+                            {set.name}
+                        </h3>
                         <p>
                             {stats.owned} / {stats.total}
                         </p>
-
-                        <p>
-                            {stats.percent}%
-                        </p>
-
+                        <div style={{ width: "70%" }} className="hpBarContainer">
+                            <div
+                                className="hpBar"
+                                style={{
+                                    width: `${stats.percent}%`,
+                                    background: "linear-gradient(90deg,rgba(36, 70, 171, 1) 0%, rgba(2, 194, 232, 1) 100%)"
+                                }}
+                            />
+                            <span className="hpText">
+                                <p style={{ fontSize: "16px" }}>{parseFloat(stats.percent).toFixed(2) + " %"}</p>
+                            </span>
+                        </div>
                     </div>
                 );
 
