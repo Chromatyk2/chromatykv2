@@ -17,47 +17,47 @@ function Cards() {
     const [openedCards, setOpenedCards] = useState([]);
     const [currentCard, setCurrentCard] = useState(0);
     const [revealed, setRevealed] = useState(false);
-
+    const [isTransitioning,
+        setIsTransitioning] =
+        useState(false);
     const startOpening = (cards) => {
-
         setOpenedCards(cards);
         setCurrentCard(0);
         setRevealed(false);
         setOpening(true);
 
     };
-
     const nextCard = () => {
-
+        if (isTransitioning) {
+            return;
+        }
+        // Retourne la carte
         if (!revealed) {
-
             setRevealed(true);
             return;
 
         }
-
+        // Carte suivante
         if (
             currentCard <
             openedCards.length - 1
         ) {
-
-            setCurrentCard(
-                currentCard + 1
-            );
-
+            setIsTransitioning(true);
+            // On remet le dos visible
             setRevealed(false);
-
+            // On attend la fin du flip
+            setTimeout(() => {
+                setCurrentCard(
+                    prev => prev + 1
+                );
+                setIsTransitioning(false);
+            }, 800);
         } else {
-
             setOpening(false);
-
         }
-
     };
     const openBooster = async (setTcgdexId) => {
-
         try {
-
             const { data } = await Axios.post(
                 "/api/card/openBooster",
                 {
@@ -65,25 +65,18 @@ function Cards() {
                     setTcgdexId
                 }
             );
-
             if (!data.success) {
                 return;
             }
-
             setBoosterCurrency(
                 data.boosterCurrency
             );
-
             startOpening(
                 data.openedCards
             );
-
         } catch (err) {
-
             console.error(err);
-
         }
-
     };
     useEffect(() => {
         const loadData = async () => {
@@ -110,97 +103,73 @@ function Cards() {
         new Date(b.release_date) -
         new Date(a.release_date)
     );
-
     const newestReleaseDate = Math.max(
         ...rotationSets.map(set =>
             new Date(set.release_date).getTime()
         )
     );
-
     function getRemainingTime(endDate) {
-
         const diff =
             new Date(endDate).getTime() - now;
-
         if (diff <= 0) {
             return "Terminé";
         }
-
         const days =
             Math.floor(diff / (1000 * 60 * 60 * 24));
-
         const hours =
             Math.floor(
                 (diff / (1000 * 60 * 60)) % 24
             );
-
         const minutes =
             Math.floor(
                 (diff / (1000 * 60)) % 60
             );
-
         return `${days}j ${hours}h ${minutes}m`;
     }
     return (
         <div className={"globalContainerCenter"}>
             <div className="rotationGrid">
-
                 {sortedSets.map(set => {
-
                     const isHot =
                         new Date(set.release_date).getTime() ===
                         newestReleaseDate;
-
                     const stats = progress[set.tcgdex_id] || {
                         owned: 0,
                         total: set.card_count,
                         percent: 0
                     };
-
                     return (
-
                         <div
                             key={set.id}
                             className="packCard"
                         >
-
                             {isHot && (
                                 <div className="hotBadge">
                                     🔥 HOT
                                 </div>
                             )}
-
                             <img
                                 src={set.logo}
                                 alt={set.name}
                                 className="packImage"
                             />
-
                             <div className="packOverlay">
-
                                 <h2 className="packTitle">
                                     {set.name}
                                 </h2>
-
                                 {!isHot && (
                                     <div className="rotationTimer">
                                         ⏳ {getRemainingTime(set.end_date)}
                                     </div>
                                 )}
-
                                 <div className="packStats">
-
                                     <span>
                                         {stats.owned} / {stats.total}
                                     </span>
-
                                     <span>
                                         {stats.percent}%
                                     </span>
-
                                 </div>
-
-
                                 <div className="hpBarContainer">
                                     <div
                                         className="hpBar"
@@ -233,84 +202,34 @@ function Cards() {
                                         "Aucun booster disponible"
                                     )}
                                 </button>
-
                             </div>
-
                         </div>
-
                     );
-
                 })}
                 {
                     opening && (
-
                         <div
-                            className={`
-                openingOverlay
-                tierBg${openedCards[currentCard]
-                                    ?.tier || 1
-                                }
-            `}
-                            onClick={nextCard}
-                        >
-
+                            className={`openingOverlay tierBg${openedCards[currentCard] ?.tier || 1}`} onClick={nextCard}>
                             <div className="openingWrapper">
-
-                                <div
-                                    className={`
-                        card
-                        ${revealed
-                                            ? "flipped"
-                                            : ""
-                                        }
-                        tier${openedCards[
-                                            currentCard
-                                        ]?.tier || 1
-                                        }
-                    `}
-                                >
-
+                                <div key={currentCard} className={`card ${revealed ? "flipped" : ""} tier${openedCards[currentCard]?.tier || 1}`}>
                                     <div className="cardInner">
-
                                         <div className="cardFront">
-
-                                            <img
-                                                src="/card-back.webp"
-                                                alt=""
-                                            />
-
+                                            <img src="/card-back.webp" alt=""/>
                                         </div>
-
                                         <div className="cardBack">
-
                                             <img
-                                                src={
-                                                    openedCards[
-                                                        currentCard
-                                                    ]?.image +
-                                                    "/high.webp"
-                                                }
-                                                alt=""
-                                            />
-
+                                                src={openedCards[currentCard]?.image +"/high.webp"}alt=""/>
                                         </div>
-
                                     </div>
-
                                 </div>
-
                                 <div className="cardInfos">
-
                                     Carte
                                     {" "}
                                     {currentCard + 1}
                                     {" / "}
                                     {openedCards.length}
-
                                 </div>
-
                                 <div className="hint">
-
                                     {
                                         !revealed
                                             ? "Cliquer pour retourner"
@@ -318,14 +237,10 @@ function Cards() {
                                     }
 
                                 </div>
-
                             </div>
-
                         </div>
-
                     )
                 }
-
             </div>
         </div>
     )
