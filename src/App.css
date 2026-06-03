@@ -1258,7 +1258,11 @@ span.dexNumber {
     font-size: 14px;
     opacity: .9;
 }
-
+.openPackButton.disabled {
+    opacity: .5;
+    cursor: not-allowed;
+    background: #666;
+}
 
 @keyframes particleBurst {
 

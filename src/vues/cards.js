@@ -11,6 +11,7 @@ function Cards() {
     const [rotationSets, setRotationSets] = useState([])
     const [progress, setProgress] = useState({})
     const [now, setNow] = useState(Date.now());
+    const [boosterCurrency, setBoosterCurrency] = useState(0);
     const userId = cookies.user.data[0].id;
 
     useEffect(() => {
@@ -21,6 +22,7 @@ function Cards() {
             setCollection(data.collection);
             setRotationSets(data.rotationSets);
             setProgress(data.progress);
+            setBoosterCurrency(data.boosterCurrency);
         };
         loadData();
     }, [userId]);
@@ -68,6 +70,37 @@ function Cards() {
 
         return `${days}j ${hours}h ${minutes}m`;
     }
+
+    const openBooster = async (setTcgdexId) => {
+
+        try {
+
+            const { data } = await Axios.post(
+                "/api/card/openBooster",
+                {
+                    userId,
+                    setTcgdexId
+                }
+            );
+
+            if (!data.success) {
+
+                alert(data.message);
+                return;
+
+            }
+
+            setBoosterCurrency(
+                data.boosterCurrency
+            );
+
+        } catch (err) {
+
+            console.error(err);
+
+        }
+
+    };
     return (
         <div className={"globalContainerCenter"}>
             <div className="rotationGrid">
@@ -128,7 +161,7 @@ function Cards() {
                                 </div>
 
 
-                                <div style={{ width: "70%" }} className="hpBarContainer">
+                                <div className="hpBarContainer">
                                     <div
                                         className="hpBar"
                                         style={{
@@ -142,9 +175,14 @@ function Cards() {
                                 </div>
 
                                 <button
-                                    className="openPackButton"
+                                    className={`openPackButton ${boosterCurrency <= 0 ? "disabled" : ""
+                                        }`}
+                                    disabled={boosterCurrency <= 0}
+                                    onClick={() => openBooster(set.tcgdex_id)}
                                 >
-                                    OUVRIR
+                                    {boosterCurrency > 0
+                                        ? `Ouvrir (${boosterCurrency})`
+                                        : "Aucun booster disponible"}
                                 </button>
 
                             </div>
