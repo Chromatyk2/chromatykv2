@@ -196,7 +196,7 @@ function ProgressBarFight(props) {
                 1: 18,
                 2: 37,
                 3: 75,
-                4: 500
+                4: 288
             };
             const xpToNextLevel =
                 Math.floor((20 + curentLevel * curentLevel * 2) * tierMultiplier[props.compagnon[0].tier] * formMultiplier);
