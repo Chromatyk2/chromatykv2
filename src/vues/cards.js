@@ -71,6 +71,9 @@ function Cards() {
             setBoosterCurrency(
                 data.boosterCurrency
             );
+            setProgress(
+                data.progress
+            );
             startOpening(
                 data.openedCards
             );
