@@ -102,11 +102,11 @@ function ProgressBarFight(props) {
                 }
                 showDamage(damage, critical);
                 createHitParticles()
-                setCurrentHp(prevHp => Math.max(0, prevHp - damage));
                 setTimeout(() => {
                     setTimeout(() => {
                         setDamageText(null);
                     }, 1000);
+                    setCurrentHp(prevHp => Math.max(0, prevHp - damage));
                     setIsAttacking(false);
                 }, 300); // durée de l'animation
             }, 2000);
