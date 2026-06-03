@@ -54,17 +54,37 @@ function Cards() {
         }
 
     };
-    const { data } = await Axios.post(
-        "/api/card/openBooster",
-        {
-            userId,
-            setTcgdexId
-        }
-    );
+    const openBooster = async (setTcgdexId) => {
 
-    startOpening(
-        data.openedCards
-    );
+        try {
+
+            const { data } = await Axios.post(
+                "/api/card/openBooster",
+                {
+                    userId,
+                    setTcgdexId
+                }
+            );
+
+            if (!data.success) {
+                return;
+            }
+
+            setBoosterCurrency(
+                data.boosterCurrency
+            );
+
+            startOpening(
+                data.openedCards
+            );
+
+        } catch (err) {
+
+            console.error(err);
+
+        }
+
+    };
     useEffect(() => {
         const loadData = async () => {
             const { data } = await Axios.get(
