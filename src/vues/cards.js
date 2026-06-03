@@ -151,7 +151,7 @@ function Cards() {
                 globalProgress && (
                     <div className="globalProgressCard">
                         <h2>
-                            Collection Globale
+                            Boutique de cartes
                         </h2>
                         <p>
                             {globalProgress.owned}
@@ -290,7 +290,7 @@ function Cards() {
                                             <img src="/backCard.png" alt=""/>
                                         </div>
                                         <div className="cardBack">
-                                            <img src={openedCards[currentCard]?.image +"/high.webp"}alt=""/>
+                                            <img src={openedCards[currentCard]?.image + "/high.webp"} alt="" onError={(e) => {if (e.target.src.includes("/fr/")) {e.target.src =e.target.src.replace("/fr/","/en/");}}} />
                                             {
                                                 showNewBadge &&
                                                 openedCards[currentCard]?.isNew && (

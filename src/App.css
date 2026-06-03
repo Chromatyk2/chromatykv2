@@ -1148,6 +1148,9 @@ span.dexNumber {
 }
 
 /* Cartes Boutique*/
+.globalProgressCard{
+    width:70%
+}
 button.openBoosterButton span {
     font-size: 18px;
     font-family: Charge Vector Black;
