@@ -1490,7 +1490,16 @@ button.openBoosterButton span {
     cursor: pointer;
     font-size: 18px;
 }
-    /* Animation */
+/* Collection Cartes*/
+.collectionGrid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+    padding: 20px;
+    width: 100%;
+}
+/* Animation */
 @keyframes koAnimation {
     0% {
         opacity: 1;
