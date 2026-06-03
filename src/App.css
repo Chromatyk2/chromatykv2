@@ -1157,12 +1157,13 @@ span.dexNumber {
     padding: 20px;
 }
 .boosterCard {
-    width: 320px;
+    width: 220px;
     border-radius: 24px;
     overflow: hidden;
     background: #111;
     box-shadow: 0 10px 30px rgba(0,0,0,.4);
     transition: .25s;
+    position: relative;
 }
     .boosterCard:hover {
         transform: translateY(-8px);
@@ -1175,6 +1176,7 @@ span.dexNumber {
 .boosterFooter {
     padding: 20px;
     background: rgba(10,10,10,.95);
+    position: relative;
 }
 .progressInfos {
     display: flex;
