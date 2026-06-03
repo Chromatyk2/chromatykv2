@@ -18,6 +18,7 @@ import Pokedex from './vues/pokedex.js';
 import Profil from './vues/profil.js';
 import Leaderboard from './vues/leaderboard.js';
 import Compagnon from './vues/compagnon.js';
+import Cartes from './vues/cards.js';
 function App() {
   return (
     <div className="App">
@@ -32,7 +33,8 @@ function App() {
                         <Route path="/pokedex" element={<Pokedex />} />
                         <Route path="/profil" element={<Profil />} />
                           <Route path="/leaderboard" element={<Leaderboard />} />
-                          <Route path="/compagnon" element={<Compagnon />} />
+                      <Route path="/compagnon" element={<Compagnon />} />
+                      <Route path="/cartes" element={<Cartes />} />
                       </Routes>
                       <div className={"navBarContent"}>
                         <NavBar />
