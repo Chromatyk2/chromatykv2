@@ -1520,14 +1520,20 @@ button.backButton {
 }
 .collectionCard {
     position: relative;
-    transition: .25s;
+    overflow: hidden;
+    border-radius: 16px;
+    perspective: 1000px;
+    transition: transform .15s ease;
+    transform-style: preserve-3d;
 }
-.collectionCard:hover {
-    transform: scale(1.05);
+.collectionCard:hover .collectionCardImage {
+    transform: scale(2);
 }
 .collectionCardImage {
+    width: 100%;
     display: block;
-    width: 200px;
+    transition: transform .15s ease-out;
+    transform-origin: var(--mouse-x, 50%) var(--mouse-y, 50%);
 }
 .quantityBadge {
     position: absolute;
@@ -1536,14 +1542,20 @@ button.backButton {
     min-width: 40px;
     height: 40px;
     border-radius: 50%;
-    background: rgba( 0, 0, 0, .85 );
+    background: rgba(0,0,0,.85);
     color: white;
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: bold;
-    font-size: 18px;
-    box-shadow: 0 0 15px rgba( 0, 0, 0, .5 );
+    opacity: 0;
+    transform: scale(.8);
+    transition: .2s;
+    pointer-events: none;
+}
+.collectionCard:hover .quantityBadge {
+    opacity: 1;
+    transform: scale(1);
 }
 /* Animation */
 @keyframes koAnimation {
