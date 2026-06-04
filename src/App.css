@@ -1690,3 +1690,37 @@ button.backButton {
             margin-top: 80px;
         }
     }
+.wood-sign {
+    display: inline-block;
+    padding: 15px 40px;
+    background: linear-gradient(#b87a3d, #8b5a2b);
+    color: #fff8dc;
+    font-family: Georgia, serif;
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+    border: 4px solid #5a381e;
+    border-radius: 8px;
+    box-shadow: inset 0 2px 4px rgba(255,255,255,0.2), 0 4px 8px rgba(0,0,0,0.3);
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+    position: relative;
+}
+
+    .wood-sign::before,
+    .wood-sign::after {
+        content: "";
+        position: absolute;
+        top: 10px;
+        width: 12px;
+        height: 12px;
+        background: #444;
+        border-radius: 50%;
+    }
+
+    .wood-sign::before {
+        left: 10px;
+    }
+
+    .wood-sign::after {
+        right: 10px;
+    }
