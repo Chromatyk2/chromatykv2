@@ -17,21 +17,22 @@ function TwitchLiveWidget() {
     useEffect(() => {
 
         const checkLive = () => {
-
             Axios.get("/api/twitch/live")
                 .then((res) => {
-
                     setIsLive(res.data.live);
-                    setTitle(res.data.title);
-
-                });
-
+                    setTitle(res.data.title || "");
+                })
+                .catch(console.error);
         };
 
+        // Vérification immédiate
         checkLive();
 
-        const interval =
-            setInterval(checkLive, 30000);
+        // Vérification toutes les 30 secondes
+        const interval = setInterval(
+            checkLive,
+            30000
+        );
 
         return () => clearInterval(interval);
 
