@@ -335,7 +335,9 @@ function ProgressBarFight(props) {
                     < img src={"/doll.png"} />
                     <p>Partir</p>
                 </div>
-                <p>Un pokémon level 100 ne peux pas ce battre</p>
+                {props.compagnon[0].level >= 100 &&
+                    <p>Un pokémon level 100 ne peux pas ce battre</p>
+                }
             {pokemon &&
                 <>
                     <div className={"rewardFightContainer"}>
