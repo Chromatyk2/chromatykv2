@@ -9,6 +9,7 @@ function Cards() {
     //Cookies
     const [cookies, setCookie] = useCookies();
     const [collection, setCollection] = useState([])
+    const [loadedImages, setLoadedImages] = useState({});
     const [rotationSets, setRotationSets] = useState([])
     const [progress, setProgress] = useState({})
     const [now, setNow] = useState(Date.now());
@@ -28,6 +29,7 @@ function Cards() {
     const param = searchParams.get("user");
     const [showImpact, setShowImpact] = useState(false);
     const startOpening = (cards) => {setOpenedCards(cards);setCurrentCard(0);setRevealed(false);setOpening(true);
+
 
     };
     const nextCard = () => {
@@ -450,11 +452,21 @@ function Cards() {
                                                     );
                                                 }}
                                             >
+                                                {!loadedImages[card.id] && (
+                                                <div className="cardPlaceholder" />
+                                            )}
                                                 <img
                                                     src={card.image + "/high.webp"}
                                                     alt=""
                                                     loading="lazy"
                                                     decoding="async"
+                                                    className={loadedImages[card.id] ? "loaded" : ""}
+                                                    onLoad={() =>
+                                                        setLoadedImages(prev => ({
+                                                            ...prev,
+                                                            [card.id]: true
+                                                        }))
+                                                    }
                                                 />
                                                 {card.tier >= 6 && (
                                                     <>
