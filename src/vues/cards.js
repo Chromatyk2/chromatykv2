@@ -188,14 +188,16 @@ function Cards() {
                     </div>
                 )
             }
-            <div className="viewSwitcher">
-                <button className={isShop === true ? "active" : ""} onClick={() =>setIsShop(true)}>
-                    Boutique
-                </button>
-                <button className={isShop === false ? "active" : ""} onClick={() =>setIsShop(false)}>
-                    Collection
-                </button>
-            </div>
+            {new URLSearchParams(window.location.search).has("user")) &&
+                <div className="viewSwitcher">
+                    <button className={isShop === true ? "active" : ""} onClick={() =>setIsShop(true)}>
+                        Boutique
+                    </button>
+                    <button className={isShop === false ? "active" : ""} onClick={() =>setIsShop(false)}>
+                        Collection
+                    </button>
+                </div>
+            }
             {isShop === true ?
                 <div className="rotationGrid">
                     {sortedSets.map(set => {
