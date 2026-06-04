@@ -61,7 +61,7 @@ function TwitchLiveWidget() {
 
                     <iframe
                         title="Twitch Stream"
-                        src="https://player.twitch.tv/?channel=jltomy&parent=chromatyk.fr"
+                        src="https://player.twitch.tv/?channel=chromatyk&parent=chromatyk.fr"
                         width="100%"
                         height="180"
                         allowFullScreen
