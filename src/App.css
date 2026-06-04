@@ -1375,44 +1375,43 @@ button.openBoosterButton span {
 .holoEffect {
     position: absolute;
     inset: 0;
+    z-index: 10;
     pointer-events: none;
-    mix-blend-mode: screen;
 }
 
     .holoEffect::before {
         content: "";
         position: absolute;
-        inset: -50%;
-        background: linear-gradient( 115deg, transparent 20%, rgba(255,0,255,0.4) 35%, rgba(0,255,255,0.4) 50%, rgba(255,255,0,0.4) 65%, transparent 80% );
-        animation: holoMove 4s linear infinite;
+        inset: -100%;
+        background: linear-gradient( 120deg, transparent 30%, rgba(255,0,255,.8) 40%, rgba(0,255,255,.8) 50%, rgba(255,255,0,.8) 60%, transparent 70% );
+        animation: shine 2s linear infinite;
     }
 
     .holoEffect::after {
         content: "";
         position: absolute;
         inset: 0;
-        background-image: radial-gradient(circle, rgba(255,255,255,.9) 1px, transparent 1px);
-        background-size: 12px 12px;
-        opacity: .35;
-        animation: sparkle 2s infinite alternate;
+        background-image: radial-gradient( circle at center, rgba(255,255,255,.8) 0px, transparent 2px );
+        background-size: 20px 20px;
+        animation: twinkle .8s infinite alternate;
     }
-keyframes holoMove {
+@keyframes shine {
     from {
-        transform: translateX(-40%) rotate(15deg);
+        transform: translateX(-50%) rotate(25deg);
     }
 
     to {
-        transform: translateX(40%) rotate(15deg);
+        transform: translateX(50%) rotate(25deg);
     }
 }
 
-@keyframes sparkle {
+@keyframes twinkle {
     from {
-        opacity: .15;
+        opacity: .2;
     }
 
     to {
-        opacity: .45;
+        opacity: 1;
     }
 }
 @keyframes newReveal {
@@ -1527,6 +1526,7 @@ button.backButton {
 }
 .collectionCard {
     overflow: hidden;
+    position:relative;
 }
     .collectionCard:hover .collectionCardImage {
         transform: scale(1.5);

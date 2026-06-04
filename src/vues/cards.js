@@ -437,11 +437,12 @@ function Cards() {
                                                         `${y}%`
                                                     );
                                                 }}>
+                                            <img src={card.image + "/high.webp"} alt={card.id} className="collectionCardImage" onError={(e) => {if (e.target.src.includes("/fr/")) {e.target.src =e.target.src.replace("/fr/","/en/");}}}/>
+
                                                 {(card.tier >= 5) && (
                                                     <div className="holoEffect" />
                                                 )}
-                                            <img src={card.image + "/high.webp"} alt={card.id} className="collectionCardImage" onError={(e) => {if (e.target.src.includes("/fr/")) {e.target.src =e.target.src.replace("/fr/","/en/");}}}/>
-                                            {
+                                                {
                                                 card.quantity > 1 && (
                                                     <div className="quantityBadge">
                                                         x{card.quantity}
