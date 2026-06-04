@@ -92,7 +92,7 @@ function HomePage(props) {
                 <>
                 <p className="welcomeText">
                     Bienvenue sur Chromatyk, le jeu Pokémon gratuit de la communauté Twitch.
-                    Ouvre des boosters, capture des Pokémon rares, complète ton Pokédex,
+                    Ouvre des boosters, capture des Pokémons, complète ton Pokédex,
                     participe à l'élevage et gagne des récompenses pendant les streams.
                 </p>       
             {typeof cookies.user === "undefined" &&
@@ -103,16 +103,16 @@ function HomePage(props) {
             }
                 <p>Rejoins les streams et viens discuter sur <a href="https://twitch.tv/chromatyk" target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none", color: "#83d7d7" }}>Twitch</a> !</p>
             <p className="pseudoProfil">Dernier shiny capturé</p>
-            {shinydex &&
-                <div className={"shinydexCard"}>
+                {shinydex &&
+                    <div style={{ marginBottom: "25px" }} className={"shinydexCard"}>
                     <div className={"shinydexName"}>#{shinydex[0].idPkm} {shinydex[0].pokemon}<br /><span
                         className={"spanShinydex"}>{shinydex[0].surnom}</span></div>
                     <div className={"shinydexSpriteContainer"}>
                         <div>
-                            <img className={"shinydexSprite"} src={"/Sprites/shiny/" + shinydex[0].idPkm + ".gif"} />
+                                <img alt={"Dernier Shiny"} className={"shinydexSprite"} src={"/Sprites/shiny/" + shinydex[0].idPkm + ".gif"} />
                         </div>
                         {shinydex[0].lien !== null &&
-                            <a target={"_blank"} href={shinydex[0].lien}><img className={"linkShinydex"}
+                                <a rel={"noreferrer"} target={"_blank"} href={shinydex[0].lien}><img alt={"youtube"} className={"linkShinydex"}
                                 src={"/youtube.png"} /></a>
                         }
                     </div>
