@@ -169,7 +169,11 @@ function Cards() {
                 globalProgress && (
                     <div className="globalProgressCard">
                         <h2 class="wood-sign">
-                            Boutique de cartes
+                            {isShop === true ?
+                                "Boutique de cartes"
+                                :
+                                "Collection de cartes"
+                            }
                         </h2>
                         <p>
                             {globalProgress.owned}
