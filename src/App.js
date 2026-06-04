@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
-import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Axios from "axios";
 
 //Services
@@ -20,6 +21,53 @@ import Leaderboard from './vues/leaderboard.js';
 import Compagnon from './vues/compagnon.js';
 import Cartes from './vues/cards.js';
 function App() {
+    const [multipleTabs, setMultipleTabs] = useState(false);
+    useEffect(() => {
+        const channel = new BroadcastChannel("pokemon-app");
+        const tabId = crypto.randomUUID();
+        let hasOtherTab = false;
+        const timeout = setTimeout(() => {
+            setMultipleTabs(hasOtherTab);
+        }, 300);
+        channel.onmessage = (event) => {
+            const data = event.data;
+            if (data.type === "PING" && data.from !== tabId) {
+                channel.postMessage({
+                    type: "PONG",
+                    to: data.from,
+                });
+            }
+            if (
+                data.type === "PONG" &&
+                data.to === tabId
+            ) {
+                hasOtherTab = true;
+            }
+        };
+        channel.postMessage({
+            type: "PING",
+            from: tabId,
+        });
+        return () => {
+            clearTimeout(timeout);
+            channel.close();
+        };
+    }, []);
+    if (multipleTabs) {
+        return (
+            <div className="App">
+                <header className="App-header">
+                    <h1>Application déjà ouverte</h1>
+                    <p>
+                        Une autre instance est déjà active dans un autre onglet.
+                    </p>
+                    <p>
+                        Fermez les autres onglets puis rechargez cette page.
+                    </p>
+                </header>
+            </div>
+        );
+    }
   return (
     <div className="App">
           <header className="App-header">
