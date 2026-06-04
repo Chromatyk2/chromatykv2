@@ -56,7 +56,7 @@ function TwitchLiveWidget() {
                             className="twitchWidgetButton"
                             onClick={toggle}
                         >
-                            —
+                            X
                         </button>
                     </div>
 
