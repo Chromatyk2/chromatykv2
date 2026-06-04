@@ -1149,11 +1149,14 @@ span.dexNumber {
 }
 
 /* Cartes Boutique*/
+.setCollection h2{
+    margin: 5px;
+}
 .viewSwitcher {
     display: flex;
     justify-content: center;
     gap: 15px;
-    margin-bottom: 25px;
+    margin-bottom: 10px;
 }
 .viewSwitcher button {
     border: none;
