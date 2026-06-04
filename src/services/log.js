@@ -1,23 +1,48 @@
-import React, { useState, useEffect } from 'react';
+import { useEffect } from "react";
+import Axios from "axios";
 import { useCookies } from 'react-cookie';
-import Axios from 'axios'
-import env from "react-dotenv";
-import { Navigate } from "react-router-dom";
-import Login from './auth.services.js';
-
-
 
 function Log() {
-    useEffect(() => {
-        setTimeout(function () {
-            window.location.href = "https://chromatyk.fr/";
-        }, 2000);
-    }, []);
-    return (
 
-        <div className={"globalContainerCenter"}>
-            <Login />
+    const [cookies, setCookie, removeCookie] = useCookies();
+    useEffect(() => {
+        const code =
+            new URLSearchParams(window.location.search)
+                .get("code");
+
+        if (!code) {
+            window.location.href = "/";
+            return;
+        }
+        Axios.post("/api/auth/twitch", {
+            code
+        })
+            .then((res) => {
+
+                setCookie(
+                    "user",
+                    res.data.user,
+                    {
+                        path: "/"
+                    }
+                );
+
+                window.location.href = "/";
+            });
+
+    }, []);
+
+    return (
+        <div className="globalContainerCenter">
+            <h2 className="wood-sign">
+                Connexion Twitch...
+            </h2>
+
+            <p>
+                Authentification en cours.
+            </p>
         </div>
-    )
+    );
 }
+
 export default Log;

@@ -1,7 +1,5 @@
 import { useState } from "react";
-if (!live) return null;
 function TwitchLiveWidget() {
-
     const [minimized, setMinimized] = useState(
         localStorage.getItem("twitchMinimized") === "true"
     );
