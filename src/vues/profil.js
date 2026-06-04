@@ -385,6 +385,9 @@ function Profil() {
     }
     return (
         <div className={"globalContainer"}>
+            <h2 class="wood-sign">
+                Carte de dresseur
+            </h2>
             {profil && compagnon &&
                 <div className={"profilContainer"}>
                     <div class={"profilHeaderContainer"}>

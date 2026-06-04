@@ -157,7 +157,7 @@ function Cards() {
             {
                 globalProgress && (
                     <div className="globalProgressCard">
-                        <h2>
+                        <h2 class="wood-sign">
                             Boutique de cartes
                         </h2>
                         <p>

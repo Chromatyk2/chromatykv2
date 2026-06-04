@@ -65,7 +65,7 @@ function Pokedex() {
             <div className={"dexContainer"}>
                 {onLoad === false &&
                     <>
-                        <h2>Pokédex</h2>
+                    <h2 class="wood-sign">Pokédex</h2>
                         <div className={"genFilter"}>
                             <button className={isShiny === 0 && isNegative === 0 && "active"} onClick={() => filterForm(0)}>Normal</button>
                             <button className={isShiny === 1 && "active"} onClick={() => filterForm("Shiny")}>Shiny</button>

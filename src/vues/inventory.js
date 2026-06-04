@@ -227,7 +227,7 @@ function Inventory(props) {
                 <>
                     {sortedInventory.length > 0 ? (
                         <>
-                            <h2 className="pseudoProfil">Sac d'inventaire</h2>
+                        <h2 className="pseudoProfil wood-sign">Sac d'inventaire</h2>
                             <div className="inventoryContainer">
                                 {sortedInventory.map((val) => (
                                     <div key={val.slug} className="honeyActions" style={val.slug === "box" ? getStyle(val.slug) : {}} onClick={val.slug === "box" ? openLootbox : val.slug === "fragement" ? createLootbox : undefined}>

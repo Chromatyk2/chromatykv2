@@ -85,6 +85,9 @@ function HomePage(props) {
     }, []);
     return (
         <div className={"globalContainerCenter"}>
+            <h2 class="wood-sign">
+                Acceuil
+            </h2>
             {onLoad === false &&
                 <>
             <p clssName={"welcomeText"}>Bienvenue{typeof cookies.user !== "undefined" && "," + cookies.user.data[0].login} sur la v2 du site !</p>             
