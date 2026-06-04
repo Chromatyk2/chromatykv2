@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import '../App.css'
 import Axios from 'axios'
 import { useCookies } from 'react-cookie';
+import ShadowSmokeFront from "../shadowSmokeFront";
+import ShadowSmokeBack from "../shadowSmokeBack";
 
 
 function ProgressBarFight(props) {
@@ -362,18 +364,13 @@ function ProgressBarFight(props) {
                             <div className="tierFight">
                             Nv.{curentLevel}
                             </div>
-                        <div style={{width:"100%"}} className={`fightSpriteCardInvert ${props.compagnon[0].negative === 1 ? "shadowPokemon" : ""} ${!hasAppeared ? "spawnInvert" : ""} ${isAttacking && !isKO ? "fightAttack" : ""}`}>
-                            {props.compagnon[0].negative === 1 && (
-                                <>
-                                    <div className="shadowAura" />
-                                    <div className="redCloudsBack">
-                                        <span />
-                                        <span />
-                                        <span />
-                                    </div>
-                                </>
-                            )}
-                            <img style={{ width: "100%" }} src={`/Sprites/${props.compagnon[0].shiny === 1 ? "shiny" : "normal"}/${props.compagnon[0].number}.gif`} alt="" />
+                        <div style={{width:"100%"}} className={`fightSpriteCardInvert ${!hasAppeared ? "spawnInvert" : ""} ${isAttacking && !isKO ? "fightAttack" : ""}`}>
+                            {negative === 1 && <ShadowSmokeBack targetRef={pokemonContainerRef} />}
+                            {negative === 1 && <ShadowSmokeFront targetRef={pokemonContainerRef} />}
+                            <img className={negative === 1 ? " shadowPokemon" : ""}
+                                src={`/Sprites/${shiny === 1 ? "shiny" : "normal"}/${pokemon.number}.gif`}
+                                alt=""
+                            />
                         </div>
                     </div>
                         <div style={{ width: "33%" }}>

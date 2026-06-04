@@ -4,6 +4,8 @@ import '../App.css'
 import moment from "moment";
 import { useCookies } from 'react-cookie';
 import Fight from "../components/fight";
+import ShadowSmokeFront from "../components/shadowSmokeFront";
+import ShadowSmokeBack from "../components/shadowSmokeBack";
 function Compagnon() {
     //Cookies
     const [cookies, setCookie] = useCookies();
@@ -262,24 +264,19 @@ function Compagnon() {
                                                     < img src={"/exp.png"} />
                                                     <p>XP</p>
                                             </div>
-                                            <div style={{ maxWidth: "fit-content", minWidth: "200px", backgroundColor: "rgba(0, 0, 0, 0.5)", borderRadius: "10px" }}>
-                                                <p className="fightName">{compagnon[0].pokemon}</p>
-                                                <div className="tierFight">
+                                            <div className={"wood-sign"} style={{padding:0,minWidth:"200px",position:"absolute",top:"10px"}}>
+                                                <p style={{ margin: "5px" }} className="fightName">{compagnon[0].pokemon}</p>
+                                             <div style={margin:"5px"} className="tierFight">
                                                     Nv.{compagnon[0].level}
                                                 </div>
                                             </div>
-                                            <div className={`fightSpriteCard ${compagnon[0].negative === 1 ? "shadowPokemon" : ""}`}>
-                                                {compagnon[0].negative === 1 && (
-                                                    <>
-                                                        <div className="shadowAura" />
-                                                        <div className="redCloudsBack">
-                                                            <span />
-                                                            <span />
-                                                            <span />
-                                                        </div>
-                                                    </>
-                                                )}
-                                                <img src={`/Sprites/${compagnon[0].shiny === 1 ? "shiny" : "normal"}/${compagnon[0].number}.gif`}alt=""/>
+                                            <div className={`fightSpriteCard`}>
+                                                {negative === 1 && <ShadowSmokeBack targetRef={pokemonContainerRef} />}
+                                                {negative === 1 && <ShadowSmokeFront targetRef={pokemonContainerRef} />}
+                                                <img className={negative === 1 ? " shadowPokemon" : ""}
+                                                    src={`/Sprites/${shiny === 1 ? "shiny" : "normal"}/${pokemon.number}.gif`}
+                                                    alt=""
+                                                />
                                              </div>
                                         </>
                                     )}
