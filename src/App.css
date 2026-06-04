@@ -84,6 +84,7 @@ header.App-header p {
     margin: auto;
     width: 5rem;
     background: #3f2811;
+    box-shadow: 0px 5px 6px 0px #000000;
 }
     .halfCircle:hover {
         background-color: #37210f;
@@ -104,8 +105,7 @@ header.App-header p {
     border-bottom: white solid;
     background: #3f2811;
     border: 6px solid #6d4321;
-    box-shadow: 0 0 0 4px #b77a3c, 0 15px 40px #0006;
-    box-shadow: 0 0 0 4px #b77a3c, 0 15px 40px #000000;
+    box-shadow: 0 0 0 4px #b77a3c, 1px 9px 6px 0px #000000;
 }
 #navBar.expended {
     height: fit-content;
