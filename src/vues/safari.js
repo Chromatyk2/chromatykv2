@@ -217,10 +217,10 @@ function Fight() {
                     setMaxLove(1000);
                 } else if (tierRoll < 0.11) {
                     var tier = 3;
-                    setMaxLove(650);
+                    setMaxLove(500);
                 } else if (tierRoll < 0.41) {
                     var tier = 2;
-                    setMaxLove(375);
+                    setMaxLove(250);
                 } else {
                     var tier = 1;
                     setMaxLove(125);
@@ -285,10 +285,10 @@ function Fight() {
             setMaxLove(1000)
         } else if (tierRoll < 0.11) {
             var tier = 3;
-            setMaxLove(650)
+            setMaxLove(500)
         } else if (tierRoll < 0.41) {
             var tier = 2;
-            setMaxLove(375)
+            setMaxLove(250)
         } else {
             var tier = 1;
             setMaxLove(125)
@@ -440,7 +440,7 @@ function Fight() {
                                             </div>
                                         }
                                         {inventory.filter(item => item.slug === "expm" && item.quantity > 0).length > 0 &&
-                                            <div onClick={() => addLove(75, "expm")} className={"fightActions"}>
+                                            <div onClick={() => addLove(50, "expm")} className={"fightActions"}>
                                                 < img src={"/expm.png"} />
                                                 <p>Bonbon M</p>
                                                 <p>x {inventory.find((item) => item.slug === "expm").quantity}</p>
