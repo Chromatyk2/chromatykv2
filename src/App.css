@@ -1691,5 +1691,7 @@ button.backButton {
 footer {
     background: #3f2811f0;
     border: 6px solid #6d4321;
-    box-shadow: 0 0 0 4px #b77a3c, 0 15px 40px #0006;
+    box-shadow: 0 0 0 4px #b77a3c, -3px -7px 20px 0px #000000;
+    position: relative;
+    z-index: 0;
 }
