@@ -9,7 +9,7 @@ import Axios from "axios";
 import Log from "./services/log";
 
 //Publique
-
+import TwitchLiveWidget from "./composants/TwitchLiveWidget";
 import NavBar from './vues/navbar.js';
 import HomePage from './vues/home.js';
 import ShinyDex from './vues/Shinydex.js';
@@ -86,7 +86,8 @@ function App() {
                       </Routes>
                       <div className={"navBarContent"}>
                         <NavBar />
-                      </div>
+                  </div>
+                  <TwitchLiveWidget />
               </BrowserRouter>
       </header>
     </div>
