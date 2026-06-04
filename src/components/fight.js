@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import '../App.css'
 import Axios from 'axios'
 import { useCookies } from 'react-cookie';
@@ -22,6 +22,7 @@ function ProgressBarFight(props) {
     const [damageText, setDamageText] = useState(null);
     const [particles, setParticles] = useState([]);
     const [sessionReward, setSessionReward] = useState([]);
+    const pokemonContainerRef = useRef(null);
 
     const showDamage = (damage, isCritical) => {
 
@@ -364,11 +365,11 @@ function ProgressBarFight(props) {
                             <div className="tierFight">
                             Nv.{curentLevel}
                             </div>
-                        <div style={{width:"100%"}} className={`fightSpriteCardInvert ${!hasAppeared ? "spawnInvert" : ""} ${isAttacking && !isKO ? "fightAttack" : ""}`}>
-                            {negative === 1 && <ShadowSmokeBack targetRef={pokemonContainerRef} />}
-                            {negative === 1 && <ShadowSmokeFront targetRef={pokemonContainerRef} />}
-                            <img className={negative === 1 ? " shadowPokemon" : ""}
-                                src={`/Sprites/${shiny === 1 ? "shiny" : "normal"}/${pokemon.number}.gif`}
+                        <div ref={pokemonContainerRef} style={{width:"100%"}} className={`fightSpriteCardInvert ${!hasAppeared ? "spawnInvert" : ""} ${isAttacking && !isKO ? "fightAttack" : ""}`}>
+                            {props.compagnon[0].negative === 1 && <ShadowSmokeBack targetRef={pokemonContainerRef} />}
+                            {props.compagnon[0].negative === 1 && <ShadowSmokeFront targetRef={pokemonContainerRef} />}
+                            <img className={props.compagnon[0].negative === 1 ? " shadowPokemon" : ""}
+                                src={`/Sprites/${props.compagnon[0].shiny === 1 ? "shiny" : "normal"}/${props.compagnon[0].number}.gif`}
                                 alt=""
                             />
                         </div>

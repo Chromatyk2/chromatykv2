@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Axios from 'axios'
 import '../App.css'
 import moment from "moment";
@@ -26,6 +26,7 @@ function Compagnon() {
     //Combat
     const [onFight, setOnFight] = useState(false);
 
+    const pokemonContainerRef = useRef(null);
 
     useEffect(() => {
     const userId = cookies.user.data[0].id;
@@ -266,18 +267,18 @@ function Compagnon() {
                                             </div>
                                             <div className={"wood-sign"} style={{padding:0,minWidth:"200px",position:"absolute",top:"10px"}}>
                                                 <p style={{ margin: "5px" }} className="fightName">{compagnon[0].pokemon}</p>
-                                             <div style={margin:"5px"} className="tierFight">
+                                             <div style={{margin:"5px"}} className="tierFight">
                                                     Nv.{compagnon[0].level}
                                                 </div>
                                             </div>
-                                            <div className={`fightSpriteCard`}>
-                                                {negative === 1 && <ShadowSmokeBack targetRef={pokemonContainerRef} />}
-                                                {negative === 1 && <ShadowSmokeFront targetRef={pokemonContainerRef} />}
-                                                <img className={negative === 1 ? " shadowPokemon" : ""}
-                                                    src={`/Sprites/${shiny === 1 ? "shiny" : "normal"}/${pokemon.number}.gif`}
+                                            <div ref={pokemonContainerRef} className={`fightSpriteCard`}>
+                                                {compagnon[0].negative === 1 && <ShadowSmokeBack targetRef={pokemonContainerRef} />}
+                                                {compagnon[0].negative === 1 && <ShadowSmokeFront targetRef={pokemonContainerRef} />}
+                                                <img className={compagnon[0].negative === 1 ? " shadowPokemon" : ""}
+                                                src={`/Sprites/${compagnon[0].shiny === 1 ? "shiny" : "normal"}/${compagnon[0].number}.gif`}
                                                     alt=""
-                                                />
-                                             </div>
+                                            />
+                                            </div>
                                         </>
                                     )}
                                 {canShow && (
