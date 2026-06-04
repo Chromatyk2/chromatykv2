@@ -1491,6 +1491,17 @@ button.openBoosterButton span {
     font-size: 18px;
 }
 /* Collection Cartes*/
+.button.backButton {
+    background: #00000080;
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-family: Charge Vector Black;
+    margin-top: 10px;
+    padding: 12px 24px;
+    margin: 0;
+}
 .collectionGrid {
     display: flex;
     flex-wrap: wrap;
@@ -1498,12 +1509,14 @@ button.openBoosterButton span {
     justify-content: center;
     padding: 20px;
     width: 100%;
+    padding-top: 0;
 }
 .cardsGrid {
-    display: grid;
-    grid-template-columns: repeat( auto-fill, minmax(220px, 1fr) );
+    display: flex;
     gap: 20px;
     width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 .collectionCard {
     position: relative;
