@@ -1406,7 +1406,7 @@ button.openBoosterButton span {
         transform: scale(3);
         opacity: 0;
     }
-
+}
     @keyframes newReveal {
 
         0% {
