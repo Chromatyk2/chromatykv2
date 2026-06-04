@@ -453,6 +453,8 @@ function Cards() {
                                                 <img
                                                     src={card.image + "/high.webp"}
                                                     alt=""
+                                                    loading="lazy"
+                                                    decoding="async"
                                                 />
                                                 {card.tier >= 6 && (
                                                     <>
