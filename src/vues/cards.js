@@ -323,7 +323,10 @@ function Cards() {
                                                 <img src="/backCard.png" alt=""/>
                                             </div>
                                             <div className="cardBack">
-                                                <img src={openedCards[currentCard]?.image +"/high.webp"}alt=""/>
+                                                <img src={openedCards[currentCard]?.image + "/high.webp"} alt="" />
+                                                {(openedCards[currentCard]?.tier >= 5) && (
+                                                    <div className="holoEffect" />
+                                                )}
                                                 {
                                                     showNewBadge &&
                                                     openedCards[currentCard]?.isNew && (
@@ -419,27 +422,24 @@ function Cards() {
                                         .map(card => (
                                             <div key={card.id} className={`collectionCard tier${card.tier || 1}`}
                                                 onMouseMove={(e) => {
-
                                                     const rect =
                                                         e.currentTarget.getBoundingClientRect();
-
                                                     const x =
                                                         ((e.clientX - rect.left) / rect.width) * 100;
-
                                                     const y =
                                                         ((e.clientY - rect.top) / rect.height) * 100;
-
                                                     e.currentTarget.style.setProperty(
                                                         "--x",
                                                         `${x}%`
                                                     );
-
                                                     e.currentTarget.style.setProperty(
                                                         "--y",
                                                         `${y}%`
                                                     );
-
                                                 }}>
+                                                {(card.tier >= 5) && (
+                                                    <div className="holoEffect" />
+                                                )}
                                             <img src={card.image + "/high.webp"} alt={card.id} className="collectionCardImage" onError={(e) => {if (e.target.src.includes("/fr/")) {e.target.src =e.target.src.replace("/fr/","/en/");}}}/>
                                             {
                                                 card.quantity > 1 && (

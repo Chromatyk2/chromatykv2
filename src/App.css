@@ -1367,6 +1367,54 @@ button.openBoosterButton span {
     box-shadow: 0 0 20px rgba(255,140,0,.8);
     animation: newReveal .6s ease-out;
 }
+.cardBack {
+    position: relative;
+    overflow: hidden;
+}
+
+.holoEffect {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    mix-blend-mode: screen;
+}
+
+    .holoEffect::before {
+        content: "";
+        position: absolute;
+        inset: -50%;
+        background: linear-gradient( 115deg, transparent 20%, rgba(255,0,255,0.4) 35%, rgba(0,255,255,0.4) 50%, rgba(255,255,0,0.4) 65%, transparent 80% );
+        animation: holoMove 4s linear infinite;
+    }
+
+    .holoEffect::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image: radial-gradient(circle, rgba(255,255,255,.9) 1px, transparent 1px);
+        background-size: 12px 12px;
+        opacity: .35;
+        animation: sparkle 2s infinite alternate;
+    }
+keyframes holoMove {
+    from {
+        transform: translateX(-40%) rotate(15deg);
+    }
+
+    to {
+        transform: translateX(40%) rotate(15deg);
+    }
+}
+
+@keyframes sparkle {
+    from {
+        opacity: .15;
+    }
+
+    to {
+        opacity: .45;
+    }
+}
 @keyframes newReveal {
 
     0% {
@@ -1389,10 +1437,10 @@ button.openBoosterButton span {
         height: 100%;
         object-fit: contain;
     }
-.tierBg6 {
+.tierBg5 {
     background: radial-gradient( circle, rgba(255,215,0,.15), rgba(0,0,0,.95) );
 }
-.tierBg7 {
+.tierBg6 {
     animation: rainbowBg 5s linear infinite;
 }
 @keyframes rainbowBg {
