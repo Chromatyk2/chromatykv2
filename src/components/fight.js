@@ -3,7 +3,7 @@ import '../App.css'
 import Axios from 'axios'
 import { useCookies } from 'react-cookie';
 import ShadowSmokeFront from "../shadowSmokeFront";
-import ShadowSmokeBack from "../shadowSmokeBack";
+import ShadowSmokeBack from "./shadowSmokeBack";
 
 
 function ProgressBarFight(props) {
