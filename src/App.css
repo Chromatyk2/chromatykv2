@@ -1522,13 +1522,12 @@ button.openBoosterButton span {
     position: relative;
     transition: .25s;
 }
-    .collectionCard:hover {
-        transform: scale(1.05);
-    }
+.collectionCard:hover {
+    transform: scale(1.05);
+}
 .collectionCardImage {
-    width: 100%;
-    border-radius: 16px;
     display: block;
+    width: 200px;
 }
 .quantityBadge {
     position: absolute;
