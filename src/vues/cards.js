@@ -36,6 +36,17 @@ function Cards() {
         }
         // Retourne la carte
         if (!revealed) {
+            if (
+                revealed &&
+                openedCards[currentCard]?.tier === 6
+            ) {
+                setShowImpact(false);
+                const timer = setTimeout(() => {
+                    setShowImpact(true);
+                }, 1000); // juste avant la fin de ton anim de 5s
+
+                return () => clearTimeout(timer);
+            }
             setRevealed(true);
             return;
 
@@ -87,20 +98,6 @@ function Cards() {
             console.error(err);
         }
     };
-    useEffect(() => {
-        if (
-            revealed &&
-            openedCards[currentCard]?.tier === 6
-        ) {
-            setShowImpact(false);
-
-            const timer = setTimeout(() => {
-                setShowImpact(true);
-            }, 1600); // juste avant la fin de ton anim de 5s
-
-            return () => clearTimeout(timer);
-        }
-    }, [revealed, currentCard]);
     useEffect(() => {
         let user;
         if (new URLSearchParams(window.location.search).has("user")) {
