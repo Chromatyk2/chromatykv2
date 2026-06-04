@@ -1140,7 +1140,7 @@ span.dexNumber {
     animation: damageFloat 1s ease-out forwards;
 }
     .damageText.critical {
-        color: #3f2811;
+        color: rgb(183, 122, 60);
         font-size: 48px;
     }
 
