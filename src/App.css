@@ -1367,25 +1367,33 @@ button.openBoosterButton span {
     overflow: hidden;
 }
 .card.tier6.flipped {
-    animation: tier6Reveal 2s cubic-bezier(.22,1,.36,1) forwards;
+    animation: tier6Reveal 5s cubic-bezier(.16,1,.3,1) forwards;
 }
 
 @keyframes tier6Reveal {
 
     0% {
-        transform: perspective(2000px) rotateY(0deg) translateZ(0) scale(1);
+        transform: perspective(2000px) rotateY(0deg) scale(1);
     }
 
-    70% {
-        transform: perspective(2000px) rotateY(1260deg) translateZ(800px) scale(3);
+    60% {
+        transform: perspective(2000px) rotateY(1800deg) scale(4);
     }
-
-    85% {
-        transform: perspective(2000px) rotateY(1440deg) translateZ(1200px) scale(4);
+    /* Impact */
+    75% {
+        transform: perspective(2000px) rotateY(1800deg) scale(5);
+    }
+    /* Compression */
+    82% {
+        transform: perspective(2000px) rotateY(1800deg) scaleX(5.5) scaleY(4.3);
+    }
+    /* Rebond */
+    90% {
+        transform: perspective(2000px) rotateY(1800deg) scaleX(4.7) scaleY(5.2);
     }
 
     100% {
-        transform: perspective(2000px) rotateY(1440deg) translateZ(0) scale(1.8);
+        transform: perspective(2000px) rotateY(1800deg) scale(5);
     }
 }
 .impactEffect {
