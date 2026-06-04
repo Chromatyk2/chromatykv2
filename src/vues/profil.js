@@ -384,7 +384,7 @@ function Profil() {
         }
     }
     return (
-        <div className={"globalContainer"}>
+        <div className={"globalContainerCenter"}>
             <h2 class="wood-sign">
                 Carte de dresseur
             </h2>

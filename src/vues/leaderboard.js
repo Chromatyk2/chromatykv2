@@ -48,9 +48,9 @@ function Leaderboard() {
             })
     }, []);
     return (
-        <div className={"globalContainer"}>
+        <div className={"globalContainerCenter"}>
+            <h2 class="wood-sign" >Communauté</h2>
             <div className={"leaderboardContainer"}>
-                <h2 class="wood-sign" >Communauté</h2>
             {leaderboard &&
                 leaderboard.map((val, key) => {
                     return (

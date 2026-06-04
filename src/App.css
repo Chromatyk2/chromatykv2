@@ -234,7 +234,6 @@ a.navLink.linkFromNav p {
     flex-wrap: wrap;
     gap: 20px;
     justify-content: flex-start;
-    margin-top: 130px;
     padding-bottom: 100px;
     width: 90%;
 }
@@ -422,7 +421,6 @@ p.levelProfil {
     flex-wrap: wrap;
     gap: 30px;
     justify-content: flex-start;
-    margin-top: 130px;
     padding-bottom: 100px;
     width: 90%;
 }
@@ -822,7 +820,6 @@ fightActionsFlee img {
     flex-wrap: wrap;
     gap: 20px;
     justify-content: center;
-    margin-top: 130px;
     padding-bottom: 100px;
     width: 90%;
 }
@@ -1723,37 +1720,4 @@ button.backButton {
 
     .wood-sign::after {
         right: 10px;
-    }
-.App-header {
-    margin: 0;
-    min-height: 100vh;
-    overflow-x: hidden;
-    /* Ciel */
-    background: linear-gradient( to bottom, #87ceeb 0%, #bde7ff 40%, #d8f0ff 60%, #6b9e3f 60%, #5f8f38 100% );
-    font-family: "Georgia", serif;
-    position: relative;
-}
-
-    /* Collines */
-    .App-header::before {
-        content: "";
-        position: fixed;
-        bottom: 0;
-        left: -10%;
-        width: 120%;
-        height: 35vh;
-        background: radial-gradient(circle at 20% 100%, #7fbf4d 0 35%, transparent 36%), radial-gradient(circle at 50% 100%, #6fa843 0 40%, transparent 41%), radial-gradient(circle at 80% 100%, #7fbf4d 0 35%, transparent 36%);
-        z-index: -2;
-    }
-
-    /* Champ */
-    .App-header::after {
-        content: "";
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 25vh;
-        background: repeating-linear-gradient( 90deg, rgba(255,255,255,0.05) 0 2px, transparent 2px 40px );
-        z-index: -1;
     }

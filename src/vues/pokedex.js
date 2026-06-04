@@ -61,7 +61,7 @@ function Pokedex() {
 
     }
     return (
-        <div className={"globalContainer"}>
+        <div className={"globalContainerCenter"}>
             <div className={"dexContainer"}>
                 {onLoad === false &&
                     <>
