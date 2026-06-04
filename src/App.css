@@ -1491,7 +1491,7 @@ button.openBoosterButton span {
     font-size: 18px;
 }
 /* Collection Cartes*/
-.button.backButton {
+button.backButton {
     background: #00000080;
     color: #fff;
     border: none;
