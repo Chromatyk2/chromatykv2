@@ -327,15 +327,26 @@ function Cards() {
                                                 <img src="/backCard.png" alt=""/>
                                             </div>
                                             <div className="cardBack">
-                                                <img src={openedCards[currentCard]?.image + "/high.webp"} alt="" />
-                                                {
-                                                    showNewBadge &&
+                                                <div className="cardArtwork">
+                                                    <img
+                                                        src={openedCards[currentCard]?.image + "/high.webp"}
+                                                        alt=""
+                                                    />
+
+                                                    {openedCards[currentCard]?.tier >= 6 && (
+                                                        <>
+                                                            <div className="holoEffect" />
+                                                            <div className="sparkles" />
+                                                        </>
+                                                    )}
+                                                </div>
+
+                                                {showNewBadge &&
                                                     openedCards[currentCard]?.isNew && (
                                                         <div className="newBadge">
                                                             ✨ NEW ✨
                                                         </div>
-                                                    )
-                                                }
+                                                    )}
                                             </div>
                                         </div>
                                     </div>
