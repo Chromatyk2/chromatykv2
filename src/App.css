@@ -1131,7 +1131,7 @@ span.dexNumber {
     position: absolute;
     left: 50%;
     top: 50%;
-    color: white;
+    color: #fff8dc;
     font-size: 32px;
     font-weight: bold;
     pointer-events: none;
@@ -1139,10 +1139,10 @@ span.dexNumber {
     text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000, 0 0 6px #fff9;
     animation: damageFloat 1s ease-out forwards;
 }
-.damageText.critical {
-    color: #ffd700;
-    font-size: 48px;
-}
+    .damageText.critical {
+        color: #3f2811;
+        font-size: 48px;
+    }
 
 
 @keyframes damageFloat {
