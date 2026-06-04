@@ -17,6 +17,7 @@ function Inventory(props) {
     }, []);
     const itemOrder = [
         "box",
+        "booster",
         "fragement",
         "honey",
         "legendary",
@@ -194,6 +195,13 @@ function Inventory(props) {
                                 slug: "rarecandy",
                                 quantity: Math.floor((Math.random() * 3) + 1)
                             }).then(function (response) {
+                                if (Math.random() < 0.01) {
+                                    Axios.post('/api/addItem', {
+                                        user: cookies.user.data[0].id,
+                                        item: "Booster",
+                                        slug: "booster"
+                                    })
+                                }
                                 const megaCanduTier = Math.random();
                                 if (megaCanduTier < 0.001) {
                                     Axios.post('/api/addItem', {

@@ -240,67 +240,69 @@ function ProgressBarFight(props) {
         }
     }, [curentLevel]);
     function startFight() {
-        setHasAppeared(false)
-        const tierMultiplier = {
-            1: 1,
-            2: 2,
-            3: 4,
-            4: 8
-        };
-        let formMultiplier;
-        if (props.compagnon[0].shiny === 1) {
-            formMultiplier = 1.5;
-        } else if (props.compagnon[0].negative === 1) {
-            formMultiplier = 2;
-        } else {
-            formMultiplier = 1;
+        if (props.compagnon[0].level < 100) {
+            setHasAppeared(false)
+            const tierMultiplier = {
+                1: 1,
+                2: 2,
+                3: 4,
+                4: 8
+            };
+            let formMultiplier;
+            if (props.compagnon[0].shiny === 1) {
+                formMultiplier = 1.5;
+            } else if (props.compagnon[0].negative === 1) {
+                formMultiplier = 2;
+            } else {
+                formMultiplier = 1;
 
+            }
+            const tierRoll = Math.random();
+            if (tierRoll < 0.01) {
+                var tier = 4;
+                setCurrentHp(12000)
+                setMaxHp(12000)
+            } else if (tierRoll < 0.11) {
+                var tier = 3;
+                setCurrentHp(6000)
+                setMaxHp(6000)
+            } else if (tierRoll < 0.41) {
+                var tier = 2;
+                setCurrentHp(3000)
+                setMaxHp(3000)
+            } else {
+                var tier = 1;
+                setCurrentHp(1500)
+                setMaxHp(1500)
+            }
+            Axios.get("/api/getRandomPokemon/" + tier)
+                .then(function (response) {
+                    setPokemon(response.data[0]);
+                    const shiny = Math.floor((Math.random() * 4096) + 1);
+                    const negative = Math.floor((Math.random() * 8192) + 1);
+                    let isNegative;
+                    let isShiny;
+                    if (negative == 16) {
+                        setShiny(0);
+                        setNegative(1);
+                        setHasAppeared(true);
+                        isNegative = 1;
+                        isShiny = 0;
+                    } else if (shiny == 16) {
+                        setHasAppeared(true);
+                        setShiny(1);
+                        setNegative(0);
+                        isNegative = 0;
+                        isShiny = 1;
+                    } else {
+                        setHasAppeared(true);
+                        setShiny(0);
+                        setNegative(0);
+                        isNegative = 0;
+                        isShiny = 0;
+                    }
+                })
         }
-        const tierRoll = Math.random();
-        if (tierRoll < 0.01) {
-            var tier = 4;
-            setCurrentHp(12000)
-            setMaxHp(12000)
-        } else if (tierRoll < 0.11) {
-            var tier = 3;
-            setCurrentHp(6000)
-            setMaxHp(6000)
-        } else if (tierRoll < 0.41) {
-            var tier = 2;
-            setCurrentHp(3000)
-            setMaxHp(3000)
-        } else {
-            var tier = 1;
-            setCurrentHp(1500)
-            setMaxHp(1500)
-        }
-        Axios.get("/api/getRandomPokemon/" + tier)
-            .then(function (response) {
-                setPokemon(response.data[0]);
-                const shiny = Math.floor((Math.random() * 4096) + 1);
-                const negative = Math.floor((Math.random() * 8192) + 1);
-                let isNegative;
-                let isShiny;
-                if (negative == 16) {
-                    setShiny(0);
-                    setNegative(1);
-                    setHasAppeared(true);
-                    isNegative = 1;
-                    isShiny = 0;
-                } else if (shiny == 16) {
-                    setHasAppeared(true);
-                    setShiny(1);
-                    setNegative(0);
-                    isNegative = 0;
-                    isShiny = 1;
-                } else {
-                    setHasAppeared(true);
-                    setShiny(0);
-                    setNegative(0);
-                    isNegative = 0;
-                    isShiny = 0;
-                }
-            })
 
     }
     const tierMultiplier = {
