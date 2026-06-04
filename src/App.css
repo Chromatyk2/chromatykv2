@@ -690,7 +690,7 @@ p.levelProfil {
 .fightActionsFlee {
     width: 100px;
     height: 100px;
-    background-color: rgba(173, 10, 10, 0.5);
+    background-color: #542601e0;
     border-radius: 10px;
     height: 65px;
     width: 65px;
@@ -705,7 +705,7 @@ fightActionsFlee img {
     margin: 0;
 }
 .fightActionsFlee:hover {
-    background-color: rgba(173, 10, 10, 0.6);
+    background-color: #341d02cc;
     cursor: pointer;
 }
 .fightActions:hover {
