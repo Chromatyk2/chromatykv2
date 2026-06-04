@@ -1519,21 +1519,16 @@ button.backButton {
     justify-content: center;
 }
 .collectionCard {
-    position: relative;
     overflow: hidden;
-    border-radius: 16px;
-    perspective: 1000px;
-    transition: transform .15s ease;
-    transform-style: preserve-3d;
 }
-.collectionCard:hover .collectionCardImage {
-    transform: scale(2);
-}
+    .collectionCard:hover .collectionCardImage {
+        transform: scale(2);
+        transform-origin: var(--x, 50%) var(--y, 50%);
+    }
 .collectionCardImage {
-    width: 100%;
+    width: 200px;
     display: block;
-    transition: transform .15s ease-out;
-    transform-origin: var(--mouse-x, 50%) var(--mouse-y, 50%);
+    transition: transform .08s linear;
 }
 .quantityBadge {
     position: absolute;

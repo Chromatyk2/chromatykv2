@@ -402,28 +402,26 @@ function Cards() {
                                         .map(card => (
                                             <div key={card.id} className={`collectionCard tier${card.tier || 1}`}
                                                 onMouseMove={(e) => {
-                                                    const cardElement =
-                                                        e.currentTarget;
+
                                                     const rect =
-                                                        cardElement.getBoundingClientRect();
+                                                        e.currentTarget.getBoundingClientRect();
+
                                                     const x =
-                                                        e.clientX - rect.left;
+                                                        ((e.clientX - rect.left) / rect.width) * 100;
+
                                                     const y =
-                                                        e.clientY - rect.top;
-                                                    const centerX =
-                                                        rect.width / 2;
-                                                    const centerY =
-                                                        rect.height / 2;
-                                                    const rotateY =
-                                                        (x - centerX) / 20;
-                                                    const rotateX =
-                                                        -(y - centerY) / 20;
-                                                    cardElement.style.transform =
-                                                        `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-                                                }}
-                                                onMouseLeave={(e) => {
-                                                    e.currentTarget.style.transform =
-                                                        "rotateX(0deg) rotateY(0deg)";
+                                                        ((e.clientY - rect.top) / rect.height) * 100;
+
+                                                    e.currentTarget.style.setProperty(
+                                                        "--x",
+                                                        `${x}%`
+                                                    );
+
+                                                    e.currentTarget.style.setProperty(
+                                                        "--y",
+                                                        `${y}%`
+                                                    );
+
                                                 }}>
                                             <img src={card.image + "/high.webp"} alt={card.id} className="collectionCardImage" onError={(e) => {if (e.target.src.includes("/fr/")) {e.target.src =e.target.src.replace("/fr/","/en/");}}}/>
                                             {
