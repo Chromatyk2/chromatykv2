@@ -76,7 +76,7 @@ function NavBar(props) {
             <div id={"navBar"}>
                 <Link onClick={deployNav} className="navLink linkFromNav" to="/">
                     <img src={"/rope.png"} />
-                    <p>Acceuil</p>
+                    <p>Accueil</p>
                 </Link>
                 {typeof cookies.user !== "undefined" &&
                     <>

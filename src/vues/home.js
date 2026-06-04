@@ -86,7 +86,7 @@ function HomePage(props) {
     return (
         <div className={"globalContainerCenter"}>
             <h2 class="wood-sign">
-                Acceuil
+                Accueil
             </h2>
             {onLoad === false &&
                 <>
