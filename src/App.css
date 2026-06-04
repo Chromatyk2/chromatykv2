@@ -197,11 +197,13 @@ a.navLink.linkFromNav p {
     letter-spacing: 1px;
     width: fit-content!important;
 }
-.showPokedex:hover {
-    background: #05487380;
-    border: 2px solid #054873;
-    cursor: pointer;
-}
+    .showPokedex:hover {
+        background: #2b1f0480;
+        border: 1px solid #010c12;
+        box-shadow: 0 0 0 3px #2c1a0d, 0 20px 40px #00000080;
+        color: #f4e8c1;
+        cursor: pointer;
+    }
 .filterProfil {
     display: flex;
     flex-wrap: wrap;
@@ -267,7 +269,9 @@ a.leaderboardHeaderContainerLink {
     justify-content: space-between;
     width: 100%;
     text-decoration: none;
-    color: white;
+    border: 1px solid #b77a3c;
+    box-shadow: 0 0 0 3px #2c1a0d, 0 20px 40px #00000080;
+    color: #f4e8c1;
 }
 .leaderboardHeaderContainer {
     display: flex;
@@ -282,7 +286,8 @@ a.leaderboardHeaderContainerLink {
 }
 .leaderboardHeaderContainer:hover {
     background-color: #3b3b3b4d;
-    cursor:pointer;
+    cursor:pointer;background: #2b1f0480;
+    border: 1px solid #010c12;
 }
 .rank {
     font-weight: 900;
