@@ -1483,7 +1483,7 @@ button.openBoosterButton span {
 .cardPlaceholder {
     position: absolute;
     inset: 0;
-    background-image: url("/backCard.png");
+    background-image: url("../public/backCard.png");
     background-size: cover;
     background-position: center;
     filter: blur(4px);
