@@ -1498,6 +1498,40 @@ button.openBoosterButton span {
     padding: 20px;
     width: 100%;
 }
+.cardsGrid {
+    display: grid;
+    grid-template-columns: repeat( auto-fill, minmax(220px, 1fr) );
+    gap: 20px;
+    width: 100%;
+}
+.collectionCard {
+    position: relative;
+    transition: .25s;
+}
+    .collectionCard:hover {
+        transform: scale(1.05);
+    }
+.collectionCardImage {
+    width: 100%;
+    border-radius: 16px;
+    display: block;
+}
+.quantityBadge {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    min-width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba( 0, 0, 0, .85 );
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 18px;
+    box-shadow: 0 0 15px rgba( 0, 0, 0, .5 );
+}
 /* Animation */
 @keyframes koAnimation {
     0% {

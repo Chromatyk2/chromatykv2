@@ -393,13 +393,18 @@ function Cards() {
                             <h2>{selectedSet.name}</h2>
                             <div className="cardsGrid">
                                 {
-                                    selectedSet.cards.map(
-                                        cardId => (
-                                            <div key={cardId}>
-                                                {cardId}
-                                            </div>
-                                        )
-                                    )
+                                    selectedSet.cards.map(card => (
+                                        <div key={card.id} className={`collectionCard tier${card.tier || 1}`}>
+                                            <img src={card.image + "/high.webp"} alt={card.id} className="collectionCardImage" onError={(e) => {if (e.target.src.includes("/fr/")) {e.target.src =e.target.src.replace("/fr/","/en/");}}}/>
+                                            {
+                                                card.quantity > 1 && (
+                                                    <div className="quantityBadge">
+                                                        x{card.quantity}
+                                                    </div>
+                                                )
+                                            }
+                                        </div>
+                                    ))
                                 }
                             </div>
                         </div>
