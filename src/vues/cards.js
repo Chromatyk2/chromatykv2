@@ -318,6 +318,9 @@ function Cards() {
                             <div className={`openingOverlay  ${revealed ? `tierBg${openedCards[currentCard]?.tier || 1}` : ""}`} onClick={nextCard}>
                                 <div className="openingWrapper">
                                     <div className={`card ${revealed ? "flipped" : ""} ${revealed ? `tier${openedCards[currentCard]?.tier || 1}` : ""}`}>
+                                        {revealed && openedCards[currentCard]?.tier === 6 && (
+                                            <div className="impactEffect" />
+                                        )}
                                         <div className="cardInner">
                                             <div className="cardFront">
                                                 <img src="/backCard.png" alt=""/>
