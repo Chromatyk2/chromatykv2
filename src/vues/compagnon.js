@@ -29,7 +29,7 @@ function Compagnon() {
     const pokemonContainerRef = useRef(null);
 
     useEffect(() => {
-    const userId = cookies.user.data[0].id;
+    const userId = cookies.user.id;
 
     Promise.all([
         Axios.get("/api/getPokedex/" + userId),
@@ -95,11 +95,11 @@ function Compagnon() {
                 (item) => item.number === e && item.shiny === g && item.negative === h
             )?.level ?? 1;
         Axios.post('/api/updateCurrentCompagnon', {
-            user: cookies.user.data[0].id
+            user: cookies.user.id
         })
             .then(function (response) {
                 Axios.post('/api/newCompagnon', {
-                    user: cookies.user.data[0].id,
+                    user: cookies.user.id,
                     number: e,
                     pokemon: f,
                     shiny: g,
@@ -109,13 +109,13 @@ function Compagnon() {
                     active: 1,
                     tier: i
                 }).then(function (response) {
-                    Axios.get('/api/getCurrentCompagnon/' + cookies.user.data[0].id)
+                    Axios.get('/api/getCurrentCompagnon/' + cookies.user.id)
                         .then(function (response) {
                             setHaveCompagnon(true)
                             setChooseCompagnon(false)
                             setCompagnon(response.data);
                             Axios
-                                .get("/api/getInventory/" + cookies.user.data[0].id)
+                                .get("/api/getInventory/" + cookies.user.id)
                                 .then(function (response) {
                                     setInventory(response.data);
                                     setHaveCompagnon(true)
@@ -127,20 +127,20 @@ function Compagnon() {
     function levelupCompagnon(e) {
         if (inventory.find((item) => item.slug === e).quantity - 1 >= 0) {
             Axios.post('/api/removeItem', {
-                user: cookies.user.data[0].id,
+                user: cookies.user.id,
                 slug: e
             })
                 .then(function (response) {
                     Axios.post('/api/levelupCompagnon', {
                         id: compagnon[0].id
                     }).then(function (response) {
-                        Axios.get('/api/getCurrentCompagnon/' + cookies.user.data[0].id)
+                        Axios.get('/api/getCurrentCompagnon/' + cookies.user.id)
                             .then(function (response) {
                                 setHaveCompagnon(true)
                                 setChooseCompagnon(false)
                                 setCompagnon(response.data);
                                 Axios
-                                    .get("/api/getInventory/" + cookies.user.data[0].id)
+                                    .get("/api/getInventory/" + cookies.user.id)
                                     .then(function (response) {
                                         setInventory(response.data);
                                         setHaveCompagnon(true)
@@ -153,20 +153,20 @@ function Compagnon() {
     function levelMaxCompagnon(e) {
         if (inventory.find((item) => item.slug === e).quantity - 1 >= 0) {
             Axios.post('/api/removeItem', {
-                user: cookies.user.data[0].id,
+                user: cookies.user.id,
                 slug: e
             })
                 .then(function (response) {
                     Axios.post('/api/levelMaxCompagnon', {
                         id: compagnon[0].id
                     }).then(function (response) {
-                        Axios.get('/api/getCurrentCompagnon/' + cookies.user.data[0].id)
+                        Axios.get('/api/getCurrentCompagnon/' + cookies.user.id)
                             .then(function (response) {
                                 setHaveCompagnon(true)
                                 setChooseCompagnon(false)
                                 setCompagnon(response.data);
                                 Axios
-                                    .get("/api/getInventory/" + cookies.user.data[0].id)
+                                    .get("/api/getInventory/" + cookies.user.id)
                                     .then(function (response) {
                                         setInventory(response.data);
                                         setHaveCompagnon(true)

@@ -39,7 +39,7 @@ function Profil() {
             if (new URLSearchParams(window.location.search).has("user")) {
                 user = new URLSearchParams(window.location.search).get("user");
             } else {
-                user = cookies.user.data[0].id;
+                user = cookies.user.id;
             }
             const { data } =
                 await Axios.get(
@@ -103,7 +103,7 @@ function Profil() {
         if (new URLSearchParams(window.location.search).has("user")) {
             user = new URLSearchParams(window.location.search).get("user");
         } else {
-            user = cookies.user.data[0].id;
+            user = cookies.user.id;
         }
 
         Axios
@@ -165,7 +165,7 @@ function Profil() {
     function changeSkin(e, f) {
         if (!new URLSearchParams(window.location.search).has("user")) {
             Axios.post('/api/addProfil', {
-                user: cookies.user.data[0].id,
+                user: cookies.user.id,
                 login: cookies.user.data[0].login,
                 level: profil[0].level,
                 xp: profil[0].xp,
@@ -173,7 +173,7 @@ function Profil() {
                 compagnon: profil[0].compagnon
             })
                 .then(function (response) {
-                    Axios.get("/api/getUser/" + cookies.user.data[0].id)
+                    Axios.get("/api/getUser/" + cookies.user.id)
                         .then(function (response) {
                             setProfil(response.data);
                             setIndex();
@@ -185,7 +185,7 @@ function Profil() {
     function changeActiveCompagnon(e, f) {
         if (!new URLSearchParams(window.location.search).has("user")) {
             Axios.post('/api/addProfil', {
-                user: cookies.user.data[0].id,
+                user: cookies.user.id,
                 login: cookies.user.data[0].login,
                 level: profil[0].level,
                 xp: profil[0].xp,
@@ -193,13 +193,13 @@ function Profil() {
                 compagnon: e
             })
                 .then(function (response) {
-                    Axios.get("/api/getUser/" + cookies.user.data[0].id)
+                    Axios.get("/api/getUser/" + cookies.user.id)
                         .then(function (response) {
                             setProfil(response.data);
                             setIndex();
                             setColor(f);
                             Axios
-                                .get("/api/getActiveCompagnon/" + cookies.user.data[0].id + "/" + response.data[0].compagnon)
+                                .get("/api/getActiveCompagnon/" + cookies.user.id + "/" + response.data[0].compagnon)
                                 .then(function (response) {
                                     setCompagnon(response.data);
                                 })
@@ -212,7 +212,7 @@ function Profil() {
             setLoadSkin(true);
             if (skins.length < profil[0].level) {
                 Axios.post('/api/addNewSkin', {
-                    user: cookies.user.data[0].id
+                    user: cookies.user.id
                 })
                     .then(function (response) {
                         changePage(2);
@@ -225,7 +225,7 @@ function Profil() {
         if (new URLSearchParams(window.location.search).has("user")) {
             user = new URLSearchParams(window.location.search).get("user");
         } else {
-            user = cookies.user.data[0].id;
+            user = cookies.user.id;
         }
         if (e === 4) {
             Axios.get("/api/getMaxLevelCompagnon/" + user)
@@ -308,7 +308,7 @@ function Profil() {
 
             const endDate = new Date(Date.now() + hours * 60 * 60 * 1000);
             Axios.post('/api/newExpedition', {
-                user: cookies.user.data[0].id,
+                user: cookies.user.id,
                 number: e,
                 date: moment().format('YYYY-MM-DD HH:mm:ss'),
                 tier: f,
@@ -319,7 +319,7 @@ function Profil() {
                     if (new URLSearchParams(window.location.search).has("user")) {
                         user = new URLSearchParams(window.location.search).get("user");
                     } else {
-                        user = cookies.user.data[0].id;
+                        user = cookies.user.id;
                     }
                     Axios.get("/api/getAllExpedition/" + user)
                         .then((response) => {
@@ -378,7 +378,7 @@ function Profil() {
                         const fragmentToWin =
                             Math.floor(Math.random() * (max - min + 1)) + min;
                         Axios.post('/api/addCandy', {
-                            user: cookies.user.data[0].id,
+                            user: cookies.user.id,
                             item: "Fragment de Pack",
                             slug: "fragement",
                             quantity: fragmentToWin
@@ -390,7 +390,7 @@ function Profil() {
                                 if (new URLSearchParams(window.location.search).has("user")) {
                                     user = new URLSearchParams(window.location.search).get("user");
                                 } else {
-                                    user = cookies.user.data[0].id;
+                                    user = cookies.user.id;
                                 }
                                 Axios.get("/api/getAllExpedition/" + user)
                                     .then((response) => {

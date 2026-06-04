@@ -21,11 +21,11 @@ function HomePage(props) {
                 })
         } else {
             Axios
-                .get("/api/getUser/" + cookies.user.data[0].id)
+                .get("/api/getUser/" + cookies.user.id)
                 .then(function (response) {
                     if (response.data.length < 1) {
                         Axios.post('/api/addProfil', {
-                            user: cookies.user.data[0].id,
+                            user: cookies.user.id,
                             login: cookies.user.data[0].login,
                             level: 1,
                             xp: 0,
@@ -34,28 +34,28 @@ function HomePage(props) {
                         })
                         .then(function (response) {
                             Axios.post('/api/addCandy', {
-                                user: cookies.user.data[0].id,
+                                user: cookies.user.id,
                                 item: "Miel Ordinaire",
                                 slug: "honey",
                                 quantity: 1
                             })
                             .then(function (response) {
                                 Axios.post('/api/addCandy', {
-                                    user: cookies.user.data[0].id,
+                                    user: cookies.user.id,
                                     item: "Bonbon S",
                                     slug: "exps",
                                     quantity: 10
                                 })
                                 .then(function (response) {
                                     Axios.post('/api/addCandy', {
-                                        user: cookies.user.data[0].id,
+                                        user: cookies.user.id,
                                         item: "Poke Ball",
                                         slug: "ball",
                                         quantity: 10
                                     })
                                     .then(function (response) {
                                         Axios.post('/api/addCandy', {
-                                            user: cookies.user.data[0].id,
+                                            user: cookies.user.id,
                                             item: "Super Bonbon",
                                             slug: "rarecandy",
                                             quantity: 0

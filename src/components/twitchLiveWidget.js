@@ -27,7 +27,7 @@ function TwitchLiveWidget() {
             ) : (
                 <div className="twitchWidget">
                     <div className="twitchWidgetHeader">
-                        <span>🔴 Chromatyk en live</span>
+                        <span>🔴 Chromatyk est en live</span>
 
                         <button
                             className="twitchWidgetButton"

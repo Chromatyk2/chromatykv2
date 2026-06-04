@@ -27,7 +27,7 @@ function Pokedex() {
         if (new URLSearchParams(window.location.search).has("user")) {
             user = new URLSearchParams(window.location.search).get("user");
         } else {
-            user = cookies.user.data[0].id;
+            user = cookies.user.id;
         }
         Axios
             .get("/api/getPokedex/" + user)

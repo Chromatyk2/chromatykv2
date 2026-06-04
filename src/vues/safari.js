@@ -26,19 +26,19 @@ function Fight() {
     const [onLoad, setOnload] = useState(true);
     useEffect(() => {
         Axios
-            .get("/api/getUser/" + cookies.user.data[0].id)
+            .get("/api/getUser/" + cookies.user.id)
             .then(function (response) {
                 setProfil(response.data);
                 Axios
-                    .get("/api/getPokedex/" + cookies.user.data[0].id)
+                    .get("/api/getPokedex/" + cookies.user.id)
                     .then(function (response) {
                         setPokedex(response.data)
                         Axios
-                            .get("/api/getInventory/" + cookies.user.data[0].id)
+                            .get("/api/getInventory/" + cookies.user.id)
                             .then(function (response) {
                                 setInventory(response.data);
                                 Axios
-                                    .get("/api/getSafari/" + cookies.user.data[0].id)
+                                    .get("/api/getSafari/" + cookies.user.id)
                                     .then(function (response) {
                                         if (response.data.length > 0) {
                                             setCurrentLove(response.data[0].love)
@@ -67,11 +67,11 @@ function Fight() {
         setOnCatch(false);
         setPokemon(null);
         setCurrentLove(0);
-        Axios.delete('/api/deleteSafari/' + cookies.user.data[0].id)
+        Axios.delete('/api/deleteSafari/' + cookies.user.id)
     }
     function saveFight() {
         Axios.post('/api/addSafari', {
-            user: cookies.user.data[0].id,
+            user: cookies.user.id,
             pokemon: pokemon.number,
             love: currentLove,
             shiny: shiny,
@@ -84,18 +84,18 @@ function Fight() {
     function addLove(e, candy) {
         if (inventory.find((item) => item.slug === candy).quantity - 1 >= 0) {
             Axios.post('/api/removeItem', {
-                user: cookies.user.data[0].id,
+                user: cookies.user.id,
                 slug: candy
             })
                 .then(function (response) {
                     Axios
-                        .get("/api/getInventory/" + cookies.user.data[0].id)
+                        .get("/api/getInventory/" + cookies.user.id)
                         .then(function (response) {
                             setInventory(response.data);
                             setCurrentLove(currentLove + e);
                             const love = currentLove + e;
                             Axios.post('/api/addSafari', {
-                                user: cookies.user.data[0].id,
+                                user: cookies.user.id,
                                 pokemon: pokemon.number,
                                 love: love,
                                 shiny: shiny,
@@ -116,12 +116,12 @@ function Fight() {
             };
             setBallStyle(styles[g]);
             Axios.post('/api/removeItem', {
-                user: cookies.user.data[0].id,
+                user: cookies.user.id,
                 slug: g
             })
                 .then(function (response) {
                     Axios
-                        .get("/api/getInventory/" + cookies.user.data[0].id)
+                        .get("/api/getInventory/" + cookies.user.id)
                         .then(function (response) {
                             setInventory(response.data);
                             setOnCatch(true);
@@ -137,7 +137,7 @@ function Fight() {
                                     setTimeout(function () {
                                         document.getElementById("validCatchText").style.display = "block";
                                         Axios.post('/api/addPokemon', {
-                                            user: cookies.user.data[0].id,
+                                            user: cookies.user.id,
                                             pokemon: pokemon.number,
                                             gen: pokemon.gen,
                                             shiny: shiny,
@@ -145,7 +145,7 @@ function Fight() {
                                             date: moment(new Date()).utc().format('YYYY-MM-DD hh:mm:ss')
                                         })
                                         setCurrentLove(0);
-                                        Axios.delete('/api/deleteSafari/' + cookies.user.data[0].id)
+                                        Axios.delete('/api/deleteSafari/' + cookies.user.id)
                                         setTimeout(function () {
                                             let bonusXP = 0;
                                             if (shiny === 1) {
@@ -154,7 +154,7 @@ function Fight() {
                                                 bonusXP = 500;
                                             }                                         
                                             Axios.post('/api/updateXp', {
-                                                user: cookies.user.data[0].id,
+                                                user: cookies.user.id,
                                                 xp: Math.floor(Math.random() * (pokemon.tier * 50 + 1)) + (pokemon.tier * 100) + bonusXP
                                             })
                                             .then(function (response) {
@@ -185,12 +185,12 @@ function Fight() {
     function consomeHoney(e) {
         if (inventory.find((item) => item.slug === e).quantity - 1 >= 0) {
             Axios.post('/api/removeItem', {
-                user: cookies.user.data[0].id,
+                user: cookies.user.id,
                 slug: e
             })
             .then(function (response) {
                 Axios
-                    .get("/api/getInventory/" + cookies.user.data[0].id)
+                    .get("/api/getInventory/" + cookies.user.id)
                     .then(function (response) {
                         setInventory(response.data);
                         const expr = e;
@@ -208,7 +208,7 @@ function Fight() {
         }
     }
     function getRandomPokemon() {
-        Axios.get("/api/getPokedex/" + cookies.user.data[0].id)
+        Axios.get("/api/getPokedex/" + cookies.user.id)
             .then(function (response) {
                 setPokedex(response.data)
                 const tierRoll = Math.random();
@@ -249,7 +249,7 @@ function Fight() {
                             isShiny = 0;
                         }
                         Axios.post('/api/addSafari', {
-                            user: cookies.user.data[0].id,
+                            user: cookies.user.id,
                             pokemon: response.data[0].number,
                             love: 0,
                             shiny: isShiny,

@@ -14,7 +14,7 @@ function Cards() {
     const [progress, setProgress] = useState({})
     const [now, setNow] = useState(Date.now());
     const [boosterCurrency, setBoosterCurrency] = useState(0);
-    const userId = cookies.user.data[0].id;
+    const userId = cookies.user.id;
     const [opening, setOpening] = useState(false);
     const [isShop, setIsShop] = useState(true);
     const [openedCards, setOpenedCards] = useState([]);
@@ -95,7 +95,7 @@ function Cards() {
             user = new URLSearchParams(window.location.search).get("user");
             setIsShop(false)
         } else {
-            user = cookies.user.data[0].id;
+            user = cookies.user.id;
             setIsShop(true)
         }
         const loadData = async () => {

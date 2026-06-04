@@ -10,13 +10,13 @@ function NavBar(props) {
     //useEffect(() => {
     //    if(typeof props.cookies.user !== "undefined"){
     //        Axios
-    //        .get("/api/getProfil/"+props.cookies.user.data[0].id)
+    //        .get("/api/getProfil/"+props.cookies.user.id)
     //        .then(function(response) {
     //            if(response.data.length == 0){
     //                Axios.post('/api/addPkmPointRoulette',
     //                    {
     //                        user:props.cookies.user.data[0].login,
-    //                        idUser: props.cookies.user.data[0].id,
+    //                        idUser: props.cookies.user.id,
     //                        nbToken: 6
     //                    }
     //                )
@@ -25,37 +25,37 @@ function NavBar(props) {
     //        Axios.post('/api/updateIdProfil',
     //            {
     //                user:props.cookies.user.data[0].login,
-    //                idUser:props.cookies.user.data[0].id
+    //                idUser:props.cookies.user.id
     //            }
     //        )
     //        Axios.post('/api/updateIdBadges',
     //            {
     //                user:props.cookies.user.data[0].login,
-    //                idUser:props.cookies.user.data[0].id
+    //                idUser:props.cookies.user.id
     //            }
     //        )
     //        Axios.post('/api/updateIdCaptures',
     //            {
     //                user:props.cookies.user.data[0].login,
-    //                idUser:props.cookies.user.data[0].id
+    //                idUser:props.cookies.user.id
     //            }
     //        )
     //        Axios.post('/api/updateIdCards',
     //            {
     //                user:props.cookies.user.data[0].login,
-    //                idUser:props.cookies.user.data[0].id
+    //                idUser:props.cookies.user.id
     //            }
     //        )
     //        Axios.post('/api/updateIdCompagnon',
     //            {
     //                user:props.cookies.user.data[0].login,
-    //                idUser:props.cookies.user.data[0].id
+    //                idUser:props.cookies.user.id
     //            }
     //        )
     //        Axios.post('/api/updateIdSkin',
     //            {
     //                user:props.cookies.user.data[0].login,
-    //                idUser:props.cookies.user.data[0].id
+    //                idUser:props.cookies.user.id
     //            }
     //        )
     //    }

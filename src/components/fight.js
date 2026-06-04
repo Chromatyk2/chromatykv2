@@ -121,7 +121,7 @@ function ProgressBarFight(props) {
             currentHp <= 0 &&
             !isKO &&
             pokemon) {
-            const userId = cookies.user.data[0].id;
+            const userId = cookies.user.id;
             const tierMultiplierattack =
                 pokemon.tier === 4 ? 58.65 :
                     pokemon.tier === 3 ? 1.75 :
@@ -158,7 +158,7 @@ function ProgressBarFight(props) {
 
             if (reward) {
                 Axios.post('/api/addCandy', {
-                    user: cookies.user.data[0].id,
+                    user: cookies.user.id,
                     item: reward.item,
                     slug: reward.slug,
                     quantity: 1
