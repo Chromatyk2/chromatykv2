@@ -21,7 +21,8 @@ function Cards() {
     const [revealed, setRevealed] = useState(false);
     const [showNewBadge,setShowNewBadge] =useState(false);
     const [isTransitioning, setIsTransitioning] = useState(false);
-    const [globalProgress,setGlobalProgress] =useState(null);
+    const [globalProgress, setGlobalProgress] = useState(null);
+    const [selectedSet,setSelectedSet] =useState(null);
     const startOpening = (cards) => {setOpenedCards(cards);setCurrentCard(0);setRevealed(false);setOpening(true);
 
     };
@@ -339,7 +340,8 @@ function Cards() {
                 </div>
                 :
                 <div className="collectionGrid">
-                    {ownedSets?.map(set => (
+                    {!selectedSet ? (
+                            ownedSets?.map(set => (
                         <div key={set.tcgdex_id} className="boosterCard">
                             <img src={set.logo} alt={set.name} className="boosterImage" />
                             <div className="boosterFooter">
@@ -374,14 +376,35 @@ function Cards() {
                                         }}
                                     />
                                 </div>
-                                <button className={`openBoosterButton`}>
+                                <button className="openBoosterButton" onClick={() =>setSelectedSet(set)}>
                                     <span className="buttonContent">
                                         Voir les cartes
                                     </span>
                                 </button>
                             </div>
                         </div>
-                    ))}
+                            )
+                        )
+                    ) : (
+                        <div className="setCollection">
+                            <button className="backButton" onClick={() =>setSelectedSet(null)}>
+                                ← Retour
+                            </button>
+                            <h2>{selectedSet.name}</h2>
+                            <div className="cardsGrid">
+                                {
+                                    selectedSet.cards.map(
+                                        cardId => (
+                                            <div key={cardId}>
+                                                {cardId}
+                                            </div>
+                                        )
+                                    )
+                                }
+                            </div>
+                        </div>
+                    )
+                    }
                 </div>
             }
         </div>
