@@ -336,7 +336,7 @@ function ProgressBarFight(props) {
                     <p>Partir</p>
                 </div>
                 {props.compagnon[0].level >= 100 &&
-                    <p>Un pokémon level 100 ne peux pas ce battre</p>
+                    <p>Un pokémon level 100 ne peut pas combattre</p>
                 }
             {pokemon &&
                 <>
