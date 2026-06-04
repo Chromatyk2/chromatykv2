@@ -32,6 +32,20 @@ function Profil() {
     const [finished, setFinished] = useState(false);
     const [validatedExpedition, setValidatedExpedition] = useState(false);
     const [fragementToWin, setFragementToWin] = useState(null);
+    const [globalProgress, setGlobalProgress] = useState({ owned: 0, total: 0, percent: 0 });
+    const loadGlobalProgress =
+        async () => {
+
+            const { data } =
+                await Axios.get(
+                    `/api/card/globalProgress/${profil.id}`
+                );
+
+            setGlobalProgress(
+                data
+            );
+
+        };
     useEffect(() => {
         initPage();
     }, [param]);
@@ -90,6 +104,7 @@ function Profil() {
         Axios
             .get("/api/getTrainers/" + user)
             .then(async (response) => {
+                loadGlobalProgress();
                 setSkins(response.data);
                 Axios
                     .get("/api/getUser/" + user)
@@ -472,6 +487,17 @@ function Profil() {
                                                 <div className={"boxProfilLarge"}>
                                                 </div>
                                             </>
+                                        }
+                                        {globalProgress.owned > 0 &&
+                                            <div className={"boxProfilLarge"}>
+                                                <div className={"profilHeader"}>
+                                                    <div className={"profilDex"}>
+                                                        <p>Collection de cates</p>
+                                                        <p className={"levelProfil"}>{globalProgress.owned}{" / "}{globalProgress.total}</p>
+                                                    </div>
+                                            <img src={"/Badge/lv" + images[Math.min(images.length - 1, Math.floor((globalProgress.owned / globalProgress.total) * images.length))] + "c.png"} />
+                                                </div>
+                                            </div>
                                         }
                                     </>
                                 }
