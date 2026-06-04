@@ -36,10 +36,7 @@ function Cards() {
         }
         // Retourne la carte
         if (!revealed) {
-            if (
-                revealed &&
-                openedCards[currentCard]?.tier === 6
-            ) {
+            if (openedCards[currentCard]?.tier === 6) {
                 setShowImpact(false);
                 const timer = setTimeout(() => {
                     setShowImpact(true);
