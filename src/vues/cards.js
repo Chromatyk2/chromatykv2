@@ -324,9 +324,6 @@ function Cards() {
                                             </div>
                                             <div className="cardBack">
                                                 <img src={openedCards[currentCard]?.image + "/high.webp"} alt="" />
-                                                {(openedCards[currentCard]?.tier >= 5) && (
-                                                    <div className="holoEffect" />
-                                                )}
                                                 {
                                                     showNewBadge &&
                                                     openedCards[currentCard]?.isNew && (
@@ -438,10 +435,6 @@ function Cards() {
                                                     );
                                                 }}>
                                             <img src={card.image + "/high.webp"} alt={card.id} className="collectionCardImage" onError={(e) => {if (e.target.src.includes("/fr/")) {e.target.src =e.target.src.replace("/fr/","/en/");}}}/>
-
-                                                {(card.tier >= 5) && (
-                                                    <div className="holoEffect" />
-                                                )}
                                                 {
                                                 card.quantity > 1 && (
                                                     <div className="quantityBadge">

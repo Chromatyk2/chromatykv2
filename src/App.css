@@ -1371,50 +1371,6 @@ button.openBoosterButton span {
     position: relative;
     overflow: hidden;
 }
-
-.holoEffect {
-    position: absolute;
-    inset: 0;
-    z-index: 10;
-    pointer-events: none;
-}
-
-    .holoEffect::before {
-        content: "";
-        position: absolute;
-        inset: -50%;
-        background: linear-gradient( 120deg, transparent 20%, rgba(255,0,255,.35), rgba(0,255,255,.35), rgba(255,255,0,.35), transparent 80% );
-        animation: holoFloat 8s ease-in-out infinite alternate;
-    }
-
-    .holoEffect::after {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: radial-gradient(circle at 20% 30%, rgba(255,255,255,.3), transparent 20%), radial-gradient(circle at 80% 70%, rgba(255,255,255,.2), transparent 20%);
-        animation: sparkleShift 5s ease-in-out infinite alternate;
-    }
-@keyframes holoFloat {
-    0% {
-        transform: translateX(-10%) translateY(-2%) rotate(8deg);
-    }
-
-    100% {
-        transform: translateX(10%) translateY(2%) rotate(12deg);
-    }
-}
-
-@keyframes sparkleShift {
-    0% {
-        opacity: .3;
-        transform: scale(1);
-    }
-
-    100% {
-        opacity: .6;
-        transform: scale(1.1);
-    }
-}
 @keyframes newReveal {
 
     0% {
