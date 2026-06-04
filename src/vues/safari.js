@@ -48,9 +48,9 @@ function Fight() {
                                             if (response.data[0].tier == 1) {
                                                 setMaxLove(125);
                                             } else if (response.data[0].tier == 2) {
-                                                setMaxLove(375);
+                                                setMaxLove(250);
                                             } else if (response.data[0].tier == 3) {
-                                                setMaxLove(650);
+                                                setMaxLove(500);
                                             } else {
                                                 setMaxLove(1000);
                                             }
