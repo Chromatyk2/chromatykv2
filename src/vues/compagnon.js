@@ -193,7 +193,7 @@ function Compagnon() {
         onFight === false ?
             (
                 <div className={"globalContainerCenter"}>
-                    <p>Compagnon</p>
+                    <h2>Cloture du Compagnon</h2>
                     <div style={{ backgroundImage: `url(/compagnonBack.png)`, overflow: "overlay" }} className={"fightContainer"}>
                         {onLoad === false &&
                             <>

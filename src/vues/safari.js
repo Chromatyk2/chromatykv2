@@ -324,7 +324,7 @@ function Fight() {
     }
     return (
         <div className={"globalContainerCenter"}>
-        <p>Safari</p>
+        <h2>Parc Safari</h2>
             <div style={{ backgroundImage: `url(/safariBack.png)`}}  className={"fightContainer"}>
                 {onLoad === false &&
                     <>

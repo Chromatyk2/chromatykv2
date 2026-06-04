@@ -50,7 +50,7 @@ function Leaderboard() {
     return (
         <div className={"globalContainer"}>
             <div className={"leaderboardContainer"}>
-            <p style={{ margin: 0 }} >Communauté</p>
+            <h2 style={{ margin: 0 }} >Communauté</h2>
             {leaderboard &&
                 leaderboard.map((val, key) => {
                     return (
