@@ -331,12 +331,13 @@ function ProgressBarFight(props) {
         <div className={"globalContainerCenter"}>
             <h2 class="wood-sign">Arene de Combat</h2>
             <div style={{ flexDirection: "row", flexWrap: "wrap", backgroundImage: `url(/gym.png)`, overflow: "hidden" }} className={"fightContainer"}>
+                <div style={{ top: "10px" }} onClick={exitFight} className={"fightActionsFlee"}>
+                    < img src={"/doll.png"} />
+                    <p>Partir</p>
+                </div>
+                <p>Un pokémon level 100 ne peux pas ce battre</p>
             {pokemon &&
                 <>
-                    <div style={{ top: "10px" }} onClick={exitFight} className={"fightActionsFlee"}>
-                        < img src={"/doll.png"} />
-                        <p>Partir</p>
-                    </div>
                     <div className={"rewardFightContainer"}>
                         <p style={{ width: "100%", margin: "0" }}>Récompense de session :</p>
                         {sessionReward.length > 0 &&
