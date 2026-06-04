@@ -1406,7 +1406,7 @@ button.openBoosterButton span {
     filter: drop-shadow( 0 0 20px #00c8ff );
 }
 .tier5 {
-    animation: glowGold 1.5s infinite, shake .3s infinite;
+    animation: glowGold 1.5s infinite;
 }
 @keyframes shake {
 
