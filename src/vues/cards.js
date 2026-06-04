@@ -26,6 +26,7 @@ function Cards() {
     const [selectedSet, setSelectedSet] = useState(null);
     const [searchParams] = useSearchParams();
     const param = searchParams.get("user");
+    const [showImpact, setShowImpact] = useState(false);
     const startOpening = (cards) => {setOpenedCards(cards);setCurrentCard(0);setRevealed(false);setOpening(true);
 
     };
@@ -86,6 +87,20 @@ function Cards() {
             console.error(err);
         }
     };
+    useEffect(() => {
+        if (
+            revealed &&
+            openedCards[currentCard]?.tier === 6
+        ) {
+            setShowImpact(false);
+
+            const timer = setTimeout(() => {
+                setShowImpact(true);
+            }, 4600); // juste avant la fin de ton anim de 5s
+
+            return () => clearTimeout(timer);
+        }
+    }, [revealed, currentCard]);
     useEffect(() => {
         let user;
         if (new URLSearchParams(window.location.search).has("user")) {
@@ -318,7 +333,7 @@ function Cards() {
                             <div className={`openingOverlay  ${revealed ? `tierBg${openedCards[currentCard]?.tier || 1}` : ""}`} onClick={nextCard}>
                                 <div className="openingWrapper">
                                     <div className={`card ${revealed ? "flipped" : ""} ${revealed ? `tier${openedCards[currentCard]?.tier || 1}` : ""}`}>
-                                        {revealed && openedCards[currentCard]?.tier === 6 && (
+                                        {showImpact && (
                                             <div className="impactEffect" />
                                         )}
                                         <div className="cardInner">
