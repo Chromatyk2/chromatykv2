@@ -1366,215 +1366,274 @@ button.openBoosterButton span {
     position: relative;
     overflow: hidden;
 }
-@keyframes newReveal {
+.card.tier6.flipped {
+    animation: tier6Reveal 2s cubic-bezier(.22,1,.36,1) forwards;
+}
+
+@keyframes tier6Reveal {
 
     0% {
-        opacity: 0;
-        transform: scale(0) rotate(-15deg);
+        transform: perspective(2000px) rotateY(0deg) translateZ(0) scale(1);
     }
 
     70% {
-        transform: scale(1.15) rotate(5deg);
+        transform: perspective(2000px) rotateY(1260deg) translateZ(800px) scale(3);
+    }
+
+    85% {
+        transform: perspective(2000px) rotateY(1440deg) translateZ(1200px) scale(4);
     }
 
     100% {
-        opacity: 1;
-        transform: scale(1) rotate(0deg);
+        transform: perspective(2000px) rotateY(1440deg) translateZ(0) scale(1.8);
     }
 }
-    .cardFront img,
-    .cardBack img {
+.impactEffect {
+    position: absolute;
+    inset: -200px;
+    pointer-events: none;
+    background: radial-gradient(circle, rgba(255,255,255,.9) 0%, rgba(255,215,0,.7) 20%, transparent 70%);
+    animation: impactBurst 1.5s ease-out forwards;
+}
+
+@keyframes impactBurst {
+    from {
+        transform: scale(0);
+        opacity: 1;
+    }
+
+    to {
+        transform: scale(3);
+        opacity: 0;
+    }
+
+    @keyframes newReveal {
+
+        0% {
+            opacity: 0;
+            transform: scale(0) rotate(-15deg);
+        }
+
+        70% {
+            transform: scale(1.15) rotate(5deg);
+        }
+
+        100% {
+            opacity: 1;
+            transform: scale(1) rotate(0deg);
+        }
+    }
+
+    .cardFront img, .cardBack img {
         width: 100%;
         height: 100%;
         object-fit: contain;
     }
-.tierBg5 {
-    background: radial-gradient( circle, rgba(255,215,0,.15), rgba(0,0,0,.95) );
-}
-.tierBg6 {
-    animation: rainbowBg 5s linear infinite;
-}
-@keyframes rainbowBg {
 
-    0% {
-        background: #220022;
+    .tierBg5 {
+        background: radial-gradient( circle, rgba(255,215,0,.15), rgba(0,0,0,.95) );
     }
 
-    25% {
-        background: #002244;
+    .tierBg6 {
+        animation: rainbowBg 5s linear infinite;
     }
 
-    50% {
-        background: #224400;
+    @keyframes rainbowBg {
+
+        0% {
+            background: #220022;
+        }
+
+        25% {
+            background: #002244;
+        }
+
+        50% {
+            background: #224400;
+        }
+
+        75% {
+            background: #440022;
+        }
+
+        100% {
+            background: #220022;
+        }
     }
 
-    75% {
-        background: #440022;
+    .cardInfos {
+        color: white;
+        font-size: 24px;
+        font-weight: bold;
     }
 
-    100% {
-        background: #220022;
-    }
-}
-.cardInfos {
-    color: white;
-    font-size: 24px;
-    font-weight: bold;
-}
-.hint {
-    color: #ccc;
-    font-size: 18px;
-}
-.transitioning {
-    pointer-events: none;
-}
-@keyframes particleBurst {
-
-    0% {
-        opacity: 1;
-        transform: translate(-50%, -50%) rotate(var(--rotation)) scale(1);
+    .hint {
+        color: #ccc;
+        font-size: 18px;
     }
 
-    100% {
-        opacity: 0;
-        transform: translate( calc(-50% + var(--dx)), calc(-50% + var(--dy)) ) rotate(var(--rotation)) scale(0);
+    .transitioning {
+        pointer-events: none;
     }
-}
-.closeOpeningButton {
-    margin-top: 30px;
-    padding: 12px 30px;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    font-size: 18px;
-}
-/* Collection Cartes*/
-button.backButton {
-    background: #00000080;
-    color: #fff;
-    border: none;
-    border-radius: 12px;
-    cursor: pointer;
-    font-family: Charge Vector Black;
-    margin-top: 10px;
-    padding: 12px 24px;
-    margin: 0;
-}
-.collectionGrid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 30px;
-    justify-content: center;
-    padding: 20px;
-    width: 100%;
-    padding-top: 0;
-}
-.cardsGrid {
-    display: flex;
-    gap: 20px;
-    width: 100%;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-.collectionCard {
-    overflow: hidden;
-    position:relative;
-}
+
+    @keyframes particleBurst {
+
+        0% {
+            opacity: 1;
+            transform: translate(-50%, -50%) rotate(var(--rotation)) scale(1);
+        }
+
+        100% {
+            opacity: 0;
+            transform: translate( calc(-50% + var(--dx)), calc(-50% + var(--dy)) ) rotate(var(--rotation)) scale(0);
+        }
+    }
+
+    .closeOpeningButton {
+        margin-top: 30px;
+        padding: 12px 30px;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        font-size: 18px;
+    }
+    /* Collection Cartes*/
+    button.backButton {
+        background: #00000080;
+        color: #fff;
+        border: none;
+        border-radius: 12px;
+        cursor: pointer;
+        font-family: Charge Vector Black;
+        margin-top: 10px;
+        padding: 12px 24px;
+        margin: 0;
+    }
+
+    .collectionGrid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 30px;
+        justify-content: center;
+        padding: 20px;
+        width: 100%;
+        padding-top: 0;
+    }
+
+    .cardsGrid {
+        display: flex;
+        gap: 20px;
+        width: 100%;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .collectionCard {
+        overflow: hidden;
+        position: relative;
+    }
+
     .collectionCard:hover .collectionCardImage {
         transform: scale(1.5);
         transform-origin: var(--x, 50%) var(--y, 50%);
     }
-.collectionCardImage {
-    width: 200px;
-    display: block;
-    transition: transform .08s linear;
-}
-.quantityBadge {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-    min-width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: rgba(0,0,0,.85);
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    opacity: 0;
-    transform: scale(.8);
-    transition: .2s;
-    pointer-events: none;
-}
-.collectionCard:hover .quantityBadge {
-    opacity: 1;
-    transform: scale(1);
-}
-/* Animation */
-@keyframes koAnimation {
-    0% {
-        opacity: 1;
-        transform: translateY(0);
+
+    .collectionCardImage {
+        width: 200px;
+        display: block;
+        transition: transform .08s linear;
     }
 
-    100% {
+    .quantityBadge {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        min-width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: rgba(0,0,0,.85);
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
         opacity: 0;
-        transform: translateY(150px);
-    }
-}
-@keyframes attack {
-    0% {
-        transform: scale(1) scaleX(-1) translateX(0);
+        transform: scale(.8);
+        transition: .2s;
+        pointer-events: none;
     }
 
-    30% {
-        transform: scale(1) scaleX(-1) translateX(-50px);
-    }
-
-    40% {
-        transform: scale(1) scaleX(-1) translateX(-60px);
-    }
-
-    100% {
-        transform: scale(1) scaleX(-1) translateX(0);
-    }
-}
-@keyframes hit {
-
-    0% {
-        transform: translateX(0) scale(1);
-    }
-
-    15% {
-        transform: translateX(-12px) scale(0.92, 1.08);
-    }
-
-    35% {
-        transform: translateX(8px) scale(1.05, 0.95);
-    }
-
-    55% {
-        transform: translateX(-4px) scale(0.98, 1.02);
-    }
-
-    100% {
-        transform: translateX(0) scale(1);
-    }
-}
-
-@keyframes damageFlash {
-
-    0%, 100% {
+    .collectionCard:hover .quantityBadge {
         opacity: 1;
-        filter: none;
+        transform: scale(1);
+    }
+    /* Animation */
+    @keyframes koAnimation {
+        0% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        100% {
+            opacity: 0;
+            transform: translateY(150px);
+        }
     }
 
-    30% {
-        opacity: 0.65;
-        filter: brightness(0.6) sepia(1) saturate(15) hue-rotate(-40deg);
+    @keyframes attack {
+        0% {
+            transform: scale(1) scaleX(-1) translateX(0);
+        }
+
+        30% {
+            transform: scale(1) scaleX(-1) translateX(-50px);
+        }
+
+        40% {
+            transform: scale(1) scaleX(-1) translateX(-60px);
+        }
+
+        100% {
+            transform: scale(1) scaleX(-1) translateX(0);
+        }
     }
-}
+
+    @keyframes hit {
+
+        0% {
+            transform: translateX(0) scale(1);
+        }
+
+        15% {
+            transform: translateX(-12px) scale(0.92, 1.08);
+        }
+
+        35% {
+            transform: translateX(8px) scale(1.05, 0.95);
+        }
+
+        55% {
+            transform: translateX(-4px) scale(0.98, 1.02);
+        }
+
+        100% {
+            transform: translateX(0) scale(1);
+        }
+    }
+
+    @keyframes damageFlash {
+
+        0%, 100% {
+            opacity: 1;
+            filter: none;
+        }
+
+        30% {
+            opacity: 0.65;
+            filter: brightness(0.6) sepia(1) saturate(15) hue-rotate(-40deg);
+        }
+    }
+
     @keyframes myAnimation {
         from {
             transform: scale(0);
@@ -1584,6 +1643,7 @@ button.backButton {
             transform: scale(1);
         }
     }
+
     @keyframes spawnInvert {
         from {
             transform: scale(0) scaleX(-1);
@@ -1593,6 +1653,7 @@ button.backButton {
             transform: scale(1) scaleX(-1);
         }
     }
+
     @keyframes shake {
         0% {
             transform: translateX(0) rotate(0);
@@ -1646,25 +1707,25 @@ button.backButton {
             margin-top: 80px;
         }
     }
-.wood-sign {
-    display: inline-block;
-    padding: 15px 40px;
-    background: linear-gradient(#b87a3d, #8b5a2b);
-    color: #fff8dc;
-    font-family: Charge Vector Black;
-    font-size: 2rem;
-    font-weight: bold;
-    text-align: center;
-    border: 4px solid #5a381e;
-    border-radius: 8px;
-    box-shadow: inset 0 2px 4px #ffffff00, 0 4px 8px #000000;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
-    position: relative;
-    margin-top:0;
-}
 
-    .wood-sign::before,
-    .wood-sign::after {
+    .wood-sign {
+        display: inline-block;
+        padding: 15px 40px;
+        background: linear-gradient(#b87a3d, #8b5a2b);
+        color: #fff8dc;
+        font-family: Charge Vector Black;
+        font-size: 2rem;
+        font-weight: bold;
+        text-align: center;
+        border: 4px solid #5a381e;
+        border-radius: 8px;
+        box-shadow: inset 0 2px 4px #ffffff00, 0 4px 8px #000000;
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        position: relative;
+        margin-top: 0;
+    }
+
+    .wood-sign::before, .wood-sign::after {
         content: "";
         position: absolute;
         top: 10px;
@@ -1681,17 +1742,19 @@ button.backButton {
     .wood-sign::after {
         right: 10px;
     }
-.App-header {
-    background-image: url("../public/background.png");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-}
-footer {
-    background: #3f2811f0;
-    border: 6px solid #6d4321;
-    box-shadow: 0 0 0 4px #b77a3c, -3px -7px 20px 0px #000000;
-    position: relative;
-    z-index: 0;
-}
+
+    .App-header {
+        background-image: url("../public/background.png");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+    }
+
+    footer {
+        background: #3f2811f0;
+        border: 6px solid #6d4321;
+        box-shadow: 0 0 0 4px #b77a3c, -3px -7px 20px 0px #000000;
+        position: relative;
+        z-index: 0;
+    }
