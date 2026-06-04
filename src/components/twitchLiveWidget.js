@@ -1,5 +1,8 @@
-import { useState } from "react";
+import Axios from "axios";
+import { useEffect, useState } from "react";
 function TwitchLiveWidget() {
+    const [isLive, setIsLive] = useState(false);
+    const [title, setTitle] = useState("");
     const [minimized, setMinimized] = useState(
         localStorage.getItem("twitchMinimized") === "true"
     );
@@ -11,10 +14,32 @@ function TwitchLiveWidget() {
         localStorage.setItem("twitchMinimized", next);
     };
 
-    const isLive = true; // remplacé plus tard par l'API Twitch
+    useEffect(() => {
 
+        const checkLive = () => {
+
+            Axios.get("/api/twitch/live")
+                .then((res) => {
+
+                    setIsLive(res.data.live);
+
+                    if (res.data.title) {
+                        setTitle(res.data.title);
+                    }
+
+                })
+                .catch(console.error);
+        };
+
+        checkLive();
+
+        const interval =
+            setInterval(checkLive, 60000);
+
+        return () => clearInterval(interval);
+
+    }, []);
     if (!isLive) return null;
-
     return (
         <>
             {minimized ? (
@@ -27,7 +52,7 @@ function TwitchLiveWidget() {
             ) : (
                 <div className="twitchWidget">
                     <div className="twitchWidgetHeader">
-                        <span>🔴 Chromatyk est en live</span>
+                            <span>🔴 {title}</span>
 
                         <button
                             className="twitchWidgetButton"
