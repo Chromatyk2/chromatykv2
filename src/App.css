@@ -1522,7 +1522,7 @@ button.backButton {
     overflow: hidden;
 }
     .collectionCard:hover .collectionCardImage {
-        transform: scale(2);
+        transform: scale(1.5);
         transform-origin: var(--x, 50%) var(--y, 50%);
     }
 .collectionCardImage {
