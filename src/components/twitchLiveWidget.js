@@ -22,19 +22,16 @@ function TwitchLiveWidget() {
                 .then((res) => {
 
                     setIsLive(res.data.live);
+                    setTitle(res.data.title);
 
-                    if (res.data.title) {
-                        setTitle(res.data.title);
-                    }
+                });
 
-                })
-                .catch(console.error);
         };
 
         checkLive();
 
         const interval =
-            setInterval(checkLive, 60000);
+            setInterval(checkLive, 30000);
 
         return () => clearInterval(interval);
 
