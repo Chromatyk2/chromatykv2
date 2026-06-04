@@ -47,6 +47,9 @@ header.App-header p {
     margin: auto;
     width: 50%;
     padding-top: 70px;
+    background: #3f2811f0;
+    border: 6px solid #6d4321;
+    box-shadow: 0 0 0 4px #b77a3c, 0 15px 40px rgba(0, 0, 0, .4);
 }
 .globalContainerCenter p {
     font-size: 20px;
@@ -1746,9 +1749,9 @@ button.backButton {
         right: 10px;
     }
 .App-header {
-    background: repeating-linear-gradient(90deg, #5a381e 0px, #5a381e 40px, #4a2d18 40px, #4a2d18 80px);
-    border: 5px solid #b77a3c;
-    border-radius: 10px;
-    box-shadow: 0 0 0 3px #2c1a0d, 0 20px 40px rgba(0, 0, 0, .5);
-    color: #f4e8c1;
+    background-image: url("/background.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
