@@ -1,7 +1,7 @@
 function AuthService() {
 
     const CLIENT_ID =
-        process.env.REACT_APP_TWITCH_CLIENT_ID;
+        process.env.REACT_APP_CLIENT_ID;
 
     const authentication = () => {
 
