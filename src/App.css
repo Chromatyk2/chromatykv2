@@ -128,14 +128,14 @@ a.navLink.linkFromNav {
     align-items: center;
     padding: 10px;
 }
-a.navLink.linkFromNav:hover{
-    background-color:#0c275c;
-}
+    a.navLink.linkFromNav:hover {
+        background-color: #2e1a0e;
+    }
 a.navLink.linkFromNav img {
     width: 55px;
 }
 a.navLink.linkFromNav p {
-    background-color: #054873;
+    background-color: #633713;
     padding: 10px;
     border-radius: 10px;
     margin: 0;
