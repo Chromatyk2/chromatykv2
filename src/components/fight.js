@@ -329,10 +329,10 @@ function ProgressBarFight(props) {
     };
     return (            
         <div className={"globalContainerCenter"}>
+            <h2 class="wood-sign">Arene de Combat</h2>
+            <div style={{ flexDirection: "row", flexWrap: "wrap", backgroundImage: `url(/gym.png)`, overflow: "hidden" }} className={"fightContainer"}>
             {pokemon &&
                 <>
-                <h2 class="wood-sign">Arene de Combat</h2>
-                <div style={{ flexDirection: "row", flexWrap: "wrap", backgroundImage: `url(/gym.png)`, overflow: "hidden" }} className={"fightContainer"}>
                     <div style={{ top: "10px" }} onClick={exitFight} className={"fightActionsFlee"}>
                         < img src={"/doll.png"} />
                         <p>Partir</p>
@@ -459,9 +459,9 @@ function ProgressBarFight(props) {
                             <p style={{ fontSize:"16px"} }>{parseFloat((currentXp / xpToNextLevel) * 100).toFixed(2) + " %"}</p>
                         </span>
                     </div>
-                </div>
                 </>
-            }
+                }
+            </div>
         </div>
     )
 }
