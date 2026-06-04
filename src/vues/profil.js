@@ -35,10 +35,15 @@ function Profil() {
     const [globalProgress, setGlobalProgress] = useState({ owned: 0, total: 0, percent: 0 });
     const loadGlobalProgress =
         async () => {
-
+            let user;
+            if (new URLSearchParams(window.location.search).has("user")) {
+                user = new URLSearchParams(window.location.search).get("user");
+            } else {
+                user = cookies.user.data[0].id;
+            }
             const { data } =
                 await Axios.get(
-                    `/api/card/globalProgress/${profil.id}`
+                    `/api/card/globalProgress/${user}`
                 );
 
             setGlobalProgress(
