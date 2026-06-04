@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useSearchParams } from "react-router-dom";
 import Axios from 'axios'
 import '../App.css'
 import moment from "moment";
@@ -22,7 +23,9 @@ function Cards() {
     const [showNewBadge,setShowNewBadge] =useState(false);
     const [isTransitioning, setIsTransitioning] = useState(false);
     const [globalProgress, setGlobalProgress] = useState(null);
-    const [selectedSet,setSelectedSet] =useState(null);
+    const [selectedSet, setSelectedSet] = useState(null);
+    const [searchParams] = useSearchParams();
+    const param = searchParams.get("user");
     const startOpening = (cards) => {setOpenedCards(cards);setCurrentCard(0);setRevealed(false);setOpening(true);
 
     };
@@ -84,9 +87,17 @@ function Cards() {
         }
     };
     useEffect(() => {
+        let user;
+        if (new URLSearchParams(window.location.search).has("user")) {
+            user = new URLSearchParams(window.location.search).get("user");
+            setIsShop(false)
+        } else {
+            user = cookies.user.data[0].id;
+            setIsShop(true)
+        }
         const loadData = async () => {
             const { data } = await Axios.get(
-                `/api/card/init/${userId}`
+                `/api/card/init/${user}`
             );
             setCollection(data.collection);
             setRotationSets(data.rotationSets);
@@ -96,7 +107,7 @@ function Cards() {
             setOwnedSets(data.ownedSets);
         };
         loadData();
-    }, [userId]);
+    }, [userId, param]);
     useEffect(() => {
 
         if (revealed) {

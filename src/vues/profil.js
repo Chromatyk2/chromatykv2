@@ -27,8 +27,8 @@ function Profil() {
     const [compagnonList, setCompagnonList] = useState(null);
     const [progresseExpedition, setProgressExpedition] = useState(null);
     const [searchParams] = useSearchParams();
-    const [remainingTime, setRemainingTime] = useState("");
     const param = searchParams.get("user");
+    const [remainingTime, setRemainingTime] = useState("");
     const [finished, setFinished] = useState(false);
     const [validatedExpedition, setValidatedExpedition] = useState(false);
     const [fragementToWin, setFragementToWin] = useState(null);
