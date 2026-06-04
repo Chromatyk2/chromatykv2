@@ -393,7 +393,13 @@ function Cards() {
                             <h2>{selectedSet.name}</h2>
                             <div className="cardsGrid">
                                 {
-                                    selectedSet.cards.map(card => (
+                                    [...selectedSet.cards]
+                                        .sort(
+                                            (a, b) =>
+                                                Number(a.localId) -
+                                                Number(b.localId)
+                                        )
+                                        .map(card => (
                                         <div key={card.id} className={`collectionCard tier${card.tier || 1}`}>
                                             <img src={card.image + "/high.webp"} alt={card.id} className="collectionCardImage" onError={(e) => {if (e.target.src.includes("/fr/")) {e.target.src =e.target.src.replace("/fr/","/en/");}}}/>
                                             {
