@@ -96,7 +96,7 @@ function Cards() {
 
             const timer = setTimeout(() => {
                 setShowImpact(true);
-            }, 4600); // juste avant la fin de ton anim de 5s
+            }, 1600); // juste avant la fin de ton anim de 5s
 
             return () => clearTimeout(timer);
         }
