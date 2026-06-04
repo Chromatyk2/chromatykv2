@@ -379,7 +379,7 @@ function Profil() {
                             Math.floor(Math.random() * (max - min + 1)) + min;
                         Axios.post('/api/addCandy', {
                             user: cookies.user.data[0].id,
-                            item: "Fragement de Pack",
+                            item: "Fragment de Pack",
                             slug: "fragement",
                             quantity: fragmentToWin
                         }).then(function (response) {

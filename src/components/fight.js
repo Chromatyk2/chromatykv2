@@ -144,7 +144,7 @@ function ProgressBarFight(props) {
                 };
             } else if (roll < packChance + fragmentChance) {
                 reward = {
-                    item: "Fragement de Pack",
+                    item: "Fragment de Pack",
                     slug: "fragement",
                     image: "/fragment.png"
                 };
