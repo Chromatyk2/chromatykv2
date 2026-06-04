@@ -188,7 +188,7 @@ function Cards() {
                     </div>
                 )
             }
-            {new URLSearchParams(window.location.search).has("user") &&
+            {!new URLSearchParams(window.location.search).has("user") &&
                 <div className="viewSwitcher">
                     <button className={isShop === true ? "active" : ""} onClick={() =>setIsShop(true)}>
                         Boutique
