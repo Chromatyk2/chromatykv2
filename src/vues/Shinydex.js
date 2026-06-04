@@ -14,10 +14,11 @@ function Shinydex() {
     }, []);
     return (
         <div className={"globalContainerCenter"}>
-            <div style={{marginTop:"85px"}}>
+            <div>
                 {shinydex &&
                     <>
-                        <p className="pseudoProfil">Shinydex de Chromatyk</p>
+
+                    <h2 className="pseudoProfil wood-sign">Shinydex de Chromatyk</h2>
                         <p style={{ textAlign: "center", color: "white" }}>Retrouve ici l'ensemble des shinys capturés en live
                             avec les liens des VODs</p>
                         <p style={{ textAlign: "center", color: "white" }}>Certaines varitations et formes alternatives sont comptées séparéments</p>
