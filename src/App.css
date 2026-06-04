@@ -206,29 +206,40 @@ a.navLink.linkFromNav p {
     border-bottom: #8a9cdd 2px solid;
     padding-bottom: 25px;
 }
-.filterProfil button {
-    color: white;
-    background: rgba(255, 255, 255, 0.2);
-    border: none;
-    border-radius: 5px;
-    font-family: Charge Vector Black;
-    letter-spacing: 1px;
-    border: 2px solid #a4b3bd;
-}
+    .filterProfil button {
+        color: white;
+        background: rgba(255, 255, 255, 0.2);
+        border: none;
+        border-radius: 5px;
+        font-family: Charge Vector Black;
+        letter-spacing: 1px;
+        border: 2px solid #a4b3bd;
+        background: repeating-linear-gradient(90deg, #5a381e 0px, #5a381e 40px, #4a2d18 40px, #4a2d18 80px);
+        border: 1px solid #b77a3c;
+        border-radius: 10px;
+        box-shadow: 0 0 0 3px #2c1a0d, 0 20px 40px rgba(0, 0, 0, .5);
+        color: #f4e8c1;
+    }
 
-.filterProfil button:hover {
-    cursor: pointer;
-    background: rgba(255, 255, 255, 0.2);
-    border: rgba(5, 72, 115, 1) solid 2px;
-    background: rgba(5, 72, 115, 0.5);
-}
+        .filterProfil button:hover {
+            cursor: pointer;
+            background: rgba(255, 255, 255, 0.2);
+            border: rgba(5, 72, 115, 1) solid 2px;
+            background: rgba(5, 72, 115, 0.5);
+            background: #2b1f0480;
+            border: 2px solid #010c12;
+            cursor: pointer;
+        }
 
-.filterProfil .active {
-    cursor: pointer;
-    background: rgba(255, 255, 255, 0.2);
-    border: rgba(5, 72, 115, 1) solid 2px;
-    background: rgba(5, 72, 115, 0.5);
-}
+    .filterProfil .active {
+        cursor: pointer;
+        background: rgba(255, 255, 255, 0.2);
+        border: rgba(5, 72, 115, 1) solid 2px;
+        background: rgba(5, 72, 115, 0.5);
+        background: #2b1f0480;
+        border: 2px solid #010c12;
+        cursor: pointer;
+    }
 .profilContainer {
     display: flex;
     flex-wrap: wrap;
@@ -599,7 +610,6 @@ p.levelProfil {
 .fightContainer {
     align-items: center;
     background-color: rgba(0,0,0,0.1);
-    border-radius: 10px;
     display: flex;
     flex-flow: column;
     height: 540px;
@@ -608,7 +618,10 @@ p.levelProfil {
     position: relative;
     justify-content: center;
     background-size: cover;
-    border: white 3px solid;
+    border: 5px solid #b77a3c;
+    border-radius: 10px;
+    box-shadow: 0 0 0 3px #2c1a0d, 0 20px 40px rgba(0, 0, 0, .5);
+    color: #f4e8c1;
 }
 
 
@@ -878,21 +891,29 @@ span.dexNumber {
     width: 100%;
     flex-wrap: wrap;
 }
-.genFilter button {
-    color: white;
-    background: rgba(255, 255, 255, 0.2);
-    border: none;
-    border-radius: 5px;
-    font-family: Charge Vector Black;
-    letter-spacing: 1px;
-    border: 2px solid #a4b3bd;
-}
-.genFilter button:hover {
-    cursor: pointer;
-    background: rgba(255, 255, 255, 0.2);
-    border: rgba(5, 72, 115, 1) solid 2px;
-    background: rgba(5, 72, 115, 0.5);
-}
+    .genFilter button {
+        color: white;
+        background: rgba(255, 255, 255, 0.2);
+        border: none;
+        border-radius: 5px;
+        font-family: Charge Vector Black;
+        letter-spacing: 1px;
+        border: 2px solid #a4b3bd;
+        background: repeating-linear-gradient(90deg, #5a381e 0px, #5a381e 40px, #4a2d18 40px, #4a2d18 80px);
+        border: 1px solid #b77a3c;
+        border-radius: 10px;
+        box-shadow: 0 0 0 3px #2c1a0d, 0 20px 40px rgba(0, 0, 0, .5);
+        color: #f4e8c1;
+    }
+        .genFilter button:hover {
+            cursor: pointer;
+            background: rgba(255, 255, 255, 0.2);
+            border: rgba(5, 72, 115, 1) solid 2px;
+            background: rgba(5, 72, 115, 0.5);
+            background: #2b1f0480;
+            border: 2px solid #010c12;
+            cursor: pointer;
+        }
 .buttonLeaderboard button {
     color: white;
     background: rgba(255, 255, 255, 0.2);
@@ -912,7 +933,9 @@ span.dexNumber {
     cursor: pointer;
     background: rgba(255, 255, 255, 0.2);
     border: rgba(5, 72, 115, 1) solid 2px;
-    background: rgba(5, 72, 115, 0.5);
+    background: #2b1f0480;
+    border: 2px solid #010c12;
+    cursor: pointer;
 }
 
  /* Compagnon*/
@@ -977,6 +1000,7 @@ span.dexNumber {
     transition: width 0.8s ease, background 0.3s ease;
     position: relative;
     box-shadow: inset 0 2px 6px rgba(255,255,255,0.3), 0 0 15px rgba(0,255,100,0.4);
+    background: linear-gradient(90deg, rgb(129 77 0) 0%, rgb(223 171 111) 100%)
 }
 
 /* Effet brillant */
@@ -1722,9 +1746,9 @@ button.backButton {
         right: 10px;
     }
 .App-header {
-    background-image: url("background.png");
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
-    background-attachment: fixed;
+    background: repeating-linear-gradient(90deg, #5a381e 0px, #5a381e 40px, #4a2d18 40px, #4a2d18 80px);
+    border: 5px solid #b77a3c;
+    border-radius: 10px;
+    box-shadow: 0 0 0 3px #2c1a0d, 0 20px 40px rgba(0, 0, 0, .5);
+    color: #f4e8c1;
 }

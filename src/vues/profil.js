@@ -420,8 +420,7 @@ function Profil() {
                         <div
                             className="hpBar"
                             style={{
-                                width: `${parseFloat(profil[0].xp / (100 * ((profil[0].level + 1) * (profil[0].level + 2)) / 4) * 100).toFixed(2)}%`,
-                                background: "linear-gradient(90deg,rgba(36, 70, 171, 1) 0%, rgba(2, 194, 232, 1) 100%)"
+                                width: `${parseFloat(profil[0].xp / (100 * ((profil[0].level + 1) * (profil[0].level + 2)) / 4) * 100).toFixed(2)}%`
                             }}
                         />
                     </div>
