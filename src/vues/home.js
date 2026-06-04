@@ -122,17 +122,17 @@ function HomePage(props) {
                     </div>
                 </div>
                 }
-                <h2>Ouvrir des boosters Pokémon</h2>
+                <h2 className="wood-sign">Ouvrir des boosters Pokémon</h2>
                 <p>
                     Gagne des boosters pendant les streams et découvre de nouvelles cartes.
                 </p>
 
-                <h2>Capturer des Pokémon</h2>
+                <h2 className="wood-sign">Capturer des Pokémon</h2>
                 <p>
                     Capture des Pokémon rares et légendaires pour compléter ta collection.
                 </p>
 
-                <h2>Élevage Pokémon</h2>
+                <h2 className="wood-sign">Élevage Pokémon</h2>
                 <p>
                     Fais éclore des œufs et développe ton élevage pour obtenir des Pokémon uniques.
                 </p>
