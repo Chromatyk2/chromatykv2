@@ -431,43 +431,37 @@ function Cards() {
                                                 Number(a.localId) -
                                                 Number(b.localId)
                                         )
-                                            .map(card => (
-
-                                                <div
-                                                    className="cardArtwork"
-                                                    onMouseMove={(e) => {
-                                                        const rect = e.currentTarget.getBoundingClientRect();
-
-                                                        const x =
-                                                            ((e.clientX - rect.left) / rect.width) * 100;
-
-                                                        const y =
-                                                            ((e.clientY - rect.top) / rect.height) * 100;
-
-                                                        e.currentTarget.style.setProperty(
-                                                            "--x",
-                                                            `${x}%`
-                                                        );
-
-                                                        e.currentTarget.style.setProperty(
-                                                            "--y",
-                                                            `${y}%`
-                                                        );
-                                                    }}
-                                                >
-                                                    <img
-                                                        src={openedCards[currentCard]?.image + "/high.webp"}
-                                                        alt=""
-                                                    />
-
-                                                    {openedCards[currentCard]?.tier >= 6 && (
-                                                        <>
-                                                            <div className="holoEffect" />
-                                                            <div className="sparkles" />
-                                                        </>
-                                                    )}
-                                                </div>
-                                    ))
+                                        .map(card => (
+                                            <div style={{width:"200px"}}
+                                                className="cardArtwork"
+                                                onMouseMove={(e) => {
+                                                    const rect = e.currentTarget.getBoundingClientRect();
+                                                    const x =
+                                                        ((e.clientX - rect.left) / rect.width) * 100;
+                                                    const y =
+                                                        ((e.clientY - rect.top) / rect.height) * 100;
+                                                    e.currentTarget.style.setProperty(
+                                                        "--x",
+                                                        `${x}%`
+                                                    );
+                                                    e.currentTarget.style.setProperty(
+                                                        "--y",
+                                                        `${y}%`
+                                                    );
+                                                }}
+                                            >
+                                                <img
+                                                    src={card.image + "/high.webp"}
+                                                    alt=""
+                                                />
+                                                {card.tier >= 6 && (
+                                                    <>
+                                                        <div className="holoEffect" />
+                                                        <div className="sparkles" />
+                                                    </>
+                                                )}
+                                            </div>
+                                        ))
                                 }
                             </div>
                         </div>
