@@ -856,10 +856,11 @@ fightActionsFlee img {
     display: flex;
     flex-flow: column;
     width: 145px;
-    background: rgba(255, 255, 255, 0.2);
     border-radius: 10px;
     padding: 10px 0px 10px 0px;
-    border: 2px solid #a4b3bd;
+    background: #3f2811f0;
+    border: 0px solid #6d4321;
+    box-shadow: 0 0 0 3px #b77a3c, 0 15px 40px #0006;
 }
 
 .dexName {
