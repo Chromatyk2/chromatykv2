@@ -85,19 +85,23 @@ function HomePage(props) {
     }, []);
     return (
         <div className={"globalContainerCenter"}>
-            <h2 class="wood-sign">
-                Accueil
-            </h2>
+            <h1 className="wood-sign">
+                Chromatyk - Ouvre des boosters Pokémon gratuits et capture des Pokémon
+            </h1>
             {onLoad === false &&
                 <>
-            <p clssName={"welcomeText"}>Bienvenue{typeof cookies.user !== "undefined" && "," + cookies.user.data[0].login} sur la v2 du site !</p>             
+                <p className="welcomeText">
+                    Bienvenue sur Chromatyk, le jeu Pokémon gratuit de la communauté Twitch.
+                    Ouvre des boosters, capture des Pokémon rares, complète ton Pokédex,
+                    participe à l'élevage et gagne des récompenses pendant les streams.
+                </p>       
             {typeof cookies.user === "undefined" &&
                 <div className={"connectionBar"}>
                     <p>Connectez-vous pour jouer !</p>
                     <Login />
                 </div>
             }
-            <p>Rejoins les streams et viens discuter sur <a style={{ textDecoration: "none", color:"#83d7d7"}} href="https://twitch.tv/chromatyk" target="_blank">Twitch</a> !</p>
+                <p>Rejoins les streams et viens discuter sur <a href="https://twitch.tv/chromatyk" target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none", color: "#83d7d7" }}>Twitch</a> !</p>
             <p className="pseudoProfil">Dernier shiny capturé</p>
             {shinydex &&
                 <div className={"shinydexCard"}>
@@ -117,7 +121,21 @@ function HomePage(props) {
                             className={"spanShinydex"}>{shinydex[0].version}</span><br />{shinydex[0].description}
                     </div>
                 </div>
-            }
+                }
+                <h2>Ouvrir des boosters Pokémon</h2>
+                <p>
+                    Gagne des boosters pendant les streams et découvre de nouvelles cartes.
+                </p>
+
+                <h2>Capturer des Pokémon</h2>
+                <p>
+                    Capture des Pokémon rares et légendaires pour compléter ta collection.
+                </p>
+
+                <h2>Élevage Pokémon</h2>
+                <p>
+                    Fais éclore des œufs et développe ton élevage pour obtenir des Pokémon uniques.
+                </p>
                 </>
             }
         </div>        
