@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import '../App.css'
 import Axios from 'axios'
 import { useCookies } from 'react-cookie';
-import ShadowSmokeFront from "../shadowSmokeFront";
+import ShadowSmokeFront from "./shadowSmokeFront";
 import ShadowSmokeBack from "./shadowSmokeBack";
 
 
