@@ -36,14 +36,6 @@ function Cards() {
         }
         // Retourne la carte
         if (!revealed) {
-            if (openedCards[currentCard]?.tier === 6) {
-                setShowImpact(false);
-                const timer = setTimeout(() => {
-                    setShowImpact(true);
-                }, 1000); // juste avant la fin de ton anim de 5s
-
-                return () => clearTimeout(timer);
-            }
             setRevealed(true);
             return;
 
@@ -326,7 +318,7 @@ function Cards() {
                         opening && (
                             <div className={`openingOverlay  ${revealed ? `tierBg${openedCards[currentCard]?.tier || 1}` : ""}`} onClick={nextCard}>
                                 <div className="openingWrapper">
-                                    <div className={`card ${revealed ? "flipped" : ""} ${revealed ? `tier${openedCards[currentCard]?.tier || 1}` : ""}`}>
+                                    <div onAnimationEnd={() => {if (openedCards[currentCard]?.tier === 6) {setShowImpact(true);}}} className={`card ${revealed ? "flipped" : ""} ${revealed ? `tier${openedCards[currentCard]?.tier || 1}` : ""}`}>
                                         {showImpact && (
                                             <div className="impactEffect" />
                                         )}
