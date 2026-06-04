@@ -80,25 +80,24 @@ header.App-header p {
     z-index: 10;
 }
 .halfCircle {
-    background-color: #054873;
+    border-bottom: solid #b77a3c;
+    border-left: solid #b77a3c;
     border-radius: 0 0 10rem 10rem;
+    border-right: solid #b77a3c;
     height: 4rem;
     margin: auto;
     width: 5rem;
-    border-right: solid white;
-    border-left: solid white;
-    border-bottom: solid white;
+    background: #3f2811;
 }
-.halfCircle:hover {
-    cursor: pointer;
-    background-color: #0C275C;
-}
+    .halfCircle:hover {
+        background-color: #37210f;
+        cursor: pointer;
+    }
 #navBar {
     height: 0;
     justify-content: center;
     width: 100%;
     align-items: center;
-    background-color: #054873;
     display: flex;
     font-size: 20px;
     padding: 0;
@@ -107,6 +106,9 @@ header.App-header p {
     gap: 20px;
     overflow-y: hidden;
     border-bottom: white solid;
+    background: #3f2811;
+    border: 6px solid #6d4321;
+    box-shadow: 0 0 0 4px #b77a3c, 0 15px 40px #0006;
 }
 #navBar.expended {
     height: fit-content;
@@ -204,10 +206,10 @@ a.navLink.linkFromNav p {
     gap: 10px;
     justify-content: flex-start;
     width: 100%;
-    border-top: #8a9cdd 2px solid;
     padding-top: 25px;
-    border-bottom: #8a9cdd 2px solid;
     padding-bottom: 25px;
+    border-bottom: 2px solid #b77a3c;
+    border-top: 2px solid #b77a3c;
 }
     .filterProfil button {
         color: white;
@@ -274,7 +276,7 @@ a.leaderboardHeaderContainerLink {
     border-radius: 10px;
     padding: 20px;
     align-items: center;
-    border: 1px solid #8a9cdd;
+    border: 2px solid #b77a3c;
 }
 .leaderboardHeaderContainer:hover {
     background-color: #3b3b3b4d;
@@ -369,19 +371,21 @@ p.levelProfil {
 }
 .profilPicture {
     border-radius: 10px;
-    border: #8a9cdd solid 1px;
     width: 85px;
     padding: 5px;
     margin-right: 10px;
     height: 85px;
+    border: 1px solid #6d4321;
+    box-shadow: 0 0 0 1px #b77a3c, 0 15px 40px #0006;
 }
 .compagnonPicture {
-    border: 1px solid #8a9cdd;
     border-radius: 10px;
     height: 85px;
     margin-left: 10px;
     padding: 5px;
     width: 85px;
+    border: 1px solid #6d4321;
+    box-shadow: 0 0 0 1px #b77a3c, 0 15px 40px #0006;
 }
 .skinContainer .profilPicture:hover{
     background-color:white;
@@ -451,22 +455,22 @@ p.levelProfil {
 }
 
 .shinydexCard {
-    width: 270px;
     display: flex;
     flex-flow: column;
-    border: solid 1px #120747;
+    width: 270px;
+    border: 2px solid #b77a3c;
 }
 
 .shinydexName {
     color: white;
     text-align: center;
-    background-color: #120747;
+    background-color: #311f00;
     padding: 5px;
     font-size: 18px;
 }
 
 .shinydexSpriteContainer {
-    background-image: linear-gradient(to bottom right, #120747, #072057 25%, #120747 50%, #072057 75%, #120747);
+    background-image: linear-gradient(to bottom right, #1a1301, #392902 25%, #452906 50%, #452906 75%, #1a1301);
     flex: 1 1 auto;
     min-height: 1px;
     padding: 1.25rem;
@@ -482,13 +486,13 @@ p.levelProfil {
 .description {
     color: white;
     text-align: center;
-    background-color: #120747;
+    background-color: #311f00;
     padding: 5px;
     font-size: 18px;
 }
 
 .spanShinydex {
-    color: #83d7d7;
+    color: #fff8dc;
 }
 
 .linkShinydex {
@@ -1231,7 +1235,7 @@ button.openBoosterButton span {
     display: block;
 }
 .boosterFooter {
-    background: rgba(5, 72, 115, 0.5);
+    background: #8f620e80;
     padding: 20px;
     min-height: 116px;
     padding: 10px;
@@ -1755,4 +1759,9 @@ button.backButton {
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;
+}
+footer {
+    background: #3f2811f0;
+    border: 6px solid #6d4321;
+    box-shadow: 0 0 0 4px #b77a3c, 0 15px 40px #0006;
 }
