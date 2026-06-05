@@ -8,7 +8,7 @@ import moment from "moment";
 
 
 
-function Profil() {
+function OldProfil() {
     const [cookies, setCookie] = useCookies();
     const [profil, setProfil] = useState(null);
     const [maxPokedex, setMaxPokedex] = useState(1198);
@@ -453,7 +453,7 @@ function Profil() {
                     <div className={"profilBody"}>
                         {body === 1 &&
                             <>
-                            <p style={{ alignItems: "center", display: "flex", gap: "15px", width: "100%", textAlign: "left", fontSize: "15px" }}>Progression <Link class="showPokedex leaderboardHeaderContainerLink" to={"/pokedex?user=" + profil[0].user}>Pokédex</Link><Link class="showPokedex leaderboardHeaderContainerLink" to={"/cartes?user=" + profil[0].user}>Cartes</Link></p>
+                                <p style={{ alignItems: "center", display: "flex", gap: "15px", width: "100%", textAlign: "left", fontSize: "15px" }}>Progression <Link class="showPokedex leaderboardHeaderContainerLink" to={"/pokedex?user=" + profil[0].user}>Pokédex</Link><Link class="showPokedex leaderboardHeaderContainerLink" to={"/cartes?user=" + profil[0].user}>Cartes</Link></p>
                                 {profil &&
                                     <>
                                         {profil.length > 0 &&
@@ -500,7 +500,7 @@ function Profil() {
                                                         <p>Collection de cates</p>
                                                         <p className={"levelProfil"}>{globalProgress.owned}{" / "}{globalProgress.total}</p>
                                                     </div>
-                                            <img src={"/Badge/lv" + images[Math.min(images.length - 1, Math.floor((globalProgress.owned / globalProgress.total) * images.length))] + "c.png"} />
+                                                    <img src={"/Badge/lv" + images[Math.min(images.length - 1, Math.floor((globalProgress.owned / globalProgress.total) * images.length))] + "c.png"} />
                                                 </div>
                                             </div>
                                         }
@@ -632,4 +632,4 @@ function Profil() {
     );
 }
 
-export default Profil;
+export default OldProfil;
