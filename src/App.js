@@ -29,7 +29,7 @@ function App() {
 
         document.documentElement.setAttribute(
             "data-theme",
-            user?.theme || "default"
+            user?.theme || "defaut"
         );
 
     }, [user?.theme]);
