@@ -336,11 +336,10 @@ function Fight(props) {
                         {sessionReward.length > 0 &&
                                 sessionReward.map(reward => (
                                     <div
-                                        key={reward.item}
                                         style={{ top: "10px" }}
                                         className="rewardItem"
                                     >
-                                        <img src={reward.image} alt={reward.item} />
+                                        <img src={"/reward"+.slug+".png"} />
                                         <p>
                                             x{reward.quantity}
                                         </p>
