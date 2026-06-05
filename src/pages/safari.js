@@ -174,49 +174,41 @@ function Fight() {
                     ball
                 }
             );
-
         if (
             response.data.success
         ) {
-
             setTimeout(() => {
-
                 setCatchResult(
                     "caught"
                 );
-
                 loadSafari();
-
-            }, 5750);
-
-        } else {
-
-            setTimeout(() => {
-
-                if (
-                    response.data.flee
-                ) {
-
-                    setCatchResult(
-                        "fled"
-                    );
-
-                    loadSafari();
-
-                } else {
-
-                    setCatchResult(
-                        "failed"
-                    );
-
+                setTimeout(() => {
                     setOnCatch(
                         false
                     );
-
+                    setCatchResult(
+                        null
+                    );
+                }, 1000);
+            }, 5750);
+        } else {
+            setTimeout(() => {
+                if (
+                    response.data.flee
+                ) {
+                    setCatchResult(
+                        "fled"
+                    );
+                    loadSafari();
+                } else {
+                    setCatchResult(
+                        "failed"
+                    );
+                    setOnCatch(
+                        false
+                    );
                 }
-
             }, 4500);
-
         }
     }
     async function fleeFight() {
