@@ -30,54 +30,14 @@ function ProfileHeader({
                         </p>
                     </div>
                 </div>
-                {profile.activeCompanion && (
-                    <div className="profilHeader">
-                        <div className="profilInfos">
-                            <p
-                                style={{
-                                    textAlign: "end"
-                                }}
-                            >
-                                {profile.activeCompanion.pokemon}
-                            </p>
-                            <p
-                                className="levelProfil"
-                                style={{
-                                    textAlign: "end"
-                                }}
-                            >
-                                {
-                                    profile.activeCompanion.shiny === 1
-                                        ? "Shiny"
-                                        : profile.activeCompanion.negative === 1
-                                            ? "Obscur"
-                                            : "Classique"
-                                }
-                            </p>
-
+                {companion && (                    
+                    <div className={"profilHeader"}>
+                        <div className={"profilInfos"}>
+                            <p style={{ textAlign: "end" }}>{companion.pokemon}</p>
+                            <p style={{ textAlign: "end" }} className={"levelProfil"}>{companion.shiny === 1 ? "Shiny" : companion.negative === 1 ? "Obscur" : "Classique"}</p>
                         </div>
-                        <div
-                            className="compagnonPicture"
-                            style={{
-                                filter:
-                                    profile.activeCompanion.negative === 1
-                                        ? "invert(1)"
-                                        : "invert(0)",
-
-                                backgroundColor: color,
-
-                                backgroundImage:
-                                    `url("/Sprites/${profile.activeCompanion.shiny === 1
-                                        ? "Shiny"
-                                        : "Normal"
-                                    }/${profile.activeCompanion.number
-                                    }.gif")`,
-
-                                backgroundRepeat: "no-repeat",
-                                backgroundSize: "contain",
-                                backgroundPosition: "center"
-                            }}
-                        />
+                        <div style={{ filter: companion.negative === 1 ? "invert(1)" : "invert(0)", backgroundColor: color, backgroundImage: `url("/Sprites/${companion.shiny === 1 ? "Shiny" : "Normal"}/${companion.number}.gif")`, backgroundRepeat: "no-repeat", backgroundSize: "contain", backgroundPosition: "center" }} className={"compagnonPicture"}>
+                        </div>
                     </div>
                 )}
             </div>
