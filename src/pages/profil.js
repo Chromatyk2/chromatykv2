@@ -45,39 +45,41 @@ function Profil() {
                 Carte de dresseur
             </h2>
             <div className={"profilContainer"}>
-            <ProfileHeader
-                profile={profileData.profile}
-                companion={profileData.activeCompagnon}
-                color={profileData.color}
-            />
-            <ProfileTabs
-                tab={tab}
-                setTab={setTab}
-                profileData={profileData}
-            />
-            {tab === 1 && (
-                <ProfileStats
-                    profileData={profileData}
+                <ProfileHeader
+                    profile={profileData.profile}
+                    companion={profileData.activeCompagnon}
+                    color={profileData.color}
                 />
-            )}
-            {tab === 2 && (
-                <ProfileSkins
+                <ProfileTabs
+                    tab={tab}
+                    setTab={setTab}
                     profileData={profileData}
-                    reload={loadProfile}
-                />
-            )}
-            {tab === 3 && (
-                <ProfileCompanions
-                    profileData={profileData}
-                    reload={loadProfile}
-                />
-            )}
-            {tab === 4 && (
-                <ProfileExpeditions
-                    profileData={profileData}
-                    reload={loadProfile}
-                />
-            )}
+                 />
+                <div className={"profilBody"}>
+                    {tab === 1 && (
+                        <ProfileStats
+                            profileData={profileData}
+                        />
+                    )}
+                    {tab === 2 && (
+                        <ProfileSkins
+                            profileData={profileData}
+                            reload={loadProfile}
+                        />
+                    )}
+                    {tab === 3 && (
+                        <ProfileCompanions
+                            profileData={profileData}
+                            reload={loadProfile}
+                        />
+                    )}
+                    {tab === 4 && (
+                        <ProfileExpeditions
+                            profileData={profileData}
+                            reload={loadProfile}
+                        />
+                    )}
+                </div>
             </div>
         </div>
     );
