@@ -99,7 +99,7 @@ function Pokedex() {
 
                         </div>
                         {filteredPokedex &&
-                        filteredPokedex.filter(item => (item.shiny === isShiny && item.negative === isNegative)).map((val, key) => {
+                        filteredPokedex.filter(item => (item.shiny === isShiny && item.negative === isNegative)).sort((a, b) =>a.pokemon - b.pokemon).map((val, key) => {
                             const isLevel100 =
                                 level100Keys.includes(
                                     `${val.pokemon}-${val.shiny}-${val.negative}`
