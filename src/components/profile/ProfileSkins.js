@@ -28,7 +28,7 @@ function ProfileSkins({
         }
     }
     return (
-        <div className="skinsContainer">
+        <div className="skinContainer">
             {skins.map((item) => (
                 <div onClick={() => changeSkin(item.skin)} loading={"lazy"} style={{ backgroundColor: "transparent", backgroundRepeat: "no-repeat", backgroundImage: `url("/Skins/Trainer${item.skin}.png")`, backgroundSize: "contain", backgroundPosition: "center" }} className={"profilPicture"}>
                 </div>
