@@ -99,11 +99,26 @@ function ProfileExpeditions({
             console.error(err);
         }
     }
+    const expeditionNumbers =
+        new Set(
+            profileData.expeditions.map(
+                expedition =>
+                    expedition.number
+            )
+        );
+
+    const availableCompanions =
+        companions.filter(
+            companion =>
+                !expeditionNumbers.has(
+                    companion.number
+                )
+        );
     if (!expedition) {
         return (
             <div className="compagnonsContainer">
                 <div className="skinContainer">
-                    {companions.map((val, key) => {
+                    {availableCompanions.map((val, key) => {
                         return (
                             <div onClick={() => runExpedition(val.number, val.tier, val.negative, val.shiny)} loading={"lazy"} style={{ filter: val.negative === 1 ? "invert(1)" : "invert(0)", backgroundRepeat: "no-repeat", backgroundColor: val.color, backgroundImage: `url("/Sprites/${val.shiny === 1 ? "Shiny" : "Normal"}/${val.number}.gif")`, backgroundSize: "contain", backgroundPosition: "center" }} className={"profilPicture"}>
                             </div>
