@@ -30,7 +30,7 @@ function ProfileHeader({
                         </p>
                     </div>
                 </div>
-                {companion && (
+                {profile.activeCompanion && (
                     <div className="profilHeader">
                         <div className="profilInfos">
                             <p
@@ -38,7 +38,7 @@ function ProfileHeader({
                                     textAlign: "end"
                                 }}
                             >
-                                {companion.pokemon}
+                                {profile.activeCompanion.pokemon}
                             </p>
                             <p
                                 className="levelProfil"
@@ -47,9 +47,9 @@ function ProfileHeader({
                                 }}
                             >
                                 {
-                                    companion.shiny === 1
+                                    profile.activeCompanion.shiny === 1
                                         ? "Shiny"
-                                        : companion.negative === 1
+                                        : profile.activeCompanion.negative === 1
                                             ? "Obscur"
                                             : "Classique"
                                 }
@@ -60,17 +60,17 @@ function ProfileHeader({
                             className="compagnonPicture"
                             style={{
                                 filter:
-                                    companion.negative === 1
+                                    profile.activeCompanion.negative === 1
                                         ? "invert(1)"
                                         : "invert(0)",
 
                                 backgroundColor: color,
 
                                 backgroundImage:
-                                    `url("/Sprites/${companion.shiny === 1
+                                    `url("/Sprites/${profile.activeCompanion.shiny === 1
                                         ? "Shiny"
                                         : "Normal"
-                                    }/${companion.number
+                                    }/${profile.activeCompanion.number
                                     }.gif")`,
 
                                 backgroundRepeat: "no-repeat",
