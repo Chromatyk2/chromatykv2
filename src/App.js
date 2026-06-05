@@ -21,25 +21,24 @@ import Leaderboard from './pages/leaderboard.js';
 import Compagnon from './pages/compagnon.js';
 import Cartes from './pages/cards.js';
 import { useAuth } from "./context/AuthContext";
-Axios.defaults.withCredentials = true;function App() {
+Axios.defaults.withCredentials = true;
+function App() {
+    const { user, loading } = useAuth();
+    const [multipleTabs, setMultipleTabs] = useState(false);
     useEffect(() => {
-        if (!user) {
-            return;
-        }
         document.documentElement.setAttribute(
             "data-theme",
-            user.theme
+            user?.theme || "default"
+        );
     }, [user]);
-    const [multipleTabs, setMultipleTabs] = useState(false);
-    const { user, loading } = useAuth();
-    useEffect(() => {
-        const channel = new BroadcastChannel("pokemon-app");
-        const tabId = crypto.randomUUID();
-        let hasOtherTab = false;
-        const timeout = setTimeout(() => {
-            setMultipleTabs(hasOtherTab);
-        }, 300);
-    })
+        useEffect(() => {
+            const channel = new BroadcastChannel("pokemon-app");
+            const tabId = crypto.randomUUID();
+            let hasOtherTab = false;
+            const timeout = setTimeout(() => {
+                setMultipleTabs(hasOtherTab);
+            }, 300);
+        })
         channel.onmessage = (event) => {
             const data = event.data;
             if (data.type === "PING" && data.from !== tabId) {
