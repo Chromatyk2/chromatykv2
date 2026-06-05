@@ -12,7 +12,7 @@ import ProfileCompanions from "../components/profile/ProfileCompanions";
 import ProfileExpeditions from "../components/profile/ProfileExpeditions";
 import Loader from "../components/Loader.js";
 
-export function Profil() {
+function Profil() {
     const [cookies] = useCookies();
     const [searchParams] = useSearchParams();
     const param = searchParams.get("user");
@@ -81,3 +81,4 @@ export function Profil() {
         </div>
     );
 }
+export default Profil;
