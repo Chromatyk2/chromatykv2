@@ -91,27 +91,48 @@ function Cards() {
         }
     };
     useEffect(() => {
-        let user;
-        if (new URLSearchParams(window.location.search).has("user")) {
-            user = new URLSearchParams(window.location.search).get("user");
-            setIsShop(false)
-        } else {
-            user = user.id;
-            setIsShop(true)
+        if (!user?.id) {
+            return;
         }
-        const loadData = async () => {
-            const { data } = await Axios.get(
-                `/api/card/init/${user}`
-            );
-            setCollection(data.collection);
-            setRotationSets(data.rotationSets);
-            setProgress(data.progress);
-            setBoosterCurrency(data.boosterCurrency);
-            setGlobalProgress(data.globalProgress);
-            setOwnedSets(data.ownedSets);
-        };
+        const profileUser =
+            param || user.id;
+        setIsShop(!param);
+        const loadData =
+            async () => {
+                try {
+                    const { data } =
+                        await Axios.get(
+                            `/api/card/init/${profileUser}`
+                        );
+                    setCollection(
+                        data.collection
+                    );
+                    setRotationSets(
+                        data.rotationSets
+                    );
+                    setProgress(
+                        data.progress
+                    );
+                    setBoosterCurrency(
+                        data.boosterCurrency
+                    );
+                    setGlobalProgress(
+                        data.globalProgress
+                    );
+                    setOwnedSets(
+                        data.ownedSets
+                    );
+                } catch (err) {
+                    console.error(
+                        err
+                    );
+                }
+            };
         loadData();
-    }, [user.id, param]);
+    }, [
+        user?.id,
+        param
+    ]);
     useEffect(() => {
 
         if (revealed) {
