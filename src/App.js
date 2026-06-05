@@ -1,4 +1,5 @@
-import './App.css';
+import './styles/themes/wood.css';
+import './styles/App.css';
 import { useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Axios from "axios";
@@ -20,8 +21,13 @@ import Leaderboard from './pages/leaderboard.js';
 import Compagnon from './pages/compagnon.js';
 import Cartes from './pages/cards.js';
 import { useAuth } from "./context/AuthContext";
-Axios.defaults.withCredentials = true;
-function App() {
+Axios.defaults.withCredentials = true;function App() {
+    useEffect(() => {
+        document.documentElement.setAttribute(
+            'data-theme',
+            'wood'
+        );
+    }, []);
     const [multipleTabs, setMultipleTabs] = useState(false);
     const { user, loading } = useAuth();
         useEffect(() => {
