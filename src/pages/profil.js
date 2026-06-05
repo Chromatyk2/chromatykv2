@@ -19,6 +19,7 @@ function Profil() {
     const currentUser = param || cookies?.user?.id;
     const [profileData, setProfileData] = useState(null);
     const [tab, setTab] = useState(1);
+    const isOwner = !param || cookies?.user?.id === currentUser;
     useEffect(() => {
         if (!currentUser) return;
         loadProfile();
@@ -65,6 +66,7 @@ function Profil() {
                         <ProfileSkins
                             profileData={profileData}
                             reload={loadProfile}
+                            isOwner={isOwner}
                         />
                     )}
                     {tab === 3 && (
