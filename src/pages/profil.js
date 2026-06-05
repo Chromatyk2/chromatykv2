@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { useSearchParams, Link } from "react-router-dom";
+import { useSearchParams} from "react-router-dom";
 import Axios from "axios";
 import { useCookies } from 'react-cookie';
-import { getColorSync, getPaletteSync } from 'colorthief';
-import moment from "moment";
 import ProfileHeader from "../components/profile/ProfileHeader";
 import ProfileTabs from "../components/profile/ProfileTabs";
 import ProfileStats from "../components/profile/ProfileStats";
@@ -11,15 +9,16 @@ import ProfileSkins from "../components/profile/ProfileSkins";
 import ProfileCompanions from "../components/profile/ProfileCompanions";
 import ProfileExpeditions from "../components/profile/ProfileExpeditions";
 import Loader from "../components/Loader.js";
+import { useAuth } from "../context/AuthContext";
 
 function Profil() {
-    const [cookies] = useCookies();
+    const { user, loading } = useAuth();
     const [searchParams] = useSearchParams();
     const param = searchParams.get("user");
-    const currentUser = param || cookies?.user?.id;
+    const currentUser = param || user?.id;
     const [profileData, setProfileData] = useState(null);
     const [tab, setTab] = useState(1);
-    const isOwner = !param || cookies?.user?.id === currentUser;
+    const isOwner = !param || user?.id === currentUser;
     useEffect(() => {
         if (!currentUser) return;
         loadProfile();

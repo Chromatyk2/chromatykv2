@@ -8,7 +8,7 @@ import Log from "./services/log";
 
 //Publique
 import TwitchLiveWidget from "./components/twitchLiveWidget";
-import NavBar from './pages/navbar.js';
+import NavBar from './components/navbar.js';
 import HomePage from './pages/home.js';
 import ShinyDex from './pages/Shinydex.js';
 import Safari from './pages/safari.js';
