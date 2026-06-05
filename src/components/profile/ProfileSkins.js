@@ -1,9 +1,6 @@
 import Axios from "axios";
 
-function ProfileSkins({
-    profileData,
-    reload, isOwner
-}) {
+function ProfileSkins({profileData,reload, isOwner}) {
     const profile =
         profileData.profile;
     const skins =
@@ -11,14 +8,11 @@ function ProfileSkins({
     async function changeSkin(skin) {
         if (!isOwner) {
             return;
-        } {
-            return;
         }
         try {
             await Axios.post(
                 "/api/changeSkin",
                 {
-                    user: profile.user,
                     skin
                 }
             );
