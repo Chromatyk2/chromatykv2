@@ -27,40 +27,56 @@ function Compagnon() {
     const [allCompagon, setAllcompagnon] = useState(null);
     //Combat
     const [onFight, setOnFight] = useState(false);
-
     const pokemonContainerRef = useRef(null);
 
     useEffect(() => {
-
-    Promise.all([
-        Axios.get("/api/getPokedex/" + user.id),
-        Axios.get("/api/getCurrentCompagnon/" + user.id),
-        Axios.get("/api/getAllCompagnon/" + user.id)
-    ])
-        .then(([pokedexRes, compagnonRes, allCompagnonRes]) => {
-            setPokedex(pokedexRes.data);
-            setFilteredPokedex(pokedexRes.data);
-            setAllcompagnon(allCompagnonRes.data)
-
-            if (compagnonRes.data.length < 1) {
-                setHaveCompagnon(false);
+        loadCompanion();
+    }, [onFight]);
+    async function loadCompanion() {
+        try {
+            const response =
+                await Axios.get(
+                    "/api/compagnon"
+                );
+            setPokedex(
+                response.data.pokedex
+            );
+            setFilteredPokedex(
+                response.data.pokedex
+            );
+            setAllcompagnon(
+                response.data.allCompanions
+            );
+            setInventory(
+                response.data.inventory
+            );
+            if (
+                response.data.activeCompanion.length < 1
+            ) {
+                setHaveCompagnon(
+                    false
+                );
                 return;
             }
-
-            setHaveCompagnon(true);
-            setChooseCompagnon(false);
-            setCompagnon(compagnonRes.data);
-
-            return Axios.get("/api/getInventory/" + user.id);
-        })
-        .then((inventoryRes) => {
-            if (inventoryRes) {
-                setInventory(inventoryRes.data);
-            }
-        })
-        .catch(console.error)
-        .finally(() => setOnload(false));
-    }, [onFight]);
+            setHaveCompagnon(
+                true
+            );
+            setChooseCompagnon(
+                false
+            );
+            setCompagnon(
+                response.data.activeCompanion
+            );
+        } catch (err) {
+            console.error(
+                err
+            );
+        } finally {
+            setOnload(
+                false
+            );
+        }
+    }
     function filterGen(e) {
         setGen(e);
         if (e > 0) {

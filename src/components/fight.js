@@ -6,7 +6,7 @@ import ShadowSmokeFront from "./shadowSmokeFront";
 import ShadowSmokeBack from "./shadowSmokeBack";
 
 
-function ProgressBarFight(props) {
+function Fight(props) {
     const [cookies, setCookie] = useCookies();
     const [pokemon, setPokemon] = useState(null);
     const [shiny, setShiny] = useState(null);
@@ -467,4 +467,4 @@ function ProgressBarFight(props) {
     )
 }
 
-export default ProgressBarFight
+export default Fight

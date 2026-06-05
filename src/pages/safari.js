@@ -1,8 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Axios from 'axios'
 import '../App.css'
-import moment from "moment";
-import { useCookies } from 'react-cookie';
 import ShadowSmokeFront from "../components/shadowSmokeFront";
 import ShadowSmokeBack from "../components/shadowSmokeBack";
 import { useAuth } from "../context/AuthContext";
@@ -284,16 +282,13 @@ function Fight() {
                         {pokemon &&
                             <>
                                 <p className={"fightName"}>
-                                    {
-                                        shiny === 1 ?
-                                            pokedex.filter(item => item.pokemon === pokemon.number && item.shiny === shiny).length > 0 && <img style={{ width: "30px" }} src={"/ball.png"} alt={"Catched"} />
-                                            :
-                                            negative === 1 ?
-                                                pokedex.filter(item => item.pokemon === pokemon.number && item.negative === negative).length > 0 && <img style={{ width: "30px" }} src={"/ball.png"} alt={"Catched"} />
-                                                :
-                                                pokedex.filter(item => item.pokemon === pokemon.number).length > 0 && <img style={{ width: "30px" }} src={"/ball.png"} alt={"Catched"} />
-                                    }
-                                    {(shiny === 1 || negative === 1) && <img style={{ width: "30px", filter: negative === 1 ? "invert(1)" : "invert(0)" }} src={"/star.png"} alt={"Shiny"} />} {pokemon.name}</p>
+                                {
+                                    pokedex.some(item => item.pokemon === pokemon.number && item.shiny === shiny && item.negative === negative) &&
+                                    (
+                                        <img style={{ width: "30px" }} src="/ball.png" alt="Catched"/>
+                                    )
+                                }
+                                {(shiny === 1 || negative === 1) && <img style={{ width: "30px", filter: negative === 1 ? "invert(1)" : "invert(0)" }} src={"/star.png"} alt={"Shiny"} />} {pokemon.name}</p>
                                 <div style={{ backgroundColor: pokemon.tier == 1 ? "#6d6d6c" : pokemon.tier == 2 ? "#21693a" : pokemon.tier == 3 ? "#744095" : "#bfa93a" }} className={"tierFight"}>Tier {pokemon.tier}</div>
                                 <div className="loveBarContainer">
 
