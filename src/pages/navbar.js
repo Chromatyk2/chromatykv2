@@ -1,65 +1,10 @@
 import React,{useState, useEffect} from 'react';
 import {Link} from "react-router-dom";
-import Axios from "axios";
-import { useCookies } from 'react-cookie';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { useAuth } from "../context/AuthContext";
 
 function NavBar(props) {
-    const [cookies, setCookie] = useCookies();
     const [isExtended, setIsExtended] = useState(false);
-    //useEffect(() => {
-    //    if(typeof props.cookies.user !== "undefined"){
-    //        Axios
-    //        .get("/api/getProfil/"+props.cookies.user.id)
-    //        .then(function(response) {
-    //            if(response.data.length == 0){
-    //                Axios.post('/api/addPkmPointRoulette',
-    //                    {
-    //                        user:props.cookies.user.data[0].login,
-    //                        idUser: props.cookies.user.id,
-    //                        nbToken: 6
-    //                    }
-    //                )
-    //            }
-    //        })
-    //        Axios.post('/api/updateIdProfil',
-    //            {
-    //                user:props.cookies.user.data[0].login,
-    //                idUser:props.cookies.user.id
-    //            }
-    //        )
-    //        Axios.post('/api/updateIdBadges',
-    //            {
-    //                user:props.cookies.user.data[0].login,
-    //                idUser:props.cookies.user.id
-    //            }
-    //        )
-    //        Axios.post('/api/updateIdCaptures',
-    //            {
-    //                user:props.cookies.user.data[0].login,
-    //                idUser:props.cookies.user.id
-    //            }
-    //        )
-    //        Axios.post('/api/updateIdCards',
-    //            {
-    //                user:props.cookies.user.data[0].login,
-    //                idUser:props.cookies.user.id
-    //            }
-    //        )
-    //        Axios.post('/api/updateIdCompagnon',
-    //            {
-    //                user:props.cookies.user.data[0].login,
-    //                idUser:props.cookies.user.id
-    //            }
-    //        )
-    //        Axios.post('/api/updateIdSkin',
-    //            {
-    //                user:props.cookies.user.data[0].login,
-    //                idUser:props.cookies.user.id
-    //            }
-    //        )
-    //    }
-    //}, [props.cookies]);
+    const { user, loading } = useAuth();
     function deployNav() {
         if (isExtended) {
             document.getElementById("navBar").style.height = "0";
@@ -78,7 +23,7 @@ function NavBar(props) {
                     <img src={"/rope.png"} />
                     <p>Accueil</p>
                 </Link>
-                {typeof cookies.user !== "undefined" &&
+                {user &&
                     <>
                         <Link onClick={deployNav} className="navLink linkFromNav" to="/profil">
                             <img src={"/profil.png"} />
