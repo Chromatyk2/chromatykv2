@@ -183,6 +183,18 @@ function Fight() {
                 );
                 loadSafari();
                 setTimeout(() => {
+                    setPokemon(
+                        null
+                    );
+                    setCurrentLove(
+                        0
+                    );
+                    setShiny(
+                        0
+                    );
+                    setNegative(
+                        0
+                    );
                     setOnCatch(
                         false
                     );
