@@ -23,36 +23,16 @@ function ProfileExpeditions({
         expedition
         );
     async function runExpedition(
-        number,
-        tier,
-        negative,
-        shiny
+        number
     ) {
         if (!isOwner) {
             return;
-        }
-        const hours =
-            negative === 1
-                ? 3 + tier
-                : shiny === 1
-                    ? 2 + tier
-                    : 1 + tier;
-        const endDate =
-            new Date(
-                Date.now() +
-                hours * 60 * 60 * 1000
-            );
+        }        
         try {
             await Axios.post(
                 "/api/newExpedition",
                 {
-                    number,
-                    tier,
-                    endDate:
-                        moment(endDate)
-                            .format(
-                                "YYYY-MM-DD HH:mm:ss"
-                            )
+                    number
                 }
             );
             reload();
