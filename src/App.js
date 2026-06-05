@@ -1,7 +1,7 @@
 import './App.css';
 import { useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-
+import Axios from "axios";
 //Services
 
 import Log from "./services/log";
@@ -21,6 +21,24 @@ import Compagnon from './pages/compagnon.js';
 import Cartes from './pages/cards.js';
 function App() {
     const [multipleTabs, setMultipleTabs] = useState(false);
+    const [user, setUser] = useState(null);
+
+    useEffect(() => {
+        Axios.get(
+            "/api/me",
+            {
+                withCredentials: true
+            }
+        )
+        .then((res) => {
+            setUser(
+                res.data.user
+            );
+        })
+        .catch(() => {
+            setUser(null);
+        });
+    }, []);
     useEffect(() => {
         const channel = new BroadcastChannel("pokemon-app");
         const tabId = crypto.randomUUID();
