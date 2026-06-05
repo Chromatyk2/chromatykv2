@@ -1,6 +1,8 @@
 import Axios from "axios";
+import React, { useState, useEffect } from 'react';
 
-function ProfileSkins({profileData,reload, isOwner}) {
+function ProfileSkins({ profileData, reload, isOwner }) {
+    const [loadSkin, setLoadSkin] = useState(false);
     const profile =
         profileData.profile;
     const skins =
@@ -21,9 +23,33 @@ function ProfileSkins({profileData,reload, isOwner}) {
             console.error(err);
         }
     }
+    async function addSkin() {
+        if (!isOwner) {
+            return;
+        }
+        if (
+            profileData.skins.length >=
+            profileData.profile.level
+        ) {
+            return;
+        }
+        try {
+            setLoadSkin(true);
+            await Axios.post(
+                "/api/addSkin"
+            );
+            await reload();
+        } catch (err) {
+            console.error(err);
+        } finally {
+            setLoadSkin(false);
+        }
+
+    }
     return (
         <>
             {skins.length < profile.level &&
+                loadSkin === true &&
                 <div class={"openSkinDiv"} onClick={addSkin}>
                     <p className={"openSkinText"}>{profile.level - skins.length}</p>
                 </div>
