@@ -5,11 +5,12 @@ import moment from "moment";
 import { useCookies } from 'react-cookie';
 import ShadowSmokeFront from "../components/shadowSmokeFront";
 import ShadowSmokeBack from "../components/shadowSmokeBack";
+import { useAuth } from "../context/AuthContext";
 
 
 function Fight() {
     //Cookies
-    const [cookies, setCookie] = useCookies();
+    const { user, loading } = useAuth();
     const pokemonContainerRef = useRef(null);
     //Safari
     const [pokedex, setPokedex] = useState(false);
@@ -152,11 +153,13 @@ function Fight() {
                                                 bonusXP = 100;
                                             } else if (negative === 1) {
                                                 bonusXP = 500;
-                                            }                                         
-                                            Axios.post('/api/updateXp', {
-                                                user: cookies.user.id,
-                                                xp: Math.floor(Math.random() * (pokemon.tier * 50 + 1)) + (pokemon.tier * 100) + bonusXP
-                                            })
+                                            }        
+                                            Axios.post(
+                                                "/api/addXp",
+                                                {
+                                                    xp: Math.floor(Math.random() * (pokemon.tier * 50 + 1)) + (pokemon.tier * 100) + bonusXP
+                                                }
+                                            );
                                             .then(function (response) {
                                                 setPokemon(null);
                                                 setOnCatch(false);
