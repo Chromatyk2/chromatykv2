@@ -18,26 +18,42 @@ function Pokedex() {
     const [searchParams] = useSearchParams();
     const param = searchParams.get("user");
     const [onLoad, setOnload] = useState(true);
+    const [level100Keys, setLevel100Keys] = useState([]);
     useEffect(() => {
-        initPage();
-    }, [param]);
-    useEffect(() => {
-        initPage();
-    }, []);
-    function initPage() {
-        let user;
-        if (new URLSearchParams(window.location.search).has("user")) {
-            user = new URLSearchParams(window.location.search).get("user");
-        } else {
-            user = user.id;
+        if (
+            loading ||
+            (!param && !user)
+        ) {
+            return;
         }
-        Axios
-            .get("/api/getPokedex/" + user)
-            .then(function (response) {
-                setPokedex(response.data)
-                setFilteredPokedex(response.data)
-                setOnload(false);
-            })
+        initPage();
+    }, [param,user,loading]);
+    async function initPage() {
+        try {
+            const profileUser =
+                param ||
+                user?.id;
+            if (!profileUser) {
+                return;
+            }
+            const response =
+                await Axios.get(
+                    `/api/pokedex/${profileUser}`
+                );
+            setPokedex(
+                response.data.pokedex
+            );
+            setFilteredPokedex(
+                response.data.pokedex
+            );
+            setLevel100Keys(
+                response.data.level100Keys
+            );
+        } catch (err) {
+            console.error(err);
+        } finally {
+            setOnload(false);
+        }
     }
     function filterGen(e) {
         setGen(e);
@@ -83,10 +99,21 @@ function Pokedex() {
 
                         </div>
                         {filteredPokedex &&
-                            filteredPokedex.filter(item => (item.shiny === isShiny && item.negative === isNegative)).map((val, key) => {
+                        filteredPokedex.filter(item => (item.shiny === isShiny && item.negative === isNegative)).map((val, key) => {
+                            const isLevel100 =
+                                level100Keys.includes(
+                                    `${val.pokemon}-${val.shiny}-${val.negative}`
+                                );
                                 return (
                                     <>
                                         <div className={"dexCard"}>
+                                            {isLevel100 && (
+                                                <div
+                                                    className="level100Badge"
+                                                >
+                                                    ⭐
+                                                </div>
+                                            )}
                                             <div className={"dexSpriteContainer"}>
                                                 <span className={"dexNumber"}>#{val.pokemon}</span>
                                                 <div>

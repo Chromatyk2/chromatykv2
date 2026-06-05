@@ -885,6 +885,23 @@ fightActionsFlee img {
     background: #3f2811f0;
     border: 0px solid #6d4321;
     box-shadow: 0 0 0 3px #b77a3c, 0 15px 40px #0006;
+    position: relative;
+}
+
+.level100Badge {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: gold;
+    color: black;
+    font-size: 14px;
+    font-weight: bold;
 }
 
 .dexName {
