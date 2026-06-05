@@ -22,12 +22,19 @@ function ProfileSkins({profileData,reload, isOwner}) {
         }
     }
     return (
-        <div className="skinContainer">
-            {skins.map((item) => (
-                <div onClick={() => changeSkin(item.skin)} loading={"lazy"} style={{ backgroundColor: "transparent", backgroundRepeat: "no-repeat", backgroundImage: `url("/Skins/Trainer${item.skin}.png")`, backgroundSize: "contain", backgroundPosition: "center" }} className={"profilPicture"}>
+        <>
+            {skins.length < profile.level &&
+                <div class={"openSkinDiv"} onClick={addSkin}>
+                    <p className={"openSkinText"}>{profile.level - skins.length}</p>
                 </div>
-            ))}
-        </div>
+            }
+            <div className="skinContainer">
+                {skins.map((item) => (
+                    <div onClick={() => changeSkin(item.skin)} loading={"lazy"} style={{ backgroundColor: "transparent", backgroundRepeat: "no-repeat", backgroundImage: `url("/Skins/Trainer${item.skin}.png")`, backgroundSize: "contain", backgroundPosition: "center" }} className={"profilPicture"}>
+                    </div>
+                ))}
+            </div>
+        </>
     );
 }
 
