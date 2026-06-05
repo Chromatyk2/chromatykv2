@@ -42,58 +42,13 @@ function ProfileExpeditions({
     }
     async function recoverReward() {
         try {
-            await Axios.post(
-                `/api/closeExpedition/${expedition.number}`
+            const response =
+                await Axios.post(
+                    `/api/recoverExpeditionReward/${expedition.number}`
+                );
+            setReward(
+                response.data.reward
             );
-            const rewards = {
-                normal: {
-                    1: [1, 3],
-                    2: [2, 4],
-                    3: [4, 6],
-                    4: [6, 8]
-                },
-                shiny: {
-                    1: [2, 4],
-                    2: [4, 6],
-                    3: [7, 10],
-                    4: [11, 14]
-                },
-                negative: {
-                    1: [3, 5],
-                    2: [6, 8],
-                    3: [11, 14],
-                    4: [27, 31]
-                }
-            };
-            const form =
-                expedition.negative === 1
-                    ? "negative"
-                    : expedition.shiny === 1
-                        ? "shiny"
-                        : "normal";
-            const [min, max] =
-                rewards[form][
-                expedition.tier
-                ];
-            const amount =
-                Math.floor(
-                    Math.random() *
-                    (max - min + 1)
-                ) + min;
-            await Axios.post(
-                "/api/addCandy",
-                {
-                    user:
-                        profileData.profile.user,
-                    item:
-                        "Fragment de Pack",
-                    slug:
-                        "fragement",
-                    quantity:
-                        amount
-                }
-            );
-            setReward(amount);
             reload();
         } catch (err) {
             console.error(err);
