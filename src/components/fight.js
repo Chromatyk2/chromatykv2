@@ -160,7 +160,9 @@ function Fight(props) {
                     damage,
                     critical
                 );
-                setIsAttacking(false);
+                setTimeout(() => {
+                    setIsAttacking(false);
+                }, 300);
             }, 2000);
         return () =>
             clearInterval(interval);
