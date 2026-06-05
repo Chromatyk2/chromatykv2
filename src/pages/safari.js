@@ -170,6 +170,7 @@ function Fight() {
                     ball
                 }
             );
+        await loadSafari();
         if (
             response.data.success
         ) {
