@@ -6,7 +6,7 @@ function Loader() {
         <div className="loaderContainer">
 
             <img
-                src={"/Sprites/shiny/" +Math.floor(Math.random() * 1398) + 1+".gif"}
+                src={"/Sprites/shiny/" + (Math.floor(Math.random() * 1398) + 1) +".gif"}
                 alt="Loading"
                 className="loaderPokemon"
             />
