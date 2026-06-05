@@ -19,8 +19,8 @@ import OldProfil from './pages/oldProfil.js';
 import Leaderboard from './pages/leaderboard.js';
 import Compagnon from './pages/compagnon.js';
 import Cartes from './pages/cards.js';
+Axios.defaults.withCredentials = true;
 function App() {
-    Axios.defaults.withCredentials = true;
     const [multipleTabs, setMultipleTabs] = useState(false);
     const [user, setUser] = useState(null);
 
