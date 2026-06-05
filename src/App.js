@@ -68,7 +68,28 @@ function App() {
                 </header>
             </div>
         );
-    }
+    } const maintenance =
+        true;
+
+if (maintenance) {
+
+    return (
+        <div className="globalContainerCenter">
+            <h1 className="wood-sign">
+                Maintenance
+            </h1>
+
+            <p>
+                Chromatyk est actuellement en maintenance.
+            </p>
+
+            <p>
+                Retour prévu bientôt.
+            </p>
+        </div>
+    );
+
+}
   return (
     <div className="App">
           <header className="App-header">
