@@ -35,7 +35,12 @@ function ProfileExpeditions({
                     number
                 }
             );
-            reload();
+            const timeout =
+                setTimeout(() => {
+                    reload();
+                }, 1500);
+            return () =>
+                clearTimeout(timeout);
         } catch (err) {
             console.error(err);
         }
