@@ -19,27 +19,11 @@ import OldProfil from './pages/oldProfil.js';
 import Leaderboard from './pages/leaderboard.js';
 import Compagnon from './pages/compagnon.js';
 import Cartes from './pages/cards.js';
+import { useAuth } from "../context/AuthContext";
 Axios.defaults.withCredentials = true;
 function App() {
     const [multipleTabs, setMultipleTabs] = useState(false);
-    const [user, setUser] = useState(null);
-
-    useEffect(() => {
-        Axios.get(
-            "/api/me",
-            {
-                withCredentials: true
-            }
-        )
-        .then((res) => {
-            setUser(
-                res.data.user
-            );
-        })
-        .catch(() => {
-            setUser(null);
-        });
-    }, []);
+    const { user,loading} = useAuth();
     useEffect(() => {
         const channel = new BroadcastChannel("pokemon-app");
         const tabId = crypto.randomUUID();

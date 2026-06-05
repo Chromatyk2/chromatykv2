@@ -4,23 +4,19 @@ import '../App.css'
 import moment from "moment";
 import { useCookies } from 'react-cookie';
 import Login from '../services/auth.services.js';
+import { useAuth } from "../context/AuthContext";
 
 function HomePage(props) {
     const [shinydex, setShinydex] = useState(null);
     const [onLoad, setOnload] = useState(true);
-    const [user, setUser] = useState(null);
+    const {user,loading} = useAuth();
     useEffect(() => {
-        loadHome();
-    }, []);
+        if (!loading) {
+            loadHome();
+        }
+    }, [loading]);
     async function loadHome() {
         try {
-            const me =
-                await Axios.get(
-                    "/api/me"
-                );
-            const user =
-                me.data.user;
-            setUser(user);
             if (user) {
                 const profile =
                     await Axios.get(
@@ -45,7 +41,6 @@ function HomePage(props) {
             );
         } catch (err) {
             console.error(err);
-            setUser(null);
         } finally {
             setOnload(false);
         }
