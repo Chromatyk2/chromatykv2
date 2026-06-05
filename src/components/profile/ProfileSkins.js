@@ -30,33 +30,7 @@ function ProfileSkins({
     return (
         <div className="skinsContainer">
             {skins.map((item) => (
-                <div
-                    key={item.skin}
-                    className={
-                        item.skin === profile.skin
-                            ? "skinCard active"
-                            : "skinCard"
-                    }
-                >
-                    <div
-                        className="skinPreview"
-                        style={{
-                            backgroundColor: "transparent",
-                            backgroundRepeat: "no-repeat",
-                            backgroundImage: `url("/Skins/Trainer$item.skins}.png")`,
-                            backgroundSize: "contain",
-                            backgroundPosition: "center"
-                        }} className={"profilPicture"}
-                    />
-                    <button
-                        onClick={() =>
-                            changeSkin(item.skin)
-                        }
-                        disabled={
-                            item.skin === profile.skin
-                        }
-                    >
-                    </button>
+                <div onClick={() => changeSkin(item.skins)} loading={"lazy"} style={{ backgroundColor: "transparent", backgroundRepeat: "no-repeat", backgroundImage: `url("/Skins/Trainer${item.skins}.png")`, backgroundSize: "contain", backgroundPosition: "center" }} className={"profilPicture"}>
                 </div>
             ))}
         </div>
