@@ -20,7 +20,7 @@ function HomePage(props) {
             if (user) {
                 const profile =
                     await Axios.get(
-                        `/api/getUser/${user.id}`
+                        `/api/profile/${user.id}`
                     );
                 if (
                     profile.data.length === 0
