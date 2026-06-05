@@ -1,10 +1,11 @@
 import Axios from "axios";
 import { useState } from "react";
 import useExpeditionTimer from "../../hooks/useExpeditionTimer";
+import moment from "moment";
 
 function ProfileExpeditions({
     profileData,
-    reload
+    reload, isOwner
 }) {
     const [reward, setReward] =
         useState(null);
@@ -20,7 +21,45 @@ function ProfileExpeditions({
         finished
     } = useExpeditionTimer(
         expedition
-    );
+        );
+    async function runExpedition(
+        number,
+        tier,
+        negative,
+        shiny
+    ) {
+        if (!isOwner) {
+            return;
+        }
+        const hours =
+            negative === 1
+                ? 3 + tier
+                : shiny === 1
+                    ? 2 + tier
+                    : 1 + tier;
+        const endDate =
+            new Date(
+                Date.now() +
+                hours * 60 * 60 * 1000
+            );
+        try {
+            await Axios.post(
+                "/api/newExpedition",
+                {
+                    number,
+                    tier,
+                    endDate:
+                        moment(endDate)
+                            .format(
+                                "YYYY-MM-DD HH:mm:ss"
+                            )
+                }
+            );
+            reload();
+        } catch (err) {
+            console.error(err);
+        }
+    }
     async function recoverReward() {
         try {
             await Axios.post(
@@ -86,7 +125,7 @@ function ProfileExpeditions({
                 <div className="skinContainer">
                     {companions.map((val, key) => {
                         return (
-                            <div  loading={"lazy"} style={{ filter: val.negative === 1 ? "invert(1)" : "invert(0)", backgroundRepeat: "no-repeat", backgroundColor: val.color, backgroundImage: `url("/Sprites/${val.shiny === 1 ? "Shiny" : "Normal"}/${val.number}.gif")`, backgroundSize: "contain", backgroundPosition: "center" }} className={"profilPicture"}>
+                            <div onClick={() => runExpedition(val.number, val.tier, val.negative, val.shiny)} loading={"lazy"} style={{ filter: val.negative === 1 ? "invert(1)" : "invert(0)", backgroundRepeat: "no-repeat", backgroundColor: val.color, backgroundImage: `url("/Sprites/${val.shiny === 1 ? "Shiny" : "Normal"}/${val.number}.gif")`, backgroundSize: "contain", backgroundPosition: "center" }} className={"profilPicture"}>
                             </div>
                         )
                     })

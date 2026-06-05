@@ -1,6 +1,6 @@
 import Axios from "axios";
 
-function ProfileCompanions({profileData,reload}) {
+function ProfileCompanions({ profileData, reload, isOwner }) {
     const profile =
         profileData.profile;
     const companions =
@@ -8,6 +8,9 @@ function ProfileCompanions({profileData,reload}) {
     const activeCompagnon =
         profileData.activeCompanion;
     async function selectCompanion(number) {
+        if (!isOwner) {
+            return;
+        }
         try {
             await Axios.post(
                 "/api/changeCompagnon",

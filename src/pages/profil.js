@@ -72,12 +72,14 @@ function Profil() {
                         <ProfileCompanions
                             profileData={profileData}
                             reload={loadProfile}
+                            isOwner={isOwner}
                         />
                     )}
                     {tab === 4 && (
                         <ProfileExpeditions
                             profileData={profileData}
                             reload={loadProfile}
+                            isOwner={isOwner}
                         />
                     )}
                 </div>
