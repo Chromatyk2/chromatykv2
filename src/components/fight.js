@@ -80,7 +80,6 @@ function Fight(props) {
     useEffect(() => {
         startFight();
         const interval = setInterval(() => {
-
                 setIsAttacking(true);
                 const tierMultiplier =
                     props.compagnon[0].tier === 4 ? 3 :
@@ -116,115 +115,79 @@ function Fight(props) {
             return () => clearInterval(interval);
 
     }, []);
+
     useEffect(() => {
-        if (currentHp !== null &&
-            currentHp <= 0 &&
-            !isKO &&
-            pokemon) {
-            const userId = cookies.user.id;
-            const tierMultiplierattack =
-                pokemon.tier === 4 ? 58.65 :
-                    pokemon.tier === 3 ? 1.75 :
-                        pokemon.tier === 2 ? 1.5 :
-                            1.25;
-
-            const packChance = 0.000142 * (tierMultiplierattack / 2);
-            const fragmentChance = 0.000569 * (tierMultiplierattack / 2);
-            const boosterChance = 0.00341 * (tierMultiplierattack / 2);
-
-            const roll = Math.random();
-
-            let reward = null;
-
-            if (roll < packChance) {
-                reward = {
-                    item: "Pack Safari",
-                    slug: "box",
-                    image: "/box.png"
-                };
-            } else if (roll < packChance + fragmentChance) {
-                reward = {
-                    item: "Fragment de Pack",
-                    slug: "fragement",
-                    image: "/fragment.png"
-                };
-            } else if (roll < packChance + fragmentChance + boosterChance) {
-                reward = {
-                    item: "Booster",
-                    slug: "booster",
-                    image: "/booster.png"
-                };
-            }
-
-            if (reward) {
-                Axios.post('/api/addCandy', {
-                    user: cookies.user.id,
-                    item: reward.item,
-                    slug: reward.slug,
-                    quantity: 1
-                });
-
-                setSessionReward(prev => {
-                    const existing = prev.find(r => r.item === reward.item);
-
-                    if (existing) {
-                        return prev.map(r =>
-                            r.item === reward.item
-                                ? { ...r, quantity: r.quantity + 1 }
-                                : r
-                        );
-                    }
-
-                    return [...prev, { ...reward, quantity: 1 }];
-                });
+        async function handleKO() {
+            if (
+                currentHp === null ||
+                currentHp > 0 ||
+                isKO ||
+                !pokemon
+            ) {
+                return;
             }
             setIsAttacking(false);
             setIsKO(true);
-            let formMultiplier;
-            if (props.compagnon[0].shiny === 1) {
-                formMultiplier = 1.5;
-            } else if (props.compagnon[0].negative === 1) {
-                formMultiplier = 2;
-            } else {
-                formMultiplier = 1;
-
-            }
-            const tierMultiplier = {
-                1: 1,
-                2: 2,
-                3: 4,
-                4: 8
-            };
-            const xpGainByTier = {
-                1: 18,
-                2: 37,
-                3: 75,
-                4: 288
-            };
-            const xpToNextLevel =
-                Math.floor((20 + curentLevel * curentLevel * 2) * tierMultiplier[props.compagnon[0].tier] * formMultiplier);
-            const xpGain = xpGainByTier[pokemon.tier];
-            const newXp = currentXp + xpGain;
-            if (newXp >= xpToNextLevel) {
-                Axios.post('/api/levelupCompagnon', {
-                    id: props.compagnon[0].id
-                })
-                setCurrentLevel(prev => prev + 1);
-                setCurrentXp(0);
-            } else {
-
-                Axios.post('/api/updateXpCompagnon', {
-                    xp: xpGain,
-                    id: props.compagnon[0].id
-                })
-                setCurrentXp(newXp);
+            try {
+                const response =
+                    await Axios.post(
+                        "/api/fight/kill",
+                        {
+                            pokemon
+                        }
+                    );
+                setCurrentLevel(
+                    response.data.level
+                );
+                setCurrentXp(
+                    response.data.xp
+                );
+                if (
+                    response.data.rewards
+                        ?.length > 0
+                ) {
+                    setSessionReward(
+                        prev => {
+                            const updated =
+                                [...prev];
+                            response.data.rewards
+                                .forEach(
+                                    reward => {
+                                        const existing =
+                                            updated.find(
+                                                r =>
+                                                    r.item ===
+                                                    reward.item
+                                            );
+                                        if (
+                                            existing
+                                        ) {
+                                            existing.quantity++;
+                                        } else {
+                                            updated.push({
+                                                ...reward,
+                                                quantity: 1
+                                            });
+                                        }
+                                    }
+                                );
+                            return updated;
+                        }
+                    );
+                }
+            } catch (err) {
+                console.error(
+                    err
+                );
             }
             setTimeout(() => {
                 startFight();
                 setIsKO(false);
-            }, 1500); // durée animation KO
+            }, 1500);
         }
+        handleKO();
     }, [currentHp]);
+
     useEffect(() => {
         const tierMultiplier = {
             1: 1,
@@ -242,71 +205,43 @@ function Fight(props) {
 
         }
     }, [curentLevel]);
-    function startFight() {
-        if (props.compagnon[0].level < 100) {
-            setHasAppeared(false)
-            const tierMultiplier = {
-                1: 1,
-                2: 2,
-                3: 4,
-                4: 8
-            };
-            let formMultiplier;
-            if (props.compagnon[0].shiny === 1) {
-                formMultiplier = 1.5;
-            } else if (props.compagnon[0].negative === 1) {
-                formMultiplier = 2;
-            } else {
-                formMultiplier = 1;
-
-            }
-            const tierRoll = Math.random();
-            if (tierRoll < 0.01) {
-                var tier = 4;
-                setCurrentHp(12000)
-                setMaxHp(12000)
-            } else if (tierRoll < 0.11) {
-                var tier = 3;
-                setCurrentHp(6000)
-                setMaxHp(6000)
-            } else if (tierRoll < 0.41) {
-                var tier = 2;
-                setCurrentHp(3000)
-                setMaxHp(3000)
-            } else {
-                var tier = 1;
-                setCurrentHp(1500)
-                setMaxHp(1500)
-            }
-            Axios.get("/api/getRandomPokemon/" + tier)
-                .then(function (response) {
-                    setPokemon(response.data[0]);
-                    const shiny = Math.floor((Math.random() * 4096) + 1);
-                    const negative = Math.floor((Math.random() * 8192) + 1);
-                    let isNegative;
-                    let isShiny;
-                    if (negative == 16) {
-                        setShiny(0);
-                        setNegative(1);
-                        setHasAppeared(true);
-                        isNegative = 1;
-                        isShiny = 0;
-                    } else if (shiny == 16) {
-                        setHasAppeared(true);
-                        setShiny(1);
-                        setNegative(0);
-                        isNegative = 0;
-                        isShiny = 1;
-                    } else {
-                        setHasAppeared(true);
-                        setShiny(0);
-                        setNegative(0);
-                        isNegative = 0;
-                        isShiny = 0;
-                    }
-                })
+    async function startFight() {
+        if (
+            props.compagnon[0].level >= 100
+        ) {
+            return;
         }
-
+        try {
+            setHasAppeared(
+                false
+            );
+            const response =
+                await Axios.post(
+                    "/api/fight/start"
+                );
+            setPokemon(
+                response.data.pokemon
+            );
+            setShiny(
+                response.data.shiny
+            );
+            setNegative(
+                response.data.negative
+            );
+            setCurrentHp(
+                response.data.currentHp
+            );
+            setMaxHp(
+                response.data.maxHp
+            );
+            setHasAppeared(
+                true
+            );
+        } catch (err) {
+            console.error(
+                err
+            );
+        }
     }
     const tierMultiplier = {
         1: 1,
