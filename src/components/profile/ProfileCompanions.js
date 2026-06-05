@@ -1,15 +1,12 @@
 import Axios from "axios";
 
-function ProfileCompanions({
-    profileData,
-    reload
-}) {
+function ProfileCompanions({profileData,reload}) {
     const profile =
         profileData.profile;
     const companions =
-        profileData.maxLevelCompagnons || [];
+        profileData.maxLevelCompanions || [];
     const activeCompagnon =
-        profileData.activeCompagnon;
+        profileData.activeCompanion;
     async function selectCompanion(number) {
         try {
             await Axios.post(
