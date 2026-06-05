@@ -135,6 +135,8 @@ function Fight(props) {
     }
     useEffect(() => {
         startFight();
+    }, []);
+    useEffect(() => {
         const interval =
             setInterval(() => {
                 if (
@@ -164,9 +166,7 @@ function Fight(props) {
                 }, 300);
             }, 2000);
         return () =>
-            clearInterval(
-                interval
-            );
+            clearInterval(interval);
     }, [isKO, pokemon]);
 
     useEffect(() => {
@@ -296,6 +296,7 @@ function Fight(props) {
             );
         }
     }
+
     const tierMultiplier = {
         1: 1,
         2: 2,
