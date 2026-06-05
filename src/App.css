@@ -1537,7 +1537,7 @@ button.openBoosterButton span {
 .cardArtwork img {
     width: 100%;
     display: block;
-    opacity: 0;
+    opacity: 1;
     transition: opacity .3s ease;
 }
 
