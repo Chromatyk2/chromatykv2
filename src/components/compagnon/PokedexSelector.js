@@ -23,7 +23,7 @@ function PokedexSelector({
                         onClick={() =>
                             onSelect?.(val)
                         }
-                        className="dexCardCompagnon"
+                        className="dexCard"
                     >
                         <div className="dexSpriteContainer">
 
