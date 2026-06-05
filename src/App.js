@@ -7,6 +7,7 @@ import Axios from "axios";
 import Log from "./services/log";
 
 //Publique
+import Maintenance from './pages/maintenance.js';
 import TwitchLiveWidget from "./components/twitchLiveWidget";
 import NavBar from './components/navbar.js';
 import HomePage from './pages/home.js';
@@ -109,32 +110,27 @@ function App() {
                 </header>
             </div>
         );
-    } const maintenance =
+    } 
+
+    const maintenance =
         true;
 
-if (maintenance) {
+    const bypass =
+        new URLSearchParams(
+            window.location.search
+        ).get("dev");
 
-    return (
-        <div className="App">
-            <header className="App-header">
-                <div className="globalContainerCenter">
-                    <h1 className="wood-sign">
-                        Maintenance
-                    </h1>
+    if (
+        maintenance &&
+        bypass !== "chromatyk"
+    ) {
 
-                    <p>
-                        Chromatyk est actuellement en maintenance.
-                    </p>
+        return (
+            <Maintenance />
+        );
 
-                    <p>
-                        Retour prévu bientôt.
-                    </p>
-                </div>
-            </header>
-        </div>
-    );
+    }
 
-}
   return (
     <div className="App">
           <header className="App-header">
