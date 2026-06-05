@@ -47,7 +47,7 @@ function Profil() {
             <div className={"profilContainer"}>
                 <ProfileHeader
                     profile={profileData.profile}
-                    companion={profileData.activeCompagnon}
+                    companion={profileData.activeCompanion}
                     color={profileData.color}
                 />
                 <ProfileTabs

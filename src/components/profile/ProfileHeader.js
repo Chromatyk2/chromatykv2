@@ -3,6 +3,10 @@ function ProfileHeader({
     companion,
     color
 }) {
+    console.log(
+        "COMPANION",
+        companion
+    );
     const nextLevelXp =
         (100 * ((profile.level + 1) * (profile.level + 2))) / 4;
     const progress =
