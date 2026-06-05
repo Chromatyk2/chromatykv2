@@ -10,7 +10,7 @@ import ProfileStats from "../components/profile/ProfileStats";
 import ProfileSkins from "../components/profile/ProfileSkins";
 import ProfileCompanions from "../components/profile/ProfileCompanions";
 import ProfileExpeditions from "../components/profile/ProfileExpeditions";
-import Loader from "../components/Loader";
+import Loader from "../components/loader";
 
 export function Profil() {
     const [cookies] = useCookies();
