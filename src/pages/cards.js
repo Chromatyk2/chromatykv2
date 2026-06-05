@@ -16,6 +16,7 @@ function Cards() {
     const [progress, setProgress] = useState({})
     const [now, setNow] = useState(Date.now());
     const [boosterCurrency, setBoosterCurrency] = useState(0);
+    const user.id = cookies.user.id;
     const [opening, setOpening] = useState(false);
     const [isShop, setIsShop] = useState(true);
     const [openedCards, setOpenedCards] = useState([]);
@@ -30,7 +31,6 @@ function Cards() {
     const param = searchParams.get("user");
     const [showImpact, setShowImpact] = useState(false);
     const startOpening = (cards) => {setOpenedCards(cards);setCurrentCard(0);setRevealed(false);setOpening(true);
-
 
     };
     const nextCard = () => {
@@ -63,11 +63,12 @@ function Cards() {
         }
     };
     const openBooster = async (setTcgdexId) => {
+        const userId = user.id;
         try {
             const { data } = await Axios.post(
                 "/api/card/openBooster",
                 {
-                    user.id,
+                    userId,
                     setTcgdexId
                 }
             );
@@ -96,7 +97,7 @@ function Cards() {
             user = new URLSearchParams(window.location.search).get("user");
             setIsShop(false)
         } else {
-            user = cookies.user.id;
+            user = user.id;
             setIsShop(true)
         }
         const loadData = async () => {
