@@ -44,6 +44,7 @@ function Profil() {
             <h2 className="wood-sign">
                 Carte de dresseur
             </h2>
+            <div className={"profilContainer"}>
             <ProfileHeader
                 profile={profileData.profile}
                 companion={profileData.activeCompagnon}
@@ -77,7 +78,7 @@ function Profil() {
                     reload={loadProfile}
                 />
             )}
-
+            </div>
         </div>
     );
 }
