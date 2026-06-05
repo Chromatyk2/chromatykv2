@@ -118,7 +118,7 @@ function ProfileExpeditions({
                         alt=""
                     />
                 </div>
-                <div className="hpBarContainer">
+                <div style={{width:"70%"}} className="hpBarContainer">
                     <div
                         className="hpBar"
                         style={{

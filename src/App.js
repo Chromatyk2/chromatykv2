@@ -15,7 +15,6 @@ import Safari from './pages/safari.js';
 import Inventory from './pages/inventory.js';
 import Pokedex from './pages/pokedex.js';
 import Profil from './pages/profil.js';
-import OldProfil from './pages/oldProfil.js';
 import Leaderboard from './pages/leaderboard.js';
 import Compagnon from './pages/compagnon.js';
 import Cartes from './pages/cards.js';
@@ -81,8 +80,7 @@ function App() {
                         <Route path="/shiny" element={<ShinyDex />} />
                         <Route path="/safari" element={<Safari />} />
                         <Route path="/pokedex" element={<Pokedex />} />
-                      <Route path="/profil" element={<OldProfil />} />
-                      <Route path="/nouveau_profil" element={<Profil />} />
+                      <Route path="/profil" element={<Profil />} />
                           <Route path="/leaderboard" element={<Leaderboard />} />
                       <Route path="/compagnon" element={<Compagnon />} />
                       <Route path="/cartes" element={<Cartes />} />
