@@ -32,13 +32,14 @@ Axios.defaults.withCredentials = true;function App() {
     }, [user]);
     const [multipleTabs, setMultipleTabs] = useState(false);
     const { user, loading } = useAuth();
-        useEffect(() => {
+    useEffect(() => {
         const channel = new BroadcastChannel("pokemon-app");
         const tabId = crypto.randomUUID();
         let hasOtherTab = false;
         const timeout = setTimeout(() => {
             setMultipleTabs(hasOtherTab);
         }, 300);
+    })
         channel.onmessage = (event) => {
             const data = event.data;
             if (data.type === "PING" && data.from !== tabId) {
