@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams } from "react-router-dom";
 import Axios from 'axios'
-import '../App.css'
 import moment from "moment";
 import { useCookies } from 'react-cookie';
 import Fight from "../components/fight";

@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Axios from 'axios'
-import '../App.css'
 import moment from "moment";
 import { useCookies } from 'react-cookie';
 import Fight from "../components/fight";

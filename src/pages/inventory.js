@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import Axios from 'axios'
-import '../App.css'
 import { useCookies } from 'react-cookie';
 import { useAuth } from "../context/AuthContext";
 

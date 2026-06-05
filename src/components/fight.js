@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from 'react';
-import '../App.css'
 import Axios from 'axios'
 import { useCookies } from 'react-cookie';
 import ShadowSmokeFront from "./shadowSmokeFront";

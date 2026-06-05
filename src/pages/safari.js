@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Axios from 'axios'
-import '../App.css'
 import ShadowSmokeFront from "../components/shadowSmokeFront";
 import ShadowSmokeBack from "../components/shadowSmokeBack";
 import { useAuth } from "../context/AuthContext";
