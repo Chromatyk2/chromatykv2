@@ -108,7 +108,6 @@ function Compagnon() {
         }
 
     }
-
     async function changeCompagnon(
         pokemon
     ) {
@@ -138,7 +137,24 @@ function Compagnon() {
             console.error(
                 err
             );
+        }
+    }
 
+    const rareCandy = inventory?.find(
+        item => item.slug === "rarecandy"
+    );
+    const megaCandy = inventory?.find(
+        item => item.slug === "megacandy"
+    );
+    const canShow =
+        haveCompagnon &&
+        compagnon &&
+        compagnon.length > 0 &&
+        compagnon[0].level < 100 &&
+        !chooseCompagnon &&
+        inventory &&
+        inventory.length > 0 &&
+        rareCandy;
     function levelupCompagnon(e) {
         if (inventory.find((item) => item.slug === e).quantity - 1 >= 0) {
             Axios.post('/api/removeItem', {
@@ -191,21 +207,6 @@ function Compagnon() {
                 })
         }
     }
-    const rareCandy = inventory?.find(
-        item => item.slug === "rarecandy"
-    );
-    const megaCandy = inventory?.find(
-        item => item.slug === "megacandy"
-    );
-    const canShow =
-        haveCompagnon &&
-        compagnon &&
-        compagnon.length > 0 &&
-        compagnon[0].level < 100 &&
-        !chooseCompagnon &&
-        inventory &&
-        inventory.length > 0 &&
-        rareCandy;
 
     return (
         onFight === false ?
