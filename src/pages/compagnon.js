@@ -7,6 +7,7 @@ import Fight from "../components/fight";
 import ShadowSmokeFront from "../components/shadowSmokeFront";
 import ShadowSmokeBack from "../components/shadowSmokeBack";
 import { useAuth } from "../context/AuthContext";
+import PokedexSelector from "../components/compagnon/PokedexSelector";
 function Compagnon() {
     //Cookies
     const { user, loading } = useAuth();
@@ -245,27 +246,21 @@ function Compagnon() {
                                                 })}
 
                                             </div>
-                                            {filteredPokedex &&
-                                                filteredPokedex.filter(item => (item.shiny === isShiny && item.negative === isNegative)).map((val, key) => {
-                                                    return (
-                                                        <>
-                                                            <div onClick={() => changeCompagnon(val.pokemon, val.name, isShiny, isNegative, val.tier)} className={"dexCardCompagnon"}>
-                                                                <div className={"dexSpriteContainer"}>
-                                                                    <span className={"dexNumber"}>#{val.pokemon}</span>
-                                                                    <div>
-                                                                        <img style={{ filter: isNegative === 1 ? "invert(1)" : "invert(0)" }} loading="lazy" className={"dexSprite"} src={isShiny === 1 ? "/Sprites/Shiny/" + val.pokemon + ".gif" : "/Sprites/Normal/" + val.pokemon + ".gif"} />
-                                                                    </div>
-                                                                </div>
-                                                                <div className={"dexDescription"}>
-                                                                    <p className={"dexName"}>{val.name}</p>
-                                                                    <p className={"dexDate"}>{moment(val.date).utc().format('DD/MM/YYYY')}</p>
-                                                                </div>
-                                                            </div>
-                                                        </>
-
+                                            <PokedexSelector
+                                                pokedex={
+                                                    filteredPokedex.filter(
+                                                        item =>
+                                                            item.shiny === isShiny &&
+                                                            item.negative === isNegative
                                                     )
-                                                })
-                                            }
+                                                }
+                                                companions={
+                                                    allCompagon || []
+                                                }
+                                                onSelect={
+                                                    changeCompagnon
+                                                }
+                                            />
                                         </div>
                                     </>
                                 }

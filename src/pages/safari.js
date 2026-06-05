@@ -5,7 +5,6 @@ import ShadowSmokeFront from "../components/shadowSmokeFront";
 import ShadowSmokeBack from "../components/shadowSmokeBack";
 import { useAuth } from "../context/AuthContext";
 
-
 function Fight() {
     //Cookies
     const { user, loading } = useAuth();
