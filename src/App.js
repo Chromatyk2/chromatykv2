@@ -19,7 +19,7 @@ import OldProfil from './pages/oldProfil.js';
 import Leaderboard from './pages/leaderboard.js';
 import Compagnon from './pages/compagnon.js';
 import Cartes from './pages/cards.js';
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "./context/AuthContext";
 Axios.defaults.withCredentials = true;
 function App() {
     const [multipleTabs, setMultipleTabs] = useState(false);
