@@ -23,31 +23,36 @@ function Fight(props) {
     const [particles, setParticles] = useState([]);
     const [sessionReward, setSessionReward] = useState([]);
     const pokemonContainerRef = useRef(null);
-
-    const showDamage = (damage, isCritical) => {
-
+    const showDamage = (
+        damage,
+        isCritical
+    ) => {
         const angle =
-            (-90 + (Math.random() * 80 - 40)) * Math.PI / 180;
-
-        const distance = 120 + Math.random() * 80;
-
-        const endX = Math.cos(angle) * distance;
-        const endY = Math.sin(angle) * distance;
-
+            (-90 + (
+                Math.random() * 80 - 40
+            )) *
+            Math.PI /
+            180;
+        const distance =
+            120 +
+            Math.random() * 80;
+        const endX =
+            Math.cos(angle) *
+            distance;
+        const endY =
+            Math.sin(angle) *
+            distance;
         setDamageText({
             value: damage,
             critical: isCritical,
             endX,
             endY,
         });
-
         createHitParticles();
-
         setTimeout(() => {
             setDamageText(null);
         }, 1000);
     };
-
     const createHitParticles = () => {
 
         const newParticles = Array.from({ length: 20 }, (_, i) => ({
@@ -77,44 +82,92 @@ function Fight(props) {
             );
         }, 500);
     };
+    function calculateDamage() {
+        const tierMultiplier =
+            props.compagnon[0].tier === 4
+                ? 3
+                : props.compagnon[0].tier === 3
+                    ? 2
+                    : props.compagnon[0].tier === 2
+                        ? 1.5
+                        : 1;
+        const baseAttack =
+            11 +
+            (
+                props.compagnon[0].level -
+                1
+            ) *
+            (
+                22.33 / 99
+            );
+        const attack =
+            baseAttack *
+            tierMultiplier *
+            10;
+        const minDamage =
+            Math.floor(
+                attack * 0.8
+            );
+        const maxDamage =
+            Math.floor(
+                attack * 1.2
+            );
+        let damage =
+            Math.floor(
+                Math.random() *
+                (
+                    maxDamage -
+                    minDamage +
+                    1
+                )
+            ) +
+            minDamage;
+        const critical =
+            Math.random() <
+            0.05;
+        if (critical) {
+            damage *= 2;
+        }
+        return {
+            damage,
+            critical
+        };
+    }
     useEffect(() => {
         startFight();
-        const interval = setInterval(() => {
-                setIsAttacking(true);
-                const tierMultiplier =
-                    props.compagnon[0].tier === 4 ? 3 :
-                        props.compagnon[0].tier === 3 ? 2 :
-                            props.compagnon[0].tier === 2 ? 1.5 :
-                                1;
-                const baseAttack =
-                    11 + (props.compagnon[0].level - 1) * (22.33 / 99);
-
-                const attack = baseAttack * tierMultiplier * 10;
-
-                const minDamage = Math.floor(attack * 0.8);
-                const maxDamage = Math.floor(attack * 1.2);
-
-                let damage = Math.floor(
-                    Math.random() * (maxDamage - minDamage + 1)
-                ) + minDamage;
-
-                const critical = Math.random() < 0.05;
-                if (critical) {
-                    damage *= 2;
+        const interval =
+            setInterval(() => {
+                if (
+                    isKO ||
+                    !pokemon
+                ) {
+                    return;
                 }
-                showDamage(damage, critical);
-                createHitParticles()
+                setIsAttacking(true);
                 setTimeout(() => {
-                    setTimeout(() => {
-                        setDamageText(null);
-                    }, 1000);
-                    setCurrentHp(prevHp => Math.max(0, prevHp - damage));
+                    const {
+                        damage,
+                        critical
+                    } = calculateDamage();
+                    setCurrentHp(
+                        prevHp =>
+                            Math.max(
+                                0,
+                                prevHp - damage
+                            )
+                    );
+                    showDamage(
+                        damage,
+                        critical
+                    );
                     setIsAttacking(false);
-                }, 300); // durée de l'animation
+                }, 300);
             }, 2000);
-            return () => clearInterval(interval);
-
-    }, []);
+        return () =>
+            clearInterval(
+                interval
+            );
+    }, [isKO, pokemon]);
 
     useEffect(() => {
         async function handleKO() {
