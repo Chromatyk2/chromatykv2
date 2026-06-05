@@ -20,6 +20,7 @@ import Leaderboard from './pages/leaderboard.js';
 import Compagnon from './pages/compagnon.js';
 import Cartes from './pages/cards.js';
 function App() {
+    Axios.defaults.withCredentials = true;
     const [multipleTabs, setMultipleTabs] = useState(false);
     const [user, setUser] = useState(null);
 

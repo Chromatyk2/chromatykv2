@@ -1,37 +1,29 @@
 import { useEffect } from "react";
 import Axios from "axios";
-import { useCookies } from 'react-cookie';
 
 function Log() {
-
-    const [cookies, setCookie, removeCookie] = useCookies();
-    useEffect(() => {
+        useEffect(() => {
         const code =
-            new URLSearchParams(window.location.search)
-                .get("code");
-
+            new URLSearchParams(
+                window.location.search
+            ).get("code");
         if (!code) {
             window.location.href = "/";
             return;
         }
-        Axios.post("/api/auth/twitch", {
-            code
-        })
-            .then((res) => {
-
-                setCookie(
-                    "user",
-                    res.data.user,
-                    {
-                        path: "/"
-                    }
-                );
-
+        Axios.post(
+            "/api/auth/twitch",
+            { code },
+            {
+                withCredentials: true
+            }
+        )
+            .then(() => {
                 window.location.href = "/";
-            });
+            })
+            .catch(console.error);
 
     }, []);
-
     return (
         <div className="globalContainerCenter">
             <h2 className="wood-sign">
@@ -43,6 +35,6 @@ function Log() {
             </p>
         </div>
     );
-}
 
+}
 export default Log;
