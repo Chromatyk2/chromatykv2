@@ -1,4 +1,4 @@
-import './styles/themes/defaut.css';
+import './styles/theme.css';
 import './styles/App.css';
 import { useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
@@ -23,22 +23,23 @@ import Cartes from './pages/cards.js';
 import { useAuth } from "./context/AuthContext";
 Axios.defaults.withCredentials = true;
 function App() {
-    const { user, loading } = useAuth();
     const [multipleTabs, setMultipleTabs] = useState(false);
+    const { user, loading } = useAuth();
     useEffect(() => {
+
         document.documentElement.setAttribute(
             "data-theme",
             user?.theme || "default"
         );
-    }, [user]);
+
+    }, [user?.theme]);
         useEffect(() => {
-            const channel = new BroadcastChannel("pokemon-app");
-            const tabId = crypto.randomUUID();
-            let hasOtherTab = false;
-            const timeout = setTimeout(() => {
-                setMultipleTabs(hasOtherTab);
-            }, 300);
-        })
+        const channel = new BroadcastChannel("pokemon-app");
+        const tabId = crypto.randomUUID();
+        let hasOtherTab = false;
+        const timeout = setTimeout(() => {
+            setMultipleTabs(hasOtherTab);
+        }, 300);
         channel.onmessage = (event) => {
             const data = event.data;
             if (data.type === "PING" && data.from !== tabId) {
