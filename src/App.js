@@ -1,4 +1,4 @@
-import './styles/themes/wood.css';
+import './styles/themes/defaut.css';
 import './styles/App.css';
 import { useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
@@ -25,7 +25,7 @@ Axios.defaults.withCredentials = true;function App() {
     useEffect(() => {
         document.documentElement.setAttribute(
             'data-theme',
-            'wood'
+            'defaut'
         );
     }, []);
     const [multipleTabs, setMultipleTabs] = useState(false);
