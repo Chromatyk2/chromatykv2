@@ -115,18 +115,22 @@ function App() {
 if (maintenance) {
 
     return (
-        <div className="globalContainerCenter">
-            <h1 className="wood-sign">
-                Maintenance
-            </h1>
+        <div className="App">
+            <header className="App-header">
+                <div className="globalContainerCenter">
+                    <h1 className="wood-sign">
+                        Maintenance
+                    </h1>
 
-            <p>
-                Chromatyk est actuellement en maintenance.
-            </p>
+                    <p>
+                        Chromatyk est actuellement en maintenance.
+                    </p>
 
-            <p>
-                Retour prévu bientôt.
-            </p>
+                    <p>
+                        Retour prévu bientôt.
+                    </p>
+                </div>
+            </header>
         </div>
     );
 
