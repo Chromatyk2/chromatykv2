@@ -339,7 +339,7 @@ function Fight(props) {
                                         style={{ top: "10px" }}
                                         className="rewardItem"
                                     >
-                                        <img src={"/reward"+.slug+".png"} />
+                                        <img src={"/"+reward.slug+".png"} />
                                         <p>
                                             x{reward.quantity}
                                         </p>
