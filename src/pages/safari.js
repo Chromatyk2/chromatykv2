@@ -181,7 +181,6 @@ function Fight() {
                 setCatchResult(
                     "caught"
                 );
-                loadSafari();
                 setTimeout(() => {
                     setPokemon(
                         null
