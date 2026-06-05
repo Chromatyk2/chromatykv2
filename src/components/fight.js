@@ -145,24 +145,22 @@ function Fight(props) {
                     return;
                 }
                 setIsAttacking(true);
-                setTimeout(() => {
-                    const {
-                        damage,
-                        critical
-                    } = calculateDamage();
-                    setCurrentHp(
-                        prevHp =>
-                            Math.max(
-                                0,
-                                prevHp - damage
-                            )
-                    );
-                    showDamage(
-                        damage,
-                        critical
-                    );
-                    setIsAttacking(false);
-                }, 300);
+                const {
+                    damage,
+                    critical
+                } = calculateDamage();
+                setCurrentHp(
+                    prevHp =>
+                        Math.max(
+                            0,
+                            prevHp - damage
+                        )
+                );
+                showDamage(
+                    damage,
+                    critical
+                );
+                setIsAttacking(false);
             }, 2000);
         return () =>
             clearInterval(interval);
