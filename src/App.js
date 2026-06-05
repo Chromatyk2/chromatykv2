@@ -72,7 +72,7 @@ function App() {
     } 
 
     const maintenance =
-        true;
+        false;
 
     const bypass =
         new URLSearchParams(
