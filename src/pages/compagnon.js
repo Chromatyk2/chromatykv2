@@ -29,10 +29,17 @@ function Compagnon() {
     //Combat
     const [onFight, setOnFight] = useState(false);
     const pokemonContainerRef = useRef(null);
+    function chooseCompgnon() {
+        setChooseCompagnon(true)
+    }
+    function startFight() {
+        setOnFight(true);
+    }
 
     useEffect(() => {
         loadCompanion();
     }, [onFight]);
+
     async function loadCompanion() {
         try {
             const response =
@@ -101,47 +108,37 @@ function Compagnon() {
         }
 
     }
-    function chooseCompgnon() {
-        setChooseCompagnon(true)
-    }
-    function startFight() {
-        setOnFight(true);
-    }
-    function changeCompagnon(e, f, g, h, i) {
-        const currentLevel =
-            allCompagon.find(
-                (item) => item.number === e && item.shiny === g && item.negative === h
-            )?.level ?? 1;
-        Axios.post('/api/updateCurrentCompagnon', {
-            user: cookies.user.id
-        })
-            .then(function (response) {
-                Axios.post('/api/newCompagnon', {
-                    user: cookies.user.id,
-                    number: e,
-                    pokemon: f,
-                    shiny: g,
-                    negative: h,
-                    level: currentLevel,
-                    xp: 0,
-                    active: 1,
-                    tier: i
-                }).then(function (response) {
-                    Axios.get('/api/getCurrentCompagnon/' + cookies.user.id)
-                        .then(function (response) {
-                            setHaveCompagnon(true)
-                            setChooseCompagnon(false)
-                            setCompagnon(response.data);
-                            Axios
-                                .get("/api/getInventory/" + cookies.user.id)
-                                .then(function (response) {
-                                    setInventory(response.data);
-                                    setHaveCompagnon(true)
-                                })
-                        })
-                })
-            })
-    }
+
+    async function changeCompagnon(
+        pokemon
+    ) {
+        try {
+            const response =
+                await Axios.post(
+                    "/api/compagnon/change",
+                    {
+                        pokemon:
+                            pokemon.pokemon,
+                        shiny:
+                            pokemon.shiny,
+                        negative:
+                            pokemon.negative
+                    }
+                );
+            setCompagnon([
+                response.data
+            ]);
+            setHaveCompagnon(
+                true
+            );
+            setChooseCompagnon(
+                false
+            );
+        } catch (err) {
+            console.error(
+                err
+            );
+
     function levelupCompagnon(e) {
         if (inventory.find((item) => item.slug === e).quantity - 1 >= 0) {
             Axios.post('/api/removeItem', {
