@@ -1,0 +1,17 @@
+[data-theme="kanto"] {
+    --bg-main: #d8d8c0;
+    --bg-dark: #b8b8a0;
+    --panel-bg: #f8f8e8;
+    --border-dark: #181818;
+    --border-light: #3a5eff;
+    --text-main: #202020;
+    --text-secondary: #404040;
+    --primary: #3a5eff;
+    --secondary: #ff3030;
+    --accent: #ffd733;
+    --success: #52b552;
+    --danger: #ff3030;
+    --panel-shadow: 4px 4px 0 #181818;
+    --button-bg: linear-gradient( to bottom, #ffffff, #d8d8d8 );
+    --card-bg: linear-gradient( to bottom, #f8f8e8, #e8e8d0 );
+}
