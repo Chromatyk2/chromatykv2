@@ -12,6 +12,8 @@ function ProfileExpeditions({
         profileData.expeditions?.find(
             item => item.active === 1
         );
+    const companions =
+        profileData.maxLevelCompanions || [];
     const {
         progress,
         remainingTime,
@@ -80,88 +82,98 @@ function ProfileExpeditions({
     }
     if (!expedition) {
         return (
-            <p>
-                Aucune expédition en cours.
-            </p>
+            <div className="compagnonsContainer">
+                <div className="skinContainer">
+                    {companions.map((val, key) => {
+                        return (
+                            <div  loading={"lazy"} style={{ filter: val.negative === 1 ? "invert(1)" : "invert(0)", backgroundRepeat: "no-repeat", backgroundColor: val.color, backgroundImage: `url("/Sprites/${val.shiny === 1 ? "Shiny" : "Normal"}/${val.number}.gif")`, backgroundSize: "contain", backgroundPosition: "center" }} className={"profilPicture"}>
+                            </div>
+                        )
+                    })
+                    }
+                </div>
+            </div>
         );
     }
     return (
-        <div
-            className="fightContainer"
-            style={{
-                backgroundImage:
-                    "url(/expeditionBack.png)"
-            }}
-        >
-            <p>
-                {expedition.pokemon}
-            </p>
+        <div style={{ width: "100%", justifyContent: "center" }} className={"skinContainer"}>
             <div
-                className={
-                    `fightSpriteCard ${
-                        expedition.negative === 1
-                            ? "shadowPokemon"
-                            : ""
-                    }`
-                }
+                className="fightContainer"
+                style={{
+                    backgroundImage:
+                        "url(/expeditionBack.png)"
+                }}
             >
-                <img
-                    src={
-                        `/Sprites/${
-                        expedition.shiny === 1
-                            ? "shiny"
-                            : "normal"
-                        }/${
-                        expedition.number
-                        }.gif`
-                    }
-                    alt=""
-                />
-            </div>
-            <div className="hpBarContainer">
+                <p>
+                    {expedition.pokemon}
+                </p>
                 <div
-                    className="hpBar"
-                    style={{
-                        width:
-                            `${progress}%`,
-                        background:
-                            "linear-gradient(90deg,#2446ab 0%,#02c2e8 100%)"
-                    }}
-                />
-            </div>
-            {!finished && (
-                <p>
-                    {remainingTime}
-                </p>
-            )}
-            {finished &&
-                !reward && (
-
-                    <button
-                        className="validExpeditionButton"
-                        onClick={
-                            recoverReward
+                    className={
+                        `fightSpriteCard ${
+                            expedition.negative === 1
+                                ? "shadowPokemon"
+                                : ""
+                        }`
+                    }
+                >
+                    <img
+                        src={
+                            `/Sprites/${
+                            expedition.shiny === 1
+                                ? "shiny"
+                                : "normal"
+                            }/${
+                            expedition.number
+                            }.gif`
                         }
-                    >
-                        Récupérer
-                    </button>
-
-                )}
-            {reward && (
-                <p>
-                    Le compagnon a trouvé
-                    <span
+                        alt=""
+                    />
+                </div>
+                <div className="hpBarContainer">
+                    <div
+                        className="hpBar"
                         style={{
-                            color:
-                                "#ffc312"
+                            width:
+                                `${progress}%`,
+                            background:
+                                "linear-gradient(90deg,#2446ab 0%,#02c2e8 100%)"
                         }}
-                    >
-                        {" "}
-                        {reward}
-                    </span>
-                    {" "}fragments !
-                </p>
-            )}
+                    />
+                </div>
+                {!finished && (
+                    <p>
+                        {remainingTime}
+                    </p>
+                )}
+                {finished &&
+                    !reward && (
+
+                        <button
+                            className="validExpeditionButton"
+                            onClick={
+                                recoverReward
+                            }
+                        >
+                            Récupérer
+                        </button>
+
+                    )}
+                {reward && (
+                    <p>
+                        Le compagnon a trouvé
+                        <span
+                            style={{
+                                color:
+                                    "#ffc312"
+                            }}
+                        >
+                            {" "}
+                            {reward}
+                        </span>
+                        {" "}fragments !
+                    </p>
+                )}
+            </div>
         </div>
     );
 }
