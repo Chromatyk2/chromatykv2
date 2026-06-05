@@ -140,6 +140,25 @@ function Compagnon() {
         }
     }
 
+    async function consumeCandy(
+        candy
+    ) {
+        try {
+            const response =
+                await Axios.post(
+                    "/api/compagnon/useCandy",
+                    {
+                        candy
+                    }
+                );
+            setCompagnon([
+                response.data.companion
+            ]);
+            loadCompanion();
+        } catch (err) {
+            console.error(err);
+        }
+    }
     const rareCandy = inventory?.find(
         item => item.slug === "rarecandy"
     );
@@ -155,58 +174,6 @@ function Compagnon() {
         inventory &&
         inventory.length > 0 &&
         rareCandy;
-    function levelupCompagnon(e) {
-        if (inventory.find((item) => item.slug === e).quantity - 1 >= 0) {
-            Axios.post('/api/removeItem', {
-                user: cookies.user.id,
-                slug: e
-            })
-                .then(function (response) {
-                    Axios.post('/api/levelupCompagnon', {
-                        id: compagnon[0].id
-                    }).then(function (response) {
-                        Axios.get('/api/getCurrentCompagnon/' + cookies.user.id)
-                            .then(function (response) {
-                                setHaveCompagnon(true)
-                                setChooseCompagnon(false)
-                                setCompagnon(response.data);
-                                Axios
-                                    .get("/api/getInventory/" + cookies.user.id)
-                                    .then(function (response) {
-                                        setInventory(response.data);
-                                        setHaveCompagnon(true)
-                                    })
-                            })
-                    })
-            })
-        }
-    }
-    function levelMaxCompagnon(e) {
-        if (inventory.find((item) => item.slug === e).quantity - 1 >= 0) {
-            Axios.post('/api/removeItem', {
-                user: cookies.user.id,
-                slug: e
-            })
-                .then(function (response) {
-                    Axios.post('/api/levelMaxCompagnon', {
-                        id: compagnon[0].id
-                    }).then(function (response) {
-                        Axios.get('/api/getCurrentCompagnon/' + cookies.user.id)
-                            .then(function (response) {
-                                setHaveCompagnon(true)
-                                setChooseCompagnon(false)
-                                setCompagnon(response.data);
-                                Axios
-                                    .get("/api/getInventory/" + cookies.user.id)
-                                    .then(function (response) {
-                                        setInventory(response.data);
-                                        setHaveCompagnon(true)
-                                    })
-                            })
-                    })
-                })
-        }
-    }
 
     return (
         onFight === false ?
@@ -302,7 +269,7 @@ function Compagnon() {
                                             )}
                                             {rareCandy?.quantity > 0 &&
                                                 (
-                                                    <div onClick={() => levelupCompagnon(inventory.find(item => item.slug === "rarecandy").slug)} style={{ background: "none" }} className="fightActionsContainer">
+                                            <div onClick={() => consumeCandy("rarecandy")} style={{ background: "none" }} className="fightActionsContainer">
                                                         <div className="fightActions">
                                                             <img src="/rarecandy.png" />
                                                             <p>Super Bonbon</p>
@@ -315,7 +282,7 @@ function Compagnon() {
                                             }
                                             {megaCandy?.quantity > 0 &&
                                                 (
-                                                    <div onClick={() => levelMaxCompagnon(inventory.find(item => item.slug === "megacandy").slug)} style={{ filter: "hue-rotate(182deg)", background: "none" }} className="fightActionsContainer">
+                                            <div onClick={() => consumeCandy("megacandy")} style={{ filter: "hue-rotate(182deg)", background: "none" }} className="fightActionsContainer">
                                                         <div className="fightActions">
                                                             <img src="/megacandy.png" />
                                                             <p>Mega Bonbon</p>
