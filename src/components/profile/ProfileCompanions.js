@@ -12,7 +12,6 @@ function ProfileCompanions({profileData,reload}) {
             await Axios.post(
                 "/api/changeCompagnon",
                 {
-                    user: profile.user,
                     compagnon: number
                 }
             );
@@ -30,62 +29,15 @@ function ProfileCompanions({profileData,reload}) {
     }
     return (
         <div className="compagnonsContainer">
-            {companions.map((companion) => (
-                <div
-                    key={companion.number}
-                    className={
-                        activeCompagnon &&
-                            activeCompagnon.number === companion.number
-                            ? "compagnonCard active"
-                            : "compagnonCard"
-                    }
-                >
-                    <img
-                        className="compagnonSprite"
-                        src={
-                            companion.shiny === 1
-                                ? `/Sprites/Shiny/${companion.number}.gif`
-                                : `/Sprites/Normal/${companion.number}.gif`
-                        }
-                        style={{
-                            filter:
-                                companion.negative === 1
-                                    ? "invert(1)"
-                                    : "none"
-                        }}
-                        alt={companion.pokemon}
-                    />
-                    <div>
-                        <p>
-                            {companion.pokemon}
-                        </p>
-                        <p
-                            className="levelProfil"
-                        >
-                            Niveau {companion.level}
-                        </p>
-                    </div>
-                    <button
-                        onClick={() =>
-                            selectCompanion(
-                                companion.number
-                            )
-                        }
-                        disabled={
-                            activeCompagnon &&
-                            activeCompagnon.number === companion.number
-                        }
-                    >
-
-                        {
-                            activeCompagnon &&
-                                activeCompagnon.number === companion.number
-                                ? "Actif"
-                                : "Choisir"
-                        }
-                    </button>
-                </div>
-            ))}
+            <div className="skinContainer">
+                {companions.map((val, key) => {
+                        return (
+                            <div onClick={() => selectCompanion(val.number, val.color)} loading={"lazy"} style={{ filter: val.negative === 1 ? "invert(1)" : "invert(0)", backgroundRepeat: "no-repeat", backgroundColor: val.color, backgroundImage: `url("/Sprites/${val.shiny === 1 ? "Shiny" : "Normal"}/${val.number}.gif")`, backgroundSize: "contain", backgroundPosition: "center" }} className={"profilPicture"}>
+                            </div>
+                        )
+                    })
+                }
+            </div>            
         </div>
     );
 }
