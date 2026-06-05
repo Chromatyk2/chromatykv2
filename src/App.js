@@ -24,48 +24,7 @@ Axios.defaults.withCredentials = true;
 function App() {
     const [multipleTabs, setMultipleTabs] = useState(false);
     const { user, loading } = useAuth();
-    useEffect(() => {
-        const checkVersion =
-            async () => {
-                const response =
-                    await Axios.get(
-                        "/api/version"
-                    );
-                const serverVersion =
-                    response.data.version;
-                const localVersion =
-                    localStorage.getItem(
-                        "version"
-                    );
-                if (
-                    localVersion &&
-                    localVersion !== serverVersion
-                ) {
-                    localStorage.setItem(
-                        "version",
-                        serverVersion
-                    );
-                    window.location.reload();
-                }
-                if (!localVersion) {
-                    localStorage.setItem(
-                        "version",
-                        serverVersion
-                    );
-                }
-            };
-        checkVersion();
-        const interval =
-            setInterval(
-                checkVersion,
-                30000
-            );
-                    return () =>
-            clearInterval(
-                interval
-            );
-    }, []);
-    useEffect(() => {
+        useEffect(() => {
         const channel = new BroadcastChannel("pokemon-app");
         const tabId = crypto.randomUUID();
         let hasOtherTab = false;
