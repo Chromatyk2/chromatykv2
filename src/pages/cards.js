@@ -16,7 +16,6 @@ function Cards() {
     const [progress, setProgress] = useState({})
     const [now, setNow] = useState(Date.now());
     const [boosterCurrency, setBoosterCurrency] = useState(0);
-    const user.id = cookies.user.id;
     const [opening, setOpening] = useState(false);
     const [isShop, setIsShop] = useState(true);
     const [openedCards, setOpenedCards] = useState([]);
