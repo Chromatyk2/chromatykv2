@@ -29,7 +29,7 @@
 }
 @font-face {
     font-family: 'Charge Vector Black';
-    src: url('../public/Charge Vector Black.otf') format('truetype');
+    src: url('/Charge Vector Black.otf') format('truetype');
 }
 .App {
   text-align: center;
@@ -444,7 +444,7 @@ p.levelProfil {
 .openSkinDiv {
     width: 100px;
     height: 100px;
-    background-image: url('../public/case.png');
+    background-image: url('/case.png');
     background-size: cover;
     background-color: #7b0808;
     border-radius: 100%;
@@ -1529,7 +1529,7 @@ button.openBoosterButton span {
 .cardPlaceholder {
     position: absolute;
     inset: 0;
-    background-image: url("../public/backCard.png");
+    background-image: url("/backCard.png");
     background-size: cover;
     background-position: center;
     filter: blur(4px);
@@ -1877,7 +1877,7 @@ button.openBoosterButton span {
     }
 
     .App-header {
-        background-image: url("../public/background.png");
+        background-image: url("/background.png");
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
