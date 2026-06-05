@@ -5,8 +5,10 @@ import '../App.css'
 import moment from "moment";
 import { useCookies } from 'react-cookie';
 import Fight from "../components/fight";
+import { useAuth } from "../context/AuthContext";
 function Cards() {
     //Cookies
+    const { user, loading } = useAuth();
     const [cookies, setCookie] = useCookies();
     const [collection, setCollection] = useState([])
     const [loadedImages, setLoadedImages] = useState({});
@@ -14,7 +16,6 @@ function Cards() {
     const [progress, setProgress] = useState({})
     const [now, setNow] = useState(Date.now());
     const [boosterCurrency, setBoosterCurrency] = useState(0);
-    const userId = cookies.user.id;
     const [opening, setOpening] = useState(false);
     const [isShop, setIsShop] = useState(true);
     const [openedCards, setOpenedCards] = useState([]);
@@ -66,7 +67,7 @@ function Cards() {
             const { data } = await Axios.post(
                 "/api/card/openBooster",
                 {
-                    userId,
+                    user.id,
                     setTcgdexId
                 }
             );
@@ -110,7 +111,7 @@ function Cards() {
             setOwnedSets(data.ownedSets);
         };
         loadData();
-    }, [userId, param]);
+    }, [user.id, param]);
     useEffect(() => {
 
         if (revealed) {

@@ -2,14 +2,16 @@ import React, { useState, useEffect } from 'react';
 import Axios from 'axios'
 import '../App.css'
 import { useCookies } from 'react-cookie';
+import { useAuth } from "../context/AuthContext";
 
 function Inventory(props) {
+    const { user, loading } = useAuth();
     const [cookies, setCookie] = useCookies();
     const [inventory, setInventory] = useState([]);
     const [onLoad, setOnload] = useState(true);
     useEffect(() => {
         Axios
-        .get("/api/getInventory/" + cookies.user.id)
+        .get("/api/getInventory/" + user.id)
         .then(function (response) {
             setInventory(response.data);
             setOnload(false);
@@ -93,17 +95,17 @@ function Inventory(props) {
     function createLootbox() {
         if (inventory.find((item) => item.slug === "fragement").quantity - 100 >= 0) {
             Axios.post('/api/removeFragement', {
-                user: cookies.user.id,
+                user: user.id,
                 slug: "fragement"
             }).then(function (response) {
                 Axios.post('/api/addCandy', {
-                    user: cookies.user.id,
+                    user: user.id,
                     item: "Pack Safari",
                     slug: "box",
                     quantity: 1
                 }).then(function (response) {
                     Axios
-                        .get("/api/getInventory/" + cookies.user.id)
+                        .get("/api/getInventory/" + user.id)
                         .then(function (response) {
                             setInventory(response.data);
                         })
@@ -114,7 +116,7 @@ function Inventory(props) {
     function openLootbox() {
         if (inventory.find((item) => item.slug === "box").quantity - 1 >= 0) {
             Axios.post('/api/removeItem', {
-                user: cookies.user.id,
+                user: user.id,
                 slug: "box"
             }).then(function (response) {
                 const candyTier = Math.random();
@@ -132,7 +134,7 @@ function Inventory(props) {
                     var quantity = Math.floor((Math.random() * 10) + 5);
                 }
                 Axios.post('/api/addCandy', {
-                    user: cookies.user.id,
+                    user: user.id,
                     item: item,
                     slug: slug,
                     quantity: quantity
@@ -156,7 +158,7 @@ function Inventory(props) {
                         var quantity = Math.floor((Math.random() * 5) + 1);
                     }
                     Axios.post('/api/addCandy', {
-                        user: cookies.user.id,
+                        user: user.id,
                         item: item,
                         slug: slug,
                         quantity: quantity
@@ -185,19 +187,19 @@ function Inventory(props) {
 
                         }
                         Axios.post('/api/addItem', {
-                            user: cookies.user.id,
+                            user: user.id,
                             item: item,
                             slug: slug
                         }).then(function (response) {
                             Axios.post('/api/addCandy', {
-                                user: cookies.user.id,
+                                user: user.id,
                                 item: "Super Bonbon",
                                 slug: "rarecandy",
                                 quantity: Math.floor((Math.random() * 3) + 1)
                             }).then(function (response) {
                                 if (Math.random() < 0.01) {
                                     Axios.post('/api/addItem', {
-                                        user: cookies.user.id,
+                                        user: user.id,
                                         item: "Booster",
                                         slug: "booster"
                                     })
@@ -205,19 +207,19 @@ function Inventory(props) {
                                 const megaCanduTier = Math.random();
                                 if (megaCanduTier < 0.001) {
                                     Axios.post('/api/addItem', {
-                                        user: cookies.user.id,
+                                        user: user.id,
                                         item: "Mega Bonbon",
                                         slug: "megacandy"
                                     }).then(function (response) {
                                         Axios
-                                            .get("/api/getInventory/" + cookies.user.id)
+                                            .get("/api/getInventory/" + user.id)
                                             .then(function (response) {
                                                 setInventory(response.data);
                                             })
                                     })
                                 } else {
                                     Axios
-                                        .get("/api/getInventory/" + cookies.user.id)
+                                        .get("/api/getInventory/" + user.id)
                                         .then(function (response) {
                                             setInventory(response.data);
                                         })

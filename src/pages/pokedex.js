@@ -3,9 +3,11 @@ import { useSearchParams } from "react-router-dom";
 import Axios from "axios";
 import moment from "moment/moment";
 import { useCookies } from 'react-cookie';
+import { useAuth } from "../context/AuthContext";
 
 
 function Pokedex() {
+    const { user, loading } = useAuth();
     const [cookies, setCookie] = useCookies();
     const [pokedex, setPokedex] = useState(null);
     const [filteredPokedex, setFilteredPokedex] = useState(null);
@@ -27,7 +29,7 @@ function Pokedex() {
         if (new URLSearchParams(window.location.search).has("user")) {
             user = new URLSearchParams(window.location.search).get("user");
         } else {
-            user = cookies.user.id;
+            user = user.id;
         }
         Axios
             .get("/api/getPokedex/" + user)

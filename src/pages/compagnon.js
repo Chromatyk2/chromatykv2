@@ -6,8 +6,10 @@ import { useCookies } from 'react-cookie';
 import Fight from "../components/fight";
 import ShadowSmokeFront from "../components/shadowSmokeFront";
 import ShadowSmokeBack from "../components/shadowSmokeBack";
+import { useAuth } from "../context/AuthContext";
 function Compagnon() {
     //Cookies
+    const { user, loading } = useAuth();
     const [cookies, setCookie] = useCookies();
     //Pokedex
     const [pokedex, setPokedex] = useState(null);
@@ -29,12 +31,11 @@ function Compagnon() {
     const pokemonContainerRef = useRef(null);
 
     useEffect(() => {
-    const userId = cookies.user.id;
 
     Promise.all([
-        Axios.get("/api/getPokedex/" + userId),
-        Axios.get("/api/getCurrentCompagnon/" + userId),
-        Axios.get("/api/getAllCompagnon/" + userId)
+        Axios.get("/api/getPokedex/" + user.id),
+        Axios.get("/api/getCurrentCompagnon/" + user.id),
+        Axios.get("/api/getAllCompagnon/" + user.id)
     ])
         .then(([pokedexRes, compagnonRes, allCompagnonRes]) => {
             setPokedex(pokedexRes.data);
@@ -50,7 +51,7 @@ function Compagnon() {
             setChooseCompagnon(false);
             setCompagnon(compagnonRes.data);
 
-            return Axios.get("/api/getInventory/" + userId);
+            return Axios.get("/api/getInventory/" + user.id);
         })
         .then((inventoryRes) => {
             if (inventoryRes) {
