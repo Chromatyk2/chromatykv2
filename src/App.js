@@ -23,11 +23,13 @@ import Cartes from './pages/cards.js';
 import { useAuth } from "./context/AuthContext";
 Axios.defaults.withCredentials = true;function App() {
     useEffect(() => {
+        if (!user) {
+            return;
+        }
         document.documentElement.setAttribute(
-            'data-theme',
-            'defaut'
-        );
-    }, []);
+            "data-theme",
+            user.theme
+    }, [user]);
     const [multipleTabs, setMultipleTabs] = useState(false);
     const { user, loading } = useAuth();
         useEffect(() => {

@@ -1,6 +1,6 @@
 * {
     scrollbar-width: thin;
-    scrollbar-color: #b77a3c #3f2811;
+    scrollbar-color: var(--border-light) var(--bg-main);
 }
 
 /* Chrome, Edge, Safari */
@@ -9,14 +9,14 @@
 }
 
 ::-webkit-scrollbar-track {
-    background: #3f2811;
-    border-left: 2px solid #6d4321;
+    background: var(--bg-main);
+    border-left: 2px solid var(--border-dark);
     box-shadow: inset 0 0 8px #00000080;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: repeating-linear-gradient( 45deg, #c78948, #c78948 4px, #b77a3c 4px, #b77a3c 8px );
-    border: 2px solid #6d4321;
+    background: repeating-linear-gradient( 45deg, #c78948, #c78948 4px, var(--border-light) 4px, var(--border-light) 8px );
+    border: 2px solid var(--border-dark);
     border-radius: 10px;
 }
 
@@ -25,7 +25,7 @@
     }
 
 ::-webkit-scrollbar-corner {
-    background: #3f2811;
+    background: var(--bg-main);
 }
 @font-face {
     font-family: 'Charge Vector Black';
@@ -48,7 +48,7 @@ div {
     text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000, 0 0 6px #fff9;
 }
 .App-header {
-    background: linear-gradient(140deg, #120747, #035078);
+    background: linear-gradient(140deg, var(--primary-start), var(--primary-end));
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -59,16 +59,16 @@ div {
 }
 header.App-header p {
     text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
-    color: #fff8dc;
+    color: var(--text-secondary);
 }
 .App-link {
   color: #61dafb;
 }
 .globalContainerCenter {
     align-items: center;
-    background: #3f2811f0;
-    border: 6px solid #6d4321;
-    box-shadow: 0 0 0 4px #b77a3c, 0 15px 40px #0006;
+    background: var(--bg-main)f0;
+    border: 6px solid var(--border-dark);
+    box-shadow: 0 0 0 4px var(--border-light), 0 15px 40px #0006;
     display: flex;
     flex-flow: column;
     justify-content: flex-start;
@@ -81,7 +81,7 @@ header.App-header p {
 }
 .globalContainer {
     align-items: flex-start;
-    background-color: #1207471a;
+    background-color: var(--primary-start)1a;
     box-shadow: 0 5px 30px #000;
     display: flex;
     height: -webkit-fill-available;
@@ -105,14 +105,14 @@ header.App-header p {
     z-index: 10;
 }
 .halfCircle {
-    border-bottom: solid #b77a3c;
-    border-left: solid #b77a3c;
+    border-bottom: solid var(--border-light);
+    border-left: solid var(--border-light);
     border-radius: 0 0 10rem 10rem;
-    border-right: solid #b77a3c;
+    border-right: solid var(--border-light);
     height: 4rem;
     margin: auto;
     width: 5rem;
-    background: #3f2811;
+    background: var(--bg-main);
     box-shadow: 0px 5px 6px 0px #000000;
 }
     .halfCircle:hover {
@@ -132,9 +132,9 @@ header.App-header p {
     gap: 20px;
     overflow-y: hidden;
     border-bottom: white solid;
-    background: #3f2811;
-    border: 6px solid #6d4321;
-    box-shadow: 0 0 0 4px #b77a3c, 1px 9px 6px 0px #000000;
+    background: var(--bg-main);
+    border: 6px solid var(--border-dark);
+    box-shadow: 0 0 0 4px var(--border-light), 1px 9px 6px 0px #000000;
 }
 #navBar.expended {
     height: fit-content;
@@ -170,7 +170,7 @@ a.navLink.linkFromNav p {
 /* ACCEUIL */
 .connectionBar {
     align-items: center;
-    background-color: #120747;
+    background-color: var(--primary-start);
     display: flex;
     font-size: 20px;
     justify-content: center;
@@ -224,8 +224,8 @@ a.navLink.linkFromNav p {
     .showPokedex:hover {
         background: #2b1f0480;
         border: 1px solid #010c12;
-        box-shadow: 0 0 0 3px #2c1a0d, 0 20px 40px #00000080;
-        color: #f4e8c1;
+        box-shadow: 0 0 0 3px var(--shadow-color), 0 20px 40px #00000080;
+        color: var(--text-main);
         cursor: pointer;
     }
 .filterProfil {
@@ -236,8 +236,8 @@ a.navLink.linkFromNav p {
     width: 100%;
     padding-top: 25px;
     padding-bottom: 25px;
-    border-bottom: 2px solid #b77a3c;
-    border-top: 2px solid #b77a3c;
+    border-bottom: 2px solid var(--border-light);
+    border-top: 2px solid var(--border-light);
 }
     .filterProfil button {
         color: white;
@@ -248,10 +248,10 @@ a.navLink.linkFromNav p {
         letter-spacing: 1px;
         border: 2px solid #a4b3bd;
         background: repeating-linear-gradient(90deg, #5a381e 0px, #5a381e 40px, #4a2d18 40px, #4a2d18 80px);
-        border: 1px solid #b77a3c;
+        border: 1px solid var(--border-light);
         border-radius: 10px;
-        box-shadow: 0 0 0 3px #2c1a0d, 0 20px 40px rgba(0, 0, 0, .5);
-        color: #f4e8c1;
+        box-shadow: 0 0 0 3px var(--shadow-color), 0 20px 40px rgba(0, 0, 0, .5);
+        color: var(--text-main);
     }
 
         .filterProfil button:hover {
@@ -293,9 +293,9 @@ a.leaderboardHeaderContainerLink {
     justify-content: space-between;
     width: 100%;
     text-decoration: none;
-    border: 1px solid #b77a3c;
-    box-shadow: 0 0 0 3px #2c1a0d, 0 20px 40px #00000080;
-    color: #f4e8c1;
+    border: 1px solid var(--border-light);
+    box-shadow: 0 0 0 3px var(--shadow-color), 0 20px 40px #00000080;
+    color: var(--text-main);
 }
 .leaderboardHeaderContainer {
     display: flex;
@@ -306,7 +306,7 @@ a.leaderboardHeaderContainerLink {
     border-radius: 10px;
     padding: 20px;
     align-items: center;
-    border: 2px solid #b77a3c;
+    border: 2px solid var(--border-light);
 }
 .leaderboardHeaderContainer:hover {
     background-color: #3b3b3b4d;
@@ -365,7 +365,7 @@ p.levelProfil {
     position: relative;
     transition: width 1s ease-in-out;
     border-radius: 10px;
-    background: linear-gradient(140deg, #120747, #035078);
+    background: linear-gradient(140deg, var(--primary-start), var(--primary-end));
 }
 .progressBarProfilInternal p {
     color: #fff;
@@ -397,8 +397,8 @@ p.levelProfil {
     height: 100px;
     padding-left: 25px;
     width: 380px;
-    border: 1px solid #6d4321;
-    box-shadow: 0 0 0 4px #b77a3c, 0 15px 40px rgba(0, 0, 0, .4);
+    border: 1px solid var(--border-dark);
+    box-shadow: 0 0 0 4px var(--border-light), 0 15px 40px rgba(0, 0, 0, .4);
 }
 .profilPicture {
     border-radius: 10px;
@@ -406,8 +406,8 @@ p.levelProfil {
     padding: 5px;
     margin-right: 10px;
     height: 85px;
-    border: 1px solid #6d4321;
-    box-shadow: 0 0 0 1px #b77a3c, 0 15px 40px #0006;
+    border: 1px solid var(--border-dark);
+    box-shadow: 0 0 0 1px var(--border-light), 0 15px 40px #0006;
 }
 .compagnonPicture {
     border-radius: 10px;
@@ -415,8 +415,8 @@ p.levelProfil {
     margin-left: 10px;
     padding: 5px;
     width: 85px;
-    border: 1px solid #6d4321;
-    box-shadow: 0 0 0 1px #b77a3c, 0 15px 40px #0006;
+    border: 1px solid var(--border-dark);
+    box-shadow: 0 0 0 1px var(--border-light), 0 15px 40px #0006;
 }
 .skinContainer .profilPicture:hover{
     background-color:white;
@@ -489,7 +489,7 @@ p.levelProfil {
     display: flex;
     flex-flow: column;
     width: 270px;
-    border: 2px solid #b77a3c;
+    border: 2px solid var(--border-light);
 }
 
 .shinydexName {
@@ -523,7 +523,7 @@ p.levelProfil {
 }
 
 .spanShinydex {
-    color: #fff8dc;
+    color: var(--text-secondary);
 }
 
 .linkShinydex {
@@ -657,10 +657,10 @@ p.levelProfil {
     position: relative;
     justify-content: center;
     background-size: cover;
-    border: 5px solid #b77a3c;
+    border: 5px solid var(--border-light);
     border-radius: 10px;
-    box-shadow: 0 0 0 3px #2c1a0d, 0 20px 40px rgba(0, 0, 0, .5);
-    color: #f4e8c1;
+    box-shadow: 0 0 0 3px var(--shadow-color), 0 20px 40px rgba(0, 0, 0, .5);
+    color: var(--text-main);
 }
 
 
@@ -882,9 +882,9 @@ fightActionsFlee img {
     width: 145px;
     border-radius: 10px;
     padding: 10px 0px 10px 0px;
-    background: #3f2811f0;
-    border: 0px solid #6d4321;
-    box-shadow: 0 0 0 3px #b77a3c, 0 15px 40px #0006;
+    background: var(--bg-main)f0;
+    border: 0px solid var(--border-dark);
+    box-shadow: 0 0 0 3px var(--border-light), 0 15px 40px #0006;
     position: relative;
 }
 
@@ -939,7 +939,7 @@ span.dexNumber {
     font-size: 10px;
     left: 5px;
     top: -6px;
-    color: #fff8dc;
+    color: var(--text-secondary);
 }
 .genFilter {
     display: flex;
@@ -957,10 +957,10 @@ span.dexNumber {
         letter-spacing: 1px;
         border: 2px solid #a4b3bd;
         background: repeating-linear-gradient(90deg, #5a381e 0px, #5a381e 40px, #4a2d18 40px, #4a2d18 80px);
-        border: 1px solid #b77a3c;
+        border: 1px solid var(--border-light);
         border-radius: 10px;
-        box-shadow: 0 0 0 3px #2c1a0d, 0 20px 40px rgba(0, 0, 0, .5);
-        color: #f4e8c1;
+        box-shadow: 0 0 0 3px var(--shadow-color), 0 20px 40px rgba(0, 0, 0, .5);
+        color: var(--text-main);
     }
         .genFilter button:hover {
             cursor: pointer;
@@ -1172,7 +1172,7 @@ span.dexNumber {
     position: absolute;
     left: 50%;
     top: 50%;
-    color: #fff8dc;
+    color: var(--text-secondary);
     font-size: 32px;
     font-weight: bold;
     pointer-events: none;
@@ -1845,7 +1845,7 @@ button.openBoosterButton span {
         display: inline-block;
         padding: 15px 40px;
         background: linear-gradient(#b87a3d, #8b5a2b);
-        color: #fff8dc;
+        color: var(--text-secondary);
         font-family: Charge Vector Black;
         font-size: 2rem;
         font-weight: bold;
@@ -1885,9 +1885,9 @@ button.openBoosterButton span {
     }
 
     footer {
-        background: #3f2811f0;
-        border: 6px solid #6d4321;
-        box-shadow: 0 0 0 4px #b77a3c, -3px -7px 20px 0px #000000;
+        background: var(--bg-main)f0;
+        border: 6px solid var(--border-dark);
+        box-shadow: 0 0 0 4px var(--border-light), -3px -7px 20px 0px #000000;
         position: relative;
         z-index: 0;
     }
@@ -1896,9 +1896,9 @@ button.openBoosterButton span {
     bottom: 20px;
     right: 20px;
     width: 340px;
-    background: #3f2811f0;
-    border: 4px solid #6d4321;
-    box-shadow: 0 0 0 2px #b77a3c, 0 10px 25px rgba(0,0,0,0.6);
+    background: var(--bg-main)f0;
+    border: 4px solid var(--border-dark);
+    box-shadow: 0 0 0 2px var(--border-light), 0 10px 25px rgba(0,0,0,0.6);
     border-radius: 12px;
     overflow: hidden;
     z-index: 9999;
@@ -1908,11 +1908,11 @@ button.openBoosterButton span {
     justify-content: space-between;
     align-items: center;
     padding: 10px 15px;
-    background: linear-gradient( to bottom, #7d4d25, #6d4321 );
+    background: linear-gradient( to bottom, #7d4d25, var(--border-dark) );
     color: #fff;
     font-weight: bold;
     font-size: 14px;
-    border-bottom: 2px solid #b77a3c;
+    border-bottom: 2px solid var(--border-light);
 }
 .twitchWidgetButton {
     background: none;
@@ -1938,9 +1938,9 @@ button.openBoosterButton span {
     bottom: 20px;
     right: 20px;
     padding: 10px 18px;
-    background: #3f2811f0;
-    border: 4px solid #6d4321;
-    box-shadow: 0 0 0 2px #b77a3c, 0 8px 20px rgba(0,0,0,0.6);
+    background: var(--bg-main)f0;
+    border: 4px solid var(--border-dark);
+    box-shadow: 0 0 0 2px var(--border-light), 0 8px 20px rgba(0,0,0,0.6);
     border-radius: 12px;
     color: white;
     font-weight: bold;
