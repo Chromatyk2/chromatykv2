@@ -7,82 +7,49 @@ import Login from '../services/auth.services.js';
 
 function HomePage(props) {
     const [shinydex, setShinydex] = useState(null);
-    const [cookies, setCookie] = useCookies();
     const [onLoad, setOnload] = useState(true);
+    const [user, setUser] = useState(null);
     useEffect(() => {
-        if (typeof cookies.user === "undefined") {
-            Axios
-                .get("/api/getShinydex")
-                .then(function (response) {
-                    setShinydex(response.data.sort((a, b) => b.id - a.id))
-                    setTimeout(function () {
-                        setOnload(false);
-                    }, 300);
-                })
-        } else {
-            Axios
-                .get("/api/getUser/" + cookies.user.id)
-                .then(function (response) {
-                    if (response.data.length < 1) {
-                        Axios.post('/api/addProfil', {
-                            user: cookies.user.id,
-                            login: cookies.user.data[0].login,
-                            level: 1,
-                            xp: 0,
-                            skin: 9999,
-                            compagnon: 0
-                        })
-                        .then(function (response) {
-                            Axios.post('/api/addCandy', {
-                                user: cookies.user.id,
-                                item: "Miel Ordinaire",
-                                slug: "honey",
-                                quantity: 1
-                            })
-                            .then(function (response) {
-                                Axios.post('/api/addCandy', {
-                                    user: cookies.user.id,
-                                    item: "Bonbon S",
-                                    slug: "exps",
-                                    quantity: 10
-                                })
-                                .then(function (response) {
-                                    Axios.post('/api/addCandy', {
-                                        user: cookies.user.id,
-                                        item: "Poke Ball",
-                                        slug: "ball",
-                                        quantity: 10
-                                    })
-                                    .then(function (response) {
-                                        Axios.post('/api/addCandy', {
-                                            user: cookies.user.id,
-                                            item: "Super Bonbon",
-                                            slug: "rarecandy",
-                                            quantity: 0
-                                        })
-                                        .then(function (response) {
-                                            Axios
-                                                .get("/api/getShinydex")
-                                                .then(function (response) {
-                                                    setShinydex(response.data.sort((a, b) => b.id - a.id))
-                                                        setOnload(false);
-                                                })
-                                        })
-                                    })
-                                })
-                            })
-                        })
-                    } else {
-                        Axios
-                            .get("/api/getShinydex")
-                            .then(function (response) {
-                                setShinydex(response.data.sort((a, b) => b.id - a.id))
-                                    setOnload(false);
-                            })
-                    }
-                })
-            }
+        loadHome();
     }, []);
+    async function loadHome() {
+        try {
+            const me =
+                await Axios.get(
+                    "/api/me"
+                );
+            const user =
+                me.data.user;
+            setUser(user);
+            if (user) {
+                const profile =
+                    await Axios.get(
+                        `/api/getUser/${user.id}`
+                    );
+                if (
+                    profile.data.length === 0
+                ) {
+                    await Axios.post(
+                        "/api/createAccount"
+                    );
+                }
+            }
+            const shinyResponse =
+                await Axios.get(
+                    "/api/getShinydex"
+                );
+            setShinydex(
+                shinyResponse.data.sort(
+                    (a, b) => b.id - a.id
+                )
+            );
+        } catch (err) {
+            console.error(err);
+            setUser(null);
+        } finally {
+            setOnload(false);
+        }
+    }
     return (
         <div className={"globalContainerCenter"}>
             <h1 className="wood-sign">
@@ -95,7 +62,7 @@ function HomePage(props) {
                     Ouvre des boosters, capture des Pokémons, complète ton Pokédex,
                     participe à l'élevage et gagne des récompenses pendant les streams.
                 </p>       
-            {typeof cookies.user === "undefined" &&
+            {!user &&
                 <div className={"connectionBar"}>
                     <p>Connectez-vous pour jouer !</p>
                     <Login />
