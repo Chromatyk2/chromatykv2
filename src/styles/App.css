@@ -2193,3 +2193,68 @@ button.openBoosterButton span {
         transform: scale(1.05);
         font-weight: bold;
     }
+.achievementCard {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+    border-radius: 15px;
+}
+
+.achievementBadge {
+    width: 96px;
+    height: 96px;
+    flex-shrink: 0;
+}
+
+.achievementContent {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.achievementTop {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.achievementName {
+    margin: 0;
+    font-size: 22px;
+}
+
+.achievementDescription {
+    margin-top: 5px;
+    opacity: .8;
+    font-size: 14px;
+}
+
+.achievementBar {
+    width: 100%;
+    height: 16px;
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.achievementBarFill {
+    height: 100%;
+}
+
+.achievementFooter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.achievementUnlocked {
+    font-size: 32px;
+    color: gold;
+}
+
+.achievementCard.locked {
+    opacity: .5;
+    filter: grayscale(100%);
+}

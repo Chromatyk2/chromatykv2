@@ -195,24 +195,12 @@ function AchievementsPage() {
 
                                             <AchievementCard
                                                 key={achievement.code}
-                                                achievement={
-                                                    achievement.achievement
-                                                }
-                                                description={
-                                                    achievement.description
-                                                }
-                                                rewardTitle={
-                                                    achievement.reward_title
-                                                }
-                                                owned={
-                                                    achievement.progress
-                                                }
-                                                total={
-                                                    achievement.target
-                                                }
-                                                type={
-                                                    achievement.category
-                                                }
+                                                achievement={achievement.achievement}
+                                                description={achievement.description}
+                                                rewardTitle={achievement.reward_title}
+                                                owned={achievement.progress}
+                                                total={achievement.target}
+                                                type={achievement.category}
                                             />
 
                                         )
