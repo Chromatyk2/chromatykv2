@@ -2461,49 +2461,53 @@ button.achievementSubTab {
         border: none;
         box-shadow: none;
     }
-
-    .welcomeText p {
-        margin-top: 80px;
-    }
-
-    .titlecommon, .titleepic, .titlelegendary, .titlemythic, .titlerare {
-        font-size: 0.5rem;
-        min-width: 100px;
-    }
-
     + .globalContainerCenter p {
         font-size: 1rem;
     }
-
-    .wood-sign {
-        font-size: 1rem;
-    }
-
     a.navLink.linkFromNav {
         height: 80px;
         width: 80px;
     }
-
-        a.navLink.linkFromNav p {
-            font-size: 0.8rem;
-            padding: 5px;
-        }
-
-    .App-header {
-        padding-top: 100px;
+    a.navLink.linkFromNav p {
+        font-size: 0.8rem;
+        padding: 5px;
     }
 
+    .welcomeText p {
+        marin-top: 80px;
+    }
+    .titlecommon, .titleepic, .titlelegendary, .titlemythic, .titlerare {
+        font-size: 0.5rem;
+        min-width: 100px;
+    }
     .globalContainerCenter {
         padding-top: 95px;
     }
-
     .honeyActions {
         height: 110px;
         width: 110px;
     }
-
-        .honeyActions p {
-            font-size: 0.8rem;
-            margin: 0;
-        }
+    .honeyActions p {
+        font-size: 0.8rem;
+        margin: 0;
+    }
+    .wood-sign {
+        font-size: 1rem;
+    }
+    .fightSpriteCard {
+        height: 160px;
+        width: 250px;
+    }
+    .fightContainer > .fightName {
+        font-size: 1rem;
+    }
+    .heart {        
+        height: 25px;
+        right: -9px;
+        width: 25px;
+    }
+    .heartInt {
+        height: 20px;
+        width: 20px;
+    }
 }
