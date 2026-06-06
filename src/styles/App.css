@@ -2553,3 +2553,64 @@ button.achievementSubTab {
     }
 
 }
+.notification-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.notification {
+    width: 320px;
+    background: var(--card);
+    border: 2px solid gold;
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 8px 25px rgba(0,0,0,.3);
+    animation: slideIn .3s ease, fadeOut .5s ease 4.5s forwards;
+}
+
+.notification-title {
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.notification-achievement {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.notification-description {
+    opacity: .8;
+    margin-top: 4px;
+}
+
+.notification-reward {
+    margin-top: 12px;
+    color: gold;
+    font-weight: 600;
+}
+
+@keyframes slideIn {
+
+    from {
+        transform: translateX(400px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+
+    to {
+        opacity: 0;
+        transform: translateX(400px);
+    }
+}
