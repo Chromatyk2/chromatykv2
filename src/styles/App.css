@@ -286,6 +286,7 @@ a.navLink.linkFromNav p {
     flex-direction: row;
     justify-content: space-between;
     width: 100%;
+    flex-wrap: wrap;
 }
 a.leaderboardHeaderContainerLink {
     display: flex;
@@ -1820,20 +1821,9 @@ button.openBoosterButton span {
     }
     /* Media Query */
     @media (max-width: 1250px) {
-        .globalContainer {
+        fightContainer, .globalContainer, .globalContainerCenter, .navBarContent {
             width: 100%;
-        }
-
-        .fightContainer {
-            width: 100%;
-        }
-
-        .navBarContent {
-            width: 100%;
-        }
-
-        .globalContainerCenter {
-            width: 100%;
+            padding: 0 0px 80px 0;
         }
 
         .welcomeText p {
