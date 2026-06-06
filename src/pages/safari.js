@@ -22,12 +22,18 @@ function Fight() {
     const [profil, setProfil] = useState(null);
     const [ballStyle, setBallStyle] = useState(null);
     const [onLoad, setOnload] = useState(true);
+    const [catchAnimation, setCatchAnimation] = useState(false);
     useEffect(() => {
         loadSafari();
     }, []);
     async function loadSafari() {
         try {
+            setOnCatch(true);
 
+            sessionStorage.setItem(
+                "catchingPokemon",
+                "1"
+            );
             const response =
                 await Axios.get(
                     "/api/safari"
@@ -100,8 +106,10 @@ function Fight() {
                 err
             );
         } finally {
-            setOnload(
-                false
+            setOnload(false);
+            setOnCatch(false);
+            sessionStorage.removeItem(
+                "catchingPokemon"
             );
         }
     }

@@ -27,8 +27,8 @@ Axios.defaults.withCredentials = true;
 function App() {
     const [multipleTabs, setMultipleTabs] = useState(false);
     const { user, loading } = useAuth();
-    const [notifications, setNotifications] =
-        useState([]);
+    const [notifications, setNotifications] = useState([]);
+    const [isSafariAnimation, setIsSafariAnimation] = useState(false);
     useEffect(() => {
         const handleAchievement = data => {
             const id =
@@ -59,25 +59,68 @@ function App() {
             );
         };
     }, []);
+    const showNotification = (notification) => {
+        const id =
+            crypto.randomUUID();
+        setNotifications(prev => [
+            ...prev,
+            {
+                id,
+                ...notification
+            }
+        ]);
+        setTimeout(() => {
+            setNotifications(prev =>
+                prev.filter(
+                    n => n.id !== id
+                )
+            );
+        }, 5000);
+    };
+    useEffect(() => {
+        const handleAchievement = data => {
+            if (
+                sessionStorage.getItem(
+                    "catchingPokemon"
+                )
+            ) {
+                setTimeout(
+                    () => showNotification(data),
+                    7000
+                );
+            } else {
+                showNotification(data);
+            }
+        };
+        socket.on(
+            "achievementUnlocked",
+            handleAchievement
+        );
+        return () => {
+            socket.off(
+                "achievementUnlocked",
+                handleAchievement
+            );
+        };
+    }, []);
     useEffect(() => {
         const handleLevelUp = data => {
-            const id =
-                crypto.randomUUID();
-            setNotifications(prev => [
-                ...prev,
-                {
-                    id,
-                    type: "levelup",
-                    ...data
-                }
-            ]);
-            setTimeout(() => {
-                setNotifications(prev =>
-                    prev.filter(
-                        n => n.id !== id
-                    )
+            const notification = {
+                type: "levelup",
+                ...data
+            };
+            if (
+                sessionStorage.getItem(
+                    "catchingPokemon"
+                )
+            ) {
+                setTimeout(
+                    () => showNotification(notification),
+                    7000
                 );
-            }, 5000);
+            } else {
+                showNotification(notification);
+            }
         };
         socket.on(
             "profileLevelUp",
@@ -105,7 +148,7 @@ function App() {
             user?.theme || "defaut"
         );
     }, [user?.theme]);
-        useEffect(() => {
+    useEffect(() => {
         const channel = new BroadcastChannel("pokemon-app");
         const tabId = crypto.randomUUID();
         let hasOtherTab = false;
