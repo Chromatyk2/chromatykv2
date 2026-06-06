@@ -36,23 +36,78 @@ function AchievementsPage() {
             );
         }
     }
+    const allSuccess =
+        achievements.flatMap(
+            generation =>
+                generation.success
+        );
+
+    const unlocked =
+        allSuccess.filter(
+            success =>
+                success.owned >= success.total
+        ).length;
+
+    const totalAchievements =
+        allSuccess.length;
+
+    const progress =
+        totalAchievements > 0
+            ? Math.floor(
+                unlocked /
+                totalAchievements *
+                100
+            )
+            : 0;
     return (
         <div className="achievementsPage">
             <h2 className="wood-sign">
                 Hall des Succès
             </h2>
+            <div className="achievementSummary">
+
+                <div className="achievementSummaryTitle">
+                    🏆 {unlocked} / {totalAchievements}
+                    {" "}
+                    succès débloqués
+                </div>
+
+                <div className="achievementSummaryBar">
+
+                    <div
+                        className="achievementSummaryFill"
+                        style={{
+                            width:
+                                `${progress}%`
+                        }}
+                    />
+
+                </div>
+
+                <div className="achievementSummaryPercent">
+                    {progress}%
+                </div>
+
+            </div>
             {achievements.map(
                 generation => (
                     <div
                         key={generation.gen}
                         className="achievementGeneration"
                     >
-                        <h3>
-                            {generation.name}
-                        </h3>
+
+                        <div className="achievementGenerationHeader">
+
+                            <h3>
+                                {generation.name}
+                            </h3>
+
+                        </div>
+
                         <div
                             className="achievementGrid"
                         >
+
                             {generation.success.map(
                                 success => (
 
@@ -62,9 +117,12 @@ function AchievementsPage() {
                                         }
                                         {...success}
                                     />
+
                                 )
                             )}
+
                         </div>
+
                     </div>
                 )
             )}
