@@ -1,4 +1,15 @@
-function AchievementsPage({achievements}) {
+import React, { useState, useEffect } from 'react';
+import { useSearchParams } from "react-router-dom";
+import Axios from 'axios'
+import moment from "moment";
+import { useCookies } from 'react-cookie';
+import Fight from "../components/fight";
+import { useAuth } from "../context/AuthContext";
+import AchievementCard from "../components/achievement/AchievementCard";
+function AchievementsPage() {
+    const { user, loading } = useAuth();
+    const [achievements, setAchievements] =
+        useState(null);
     const GEN_NAMES = {
         1: "Kanto",
         2: "Johto",
@@ -38,8 +49,6 @@ function AchievementsPage({achievements}) {
                 };
             }
         ) || [];
-    const [achievements, setAchievements] =
-        useState(null);
     useEffect(() => {
         loadAchievements();
     }, []);
@@ -47,7 +56,7 @@ function AchievementsPage({achievements}) {
         try {
             const response =
                 await Axios.get(
-                    `/api/profile/${id}/achievements`
+                    `/api/profile/${user}/achievements`
                 );
 
             setAchievements(
@@ -91,3 +100,4 @@ function AchievementsPage({achievements}) {
         </div>
     );
 }
+export default AchievementsPage;
