@@ -4,6 +4,16 @@ import React, { useState, useEffect } from 'react';
 function ProfileTitles({ profileData, reload, isOwner }) {
     const [loadSkin, setLoadSkin] = useState(false);
     const [openingSkin, setOpeningSkin] = useState(null);
+    const [rarityFilter, setRarityFilter] = useState("all");
+    const rarities = [
+        { code: "all", label: "Tous", className: "titlefilter titlecommon" },
+        { code: "common", label: "Common", className: "titlefilter titlecommon" },
+        { code: "rare", label: "Rare", className: "titlefilter titlerare" },
+        { code: "epic", label: "Epic", className: "titlefilter titleepic" },
+        { code: "legendary", label: "⭐ Legendary", className: "titlefilter titlelegendary" },
+        { code: "mythic", label: "👑 Mythical", className: "titlefilter titlemythic" },
+        { code: "unique", label: "💎 Unique", className: "titlefilter titleunique" }
+    ];
     const profile =
         profileData.profile;
     const titles =
@@ -24,11 +34,25 @@ function ProfileTitles({ profileData, reload, isOwner }) {
             console.error(err);
         }
     }
+    const filteredTitles =
+        rarityFilter === "all"
+            ? titles
+            : titles.filter(
+                (title) =>
+                    title.rarity.toLowerCase() === rarityFilter
+            );
     return (
         <>
-            <div style={{justifyContent:"center"}} className="skinContainer">
-                {titles.map((item) => (
-                    <div onClick={() => changeTitle(item.code)} loading={"lazy"} className={`title${(item.rarity)}`}>
+            <div style={{display: "flex",gap: "8px",flexWrap: "wrap",justifyContent: "center",marginBottom: "15px"}}>
+                {rarities.map((rarity) => (
+                    <div key={rarity.code} className={rarity.className} style={{cursor: "pointer",opacity:rarityFilter === rarity.code ? 1 : 0.65,transform:rarityFilter === rarity.code ? "scale(1.05)" : "scale(1)"}} onClick={() => setRarityFilter(rarity.code)}>
+                        {rarity.label}
+                    </div>
+                ))}
+            </div>
+            <div style={{ justifyContent: "center" }} className="skinContainer">
+                {filteredTitles.map((item) => (
+                    <div key={item.code} onClick={() => changeTitle(item.code)} className={`title${item.rarity}`}>
                         {item.rarity === "legendary" && "⭐ "}
                         {item.rarity === "mythic" && "👑 "}
                         {item.name}
