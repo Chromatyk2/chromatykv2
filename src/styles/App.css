@@ -2200,6 +2200,7 @@ button.openBoosterButton span {
     width: 100%;
     padding: 20px;
     border-radius: 15px;
+    font-size: 14px;
 }
 
 .achievementBadge {
@@ -2223,10 +2224,10 @@ button.openBoosterButton span {
 
 .achievementName {
     margin: 0;
-    font-size: 22px;
+    font-size: 19px;
+    text-align: left;
 }
-
-.achievementDescription {
+p.achievementDescription {
     margin-top: 5px;
     opacity: .8;
     font-size: 14px;
