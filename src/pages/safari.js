@@ -207,7 +207,27 @@ function Fight() {
                     setCatchResult(
                         "fled"
                     );
-                    loadSafari();
+                    setTimeout(() => {
+                        setPokemon(
+                            null
+                        );
+                        setCurrentLove(
+                            0
+                        );
+                        setShiny(
+                            0
+                        );
+                        setNegative(
+                            0
+                        );
+                        setOnCatch(
+                            false
+                        );
+                        setCatchResult(
+                            null
+                        );
+                        loadSafari();
+                    }, 1000);
                 } else {
                     setCatchResult(
                         "failed"
