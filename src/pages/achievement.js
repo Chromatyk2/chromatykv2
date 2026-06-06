@@ -72,9 +72,7 @@ function AchievementsPage() {
                     {" "}
                     succès débloqués
                 </div>
-
                 <div className="achievementSummaryBar">
-
                     <div
                         className="achievementSummaryFill"
                         style={{
@@ -82,7 +80,6 @@ function AchievementsPage() {
                                 `${progress}%`
                         }}
                     />
-
                 </div>
 
                 <div className="achievementSummaryPercent">
