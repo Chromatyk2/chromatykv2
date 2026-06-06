@@ -171,6 +171,10 @@ function Fight() {
         setOnCatch(
             true
         );
+        sessionStorage.setItem(
+            "catchingPokemon",
+            "1"
+        );
         const response =
             await Axios.post(
                 "/api/safari/catch",
@@ -197,6 +201,9 @@ function Fight() {
                     );
                     setNegative(
                         0
+                    );
+                    sessionStorage.removeItem(
+                        "catchingPokemon"
                     );
                     setOnCatch(
                         false
@@ -228,6 +235,9 @@ function Fight() {
                         setNegative(
                             0
                         );
+                        sessionStorage.removeItem(
+                            "catchingPokemon"
+                        );
                         setOnCatch(
                             false
                         );
@@ -239,6 +249,9 @@ function Fight() {
                 } else {
                     setCatchResult(
                         "failed"
+                    );
+                    sessionStorage.removeItem(
+                        "catchingPokemon"
                     );
                     setOnCatch(
                         false
