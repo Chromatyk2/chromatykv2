@@ -155,9 +155,6 @@ function App() {
                           <div className="notification-title">
                               🏆 Succès débloqué
                           </div>
-                          <div className="notification-achievement">
-                              {notification.achievementName}
-                          </div>
                           <div className="notification-description">
                               {notification.description}
                           </div>

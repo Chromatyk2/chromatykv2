@@ -2564,13 +2564,16 @@ button.achievementSubTab {
 }
 
 .notification {
-    width: 320px;
-    background: var(--card);
-    border: 2px solid gold;
+    animation: slideIn .3s ease, fadeOut .5s ease 4.5s forwards;
     border-radius: 12px;
     padding: 16px;
-    box-shadow: 0 8px 25px rgba(0,0,0,.3);
-    animation: slideIn .3s ease, fadeOut .5s ease 4.5s forwards;
+    width: 320px;
+    color: var(--text-secondary);
+    font-family: Charge Vector Black;
+    font-size: 1rem;
+    background: var(--bg-main);
+    border: 2px solid var(--border-dark);
+    box-shadow: 0 0 0 1px var(--border-light), 0 15px 40px #000000;
 }
 
 .notification-title {
