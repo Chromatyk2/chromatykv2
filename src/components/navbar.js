@@ -59,12 +59,10 @@ function NavBar(props) {
                     <img src={"/card.png"} />
                     <p>Cartes</p>
                 </Link>
-                {user && user.login === "chromatyk" &&
-                    <Link onClick={deployNav} className="navLink linkFromNav" to="/succes">
-                        <img src={"/trophee.png"} />
-                        <p>Succès</p>
-                    </Link>
-                }
+                <Link onClick={deployNav} className="navLink linkFromNav" to="/succes">
+                    <img src={"/trophee.png"} />
+                    <p>Succès</p>
+                </Link>
             </div>
             <div onClick={deployNav} className="halfCircle">
                 <svg onClick={deployNav} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" height="55" width="55">
