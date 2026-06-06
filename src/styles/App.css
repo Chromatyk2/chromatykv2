@@ -2083,3 +2083,47 @@ button.openBoosterButton span {
         font-size: 32px;
         text-shadow: 0 0 8px rgba( 255, 255, 255, .4 );
     }
+.achievementCard {
+    position: relative;
+    padding: 20px;
+    border-radius: 15px;
+    transition: transform .2s ease, box-shadow .2s ease;
+}
+
+    .achievementCard:hover {
+        transform: translateY(-3px);
+    }
+
+    .achievementCard.normal {
+        border: 2px solid #4a90e2;
+    }
+
+    .achievementCard.shiny {
+        border: 2px solid gold;
+    }
+
+    .achievementCard.shadow {
+        border: 2px solid #7d5fff;
+    }
+
+    .achievementCard.completed {
+        box-shadow: 0 0 20px rgba(255,215,0,.4);
+    }
+
+.achievementReward {
+    margin-top: 5px;
+    font-size: 14px;
+    opacity: .85;
+}
+
+.achievementFooter {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.achievementUnlocked {
+    margin-top: 10px;
+    color: gold;
+    font-weight: bold;
+}
