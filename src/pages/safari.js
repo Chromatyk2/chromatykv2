@@ -170,7 +170,6 @@ function Fight() {
                     ball
                 }
             );
-        await loadSafari();
         if (
             response.data.success
         ) {
@@ -197,6 +196,7 @@ function Fight() {
                     setCatchResult(
                         null
                     );
+                    loadSafari();
                 }, 1000);
             }, 5750);
         } else {
@@ -226,9 +226,7 @@ function Fight() {
                         setCatchResult(
                             null
                         );
-                        setTimeout(() => {
-                            loadSafari();
-                        }, 5000);
+                        loadSafari();
                     }, 1000);
                 } else {
                     setCatchResult(
