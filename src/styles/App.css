@@ -1821,10 +1821,12 @@ button.openBoosterButton span {
     }
     /* Media Query */
     @media (max-width: 1250px) {
-        fightContainer, .globalContainer, .globalContainerCenter, .navBarContent {
+        .globalContainer, .globalContainerCenter, .navBarContent, fightContainer {
+            padding: 0 0 80px;
             width: 100%;
-            padding: 0 0px 80px 0;
             margin: 0;
+            border: none;
+            box-shadow: none;
         }
 
         .welcomeText p {
@@ -1833,6 +1835,34 @@ button.openBoosterButton span {
         .titlecommon, .titleepic, .titlelegendary, .titlemythic, .titlerare {
             font-size: 0.5rem;            
             min-width: 100px;
+        }
+        + .globalContainerCenter p {
+            font-size: 1rem;
+        }
+        .wood-sign {
+            font-size: 1rem;
+        }
+        a.navLink.linkFromNav {
+            height: 80px;
+            width: 80px;
+        }
+        a.navLink.linkFromNav p {
+            font-size: 0.8rem;
+            padding: 5px;
+        }
+        .App-header {
+            padding-top: 100px;
+        }
+        .globalContainerCenter {
+            padding-top: 95px;
+        }
+        .honeyActions {
+            height: 110px;
+            width: 110px;
+        }
+        .honeyActions p {
+            font-size: 0.8rem;
+            margin: 0;
         }
     }
 
