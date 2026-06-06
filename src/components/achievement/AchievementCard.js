@@ -15,7 +15,8 @@ function AchievementCard({
     const icons = {
         normal: "📖",
         shiny: "✨",
-        shadow: "🌑"
+        shadow: "🌑",
+        ultimate: "👑"
     };
     return (
         <div

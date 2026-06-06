@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useSearchParams } from "react-router-dom";
 import Axios from 'axios'
 import moment from "moment";
-import { useCookies } from 'react-cookie';
 import Fight from "../components/fight";
 import { useAuth } from "../context/AuthContext";
 import AchievementCard from "../components/achievement/AchievementCard";
@@ -36,27 +35,18 @@ function AchievementsPage() {
             );
         }
     }
-    const allSuccess =
-        achievements.flatMap(
-            generation =>
-                generation.success
-        );
-
     const unlocked =
-        allSuccess.filter(
-            success =>
-                success.owned >= success.total
+        achievements.filter(
+            achievement =>
+                achievement.completed
         ).length;
-
     const totalAchievements =
-        allSuccess.length;
-
+        achievements.length;
     const progress =
         totalAchievements > 0
             ? Math.floor(
                 unlocked /
-                totalAchievements *
-                100
+                totalAchievements * 100
             )
             : 0;
     return (
@@ -66,64 +56,52 @@ function AchievementsPage() {
                 Hall des Succès
             </h2>
             <div className="achievementSummary">
-
-                <div className="achievementSummaryTitle">
-                    🏆 {unlocked} / {totalAchievements}
-                    {" "}
-                    succès débloqués
-                </div>
-                <div className="achievementSummaryBar">
-                    <div
-                        className="achievementSummaryFill"
-                        style={{
-                            width:
-                                `${progress}%`
-                        }}
-                    />
-                </div>
-
-                <div className="achievementSummaryPercent">
-                    {progress}%
-                </div>
-
+            <div className="achievementSummaryTitle">
+                🏆 {unlocked} / {totalAchievements}
+                {" "}
+                succès débloqués
             </div>
-            {achievements.map(
-                generation => (
-                    <div
-                        key={generation.gen}
-                        className="achievementGeneration"
-                    >
+            <div className="achievementSummaryBar">
+                <div
+                    className="achievementSummaryFill"
+                    style={{
+                        width:
+                            `${progress}%`
+                    }}
+                />
+            </div>
+            <div className="achievementSummaryPercent">
+                {progress}%
+            </div>
+            </div>
+                <div className="achievementGrid">
 
-                        <div className="achievementGenerationHeader">
+                    {achievements.map(
+                        achievement => (
 
-                            <h3>
-                                {generation.name}
-                            </h3>
+                            <AchievementCard
+                                key={achievement.code}
+                                achievement={
+                                    achievement.achievement
+                                }
+                                rewardTitle={
+                                    achievement.reward_title
+                                }
+                                owned={
+                                    achievement.progress
+                                }
+                                total={
+                                    achievement.target
+                                }
+                                type={
+                                    achievement.category
+                                }
+                            />
 
-                        </div>
+                        )
+                    )}
 
-                        <div
-                            className="achievementGrid"
-                        >
-
-                            {generation.success.map(
-                                success => (
-
-                                    <AchievementCard
-                                        key={
-                                            `${generation.gen}-${success.type}`
-                                        }
-                                        {...success}
-                                    />
-
-                                )
-                            )}
-
-                        </div>
-
-                    </div>
-                )
-            )}
+                </div>
             </div>
         </div>
     );
