@@ -2414,7 +2414,6 @@ button.achievementSubTab {
     -webkit-text-fill-color: transparent;
     animation: uniqueRainbow 4s linear infinite, uniqueGlow 2s ease-in-out infinite;
 }
-}
 
     .titleunique::before {
         content: "";
