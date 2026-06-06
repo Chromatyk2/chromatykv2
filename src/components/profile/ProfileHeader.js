@@ -32,6 +32,11 @@ function ProfileHeader({
                         <p className="levelProfil">
                             Niveau {profile.level}
                         </p>
+                        <div loading={"lazy"} className={`title${(profile.title_rarity)}`}>
+                            {profile.title_rarity === "legendary" && "⭐ "}
+                            {profile.title_rarity === "mythic" && "👑 "}
+                            {profile.title_name}
+                        </div>
                     </div>
                 </div>
                 {companion && (                    
