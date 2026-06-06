@@ -2322,7 +2322,7 @@ button.achievementSubTab {
     align-items: center;
     justify-content: center;
     min-width: 180px;
-    height: 48px;
+    height: 20px;
     padding: 0 16px;
     font-weight: 700;
     font-size: 14px;
@@ -2335,7 +2335,7 @@ button.achievementSubTab {
 }
 .titlecommon {
     border: 2px solid #9ca3af;
-    color: #363a43;
+    color: #1a1a1a;
     background: linear-gradient(90deg, rgba(128, 128, 128, 1) 0%, rgba(232, 232, 232, 1) 100%);
 }
 .titlerare {
