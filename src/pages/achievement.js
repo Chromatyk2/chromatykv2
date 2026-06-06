@@ -86,11 +86,11 @@ function AchievementsPage() {
                         achievement.category
                     ] = {
 
-                        label:
-                            achievement.label,
+                        categoryLabel:
+                            achievement.categoryLabel,
 
-                        icon:
-                            achievement.icon,
+                        categoryIcon:
+                            achievement.categoryIcon,
 
                         achievements: []
 
