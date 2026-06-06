@@ -4,9 +4,8 @@ import React, { useState, useEffect } from 'react';
 function ProfileTitles({ profileData, reload, isOwner }) {
     const [loadSkin, setLoadSkin] = useState(false);
     const [openingSkin, setOpeningSkin] = useState(null);
-    const [rarityFilter, setRarityFilter] = useState("all");
+    const [rarityFilter, setRarityFilter] = useState("common");
     const rarities = [
-        { code: "all", label: "Tous", className: "titlefilter" },
         { code: "common", label: "Commun", className: "titlefilter" },
         { code: "rare", label: "Rare", className: "titlefilter" },
         { code: "epic", label: "Epic", className: "titlefilter" },
@@ -45,7 +44,7 @@ function ProfileTitles({ profileData, reload, isOwner }) {
         <>
             <div style={{display: "flex",gap: "8px",flexWrap: "wrap",justifyContent: "center",marginBottom: "15px"}}>
                 {rarities.map((rarity) => (
-                    <div key={rarity.code} className={rarity.className} style={{cursor: "pointer",opacity:rarityFilter === rarity.code ? 1 : 0.65,transform:rarityFilter === rarity.code ? "scale(1.05)" : "scale(1)"}} onClick={() => setRarityFilter(rarity.code)}>
+                    <div key={rarity.code} className={`${(rarityFilter === rarity.code && "active")} rarity.className`} onClick={() => setRarityFilter(rarity.code)}>
                         {rarity.label}
                     </div>
                 ))}

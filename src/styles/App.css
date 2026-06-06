@@ -2451,7 +2451,22 @@ button.achievementSubTab {
         left: 250%;
     }
 }
-
+.titlefilter {
+    background: repeating-linear-gradient(90deg, #5a381e, #5a381e 40px, #4a2d18 0, #4a2d18 80px);
+    border: 1px solid var(--border-light);
+    border-radius: 10px;
+    box-shadow: 0 0 0 3px var(--shadow-color), 0 20px 40px #00000080;
+    color: var(--text-main);
+    font-family: Charge Vector Black;
+    letter-spacing: 1px;
+    font-size: 0.6rem;
+    padding: 4px;
+}
+.titlefilter active {
+    background: #2b1f0480;
+    border: 1px solid #010c12;
+    cursor: pointer;
+}
 /* Media Query */
 @media (max-width: 1250px) {
     .globalContainer, .globalContainerCenter, .navBarContent, fightContainer {
