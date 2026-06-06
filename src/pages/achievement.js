@@ -11,6 +11,28 @@ function AchievementsPage() {
         achievements,
         setAchievements
     ] = useState([]);
+    const [
+        selectedCategory,
+        setSelectedCategory
+    ] = useState("ultimate");
+    const categories =
+        Object.entries(
+            groupedAchievements
+        );
+    const currentCategory =
+        groupedAchievements[
+        selectedCategory
+        ];
+    useEffect(() => {
+        if (
+            !selectedCategory &&
+            categories.length
+        ) {
+            setSelectedCategory(
+                categories[0][0]
+            );
+        }
+    }, [achievements]);
     useEffect(() => {
 
         if (!user?.id) {
@@ -107,36 +129,77 @@ function AchievementsPage() {
                 {progress}%
             </div>
             </div>
-                {
-                    Object.entries(
-                        groupedAchievements
-                    ).map(
-                        ([category, group]) => (
+                <div className="achievementTabs">
 
-                            <section
-                                key={category}
-                                className="achievementSection"
-                            >
+                    {
+                        categories.map(
+                            ([category, group]) => (
 
-                                <h2 className="achievementSectionTitle">
+                                <button
+                                    key={category}
+                                    className={
+                                        `achievementTab ${selectedCategory ===
+                                            category
+                                            ? "active"
+                                            : ""
+                                        }`
+                                    }
+                                    onClick={() =>
+                                        setSelectedCategory(
+                                            category
+                                        )
+                                    }
+                                >
 
                                     {group.icon}
                                     {" "}
                                     {group.label}
 
-                                </h2>
+                                </button>
 
-                                <div className="achievementGrid">
+                            )
+                        )
+                    }
 
-                                    {group.achievements.map(
+                </div>
+                {
+                    currentCategory && (
+
+                        <section
+                            className="achievementSection"
+                        >
+
+                            <h2
+                                className="achievementSectionTitle"
+                            >
+
+                                {
+                                    currentCategory.icon
+                                }
+
+                                {" "}
+
+                                {
+                                    currentCategory.label
+                                }
+
+                            </h2>
+
+                            <div
+                                className="achievementGrid"
+                            >
+
+                                {
+                                    currentCategory.achievements.map(
                                         achievement => (
 
                                             <AchievementCard
-                                                key={
-                                                    achievement.code
-                                                }
+                                                key={achievement.code}
                                                 achievement={
                                                     achievement.achievement
+                                                }
+                                                description={
+                                                    achievement.description
                                                 }
                                                 rewardTitle={
                                                     achievement.reward_title
@@ -153,13 +216,13 @@ function AchievementsPage() {
                                             />
 
                                         )
-                                    )}
+                                    )
+                                }
 
-                                </div>
+                            </div>
 
-                            </section>
+                        </section>
 
-                        )
                     )
                 }
             </div>

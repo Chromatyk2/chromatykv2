@@ -2174,3 +2174,22 @@ button.openBoosterButton span {
     grid-template-columns: repeat( auto-fit, minmax( 420px, 1fr ) );
     gap: 20px;
 }
+.achievementTabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.achievementTab {
+    border: none;
+    padding: 12px 20px;
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+    .achievementTab.active {
+        transform: scale(1.05);
+        font-weight: bold;
+    }
