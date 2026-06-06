@@ -7,63 +7,33 @@ import Fight from "../components/fight";
 import { useAuth } from "../context/AuthContext";
 import AchievementCard from "../components/achievement/AchievementCard";
 function AchievementsPage() {
-    const { user, loading } = useAuth();
-    const [achievements, setAchievements] =
-        useState(null);
-    const GEN_NAMES = {
-        1: "Kanto",
-        2: "Johto",
-        3: "Hoenn",
-        4: "Sinnoh",
-        5: "Unys",
-        6: "Kalos",
-        7: "Alola",
-        8: "Galar",
-        9: "Paldea"
-    };
-    const achievementsDisplay =
-        achievements?.normal.map(
-            normal => {
-                const shiny =
-                    achievements.shiny.find(
-                        s =>
-                            s.gen ===
-                            normal.gen
-                    );
-                const shadow =
-                    achievements.shadow.find(
-                        s =>
-                            s.gen ===
-                            normal.gen
-                    );
-                return {
-                    gen:
-                        normal.gen,
-                    name:
-                        GEN_NAMES[
-                        normal.gen
-                        ],
-                    normal,
-                    shiny,
-                    shadow
-                };
-            }
-        ) || [];
+    const { user } = useAuth();
+    const [
+        achievements,
+        setAchievements
+    ] = useState([]);
     useEffect(() => {
+
+        if (!user?.id) {
+            return;
+        }
+
         loadAchievements();
-    }, []);
+
+    }, [user?.id]);
     async function loadAchievements() {
         try {
             const response =
                 await Axios.get(
-                    `/api/profile/${user}/achievements`
+                    `/api/profile/${user.id}/achievements`
                 );
-
             setAchievements(
                 response.data
             );
         } catch (err) {
-            console.error(err);
+            console.error(
+                err
+            );
         }
     }
     return (
@@ -78,16 +48,17 @@ function AchievementsPage() {
                         className="achievementGeneration"
                     >
                         <h3>
-                            {
-                                generation.name
-                            }
+                            {generation.name}
                         </h3>
-                        <div className="achievementGrid">
+                        <div
+                            className="achievementGrid"
+                        >
                             {generation.success.map(
                                 success => (
+
                                     <AchievementCard
                                         key={
-                                            success.title
+                                            `${generation.gen}-${success.type}`
                                         }
                                         {...success}
                                     />
