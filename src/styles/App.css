@@ -1819,52 +1819,6 @@ button.openBoosterButton span {
             filter: saturate(0.8) brightness(0.8);
         }
     }
-    /* Media Query */
-    @media (max-width: 1250px) {
-        .globalContainer, .globalContainerCenter, .navBarContent, fightContainer {
-            padding: 0 0 80px;
-            width: 100%;
-            margin: 0;
-            border: none;
-            box-shadow: none;
-        }
-
-        .welcomeText p {
-            margin-top: 80px;
-        }
-        .titlecommon, .titleepic, .titlelegendary, .titlemythic, .titlerare {
-            font-size: 0.5rem;            
-            min-width: 100px;
-        }
-        + .globalContainerCenter p {
-            font-size: 1rem;
-        }
-        .wood-sign {
-            font-size: 1rem;
-        }
-        a.navLink.linkFromNav {
-            height: 80px;
-            width: 80px;
-        }
-        a.navLink.linkFromNav p {
-            font-size: 0.8rem;
-            padding: 5px;
-        }
-        .App-header {
-            padding-top: 100px;
-        }
-        .globalContainerCenter {
-            padding-top: 95px;
-        }
-        .honeyActions {
-            height: 110px;
-            width: 110px;
-        }
-        .honeyActions p {
-            font-size: 0.8rem;
-            margin: 0;
-        }
-    }
 
     .wood-sign {
         display: inline-block;
@@ -2496,4 +2450,60 @@ button.achievementSubTab {
     100% {
         left: 250%;
     }
+}
+
+/* Media Query */
+@media (max-width: 1250px) {
+    .globalContainer, .globalContainerCenter, .navBarContent, fightContainer {
+        padding: 0 0 80px;
+        width: 100%;
+        margin: 0;
+        border: none;
+        box-shadow: none;
+    }
+
+    .welcomeText p {
+        margin-top: 80px;
+    }
+
+    .titlecommon, .titleepic, .titlelegendary, .titlemythic, .titlerare {
+        font-size: 0.5rem;
+        min-width: 100px;
+    }
+
+    + .globalContainerCenter p {
+        font-size: 1rem;
+    }
+
+    .wood-sign {
+        font-size: 1rem;
+    }
+
+    a.navLink.linkFromNav {
+        height: 80px;
+        width: 80px;
+    }
+
+        a.navLink.linkFromNav p {
+            font-size: 0.8rem;
+            padding: 5px;
+        }
+
+    .App-header {
+        padding-top: 100px;
+    }
+
+    .globalContainerCenter {
+        padding-top: 95px;
+    }
+
+    .honeyActions {
+        height: 110px;
+        width: 110px;
+    }
+
+        .honeyActions p {
+            font-size: 0.8rem;
+            margin: 0;
+        }
 }
