@@ -60,6 +60,7 @@ function AchievementsPage() {
             )
             : 0;
     return (
+        <div className="globalContainerCenter">
         <div className="achievementsPage">
             <h2 className="wood-sign">
                 Hall des Succès
@@ -126,6 +127,7 @@ function AchievementsPage() {
                     </div>
                 )
             )}
+            </div>
         </div>
     );
 }
