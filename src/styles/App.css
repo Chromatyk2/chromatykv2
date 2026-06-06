@@ -2571,9 +2571,9 @@ button.achievementSubTab {
     color: var(--text-secondary);
     font-family: Charge Vector Black;
     font-size: 1rem;
-    background: var(--bg-main);
+    background: rgba(0, 0, 0, 0.5);
     border: 2px solid var(--border-dark);
-    box-shadow: 0 0 0 1px var(--border-light), 0 15px 40px #000000;
+    box-shadow: 0 0 0 1px #ffffff, 0 15px 40px #000000;
 }
 
 .notification-title {
