@@ -71,6 +71,16 @@ function ProfileTabs({
             >
                 Expédition
             </button>
+            <button
+                className={
+                    tab === 5
+                        ? "active"
+                        : ""
+                }
+                onClick={() => setTab(5)}
+            >
+                Mes Titres
+            </button>
         </div>
     );
 }

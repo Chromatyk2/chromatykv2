@@ -8,6 +8,7 @@ import ProfileStats from "../components/profile/ProfileStats";
 import ProfileSkins from "../components/profile/ProfileSkins";
 import ProfileCompanions from "../components/profile/ProfileCompanions";
 import ProfileExpeditions from "../components/profile/ProfileExpeditions";
+import ProfileTitles from "../components/profile/ProfileTitles";
 import Loader from "../components/Loader.js";
 import { useAuth } from "../context/AuthContext";
 
@@ -77,6 +78,13 @@ function Profil() {
                     )}
                     {tab === 4 && (
                         <ProfileExpeditions
+                            profileData={profileData}
+                            reload={loadProfile}
+                            isOwner={isOwner}
+                        />
+                    )}
+                    {tab === 5 && (
+                        <ProfileTitles
                             profileData={profileData}
                             reload={loadProfile}
                             isOwner={isOwner}
