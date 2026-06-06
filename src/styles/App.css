@@ -2046,3 +2046,72 @@ button.openBoosterButton span {
         opacity: 0;
     }
 }
+.achievementsPage {
+    max-width: 1200px;
+    margin: auto;
+}
+
+.achievementGeneration {
+    margin-bottom: 30px;
+}
+
+.achievementGrid {
+    display: grid;
+    grid-template-columns: repeat( auto-fit, minmax( 320px, 1fr ) );
+    gap: 15px;
+}
+
+.achievementCard {
+    background: linear-gradient( 180deg, rgba(255,255,255,.08), rgba(0,0,0,.15) );
+    border: 2px solid var(--border-dark);
+    border-radius: 16px;
+    padding: 15px;
+    box-shadow: 0 4px 12px rgba(0,0,0,.25);
+    transition: transform .2s;
+}
+
+    .achievementCard:hover {
+        transform: translateY(-3px);
+    }
+
+    .achievementCard.completed {
+        border-color: gold;
+        box-shadow: 0 0 20px rgba( 255, 215, 0, .5 );
+    }
+
+.achievementTop {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.achievementIcon {
+    font-size: 40px;
+}
+
+.achievementBar {
+    margin-top: 12px;
+    height: 12px;
+    border-radius: 999px;
+    overflow: hidden;
+    background: rgba( 0, 0, 0, .2 );
+}
+
+.achievementBarFill {
+    height: 100%;
+    background: linear-gradient( 90deg, #e5b93c, #ffe78a );
+}
+
+.achievementCount {
+    margin-top: 8px;
+    text-align: right;
+    font-weight: bold;
+}
+.achievementCard.completed::before {
+    content: "✓ DÉBLOQUÉ";
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: gold;
+    font-weight: bold;
+}
