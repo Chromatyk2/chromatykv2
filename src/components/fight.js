@@ -22,6 +22,7 @@ function Fight(props) {
     const [particles, setParticles] = useState([]);
     const [sessionReward, setSessionReward] = useState([]);
     const pokemonContainerRef = useRef(null);
+    const [nextFight, setNextFight] = useState(null);
     const showDamage = (
         damage,
         isCritical
@@ -131,6 +132,10 @@ function Fight(props) {
             damage,
             critical
         };
+    }
+    async function generateFight() {
+        const response = await Axios.post("/api/fight/start");
+        return response.data;
     }
     useEffect(() => {
         startFight();
@@ -258,41 +263,36 @@ function Fight(props) {
         }
     }, [curentLevel]);
     async function startFight() {
-        if (
-            props.compagnon[0].level >= 100
-        ) {
+        if (props.compagnon[0].level >= 100) {
             return;
         }
         try {
-            setHasAppeared(
-                false
-            );
-            const response =
-                await Axios.post(
-                    "/api/fight/start"
-                );
-            setPokemon(
-                response.data.pokemon
-            );
-            setShiny(
-                response.data.shiny
-            );
-            setNegative(
-                response.data.negative
-            );
-            setCurrentHp(
-                response.data.currentHp
-            );
-            setMaxHp(
-                response.data.maxHp
-            );
-            setHasAppeared(
-                true
-            );
+            setHasAppeared(false);
+            let fight;
+            // Si on a déjà un combat en réserve
+            if (nextFight) {
+                fight = nextFight;
+            } else {
+                fight = await generateFight();
+            }
+            // Préparer le suivant en arrière-plan
+            generateFight().then(next => {
+                setNextFight(next);
+                const img = new Image();
+                img.src =
+                    `/Sprites/${next.shiny
+                        ? "Shiny"
+                        : "Normal"
+                    }/${next.pokemon.number}.gif`;
+            });
+            setPokemon(fight.pokemon);
+            setShiny(fight.shiny);
+            setNegative(fight.negative);
+            setCurrentHp(fight.currentHp);
+            setMaxHp(fight.maxHp);
+            setHasAppeared(true);
         } catch (err) {
-            console.error(
-                err
-            );
+            console.error(err);
         }
     }
 
