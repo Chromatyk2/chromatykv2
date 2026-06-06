@@ -228,7 +228,7 @@ function Fight() {
                         );
                         setTimeout(() => {
                             loadSafari();
-                        }, 1000);
+                        }, 5000);
                     }, 1000);
                 } else {
                     setCatchResult(
