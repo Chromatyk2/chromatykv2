@@ -123,3 +123,4 @@ function AchievementCard({
     );
 
 }
+export default AchievementCard;
