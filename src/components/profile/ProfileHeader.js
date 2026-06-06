@@ -3,11 +3,27 @@ function ProfileHeader({
     companion,
     color
 }) {
+    const currentLevelXp =
+        25 *
+        profile.level *
+        (profile.level - 1);
+
     const nextLevelXp =
-        (100 * ((profile.level + 1) * (profile.level + 2))) / 4;
+        25 *
+        (profile.level + 1) *
+        profile.level;
+
     const progress =
-        ((profile.xp / nextLevelXp) * 100)
-            .toFixed(2);
+        (
+            (
+                profile.xp -
+                currentLevelXp
+            ) /
+            (
+                nextLevelXp -
+                currentLevelXp
+            )
+        ) * 100;
     return (
         <>
             <div className="profilHeaderContainer">
