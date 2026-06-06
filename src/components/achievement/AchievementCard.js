@@ -78,18 +78,19 @@ function AchievementCard({
 
                 </div>
 
-                <div
-                    className="achievementBar"
-                >
 
+                <div
+                    className="hpBarContainer"
+                    style={{
+                        width: "100%"
+                    }}
+                >
                     <div
-                        className="achievementBarFill"
+                        className="hpBar"
                         style={{
-                            width:
-                                `${percent}%`
+                            width: `${percent}%`, maxWidth:"100%"
                         }}
                     />
-
                 </div>
 
                 <div
