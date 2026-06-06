@@ -235,6 +235,7 @@ function Fight() {
                     setOnCatch(
                         false
                     );
+                    loadSafari();
                 }
             }, 4500);
         }
