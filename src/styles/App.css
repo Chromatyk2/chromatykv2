@@ -2158,3 +2158,19 @@ button.openBoosterButton span {
     font-size: 32px;
     color: gold;
 }
+.achievementSection {
+    width: 100%;
+    margin-bottom: 40px;
+}
+
+.achievementSectionTitle {
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 2rem;
+}
+
+.achievementGrid {
+    display: grid;
+    grid-template-columns: repeat( auto-fit, minmax( 420px, 1fr ) );
+    gap: 20px;
+}

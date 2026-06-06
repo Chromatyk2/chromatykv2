@@ -49,6 +49,39 @@ function AchievementsPage() {
                 totalAchievements * 100
             )
             : 0;
+    const groupedAchievements =
+        achievements.reduce(
+            (groups, achievement) => {
+
+                if (
+                    !groups[
+                    achievement.category
+                    ]
+                ) {
+
+                    groups[
+                        achievement.category
+                    ] = {
+                        label:
+                            achievement.label,
+                        icon:
+                            achievement.icon,
+                        achievements: []
+                    };
+
+                }
+
+                groups[
+                    achievement.category
+                ].achievements.push(
+                    achievement
+                );
+
+                return groups;
+
+            },
+            {}
+        );
     return (
         <div className="globalContainerCenter">
         <div className="achievementsPage">
@@ -74,34 +107,61 @@ function AchievementsPage() {
                 {progress}%
             </div>
             </div>
-                <div className="achievementGrid">
+                {
+                    Object.entries(
+                        groupedAchievements
+                    ).map(
+                        ([category, group]) => (
 
-                    {achievements.map(
-                        achievement => (
+                            <section
+                                key={category}
+                                className="achievementSection"
+                            >
 
-                            <AchievementCard
-                                key={achievement.code}
-                                achievement={
-                                    achievement.achievement
-                                }
-                                rewardTitle={
-                                    achievement.reward_title
-                                }
-                                owned={
-                                    achievement.progress
-                                }
-                                total={
-                                    achievement.target
-                                }
-                                type={
-                                    achievement.category
-                                }
-                            />
+                                <h2 className="achievementSectionTitle">
+
+                                    {group.icon}
+                                    {" "}
+                                    {group.label}
+
+                                </h2>
+
+                                <div className="achievementGrid">
+
+                                    {group.achievements.map(
+                                        achievement => (
+
+                                            <AchievementCard
+                                                key={
+                                                    achievement.code
+                                                }
+                                                achievement={
+                                                    achievement.achievement
+                                                }
+                                                rewardTitle={
+                                                    achievement.reward_title
+                                                }
+                                                owned={
+                                                    achievement.progress
+                                                }
+                                                total={
+                                                    achievement.target
+                                                }
+                                                type={
+                                                    achievement.category
+                                                }
+                                            />
+
+                                        )
+                                    )}
+
+                                </div>
+
+                            </section>
 
                         )
-                    )}
-
-                </div>
+                    )
+                }
             </div>
         </div>
     );
