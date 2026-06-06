@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 
 function ProfileSkins({ profileData, reload, isOwner }) {
     const [loadSkin, setLoadSkin] = useState(false);
+    const [openingSkin, setOpeningSkin] = useState(null);
     const profile =
         profileData.profile;
     const skins =
@@ -35,9 +36,8 @@ function ProfileSkins({ profileData, reload, isOwner }) {
         }
         try {
             setLoadSkin(true);
-            await Axios.post(
-                "/api/addSkin"
-            );
+            const response = await Axios.post("/api/addSkin");
+            setOpeningSkin(response.data.skin);
             await reload();
         } catch (err) {
             console.error(err);
@@ -46,8 +46,24 @@ function ProfileSkins({ profileData, reload, isOwner }) {
         }
 
     }
+    
     return (
         <>
+            {
+                openingSkin && (
+                    <div className="skinRevealOverlay">
+                        <div className="skinRevealCard">
+                            <div
+                                className="skinRevealImage"
+                                style={{
+                                    backgroundImage: `url("/Skins/Trainer${openingSkin}.png")`
+                                }}
+                            />
+                            <div className="skinBurst" />
+                        </div>
+                    </div>
+                )
+            }
             {skins.length < profile.level &&
                 loadSkin === false &&
                 <div class={"openSkinDiv"} onClick={addSkin}>
