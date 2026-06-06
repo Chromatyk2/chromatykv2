@@ -220,9 +220,9 @@ function AchievementsPage() {
                                     }
                                 >
 
-                                    {group.icon}
+                                    {group.categoryIcon}
                                     {" "}
-                                    {group.label}
+                                    {group.categoryLabel}
 
                                 </button>
 
