@@ -60,6 +60,37 @@ function App() {
         };
     }, []);
     useEffect(() => {
+        const handleLevelUp = data => {
+            const id =
+                crypto.randomUUID();
+            setNotifications(prev => [
+                ...prev,
+                {
+                    id,
+                    type: "levelup",
+                    ...data
+                }
+            ]);
+            setTimeout(() => {
+                setNotifications(prev =>
+                    prev.filter(
+                        n => n.id !== id
+                    )
+                );
+            }, 5000);
+        };
+        socket.on(
+            "profileLevelUp",
+            handleLevelUp
+        );
+        return () => {
+            socket.off(
+                "profileLevelUp",
+                handleLevelUp
+            );
+        };
+    }, []);
+    useEffect(() => {
         if (!user?.id) {
             return;
         }
@@ -144,20 +175,36 @@ function App() {
           <header className="App-header">
               <div className="notification-container">
                   {notifications.map(notification => (
+
                       <div
                           key={notification.id}
                           className="notification"
                       >
-                          <div className="notification-title">
-                              🏆 Succès débloqué
-                          </div>
-                          <div className="notification-description">
-                              {notification.description}
-                          </div>
-                          <div className="notification-reward">
-                              🎖 {notification.titleName}
-                          </div>
+                          {notification.type === "levelup" ? (
+                              <>
+                                  <div className="notification-title">
+                                      ⭐ Niveau supérieur
+                                  </div>
+                                  <div className="notification-description">
+                                      Niveau {notification.newLevel} atteint
+                                  </div>
+                              </>
+                          ) : (
+                              <>
+                                  <div className="notification-title">
+                                      🏆 Succès débloqué
+                                  </div>
+                                  <div className="notification-description">
+                                      {notification.description}
+                                  </div>
+                                  <div className="notification-reward">
+                                      🎖 {notification.titleName}
+                                  </div>
+                              </>
+                          )}
+
                       </div>
+
                   ))}
               </div>
               <BrowserRouter>
