@@ -14,7 +14,16 @@ function AchievementsPage() {
     const [
         selectedCategory,
         setSelectedCategory
-    ] = useState("ultimate");
+    ] = useState(
+        "ultimate"
+    );
+
+    const [
+        selectedSubcategory,
+        setSelectedSubcategory
+    ] = useState(
+        null
+    );
     useEffect(() => {
         if (
             !selectedCategory &&
@@ -76,11 +85,15 @@ function AchievementsPage() {
                     groups[
                         achievement.category
                     ] = {
+
                         label:
                             achievement.label,
+
                         icon:
                             achievement.icon,
+
                         achievements: []
+
                     };
 
                 }
@@ -104,6 +117,63 @@ function AchievementsPage() {
         groupedAchievements[
         selectedCategory
         ];
+    const subcategories =
+        currentCategory
+            ? [
+                ...new Set(
+                    currentCategory
+                        .achievements
+                        .map(
+                            achievement =>
+                                achievement.subcategory
+                        )
+                        .filter(Boolean)
+                )
+            ]
+            : [];
+    useEffect(() => {
+        if (
+            subcategories.length
+        ) {
+            setSelectedSubcategory(
+                subcategories[0]
+            );
+        } else {
+            setSelectedSubcategory(
+                null
+            );
+        }
+    }, [selectedCategory]);
+    const displayedAchievements =
+        currentCategory
+            ? currentCategory.achievements.filter(
+                achievement =>
+
+                    !selectedSubcategory ||
+
+                    achievement.subcategory ===
+                    selectedSubcategory
+
+            )
+            : [];
+    const subcategoryLabels = {
+
+        global:
+            "Global",
+
+        tier1:
+            "Tier 1",
+
+        tier2:
+            "Tier 2",
+
+        tier3:
+            "Tier 3",
+
+        tier4:
+            "Tier 4"
+
+    };
     return (
         <div className="globalContainerCenter">
         <div className="achievementsPage">
@@ -138,8 +208,7 @@ function AchievementsPage() {
                                 <button
                                     key={category}
                                     className={
-                                        `achievementTab ${selectedCategory ===
-                                            category
+                                        `achievementTab ${selectedCategory === category
                                             ? "active"
                                             : ""
                                         }`
@@ -163,6 +232,49 @@ function AchievementsPage() {
 
                 </div>
                 {
+                    subcategories.length > 0 && (
+
+                        <div
+                            className="achievementSubTabs"
+                        >
+
+                            {
+                                subcategories.map(
+                                    subcategory => (
+
+                                        <button
+                                            key={subcategory}
+                                            className={
+                                                `achievementSubTab ${selectedSubcategory ===
+                                                    subcategory
+                                                    ? "active"
+                                                    : ""
+                                                }`
+                                            }
+                                            onClick={() =>
+                                                setSelectedSubcategory(
+                                                    subcategory
+                                                )
+                                            }
+                                        >
+
+                                            {
+                                                subcategoryLabels[
+                                                subcategory
+                                                ] || subcategory
+                                            }
+
+                                        </button>
+
+                                    )
+                                )
+                            }
+
+                        </div>
+
+                    )
+                }
+                {
                     currentCategory && (
 
                         <section
@@ -185,22 +297,37 @@ function AchievementsPage() {
 
                             </h2>
 
-                            <div
-                                className="achievementGrid"
-                            >
+                            <div className="achievementGrid">
 
                                 {
-                                    currentCategory.achievements.map(
+                                    displayedAchievements.map(
                                         achievement => (
 
                                             <AchievementCard
-                                                key={achievement.code}
-                                                achievement={achievement.achievement}
-                                                description={achievement.description}
-                                                rewardTitle={achievement.reward_title}
-                                                owned={achievement.progress}
-                                                total={achievement.target}
-                                                type={achievement.category}
+                                                key={
+                                                    achievement.code
+                                                }
+                                                achievement={
+                                                    achievement.achievement
+                                                }
+                                                description={
+                                                    achievement.description
+                                                }
+                                                rewardTitle={
+                                                    achievement.title?.name
+                                                }
+                                                rarity={
+                                                    achievement.title?.rarity
+                                                }
+                                                owned={
+                                                    achievement.progress
+                                                }
+                                                total={
+                                                    achievement.target
+                                                }
+                                                type={
+                                                    achievement.category
+                                                }
                                             />
 
                                         )
