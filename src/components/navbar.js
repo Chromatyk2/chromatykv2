@@ -59,7 +59,7 @@ function NavBar(props) {
                     <img src={"/card.png"} />
                     <p>Cartes</p>
                 </Link>
-                {user.login === "chromatyk" &&
+                {user && user.login === "chromatyk" &&
                     <Link onClick={deployNav} className="navLink linkFromNav" to="/succes">
                         <img src={"/trophee.png"} />
                         <p>Succès</p>
