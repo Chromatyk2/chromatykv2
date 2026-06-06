@@ -2462,6 +2462,11 @@ button.achievementSubTab {
     font-size: 0.6rem;
     padding: 4px;
 }
+.titlefilter:hover {
+    background: #2b1f0480;
+    border: 1px solid #010c12;
+    cursor: pointer;
+}
 .titlefilter active {
     background: #2b1f0480;
     border: 1px solid #010c12;

@@ -42,7 +42,7 @@ function ProfileTitles({ profileData, reload, isOwner }) {
             );
     return (
         <>
-            <div style={{display: "flex",gap: "8px",flexWrap: "wrap",justifyContent: "center",marginBottom: "15px"}}>
+            <div style={{display: "flex",gap: "8px",flexWrap: "wrap",justifyContent: "center",marginBottom: "15px",width:"100%"}}>
                 {rarities.map((rarity) => (
                     <div key={rarity.code} className={`${(rarityFilter === rarity.code && "active")} ${(rarity.className)}`} onClick={() => setRarityFilter(rarity.code)}>
                         {rarity.label}
