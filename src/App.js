@@ -77,31 +77,6 @@ function App() {
             );
         }, 5000);
     };
-    useEffect(() => {
-        const handleAchievement = data => {
-            if (
-                sessionStorage.getItem(
-                    "catchingPokemon"
-                )
-            ) {
-                setTimeout(
-                    () => showNotification(data),
-                    7000
-                );
-            } else {
-                showNotification(data);
-            }
-        };
-        socket.on(
-            "achievementUnlocked",
-            handleAchievement
-        );
-        return () => {
-            socket.off(
-                "achievementUnlocked",
-                handleAchievement
-            );
-        };
     }, []);
     useEffect(() => {
         const handleLevelUp = data => {
