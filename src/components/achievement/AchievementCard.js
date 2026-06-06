@@ -1,19 +1,21 @@
 function AchievementCard({
-    icon,
     title,
-    reward,
-    current,
-    total
+    owned,
+    total,
+    type
 }) {
     const completed =
-        current >= total;
+        owned >= total;
     const percent =
         Math.min(
             100,
-            current /
-            total *
-            100
+            (owned / total) * 100
         );
+    const icons = {
+        normal: "📖",
+        shiny: "✨",
+        shadow: "🌑"
+    };
     return (
         <div
             className={
@@ -25,14 +27,18 @@ function AchievementCard({
         >
             <div className="achievementTop">
                 <span className="achievementIcon">
-                    {icon}
+                    {icons[type]}
                 </span>
                 <div>
                     <h4>
                         {title}
                     </h4>
                     <p>
-                        {reward}
+                        {
+                            completed
+                                ? "Complété"
+                                : "En cours"
+                        }
                     </p>
                 </div>
             </div>
@@ -46,7 +52,7 @@ function AchievementCard({
                 />
             </div>
             <p className="achievementCount">
-                {current}
+                {owned}
                 {" / "}
                 {total}
             </p>
