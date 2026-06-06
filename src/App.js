@@ -30,19 +30,6 @@ function App() {
     const [notifications, setNotifications] =
         useState([]);
     useEffect(() => {
-        setNotifications([
-            {
-                id: 1,
-                achievementName:
-                    "Bonjour",
-                description:
-                    "Ceci est une notifiaction de tst",
-                titleName:
-                    "Test"
-            }
-        ]);
-    }, []);
-    useEffect(() => {
         const handleAchievement = data => {
             const id =
                 crypto.randomUUID();
@@ -71,6 +58,44 @@ function App() {
                 handleAchievement
             );
         };
+    }, []);
+    useEffect(() => {
+
+        socket.on('connect', () => {
+
+            console.log(
+                '✅ CONNECTED',
+                socket.id
+            );
+
+        });
+
+        socket.on('connect_error', (err) => {
+
+            console.error(
+                '❌ SOCKET ERROR',
+                err
+            );
+
+        });
+
+        socket.on('disconnect', (reason) => {
+
+            console.log(
+                '🔌 DISCONNECTED',
+                reason
+            );
+
+        });
+
+        return () => {
+
+            socket.off('connect');
+            socket.off('connect_error');
+            socket.off('disconnect');
+
+        };
+
     }, []);
     useEffect(() => {
         document.documentElement.setAttribute(
