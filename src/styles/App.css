@@ -2494,6 +2494,10 @@ button.achievementSubTab {
     .wood-sign {
         font-size: 1rem;
     }
+    .fightContainer {
+        height: 460px;
+        width: 100%;
+    }
     .fightSpriteCard {
         height: 160px;
         width: 250px;
@@ -2510,4 +2514,22 @@ button.achievementSubTab {
         height: 20px;
         width: 20px;
     }
+    .pokeball {
+        height: 172px;
+        width: 172px;
+    }
+    .hpText{
+        font-size:0.5rem;
+    }
+    .rewardFightContainer p{
+        font-size:0.5rem;
+    }
+    .leaderboardHeaderContainer div {
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+    p.rank {
+        margin-right: 15px;
+    }
+
 }
