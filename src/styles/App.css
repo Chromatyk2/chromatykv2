@@ -2084,46 +2084,77 @@ button.openBoosterButton span {
         text-shadow: 0 0 8px rgba( 255, 255, 255, .4 );
     }
 .achievementCard {
-    position: relative;
-    padding: 20px;
-    border-radius: 15px;
-    transition: transform .2s ease, box-shadow .2s ease;
+    width: 100%;
+    max-width: 900px;
+    margin: 15px auto;
+    padding: 15px;
+    border-radius: 12px;
+    background: rgba(0,0,0,.25);
 }
 
-    .achievementCard:hover {
-        transform: translateY(-3px);
-    }
+.achievementHeader {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
 
-    .achievementCard.normal {
-        border: 2px solid #4a90e2;
-    }
+.achievementBadge {
+    width: 64px;
+    height: 64px;
+    image-rendering: pixelated;
+    flex-shrink: 0;
+}
 
-    .achievementCard.shiny {
-        border: 2px solid gold;
-    }
+.achievementInfo {
+    flex: 1;
+}
 
-    .achievementCard.shadow {
-        border: 2px solid #7d5fff;
-    }
-
-    .achievementCard.completed {
-        box-shadow: 0 0 20px rgba(255,215,0,.4);
-    }
+.achievementName {
+    margin: 0;
+    font-size: 22px;
+}
 
 .achievementReward {
-    margin-top: 5px;
-    font-size: 14px;
-    opacity: .85;
+    margin: 5px 0 0;
+    opacity: .8;
 }
 
-.achievementFooter {
+.achievementProgress {
+    margin-top: 12px;
+}
+
+.achievementBar {
+    height: 18px;
+    border-radius: 999px;
+    overflow: hidden;
+    background: rgba(255,255,255,.15);
+}
+
+.achievementBarFill {
+    height: 100%;
+    transition: width .4s ease;
+}
+
+.normal .achievementBarFill {
+    background: linear-gradient( 90deg, #c62828, #ff7043 );
+}
+
+.shiny .achievementBarFill {
+    background: linear-gradient( 90deg, #ffd700, #fff176 );
+}
+
+.shadow .achievementBarFill {
+    background: linear-gradient( 90deg, #4a148c, #7e57c2 );
+}
+
+.achievementStats {
     display: flex;
     justify-content: space-between;
-    margin-top: 10px;
+    margin-top: 6px;
+    font-weight: bold;
 }
 
 .achievementUnlocked {
-    margin-top: 10px;
+    font-size: 32px;
     color: gold;
-    font-weight: bold;
 }
