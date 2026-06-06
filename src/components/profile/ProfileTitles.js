@@ -6,13 +6,13 @@ function ProfileTitles({ profileData, reload, isOwner }) {
     const [openingSkin, setOpeningSkin] = useState(null);
     const [rarityFilter, setRarityFilter] = useState("all");
     const rarities = [
-        { code: "all", label: "Tous", className: "titlefilter titlecommon" },
-        { code: "common", label: "Common", className: "titlefilter titlecommon" },
-        { code: "rare", label: "Rare", className: "titlefilter titlerare" },
-        { code: "epic", label: "Epic", className: "titlefilter titleepic" },
-        { code: "legendary", label: "⭐ Legendary", className: "titlefilter titlelegendary" },
-        { code: "mythic", label: "👑 Mythical", className: "titlefilter titlemythic" },
-        { code: "unique", label: "💎 Unique", className: "titlefilter titleunique" }
+        { code: "all", label: "Tous", className: "titlefilter" },
+        { code: "common", label: "Commun", className: "titlefilter" },
+        { code: "rare", label: "Rare", className: "titlefilter" },
+        { code: "epic", label: "Epic", className: "titlefilter" },
+        { code: "legendary", label: "⭐ Légendaire", className: "titlefilter" },
+        { code: "mythic", label: "👑 Mythique", className: "titlefilter" },
+        { code: "unique", label: "💎 Unique", className: "titlefilter" }
     ];
     const profile =
         profileData.profile;
