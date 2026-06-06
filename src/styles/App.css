@@ -2170,9 +2170,9 @@ button.openBoosterButton span {
 }
 
 .achievementGrid {
-    display: grid;
-    grid-template-columns: repeat( auto-fit, minmax( 420px, 1fr ) );
-    gap: 20px;
+    display: flex;
+    gap: 0px;
+    flex-wrap: wrap;
 }
 .achievementTabs {
     display: flex;
