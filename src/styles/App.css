@@ -2277,3 +2277,37 @@ p.achievementDescription {
     border: 4px solid var(--border-dark);
     box-shadow: 0 0 0 2px var(--border-light), 0 15px 40px #0006;
 }
+.achievementSubTabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+button.achievementSubTab {
+    background: repeating-linear-gradient(90deg, #5a381e, #5a381e 40px, #4a2d18 0, #4a2d18 80px);
+    border: 1px solid var(--border-light);
+    border-radius: 10px;
+    box-shadow: 0 0 0 3px var(--shadow-color), 0 20px 40px #00000080;
+    color: var(--text-main);
+    cursor: pointer;
+    font-family: Charge Vector Black;
+    letter-spacing: 1px;
+    padding: 5px 10px;
+}
+button.achievementSubTab {
+    background: repeating-linear-gradient(90deg, #5a381e, #5a381e 40px, #4a2d18 0, #4a2d18 80px);
+    border: 1px solid var(--border-light);
+    border-radius: 10px;
+    box-shadow: 0 0 0 3px var(--shadow-color), 0 20px 40px #00000080;
+    color: var(--text-main);
+    cursor: pointer;
+    font-family: Charge Vector Black;
+    letter-spacing: 1px;
+    padding: 5px 10px;
+}
+    button.achievementSubTab.active {
+        background: #2b1f0480;
+        border: 2px solid #010c12;
+        font-weight: 700;
+        transform: scale(1.05);
+    }
