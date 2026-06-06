@@ -15,14 +15,6 @@ function AchievementsPage() {
         selectedCategory,
         setSelectedCategory
     ] = useState("ultimate");
-    const categories =
-        Object.entries(
-            groupedAchievements
-        );
-    const currentCategory =
-        groupedAchievements[
-        selectedCategory
-        ];
     useEffect(() => {
         if (
             !selectedCategory &&
@@ -104,6 +96,14 @@ function AchievementsPage() {
             },
             {}
         );
+    const categories =
+        Object.entries(
+            groupedAchievements
+        );
+    const currentCategory =
+        groupedAchievements[
+        selectedCategory
+        ];
     return (
         <div className="globalContainerCenter">
         <div className="achievementsPage">
