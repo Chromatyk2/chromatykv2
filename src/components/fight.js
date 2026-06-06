@@ -340,7 +340,7 @@ function Fight(props) {
                                         className="rewardItem"
                                     >
                                         <img src={"/"+reward.slug+".png"} />
-                                        <p>
+                                        <p style={{bckground: "linear-gradient(#b87a3d,#8b5a2b)", borderRadius: "0 0 5px 5px", height: "14px", fontSize: "0.64rem"}}>
                                             x{reward.quantity}
                                         </p>
                                     </div>
