@@ -64,7 +64,12 @@ function Leaderboard() {
                                     {/*<img className={"profilPicture"} style={{ background: color }} src={"/Skins/Trainer"+profil[0].skin+".png"} />*/}
                                     <div className={"profilInfos"}>
                                         <p style={{ fontSize: "14px" }}>{val.login}</p>
-                                        <p style={{ fontSize: "12px" }} className={"levelProfil"}>Niveau {val.level}</p>
+                                            <p style={{ fontSize: "12px" }} className={"levelProfil"}>Niveau {val.level}</p>
+                                            <div loading={"lazy"} className={`title${(val.title_rarity)}`}>
+                                                {val.title_rarity === "legendary" && "⭐ "}
+                                                {val.title_rarity === "mythic" && "👑 "}
+                                                {val.title_name}
+                                            </div>
                                     </div>
                                 </div>
                                 {val.number !== null &&
