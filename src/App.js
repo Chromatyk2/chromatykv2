@@ -60,43 +60,19 @@ function App() {
         };
     }, []);
     useEffect(() => {
+        if (!user?.id) {
+            return;
+        }
+        socket.emit(
+            'authenticate',
+            user.id
+        );
+        console.log(
+            'AUTHENTICATED SOCKET',
+            user.id
+        );
 
-        socket.on('connect', () => {
-
-            console.log(
-                '✅ CONNECTED',
-                socket.id
-            );
-
-        });
-
-        socket.on('connect_error', (err) => {
-
-            console.error(
-                '❌ SOCKET ERROR',
-                err
-            );
-
-        });
-
-        socket.on('disconnect', (reason) => {
-
-            console.log(
-                '🔌 DISCONNECTED',
-                reason
-            );
-
-        });
-
-        return () => {
-
-            socket.off('connect');
-            socket.off('connect_error');
-            socket.off('disconnect');
-
-        };
-
-    }, []);
+    }, [user]);
     useEffect(() => {
         document.documentElement.setAttribute(
             "data-theme",
