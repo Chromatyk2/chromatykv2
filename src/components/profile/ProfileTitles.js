@@ -13,7 +13,9 @@ function ProfileTitles({ profileData, reload, isOwner }) {
         <>
             <div className="skinContainer">
                 {titles.map((item) => (
-                    <div loading={"lazy"} style={{ backgroundColor: "transparent", backgroundRepeat: "no-repeat", backgroundImage: `url("/Skins/Trainer${item.skin}.png")`, backgroundSize: "contain", backgroundPosition: "center" }} className={"profilPicture"}>
+                    <div loading={"lazy"} style={{ backgroundColor: "transparent", backgroundRepeat: "no-repeat", backgroundImage: `url("/Skins/Trainer${item.skin}.png")`, backgroundSize: "contain", backgroundPosition: "center" }} className={`title${(item.rarity)}`}>
+                        {item.rarity === "legendary" && "⭐ "}
+                        {item.rarity === "mythic" && "👑 "}
                         {item.name}
                     </div>
                 ))}

@@ -2293,6 +2293,7 @@ button.achievementSubTab {
     font-family: Charge Vector Black;
     letter-spacing: 1px;
     padding: 5px 10px;
+    filter: brightness(1.5);
 }
 button.achievementSubTab {
     background: repeating-linear-gradient(90deg, #5a381e, #5a381e 40px, #4a2d18 0, #4a2d18 80px);
@@ -2311,3 +2312,70 @@ button.achievementSubTab {
         font-weight: 700;
         transform: scale(1.05);
     }
+
+titlecommon,
+.titlerare,
+.titleepic,
+.titlelegendary,
+.titlemythic {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 180px;
+    height: 48px;
+    padding: 0 16px;
+    font-weight: 700;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 12px;
+    text-shadow: 0 1px 2px rgba(0,0,0,.5);
+    position: relative;
+    overflow: hidden;
+}
+.titlecommon {
+    color: #e5e7eb;
+    border: 2px solid #9ca3af;
+    background-color: rgba(120,120,120,.25);
+}
+.titlerare {
+    color: #dbeafe;
+    border: 2px solid #3b82f6;
+    background: linear-gradient( 135deg, rgba(59,130,246,.35), rgba(29,78,216,.35) );
+    box-shadow: 0 0 10px rgba(59,130,246,.4);
+}
+.titleepic {
+    color: #f3e8ff;
+    border: 2px solid #a855f7;
+    background: linear-gradient( 135deg, rgba(168,85,247,.35), rgba(126,34,206,.35) );
+    box-shadow: 0 0 15px rgba(168,85,247,.5);
+}
+.titlelegendary {
+    color: #fef3c7;
+    border: 2px solid #f59e0b;
+    background: linear-gradient( 135deg, rgba(245,158,11,.35), rgba(251,191,36,.45) );
+    box-shadow: 0 0 10px rgba(245,158,11,.6), 0 0 20px rgba(245,158,11,.4);
+}
+@keyframes mythicGlow {
+    0% {
+        filter: brightness(1);
+        box-shadow: 0 0 10px #ec4899, 0 0 20px #8b5cf6;
+    }
+
+    50% {
+        filter: brightness(1.2);
+        box-shadow: 0 0 20px #ec4899, 0 0 35px #8b5cf6;
+    }
+
+    100% {
+        filter: brightness(1);
+        box-shadow: 0 0 10px #ec4899, 0 0 20px #8b5cf6;
+    }
+}
+
+.titlemythic {
+    color: white;
+    border: 2px solid #ec4899;
+    background: linear-gradient( 135deg, rgba(236,72,153,.35), rgba(139,92,246,.35) );
+    animation: mythicGlow 2s infinite;
+}
