@@ -53,3 +53,4 @@ function AchievementCard({
         </div>
     );
 }
+export default AchievementCard;
