@@ -67,11 +67,6 @@ function App() {
             'authenticate',
             user.id
         );
-        console.log(
-            'AUTHENTICATED SOCKET',
-            user.id
-        );
-
     }, [user]);
     useEffect(() => {
         document.documentElement.setAttribute(
