@@ -40,7 +40,7 @@ function ProfileSkins({ profileData, reload, isOwner }) {
             setOpeningSkin(response.data.skin);
             setTimeout(() => {
                 setOpeningSkin(null);
-            }, 3000);
+            }, 4000);
             await reload();
         } catch (err) {
             console.error(err);
