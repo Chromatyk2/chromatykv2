@@ -199,6 +199,20 @@ function Cards() {
                                 "Collection de cartes"
                             }
                         </h2>
+                        {sortedSets.length > 0 && (
+                            <small
+                                style={{
+                                    display: "block",
+                                    marginBottom: "10px",
+                                    opacity: 0.8
+                                }}
+                            >
+                                Rotation #{sortedSets[0].rotation_number} • Du{" "}
+                                {new Date(sortedSets[0].start_date).toLocaleDateString("fr-FR")}{" "}
+                                au{" "}
+                                {new Date(sortedSets[0].end_date).toLocaleDateString("fr-FR")}
+                            </small>
+                        )}
                         <p>
                             {globalProgress.owned}
                             {" / "}
