@@ -2064,7 +2064,7 @@ button.openBoosterButton span {
     }
 
     80% {
-        transform: scale(1.2) rotateY(1080deg);
+        transform: scale(1) rotateY(1080deg);
         filter: brightness(1.5);
     }
 
