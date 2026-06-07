@@ -31,7 +31,7 @@ function ProfileHeader({
     <div className="trainerContainer">
 
         <img
-            src={`/Skins/Trainer${profile.skin}.png`}
+                        src={`/SkinsCentered/Trainer${profile.skin}.png`}
             alt={profile.login}
             className="trainerSprite"
         />

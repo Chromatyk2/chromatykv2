@@ -59,7 +59,7 @@ function ProfileSkins({ profileData, reload, isOwner }) {
                             <div
                                 className="skinRevealImage"
                                 style={{
-                                    backgroundImage: `url("/Skins/Trainer${openingSkin}.png")`
+                                    backgroundImage: `url("/SkinsCentered/Trainer${openingSkin}.png")`
                                 }}
                             />
                             <div className="skinBurst" />
@@ -85,7 +85,7 @@ function ProfileSkins({ profileData, reload, isOwner }) {
             }
             <div className="skinContainer">
                 {skins.map((item) => (
-                    <div onClick={() => changeSkin(item.skin)} loading={"lazy"} style={{ backgroundColor: "transparent", backgroundRepeat: "no-repeat", backgroundImage: `url("/Skins/Trainer${item.skin}.png")`, backgroundSize: "contain", backgroundPosition: "center" }} className={"profilPicture"}>
+                    <div onClick={() => changeSkin(item.skin)} loading={"lazy"} style={{ backgroundColor: "transparent", backgroundRepeat: "no-repeat", backgroundImage: `url("/SkinsCentered/Trainer${item.skin}.png")`, backgroundSize: "contain", backgroundPosition: "center" }} className={"profilPicture"}>
                     </div>
                 ))}
             </div>

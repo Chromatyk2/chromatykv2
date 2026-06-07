@@ -28,7 +28,7 @@ function Leaderboard() {
                                 <div className="profilHeader trainerCard">
                                     <div className="trainerContainer">
                                         <img
-                                            src={`/Skins/Trainer${val.skin}.png`}
+                                            src={`/SkinsCentered/Trainer${val.skin}.png`}
                                             alt={val.login}
                                             className="trainerSprite"
                                         />
