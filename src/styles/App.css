@@ -1344,6 +1344,7 @@ button.openBoosterButton span {
     .boosterCard:hover {
         transform: translateY(-8px);
         box-shadow: 0 20px 40px rgba(0,0,0,.6);
+        cursor:pointer
     }
 .boosterImage {
     width: 100%;
