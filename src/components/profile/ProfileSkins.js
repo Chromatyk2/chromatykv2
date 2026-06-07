@@ -74,7 +74,7 @@ function ProfileSkins({ profileData, reload, isOwner }) {
                         onClick={addSkin}
                     >
                         <div className="skinChest">
-                        <img src={"/case.png" }/>
+                        <img style={{ width: "100%" }} src={"/case.png" }/>
                         </div>
 
                         <div className="skinBadge">
