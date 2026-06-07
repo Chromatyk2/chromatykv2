@@ -453,6 +453,7 @@ p.levelProfil {
     align-items: center;
     justify-content: center;
     transition: transform .2s;
+    background-image: url('../assets/images/case.png');
 }
 
     .openSkinDiv:hover {

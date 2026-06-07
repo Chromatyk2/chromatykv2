@@ -80,10 +80,6 @@ function ProfileSkins({ profileData, reload, isOwner }) {
                         <div className="skinBadge">
                             {profile.level - skins.length}
                         </div>
-
-                        <div className="skinLabel">
-                            Ouvrir une skin
-                        </div>
                     </div>
                 )
             }
