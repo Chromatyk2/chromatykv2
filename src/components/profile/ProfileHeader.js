@@ -66,21 +66,6 @@ function ProfileHeader({
                                     }/${companion.number}.gif")`
                             }}
                         />
-
-                        <div className="pokemonInfos">
-                            <span>{companion.pokemon}</span>
-
-                            <small>
-                                {
-                                    companion.shiny
-                                        ? "✨"
-                                        : companion.negative
-                                            ? "🌑"
-                                            : ""
-                                }
-                            </small>
-                        </div>
-
                     </div>
                 )}
 
