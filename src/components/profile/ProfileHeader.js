@@ -73,10 +73,10 @@ function ProfileHeader({
                             <small>
                                 {
                                     companion.shiny
-                                        ? "✨ Shiny"
+                                        ? "✨"
                                         : companion.negative
-                                            ? "🌑 Obscur"
-                                            : "Classique"
+                                            ? "🌑"
+                                            : ""
                                 }
                             </small>
                         </div>
