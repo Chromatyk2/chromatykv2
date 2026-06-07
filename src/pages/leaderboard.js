@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Axios from "axios";
 import { useCookies } from 'react-cookie';
 import { getColorSync, getPaletteSync } from 'colorthief';
+import ProfileHeader from "../components/profile/ProfileHeader";
 
 
 function Leaderboard() {
@@ -13,81 +14,53 @@ function Leaderboard() {
     useEffect(() => {
         Axios.get("/api/getLeaderBoard/")
             .then(async (response) => {
-                const skinsPromises = response.data.map((val) => {
-
-                    return new Promise((resolve) => {
-
-                        const img = new Image();
-
-                        img.src = "/Skins/Trainer" + val.skin + ".png";
-
-                        img.onload = () => {
-
-                            const palette = getPaletteSync(img, { colorCount: 8 });
-
-                            const color =
-                                palette[Math.floor(Math.random() * palette.length)].hex();
-
-                            resolve({
-                                ...val,
-                                color: color
-                            });
-                        };
-
-                        img.onerror = () => {
-                            console.log("Erreur image :", img.src);
-
-                            resolve(null);
-                        };
-                    });
-                });
-
-                const newSkins = (await Promise.all(skinsPromises))
-                    .filter(Boolean);
-                setLeaderboard(newSkins)
+                setLeaderboard(response.data)
             })
     }, []);
     return (
         <div className={"globalContainerCenter"}>
             <h2 class="wood-sign" >Communauté</h2>
             <div className={"leaderboardContainer"}>
-            {leaderboard &&
-                leaderboard.map((val, key) => {
-                    return (
-                        <Link class="leaderboardHeaderContainerLink" to={"/profil?user="+val.user}>
-                        <div class={"leaderboardHeaderContainer"}>
-                            <p className={"rank"}>{key+1}</p>
-                            <div style={{width: "92%",display: "flex",justifyContent: "space-between"} }>
-                                <div className={"profilHeader"}>
-                                        <div style={{ width: "40px", height: "40px", backgroundColor: val.color, backgroundImage: `url("/Skins/Trainer${val.skin}.png")`, backgroundRepeat: "no-repeat", backgroundSize: "contain", backgroundPosition: "center" }} className={"profilPicture"}>
-                                    </div>
-                                    {/*<img className={"profilPicture"} style={{ background: color }} src={"/Skins/Trainer"+profil[0].skin+".png"} />*/}
-                                    <div className={"profilInfos"}>
-                                        <p style={{ fontSize: "14px" }}>{val.login}</p>
-                                            <p style={{ fontSize: "12px" }} className={"levelProfil"}>Niveau {val.level}</p>
-                                            <div loading={"lazy"} className={`title${(val.title_rarity)}`}>
-                                                {val.title_rarity === "legendary" && "⭐ "}
-                                                {val.title_rarity === "mythic" && "👑 "}
-                                                {val.title_name}
-                                            </div>
+                {leaderboard &&
+                    leaderboard.map((val, key) => {
+                        return (
+                            <div className="profilHeader trainerCard">
+                                <div className="trainerContainer">
+                                    <img
+                                        src={`/Skins/Trainer${val.skin}.png`}
+                                        alt={val.login}
+                                        className="trainerSprite"
+                                    />
+                                    {val.number && (
+                                        <div
+                                            className="pokemonSprite"
+                                            style={{
+                                                filter: val.negative ? "invert(1)" : "",
+                                                backgroundImage:
+                                                    `url("/Sprites/${val.shiny
+                                                        ? "Shiny"
+                                                        : "Normal"
+                                                    }/${val.number}.gif")`
+                                            }}
+                                        />
+                                    )}
+                                </div>
+                                <div className="profilInfos">
+                                    <p className="trainerName">
+                                        {val.login}
+                                    </p>
+                                    <p className="levelProfil">
+                                        Niveau {val.level}
+                                    </p>
+                                    <div className={`title${val.title_rarity}`}>
+                                        {val.title_rarity === "legendary" && "⭐ "}
+                                        {val.title_rarity === "mythic" && "👑 "}
+                                        {val.title_name}
                                     </div>
                                 </div>
-                                {val.number !== null &&
-                                    <div className={"profilHeader"}>
-                                        <div className={"profilInfos"}>
-                                            <p style={{ fontSize: "14px", textAlign: "end" }}>{val.pokemon}</p>
-                                            <p style={{ fontSize: "12px", textAlign: "end" }} className={"levelProfil"}>{val.shiny === 1 ? "Shiny" : val.negative === 1 ? "Obscur" : "Classique"}</p>
-                                        </div>
-                                            <div style={{ width: "40px", height: "40px", filter: val.negative === 1 ? "invert(1)" : "invert(0)", backgroundColor: val.color, backgroundImage: `url("/Sprites/${val.shiny === 1 ? "Shiny" : "Normal"}/${val.number}.gif")`, backgroundRepeat: "no-repeat", backgroundSize: "contain", backgroundPosition: "center" }} className={"compagnonPicture"}>
-                                        </div>
-                                        {/*<img className={"profilPicture"} style={{ background: color }} src={"/Skins/Trainer"+profil[0].skin+".png"} />*/}
-                                    </div>
-                                }
                             </div>
-                        </div>
-                        </Link>
-                    )
-                })
+                        )
+                    })
                 }
             </div>
         </div>
