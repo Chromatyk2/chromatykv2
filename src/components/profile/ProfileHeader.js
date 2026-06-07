@@ -26,7 +26,7 @@ function ProfileHeader({
         ) * 100;
     return (
         <>
-           <div className="profilHeader">
+            <div className="profilHeader trainerCard">
 
     <div className="trainerContainer">
 
