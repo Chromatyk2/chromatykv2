@@ -37,18 +37,9 @@ function ProfileTabs({
             >
                 Skins
                 {skinsRemaining > 0 && (
-                    <p
-                        className="rank"
-                        style={{
-                            margin: 0,
-                            marginLeft: "5px",
-                            fontSize: "15px",
-                            width: "1rem",
-                            height: "1rem"
-                        }}
-                    >
+                    <span className="skinsBadge">
                         {skinsRemaining}
-                    </p>
+                    </span>
                 )}
             </button>
             <button
