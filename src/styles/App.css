@@ -554,10 +554,10 @@ p.levelProfil {
 }
 
 .shinydexCard {
+    border: 2px solid var(--border-light);
     display: flex;
     flex-flow: column;
-    width: 270px;
-    border: 2px solid var(--border-light);
+    width: 240px;
 }
 
 .shinydexName {
