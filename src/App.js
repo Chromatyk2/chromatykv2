@@ -193,7 +193,6 @@ function App() {
           <header className="App-header">
               <div className="notification-container">
                   {notifications.map(notification => (
-
                       <div
                           key={notification.id}
                           className="notification"

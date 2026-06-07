@@ -37,7 +37,7 @@ function ProfileSkins({ profileData, reload, isOwner }) {
         try {
             setLoadSkin(true);
             const response = await Axios.post("/api/addSkin");
-            setOpeningSkin(response.data.skin);
+            setOpeningSkin(response.data.skin.id);
             setTimeout(() => {
                 setOpeningSkin(null);
             }, 4000);
