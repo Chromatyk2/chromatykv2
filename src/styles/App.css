@@ -2794,7 +2794,10 @@ img.companionSprite {
     .profilInfos {
         font-size: 4px;
         position: absolute;
-        right: 55px;
+        right: 40px;
         top: 62px;
+    }
+    .trainerCard {
+        width: 100%;
     }
 }
