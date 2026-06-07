@@ -59,9 +59,9 @@ function App() {
             );
         };
     }, []);
-    const showNotification = (notification) => {
-        const id =
-            crypto.randomUUID();
+    const showNotification = notification => {
+        const id = crypto.randomUUID();
+
         setNotifications(prev => [
             ...prev,
             {
@@ -69,6 +69,7 @@ function App() {
                 ...notification
             }
         ]);
+
         setTimeout(() => {
             setNotifications(prev =>
                 prev.filter(
@@ -76,7 +77,7 @@ function App() {
                 )
             );
         }, 5000);
-    }, []);
+    };
     useEffect(() => {
         const handleLevelUp = data => {
             const notification = {
