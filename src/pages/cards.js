@@ -59,7 +59,7 @@ function Cards() {
                     prev => prev + 1
                 );
                 setIsTransitioning(false);
-            }, 800);
+            }, 400);
         } else {
             setOpening(false);
         }
@@ -160,7 +160,7 @@ function Cards() {
 
                     setShowNewBadge(true);
 
-                }, 500);
+                }, 200);
 
             return () =>
                 clearTimeout(timeout);
