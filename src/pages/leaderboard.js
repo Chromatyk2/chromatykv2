@@ -24,41 +24,43 @@ function Leaderboard() {
                 {leaderboard &&
                     leaderboard.map((val, key) => {
                         return (
-                            <div className="profilHeader trainerCard">
-                                <div className="trainerContainer">
-                                    <img
-                                        src={`/Skins/Trainer${val.skin}.png`}
-                                        alt={val.login}
-                                        className="trainerSprite"
-                                    />
-                                    {val.number && (
-                                        <div
-                                            className="pokemonSprite"
-                                            style={{
-                                                filter: val.negative ? "invert(1)" : "",
-                                                backgroundImage:
-                                                    `url("/Sprites/${val.shiny
-                                                        ? "Shiny"
-                                                        : "Normal"
-                                                    }/${val.number}.gif")`
-                                            }}
+                            <Link class="leaderboardHeaderContainerLink" to={"/profil?user=" + val.user}>
+                                <div className="profilHeader trainerCard">
+                                    <div className="trainerContainer">
+                                        <img
+                                            src={`/Skins/Trainer${val.skin}.png`}
+                                            alt={val.login}
+                                            className="trainerSprite"
                                         />
-                                    )}
-                                </div>
-                                <div className="profilInfos">
-                                    <p className="trainerName">
-                                        {val.login}
-                                    </p>
-                                    <p className="levelProfil">
-                                        Niveau {val.level}
-                                    </p>
-                                    <div className={`title${val.title_rarity}`}>
-                                        {val.title_rarity === "legendary" && "⭐ "}
-                                        {val.title_rarity === "mythic" && "👑 "}
-                                        {val.title_name}
+                                        {val.number && (
+                                            <div
+                                                className="pokemonSprite"
+                                                style={{
+                                                    filter: val.negative ? "invert(1)" : "",
+                                                    backgroundImage:
+                                                        `url("/Sprites/${val.shiny
+                                                            ? "Shiny"
+                                                            : "Normal"
+                                                        }/${val.number}.gif")`
+                                                }}
+                                            />
+                                        )}
+                                    </div>
+                                    <div className="profilInfos">
+                                        <p className="trainerName">
+                                            {val.login}
+                                        </p>
+                                        <p className="levelProfil">
+                                            Niveau {val.level}
+                                        </p>
+                                        <div className={`title${val.title_rarity}`}>
+                                            {val.title_rarity === "legendary" && "⭐ "}
+                                            {val.title_rarity === "mythic" && "👑 "}
+                                            {val.title_name}
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            </Link>
                         )
                     })
                 }

@@ -494,9 +494,10 @@ p.levelProfil {
     border: 1px solid var(--border-dark);
     border-radius: 10px;
     box-shadow: 0 0 0 4px var(--border-light), 0 15px 40px #0006;
-    padding: 0 15px 0 0;
     overflow: hidden;
+    padding: 0 15px 0 0;
     position: relative;
+    min-width: 365px;
 }
 .pokemonSprite {
     background-repeat: no-repeat;
@@ -536,10 +537,9 @@ p.levelProfil {
 .leaderboardContainer {
     display: flex;
     flex-wrap: wrap;
-    gap: 30px;
-    justify-content: flex-start;
     padding-bottom: 100px;
     width: 90%;
+    justify-content: center;
 }
 /* SHINY DEX */
 .shinydexContainer {
