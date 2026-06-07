@@ -238,7 +238,12 @@ function Cards() {
                             percent: 0
                         };
                         return (
-                            <div key={set.id} className="boosterCard">
+                            <div key={set.id} className="boosterCard"
+                                onClick={() =>
+                                    openBooster(
+                                        set.tcgdex_id
+                                    )
+                                }>
                                 {isHot && (
                                     <div className="hotBadge">
                                         🔥 HOT
