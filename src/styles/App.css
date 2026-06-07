@@ -2781,4 +2781,20 @@ img.companionSprite {
     p.rank {
         margin-right: 15px;
     }
+    .pokemonSprite {
+        right: -180px;
+        top: -5px;
+    }
+    p.trainerName {
+        font-size: 13px;
+    }
+    p.levelProfil {
+        font-size: 11px;
+    }
+    .profilInfos {
+        font-size: 4px;
+        position: absolute;
+        right: 55px;
+        top: 62px;
+    }
 }
