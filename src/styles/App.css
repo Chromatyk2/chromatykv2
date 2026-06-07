@@ -2650,6 +2650,71 @@ profilHeader {
         order: 3;
     }
 }
+.profilHero {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+.heroAvatar {
+    position: relative;
+    width: 140px;
+    height: 140px;
+    flex-shrink: 0;
+}
+.profilPicture {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    left: 10px;
+    top: 10px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    z-index: 2;
+    image-rendering: pixelated;
+    filter: drop-shadow(0 4px 0 rgba(0,0,0,.4)) drop-shadow(0 0 12px rgba(255,220,120,.25));
+}
+.miniCompanion {
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    right: -5px;
+    bottom: 0;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    z-index: 1;
+    image-rendering: pixelated;
+    filter: drop-shadow(0 3px 0 rgba(0,0,0,.4));
+}
+.heroAvatar::before {
+    content: "";
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    left: 10px;
+    top: 10px;
+    border-radius: 50%;
+    background: radial-gradient( circle, rgba(255,210,120,.25), transparent 70% );
+    z-index: 0;
+}
+@media (max-width:600px) {
+
+    .heroAvatar {
+        width: 100px;
+        height: 100px;
+    }
+
+    .profilPicture {
+        width: 90px;
+        height: 90px;
+    }
+
+    .miniCompanion {
+        width: 50px;
+        height: 50px;
+    }
+}
 /* Media Query */
 @media (max-width: 1250px) {
     .globalContainer, .globalContainerCenter, .navBarContent, fightContainer {

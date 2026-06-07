@@ -26,62 +26,60 @@ function ProfileHeader({
         ) * 100;
     return (
         <>
-            <div className="profilHeaderContainer">
-                <div className="profilHeader">
+            <div className="profilHero">
+
+                <div className="heroAvatar">
+
                     <div
                         className="profilPicture"
                         style={{
-                            backgroundColor: color,
-                            backgroundImage:
-                                `url("/Skins/Trainer${profile.skin}.png")`,
-                            backgroundRepeat: "no-repeat",
-                            backgroundSize: "contain",
-                            backgroundPosition: "center"
+                            backgroundImage: `url("/Skins/Trainer${profile.skin}.png")`
                         }}
                     />
-                    <div className="profilInfos">
-                        <p>{profile.login}</p>
-                        <p className="levelProfil">
-                            Niveau {profile.level}
-                        </p>
-                        <div loading={"lazy"} className={`title${(profile.title_rarity)}`}>
-                            {profile.title_rarity === "legendary" && "⭐ "}
-                            {profile.title_rarity === "mythic" && "👑 "}
-                            {profile.title_name}
-                        </div>
-                    </div>
+
+                    {companion && (
+                        <div
+                            className="miniCompanion"
+                            style={{
+                                filter: companion.negative ? "invert(1)" : "",
+                                backgroundImage: `url("/Sprites/${companion.shiny ? "Shiny" : "Normal"
+                                    }/${companion.number}.gif)`
+                            }}
+                        />
+                    )}
+
                 </div>
-                {companion && (                    
-                    <div className={"profilHeader"}>
-                        <div className={"profilInfos"}>
-                            <p style={{ textAlign: "end" }}>{companion.pokemon}</p>
-                            <p style={{ textAlign: "end" }} className={"levelProfil"}>{companion.shiny === 1 ? "Shiny" : companion.negative === 1 ? "Obscur" : "Classique"}</p>
-                        </div>
-                        <div style={{ filter: companion.negative === 1 ? "invert(1)" : "invert(0)", backgroundColor: color, backgroundImage: `url("/Sprites/${companion.shiny === 1 ? "Shiny" : "Normal"}/${companion.number}.gif")`, backgroundRepeat: "no-repeat", backgroundSize: "contain", backgroundPosition: "center" }} className={"compagnonPicture"}>
-                        </div>
+
+                <div className="profilInfos">
+
+                    <p className="profilLogin">
+                        {profile.login}
+                    </p>
+
+                    <p className="levelProfil">
+                        Niveau {profile.level}
+                    </p>
+
+                    <div className={`title${profile.title_rarity}`}>
+                        {profile.title_rarity === "legendary" && "⭐ "}
+                        {profile.title_rarity === "mythic" && "👑 "}
+                        {profile.title_name}
                     </div>
-                )}
-            </div>
-            <div className="textProgressProfil">
-                <p>EXP</p>
-                <p>
-                    {profile.xp}
-                    /
-                    {nextLevelXp}
-                </p>
-            </div>
-            <div
-                className="hpBarContainer"
-                style={{
-                    width: "100%"
-                }}
-            >
-                <div
-                    className="hpBar"
-                    style={{
-                        width: `${progress}%`
-                    }}
-                />
+
+                    {companion && (
+                        <div className="companionText">
+                            {companion.pokemon}
+                            {" · "}
+                            {companion.shiny
+                                ? "✨ Shiny"
+                                : companion.negative
+                                    ? "🌑 Obscur"
+                                    : "Classique"}
+                        </div>
+                    )}
+
+                </div>
+
             </div>
         </>
     );
