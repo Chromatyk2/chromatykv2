@@ -316,7 +316,7 @@ function Fight() {
                             </>
                         }
                         {pokemon &&
-                            onCatch === false &&
+                            catchAnimation === false &&
                             <>
                                 <div style={{ top: "10px" }} onClick={fleeFight} className={"fightActionsFlee"}>
                                     < img src={"/boot.png"} />
