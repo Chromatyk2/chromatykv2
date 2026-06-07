@@ -1,4 +1,16 @@
 const fs = require("fs");
+
+function isAnimatedPng(filePath) {
+
+    const buffer = fs.readFileSync(filePath);
+
+    return (
+        buffer.includes(Buffer.from("acTL")) ||
+        buffer.includes(Buffer.from("fcTL")) ||
+        buffer.includes(Buffer.from("fdAT"))
+    );
+
+}
 const path = require("path");
 const sharp = require("sharp");
 
@@ -93,14 +105,28 @@ async function run() {
 
     for (const file of files) {
 
+        const input = path.join(INPUT_DIR, file);
+        const output = path.join(OUTPUT_DIR, file);
+
         try {
 
+            if (isAnimatedPng(input)) {
+
+                fs.copyFileSync(input, output);
+
+                console.log(
+                    `📋 APNG copié sans modification : ${file}`
+                );
+
+                continue;
+
+            }
+
             await centerSprite(file);
-            success++;
+
+            console.log(`✓ ${file}`);
 
         } catch (err) {
-
-            failed++;
 
             console.error(
                 `✗ ${file} : ${err.message}`
