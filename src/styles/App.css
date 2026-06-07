@@ -499,14 +499,15 @@ p.levelProfil {
     position: relative;
 }
 .pokemonSprite {
-    width: 80px;
-    height: 80px;
-    background-size: contain;
     background-repeat: no-repeat;
+    background-size: contain;
+    filter: drop-shadow(2px 2px 0 black);
+    height: 80px;
     position: absolute;
-    right: 20px;
+    right: -237px;
     top: 1px;
-    filter: drop-shadow(2px 2px 0px black);
+    width: 80px;
+    background-position: center;
 }
 @keyframes pulse {
     0% {
