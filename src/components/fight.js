@@ -281,8 +281,8 @@ function Fight(props) {
                 const img = new Image();
                 img.src =
                     `/Sprites/${next.shiny
-                        ? "Shiny"
-                        : "Normal"
+                        ? "shiny"
+                        : "normal"
                     }/${next.pokemon.number}.gif`;
             });
             setPokemon(fight.pokemon);
