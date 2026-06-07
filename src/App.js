@@ -76,7 +76,6 @@ function App() {
                 )
             );
         }, 5000);
-    };
     }, []);
     useEffect(() => {
         const handleLevelUp = data => {
