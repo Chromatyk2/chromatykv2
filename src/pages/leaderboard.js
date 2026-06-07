@@ -24,7 +24,7 @@ function Leaderboard() {
                 {leaderboard &&
                     leaderboard.map((val, key) => {
                         return (
-                            <Link class="leaderboardHeaderContainerLink" to={"/profil?user=" + val.user}>
+                            <Link to={"/profil?user=" + val.user}>
                                 <div className="profilHeader trainerCard">
                                     <div className="trainerContainer">
                                         <img

@@ -537,9 +537,10 @@ p.levelProfil {
 .leaderboardContainer {
     display: flex;
     flex-wrap: wrap;
-    padding-bottom: 100px;
-    width: 90%;
     justify-content: center;
+    padding-bottom: 100px;
+    width: 100%;
+    gap: 20px;
 }
 /* SHINY DEX */
 .shinydexContainer {
