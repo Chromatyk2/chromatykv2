@@ -37,14 +37,16 @@ function ProfileHeader({
         />
 
         {companion && (
-            <img
-                src={`/Sprites/${
-                    companion.shiny === 1 ? "Shiny" : "Normal"
-                }/${companion.number}.gif`}
-                alt={companion.pokemon}
-                className={`companionSprite ${
-                    companion.negative === 1 ? "shadowPokemon" : ""
-                }`}
+            <div
+                className="pokemonSprite"
+                style={{
+                    filter: companion.negative ? "invert(1)" : "",
+                    backgroundImage:
+                        `url("/Sprites/${companion.shiny
+                            ? "Shiny"
+                            : "Normal"
+                        }/${companion.number}.gif")`
+                }}
             />
         )}
 

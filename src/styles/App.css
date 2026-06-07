@@ -351,6 +351,7 @@ a.leaderboardHeaderContainerLink {
 }
 p.levelProfil {
     font-size: 15px;
+    color:#b87a3d !important
 }
 .progressBarProfilExternal {
     background-color: #fff;
