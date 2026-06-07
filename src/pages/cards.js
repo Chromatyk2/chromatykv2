@@ -6,6 +6,10 @@ import { useCookies } from 'react-cookie';
 import Fight from "../components/fight";
 import { useAuth } from "../context/AuthContext";
 function Cards() {
+    useEffect(() => {
+        const img = new Image();
+        img.src = "/backCard.png";
+    }, []);
     //Cookies
     const { user, loading } = useAuth();
     const [cookies, setCookie] = useCookies();
