@@ -60,6 +60,20 @@ function Cards() {
             setOpening(false);
         }
     };
+    const preloadCards = (cards) => {
+        return Promise.all(
+            cards.map(card => {
+                return new Promise(resolve => {
+                    const img = new Image();
+
+                    img.onload = resolve;
+                    img.onerror = resolve;
+
+                    img.src = `${card.image}/high.webp`;
+                });
+            })
+        );
+    };
     const openBooster = async (setTcgdexId) => {
         const userId = user.id;
         try {
@@ -73,6 +87,7 @@ function Cards() {
             if (!data.success) {
                 return;
             }
+            await preloadCards(data.openedCards);
             setBoosterCurrency(
                 data.boosterCurrency
             );
