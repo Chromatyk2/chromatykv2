@@ -38,10 +38,9 @@ function ProfileSkins({ profileData, reload, isOwner }) {
             setLoadSkin(true);
             const response = await Axios.post("/api/addSkin");
             setOpeningSkin(response.data.skin.id);
-            setTimeout(() => {
-                setOpeningSkin(null);
-                await reload();
-            }, 4000);
+            await new Promise(resolve => setTimeout(resolve, 4000));
+            setOpeningSkin(null);
+            await reload();
         } catch (err) {
             console.error(err);
         } finally {
