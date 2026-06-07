@@ -331,12 +331,7 @@ a.leaderboardHeaderContainerLink {
 .profilHeader {
     align-items: center;
     display: flex;
-    gap: 20px;
-    background: #0003;
-    border: 1px solid var(--border-dark);
-    border-radius: 10px;
-    box-shadow: 0 0 0 4px var(--border-light), 0 15px 40px #0006;
-    padding: 0 15px 0 0;
+    justify-content: space-between;
 }
 .profilHeader img {
     width: 100px;
@@ -493,7 +488,13 @@ p.levelProfil {
     color: white;
     text-shadow: 0 2px 4px rgba(0,0,0,.5);
 }
-
+.trainerCard {
+    background: #0003;
+    border: 1px solid var(--border-dark);
+    border-radius: 10px;
+    box-shadow: 0 0 0 4px var(--border-light), 0 15px 40px #0006;
+    padding: 0 15px 0 0;
+}
 @keyframes pulse {
     0% {
         transform: scale(1);
