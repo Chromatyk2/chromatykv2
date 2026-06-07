@@ -1444,7 +1444,7 @@ button.openBoosterButton span {
     width: 100%;
     height: 100%;
     position: relative;
-    transition: transform .8s;
+    transition: transform .4s;
     transform-style: preserve-3d;
 }
 .card.flipped .cardInner {
