@@ -2685,6 +2685,9 @@ img.companionSprite {
     position: absolute;
     image-rendering: pixelated;
 }
+.profilInfos {
+    min-width: 215px;
+}
 /* Media Query */
 @media (max-width: 1250px) {
     .globalContainer, .globalContainerCenter, .navBarContent, fightContainer {
