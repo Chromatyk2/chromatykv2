@@ -2690,3 +2690,80 @@ button.achievementSubTab {
         transform: scale(1);
     }
 }
+.profileCard {
+    position: relative;
+    display: grid;
+    grid-template-columns: 220px 1fr 220px;
+    align-items: center;
+    min-height: 220px;
+    padding: 20px 30px;
+    border-radius: 24px;
+    background: radial-gradient( circle at 20% center, rgba(255,180,60,.15), transparent 35% ), radial-gradient( circle at 80% center, rgba(255,180,60,.15), transparent 35% ), linear-gradient( 90deg, #4a250e, #5d3214, #4a250e );
+    border: 2px solid #c8863f;
+    overflow: hidden;
+}
+.avatarZone {
+    position: relative;
+    height: 200px;
+}
+
+.trainerSprite {
+    position: absolute;
+    bottom: -15px;
+    width: 180px;
+    height: 230px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    image-rendering: pixelated;
+    z-index: 2;
+    filter: drop-shadow(0 8px 0 rgba(0,0,0,.4)) drop-shadow(0 0 12px rgba(255,180,50,.2));
+}
+.avatarHalo,
+.pokemonHalo {
+    position: absolute;
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    border: 2px solid rgba(255,180,50,.25);
+    animation: spin 20s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+.centerZone h1 {
+    margin: 0;
+    font-size: 3rem;
+    color: white;
+    text-transform: uppercase;
+    text-shadow: 3px 3px 0 black;
+}
+
+.centerZone h2 {
+    margin: 0;
+    color: #e8a84d;
+}
+.pokemonZone {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.pokemonSprite {
+    width: 180px;
+    height: 180px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    image-rendering: pixelated;
+    z-index: 2;
+    filter: drop-shadow(0 8px 0 rgba(0,0,0,.4)) drop-shadow(0 0 12px rgba(255,220,100,.25));
+}
