@@ -74,7 +74,7 @@ function ProfileSkins({ profileData, reload, isOwner }) {
                         onClick={addSkin}
                     >
                         <div className="skinChest">
-                            🎁
+                        <img src={"/case.png" }>
                         </div>
 
                         <div className="skinBadge">
