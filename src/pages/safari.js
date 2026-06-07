@@ -377,8 +377,7 @@ function Fight() {
                         }
                         {pokemon &&
                             <div className={"fightActionsContainer"}>
-                            {onCatch === false &&
-                                     catchAnimation === false &&
+                            {catchAnimation === false &&
                                     currentLove < maxLove ?
                                     <>
                                         {inventory.filter(item => (item.slug === "exps" && item.quantity > 0) || (item.slug === "expm" && item.quantity > 0) || (item.slug === "expl" && item.quantity > 0)).length < 1 &&
@@ -410,8 +409,7 @@ function Fight() {
                                         }
                                     </>
                                     :
-                                onCatch === false &&
-                                     catchAnimation === false ?
+                                catchAnimation === false ?
                                         <>
                                             {inventory.filter(item => (item.slug === "ball" && item.quantity > 0) || (item.slug === "great" && item.quantity > 0) || (item.slug === "ultra" && item.quantity > 0) || (item.slug === "master" && item.quantity > 0)).length < 1 &&
                                                 <div style={{ background: "none" }} className={"emptyInventory"}>
@@ -447,8 +445,7 @@ function Fight() {
                                         {catchResult === "fled" && (<p>Oh non !<br />{pokemon.name} s'est enfui !</p>)}
                                         </>
                                 }
-                            {onCatch === false &&
-                                catchAnimation === false &&
+                            {catchAnimation === false &&
                                     inventory.filter(item => item.slug === "master" && item.quantity > 0).length > 0 &&
                                     <div onClick={() => catchPokemon("master")} className={"fightActions"}>
                                         < img src={"/master.png"} />
