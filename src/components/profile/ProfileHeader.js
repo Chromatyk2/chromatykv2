@@ -26,67 +26,42 @@ function ProfileHeader({
         ) * 100;
     return (
         <>
-            <div className="profileCard">
-
-                <div
-                    className="trainerSprite"
-                    style={{
-                        backgroundImage: `url("/Skins/Trainer${profile.skin}.png")`
-                    }}
-                />
-
-                <div className="profileCenter">
-
-                    <div className="profileName">
-                        {profile.login}
-                    </div>
-
-                    <div className="profileLevel">
-                        Niveau {profile.level}
-                    </div>
-
-                    <div className={`titleBadge ${profile.title_rarity}`}>
-                        {profile.title_rarity === "legendary" && "⭐ "}
-                        {profile.title_rarity === "mythic" && "👑 "}
-                        {profile.title_name}
-                    </div>
-
-                </div>
-
-                {companion && (
-                    <div className="pokemonContainer">
-
-                        <div
-                            className="pokemonSprite"
-                            style={{
-                                filter: companion.negative ? "invert(1)" : "",
-                                backgroundImage:
-                                    `url("/Sprites/${companion.shiny
-                                        ? "Shiny"
-                                        : "Normal"
-                                    }/${companion.number}.gif")`
-                            }}
-                        />
-
-                        <div className="pokemonInfos">
-                            <div>{companion.pokemon}</div>
-
-                            <span>
-                                {
-                                    companion.shiny
-                                        ? "✨ Shiny"
-                                        : companion.negative
-                                            ? "🌑 Obscur"
-                                            : "Classique"
-                                }
-                            </span>
+            <div className="profilHeaderContainer">
+                <div className="profilHeader">
+                    <div
+                        className="profilPicture"
+                        style={{
+                            backgroundColor: color,
+                            backgroundImage:
+                                `url("/Skins/Trainer${profile.skin}.png")`,
+                            backgroundRepeat: "no-repeat",
+                            backgroundSize: "contain",
+                            backgroundPosition: "center"
+                        }}
+                    />
+                    <div className="profilInfos">
+                        <p>{profile.login}</p>
+                        <p className="levelProfil">
+                            Niveau {profile.level}
+                        </p>
+                        <div loading={"lazy"} className={`title${(profile.title_rarity)}`}>
+                            {profile.title_rarity === "legendary" && "⭐ "}
+                            {profile.title_rarity === "mythic" && "👑 "}
+                            {profile.title_name}
                         </div>
-
+                    </div>
+                </div>
+                {companion && (                    
+                    <div className={"profilHeader"}>
+                        <div className={"profilInfos"}>
+                            <p style={{ textAlign: "end" }}>{companion.pokemon}</p>
+                            <p style={{ textAlign: "end" }} className={"levelProfil"}>{companion.shiny === 1 ? "Shiny" : companion.negative === 1 ? "Obscur" : "Classique"}</p>
+                        </div>
+                        <div style={{ filter: companion.negative === 1 ? "invert(1)" : "invert(0)", backgroundColor: color, backgroundImage: `url("/Sprites/${companion.shiny === 1 ? "Shiny" : "Normal"}/${companion.number}.gif")`, backgroundRepeat: "no-repeat", backgroundSize: "contain", backgroundPosition: "center" }} className={"compagnonPicture"}>
+                        </div>
                     </div>
                 )}
-
             </div>
-
             <div className="textProgressProfil">
                 <p>EXP</p>
                 <p>
