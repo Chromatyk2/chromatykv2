@@ -168,6 +168,7 @@ function Fight() {
             master: "radial-gradient(rgb(255, 255, 255) 16px, rgb(0, 0, 0) 17px, rgb(0, 0, 0) 18px, rgb(255, 255, 255) 19px, rgb(255, 255, 255) 24px, rgb(0, 0, 0) 25px, rgb(0, 0, 0) 32px, rgba(0, 0, 0, 0) 33px), linear-gradient(#ff00f7 0px, #300c51 80px, rgb(0, 0, 0) 81px, rgb(0, 0, 0) 96px, rgb(255, 255, 255) 97px, rgb(255, 255, 255) 100%)"
         };
         setBallStyle(styles[ball]);
+        setCatchAnimation(true);
         setOnCatch(
             true
         );
@@ -208,6 +209,7 @@ function Fight() {
                     setOnCatch(
                         false
                     );
+                    setCatchAnimation(false);
                     setCatchResult(
                         null
                     );
@@ -241,6 +243,7 @@ function Fight() {
                         setOnCatch(
                             false
                         );
+                        setCatchAnimation(false);
                         setCatchResult(
                             null
                         );
@@ -256,6 +259,7 @@ function Fight() {
                     setOnCatch(
                         false
                     );
+                    setCatchAnimation(false);
                     loadSafari();
                 }
             }, 4500);
@@ -360,7 +364,7 @@ function Fight() {
                                     </div>
 
                                 </div>
-                                <div ref={pokemonContainerRef} style={{ visibility: onCatch ? "hidden" : "visible" }} className={`fightSpriteCard`}>
+                        <div ref={pokemonContainerRef} style={{ visibility: onCatch && catchAnimation ? "hidden" : "visible" }} className={`fightSpriteCard`}>
                                     {negative === 1 && <ShadowSmokeBack targetRef={pokemonContainerRef} />}
                                     {negative === 1 && <ShadowSmokeFront targetRef={pokemonContainerRef} />}
                                     <img className={negative === 1 ? " shadowPokemon" : ""}
