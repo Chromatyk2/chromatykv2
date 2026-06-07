@@ -28,32 +28,33 @@ function ProfileHeader({
         <>
             <div className="profileCard">
 
-                <div className="avatarZone">
-                    <div
-                        className="trainerSprite"
-                        style={{
-                            backgroundImage: `url("/Skins/Trainer${profile.skin}.png")`
-                        }}
-                    />
-                    <div className="avatarHalo" />
-                </div>
+                <div
+                    className="trainerSprite"
+                    style={{
+                        backgroundImage: `url("/Skins/Trainer${profile.skin}.png")`
+                    }}
+                />
 
-                <div className="centerZone">
+                <div className="profileCenter">
 
-                    <h1>{profile.login}</h1>
+                    <div className="profileName">
+                        {profile.login}
+                    </div>
 
-                    <h2>Niveau {profile.level}</h2>
+                    <div className="profileLevel">
+                        Niveau {profile.level}
+                    </div>
 
-                    <div className={`titleBadge title${profile.title_rarity}`}>
+                    <div className={`titleBadge ${profile.title_rarity}`}>
+                        {profile.title_rarity === "legendary" && "⭐ "}
+                        {profile.title_rarity === "mythic" && "👑 "}
                         {profile.title_name}
                     </div>
 
                 </div>
 
                 {companion && (
-                    <div className="pokemonZone">
-
-                        <div className="pokemonHalo" />
+                    <div className="pokemonContainer">
 
                         <div
                             className="pokemonSprite"
@@ -66,29 +67,35 @@ function ProfileHeader({
                                     }/${companion.number}.gif")`
                             }}
                         />
+
+                        <div className="pokemonInfos">
+                            <div>{companion.pokemon}</div>
+
+                            <span>
+                                {
+                                    companion.shiny
+                                        ? "✨ Shiny"
+                                        : companion.negative
+                                            ? "🌑 Obscur"
+                                            : "Classique"
+                                }
+                            </span>
+                        </div>
+
                     </div>
                 )}
 
             </div>
-            <div className="textProgressProfil">
-                <p>EXP</p>
-                <p>
-                    {profile.xp}
-                    /
-                    {nextLevelXp}
-                </p>
+
+            <div className="xpInfos">
+                <span>EXP</span>
+                <span>{profile.xp}/{nextLevelXp}</span>
             </div>
-            <div
-                className="hpBarContainer"
-                style={{
-                    width: "100%"
-                }}
-            >
+
+            <div className="xpBar">
                 <div
-                    className="hpBar"
-                    style={{
-                        width: `${progress}%`
-                    }}
+                    className="xpFill"
+                    style={{ width: `${progress}%` }}
                 />
             </div>
         </>
