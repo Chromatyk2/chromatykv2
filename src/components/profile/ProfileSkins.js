@@ -68,7 +68,7 @@ function ProfileSkins({ profileData, reload, isOwner }) {
                 )
             }
             {skins.length < profile.level &&
-                !loadSkin && (
+                 (
                     <div
                         className="openSkinDiv"
                         onClick={addSkin}
