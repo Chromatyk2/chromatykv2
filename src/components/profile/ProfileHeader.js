@@ -65,22 +65,30 @@ function ProfileHeader({
             {profile.title_rarity === "mythic" && "👑 "}
             {profile.title_name}
         </div>
-
-        {companion && (
-            <p className="companionName">
-                {companion.pokemon}
-                {" • "}
-                {companion.shiny === 1
-                    ? "Shiny"
-                    : companion.negative === 1
-                        ? "Obscur"
-                        : "Classique"}
-            </p>
-        )}
-
     </div>
 
 </div>
+            <div className="textProgressProfil">
+                <p>EXP</p>
+                <p>
+                    {profile.xp}
+                    /
+                    {nextLevelXp}
+                </p>
+            </div>
+            <div
+                className="hpBarContainer"
+                style={{
+                    width: "100%"
+                }}
+            >
+                <div
+                    className="hpBar"
+                    style={{
+                        width: `${progress}%`
+                    }}
+                />
+            </div>
         </>
     );
 }
