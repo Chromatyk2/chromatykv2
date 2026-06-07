@@ -204,7 +204,9 @@ function Cards() {
                                 style={{
                                     display: "block",
                                     marginBottom: "10px",
-                                    opacity: 0.8
+                                    opacity: 0.8,
+                                    color: "#fff8dc",
+                                    fontsize: "15px"
                                 }}
                             >
                                 Rotation #{sortedSets[0].rotation_number} • Du{" "}
