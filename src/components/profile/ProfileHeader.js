@@ -27,34 +27,34 @@ function ProfileHeader({
     return (
         <>
            <div className="profilHeader">
+
     <div className="trainerContainer">
-        <div
-            className="profilPicture"
-            style={{
-                backgroundColor: color,
-                backgroundImage: `url("/Skins/Trainer${profile.skin}.png")`,
-                backgroundRepeat: "no-repeat",
-                backgroundSize: "contain",
-                backgroundPosition: "center"
-            }}
+
+        <img
+            src={`/Skins/Trainer${profile.skin}.png`}
+            alt={profile.login}
+            className="trainerSprite"
         />
 
         {companion && (
-            <div
-                className="companionBadge"
-                style={{
-                    backgroundColor: color,
-                    filter: companion.negative === 1 ? "invert(1)" : "none",
-                    backgroundImage: `url("/Sprites/${
-                        companion.shiny === 1 ? "Shiny" : "Normal"
-                    }/${companion.number}.gif")`,
-                }}
+            <img
+                src={`/Sprites/${
+                    companion.shiny === 1 ? "Shiny" : "Normal"
+                }/${companion.number}.gif`}
+                alt={companion.pokemon}
+                className={`companionSprite ${
+                    companion.negative === 1 ? "shadowPokemon" : ""
+                }`}
             />
         )}
+
     </div>
 
     <div className="profilInfos">
-        <p>{profile.login}</p>
+
+        <p className="trainerName">
+            {profile.login}
+        </p>
 
         <p className="levelProfil">
             Niveau {profile.level}
@@ -77,7 +77,9 @@ function ProfileHeader({
                         : "Classique"}
             </p>
         )}
+
     </div>
+
 </div>
         </>
     );
