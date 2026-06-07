@@ -68,10 +68,24 @@ function ProfileSkins({ profileData, reload, isOwner }) {
                 )
             }
             {skins.length < profile.level &&
-                loadSkin === false &&
-                <div class={"openSkinDiv"} onClick={addSkin}>
-                    <p className={"openSkinText"}>{profile.level - skins.length}</p>
-                </div>
+                !loadSkin && (
+                    <div
+                        className="openSkinDiv"
+                        onClick={addSkin}
+                    >
+                        <div className="skinChest">
+                            🎁
+                        </div>
+
+                        <div className="skinBadge">
+                            {profile.level - skins.length}
+                        </div>
+
+                        <div className="skinLabel">
+                            Ouvrir une skin
+                        </div>
+                    </div>
+                )
             }
             <div className="skinContainer">
                 {skins.map((item) => (

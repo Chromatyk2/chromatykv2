@@ -443,18 +443,70 @@ p.levelProfil {
     flex-wrap:wrap;
 }
 .openSkinDiv {
+    position: relative;
+    width: 160px;
+    height: 160px;
+    margin: auto;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: transform .2s;
+}
+
+    .openSkinDiv:hover {
+        transform: scale(1.08);
+    }
+
+.skinChest {
     width: 100px;
     height: 100px;
-    background-image: url('../assets/images/case.png');
-    background-size: cover;
-    background-color: #7b0808;
-    border-radius: 100%;
-    border: 1px solid #8a9cdd;
+    border-radius: 50%;
+    background: linear-gradient( 135deg, #ffd700, #ff9f1c );
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 48px;
+    box-shadow: 0 0 20px rgba(255, 215, 0, .6), 0 0 40px rgba(255, 215, 0, .3);
+    animation: pulse 2s infinite;
 }
-.openSkinDiv:hover {
-    background-color: white;
-    border: 1px solid black;
-    cursor:pointer;
+
+.skinBadge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    min-width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #ff3b30;
+    color: white;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 10px rgba(0,0,0,.4);
+}
+
+.skinLabel {
+    margin-top: 12px;
+    font-weight: 600;
+    color: white;
+    text-shadow: 0 2px 4px rgba(0,0,0,.5);
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.06);
+    }
+
+    100% {
+        transform: scale(1);
+    }
 }
 .openSkinText {
     border-radius: 100%;
