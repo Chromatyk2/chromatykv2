@@ -44,22 +44,8 @@ function ProfileHeader({
 
                     <h2>Niveau {profile.level}</h2>
 
-                    <div className={`titleBadge ${profile.title_rarity}`}>
+                    <div className={`titleBadge title${profile.title_rarity}`}>
                         {profile.title_name}
-                    </div>
-
-                    <div className="expInfos">
-                        <span>EXP</span>
-                        <span>{profile.xp}/{nextLevelXp}</span>
-                    </div>
-
-                    <div className="xpBar">
-                        <div
-                            className="xpFill"
-                            style={{
-                                width: `${progress}%`
-                            }}
-                        />
                     </div>
 
                 </div>
