@@ -331,7 +331,12 @@ a.leaderboardHeaderContainerLink {
 .profilHeader {
     align-items: center;
     display: flex;
-    justify-content: space-between;
+    gap: 20px;
+    background: #0003;
+    border: 1px solid var(--border-dark);
+    border-radius: 10px;
+    box-shadow: 0 0 0 4px var(--border-light), 0 15px 40px #0006;
+    padding: 0 15px 0 0;
 }
 .profilHeader img {
     width: 100px;
@@ -2633,12 +2638,12 @@ button.achievementSubTab {
 }
 
 .companionSprite {
-    bottom: 70px;
+    bottom: 56px;
     filter: drop-shadow(0 3px 1px rgba(0, 0, 0, 1));
     height: auto;
-    right: -245px;
+    right: -27px;
     width: 100px;
-    z-index: 3;
+    z-index: 1;
 }
 
 .shadowPokemon {
