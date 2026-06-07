@@ -372,7 +372,7 @@ function Fight() {
                                         alt=""
                                     />
                                 </div>
-                        <div id={"ball"} style={{ display: onCatch ? "block" : "none", background: ballStyle }} className="pokeball"></div>
+                        <div id={"ball"} style={{ display: onCatch && catchAnimation ? "block" : "none", background: ballStyle }} className="pokeball"></div>
                             </>
                         }
                         {pokemon &&
