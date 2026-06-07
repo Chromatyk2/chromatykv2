@@ -2691,16 +2691,17 @@ button.achievementSubTab {
     }
 }
 .profileCard {
-    position: relative;
+    align-items: center;
+    background: radial-gradient(circle at 20% center, #ffb43c26, #0000 35%), radial-gradient(circle at 80% center, #ffb43c26, #0000 35%), linear-gradient(90deg, #4a250e, #5d3214, #4a250e);
+    border: 2px solid #c8863f;
+    border-radius: 24px;
     display: grid;
     grid-template-columns: 220px 1fr 220px;
-    align-items: center;
     min-height: 220px;
-    padding: 20px 30px;
-    border-radius: 24px;
-    background: radial-gradient( circle at 20% center, rgba(255,180,60,.15), transparent 35% ), radial-gradient( circle at 80% center, rgba(255,180,60,.15), transparent 35% ), linear-gradient( 90deg, #4a250e, #5d3214, #4a250e );
-    border: 2px solid #c8863f;
     overflow: hidden;
+    padding: 20px 30px;
+    position: relative;
+    margin: auto;
 }
 .avatarZone {
     position: relative;

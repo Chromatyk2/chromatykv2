@@ -99,6 +99,27 @@ function ProfileHeader({
                 )}
 
             </div>
+            <div className="textProgressProfil">
+                <p>EXP</p>
+                <p>
+                    {profile.xp}
+                    /
+                    {nextLevelXp}
+                </p>
+            </div>
+            <div
+                className="hpBarContainer"
+                style={{
+                    width: "100%"
+                }}
+            >
+                <div
+                    className="hpBar"
+                    style={{
+                        width: `${progress}%`
+                    }}
+                />
+            </div>
         </>
     );
 }
