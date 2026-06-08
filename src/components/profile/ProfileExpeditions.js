@@ -51,9 +51,7 @@ function ProfileExpeditions({
                 await Axios.post(
                     `/api/recoverExpeditionReward/${expedition.number}`
                 );
-            setReward(
-                response.data.reward
-            );
+            setReward(response.data.reward);
             setTimeout(() => {
                 reload();
             }, 3000);
@@ -156,19 +154,27 @@ function ProfileExpeditions({
 
                     )}
                 {reward && (
-                    <p>
-                        Le compagnon a trouvé
-                        <span
-                            style={{
-                                color:
-                                    "#ffc312"
-                            }}
-                        >
-                            {" "}
-                            {reward}
-                        </span>
-                        {" "}fragments !
-                    </p>
+                    <>
+                        <p>
+                            Le compagnon a trouvé
+                            <span
+                                style={{
+                                    color:
+                                        "#ffc312"
+                                }}
+                            >
+                                {" "}
+                                {reward}
+                            </span>
+                            {" "}fragments !
+                        </p>
+                        {reward.boosters > 0 && (
+                            <p>
+                                🎁 {reward.boosters} booster
+                                {reward.boosters > 1 ? "s" : ""}
+                            </p>
+                        )}
+                    </>
                 )}
             </div>
         </div>
