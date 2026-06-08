@@ -79,6 +79,7 @@ function Cards() {
         );
     };
     const openBooster = async (setTcgdexId) => {
+        setShowImpact(false);
         const userId = user.id;
         try {
             const { data } = await Axios.post(

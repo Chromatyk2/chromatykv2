@@ -1475,7 +1475,7 @@ button.openBoosterButton span {
     overflow: hidden;
 }
 .card.tier6.flipped {
-    animation: tier6Reveal 1s linear forwards;
+    animation:  revealSkin 3s forwards;
 }
 
 @keyframes tier6Reveal {
