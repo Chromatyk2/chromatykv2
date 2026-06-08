@@ -438,7 +438,7 @@ function Cards() {
                 <div className="collectionGrid">
                     {!selectedSet ? (
                             ownedSets?.map(set => (
-                        <div key={set.tcgdex_id} className="boosterCard">
+                                <div key={set.tcgdex_id} className="boosterCard" onClick={() => setSelectedSet(set)}>
                             <img src={set.logo} alt={set.name} className="boosterImage" />
                             <div className="boosterFooter">
                                 <div className="progressInfos">
