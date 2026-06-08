@@ -168,15 +168,15 @@ function ProfileExpeditions({
                             Le compagnon a trouvé
                             <span
                                 style={{
-                                    color:
-                                        "#ffc312"
+                                    color: "#ffc312"
                                 }}
                             >
                                 {" "}
-                                {reward}
+                                {reward.fragments}
                             </span>
                             {" "}fragments !
                         </p>
+
                         {reward.boosters > 0 && (
                             <p>
                                 🎁 {reward.boosters} booster
