@@ -42,7 +42,15 @@ function ProfileCompanions({ profileData, reload, isOwner }) {
                             <div onClick={() => selectCompanion(val.number, val.color)} loading={"lazy"} className={"profilPicture"}>
                                 {val.negative === 1 && <ShadowSmokeBackDex targetRef={pokemonContainerRef} />}
                                 {val.negative === 1 && <ShadowSmokeFrontDex targetRef={pokemonContainerRef} />}
-                                <img style={{ maxHeight: "63px", width: "auto", maxWidth: "100%" }} className={val.negative === 1 ? "pokemonSprite shadowPokemon" : "pokemonSprite"}
+                                <img style={{ maxHeight: "63px", width: "auto", maxWidth: "100%",
+                                position: "absolute",
+                                left: 0,
+                                right: 0,
+                                margin: "auto",
+                                top: 0,
+                                bottom: 0
+                                }}
+                                    className={val.negative === 1 ? "pokemonSprite shadowPokemon" : "pokemonSprite"}
                                     src={`/Sprites/${val.negative === 1 ? "shiny" : "normal"}/${val.number}.gif`}
                                     alt=""
                                 />

@@ -1,9 +1,13 @@
 import moment from "moment";
+import { useState, useRef } from "react";
+import ShadowSmokeFrontDex from "../shadowSmokeFrontDex";
+import ShadowSmokeBackDex from "../shadowSmokeBackDex";
 function PokedexSelector({
     pokedex,
     companions = [],
     onSelect
 }) {
+    const pokemonContainerRef = useRef(null);
     return (
         <>
             {pokedex?.map((val) => {
@@ -31,23 +35,13 @@ function PokedexSelector({
                                 #{val.pokemon}
                             </span>
                             <div>
-                                <img
-                                    loading="lazy"
-                                    className="dexSprite"
-                                    style={{
-                                        filter:
-                                            val.negative === 1
-                                                ? "invert(1)"
-                                                : "invert(0)"
-                                    }}
-                                    src={
-                                        `/Sprites/${val.shiny === 1
-                                            ? "Shiny"
-                                            : "Normal"
-                                        }/${val.pokemon
-                                        }.gif`
-                                    }
-                                    alt={val.name}
+
+                                <span className={"dexNumber"}>#{val.pokemon}</span>
+                                {val.negative === 1 && <ShadowSmokeBackDex targetRef={pokemonContainerRef} />}
+                                {val.negative === 1 && <ShadowSmokeFrontDex targetRef={pokemonContainerRef} />}
+                                <img style={{ maxHeight: "63px", width: "auto", maxWidth: "100%" }} className={val.negative === 1 ? "pokemonSprite shadowPokemon" : "pokemonSprite"}
+                                    src={`/Sprites/${val.shiny === 1 ? "shiny" : "normal"}/${val.pokemon}.gif`}
+                                    alt=""
                                 />
                             </div>
                         </div>
