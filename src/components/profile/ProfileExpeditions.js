@@ -43,7 +43,7 @@ function ProfileExpeditions({
             const timeout =
                 setTimeout(() => {
                     reload();
-                }, 1500);
+                }, 300);
             return () =>
                 clearTimeout(timeout);
         } catch (err) {
