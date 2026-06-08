@@ -3,6 +3,8 @@ import { useState, useRef } from "react";
 import useExpeditionTimer from "../../hooks/useExpeditionTimer";
 import ShadowSmokeFrontDex from "../shadowSmokeFrontDex";
 import ShadowSmokeBackDex from "../shadowSmokeBackDex";
+import ShadowSmokeFront from "../shadowSmokeFront";
+import ShadowSmokeBack from "../shadowSmokeBack";
 import moment from "moment";
 
 function ProfileExpeditions({
@@ -127,14 +129,13 @@ function ProfileExpeditions({
                         }`
                     }
                 >
-                    <span className={"dexNumber"}>#{expedition.number}</span>
-                    {expedition.negative === 1 && <ShadowSmokeBackDex targetRef={pokemonContainerRef} />}
-                    {expedition.negative === 1 && <ShadowSmokeFrontDex targetRef={pokemonContainerRef} />}
-                    <img style={{ maxHeight: "63px", width: "auto", maxWidth: "100%" }} className={expedition.negative === 1 ? "pokemonSprite shadowPokemon" : "pokemonSprite"}
-                        src={`/Sprites/${expedition.negative === 1 ? "shiny" : "normal"}/${expedition.number}.gif`}
-                        alt=""
-                    />
-                    <div className={"pokemon-shadow"}></div>
+                        {expedition.negative === 1 && <ShadowSmokeBack targetRef={pokemonContainerRef} />}
+                        {expedition.negative === 1 && <ShadowSmokeFront targetRef={pokemonContainerRef} />}
+                        <img className={expedition.negative === 1 ? "pokemonSprite shadowPokemon" : "pokemonSprite"}
+                            src={`/Sprites/${expedition.shiny === 1 ? "shiny" : "normal"}/${expedition.number}.gif`}
+                            alt=""
+                        />
+                        <div className={"pokemon-shadow"}></div>
                 </div>
                 <div style={{width:"70%"}} className="hpBarContainer">
                     <div
