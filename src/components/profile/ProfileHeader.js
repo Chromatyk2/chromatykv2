@@ -118,7 +118,7 @@ function ProfileHeader({
                             {companion.negative === 1 && <ShadowSmokeBackDex targetRef={pokemonContainerRef} />}
                             {companion.negative === 1 && <ShadowSmokeFrontDex targetRef={pokemonContainerRef} />}
                             <img style={{ maxHeight: "63px", width: "auto", maxWidth: "100%" }} className={companion.negative === 1 ? "pokemonSprite shadowPokemon" : "pokemonSprite"}
-                                src={`/Sprites/${companion.negative === 1 ? "shiny" : "normal"}/${companion.number}.gif`}
+                                src={`/Sprites/${companion.shiny === 1 ? "shiny" : "normal"}/${companion.number}.gif`}
                                 alt=""
                             />
 

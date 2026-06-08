@@ -40,7 +40,7 @@ function Leaderboard() {
                                                 {val.negative === 1 && <ShadowSmokeBackDex targetRef={pokemonContainerRef} />}
                                                 {val.negative === 1 && <ShadowSmokeFrontDex targetRef={pokemonContainerRef} />}
                                                 <img style={{ maxHeight: "63px", width: "auto", maxWidth: "100%" }} className={val.negative === 1 ? "pokemonSprite shadowPokemon" : "pokemonSprite"}
-                                                    src={`/Sprites/${val.negative === 1 ? "shiny" : "normal"}/${val.number}.gif`}
+                                                    src={`/Sprites/${val.shiny === 1 ? "shiny" : "normal"}/${val.number}.gif`}
                                                     alt=""
                                                 />
 
