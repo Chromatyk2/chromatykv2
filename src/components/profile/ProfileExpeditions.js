@@ -112,7 +112,7 @@ function ProfileExpeditions({
                         }`
                     }
                 >
-                    <img
+                    <img className={"pokemonSprite"}
                         src={
                             `/Sprites/${
                             expedition.shiny === 1
@@ -124,6 +124,7 @@ function ProfileExpeditions({
                         }
                         alt=""
                     />
+                    <div classname="pokemon-shadow"></div>
                 </div>
                 <div style={{width:"70%"}} className="hpBarContainer">
                     <div

@@ -250,10 +250,11 @@ function Compagnon() {
                                             <div ref={pokemonContainerRef} className={`fightSpriteCard`}>
                                                 {compagnon[0].negative === 1 && <ShadowSmokeBack targetRef={pokemonContainerRef} />}
                                                 {compagnon[0].negative === 1 && <ShadowSmokeFront targetRef={pokemonContainerRef} />}
-                                                <img className={compagnon[0].negative === 1 ? " shadowPokemon" : ""}
+                                        <img className={compagnon[0].negative === 1 ? "pokemonSprite shadowPokemon" : "pokemonSprite"}
                                                 src={`/Sprites/${compagnon[0].shiny === 1 ? "shiny" : "normal"}/${compagnon[0].number}.gif`}
                                                     alt=""
-                                            />
+                                                />
+                                                <div classname="pokemon-shadow"></div>
                                             </div>
                                         </>
                                     )}

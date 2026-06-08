@@ -362,10 +362,11 @@ function Fight(props) {
                         <div ref={pokemonContainerRef} style={{width:"100%"}} className={`fightSpriteCardInvert ${!hasAppeared ? "spawnInvert" : ""} ${isAttacking && !isKO ? "fightAttack" : ""}`}>
                             {props.compagnon[0].negative === 1 && <ShadowSmokeBack targetRef={pokemonContainerRef} />}
                             {props.compagnon[0].negative === 1 && <ShadowSmokeFront targetRef={pokemonContainerRef} />}
-                            <img style={{ width: "100%" }} className={props.compagnon[0].negative === 1 ? " shadowPokemon" : ""}
+                            <img style={{ width: "100%" }} className={props.compagnon[0].negative === 1 ? "pokemonSprite shadowPokemon" : "pokemonSprite"}
                                 src={`/Sprites/${props.compagnon[0].shiny === 1 ? "shiny" : "normal"}/${props.compagnon[0].number}.gif`}
                                 alt=""
                             />
+                            <div classname="pokemon-shadow"></div>
                         </div>
                     </div>
                         <div style={{ width: "33%" }}>
@@ -396,7 +397,7 @@ function Fight(props) {
                                 className={`fightSpriteCardEnemy
                                     ${isKO ? "koAnimation" : ""}
                                     ${!hasAppeared ? "spawn" : ""}
-                                    ${isAttacking ? "hit" : ""}`}
+                                    ${isAttacking ? "hit" : ""} pokemonSprite`}
                                 style={{
                                     height: "200px",
                                     width: "100%",
@@ -407,6 +408,7 @@ function Fight(props) {
                                     }/${pokemon.number}.gif)`
                                 }}
                             >
+                                <div classname="pokemon-shadow"></div>
 
                             
                             </div>

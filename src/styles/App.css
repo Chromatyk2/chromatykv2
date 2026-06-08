@@ -2837,3 +2837,6 @@ img.companionSprite {
         opacity: 0.15;
     }
 }
+.pokemonSprite {
+    filter: drop-shadow(1px 1px 1px black);
+}
