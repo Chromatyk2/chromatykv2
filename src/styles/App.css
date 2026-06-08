@@ -505,17 +505,6 @@ p.levelProfil {
     position: relative;
     min-width: 365px;
 }
-.pokemonSprite {
-    background-repeat: no-repeat;
-    background-size: contain;
-    filter: drop-shadow(2px 2px 0 black);
-    height: 80px;
-    position: absolute;
-    right: -237px;
-    top: 1px;
-    width: 80px;
-    background-position: center;
-}
 @keyframes pulse {
     0% {
         transform: scale(1);
@@ -2791,10 +2780,6 @@ img.companionSprite {
 
     p.rank {
         margin-right: 15px;
-    }
-    .pokemonSprite {
-        right: -180px;
-        top: -5px;
     }
     p.trainerName {
         font-size: 13px;
