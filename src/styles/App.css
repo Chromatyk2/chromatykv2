@@ -2809,6 +2809,7 @@ img.companionSprite {
     right: 0;
     width: 100%;
     z-index: -1;
+    display:none;
 }
 
 @keyframes shadow {
