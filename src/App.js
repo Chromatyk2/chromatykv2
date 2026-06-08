@@ -23,6 +23,7 @@ import Compagnon from './pages/compagnon.js';
 import Cartes from './pages/cards.js';
 import Achievements from './pages/achievement.js';
 import { useAuth } from "./context/AuthContext";
+import Login from './services/auth.services.js';
 Axios.defaults.withCredentials = true;
 function App() {
     const [multipleTabs, setMultipleTabs] = useState(false);
@@ -242,6 +243,12 @@ function App() {
                         <NavBar />
                   </div>
                   <TwitchLiveWidget />
+                  {!loading && !user && (
+                      <div className="connectionBar">
+                          <p>Connectez-vous pour jouer !</p>
+                          <Login />
+                      </div>
+                  )}
               </BrowserRouter>
       </header>
     </div>

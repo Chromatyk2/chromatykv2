@@ -170,15 +170,20 @@ a.navLink.linkFromNav p {
 /* ACCEUIL */
 .connectionBar {
     align-items: center;
-    background-color: var(--primary-start);
     display: flex;
+    flex-wrap: wrap;
     font-size: 20px;
     justify-content: center;
-    width: fit-content;
-    border-radius: 5px;
+    margin: 0 0 25px;
     padding: 15px;
-    flex-wrap: wrap;
-    margin: 0 0 25px 0px;
+    width: fit-content;
+    background: linear-gradient(#e4c8fd, #302547);
+    border: 4px solid #5a381e;
+    border-radius: 8px;
+    box-shadow: inset 0 2px 4px #fff0, 0 4px 8px #000;
+    position: fixed;
+    bottom: 0px;
+    z-index: 100000;
 }
 .connectionBar p {
     margin: 5px 0 5px 0px;

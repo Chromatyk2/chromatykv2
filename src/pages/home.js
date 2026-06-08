@@ -55,13 +55,7 @@ function HomePage(props) {
                     Bienvenue sur Chromatyk, le jeu Pokémon gratuit de la communauté Twitch.
                     Ouvre des boosters, capture des Pokémons, complète ton Pokédex,
                     participe à l'élevage et gagne des récompenses pendant les streams.
-                </p>       
-            {!user &&
-                <div className={"connectionBar"}>
-                    <p>Connectez-vous pour jouer !</p>
-                    <Login />
-                </div>
-            }
+                </p>    
                 <p>Rejoins les streams et viens discuter sur <a href="https://twitch.tv/chromatyk" target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none", color: "#83d7d7" }}>Twitch</a> !</p>
             <p className="pseudoProfil">Dernier shiny capturé</p>
                 {shinydex &&
