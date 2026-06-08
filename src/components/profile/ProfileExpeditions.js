@@ -82,8 +82,14 @@ function ProfileExpeditions({
             <div className="compagnonsContainer">
                 <div className="skinContainer">
                     {availableCompanions.map((val, key) => {
-                        return (
-                            <div onClick={() => runExpedition(val.number, val.tier, val.negative, val.shiny)} loading={"lazy"} style={{ filter: val.negative === 1 ? "invert(1)" : "invert(0)", backgroundRepeat: "no-repeat", backgroundColor: val.color, backgroundImage: `url("/Sprites/${val.shiny === 1 ? "Shiny" : "Normal"}/${val.number}.gif")`, backgroundSize: "contain", backgroundPosition: "center" }} className={"profilPicture"}>
+                        return (                            
+                            <div onClick={() => runExpedition(val.number, val.tier, val.negative, val.shiny)} loading={"lazy"} className={"profilPicture"}>
+                                {expedition.negative === 1 && <ShadowSmokeBackDex targetRef={pokemonContainerRef} />}
+                                {expedition.negative === 1 && <ShadowSmokeFrontDex targetRef={pokemonContainerRef} />}
+                                <img style={{ maxHeight: "63px", width: "auto", maxWidth: "100%" }} className={expedition.negative === 1 ? "pokemonSprite shadowPokemon" : "pokemonSprite"}
+                                    src={`/Sprites/${expedition.negative === 1 ? "shiny" : "normal"}/${expedition.number}.gif`}
+                                    alt=""
+                                />
                             </div>
                         )
                     })
