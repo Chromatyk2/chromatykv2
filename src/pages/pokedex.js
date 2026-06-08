@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useSearchParams } from "react-router-dom";
 import Axios from "axios";
 import moment from "moment/moment";
 import { useCookies } from 'react-cookie';
 import { useAuth } from "../context/AuthContext";
+import ShadowSmokeFrontDex from "../components/shadowSmokeFrontDex";
+import ShadowSmokeBackDex from "../components/shadowSmokeBackDex";
 
 
 function Pokedex() {
@@ -19,6 +21,7 @@ function Pokedex() {
     const param = searchParams.get("user");
     const [onLoad, setOnload] = useState(true);
     const [level100Keys, setLevel100Keys] = useState([]);
+    const pokemonContainerRef = useRef(null);
     useEffect(() => {
         if (
             loading ||
@@ -116,9 +119,13 @@ function Pokedex() {
                                             )}
                                             <div className={"dexSpriteContainer"}>
                                                 <span className={"dexNumber"}>#{val.pokemon}</span>
-                                                <div>
-                                                    <img style={{ filter: isNegative === 1 ? "invert(1)" : "invert(0)" }} loading="lazy" className={"dexSprite"} src={isShiny === 1 ? "/Sprites/Shiny/" + val.pokemon + ".gif" : "/Sprites/Normal/" + val.pokemon + ".gif"} />
-                                                </div>
+                                                {isNegative === 1 && <ShadowSmokeBackDex targetRef={pokemonContainerRef} />}
+                                                {isNegative === 1 && <ShadowSmokeFrontDex targetRef={pokemonContainerRef} />}
+                                                <img style={{ maxHeight: "63px", width: "auto", maxWidth: "100%"}} className={isNegative === 1 ? "pokemonSprite shadowPokemon" : "pokemonSprite"}
+                                                        src={`/Sprites/${isShiny=== 1 ? "shiny" : "normal"}/${val.pokemon}.gif`}
+                                                            alt=""
+                                                />
+                                                <div className={"pokemon-shadow"}></div>
                                             </div>
                                             <div className={"dexDescription"}>
                                                 <p className={"dexName"}>{val.name}</p>

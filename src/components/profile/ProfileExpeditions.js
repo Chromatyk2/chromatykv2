@@ -1,12 +1,15 @@
 import Axios from "axios";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import useExpeditionTimer from "../../hooks/useExpeditionTimer";
+import ShadowSmokeFrontDex from "../shadowSmokeFront";
+import ShadowSmokeBackDex from "../shadowSmokeBack";
 import moment from "moment";
 
 function ProfileExpeditions({
     profileData,
     reload, isOwner
 }) {
+    const pokemonContainerRef = useRef(null);
     const [reward, setReward] =
         useState(null);
     const expedition =
@@ -110,16 +113,11 @@ function ProfileExpeditions({
                         }`
                     }
                 >
-                    <img className={"pokemonSprite"}
-                        src={
-                            `/Sprites/${
-                            expedition.shiny === 1
-                                ? "shiny"
-                                : "normal"
-                            }/${
-                            expedition.number
-                            }.gif`
-                        }
+                    <span className={"dexNumber"}>#{expedition.number}</span>
+                    {expedition.negative === 1 && <ShadowSmokeBackDex targetRef={pokemonContainerRef} />}
+                    {expedition.negative === 1 && <ShadowSmokeFrontDex targetRef={pokemonContainerRef} />}
+                    <img style={{ maxHeight: "63px", width: "auto", maxWidth: "100%" }} className={expedition.negative === 1 ? "pokemonSprite shadowPokemon" : "pokemonSprite"}
+                        src={`/Sprites/${expedition.negative === 1 ? "shiny" : "normal"}/${expedition.number}.gif`}
                         alt=""
                     />
                     <div className={"pokemon-shadow"}></div>
