@@ -94,7 +94,7 @@ function ProfileExpeditions({
                                     margin: "auto",
                                     top: 0,
                                     bottom: 0
-                                }} }} className={val.negative === 1 ? "pokemonSprite shadowPokemon" : "pokemonSprite"}
+                                }} className={val.negative === 1 ? "pokemonSprite shadowPokemon" : "pokemonSprite"}
                                     src={`/Sprites/${val.negative === 1 ? "shiny" : "normal"}/${val.number}.gif`}
                                     alt=""
                                 />
