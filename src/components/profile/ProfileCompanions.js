@@ -36,7 +36,7 @@ function ProfileCompanions({ profileData, reload, isOwner }) {
     }
     return (
         <div className="compagnonsContainer">
-            <div className="skinContainer">
+            <div style={{position:"relative"}} className="skinContainer">
                 {companions.map((val, key) => {
                         return (
                             <div onClick={() => selectCompanion(val.number, val.color)} loading={"lazy"} className={"profilPicture"}>

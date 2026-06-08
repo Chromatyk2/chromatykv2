@@ -80,7 +80,7 @@ function ProfileExpeditions({
     if (!expedition) {
         return (
             <div className="compagnonsContainer">
-                <div className="skinContainer">
+                <div style={{position:"relative"}} className="skinContainer">
                     {availableCompanions.map((val, key) => {
                         return (                            
                             <div onClick={() => runExpedition(val.number, val.tier, val.negative, val.shiny)} loading={"lazy"} className={"profilPicture"}>

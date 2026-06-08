@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from "react-router-dom";
 import Axios from "axios";
 import { useCookies } from 'react-cookie';
 import { getColorSync, getPaletteSync } from 'colorthief';
 import ProfileHeader from "../components/profile/ProfileHeader";
+import ShadowSmokeFrontDex from "../components/shadowSmokeFrontDex";
+import ShadowSmokeBackDex from "../components/shadowSmokeBackDex";
 
 
 function Leaderboard() {
@@ -11,6 +13,7 @@ function Leaderboard() {
     const [leaderboard, setLeaderboard] = useState(null);
     const [color, setColor] = useState(1);
     const [colorList, setColorList] = useState(1);
+    const pokemonContainerRef = useRef(null);
     useEffect(() => {
         Axios.get("/api/getLeaderBoard/")
             .then(async (response) => {
@@ -33,17 +36,15 @@ function Leaderboard() {
                                             className="trainerSprite"
                                         />
                                         {val.number && (
-                                            <div
-                                                className="pokemonSprite"
-                                                style={{
-                                                    filter: val.negative ? "invert(1)" : "",
-                                                    backgroundImage:
-                                                        `url("/Sprites/${val.shiny
-                                                            ? "Shiny"
-                                                            : "Normal"
-                                                        }/${val.number}.gif")`
-                                                }}
-                                            />
+                                            <div className="pokemonSprite" style={{ position: "absolute", right: "-240px", top: "10px" }}>
+                                                {val.negative === 1 && <ShadowSmokeBackDex targetRef={pokemonContainerRef} />}
+                                                {val.negative === 1 && <ShadowSmokeFrontDex targetRef={pokemonContainerRef} />}
+                                                <img style={{ maxHeight: "63px", width: "auto", maxWidth: "100%" }} className={val.negative === 1 ? "pokemonSprite shadowPokemon" : "pokemonSprite"}
+                                                    src={`/Sprites/${val.negative === 1 ? "shiny" : "normal"}/${val.number}.gif`}
+                                                    alt=""
+                                                />
+
+                                            </div>
                                         )}
                                     </div>
                                     <div className="profilInfos">

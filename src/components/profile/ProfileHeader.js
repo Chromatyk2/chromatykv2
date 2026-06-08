@@ -1,4 +1,3 @@
-
 import ShadowSmokeFrontDex from "../shadowSmokeFrontDex";
 import ShadowSmokeBackDex from "../shadowSmokeBackDex";
 import { useState, useRef } from "react";
