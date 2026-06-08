@@ -83,7 +83,7 @@ function ProfileExpeditions({
                 <div style={{position:"relative"}} className="skinContainer">
                     {availableCompanions.map((val, key) => {
                         return (                            
-                            <div onClick={() => runExpedition(val.number, val.tier, val.negative, val.shiny)} loading={"lazy"} className={"profilPicture"}>
+                            <div style={{ position: "relative" }} onClick={() => runExpedition(val.number, val.tier, val.negative, val.shiny)} loading={"lazy"} className={"profilPicture"}>
                                 {val.negative === 1 && <ShadowSmokeBackDex targetRef={pokemonContainerRef} />}
                                 {val.negative === 1 && <ShadowSmokeFrontDex targetRef={pokemonContainerRef} />}
                                 <img style={{

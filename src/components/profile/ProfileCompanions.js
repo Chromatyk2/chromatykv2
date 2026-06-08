@@ -38,8 +38,8 @@ function ProfileCompanions({ profileData, reload, isOwner }) {
         <div className="compagnonsContainer">
             <div style={{position:"relative"}} className="skinContainer">
                 {companions.map((val, key) => {
-                        return (
-                            <div onClick={() => selectCompanion(val.number, val.color)} loading={"lazy"} className={"profilPicture"}>
+                    return (
+                        <div style={{position:"relative"}} onClick={() => selectCompanion(val.number, val.color)} loading={"lazy"} className={"profilPicture"}>
                                 {val.negative === 1 && <ShadowSmokeBackDex targetRef={pokemonContainerRef} />}
                                 {val.negative === 1 && <ShadowSmokeFrontDex targetRef={pokemonContainerRef} />}
                                 <img style={{ maxHeight: "63px", width: "auto", maxWidth: "100%",
