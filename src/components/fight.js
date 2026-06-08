@@ -85,11 +85,11 @@ function Fight(props) {
     function calculateDamage() {
         const tierMultiplier =
             props.compagnon[0].tier === 4
-                ? 3
+                ? 6
                 : props.compagnon[0].tier === 3
-                    ? 2
+                    ? 3
                     : props.compagnon[0].tier === 2
-                        ? 1.5
+                        ? 1.75
                         : 1;
         const baseAttack =
             11 +
