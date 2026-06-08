@@ -122,11 +122,7 @@ function ProfileExpeditions({
                 </p>
                 <div
                     className={
-                        `fightSpriteCard ${
-                            expedition.negative === 1
-                                ? "shadowPokemon"
-                                : ""
-                        }`
+                        `fightSpriteCard`
                     }
                 >
                         {expedition.negative === 1 && <ShadowSmokeBack targetRef={pokemonContainerRef} />}
