@@ -1,6 +1,6 @@
 import './styles/theme.css';
 import './styles/App.css';
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { socket } from "./services/socket";
 import Axios from "axios";
@@ -30,6 +30,19 @@ function App() {
     const { user, loading } = useAuth();
     const [notifications, setNotifications] = useState([]);
     const [isSafariAnimation, setIsSafariAnimation] = useState(false);
+    const notificationAudio = useRef(null);
+    useEffect(() => {
+        notificationAudio.current = new Audio(
+            "/notif.mp3"
+        );
+    }, []);
+    const playNotificationSound = () => {
+        if (!notificationAudio.current) return;
+        notificationAudio.current.currentTime = 0;
+        notificationAudio.current
+            .play()
+            .catch(() => { });
+    };
     useEffect(() => {
         const handleAchievement = data => {
             const id =
@@ -61,6 +74,7 @@ function App() {
         };
     }, []);
     const showNotification = notification => {
+        playNotificationSound();
         const id = crypto.randomUUID();
 
         setNotifications(prev => [
