@@ -1,8 +1,13 @@
+
+import ShadowSmokeFrontDex from "../shadowSmokeFrontDex";
+import ShadowSmokeBackDex from "../shadowSmokeBackDex";
+import { useState, useRef } from "react";
 function ProfileHeader({
     profile,
     companion,
     color
 }) {
+    const pokemonContainerRef = useRef(null);
     const animatedSkins = new Set([
         // 1337 -> 1452
         ...Array.from(
@@ -119,8 +124,15 @@ function ProfileHeader({
                             ? "Shiny"
                             : "Normal"
                         }/${companion.number}.gif")`
-                }}
-            />
+                }}>
+                            {companion.negative === 1 && <ShadowSmokeBackDex targetRef={pokemonContainerRef} />}
+                            {companion.negative === 1 && <ShadowSmokeFrontDex targetRef={pokemonContainerRef} />}
+                            <img style={{ maxHeight: "63px", width: "auto", maxWidth: "100%" }} className={companion.negative === 1 ? "pokemonSprite shadowPokemon" : "pokemonSprite"}
+                                src={`/Sprites/${companion.negative === 1 ? "shiny" : "normal"}/${companion.number}.gif`}
+                                alt=""
+                            />
+
+            </div>
         )}
 
     </div>

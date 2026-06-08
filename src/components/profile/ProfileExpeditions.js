@@ -1,8 +1,8 @@
 import Axios from "axios";
 import { useState, useRef } from "react";
 import useExpeditionTimer from "../../hooks/useExpeditionTimer";
-import ShadowSmokeFrontDex from "../shadowSmokeFront";
-import ShadowSmokeBackDex from "../shadowSmokeBack";
+import ShadowSmokeFrontDex from "../shadowSmokeFrontDex";
+import ShadowSmokeBackDex from "../shadowSmokeBackDex";
 import moment from "moment";
 
 function ProfileExpeditions({

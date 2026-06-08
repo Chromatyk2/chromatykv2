@@ -1,6 +1,10 @@
 import Axios from "axios";
+import ShadowSmokeFrontDex from "../shadowSmokeFrontDex";
+import ShadowSmokeBackDex from "../shadowSmokeBackDex";
+import { useState, useRef } from "react";
 
 function ProfileCompanions({ profileData, reload, isOwner }) {
+    const pokemonContainerRef = useRef(null);
     const profile =
         profileData.profile;
     const companions =
@@ -35,7 +39,13 @@ function ProfileCompanions({ profileData, reload, isOwner }) {
             <div className="skinContainer">
                 {companions.map((val, key) => {
                         return (
-                            <div onClick={() => selectCompanion(val.number, val.color)} loading={"lazy"} style={{ filter: val.negative === 1 ? "invert(1)" : "invert(0)", backgroundRepeat: "no-repeat", backgroundColor: val.color, backgroundImage: `url("/Sprites/${val.shiny === 1 ? "Shiny" : "Normal"}/${val.number}.gif")`, backgroundSize: "contain", backgroundPosition: "center" }} className={"profilPicture"}>
+                            <div onClick={() => selectCompanion(val.number, val.color)} loading={"lazy"} className={"profilPicture"}>
+                                {val.negative === 1 && <ShadowSmokeBackDex targetRef={pokemonContainerRef} />}
+                                {val.negative === 1 && <ShadowSmokeFrontDex targetRef={pokemonContainerRef} />}
+                                <img style={{ maxHeight: "63px", width: "auto", maxWidth: "100%" }} className={val.negative === 1 ? "pokemonSprite shadowPokemon" : "pokemonSprite"}
+                                    src={`/Sprites/${val.negative === 1 ? "shiny" : "normal"}/${val.number}.gif`}
+                                    alt=""
+                                />
                             </div>
                         )
                     })
