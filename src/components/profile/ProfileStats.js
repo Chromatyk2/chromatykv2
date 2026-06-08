@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
 function ProfileStats({ profileData }) {
-    const MAX_POKEDEX = 1198;
+    const MAX_POKEDEX = 1376;
     const BADGES_NORMAL = [
         "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"
     ];
