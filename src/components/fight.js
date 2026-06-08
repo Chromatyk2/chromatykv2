@@ -183,32 +183,39 @@ function Fight(props) {
             ) {
                 return;
             }
-            setIsAttacking(false);
+
+            // Empêche plusieurs exécutions
             setIsKO(true);
-            try {
-                const response =
-                    await Axios.post(
-                        "/api/fight/kill",
-                        {
-                            pokemon
-                        }
+
+            setTimeout(async () => {
+                try {
+                    setIsAttacking(false);
+
+                    const response =
+                        await Axios.post(
+                            "/api/fight/kill",
+                            {
+                                pokemon
+                            }
+                        );
+
+                    setCurrentLevel(
+                        response.data.level
                     );
-                setCurrentLevel(
-                    response.data.level
-                );
-                setCurrentXp(
-                    response.data.xp
-                );
-                if (
-                    response.data.rewards
-                        ?.length > 0
-                ) {
-                    setSessionReward(
-                        prev => {
-                            const updated =
-                                [...prev];
-                            response.data.rewards
-                                .forEach(
+
+                    setCurrentXp(
+                        response.data.xp
+                    );
+
+                    if (
+                        response.data.rewards
+                            ?.length > 0
+                    ) {
+                        setSessionReward(
+                            prev => {
+                                const updated = [...prev];
+
+                                response.data.rewards.forEach(
                                     reward => {
                                         const existing =
                                             updated.find(
@@ -216,9 +223,8 @@ function Fight(props) {
                                                     r.item ===
                                                     reward.item
                                             );
-                                        if (
-                                            existing
-                                        ) {
+
+                                        if (existing) {
                                             existing.quantity++;
                                         } else {
                                             updated.push({
@@ -228,15 +234,16 @@ function Fight(props) {
                                         }
                                     }
                                 );
-                            return updated;
-                        }
-                    );
+
+                                return updated;
+                            }
+                        );
+                    }
+                } catch (err) {
+                    console.error(err);
                 }
-            } catch (err) {
-                console.error(
-                    err
-                );
-            }
+            }, 500);
+
             setTimeout(() => {
                 startFight();
                 setIsKO(false);
