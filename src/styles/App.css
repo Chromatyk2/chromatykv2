@@ -1650,12 +1650,15 @@ button.openBoosterButton span {
     pointer-events: none;
 }
 @keyframes sparkleMove {
-    from {
+    0% {
         background-position: 0 0, 0 0;
     }
 
-    to {
+    50% {
         background-position: 100px 150px, -150px 200px;
+    }
+    100% {
+        background-position: 0 0, 0 0;
     }
 }
     .cardInfos {
