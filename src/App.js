@@ -35,6 +35,7 @@ function App() {
         notificationAudio.current = new Audio(
             "/notif.mp3"
         );
+        notificationAudio.current.volume = 0.3;
     }, []);
     const playNotificationSound = () => {
         if (!notificationAudio.current) return;
