@@ -253,8 +253,8 @@ function Compagnon() {
                                         <img className={compagnon[0].negative === 1 ? "pokemonSprite shadowPokemon" : "pokemonSprite"}
                                                 src={`/Sprites/${compagnon[0].shiny === 1 ? "shiny" : "normal"}/${compagnon[0].number}.gif`}
                                                     alt=""
-                                                />
-                                                <div classname="pokemon-shadow"></div>
+                                        />
+                                        <div className={"pokemon-shadow"}></div>
                                             </div>
                                         </>
                                     )}

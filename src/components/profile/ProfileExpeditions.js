@@ -124,7 +124,7 @@ function ProfileExpeditions({
                         }
                         alt=""
                     />
-                    <div classname="pokemon-shadow"></div>
+                    <div className={"pokemon-shadow"}></div>
                 </div>
                 <div style={{width:"70%"}} className="hpBarContainer">
                     <div

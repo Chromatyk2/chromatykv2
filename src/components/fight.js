@@ -366,7 +366,7 @@ function Fight(props) {
                                 src={`/Sprites/${props.compagnon[0].shiny === 1 ? "shiny" : "normal"}/${props.compagnon[0].number}.gif`}
                                 alt=""
                             />
-                            <div classname="pokemon-shadow"></div>
+                            <div className={"pokemon-shadow"}></div>
                         </div>
                     </div>
                         <div style={{ width: "33%" }}>
@@ -408,7 +408,7 @@ function Fight(props) {
                                     }/${pokemon.number}.gif)`
                                 }}
                             >
-                                <div classname="pokemon-shadow"></div>
+                                <div className={"pokemon-shadow"}></div>
 
                             
                             </div>

@@ -371,7 +371,7 @@ function Fight() {
                                         src={`/Sprites/${shiny === 1 ? "shiny" : "normal"}/${pokemon.number}.gif`}
                                         alt=""
                             />
-                            <div classname="pokemon-shadow"></div>
+                            <div className={"pokemon-shadow"}></div>
                                 </div>
                         <div id={"ball"} style={{ display: onCatch && catchAnimation ? "block" : "none", background: ballStyle }} className="pokeball"></div>
                             </>
