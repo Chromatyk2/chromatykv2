@@ -32,6 +32,9 @@ function Cards() {
     const [searchParams] = useSearchParams();
     const param = searchParams.get("user");
     const [showImpact, setShowImpact] = useState(false);
+    const [selectedSet, setSelectedSet] = useState(null);
+    const [loadingSet, setLoadingSet] = useState(false);
+    };
     const startOpening = (cards) => {setOpenedCards(cards);setCurrentCard(0);setRevealed(false);setOpening(true);
 
     };
@@ -206,7 +209,27 @@ function Cards() {
                 (diff / (1000 * 60)) % 60
             );
         return `${days}j ${hours}h ${minutes}m`;
-    }
+        }
+
+    const openSet = async (set) => {
+        try {
+            setLoadingSet(true);
+
+            const { data: cards } = await axios.get(
+                `/api/card/set/${profilId}/${set.tcgdex_id}`
+            );
+
+            setSelectedSet({
+                ...set,
+                cards
+            });
+        }
+        catch (err) {
+            console.error(err);
+        }
+        finally {
+            setLoadingSet(false);
+        }
     return (
         <div className={"globalContainerCenter"}>
             {
@@ -438,7 +461,7 @@ function Cards() {
                 <div className="collectionGrid">
                     {!selectedSet ? (
                             ownedSets?.map(set => (
-                                <div key={set.tcgdex_id} className="boosterCard" onClick={() => setSelectedSet(set)}>
+                                <div key={set.tcgdex_id} className="boosterCard" onClick={() => openSet(set)}>
                             <img src={set.logo} alt={set.name} className="boosterImage" />
                             <div className="boosterFooter">
                                 <div className="progressInfos">
@@ -472,7 +495,7 @@ function Cards() {
                                         }}
                                     />
                                 </div>
-                                <button className="openBoosterButton" onClick={() =>setSelectedSet(set)}>
+                                     <button className="openBoosterButton" onClick={() => openSet(set)}>
                                     <span className="buttonContent">
                                         Voir les cartes
                                     </span>
