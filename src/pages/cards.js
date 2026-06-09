@@ -231,6 +231,7 @@ function Cards() {
         finally {
             setLoadingSet(false);
         }
+    }
         return (
             <div className={"globalContainerCenter"}>
                 {
@@ -572,6 +573,6 @@ function Cards() {
             </div>
         )
     }
-}
+
 
 export default Cards
