@@ -555,7 +555,11 @@ function Cards() {
                                                                         }));
                                                                     }
                                                                 }}
-                                                                src={card.quantity > 0 ? card.image + "/high.webp" : "/backCard.png"}
+                                                                src={
+                                                                    owned || revealed
+                                                                        ? card.image + "/high.webp"
+                                                                        : "/backCard.png"
+                                                                }
                                                                 alt=""
                                                                 loading="lazy"
                                                                 decoding="async"
