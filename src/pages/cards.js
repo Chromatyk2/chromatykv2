@@ -33,8 +33,6 @@ function Cards() {
     const [showImpact, setShowImpact] = useState(false);
     const [selectedSet, setSelectedSet] = useState(null);
     const [loadingSet, setLoadingSet] = useState(false);
-    const [searchParams] = useSearchParams();
-    const [showImpact, setShowImpact] = useState(false);
     const startOpening = (cards) => {setOpenedCards(cards);setCurrentCard(0);setRevealed(false);setOpening(true);
 
     };
