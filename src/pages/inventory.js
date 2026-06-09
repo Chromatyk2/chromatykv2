@@ -72,11 +72,11 @@ function Inventory(props) {
                 };
             case "boxplus":
                 return {
-                    filter: "drop-shadow(red 0px 0px 5px) contrast(1.7)";
+                    filter: "drop-shadow(red 0px 0px 5px) contrast(1.7)"
                 };
             case "fragement":
                 return {
-                    filter: "drop-shadow(red 0px 0px 5px) contrast(1.7)";
+                    filter: "drop-shadow(red 0px 0px 5px) contrast(1.7)"
                 };
             default:
                 return {};
