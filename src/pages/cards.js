@@ -28,13 +28,14 @@ function Cards() {
     const [showNewBadge,setShowNewBadge] =useState(false);
     const [isTransitioning, setIsTransitioning] = useState(false);
     const [globalProgress, setGlobalProgress] = useState(null);
-    const [selectedSet, setSelectedSet] = useState(null);
     const [searchParams] = useSearchParams();
     const param = searchParams.get("user");
     const [showImpact, setShowImpact] = useState(false);
     const [selectedSet, setSelectedSet] = useState(null);
     const [loadingSet, setLoadingSet] = useState(false);
-    };
+    const [searchParams] = useSearchParams();
+    const param = searchParams.get("user");
+    const [showImpact, setShowImpact] = useState(false);
     const startOpening = (cards) => {setOpenedCards(cards);setCurrentCard(0);setRevealed(false);setOpening(true);
 
     };
