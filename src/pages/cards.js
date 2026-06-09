@@ -33,6 +33,7 @@ function Cards() {
     const [showImpact, setShowImpact] = useState(false);
     const [selectedSet, setSelectedSet] = useState(null);
     const [loadingSet, setLoadingSet] = useState(false);
+    const [revealedCards, setRevealedCards] = useState({});
     const startOpening = (cards) => {
         setOpenedCards(cards); setCurrentCard(0); setRevealed(false); setOpening(true);
 
@@ -520,49 +521,62 @@ function Cards() {
                                                     Number(a.localId) -
                                                     Number(b.localId)
                                             )
-                                            .map(card => (
-                                                <div style={{ width: "200px" }}
-                                                    className="cardArtwork"
-                                                    onMouseMove={(e) => {
-                                                        const rect = e.currentTarget.getBoundingClientRect();
-                                                        const x =
-                                                            ((e.clientX - rect.left) / rect.width) * 100;
-                                                        const y =
-                                                            ((e.clientY - rect.top) / rect.height) * 100;
-                                                        e.currentTarget.style.setProperty(
-                                                            "--x",
-                                                            `${x}%`
-                                                        );
-                                                        e.currentTarget.style.setProperty(
-                                                            "--y",
-                                                            `${y}%`
-                                                        );
-                                                    }}
-                                                >
-                                                    {!loadedImages[card.id] && (
-                                                        <div className="cardPlaceholder" />
-                                                    )}
-                                                    <img
-                                                        src={card.quantity > 0 ? card.image + "/high.webp" : "/backCard.png"}
-                                                        alt=""
-                                                        loading="lazy"
-                                                        decoding="async"
-                                                        className={loadedImages[card.id] ? "loaded" : ""}
-                                                        onLoad={() =>
-                                                            setLoadedImages(prev => ({
-                                                                ...prev,
-                                                                [card.id]: true
-                                                            }))
-                                                        }
-                                                    />
-                                                    {card.tier >= 6 && (
-                                                        <>
-                                                            <div className="holoEffect" />
-                                                            <div className="sparkles" />
-                                                        </>
-                                                    )}
-                                                </div>
-                                            ))
+                                                .map(card => {
+                                                    const revealed = revealedCards[card.id];
+                                                    const owned = card.quantity > 0;
+                                                    return(                                                        
+                                                        <div style = {{ width: "200px" }}
+                                                            className="cardArtwork"
+                                                            onMouseMove={(e) => {
+                                                                const rect = e.currentTarget.getBoundingClientRect();
+                                                                const x =
+                                                                    ((e.clientX - rect.left) / rect.width) * 100;
+                                                                const y =
+                                                                    ((e.clientY - rect.top) / rect.height) * 100;
+                                                                e.currentTarget.style.setProperty(
+                                                                    "--x",
+                                                                    `${x}%`
+                                                                );
+                                                                e.currentTarget.style.setProperty(
+                                                                    "--y",
+                                                                    `${y}%`
+                                                                );
+                                                            }}
+                                                                    >
+                                                            {!loadedImages[card.id] && (
+                                                                <div className="cardPlaceholder" />
+                                                            )}
+                                                            <img
+                                                                onClick={() => {
+                                                                    if (!owned) {
+                                                                        setRevealedCards(prev => ({
+                                                                            ...prev,
+                                                                            [card.id]: true
+                                                                        }));
+                                                                    }
+                                                                }}
+                                                                src={card.quantity > 0 ? card.image + "/high.webp" : "/backCard.png"}
+                                                                alt=""
+                                                                loading="lazy"
+                                                                decoding="async"
+                                                                className={loadedImages[card.id] ? "loaded" : ""}
+                                                                onLoad={() =>
+                                                                    setLoadedImages(prev => ({
+                                                                        ...prev,
+                                                                        [card.id]: true
+                                                                    }))
+                                                                }
+                                                            />
+                                                            {card.tier >= 6 && (
+                                                                <>
+                                                                    <div className="holoEffect" />
+                                                                    <div className="sparkles" />
+                                                                </>
+                                                            )}
+                                                        </div>
+                                                    )
+                                                }
+                                            )
                                     }
                                 </div>
                             </div>
