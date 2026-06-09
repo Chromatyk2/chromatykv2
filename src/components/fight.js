@@ -362,7 +362,7 @@ function Fight(props) {
                         <div ref={pokemonContainerRef} style={{width:"100%"}} className={`fightSpriteCardInvert ${!hasAppeared ? "spawnInvert" : ""} ${isAttacking && !isKO ? "fightAttack" : ""}`}>
                             {props.compagnon[0].negative === 1 && <ShadowSmokeBack targetRef={pokemonContainerRef} />}
                             {props.compagnon[0].negative === 1 && <ShadowSmokeFront targetRef={pokemonContainerRef} />}
-                            <img style={{ maxHeight: "200px", maxWidth:"100%" }} className={props.compagnon[0].negative === 1 ? "pokemonSprite shadowPokemon" : "pokemonSprite"}
+                            <img style={{ maxHeight: "200px", maxWidth:"200px", width:"auto", height:"auto" }} className={props.compagnon[0].negative === 1 ? "pokemonSprite shadowPokemon" : "pokemonSprite"}
                                 src={`/Sprites/${props.compagnon[0].shiny === 1 ? "shiny" : "normal"}/${props.compagnon[0].number}.gif`}
                                 alt=""
                             />
@@ -393,22 +393,20 @@ function Fight(props) {
                         </div>
                         <div style={{ width: "50%", display: "block", margin: "auto", backgroundColor: pokemon.tier == 1 ? "#6d6d6c" : pokemon.tier == 2 ? "#21693a" : pokemon.tier == 3 ? "#744095" : "#bfa93a" }} className={"tierFight"}>Tier {pokemon.tier}</div>
                         <div className="fightSpriteWrapper">
-                            <div
+                            <div 
                                 className={`fightSpriteCardEnemy
                                     ${isKO ? "koAnimation" : ""}
                                     ${!hasAppeared ? "spawn" : ""}
                                     ${isAttacking ? "hit" : ""} pokemonSprite`}
                                 style={{
-                                    backgroundPosition:"center",
-                                    height: "200px",
-                                    width: "100%",
-                                    filter: negative === 1 && "invert(1)",
-                                    backgroundSize: "contain",
-                                    backgroundImage: `url(/Sprites/${
-                                        shiny === 1 ? "shiny" : "normal"
-                                    }/${pokemon.number}.gif)`
+                                     width: "100%",
+                                    filter: negative === 1 && "invert(1)"                                    
                                 }}
                             >
+                                <img style={{ maxHeight: "200px", maxWidth: "200px", width: "auto", height: "auto" }} className={props.compagnon[0].negative === 1 ? "pokemonSprite shadowPokemon" : "pokemonSprite"}
+                                    src={`/Sprites/${props.compagnon[0].shiny === 1 ? "shiny" : "normal"}/${pokemon.number}.gif`}
+                                    alt=""
+                                />
                                 <div className={"pokemon-shadow"}></div>
 
                             
