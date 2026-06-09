@@ -563,7 +563,11 @@ function Cards() {
                                                                 alt=""
                                                                 loading="lazy"
                                                                 decoding="async"
-                                                                className={loadedImages[card.id] ? "loaded" : ""}
+
+                                                                className={`
+                                                                    ${loadedImages[card.id] ? "loaded" : ""}
+                                                                    ${!owned && revealed ? "grayscaleCard" : ""}
+                                                                `}
                                                                 onLoad={() =>
                                                                     setLoadedImages(prev => ({
                                                                         ...prev,

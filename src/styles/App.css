@@ -2831,3 +2831,6 @@ img.companionSprite {
 .pokemonSprite {
     filter: drop-shadow(1px 1px 1px black);
 }
+.grayscaleCard {
+    filter: grayscale(100%) brightness(0.7);
+}
