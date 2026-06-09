@@ -25,7 +25,7 @@ function Cards() {
     const [ownedSets, setOwnedSets] = useState([]);
     const [currentCard, setCurrentCard] = useState(0);
     const [revealed, setRevealed] = useState(false);
-    const [showNewBadge,setShowNewBadge] =useState(false);
+    const [showNewBadge, setShowNewBadge] = useState(false);
     const [isTransitioning, setIsTransitioning] = useState(false);
     const [globalProgress, setGlobalProgress] = useState(null);
     const [searchParams] = useSearchParams();
@@ -33,7 +33,8 @@ function Cards() {
     const [showImpact, setShowImpact] = useState(false);
     const [selectedSet, setSelectedSet] = useState(null);
     const [loadingSet, setLoadingSet] = useState(false);
-    const startOpening = (cards) => {setOpenedCards(cards);setCurrentCard(0);setRevealed(false);setOpening(true);
+    const startOpening = (cards) => {
+        setOpenedCards(cards); setCurrentCard(0); setRevealed(false); setOpening(true);
 
     };
     const nextCard = () => {
@@ -207,7 +208,7 @@ function Cards() {
                 (diff / (1000 * 60)) % 60
             );
         return `${days}j ${hours}h ${minutes}m`;
-        }
+    }
 
     const openSet = async (set) => {
         try {
@@ -228,346 +229,347 @@ function Cards() {
         finally {
             setLoadingSet(false);
         }
-    return (
-        <div className={"globalContainerCenter"}>
-            {
-                globalProgress && (
-                    <div className="globalProgressCard">
-                        <h2 class="wood-sign">
-                            {isShop === true ?
-                                "Boutique de cartes"
-                                :
-                                "Collection de cartes"
-                            }
-                        </h2>
-                        {sortedSets.length > 0 && (
-                            <small
-                                style={{
-                                    display: "block",
-                                    marginBottom: "10px",
-                                    opacity: 0.8,
-                                    color: "#fff8dc",
-                                    fontSize: "15px"
-                                }}
-                            >
-                                Rotation #{sortedSets[0].rotation_number} • Du{" "}
-                                {new Date(sortedSets[0].start_date).toLocaleDateString("fr-FR")}{" "}
-                                au{" "}
-                                {new Date(sortedSets[0].end_date).toLocaleDateString("fr-FR")}
-                            </small>
-                        )}
-                        <p>
-                            {globalProgress.owned}
-                            {" / "}
-                            {globalProgress.total}
-                        </p>
-                        <div style={{marginBottom:"15px"}} className="hpBarContainer">
-                            <div className="hpBar" style={{width:`${globalProgress.percent}%`,background:"linear-gradient(90deg,rgba(36,70,171,1) 0%, rgba(2,194,232,1) 100%)"}}/>
-                            <span className="hpText">
-                                <p style={{fontSize: "16px"}}>
-                                    {parseFloat(globalProgress.percent).toFixed(2)}
-                                    {" %"}
-                                </p>
-                            </span>
+        return (
+            <div className={"globalContainerCenter"}>
+                {
+                    globalProgress && (
+                        <div className="globalProgressCard">
+                            <h2 class="wood-sign">
+                                {isShop === true ?
+                                    "Boutique de cartes"
+                                    :
+                                    "Collection de cartes"
+                                }
+                            </h2>
+                            {sortedSets.length > 0 && (
+                                <small
+                                    style={{
+                                        display: "block",
+                                        marginBottom: "10px",
+                                        opacity: 0.8,
+                                        color: "#fff8dc",
+                                        fontSize: "15px"
+                                    }}
+                                >
+                                    Rotation #{sortedSets[0].rotation_number} • Du{" "}
+                                    {new Date(sortedSets[0].start_date).toLocaleDateString("fr-FR")}{" "}
+                                    au{" "}
+                                    {new Date(sortedSets[0].end_date).toLocaleDateString("fr-FR")}
+                                </small>
+                            )}
+                            <p>
+                                {globalProgress.owned}
+                                {" / "}
+                                {globalProgress.total}
+                            </p>
+                            <div style={{ marginBottom: "15px" }} className="hpBarContainer">
+                                <div className="hpBar" style={{ width: `${globalProgress.percent}%`, background: "linear-gradient(90deg,rgba(36,70,171,1) 0%, rgba(2,194,232,1) 100%)" }} />
+                                <span className="hpText">
+                                    <p style={{ fontSize: "16px" }}>
+                                        {parseFloat(globalProgress.percent).toFixed(2)}
+                                        {" %"}
+                                    </p>
+                                </span>
+                            </div>
                         </div>
+                    )
+                }
+                {!new URLSearchParams(window.location.search).has("user") &&
+                    <div className="viewSwitcher">
+                        <button className={isShop === true ? "active" : ""} onClick={() => setIsShop(true)}>
+                            Boutique
+                        </button>
+                        <button className={isShop === false ? "active" : ""} onClick={() => setIsShop(false)}>
+                            Collection
+                        </button>
                     </div>
-                )
-            }
-            {!new URLSearchParams(window.location.search).has("user") &&
-                <div className="viewSwitcher">
-                    <button className={isShop === true ? "active" : ""} onClick={() =>setIsShop(true)}>
-                        Boutique
-                    </button>
-                    <button className={isShop === false ? "active" : ""} onClick={() =>setIsShop(false)}>
-                        Collection
-                    </button>
-                </div>
-            }
-            {isShop === true ?
-                <div className="rotationGrid">
-                    {sortedSets.map(set => {
-                        const isHot =
-                            new Date(set.release_date).getTime() ===
-                            newestReleaseDate;
-                        const stats = progress[set.tcgdex_id] || {
-                            owned: 0,
-                            total: set.card_count,
-                            percent: 0
-                        };
-                        return (
-                            <div key={set.id} className="boosterCard"
-                                onClick={() =>
-                                    openBooster(
-                                        set.tcgdex_id
-                                    )
-                                }>
-                                {isHot && (
-                                    <div className="hotBadge">
-                                        🔥 HOT
-                                    </div>
-                                )}
-                                <img
-                                    src={set.logo}
-                                    alt={set.name}
-                                    className="boosterImage"
-                                />
-                                <div className="boosterFooter">
+                }
+                {isShop === true ?
+                    <div className="rotationGrid">
+                        {sortedSets.map(set => {
+                            const isHot =
+                                new Date(set.release_date).getTime() ===
+                                newestReleaseDate;
+                            const stats = progress[set.tcgdex_id] || {
+                                owned: 0,
+                                total: set.card_count,
+                                percent: 0
+                            };
+                            return (
+                                <div key={set.id} className="boosterCard"
+                                    onClick={() =>
+                                        openBooster(
+                                            set.tcgdex_id
+                                        )
+                                    }>
+                                    {isHot && (
+                                        <div className="hotBadge">
+                                            🔥 HOT
+                                        </div>
+                                    )}
+                                    <img
+                                        src={set.logo}
+                                        alt={set.name}
+                                        className="boosterImage"
+                                    />
+                                    <div className="boosterFooter">
 
-                                    <div className="rotationTimer">
-                                        {!isHot && (
-                                            <>
-                                                ⏳ {getRemainingTime(set.end_date)}
-                                            </>
-                                        )}
-                                    </div>
-                                    <div className="progressInfos">
-                                        <span>
-                                            {stats.owned}
-                                            {" / "}
-                                            {stats.total}
-                                        </span>
-                                        <span>
-                                            {stats.percent}%
-                                        </span>
-                                    </div>
-                                    <div className="hpBarContainer">
-                                        <div
-                                            className="hpBar"
-                                            style={{
-                                                width: `${stats.percent}%`,
-                                                background: "linear-gradient(90deg,rgba(36, 70, 171, 1) 0%, rgba(2, 194, 232, 1) 100%)"
-                                            }}
-                                        />
-                                        <span className="hpText">
-                                            <p style={{ fontSize: "16px" }}>{parseFloat(stats.percent).toFixed(2) + " %"}</p>
-                                        </span>
-                                    </div>
+                                        <div className="rotationTimer">
+                                            {!isHot && (
+                                                <>
+                                                    ⏳ {getRemainingTime(set.end_date)}
+                                                </>
+                                            )}
+                                        </div>
+                                        <div className="progressInfos">
+                                            <span>
+                                                {stats.owned}
+                                                {" / "}
+                                                {stats.total}
+                                            </span>
+                                            <span>
+                                                {stats.percent}%
+                                            </span>
+                                        </div>
+                                        <div className="hpBarContainer">
+                                            <div
+                                                className="hpBar"
+                                                style={{
+                                                    width: `${stats.percent}%`,
+                                                    background: "linear-gradient(90deg,rgba(36, 70, 171, 1) 0%, rgba(2, 194, 232, 1) 100%)"
+                                                }}
+                                            />
+                                            <span className="hpText">
+                                                <p style={{ fontSize: "16px" }}>{parseFloat(stats.percent).toFixed(2) + " %"}</p>
+                                            </span>
+                                        </div>
 
-                                    <div className="progressBarContainer">
+                                        <div className="progressBarContainer">
 
-                                        <div
-                                            className="progressBar"
-                                            style={{
-                                                width:
-                                                    `${stats.percent}%`
-                                            }}
-                                        />
+                                            <div
+                                                className="progressBar"
+                                                style={{
+                                                    width:
+                                                        `${stats.percent}%`
+                                                }}
+                                            />
 
-                                    </div>
+                                        </div>
 
-                                    <button
-                                        className={`openBoosterButton ${boosterCurrency <= 0
+                                        <button
+                                            className={`openBoosterButton ${boosterCurrency <= 0
                                                 ? "disabled"
                                                 : ""
-                                            }`}
-                                        disabled={
-                                            boosterCurrency <= 0
-                                        }
-                                        onClick={() =>
-                                            openBooster(
-                                                set.tcgdex_id
-                                            )
-                                        }
-                                    >
-
-                                        {
-                                            boosterCurrency > 0
-                                                ? (
-                                                    <span className="buttonContent">
-
-                                                        Ouvrir x {
-                                                            boosterCurrency
-                                                        }
-
-                                                        <img
-                                                            src="/booster.png"
-                                                            alt=""
-                                                            className="buttonBoosterIcon"
-                                                        />
-
-                                                    </span>
+                                                }`}
+                                            disabled={
+                                                boosterCurrency <= 0
+                                            }
+                                            onClick={() =>
+                                                openBooster(
+                                                    set.tcgdex_id
                                                 )
-                                                : (
-                                                    "Aucun booster disponible"
-                                                )
-                                        }
+                                            }
+                                        >
 
-                                    </button>
+                                            {
+                                                boosterCurrency > 0
+                                                    ? (
+                                                        <span className="buttonContent">
+
+                                                            Ouvrir x {
+                                                                boosterCurrency
+                                                            }
+
+                                                            <img
+                                                                src="/booster.png"
+                                                                alt=""
+                                                                className="buttonBoosterIcon"
+                                                            />
+
+                                                        </span>
+                                                    )
+                                                    : (
+                                                        "Aucun booster disponible"
+                                                    )
+                                            }
+
+                                        </button>
+
+                                    </div>
 
                                 </div>
+                            );
+                        })}
+                        {
+                            opening && (
+                                <div className={`openingOverlay  ${revealed ? `tierBg${openedCards[currentCard]?.tier || 1}` : ""}`} onClick={nextCard}>
+                                    <div className="openingWrapper">
+                                        <div onAnimationEnd={() => { if (openedCards[currentCard]?.tier === 6) { setShowImpact(true); } }} className={`card ${revealed ? "flipped" : ""} ${revealed ? `tier${openedCards[currentCard]?.tier || 1}` : ""}`}>
+                                            {showImpact && (
+                                                <div className="impactEffect" />
+                                            )}
+                                            <div className="cardInner">
+                                                <div className="cardFront">
+                                                    <img src="/backCard.png" alt="" />
+                                                </div>
+                                                <div className="cardBack">
+                                                    <div className="cardArtwork">
+                                                        <img
+                                                            src={openedCards[currentCard]?.image + "/high.webp"}
+                                                            alt=""
+                                                        />
 
-                            </div>
-                        );
-                    })}
-                    {
-                        opening && (
-                            <div className={`openingOverlay  ${revealed ? `tierBg${openedCards[currentCard]?.tier || 1}` : ""}`} onClick={nextCard}>
-                                <div className="openingWrapper">
-                                    <div onAnimationEnd={() => {if (openedCards[currentCard]?.tier === 6) {setShowImpact(true);}}} className={`card ${revealed ? "flipped" : ""} ${revealed ? `tier${openedCards[currentCard]?.tier || 1}` : ""}`}>
-                                        {showImpact && (
-                                            <div className="impactEffect" />
-                                        )}
-                                        <div className="cardInner">
-                                            <div className="cardFront">
-                                                <img src="/backCard.png" alt=""/>
+                                                        {openedCards[currentCard]?.tier >= 6 && (
+                                                            <>
+                                                                <div className="holoEffect" />
+                                                                <div className="sparkles" />
+                                                            </>
+                                                        )}
+                                                    </div>
+
+                                                    {showNewBadge &&
+                                                        openedCards[currentCard]?.isNew && (
+                                                            <div className="newBadge">
+                                                                ✨ NEW ✨
+                                                            </div>
+                                                        )}
+                                                </div>
                                             </div>
-                                            <div className="cardBack">
-                                                <div className="cardArtwork">
-                                                    <img
-                                                        src={openedCards[currentCard]?.image + "/high.webp"}
-                                                        alt=""
-                                                    />
+                                        </div>
+                                        <div className="cardInfos">
+                                            Carte
+                                            {" "}
+                                            {currentCard + 1}
+                                            {" / "}
+                                            {openedCards.length}
+                                        </div>
+                                        <div className="hint">
+                                            {
+                                                !revealed
+                                                    ? "Cliquer pour retourner"
+                                                    : "Cliquer pour continuer"
+                                            }
 
-                                                    {openedCards[currentCard]?.tier >= 6 && (
+                                        </div>
+                                    </div>
+                                </div>
+                            )
+                        }
+                    </div>
+                    :
+                    <div className="collectionGrid">
+                        {!selectedSet ? (
+                            ownedSets?.map(set => (
+                                <div key={set.tcgdex_id} className="boosterCard" onClick={() => openSet(set)}>
+                                    <img src={set.logo} alt={set.name} className="boosterImage" />
+                                    <div className="boosterFooter">
+                                        <div className="progressInfos">
+                                            <span>
+                                                {set.owned}
+                                                {" / "}
+                                                {set.card_count}
+                                            </span>
+                                            <span>
+                                                {set.percent}%
+                                            </span>
+                                        </div>
+                                        <div className="hpBarContainer">
+                                            <div
+                                                className="hpBar"
+                                                style={{
+                                                    width: `${set.percent}%`,
+                                                    background: "linear-gradient(90deg,rgba(36, 70, 171, 1) 0%, rgba(2, 194, 232, 1) 100%)"
+                                                }}
+                                            />
+                                            <span className="hpText">
+                                                <p style={{ fontSize: "16px" }}>{parseFloat(set.percent).toFixed(2) + " %"}</p>
+                                            </span>
+                                        </div>
+                                        <div className="progressBarContainer">
+                                            <div
+                                                className="progressBar"
+                                                style={{
+                                                    width:
+                                                        `${set.percent}%`
+                                                }}
+                                            />
+                                        </div>
+                                        <button className="openBoosterButton" onClick={() => openSet(set)}>
+                                            <span className="buttonContent">
+                                                Voir les cartes
+                                            </span>
+                                        </button>
+                                    </div>
+                                </div>
+                            )
+                            )
+                        ) : (
+                            <div className="setCollection">
+                                <button className="backButton" onClick={() => setSelectedSet(null)}>
+                                    ← Retour
+                                </button>
+                                <h2>{selectedSet.name}</h2>
+                                <div className="cardsGrid">
+                                    {
+                                        [...selectedSet.cards]
+                                            .sort(
+                                                (a, b) =>
+                                                    Number(a.localId) -
+                                                    Number(b.localId)
+                                            )
+                                            .map(card => (
+                                                <div style={{ width: "200px" }}
+                                                    className="cardArtwork"
+                                                    onMouseMove={(e) => {
+                                                        const rect = e.currentTarget.getBoundingClientRect();
+                                                        const x =
+                                                            ((e.clientX - rect.left) / rect.width) * 100;
+                                                        const y =
+                                                            ((e.clientY - rect.top) / rect.height) * 100;
+                                                        e.currentTarget.style.setProperty(
+                                                            "--x",
+                                                            `${x}%`
+                                                        );
+                                                        e.currentTarget.style.setProperty(
+                                                            "--y",
+                                                            `${y}%`
+                                                        );
+                                                    }}
+                                                >
+                                                    {!loadedImages[card.id] && (
+                                                        <div className="cardPlaceholder" />
+                                                    )}
+                                                    <img
+                                                        src={card.image + "/high.webp"}
+                                                        alt=""
+                                                        loading="lazy"
+                                                        decoding="async"
+                                                        className={loadedImages[card.id] ? "loaded" : ""}
+                                                        onLoad={() =>
+                                                            setLoadedImages(prev => ({
+                                                                ...prev,
+                                                                [card.id]: true
+                                                            }))
+                                                        }
+                                                    />
+                                                    {card.tier >= 6 && (
                                                         <>
                                                             <div className="holoEffect" />
                                                             <div className="sparkles" />
                                                         </>
                                                     )}
                                                 </div>
-
-                                                {showNewBadge &&
-                                                    openedCards[currentCard]?.isNew && (
-                                                        <div className="newBadge">
-                                                            ✨ NEW ✨
-                                                        </div>
-                                                    )}
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="cardInfos">
-                                        Carte
-                                        {" "}
-                                        {currentCard + 1}
-                                        {" / "}
-                                        {openedCards.length}
-                                    </div>
-                                    <div className="hint">
-                                        {
-                                            !revealed
-                                                ? "Cliquer pour retourner"
-                                                : "Cliquer pour continuer"
-                                        }
-
-                                    </div>
+                                            ))
+                                    }
                                 </div>
                             </div>
                         )
-                    }
-                </div>
-                :
-                <div className="collectionGrid">
-                    {!selectedSet ? (
-                            ownedSets?.map(set => (
-                                <div key={set.tcgdex_id} className="boosterCard" onClick={() => openSet(set)}>
-                            <img src={set.logo} alt={set.name} className="boosterImage" />
-                            <div className="boosterFooter">
-                                <div className="progressInfos">
-                                    <span>
-                                        {set.owned}
-                                        {" / "}
-                                        {set.card_count}
-                                    </span>
-                                    <span>
-                                        {set.percent}%
-                                    </span>
-                                </div>
-                                <div className="hpBarContainer">
-                                    <div
-                                        className="hpBar"
-                                        style={{
-                                            width: `${set.percent}%`,
-                                            background: "linear-gradient(90deg,rgba(36, 70, 171, 1) 0%, rgba(2, 194, 232, 1) 100%)"
-                                        }}
-                                    />
-                                    <span className="hpText">
-                                        <p style={{ fontSize: "16px" }}>{parseFloat(set.percent).toFixed(2) + " %"}</p>
-                                    </span>
-                                </div>
-                                <div className="progressBarContainer">
-                                    <div
-                                        className="progressBar"
-                                        style={{
-                                            width:
-                                                `${set.percent}%`
-                                        }}
-                                    />
-                                </div>
-                                     <button className="openBoosterButton" onClick={() => openSet(set)}>
-                                    <span className="buttonContent">
-                                        Voir les cartes
-                                    </span>
-                                </button>
-                            </div>
-                        </div>
-                            )
-                        )
-                    ) : (
-                        <div className="setCollection">
-                            <button className="backButton" onClick={() =>setSelectedSet(null)}>
-                                ← Retour
-                            </button>
-                            <h2>{selectedSet.name}</h2>
-                            <div className="cardsGrid">
-                                {
-                                    [...selectedSet.cards]
-                                        .sort(
-                                            (a, b) =>
-                                                Number(a.localId) -
-                                                Number(b.localId)
-                                        )
-                                        .map(card => (
-                                            <div style={{width:"200px"}}
-                                                className="cardArtwork"
-                                                onMouseMove={(e) => {
-                                                    const rect = e.currentTarget.getBoundingClientRect();
-                                                    const x =
-                                                        ((e.clientX - rect.left) / rect.width) * 100;
-                                                    const y =
-                                                        ((e.clientY - rect.top) / rect.height) * 100;
-                                                    e.currentTarget.style.setProperty(
-                                                        "--x",
-                                                        `${x}%`
-                                                    );
-                                                    e.currentTarget.style.setProperty(
-                                                        "--y",
-                                                        `${y}%`
-                                                    );
-                                                }}
-                                            >
-                                                {!loadedImages[card.id] && (
-                                                <div className="cardPlaceholder" />
-                                            )}
-                                                <img
-                                                    src={card.image + "/high.webp"}
-                                                    alt=""
-                                                    loading="lazy"
-                                                    decoding="async"
-                                                    className={loadedImages[card.id] ? "loaded" : ""}
-                                                    onLoad={() =>
-                                                        setLoadedImages(prev => ({
-                                                            ...prev,
-                                                            [card.id]: true
-                                                        }))
-                                                    }
-                                                />
-                                                {card.tier >= 6 && (
-                                                    <>
-                                                        <div className="holoEffect" />
-                                                        <div className="sparkles" />
-                                                    </>
-                                                )}
-                                            </div>
-                                        ))
-                                }
-                            </div>
-                        </div>
-                    )
-                    }
-                </div>
-            }
-        </div>
-    )
+                        }
+                    </div>
+                }
+            </div>
+        )
+    }
 }
 
 export default Cards
