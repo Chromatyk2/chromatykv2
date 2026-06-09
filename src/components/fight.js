@@ -400,8 +400,8 @@ function Fight(props) {
                                     ${isAttacking ? "hit" : ""} pokemonSprite`}
                                 style={{
                                     backgroundPosition:"center",
-                                    maxHeight: "200px",
-                                    maxWidth: "100%",
+                                    height: "200px",
+                                    width: "100%",
                                     filter: negative === 1 && "invert(1)",
                                     backgroundSize: "contain",
                                     backgroundImage: `url(/Sprites/${
