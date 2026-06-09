@@ -293,8 +293,6 @@ function Fight(props) {
                     }/${next.pokemon.number}.gif`;
             });
             setPokemon(fight.pokemon);
-            setShiny(fight.shiny);
-            setNegative(fight.negative);
             setCurrentHp(fight.currentHp);
             setMaxHp(fight.maxHp);
             setHasAppeared(true);
@@ -403,10 +401,10 @@ function Fight(props) {
                                     filter: negative === 1 && "invert(1)"                                    
                                 }}
                             >
-                                {props.compagnon[0].negative === 1 && <ShadowSmokeBack targetRef={pokemonContainerRef} />}
-                                {props.compagnon[0].negative === 1 && <ShadowSmokeFront targetRef={pokemonContainerRef} />}
-                                <img style={{ maxHeight: "200px", maxWidth: "200px", width: "auto", height: "auto" }} className={props.compagnon[0].negative === 1 ? "pokemonSprite shadowPokemon" : "pokemonSprite"}
-                                    src={`/Sprites/${props.compagnon[0].shiny === 1 ? "shiny" : "normal"}/${pokemon.number}.gif`}
+                                {pokemon.negative === 1 && <ShadowSmokeBack targetRef={pokemonContainerRef} />}
+                                {pokemon.negative === 1 && <ShadowSmokeFront targetRef={pokemonContainerRef} />}
+                                <img style={{ maxHeight: "200px", maxWidth: "200px", width: "auto", height: "auto" }} className={pokemon.negative === 1 ? "pokemonSprite shadowPokemon" : "pokemonSprite"}
+                                    src={`/Sprites/${pokemon.shiny === 1 ? "shiny" : "normal"}/${pokemon.number}.gif`}
                                     alt=""
                                 />
                                 <div className={"pokemon-shadow"}></div>
