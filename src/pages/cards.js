@@ -368,28 +368,18 @@ function Cards() {
                                             disabled={
                                                 boosterCurrency <= 0
                                             }
-                                            onClick={() =>
-                                                openBooster(
-                                                    set.tcgdex_id
-                                                )
-                                            }
                                         >
 
                                             {
                                                 boosterCurrency > 0
                                                     ? (
                                                         <span className="buttonContent">
-
-                                                            Ouvrir x {
-                                                                boosterCurrency
-                                                            }
-
+                                                            x {boosterCurrency}
                                                             <img
                                                                 src="/booster.png"
                                                                 alt=""
                                                                 className="buttonBoosterIcon"
                                                             />
-
                                                         </span>
                                                     )
                                                     : (
