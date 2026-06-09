@@ -543,7 +543,7 @@ function Cards() {
                                                         <div className="cardPlaceholder" />
                                                     )}
                                                     <img
-                                                        src={card.image + "/high.webp"}
+                                                        src={card.quantity > 0 ? card.image + "/high.webp" : "/backCard.png"}
                                                         alt=""
                                                         loading="lazy"
                                                         decoding="async"
