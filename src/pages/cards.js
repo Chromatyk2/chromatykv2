@@ -211,11 +211,13 @@ function Cards() {
     }
 
     const openSet = async (set) => {
+        const profileUser =
+            param || user.id;
         try {
             setLoadingSet(true);
 
-            const { data: cards } = await axios.get(
-                `/api/card/set/${profilId}/${set.tcgdex_id}`
+            const { data: cards } = await Axios.get(
+                `/api/card/set/${profileUser}/${set}`
             );
 
             setSelectedSet({
@@ -460,7 +462,7 @@ function Cards() {
                     <div className="collectionGrid">
                         {!selectedSet ? (
                             ownedSets?.map(set => (
-                                <div key={set.tcgdex_id} className="boosterCard" onClick={() => openSet(set)}>
+                                <div key={set.tcgdex_id} className="boosterCard" onClick={() => openSet(set.tcgdex_id)}>
                                     <img src={set.logo} alt={set.name} className="boosterImage" />
                                     <div className="boosterFooter">
                                         <div className="progressInfos">
