@@ -8,6 +8,7 @@ function Inventory(props) {
     const [onLoad, setOnload] = useState(true);
     const [inventory, setInventory] = useState([]);
     const itemOrder = [
+        "boxplus",
         "box",
         "booster",
         "fragement",
@@ -68,6 +69,11 @@ function Inventory(props) {
                 return {
                     filter:
                         "drop-shadow(gold 0px 0px 5px) hue-rotate(15deg) contrast(1.3) invert(1)"
+                };
+            case "boxplus":
+                return {
+                    filter:
+                        "drop-shadow(red 0px 0px 5px) hue-rotate(303deg) contrast(1.1)"
                 };
             default:
                 return {};
@@ -152,6 +158,22 @@ function Inventory(props) {
             );
         }
     }
+    async function openLootboxPlus() {
+        try {
+            const response =
+                await Axios.post(
+                    "/api/openLootboxPlus"
+                );
+            console.log(
+                response.data.rewards
+            );
+            loadInventory();
+        } catch (err) {
+            console.error(
+                err.response?.data || err
+            );
+        }
+    }
     return (
         <div className="globalContainerCenter">
             {onLoad === false &&
@@ -161,7 +183,7 @@ function Inventory(props) {
                         <h2 className="pseudoProfil wood-sign">Sac d'inventaire</h2>
                             <div className="inventoryContainer">
                                 {sortedInventory.map((val) => (
-                                    <div key={val.slug} className="honeyActions" style={val.slug === "box" ? getStyle(val.slug) : {}} onClick={val.slug === "box" ? openLootbox : val.slug === "fragement" ? createLootbox : undefined}>
+                                    <div key={val.slug} className="honeyActions" style={val.slug === "box" ? getStyle(val.slug) : {}} onClick={val.slug === "boxplus" ? openLootboxPlus : val.slug === "box" ? openLootbox : val.slug === "fragement" ? createLootbox : undefined}>
                                         <img alt={val.slug} src={getImage(val.slug)} style={val.slug !== "box" ? getStyle(val.slug) : {}} />
                                         <p>{val.item}</p>
                                         {val.slug === "fragement" ? <p>{val.quantity} / 100</p>  : <p>x {val.quantity}</p>}
