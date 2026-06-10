@@ -14,7 +14,7 @@ const OUTPUT_FILE = path.join(
 );
 
 // Raichu = référence
-const REFERENCE_POKEMON = "26.gif";
+const REFERENCE_POKEMON = "583.gif";
 
 function median(values) {
 
