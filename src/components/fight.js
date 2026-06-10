@@ -362,7 +362,7 @@ function Fight(props) {
                         <div ref={pokemonContainerRef} style={{ width: "100%", filter:'drop-shadow(1px 1px 1px black)'}} className={`fightSpriteCardInvert ${!hasAppeared ? "spawnInvert" : ""} ${isAttacking && !isKO ? "fightAttack" : ""}`}>
                             {props.compagnon[0].negative === 1 && <ShadowSmokeBack targetRef={pokemonContainerRef} />}
                             {props.compagnon[0].negative === 1 && <ShadowSmokeFront targetRef={pokemonContainerRef} />}
-                            <img style={{ maxHeight: "200px", maxWidth: "200px", width: "auto", height: "auto", transform: `scale(${spriteScales[pokemon.number]?.scale ?? 1})` }} className={props.compagnon[0].negative === 1 ? "pokemonSprite shadowPokemon" : "pokemonSprite"}
+                            <img style={{ maxHeight: "200px", maxWidth: "200px", width: "auto", height: "auto", transform: `scale(${spriteScales[props.compagnon[0].number]?.scale ?? 1})` }} className={props.compagnon[0].negative === 1 ? "pokemonSprite shadowPokemon" : "pokemonSprite"}
                                 src={`/Sprites/${props.compagnon[0].shiny === 1 ? "shiny" : "normal"}/${props.compagnon[0].number}.gif`}
                                 alt=""
                             />
