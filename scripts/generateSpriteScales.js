@@ -13,8 +13,8 @@ const OUTPUT_FILE = path.join(
     "../src/data/sprite_scales.json"
 );
 
-// Raichu référence
-const REFERENCE_POKEMON = "26.gif";
+// Ton Raichu de référence
+const REFERENCE_POKEMON = "37.gif";
 
 function median(values) {
 
@@ -36,66 +36,16 @@ function streamToBuffer(stream) {
         const chunks = [];
 
         stream.on("data", chunk => chunks.push(chunk));
-        stream.on("end", () => resolve(Buffer.concat(chunks)));
+
+        stream.on("end", () => {
+            resolve(Buffer.concat(chunks));
+        });
+
         stream.on("error", reject);
     });
 }
 
-async function getFrameBoundingBox(frame) {
-
-    const pngBuffer =
-        await streamToBuffer(
-            frame.getImage()
-        );
-
-    const { data, info } =
-        await sharp(pngBuffer)
-            .ensureAlpha()
-            .raw()
-            .toBuffer({
-                resolveWithObject: true
-            });
-
-    let minX = info.width;
-    let minY = info.height;
-
-    let maxX = -1;
-    let maxY = -1;
-
-    for (let y = 0; y < info.height; y++) {
-
-        for (let x = 0; x < info.width; x++) {
-
-            const idx =
-                (y * info.width + x) * 4;
-
-            const alpha =
-                data[idx + 3];
-
-            if (alpha > 0) {
-
-                if (x < minX) minX = x;
-                if (y < minY) minY = y;
-
-                if (x > maxX) maxX = x;
-                if (y > maxY) maxY = y;
-            }
-        }
-    }
-
-    if (maxX === -1) {
-        return null;
-    }
-
-    return {
-        width: maxX - minX + 1,
-        height: maxY - minY + 1,
-        canvasWidth: info.width,
-        canvasHeight: info.height
-    };
-}
-
-async function getMedianOccupation(gifPath) {
+async function getMedianOpaquePixels(gifPath) {
 
     const frames = await gifFrames({
         url: gifPath,
@@ -104,28 +54,38 @@ async function getMedianOccupation(gifPath) {
         cumulative: true
     });
 
-    const occupations = [];
+    const pixelCounts = [];
 
     for (const frame of frames) {
 
-        const bbox =
-            await getFrameBoundingBox(frame);
+        const pngBuffer =
+            await streamToBuffer(
+                frame.getImage()
+            );
 
-        if (!bbox) continue;
+        const { data } =
+            await sharp(pngBuffer)
+                .ensureAlpha()
+                .raw()
+                .toBuffer({
+                    resolveWithObject: true
+                });
 
-        const bboxArea =
-            bbox.width * bbox.height;
+        let visiblePixels = 0;
 
-        const canvasArea =
-            bbox.canvasWidth *
-            bbox.canvasHeight;
+        for (let i = 3; i < data.length; i += 4) {
 
-        occupations.push(
-            bboxArea / canvasArea
+            if (data[i] > 0) {
+                visiblePixels++;
+            }
+        }
+
+        pixelCounts.push(
+            visiblePixels
         );
     }
 
-    return median(occupations);
+    return median(pixelCounts);
 }
 
 async function main() {
@@ -143,8 +103,13 @@ async function main() {
         "201.gif",
         "418.gif"
     ];
-    const referenceOccupation =
-        await getMedianOccupation(
+
+    console.log(
+        "Calcul de la référence..."
+    );
+
+    const referencePixels =
+        await getMedianOpaquePixels(
             path.join(
                 SPRITES_FOLDER,
                 REFERENCE_POKEMON
@@ -152,8 +117,8 @@ async function main() {
         );
 
     console.log(
-        "Reference occupation:",
-        referenceOccupation
+        "Reference pixels:",
+        referencePixels
     );
 
     const result = {};
@@ -164,8 +129,14 @@ async function main() {
 
         try {
 
-            const occupation =
-                await getMedianOccupation(
+            const pokemonNumber =
+                path.basename(
+                    file,
+                    ".gif"
+                );
+
+            const medianPixels =
+                await getMedianOpaquePixels(
                     path.join(
                         SPRITES_FOLDER,
                         file
@@ -174,34 +145,24 @@ async function main() {
 
             let scale =
                 Math.sqrt(
-                    referenceOccupation /
-                    occupation
+                    referencePixels /
+                    medianPixels
                 );
 
-            // correction légère seulement
+            // limites de sécurité
             scale = Math.max(
-                0.75,
+                0.6,
                 Math.min(
-                    1.35,
+                    1.6,
                     scale
                 )
             );
 
-            const pokemonNumber =
-                path.basename(
-                    file,
-                    ".gif"
-                );
-
             result[pokemonNumber] = {
-                occupation:
-                    Number(
-                        occupation.toFixed(4)
-                    ),
-                scale:
-                    Number(
-                        scale.toFixed(3)
-                    )
+                medianPixels,
+                scale: Number(
+                    scale.toFixed(3)
+                )
             };
 
             processed++;
@@ -209,7 +170,9 @@ async function main() {
             console.log(
                 `${processed}/${files.length}`,
                 pokemonNumber,
-                occupation.toFixed(4),
+                "pixels:",
+                medianPixels,
+                "scale:",
                 scale.toFixed(3)
             );
 

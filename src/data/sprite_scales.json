@@ -1,22 +1,22 @@
 {
   "37": {
-    "occupation": 0.9422,
-    "scale": 1.03
+    "medianPixels": 227747.5,
+    "scale": 1
   },
   "201": {
-    "occupation": 0.9963,
-    "scale": 1.002
+    "medianPixels": 243710.5,
+    "scale": 0.967
   },
   "418": {
-    "occupation": 0.987,
-    "scale": 1.007
+    "medianPixels": 100250.5,
+    "scale": 1.507
   },
   "656": {
-    "occupation": 1,
-    "scale": 1
+    "medianPixels": 190201,
+    "scale": 1.094
   },
   "663": {
-    "occupation": 1,
-    "scale": 1
+    "medianPixels": 189187,
+    "scale": 1.097
   }
 }
