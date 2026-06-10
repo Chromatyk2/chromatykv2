@@ -2802,6 +2802,9 @@ img.companionSprite {
         width: 100%;
         padding: 0;
     }
+    .pokemonSprite.leaderboad {
+        right: -226px !important;
+    }
 }
 .pokemon-shadow {
     animation: shadow 2s ease-in-out infinite;
