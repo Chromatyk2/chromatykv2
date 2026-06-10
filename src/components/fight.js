@@ -326,9 +326,9 @@ function Fight(props) {
         props.setOnFight(false);
     };
     const scale =
-        spriteScales[props.compagnon[0]]?.scale ?? 1;
+        spriteScales[props.compagnon[0]?.number]?.scale ?? 1;
     const scaleEnemy =
-        spriteScales[pokemon.number]?.scale ?? 1;
+        spriteScales[pokemon?.number]?.scale ?? 1;
     return (            
         <div className={"globalContainerCenter"}>
             <h2 class="wood-sign">Arene de Combat</h2>
