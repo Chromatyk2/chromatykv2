@@ -251,7 +251,7 @@ function Fight(props) {
             }, 1500);
         }
         handleKO();
-    }, [currentHp]);
+    }, [currentHp, isAttacking]);
 
     useEffect(() => {
         const tierMultiplier = {
