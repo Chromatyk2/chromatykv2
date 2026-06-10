@@ -366,7 +366,7 @@ function Fight(props) {
                         <div ref={pokemonContainerRef} style={{ width: "100%", filter:'drop-shadow(1px 1px 1px black)'}} className={`fightSpriteCardInvert ${!hasAppeared ? "spawnInvert" : ""} ${isAttacking && !isKO ? "fightAttack" : ""}`}>
                             {props.compagnon[0].negative === 1 && <ShadowSmokeBack targetRef={pokemonContainerRef} />}
                             {props.compagnon[0].negative === 1 && <ShadowSmokeFront targetRef={pokemonContainerRef} />}
-                            <img style={{ maxHeight: "none", maxWidth: "none", width: `${200 * scale}px`, height: "auto" }} className={props.compagnon[0].negative === 1 ? "pokemonSprite shadowPokemon" : "pokemonSprite"}
+                            <img style={{ width: `auto`, height: `${200 * scale}px` }} className={props.compagnon[0].negative === 1 ? "pokemonSprite shadowPokemon" : "pokemonSprite"}
                                 src={`/Sprites/${props.compagnon[0].shiny === 1 ? "shiny" : "normal"}/${props.compagnon[0].number}.gif`}
                                 alt=""
                             />
@@ -412,7 +412,7 @@ function Fight(props) {
                             >
                                 {pokemon.negative === 1 && <ShadowSmokeBack targetRef={pokemonContainerRef} />}
                                 {pokemon.negative === 1 && <ShadowSmokeFront targetRef={pokemonContainerRef} />}
-                                <img key={`${pokemon.number}-${pokemon.shiny}`} style={{ maxHeight: "none", maxWidth: "none", width: `${200 * scaleEnemy}px`, height: "auto" }} className={pokemon.negative === 1 ? "pokemonSprite shadowPokemon" : "pokemonSprite"}
+                                <img key={`${pokemon.number}-${pokemon.shiny}`} style={{ width: `auto`, height: `${200 * scale}px` }} className={pokemon.negative === 1 ? "pokemonSprite shadowPokemon" : "pokemonSprite"}
                                     src={`/Sprites/${pokemon.shiny === 1 ? "shiny" : "normal"}/${pokemon.number}.gif`}
                                     alt=""
                                 />
