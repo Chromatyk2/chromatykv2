@@ -363,7 +363,12 @@ function Fight(props) {
                             <div className="tierFight">
                             Nv.{curentLevel}
                             </div>
-                        <div ref={pokemonContainerRef} style={{ width: "100%", filter:'drop-shadow(1px 1px 1px black)'}} className={`fightSpriteCardInvert ${!hasAppeared ? "spawnInvert" : ""} ${isAttacking && !isKO ? "fightAttack" : ""}`}>
+                        <div ref={pokemonContainerRef} style={{
+                            width: "100%", filter: 'drop-shadow(1px 1px 1px black)', height:"200px",
+                            display: "flex",
+                            alignItems: "flex-end",
+                            justifyContent: "center"
+                        }} className={`fightSpriteCardInvert ${!hasAppeared ? "spawnInvert" : ""} ${isAttacking && !isKO ? "fightAttack" : ""}`}>
                             {props.compagnon[0].negative === 1 && <ShadowSmokeBack targetRef={pokemonContainerRef} />}
                             {props.compagnon[0].negative === 1 && <ShadowSmokeFront targetRef={pokemonContainerRef} />}
                             <img style={{
@@ -409,11 +414,10 @@ function Fight(props) {
                                     ${!hasAppeared ? "spawn" : ""}
                                     ${isAttacking ? "hit" : ""} pokemonSprite`}
                                 style={{
-                                    width: "100%",
-                                    height: "200px",
-                                    justifyContent: "flex-end",
-                                    flexDirection:"column",
-                                    filter: negative === 1 && "invert(1)"                                    
+                                    width: "100%", filter: 'drop-shadow(1px 1px 1px black)', height: "200px",
+                                    display: "flex",
+                                    alignItems: "flex-end",
+                                    justifyContent: "center"                                 
                                 }}
                             >
                                 {pokemon.negative === 1 && <ShadowSmokeBack targetRef={pokemonContainerRef} />}
