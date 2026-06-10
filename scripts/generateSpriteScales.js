@@ -13,8 +13,8 @@ const OUTPUT_FILE = path.join(
     "../src/data/sprite_scales.json"
 );
 
-// Raichu = référence
-const REFERENCE_POKEMON = "583.gif";
+// Raichu référence
+const REFERENCE_POKEMON = "26.gif";
 
 function median(values) {
 
@@ -36,11 +36,7 @@ function streamToBuffer(stream) {
         const chunks = [];
 
         stream.on("data", chunk => chunks.push(chunk));
-
-        stream.on("end", () => {
-            resolve(Buffer.concat(chunks));
-        });
-
+        stream.on("end", () => resolve(Buffer.concat(chunks)));
         stream.on("error", reject);
     });
 }
@@ -93,11 +89,13 @@ async function getFrameBoundingBox(frame) {
 
     return {
         width: maxX - minX + 1,
-        height: maxY - minY + 1
+        height: maxY - minY + 1,
+        canvasWidth: info.width,
+        canvasHeight: info.height
     };
 }
 
-async function getMedianArea(gifPath) {
+async function getMedianOccupation(gifPath) {
 
     const frames = await gifFrames({
         url: gifPath,
@@ -106,7 +104,7 @@ async function getMedianArea(gifPath) {
         cumulative: true
     });
 
-    const areas = [];
+    const occupations = [];
 
     for (const frame of frames) {
 
@@ -115,28 +113,38 @@ async function getMedianArea(gifPath) {
 
         if (!bbox) continue;
 
-        areas.push(
-            bbox.width * bbox.height
+        const bboxArea =
+            bbox.width * bbox.height;
+
+        const canvasArea =
+            bbox.canvasWidth *
+            bbox.canvasHeight;
+
+        occupations.push(
+            bboxArea / canvasArea
         );
     }
 
-    return median(areas);
+    return median(occupations);
 }
 
 async function main() {
 
-    const files =
-        fs.readdirSync(SPRITES_FOLDER)
-            .filter(file =>
-                file.endsWith(".gif")
-            );
-
-    console.log(
-        "Calcul de la référence..."
-    );
-
-    const referenceArea =
-        await getMedianArea(
+    //const files =
+    //    fs.readdirSync(SPRITES_FOLDER)
+    //        .filter(file =>
+    //            file.endsWith(".gif")
+    //        );
+    const files = [
+        "37.gif",   // Raichu
+        "418.gif",  // Dynavolt
+        "656.gif",  // Grenousse
+        "663.gif",  // Flambusard
+        "201.gif",
+        "418.gif"
+    ];
+    const referenceOccupation =
+        await getMedianOccupation(
             path.join(
                 SPRITES_FOLDER,
                 REFERENCE_POKEMON
@@ -144,8 +152,8 @@ async function main() {
         );
 
     console.log(
-        "Raichu reference area:",
-        referenceArea
+        "Reference occupation:",
+        referenceOccupation
     );
 
     const result = {};
@@ -156,14 +164,8 @@ async function main() {
 
         try {
 
-            const pokemonNumber =
-                path.basename(
-                    file,
-                    ".gif"
-                );
-
-            const medianArea =
-                await getMedianArea(
+            const occupation =
+                await getMedianOccupation(
                     path.join(
                         SPRITES_FOLDER,
                         file
@@ -172,24 +174,34 @@ async function main() {
 
             let scale =
                 Math.sqrt(
-                    referenceArea /
-                    medianArea
+                    referenceOccupation /
+                    occupation
                 );
 
-            // Limites de sécurité
+            // correction légère seulement
             scale = Math.max(
-                0.50,
+                0.75,
                 Math.min(
-                    2.00,
+                    1.35,
                     scale
                 )
             );
 
+            const pokemonNumber =
+                path.basename(
+                    file,
+                    ".gif"
+                );
+
             result[pokemonNumber] = {
-                medianArea,
-                scale: Number(
-                    scale.toFixed(3)
-                )
+                occupation:
+                    Number(
+                        occupation.toFixed(4)
+                    ),
+                scale:
+                    Number(
+                        scale.toFixed(3)
+                    )
             };
 
             processed++;
@@ -197,9 +209,7 @@ async function main() {
             console.log(
                 `${processed}/${files.length}`,
                 pokemonNumber,
-                "area:",
-                medianArea,
-                "scale:",
+                occupation.toFixed(4),
                 scale.toFixed(3)
             );
 
@@ -228,14 +238,7 @@ async function main() {
         )
     );
 
-    console.log(
-        "Terminé !"
-    );
-
-    console.log(
-        "Fichier généré :",
-        OUTPUT_FILE
-    );
+    console.log("Terminé !");
 }
 
 main();
