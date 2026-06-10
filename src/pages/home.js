@@ -22,7 +22,7 @@ function HomePage(props) {
                         `/api/profile/${user.id}`
                     );
                 if (
-                    profile.data.length === 0
+                    profile.data.profile === null
                 ) {
                     await Axios.post(
                         "/api/createAccount"
