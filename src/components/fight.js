@@ -366,7 +366,13 @@ function Fight(props) {
                         <div ref={pokemonContainerRef} style={{ width: "100%", filter:'drop-shadow(1px 1px 1px black)'}} className={`fightSpriteCardInvert ${!hasAppeared ? "spawnInvert" : ""} ${isAttacking && !isKO ? "fightAttack" : ""}`}>
                             {props.compagnon[0].negative === 1 && <ShadowSmokeBack targetRef={pokemonContainerRef} />}
                             {props.compagnon[0].negative === 1 && <ShadowSmokeFront targetRef={pokemonContainerRef} />}
-                            <img style={{ width: `auto`, height: `${200 * scale}px` }} className={props.compagnon[0].negative === 1 ? "pokemonSprite shadowPokemon" : "pokemonSprite"}
+                            <img style={{
+                                maxWidth: "200px",
+                                maxHeight: "200px",
+                                width: "auto",
+                                height: "auto",
+                                transform: `scale(${scale})`,
+                                transformOrigin: "center bottom" }} className={props.compagnon[0].negative === 1 ? "pokemonSprite shadowPokemon" : "pokemonSprite"}
                                 src={`/Sprites/${props.compagnon[0].shiny === 1 ? "shiny" : "normal"}/${props.compagnon[0].number}.gif`}
                                 alt=""
                             />
@@ -412,7 +418,14 @@ function Fight(props) {
                             >
                                 {pokemon.negative === 1 && <ShadowSmokeBack targetRef={pokemonContainerRef} />}
                                 {pokemon.negative === 1 && <ShadowSmokeFront targetRef={pokemonContainerRef} />}
-                                <img key={`${pokemon.number}-${pokemon.shiny}`} style={{ width: `auto`, height: `${200 * scaleEnemy}px` }} className={pokemon.negative === 1 ? "pokemonSprite shadowPokemon" : "pokemonSprite"}
+                                <img key={`${pokemon.number}-${pokemon.shiny}`} style={{
+                                    maxWidth: "200px",
+                                    maxHeight: "200px",
+                                    width: "auto",
+                                    height: "auto",
+                                    transform: `scale(${scaleEnemy})`,
+                                    transformOrigin: "center bottom"
+                                }} className={pokemon.negative === 1 ? "pokemonSprite shadowPokemon" : "pokemonSprite"}
                                     src={`/Sprites/${pokemon.shiny === 1 ? "shiny" : "normal"}/${pokemon.number}.gif`}
                                     alt=""
                                 />
