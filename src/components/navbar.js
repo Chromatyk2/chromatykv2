@@ -63,6 +63,16 @@ function NavBar(props) {
                     <img src={"/trophee.png"} />
                     <p>Succès</p>
                 </Link>
+                <a style={{ backgroundColor: "rgb(180 10 255 / 21%)"}}
+                    onClick={deployNav}
+                    className="navLink linkFromNav"
+                    href="https://twitch.tv/chromatyk"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    <img src="/twitch.png" alt="" />
+                    <p style={{ backgroundColor: "#8d4b8d"}}>Twitch</p>
+                </a>
             </div>
             <div onClick={deployNav} className="halfCircle">
                 <svg onClick={deployNav} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" height="55" width="55">
