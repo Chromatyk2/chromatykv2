@@ -408,7 +408,7 @@ function Fight(props) {
                             >
                                 {pokemon.negative === 1 && <ShadowSmokeBack targetRef={pokemonContainerRef} />}
                                 {pokemon.negative === 1 && <ShadowSmokeFront targetRef={pokemonContainerRef} />}
-                                <img style={{ maxHeight: "200px", maxWidth: "200px", width: "auto", height: "auto", transform: `scale(${spriteScales[pokemon.number]?.scale ?? 1})` }} className={pokemon.negative === 1 ? "pokemonSprite shadowPokemon" : "pokemonSprite"}
+                                <img key={`${pokemon.number}-${pokemon.shiny}`} style={{ maxHeight: "200px", maxWidth: "200px", width: "auto", height: "auto", transform: `scale(${spriteScales[pokemon.number]?.scale ?? 1})` }} className={pokemon.negative === 1 ? "pokemonSprite shadowPokemon" : "pokemonSprite"}
                                     src={`/Sprites/${pokemon.shiny === 1 ? "shiny" : "normal"}/${pokemon.number}.gif`}
                                     alt=""
                                 />
