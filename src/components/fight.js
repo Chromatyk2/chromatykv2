@@ -179,6 +179,7 @@ function Fight(props) {
                 currentHp === null ||
                 currentHp > 0 ||
                 isKO ||
+                isAttacking ||
                 !pokemon
             ) {
                 return;
