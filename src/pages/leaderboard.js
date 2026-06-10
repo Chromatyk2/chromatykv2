@@ -36,7 +36,7 @@ function Leaderboard() {
                                             className="trainerSprite"
                                         />
                                         {val.number && (
-                                            <div className="pokemonSprite" style={{ position: "absolute", right: "-240px", top: "10px" }}>
+                                            <div className="pokemonSprite leaderboad" style={{ position: "absolute", right: "-240px", top: "10px" }}>
                                                 {val.negative === 1 && <ShadowSmokeBackDex targetRef={pokemonContainerRef} />}
                                                 {val.negative === 1 && <ShadowSmokeFrontDex targetRef={pokemonContainerRef} />}
                                                 <img style={{ maxHeight: "63px", width: "auto", maxWidth: "100%" }} className={val.negative === 1 ? "pokemonSprite shadowPokemon" : "pokemonSprite"}

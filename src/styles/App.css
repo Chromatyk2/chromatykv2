@@ -2795,11 +2795,12 @@ img.companionSprite {
     .profilInfos {
         font-size: 4px;
         position: absolute;
-        right: 80px;
+        right: 30px;
         top: 62px;
     }
     .trainerCard {
         width: 100%;
+        padding: 0;
     }
 }
 .pokemon-shadow {
