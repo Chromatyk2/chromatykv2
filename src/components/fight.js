@@ -399,7 +399,10 @@ function Fight(props) {
                                     ${!hasAppeared ? "spawn" : ""}
                                     ${isAttacking ? "hit" : ""} pokemonSprite`}
                                 style={{
-                                     width: "100%",
+                                    width: "100%",
+                                    height: "200px",
+                                    justifyContent: "flex-end",
+                                    flexDirection:"column",
                                     filter: negative === 1 && "invert(1)"                                    
                                 }}
                             >
