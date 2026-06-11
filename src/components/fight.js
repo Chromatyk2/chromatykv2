@@ -381,7 +381,7 @@ function Fight(props) {
                                         WebkitMaskImage: `url(/Masks/${props.compagnon[0].number}.png)`,
                                         maskImage: `url(/Masks/${props.compagnon[0].number}.png)`
                                     }}>
-                                        <ShadowSmokeBack targetRef={pokemonContainerRef} />
+                                        <ShadowSmokeFront targetRef={pokemonContainerRef} />
                                 </div>
                                 <div
                                     style={{
