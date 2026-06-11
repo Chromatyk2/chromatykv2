@@ -1,10 +1,23 @@
 export default function ShadowSmokefront({
-    scale = 1
+    scale = 1,
+    width = 300,
+    height = 365
 }) {
+    const cx = width / 2;
+    const cy = height / 2;
+
+    const bigRx = width * 0.45;
+    const bigRy = height * 0.52;
+
+    const leftRx = width * 0.28;
+    const leftRy = height * 0.33;
+
+    const rightRx = width * 0.25;
+    const rightRy = height * 0.35;
     return (
         <svg
             className="shadowSmokeFront"
-            viewBox="0 0 600 600"
+            viewBox={`0 0 ${width} ${height}`}
             preserveAspectRatio="none"
             style={{
                 width: `${300 * scale}px`,
@@ -55,26 +68,26 @@ export default function ShadowSmokefront({
                     />
 
                     <ellipse
-                        cx="300"
-                        cy="300"
-                        rx="160"
-                        ry="230"
+                        cx={cx}
+                        cy={cy * 0.9}
+                        rx={width * 0.43}
+                        ry={height * 0.52}
                         fill="url(#shadowBlack)"
                     />
 
                     <ellipse
-                        cx="220"
-                        cy="250"
-                        rx="100"
-                        ry="180"
+                        cx={cx - width * 0.20}
+                        cy={cy + height * 0.10}
+                        rx={width * 0.30}
+                        ry={height * 0.33}
                         fill="url(#shadowBlack)"
                     />
 
                     <ellipse
-                        cx="380"
-                        cy="260"
-                        rx="110"
-                        ry="170"
+                        cx={cx + width * 0.20}
+                        cy={cy + height * 0.10}
+                        rx={width * 0.26}
+                        ry={height * 0.35}
                         fill="url(#shadowBlack)"
                     />
                 </g>
