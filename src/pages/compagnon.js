@@ -248,9 +248,20 @@ function Compagnon() {
                                                 </div>
                                             </div>
                                             <div ref={pokemonContainerRef} className={`fightSpriteCard`}>
-                                                {compagnon[0].negative === 1 && <ShadowSmokeBack targetRef={pokemonContainerRef} />}
-                                                {compagnon[0].negative === 1 && <ShadowSmokeFront targetRef={pokemonContainerRef} />}
-                                        <img className={compagnon[0].negative === 1 ? "pokemonSprite shadowPokemon" : "pokemonSprite"}
+
+                                        {compagnon[0].negative === 1 &&
+                                            <>
+                                                <div className="shadowMask"
+                                                    style={{
+                                                        WebkitMaskImage: `url(/Masks/${compagnon[0].number}.png)`,
+                                                        maskImage: `url(/Masks/${compagnon[0].number}.png)`
+                                                    }}>
+                                                    <ShadowSmokeBack targetRef={pokemonContainerRef} />
+                                                </div>
+                                                <ShadowSmokeFront targetRef={pokemonContainerRef} />
+                                            </>
+                                        }
+                                        <img ref={pokemonContainerRef } className={compagnon[0].negative === 1 ? "pokemonSprite shadowPokemon" : "pokemonSprite"}
                                                 src={`/Sprites/${compagnon[0].shiny === 1 ? "shiny" : "normal"}/${compagnon[0].number}.gif`}
                                                     alt=""
                                         />

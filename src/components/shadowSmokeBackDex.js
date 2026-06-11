@@ -12,7 +12,9 @@ export default function ShadowSmokeBackDex() {
                 right: 0,
                 margin: "auto",
                 top: 0,
-                bottom: 0
+                bottom: 0,
+                height: "120px",
+                width: "161px"
             }}
         >
             <defs>

@@ -28,8 +28,8 @@ export default function ShadowSmokeFront() {
                     />
                 </filter>
                 <radialGradient id="shadowBlack">
-                    <stop offset="0%" stopColor="#4d1f82" stopOpacity="0.8" />
-                    <stop offset="60%" stopColor="#000" stopOpacity="0.3" />
+                    <stop offset="0%" stopColor="#4d1f82" stopOpacity="1" />
+                    <stop offset="60%" stopColor="#000" stopOpacity="1" />
                     <stop offset="100%" stopColor="#4d1f82" stopOpacity="0" />
                 </radialGradient>
             </defs>

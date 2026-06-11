@@ -378,10 +378,10 @@ function Fight(props) {
                                     }}>
                                         <ShadowSmokeBack targetRef={pokemonContainerRef} />
                                     </div>
-                                    <ShadowSmokeBack targetRef={pokemonContainerRef} />
+                                    <ShadowSmokeFront targetRef={pokemonContainerRef} />
                                 </>
                             }
-                            <img style={{
+                            <img ref={pokemonContainerRef } style={{
                                 maxWidth: "200px",
                                 maxHeight: "200px",
                                 width: "auto",

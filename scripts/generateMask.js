@@ -145,17 +145,15 @@ async function main() {
         }
     );
 
-    //const files =
-      //  fs.readdirSync(
-            //SPRITES_FOLDER
-        //)
-        //.filter(
-          //  file =>
-            //    file.endsWith(".gif")
-        //);
-        const files = [
-    "437.gif"
-];
+    const files =
+        fs.readdirSync(
+            SPRITES_FOLDER
+        )
+        .filter(
+            file =>
+                file.endsWith(".gif")
+        );
+
     let count = 0;
 
     for (const file of files) {
