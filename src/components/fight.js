@@ -4,7 +4,6 @@ import { useCookies } from 'react-cookie';
 import ShadowSmokeFront from "./shadowSmokeFront";
 import ShadowSmokeBack from "./shadowSmokeBack";
 import spriteScales from "../data/sprite_scales.json";
-import ShadowEmitter from './ShadowEmitter';
 
 
 function Fight(props) {
@@ -25,9 +24,6 @@ function Fight(props) {
     const [sessionReward, setSessionReward] = useState([]);
     const pokemonContainerRef = useRef(null);
     const [nextFight, setNextFight] = useState(null);
-    const spriteRef =
-        useRef(null);
-
     const showDamage = (
         damage,
         isCritical
@@ -373,12 +369,15 @@ function Fight(props) {
                             alignItems: "flex-end",
                             justifyContent: "center"
                         }} className={`fightSpriteCardInvert ${!hasAppeared ? "spawnInvert" : ""} ${isAttacking && !isKO ? "fightAttack" : ""}`}>
-                            <div className="shadowMask">
-                                {props.compagnon[0].negative === 1 && <ShadowSmokeBack targetRef={spriteRef} />}
-                            </div>
-                            {props.compagnon[0].negative === 1 && <ShadowSmokeFront targetRef={spriteRef} />}
-                            <ShadowEmitter targetRef={spriteRef} />
-                            <img ref={spriteRef}  style={{
+                            {props.compagnon[0].negative === 1 &&
+                                <>
+                                    <div className="shadowMask">
+                                        <ShadowSmokeBack targetRef={pokemonContainerRef} />
+                                    </div>
+                                    <ShadowSmokeBack targetRef={pokemonContainerRef} />
+                                </>
+                            }
+                            <img style={{
                                 maxWidth: "200px",
                                 maxHeight: "200px",
                                 width: "auto",
