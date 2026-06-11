@@ -47,14 +47,6 @@ export default function ShadowSmokeFront() {
                     />
 
                     <ellipse
-                        cx="300"
-                        cy="300"
-                        rx="160"
-                        ry="230"
-                        fill="url(#shadowBlack)"
-                    />
-
-                    <ellipse
                         cx="220"
                         cy="250"
                         rx="100"

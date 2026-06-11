@@ -399,7 +399,8 @@ function Fight(props) {
                                         inset: 0,
                                         transform: `scale(${smokeScale})`,
                                         pointerEvents: "none",
-                                        zIndex:21
+                                        zIndex: 21,
+                                        opacity:0.5
                                     }}
                                 >
                                     <ShadowSmokeFront targetRef={pokemonContainerRef} />
