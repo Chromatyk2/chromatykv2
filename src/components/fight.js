@@ -29,21 +29,6 @@ function Fight(props) {
         width: 200,
         height: 200
     });
-    useEffect(() => {
-
-        if (!pokemonContainerRef.current) {
-            return;
-        }
-
-        const rect =
-            pokemonContainerRef.current.getBoundingClientRect();
-
-        setSpriteSize({
-            width: rect.width,
-            height: rect.height
-        });
-
-    }, [pokemon, scaleEnemy]);
     const showDamage = (
         damage,
         isCritical
@@ -349,6 +334,21 @@ function Fight(props) {
         spriteScales[props.compagnon[0]?.number]?.scale ?? 1;
     const scaleEnemy =
         spriteScales[pokemon?.number]?.scale ?? 1;
+    useEffect(() => {
+
+        if (!companionRef.current) {
+            return;
+        }
+
+        const rect =
+            companionRef.current.getBoundingClientRect();
+
+        setSpriteSize({
+            width: rect.width,
+            height: rect.height
+        });
+
+    }, [props.compagnon, scaleEnemy]);
     return (            
         <div className={"globalContainerCenter"}>
             <h2 class="wood-sign">Arene de Combat</h2>
