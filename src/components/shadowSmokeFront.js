@@ -58,6 +58,18 @@ export default function ShadowSmokefront({
             {/* Couche noire */}
             <g filter="url(#shadowDistort)">
                 <g>
+                    <animate
+                        attributeName="baseFrequency"
+                        dur="6s"
+                        values="
+                        0.015;
+                        0.020;
+                        0.012;
+                        0.018;
+                        0.015
+                    "
+                        repeatCount="indefinite"
+                    />
 
                     <ellipse
                         cx={cx}
