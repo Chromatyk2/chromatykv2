@@ -369,12 +369,8 @@ function Fight(props) {
                             alignItems: "flex-end",
                             justifyContent: "center"
                         }} className={`fightSpriteCardInvert ${!hasAppeared ? "spawnInvert" : ""} ${isAttacking && !isKO ? "fightAttack" : ""}`}>
-                            {props.compagnon[0].negative === 1 && <ShadowSmokeBack
-                                width={300 * scale}
-                                height={365 * scale} scale={scale} targetRef={pokemonContainerRef} />}
-                            {props.compagnon[0].negative === 1 && <ShadowSmokeFront
-                                width={300 * scale}
-                                height={365 * scale} scale={scale} targetRef={pokemonContainerRef} />}
+                            {props.compagnon[0].negative === 1 && <ShadowSmokeBack targetRef={pokemonContainerRef} />}
+                            {props.compagnon[0].negative === 1 && <ShadowSmokeFront targetRef={pokemonContainerRef} />}
                             <img style={{
                                 maxWidth: "200px",
                                 maxHeight: "200px",
@@ -424,14 +420,8 @@ function Fight(props) {
                                     justifyContent: "center"                                 
                                 }}
                             >
-                                {pokemon.negative === 1 &&
-                                    <ShadowSmokeBack
-                                    width={300 * scaleEnemy}
-                                    height={365 * scaleEnemy} scale={scaleEnemy} targetRef={pokemonContainerRef} />}
-                                {pokemon.negative === 1 &&
-                                    <ShadowSmokeFront
-                                    width={300 * scaleEnemy}
-                                    height={365 * scaleEnemy} scale={scaleEnemy} targetRef={pokemonContainerRef} />}
+                                {pokemon.negative === 1 && <ShadowSmokeBack targetRef={pokemonContainerRef} />}
+                                {pokemon.negative === 1 && <ShadowSmokeFront targetRef={pokemonContainerRef} />}
                                 <img key={`${pokemon.number}-${pokemon.shiny}`} style={{
                                     maxWidth: "200px",
                                     maxHeight: "200px",
