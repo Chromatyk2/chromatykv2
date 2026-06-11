@@ -154,7 +154,7 @@ async function main() {
             //    file.endsWith(".gif")
         //);
         const files = [
-    "418.gif"
+    "37.gif"
 ];
     let count = 0;
 
