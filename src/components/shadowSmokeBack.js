@@ -60,14 +60,10 @@ export default function ShadowSmokeBack({
                 <g>
                     <animateTransform
                         attributeName="transform"
-                        type="translate"
-                        values="
-                            0 0;
-                            5 -5;
-                            -5 5;
-                            0 0
-                        "
-                        dur="4s"
+                        type="rotate"
+                        from={`360 ${cx} ${cy}`}
+                        to={`0 ${cx} ${cy}`}
+                        dur="12s"
                         repeatCount="indefinite"
                     />
 
