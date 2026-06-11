@@ -4,6 +4,7 @@ import { useCookies } from 'react-cookie';
 import ShadowSmokeFront from "./shadowSmokeFront";
 import ShadowSmokeBack from "./shadowSmokeBack";
 import spriteScales from "../data/sprite_scales.json";
+import ShadowEmitter from './ShadowEmitter';
 
 
 function Fight(props) {
@@ -371,6 +372,7 @@ function Fight(props) {
                         }} className={`fightSpriteCardInvert ${!hasAppeared ? "spawnInvert" : ""} ${isAttacking && !isKO ? "fightAttack" : ""}`}>
                             {props.compagnon[0].negative === 1 && <ShadowSmokeBack targetRef={pokemonContainerRef} />}
                             {props.compagnon[0].negative === 1 && <ShadowSmokeFront targetRef={pokemonContainerRef} />}
+                            <ShadowEmitter />
                             <img style={{
                                 maxWidth: "200px",
                                 maxHeight: "200px",
