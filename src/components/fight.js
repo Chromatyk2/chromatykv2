@@ -373,7 +373,9 @@ function Fight(props) {
                             alignItems: "flex-end",
                             justifyContent: "center"
                         }} className={`fightSpriteCardInvert ${!hasAppeared ? "spawnInvert" : ""} ${isAttacking && !isKO ? "fightAttack" : ""}`}>
-                            {props.compagnon[0].negative === 1 && <ShadowSmokeBack targetRef={spriteRef} />}
+                            <div className="shadowMask">
+                                {props.compagnon[0].negative === 1 && <ShadowSmokeBack targetRef={spriteRef} />}
+                            </div>
                             {props.compagnon[0].negative === 1 && <ShadowSmokeFront targetRef={spriteRef} />}
                             <ShadowEmitter targetRef={spriteRef} />
                             <img ref={spriteRef}  style={{
