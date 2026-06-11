@@ -1,5 +1,18 @@
-export default function ShadowSmokeFront() {
+export default function ShadowSmokeFront({mask}) {
     return (
+        <div
+            className="shadowContainer"
+            style={{
+                WebkitMaskImage: `url(${mask})`,
+                maskImage: `url(${mask})`,
+                WebkitMaskSize: "contain",
+                maskSize: "contain",
+                WebkitMaskPosition: "center bottom",
+                maskPosition: "center bottom",
+                WebkitMaskRepeat: "no-repeat",
+                maskRepeat: "no-repeat"
+            }}
+        >
         <svg
             className="shadowSmokeFront"
             viewBox="0 0 600 600"
@@ -71,6 +84,7 @@ export default function ShadowSmokeFront() {
                     />
                 </g>
             </g>
-        </svg>
+            </svg>
+        </div>
     );
 }

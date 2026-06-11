@@ -363,15 +363,19 @@ function Fight(props) {
                             <div className="tierFight">
                             Nv.{curentLevel}
                             </div>
-                        <div ref={pokemonContainerRef} style={{
-                            width: "100%", filter: 'drop-shadow(1px 1px 1px black)', height:"200px",
+                        <div style={{
+                           filter: 'drop-shadow(1px 1px 1px black)',
                             display: "flex",
                             alignItems: "flex-end",
-                            justifyContent: "center"
+                            justifyContent: "center",
+                            position: "relative",
+                            width: "200px",
+                            height: "200px"
                         }} className={`fightSpriteCardInvert ${!hasAppeared ? "spawnInvert" : ""} ${isAttacking && !isKO ? "fightAttack" : ""}`}>
-                            {props.compagnon[0].negative === 1 && <ShadowSmokeBack targetRef={pokemonContainerRef} />}
-                            {props.compagnon[0].negative === 1 && <ShadowSmokeFront targetRef={pokemonContainerRef} />}
-                            <img style={{
+                            {props.compagnon[0].negative === 1 && <ShadowSmokeBack
+                                mask={`/Masks/${props.compagnon[0].number}.png`}
+                            />}
+                            <img ref={pokemonContainerRef} style={{
                                 maxWidth: "200px",
                                 maxHeight: "200px",
                                 width: "auto",
@@ -381,6 +385,9 @@ function Fight(props) {
                                 src={`/Sprites/${props.compagnon[0].shiny === 1 ? "shiny" : "normal"}/${props.compagnon[0].number}.gif`}
                                 alt=""
                             />
+                            {props.compagnon[0].negative === 1 && <ShadowSmokeFront
+                                mask={`/Masks/${props.compagnon[0].number}.png`}
+                            />}
                             <div className={"pokemon-shadow"}></div>
                         </div>
                     </div>
@@ -420,9 +427,9 @@ function Fight(props) {
                                     justifyContent: "center"                                 
                                 }}
                             >
-                                {pokemon.negative === 1 && <ShadowSmokeBack targetRef={pokemonContainerRef} />}
+                                {pokemon.negative === 1 && <ShadowSmokeBack />}
                                 {pokemon.negative === 1 && <ShadowSmokeFront targetRef={pokemonContainerRef} />}
-                                <img key={`${pokemon.number}-${pokemon.shiny}`} style={{
+                                <img targetRef={pokemonContainerRef} key={`${pokemon.number}-${pokemon.shiny}`} style={{
                                     maxWidth: "200px",
                                     maxHeight: "200px",
                                     width: "auto",
