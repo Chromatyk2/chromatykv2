@@ -6,6 +6,7 @@ export default function ShadowSmokeBack() {
             preserveAspectRatio="none"
         >
             <defs>
+
                 <filter
                     id="shadowDistort"
                     x="-50%"
@@ -15,7 +16,7 @@ export default function ShadowSmokeBack() {
                 >
                     <feTurbulence
                         type="fractalNoise"
-                        baseFrequency="0.015"
+                        baseFrequency="0.02"
                         numOctaves="4"
                         seed="8"
                         result="noise"
@@ -24,53 +25,71 @@ export default function ShadowSmokeBack() {
                     <feDisplacementMap
                         in="SourceGraphic"
                         in2="noise"
-                        scale="70"
+                        scale="80"
                     />
                 </filter>
 
-                <radialGradient id="shadowRed">
-                    <stop offset="0%" stopColor="#000" stopOpacity="0.7" />
-                    <stop offset="40%" stopColor="#4d1f82" stopOpacity="0.4" />
-                    <stop offset="100%" stopColor="#000" stopOpacity="0" />
-                </radialGradient>
+                <linearGradient id="shadowSmoke">
+                    <stop
+                        offset="0%"
+                        stopColor="#000"
+                        stopOpacity="0.8"
+                    />
+
+                    <stop
+                        offset="40%"
+                        stopColor="#3e216b"
+                        stopOpacity="0.5"
+                    />
+
+                    <stop
+                        offset="100%"
+                        stopColor="#3e216b"
+                        stopOpacity="0"
+                    />
+                </linearGradient>
+
             </defs>
-            {/* Couche rouge */}
+
             <g filter="url(#shadowDistort)">
-                <g>
-                    <animateTransform
-                        attributeName="transform"
-                        type="rotate"
-                        from="360 300 300"
-                        to="0 300 300"
-                        dur="12s"
-                        repeatCount="indefinite"
-                    />
 
-                    <ellipse
-                        cx="300"
-                        cy="260"
-                        rx="130"
-                        ry="190"
-                        fill="url(#shadowRed)"
-                    />
+                <animateTransform
+                    attributeName="transform"
+                    type="translate"
+                    values="
+                        0 0;
+                        -15 -120;
+                        15 -240;
+                        0 -320
+                    "
+                    dur="8s"
+                    repeatCount="indefinite"
+                />
 
-                    <ellipse
-                        cx="240"
-                        cy="330"
-                        rx="90"
-                        ry="120"
-                        fill="url(#shadowRed)"
-                    />
+                <ellipse
+                    cx="260"
+                    cy="500"
+                    rx="55"
+                    ry="180"
+                    fill="url(#shadowSmoke)"
+                />
 
-                    <ellipse
-                        cx="370"
-                        cy="340"
-                        rx="80"
-                        ry="130"
-                        fill="url(#shadowRed)"
-                    />
-                </g>
+                <ellipse
+                    cx="340"
+                    cy="520"
+                    rx="50"
+                    ry="220"
+                    fill="url(#shadowSmoke)"
+                />
+
+                <ellipse
+                    cx="300"
+                    cy="470"
+                    rx="70"
+                    ry="260"
+                    fill="url(#shadowSmoke)"
+                />
+
             </g>
         </svg>
     );
-}
