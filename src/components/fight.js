@@ -22,13 +22,8 @@ function Fight(props) {
     const [damageText, setDamageText] = useState(null);
     const [particles, setParticles] = useState([]);
     const [sessionReward, setSessionReward] = useState([]);
-    const companionRef = useRef(null);
-    const enemyRef = useRef(null);
+    const pokemonContainerRef = useRef(null);
     const [nextFight, setNextFight] = useState(null);
-    const [spriteSize, setSpriteSize] = useState({
-        width: 200,
-        height: 200
-    });
     const showDamage = (
         damage,
         isCritical
@@ -334,21 +329,6 @@ function Fight(props) {
         spriteScales[props.compagnon[0]?.number]?.scale ?? 1;
     const scaleEnemy =
         spriteScales[pokemon?.number]?.scale ?? 1;
-    useEffect(() => {
-
-        if (!companionRef.current) {
-            return;
-        }
-
-        const rect =
-            companionRef.current.getBoundingClientRect();
-
-        setSpriteSize({
-            width: rect.width,
-            height: rect.height
-        });
-
-    }, [props.compagnon, scaleEnemy]);
     return (            
         <div className={"globalContainerCenter"}>
             <h2 class="wood-sign">Arene de Combat</h2>
@@ -383,16 +363,14 @@ function Fight(props) {
                             <div className="tierFight">
                             Nv.{curentLevel}
                             </div>
-                        <div ref={companionRef} style={{
-                            width: "100%", filter: 'drop-shadow(1px 1px 1px black)',
-                            height: "200px",
+                        <div ref={pokemonContainerRef} style={{
+                            width: "100%", filter: 'drop-shadow(1px 1px 1px black)', height:"200px",
                             display: "flex",
                             alignItems: "flex-end",
-                            justifyContent: "center",
-                            position: "relative"
+                            justifyContent: "center"
                         }} className={`fightSpriteCardInvert ${!hasAppeared ? "spawnInvert" : ""} ${isAttacking && !isKO ? "fightAttack" : ""}`}>
-                            {props.compagnon[0].negative === 1 && <ShadowSmokeBack targetRef={companionRef} />}
-                            {props.compagnon[0].negative === 1 && <ShadowSmokeFront targetRef={companionRef} />}
+                            {props.compagnon[0].negative === 1 && <ShadowSmokeBack targetRef={pokemonContainerRef} />}
+                            {props.compagnon[0].negative === 1 && <ShadowSmokeFront targetRef={pokemonContainerRef} />}
                             <img style={{
                                 maxWidth: "200px",
                                 maxHeight: "200px",
@@ -430,7 +408,7 @@ function Fight(props) {
                         </div>
                         <div style={{ width: "50%", display: "block", margin: "auto", backgroundColor: pokemon.tier == 1 ? "#6d6d6c" : pokemon.tier == 2 ? "#21693a" : pokemon.tier == 3 ? "#744095" : "#bfa93a" }} className={"tierFight"}>Tier {pokemon.tier}</div>
                         <div className="fightSpriteWrapper">
-                            <div ref={enemyRef}
+                            <div 
                                 className={`fightSpriteCardEnemy
                                     ${isKO ? "koAnimation" : ""}
                                     ${!hasAppeared ? "spawn" : ""}
@@ -442,8 +420,8 @@ function Fight(props) {
                                     justifyContent: "center"                                 
                                 }}
                             >
-                                {pokemon.negative === 1 && <ShadowSmokeBack targetRef={enemyRef} />}
-                                {pokemon.negative === 1 && <ShadowSmokeFront targetRef={enemyRef} />}
+                                {pokemon.negative === 1 && <ShadowSmokeBack targetRef={pokemonContainerRef} />}
+                                {pokemon.negative === 1 && <ShadowSmokeFront targetRef={pokemonContainerRef} />}
                                 <img key={`${pokemon.number}-${pokemon.shiny}`} style={{
                                     maxWidth: "200px",
                                     maxHeight: "200px",
