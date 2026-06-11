@@ -1,15 +1,16 @@
 import { useEffect, useState } from "react";
 
-export default function ShadowEmitter() {
+export default function ShadowEmitter({ targetRef, mask }) {
 
     const [particles, setParticles] = useState([]);
     const [points, setPoints] = useState([]);
+    const [maskSize, setMaskSize] = useState(null);
 
     useEffect(() => {
 
         const img = new Image();
 
-        img.src = "/Masks/37.png";
+        img.src = mask;
 
         img.onload = () => {
 
@@ -70,9 +71,14 @@ export default function ShadowEmitter() {
             setPoints(
                 visiblePoints
             );
+
+            setMaskSize({
+                width: img.width,
+                height: img.height
+            });
         };
 
-    }, []);
+    }, [mask]);
 
     useEffect(() => {
 
@@ -123,7 +129,7 @@ export default function ShadowEmitter() {
 
                 }, 1500);
 
-            }, 80);
+            }, 50);
 
         return () =>
             clearInterval(
@@ -132,8 +138,23 @@ export default function ShadowEmitter() {
 
     }, [points]);
 
-    return (
+    const rect =
+        targetRef?.current
+            ?.getBoundingClientRect();
 
+    const scaleX =
+        rect && maskSize
+            ? rect.width /
+            maskSize.width
+            : 1;
+
+    const scaleY =
+        rect && maskSize
+            ? rect.height /
+            maskSize.height
+            : 1;
+
+    return (
         <>
             {particles.map(
                 particle => (
@@ -142,16 +163,19 @@ export default function ShadowEmitter() {
                         key={
                             particle.id
                         }
+                        className="shadowParticle"
                         style={{
 
                             position:
                                 "absolute",
 
                             left:
-                                particle.x,
+                                particle.x *
+                                scaleX,
 
                             top:
-                                particle.y,
+                                particle.y *
+                                scaleY,
 
                             width:
                                 "12px",
@@ -168,19 +192,12 @@ export default function ShadowEmitter() {
                             filter:
                                 "blur(8px)",
 
-                            opacity:
-                                0.7,
-
                             pointerEvents:
-                                "none",
-
-                            animation:
-                                "shadowSmokeParticle 1.5s linear forwards"
+                                "none"
                         }}
                     />
                 )
             )}
         </>
-
     );
 }

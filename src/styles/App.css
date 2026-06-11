@@ -2841,15 +2841,20 @@ img.companionSprite {
 .grayscaleCard {
     filter: grayscale(100%) brightness(0.7);
 }
+.shadowParticle {
+    animation: shadowSmokeParticle 1.5s linear forwards;
+}
+
 @keyframes shadowSmokeParticle {
 
-    from {
-        transform: translate(0,0) scale(1);
+    0% {
         opacity: .8;
+        transform: translate(0,0) scale(1);
     }
 
-    to {
-        transform: translate( 0, -40px ) scale(2);
+    100% {
         opacity: 0;
+        transform: translate( 0, -40px ) scale(2);
     }
+}  }
 }

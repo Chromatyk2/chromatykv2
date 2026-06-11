@@ -25,6 +25,9 @@ function Fight(props) {
     const [sessionReward, setSessionReward] = useState([]);
     const pokemonContainerRef = useRef(null);
     const [nextFight, setNextFight] = useState(null);
+    const spriteRef =
+        useRef(null);
+
     const showDamage = (
         damage,
         isCritical
@@ -370,10 +373,10 @@ function Fight(props) {
                             alignItems: "flex-end",
                             justifyContent: "center"
                         }} className={`fightSpriteCardInvert ${!hasAppeared ? "spawnInvert" : ""} ${isAttacking && !isKO ? "fightAttack" : ""}`}>
-                            {props.compagnon[0].negative === 1 && <ShadowSmokeBack targetRef={pokemonContainerRef} />}
-                            {props.compagnon[0].negative === 1 && <ShadowSmokeFront targetRef={pokemonContainerRef} />}
-                            <ShadowEmitter />
-                            <img style={{
+                            {props.compagnon[0].negative === 1 && <ShadowSmokeBack targetRef={spriteRef} />}
+                            {props.compagnon[0].negative === 1 && <ShadowSmokeFront targetRef={spriteRef} />}
+                            <ShadowEmitter targetRef={spriteRef} />
+                            <img ref={spriteRef}  style={{
                                 maxWidth: "200px",
                                 maxHeight: "200px",
                                 width: "auto",
