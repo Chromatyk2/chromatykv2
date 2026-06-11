@@ -1,18 +1,5 @@
-export default function ShadowSmokeFront({mask}) {
+export default function ShadowSmokeFront() {
     return (
-        <div
-            className="shadowContainer"
-            style={{
-                WebkitMaskImage: `url(${mask})`,
-                maskImage: `url(${mask})`,
-                WebkitMaskSize: "contain",
-                maskSize: "contain",
-                WebkitMaskPosition: "center bottom",
-                maskPosition: "center bottom",
-                WebkitMaskRepeat: "no-repeat",
-                maskRepeat: "no-repeat"
-            }}
-        >
         <svg
             className="shadowSmokeFront"
             viewBox="0 0 600 600"
@@ -41,9 +28,9 @@ export default function ShadowSmokeFront({mask}) {
                     />
                 </filter>
                 <radialGradient id="shadowBlack">
-                    <stop offset="0%" stop-color="#621f77" stop-opacity="1"></stop>
-                    <stop offset="60%" stop-color="black" stop-opacity="1"></stop>
-                    <stop offset="100%" stop-color="#af4fcd " stop-opacity="0" style={{opacity: 1,zIndex: 10}}></stop>
+                    <stop offset="0%" stopColor="#4d1f82" stopOpacity="0.8" />
+                    <stop offset="60%" stopColor="#000" stopOpacity="0.3" />
+                    <stop offset="100%" stopColor="#4d1f82" stopOpacity="0" />
                 </radialGradient>
             </defs>
 
@@ -84,7 +71,6 @@ export default function ShadowSmokeFront({mask}) {
                     />
                 </g>
             </g>
-            </svg>
-        </div>
+        </svg>
     );
 }

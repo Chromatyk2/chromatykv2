@@ -2841,3 +2841,38 @@ img.companionSprite {
 .grayscaleCard {
     filter: grayscale(100%) brightness(0.7);
 }
+.pokemonAura {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background: radial-gradient( circle, rgba(255,0,0,.9) 0%, rgba(150,0,255,.8) 40%, rgba(0,0,0,.4) 70%, transparent 100% );
+    filter: blur(25px);
+    transform: scale(1.35);
+    transform-origin: center bottom;
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: center bottom;
+    mask-position: center bottom;
+    animation: shadowPulse 2s ease-in-out infinite;
+}
+
+@keyframes shadowPulse {
+
+    0% {
+        opacity: .5;
+        transform: scale(1.25);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.45);
+    }
+
+    100% {
+        opacity: .5;
+        transform: scale(1.25);
+    }
+}

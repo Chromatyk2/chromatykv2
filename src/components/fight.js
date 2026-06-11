@@ -4,6 +4,7 @@ import { useCookies } from 'react-cookie';
 import ShadowSmokeFront from "./shadowSmokeFront";
 import ShadowSmokeBack from "./shadowSmokeBack";
 import spriteScales from "../data/sprite_scales.json";
+import PokemonAura from './PokemonAura';
 
 
 function Fight(props) {
@@ -364,14 +365,18 @@ function Fight(props) {
                             Nv.{curentLevel}
                             </div>
                         <div style={{
-                           filter: 'drop-shadow(1px 1px 1px black)',
-                            display: "flex",
-                            alignItems: "flex-end",
-                            justifyContent: "center",
                             position: "relative",
                             width: "200px",
-                            height: "200px"
+                            height: "200px",
+                            display: "flex",
+                            alignItems: "flex-end",
+                            justifyContent: "center"
                         }} className={`fightSpriteCardInvert ${!hasAppeared ? "spawnInvert" : ""} ${isAttacking && !isKO ? "fightAttack" : ""}`}>
+                            {props.compagnon[0].negative === 1 && (
+                                <PokemonAura
+                                    pokemonNumber={props.compagnon[0].number}
+                                />
+                            )}
                             {props.compagnon[0].negative === 1 && <ShadowSmokeBack
                                 mask={`/Masks/${props.compagnon[0].number}.png`}
                             />}
