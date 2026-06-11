@@ -2856,10 +2856,10 @@ img.companionSprite {
     mask-repeat: no-repeat;
     -webkit-mask-position: center bottom;
     mask-position: center bottom;
-    animation: shadowPulse 2s ease-in-out infinite;
+    animation: pokemonAura 2s ease-in-out infinite;
 }
 
-@keyframes shadowPulse {
+@keyframes pokemonAura {
 
     0% {
         opacity: .5;
