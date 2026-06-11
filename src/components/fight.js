@@ -4,7 +4,6 @@ import { useCookies } from 'react-cookie';
 import ShadowSmokeFront from "./shadowSmokeFront";
 import ShadowSmokeBack from "./shadowSmokeBack";
 import spriteScales from "../data/sprite_scales.json";
-import PokemonAura from './PokemonAura';
 
 
 function Fight(props) {
@@ -23,8 +22,28 @@ function Fight(props) {
     const [damageText, setDamageText] = useState(null);
     const [particles, setParticles] = useState([]);
     const [sessionReward, setSessionReward] = useState([]);
-    const pokemonContainerRef = useRef(null);
+    const companionRef = useRef(null);
+    const enemyRef = useRef(null);
     const [nextFight, setNextFight] = useState(null);
+    const [spriteSize, setSpriteSize] = useState({
+        width: 200,
+        height: 200
+    });
+    useEffect(() => {
+
+        if (!pokemonContainerRef.current) {
+            return;
+        }
+
+        const rect =
+            pokemonContainerRef.current.getBoundingClientRect();
+
+        setSpriteSize({
+            width: rect.width,
+            height: rect.height
+        });
+
+    }, [pokemon, scaleEnemy]);
     const showDamage = (
         damage,
         isCritical
@@ -364,23 +383,17 @@ function Fight(props) {
                             <div className="tierFight">
                             Nv.{curentLevel}
                             </div>
-                        <div style={{
-                            position: "relative",
-                            width: "200px",
+                        <div ref={companionRef} style={{
+                            width: "100%", filter: 'drop-shadow(1px 1px 1px black)',
                             height: "200px",
                             display: "flex",
                             alignItems: "flex-end",
-                            justifyContent: "center"
+                            justifyContent: "center",
+                            position: "relative"
                         }} className={`fightSpriteCardInvert ${!hasAppeared ? "spawnInvert" : ""} ${isAttacking && !isKO ? "fightAttack" : ""}`}>
-                            {props.compagnon[0].negative === 1 && (
-                                <PokemonAura
-                                    pokemonNumber={props.compagnon[0].number}
-                                />
-                            )}
-                            {props.compagnon[0].negative === 1 && <ShadowSmokeBack
-                                mask={`/Masks/${props.compagnon[0].number}.png`}
-                            />}
-                            <img ref={pokemonContainerRef} style={{
+                            {props.compagnon[0].negative === 1 && <ShadowSmokeBack targetRef={companionRef} />}
+                            {props.compagnon[0].negative === 1 && <ShadowSmokeFront targetRef={companionRef} />}
+                            <img style={{
                                 maxWidth: "200px",
                                 maxHeight: "200px",
                                 width: "auto",
@@ -390,9 +403,6 @@ function Fight(props) {
                                 src={`/Sprites/${props.compagnon[0].shiny === 1 ? "shiny" : "normal"}/${props.compagnon[0].number}.gif`}
                                 alt=""
                             />
-                            {props.compagnon[0].negative === 1 && <ShadowSmokeFront
-                                mask={`/Masks/${props.compagnon[0].number}.png`}
-                            />}
                             <div className={"pokemon-shadow"}></div>
                         </div>
                     </div>
@@ -420,7 +430,7 @@ function Fight(props) {
                         </div>
                         <div style={{ width: "50%", display: "block", margin: "auto", backgroundColor: pokemon.tier == 1 ? "#6d6d6c" : pokemon.tier == 2 ? "#21693a" : pokemon.tier == 3 ? "#744095" : "#bfa93a" }} className={"tierFight"}>Tier {pokemon.tier}</div>
                         <div className="fightSpriteWrapper">
-                            <div 
+                            <div ref={enemyRef}
                                 className={`fightSpriteCardEnemy
                                     ${isKO ? "koAnimation" : ""}
                                     ${!hasAppeared ? "spawn" : ""}
@@ -432,9 +442,9 @@ function Fight(props) {
                                     justifyContent: "center"                                 
                                 }}
                             >
-                                {pokemon.negative === 1 && <ShadowSmokeBack />}
-                                {pokemon.negative === 1 && <ShadowSmokeFront targetRef={pokemonContainerRef} />}
-                                <img targetRef={pokemonContainerRef} key={`${pokemon.number}-${pokemon.shiny}`} style={{
+                                {pokemon.negative === 1 && <ShadowSmokeBack targetRef={enemyRef} />}
+                                {pokemon.negative === 1 && <ShadowSmokeFront targetRef={enemyRef} />}
+                                <img key={`${pokemon.number}-${pokemon.shiny}`} style={{
                                     maxWidth: "200px",
                                     maxHeight: "200px",
                                     width: "auto",
