@@ -1,7 +1,7 @@
 export default function ShadowSmokeBack({
     scale = 1,
-    width = { 160 * scale }
-height = { 200 * scale }
+    width = 300,
+    height = 365
 }) {
     const cx = width / 2;
     const cy = height / 2;
