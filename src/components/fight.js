@@ -332,7 +332,7 @@ function Fight(props) {
     const smokeScale =
         1 +
         (
-            spriteScales[pokemon.number]?.scale ?? 1
+            spriteScales[props.compagnon[0]?.number]?.scale ?? 1
         ) * 0.2;
     return (            
         <div className={"globalContainerCenter"}>
