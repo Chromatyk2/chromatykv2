@@ -1,7 +1,7 @@
 export default function ShadowSmokefront({
     scale = 1,
-    width = 300,
-    height = 365
+    width = { 160 * scale }
+height = { 200 * scale }
 }) {
     const cx = width / 2;
     const cy = height / 2;
@@ -61,9 +61,9 @@ export default function ShadowSmokefront({
                     <animateTransform
                         attributeName="transform"
                         type="rotate"
-                        from="0 300 300"
-                        to="360 300 300"
-                        dur="18s"
+                        from="-15 300 300"
+                        to="15 300 300"
+                        dur="4s"
                         repeatCount="indefinite"
                     />
 
