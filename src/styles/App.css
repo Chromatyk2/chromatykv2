@@ -2867,4 +2867,17 @@ img.companionSprite {
     mask-position: center bottom;
     -webkit-mask-size: contain;
     mask-size: contain;
+    filter: blur(4px);
+}
+.shadowOverflow {
+    position: absolute;
+    inset: 0;
+    opacity: .4;
+    filter: blur(25px);
+    transform: scale(1.25);
+    pointer-events: none;
+    /* IMPORTANT */
+
+    mask-image: none;
+    -webkit-mask-image: none;
 }

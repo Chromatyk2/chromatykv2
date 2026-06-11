@@ -374,27 +374,25 @@ function Fight(props) {
                             alignItems: "flex-end",
                             justifyContent: "center"
                         }} className={`fightSpriteCardInvert ${!hasAppeared ? "spawnInvert" : ""} ${isAttacking && !isKO ? "fightAttack" : ""}`}>
-                            {props.compagnon[0].negative === 1 &&
+                            {props.compagnon[0].negative === 1 && (
                                 <>
-                                <div className="shadowMask"
-                                    style={{
-                                        WebkitMaskImage: `url(/Masks/${props.compagnon[0].number}.png)`,
-                                        maskImage: `url(/Masks/${props.compagnon[0].number}.png)`
-                                    }}>
-                                        <ShadowSmokeFront targetRef={pokemonContainerRef} />
-                                </div>
-                                <div
-                                    style={{
-                                        position: "absolute",
-                                        inset: 0,
-                                        transform: `scale(${smokeScale})`,
-                                        pointerEvents: "none"
-                                    }}
-                                >
-                                    <ShadowSmokeBack targetRef={pokemonContainerRef} />
-                                </div>
+                                    {/* Energie interne */}
+                                    <div
+                                        className="shadowMask"
+                                        style={{
+                                            WebkitMaskImage: `url(/Masks/${props.compagnon[0].number}.png)`,
+                                            maskImage: `url(/Masks/${props.compagnon[0].number}.png)`
+                                        }}
+                                    >
+                                        <ShadowSmokeFront />
+                                    </div>
+
+                                    {/* Energie externe */}
+                                    <div className="shadowOverflow">
+                                        <ShadowSmokeBack />
+                                    </div>
                                 </>
-                            }
+                            )}
                             <img ref={pokemonContainerRef } style={{
                                 maxWidth: "200px",
                                 maxHeight: "200px",
