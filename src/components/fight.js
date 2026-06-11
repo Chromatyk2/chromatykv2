@@ -387,10 +387,7 @@ function Fight(props) {
                                         <ShadowSmokeFront />
                                     </div>
 
-                                    {/* Energie externe */}
-                                    <div className="shadowOverflow">
                                         <ShadowSmokeBack />
-                                    </div>
                                 </>
                             )}
                             <img ref={pokemonContainerRef } style={{
