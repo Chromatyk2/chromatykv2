@@ -1,6 +1,6 @@
 export default function ShadowSmokeBack({
     scale = 1
-}) 
+}) {
     return (
         <svg
             className="shadowSmokeBack"

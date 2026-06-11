@@ -1,9 +1,17 @@
-export default function ShadowSmokeFront() {
+export default function ShadowSmokefront({
+    scale = 1
+}) {
     return (
         <svg
             className="shadowSmokeFront"
             viewBox="0 0 600 600"
             preserveAspectRatio="none"
+            style={{
+                width: `${300 * scale}px`,
+                height: `${365 * scale}px`,
+                left: `${-50 * scale}px`,
+                top: `${-80 * scale}px`
+            }}
         >
             <defs>
                 <filter
