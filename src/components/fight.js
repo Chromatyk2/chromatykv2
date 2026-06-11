@@ -371,7 +371,11 @@ function Fight(props) {
                         }} className={`fightSpriteCardInvert ${!hasAppeared ? "spawnInvert" : ""} ${isAttacking && !isKO ? "fightAttack" : ""}`}>
                             {props.compagnon[0].negative === 1 &&
                                 <>
-                                    <div className="shadowMask">
+                                <div className="shadowMask"
+                                    style={{
+                                        WebkitMaskImage: `url(/Masks/${props.compagnon[0].number}.png)`,
+                                        maskImage: `url(/Masks/${props.compagnon[0].number}.png)`
+                                    }}>
                                         <ShadowSmokeBack targetRef={pokemonContainerRef} />
                                     </div>
                                     <ShadowSmokeBack targetRef={pokemonContainerRef} />
