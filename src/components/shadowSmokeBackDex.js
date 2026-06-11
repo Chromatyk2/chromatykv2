@@ -39,9 +39,9 @@ export default function ShadowSmokeBackDex() {
                 </filter>
 
                 <radialGradient id="shadowRed">
-                    <stop offset="0%" stopColor="#000" stopOpacity="0.7" />
-                    <stop offset="40%" stopColor="#4d1f82" stopOpacity="0.4" />
-                    <stop offset="100%" stopColor="#000" stopOpacity="0" />
+                    <stop offset="0%" stop-color="red" stop-opacity="1"></stop>
+                    <stop offset="40%" stop-color="#621f77" stop-opacity="1"></stop>
+                    <stop offset="100%" stop-color="#000" stop-opacity="0"></stop>
                 </radialGradient>
             </defs>
             {/* Couche rouge */}

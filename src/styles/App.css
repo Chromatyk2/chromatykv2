@@ -857,27 +857,30 @@ fightActionsFlee img {
     }
 }
 .shadowSmokeFront {
-    position: absolute;
-    left: -120px;
-    top: -120px;
-    width: calc(100% + 240px);
-    height: calc(100% + 240px);
-    z-index: 21;
-    pointer-events: none;
-    opacity: 0.95;
+    height: calc(365px);
+    left: -50px;
     mix-blend-mode: screen;
+    opacity: 1;
+    pointer-events: none;
+    position: absolute;
+    top: -80px;
+    width: calc(300px);
+    transform: rotate(183deg);
+    z-index: 21;
 }
 .shadowSmokeBack {
-    position: absolute;
-    left: -120px;
-    top: -120px;
-    width: calc(100% + 240px);
-    height: calc(100% + 240px);
-    z-index: 1;
-    pointer-events: none;
-    opacity: 0.95;
+    height: calc(365px);
+    left: -50px;
     mix-blend-mode: screen;
+    opacity: 1;
+    pointer-events: none;
+    position: absolute;
+    top: -80px;
+    width: calc(300px);
+    transform: rotate(183deg);
+    z-index: 1;
 }
+
 .fightActions p {
     font-size: 13px;
     margin: 0;
