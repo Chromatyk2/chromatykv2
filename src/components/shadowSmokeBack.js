@@ -93,3 +93,4 @@ export default function ShadowSmokeBack() {
             </g>
         </svg>
     );
+}
