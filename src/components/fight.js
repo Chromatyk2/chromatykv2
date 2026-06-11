@@ -329,6 +329,11 @@ function Fight(props) {
         spriteScales[props.compagnon[0]?.number]?.scale ?? 1;
     const scaleEnemy =
         spriteScales[pokemon?.number]?.scale ?? 1;
+    const smokeScale =
+        1 +
+        (
+            spriteScales[pokemon.number]?.scale ?? 1
+        ) * 0.2;
     return (            
         <div className={"globalContainerCenter"}>
             <h2 class="wood-sign">Arene de Combat</h2>
@@ -377,8 +382,17 @@ function Fight(props) {
                                         maskImage: `url(/Masks/${props.compagnon[0].number}.png)`
                                     }}>
                                         <ShadowSmokeBack targetRef={pokemonContainerRef} />
-                                    </div>
-                                    <ShadowSmokeFront targetRef={pokemonContainerRef} />
+                                </div>
+                                <div
+                                    style={{
+                                        position: "absolute",
+                                        inset: 0,
+                                        transform: `scale(${smokeScale})`,
+                                        pointerEvents: "none"
+                                    }}
+                                >
+                                    <ShadowSmokeBack targetRef={pokemonContainerRef} />
+                                </div>
                                 </>
                             }
                             <img ref={pokemonContainerRef } style={{
