@@ -1,7 +1,7 @@
 export default function ShadowSmokefront({
     scale = 1,
-    width = { 160 * scale }
-height = { 200 * scale }
+    width = 300,
+    height = 365
 }) {
     const cx = width / 2;
     const cy = height / 2;
@@ -58,14 +58,6 @@ height = { 200 * scale }
             {/* Couche noire */}
             <g filter="url(#shadowDistort)">
                 <g>
-                    <animateTransform
-                        attributeName="transform"
-                        type="rotate"
-                        from="-15 300 300"
-                        to="15 300 300"
-                        dur="4s"
-                        repeatCount="indefinite"
-                    />
 
                     <ellipse
                         cx={cx}

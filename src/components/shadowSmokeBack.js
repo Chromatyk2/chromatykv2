@@ -58,14 +58,6 @@ height = { 200 * scale }
             {/* Couche rouge */}
             <g filter="url(#shadowDistort)">
                 <g>
-                    <animateTransform
-                        attributeName="transform"
-                        type="rotate"
-                        from="-15 300 300"
-                        to="15 300 300"
-                        dur="4s"
-                        repeatCount="indefinite"
-                    />
 
                     <ellipse
                         cx={cx}
