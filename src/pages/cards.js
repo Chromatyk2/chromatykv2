@@ -5,12 +5,14 @@ import moment from "moment";
 import { useCookies } from 'react-cookie';
 import Fight from "../components/fight";
 import { useAuth } from "../context/AuthContext";
+import Loader from "../components/Loader.js";
 function Cards() {
     useEffect(() => {
         const img = new Image();
         img.src = "/backCard.png";
     }, []);
     //Cookies
+    const [openingLoading, setOpeningLoading] = useState(false);
     const { user, loading } = useAuth();
     const [cookies, setCookie] = useCookies();
     const [collection, setCollection] = useState([])
@@ -83,6 +85,8 @@ function Cards() {
     };
     const openBooster = async (setTcgdexId) => {
         setShowImpact(false);
+        setOpeningLoading(true);
+        const startTime = Date.now();
         const userId = user.id;
         try {
             const { data } = await Axios.post(
@@ -110,6 +114,18 @@ function Cards() {
             );
         } catch (err) {
             console.error(err);
+        } finally {
+
+            const elapsed = Date.now() - startTime;
+
+            if (elapsed < 500) {
+                await new Promise(resolve =>
+                    setTimeout(resolve, 500 - elapsed)
+                );
+            }
+
+            setOpeningLoading(false);
+
         }
     };
     useEffect(() => {
@@ -394,61 +410,39 @@ function Cards() {
                                 </div>
                             );
                         })}
-                        {
-                            opening && (
-                                <div className={`openingOverlay  ${revealed ? `tierBg${openedCards[currentCard]?.tier || 1}` : ""}`} onClick={nextCard}>
-                                    <div className="openingWrapper">
-                                        <div onAnimationEnd={() => { if (openedCards[currentCard]?.tier === 6) { setShowImpact(true); } }} className={`card ${revealed ? "flipped" : ""} ${revealed ? `tier${openedCards[currentCard]?.tier || 1}` : ""}`}>
-                                            {showImpact && (
-                                                <div className="impactEffect" />
-                                            )}
-                                            <div className="cardInner">
-                                                <div className="cardFront">
-                                                    <img src="/backCard.png" alt="" />
-                                                </div>
-                                                <div className="cardBack">
-                                                    <div className="cardArtwork">
-                                                        <img
-                                                            src={openedCards[currentCard]?.image + "/high.webp"}
-                                                            alt=""
-                                                        />
+                        <div
+                            className={`openingOverlay ${revealed ? `tierBg${openedCards[currentCard]?.tier || 1}` : ""}`}
+                            onClick={!openingLoading ? nextCard : undefined}
+                        >
+                            {openingLoading ? (
+                                <Loader />
+                            ) : (
 
-                                                        {openedCards[currentCard]?.tier >= 6 && (
-                                                            <>
-                                                                <div className="holoEffect" />
-                                                                <div className="sparkles" />
-                                                            </>
-                                                        )}
-                                                    </div>
-
-                                                    {showNewBadge &&
-                                                        openedCards[currentCard]?.isNew && (
-                                                            <div className="newBadge">
-                                                                ✨ NEW ✨
-                                                            </div>
-                                                        )}
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="cardInfos">
-                                            Carte
-                                            {" "}
-                                            {currentCard + 1}
-                                            {" / "}
-                                            {openedCards.length}
-                                        </div>
-                                        <div className="hint">
-                                            {
-                                                !revealed
-                                                    ? "Cliquer pour retourner"
-                                                    : "Cliquer pour continuer"
+                                <div className="openingWrapper">
+                                    <div
+                                        onAnimationEnd={() => {
+                                            if (openedCards[currentCard]?.tier === 6) {
+                                                setShowImpact(true);
                                             }
+                                        }}
+                                        className={`card ${revealed ? "flipped" : ""} ${revealed ? `tier${openedCards[currentCard]?.tier || 1}` : ""}`}
+                                    >
+                                        ...
+                                    </div>
 
-                                        </div>
+                                    <div className="cardInfos">
+                                        Carte {currentCard + 1} / {openedCards.length}
+                                    </div>
+
+                                    <div className="hint">
+                                        {!revealed
+                                            ? "Cliquer pour retourner"
+                                            : "Cliquer pour continuer"}
                                     </div>
                                 </div>
-                            )
-                        }
+
+                            )}
+                        </div>
                     </div>
                     :
                     <div className="collectionGrid">
