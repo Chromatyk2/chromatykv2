@@ -2881,3 +2881,7 @@ img.companionSprite {
     mask-image: none;
     -webkit-mask-image: none;
 }
+body {
+    user-select: none;
+    -webkit-user-select: none;
+}
