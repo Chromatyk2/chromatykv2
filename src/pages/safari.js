@@ -165,7 +165,8 @@ function Fight() {
             ball: "radial-gradient(rgb(255, 255, 255) 16px, rgb(0, 0, 0) 17px, rgb(0, 0, 0) 18px, rgb(255, 255, 255) 19px, rgb(255, 255, 255) 24px, rgb(0, 0, 0) 25px, rgb(0, 0, 0) 32px, rgba(0, 0, 0, 0) 33px), linear-gradient(red 0px, red 80px, rgb(0, 0, 0) 81px, rgb(0, 0, 0) 96px, rgb(255, 255, 255) 97px, rgb(255, 255, 255) 100%)",
             great: "radial-gradient(rgb(255, 255, 255) 16px, rgb(0, 0, 0) 17px, rgb(0, 0, 0) 18px, rgb(255, 255, 255) 19px, rgb(255, 255, 255) 24px, rgb(0, 0, 0) 25px, rgb(0, 0, 0) 32px, rgba(0, 0, 0, 0) 33px), linear-gradient(red 0px, #0089ff 80px, rgb(0, 0, 0) 81px, rgb(0, 0, 0) 96px, rgb(255, 255, 255) 97px, rgb(255, 255, 255) 100%)",
             ultra: "radial-gradient(rgb(255, 255, 255) 16px, rgb(0, 0, 0) 17px, rgb(0, 0, 0) 18px, rgb(255, 255, 255) 19px, rgb(255, 255, 255) 24px, rgb(0, 0, 0) 25px, rgb(0, 0, 0) 32px, rgba(0, 0, 0, 0) 33px), linear-gradient(#000000 0px, #e3c805 80px, rgb(0, 0, 0) 81px, rgb(0, 0, 0) 96px, rgb(255, 255, 255) 97px, rgb(255, 255, 255) 100%)",
-            master: "radial-gradient(rgb(255, 255, 255) 16px, rgb(0, 0, 0) 17px, rgb(0, 0, 0) 18px, rgb(255, 255, 255) 19px, rgb(255, 255, 255) 24px, rgb(0, 0, 0) 25px, rgb(0, 0, 0) 32px, rgba(0, 0, 0, 0) 33px), linear-gradient(#ff00f7 0px, #300c51 80px, rgb(0, 0, 0) 81px, rgb(0, 0, 0) 96px, rgb(255, 255, 255) 97px, rgb(255, 255, 255) 100%)"
+            master: "radial-gradient(rgb(255,255,255) 16px, rgb(0,0,0) 17px, rgb(0,0,0) 18px, rgb(255,255,255) 19px, rgb(255,255,255) 24px, rgb(0,0,0) 25px, rgb(0,0,0) 32px, rgba(0,0,0,0) 33px), linear-gradient(#d070ff 0px, #b04cff 40px, #7b2cbf 80px, rgb(0,0,0) 81px, rgb(0,0,0) 96px, rgb(255,255,255) 97px, rgb(255,255,255) 100%)",
+            safari: "radial-gradient(rgb(255,255,255) 16px, rgb(0,0,0) 17px, rgb(0,0,0) 18px, rgb(255,255,255) 19px, rgb(255,255,255) 24px, rgb(0,0,0) 25px, rgb(0,0,0) 32px, rgba(0,0,0,0) 33px), linear-gradient(#7c9b3b 0px, #9db45a 35px, #6e7f35 80px, rgb(0,0,0) 81px, rgb(0,0,0) 96px, #e8dfc8 97px, #e8dfc8 100%)"
         };
         setBallStyle(styles[ball]);
         setCatchAnimation(true);
@@ -412,33 +413,44 @@ function Fight() {
                                     :
                                 catchAnimation === false ?
                                         <>
-                                            {inventory.filter(item => (item.slug === "ball" && item.quantity > 0) || (item.slug === "great" && item.quantity > 0) || (item.slug === "ultra" && item.quantity > 0) || (item.slug === "master" && item.quantity > 0)).length < 1 &&
-                                                <div style={{ background: "none" }} className={"emptyInventory"}>
-                                                    <p style={{ fontSize: "18px" }} className="pseudoProfil">Tu n'as pas de balls, récupère en sur les streams de Chromatyk <span style={{ fontSize: "10px" }}>Pense à sauvegarder en haut à droite</span></p>
-                                                    <a className={"twitchLink"} href="https://twitch.tv/chromatyk" target="blank_">Twitch</a>
-                                                </div>
-                                            }
-                                            {inventory.filter(item => item.slug === "ball" && item.quantity > 0).length > 0 &&
-                                                <div onClick={() => catchPokemon("ball")} className={"fightActions"}>
-                                                    < img src={"/ball.png"} />
-                                                    <p>Pokéball</p>
-                                                    <p>x {inventory.find((item) => item.slug === "ball").quantity}</p>
-                                                </div>
-                                            }
-                                            {inventory.filter(item => item.slug === "great" && item.quantity > 0).length > 0 &&
-                                                <div onClick={() => catchPokemon("great")} className={"fightActions"}>
-                                                    < img src={"/great.png"} />
-                                                    <p>Super Ball</p>
-                                                    <p>x {inventory.find((item) => item.slug === "great").quantity}</p>
-                                                </div>
-                                            }
-                                            {inventory.filter(item => item.slug === "ultra" && item.quantity > 0).length > 0 &&
-                                                <div onClick={() => catchPokemon("ultra")} className={"fightActions"}>
-                                                    < img src={"/ultra.png"} />
-                                                    <p>Hyper Ball</p>
-                                                    <p>x {inventory.find((item) => item.slug === "ultra").quantity}</p>
-                                                </div>
-                                            }
+                                        {inventory.filter(item => (item.slug === "safari" && item.quantity > 0) || (item.slug === "master" && item.quantity > 0)).length < 1 &&
+                                            <div style={{ background: "none" }} className={"emptyInventory"}>
+                                                <p style={{ fontSize: "18px" }} className="pseudoProfil">Tu n'as pas de balls, récupère en sur les streams de Chromatyk <span style={{ fontSize: "10px" }}>Pense à sauvegarder en haut à droite</span></p>
+                                                <a className={"twitchLink"} href="https://twitch.tv/chromatyk" target="blank_">Twitch</a>
+                                            </div>
+                                        }
+                                        {false && (
+                                            <>
+                                                {inventory.filter(item => item.slug === "ball" && item.quantity > 0).length > 0 &&
+                                                    <div onClick={() => catchPokemon("ball")} className={"fightActions"}>
+                                                        < img src={"/ball.png"} />
+                                                        <p>Pokéball</p>
+                                                        <p>x {inventory.find((item) => item.slug === "ball").quantity}</p>
+                                                    </div>
+                                                }
+                                                {inventory.filter(item => item.slug === "great" && item.quantity > 0).length > 0 &&
+                                                    <div onClick={() => catchPokemon("great")} className={"fightActions"}>
+                                                        < img src={"/great.png"} />
+                                                        <p>Super Ball</p>
+                                                        <p>x {inventory.find((item) => item.slug === "great").quantity}</p>
+                                                    </div>
+                                                }
+                                                {inventory.filter(item => item.slug === "ultra" && item.quantity > 0).length > 0 &&
+                                                    <div onClick={() => catchPokemon("ultra")} className={"fightActions"}>
+                                                        < img src={"/ultra.png"} />
+                                                        <p>Hyper Ball</p>
+                                                        <p>x {inventory.find((item) => item.slug === "ultra").quantity}</p>
+                                                    </div>
+                                                }
+                                            </>
+                                        )}
+                                        {inventory.filter(item => item.slug === "safari" && item.quantity > 0).length > 0 &&
+                                            <div onClick={() => catchPokemon("safari")} className={"fightActions"}>
+                                                < img src={"/safari.png"} />
+                                                <p>Hyper Ball</p>
+                                                <p>x {inventory.find((item) => item.slug === "safari").quantity}</p>
+                                            </div>
+                                        }
                                         </>
                                         :
                                         <>
