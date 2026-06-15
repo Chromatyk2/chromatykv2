@@ -123,6 +123,7 @@ function Fight() {
                     honey
                 }
             );
+        loadSafari();
         setPokemon(
             response.data.pokemon
         );
