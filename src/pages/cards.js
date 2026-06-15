@@ -86,6 +86,7 @@ function Cards() {
     const openBooster = async (setTcgdexId) => {
         setShowImpact(false);
         setOpeningLoading(true);
+        setOpening(true);
         const startTime = Date.now();
         const userId = user.id;
         try {
@@ -410,39 +411,42 @@ function Cards() {
                                 </div>
                             );
                         })}
-                        <div
-                            className={`openingOverlay ${revealed ? `tierBg${openedCards[currentCard]?.tier || 1}` : ""}`}
-                            onClick={!openingLoading ? nextCard : undefined}
-                        >
-                            {openingLoading ? (
-                                <Loader />
-                            ) : (
+                        {opening &&
+                            <div
+                                className={`openingOverlay ${revealed ? `tierBg${openedCards[currentCard]?.tier || 1}` : ""}`}
+                                onClick={!openingLoading ? nextCard : undefined}
+                            >
+                                {openingLoading ? (
+                                    <Loader />
+                                ) : (
 
-                                <div className="openingWrapper">
-                                    <div
-                                        onAnimationEnd={() => {
-                                            if (openedCards[currentCard]?.tier === 6) {
-                                                setShowImpact(true);
-                                            }
-                                        }}
-                                        className={`card ${revealed ? "flipped" : ""} ${revealed ? `tier${openedCards[currentCard]?.tier || 1}` : ""}`}
-                                    >
-                                        ...
+                                    <div className="openingWrapper">
+                                        <div
+                                            onAnimationEnd={() => {
+                                                if (openedCards[currentCard]?.tier === 6) {
+                                                    setShowImpact(true);
+                                                }
+                                            }}
+                                            className={`card ${revealed ? "flipped" : ""} ${revealed ? `tier${openedCards[currentCard]?.tier || 1}` : ""}`}
+                                        >
+                                            ...
+                                        </div>
+
+                                        <div className="cardInfos">
+                                            Carte {currentCard + 1} / {openedCards.length}
+                                        </div>
+
+                                        <div className="hint">
+                                            {!revealed
+                                                ? "Cliquer pour retourner"
+                                                : "Cliquer pour continuer"}
+                                        </div>
                                     </div>
 
-                                    <div className="cardInfos">
-                                        Carte {currentCard + 1} / {openedCards.length}
-                                    </div>
+                                )}
+                            </div>
 
-                                    <div className="hint">
-                                        {!revealed
-                                            ? "Cliquer pour retourner"
-                                            : "Cliquer pour continuer"}
-                                    </div>
-                                </div>
-
-                            )}
-                        </div>
+                        }
                     </div>
                     :
                     <div className="collectionGrid">
