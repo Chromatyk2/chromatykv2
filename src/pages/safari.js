@@ -81,24 +81,24 @@ function Fight() {
                 safari.tier
                 ) {
                     case 1:
-                        setMaxLove(
-                            125
-                        );
+                        setMaxLove(150);
                         break;
                     case 2:
                         setMaxLove(
-                            250
+                            safari.negative
+                                ? 375
+                                : 250
                         );
                         break;
                     case 3:
                         setMaxLove(
-                            500
+                            safari.negative
+                                ? 650
+                                : 500
                         );
                         break;
                     default:
-                        setMaxLove(
-                            1000
-                        );
+                        setMaxLove(1000);
                 }
             }
         } catch (err) {
