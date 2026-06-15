@@ -16,6 +16,7 @@ function Inventory(props) {
         "legendary",
         "shiny",
         "negative",
+        "safari",
         "ball",
         "great",
         "ultra",
