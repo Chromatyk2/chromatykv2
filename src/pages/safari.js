@@ -447,7 +447,7 @@ function Fight() {
                                         {inventory.filter(item => item.slug === "safari" && item.quantity > 0).length > 0 &&
                                             <div onClick={() => catchPokemon("safari")} className={"fightActions"}>
                                                 < img src={"/safari.png"} />
-                                                <p>Hyper Ball</p>
+                                                <p>Safari Ball</p>
                                                 <p>x {inventory.find((item) => item.slug === "safari").quantity}</p>
                                             </div>
                                         }
