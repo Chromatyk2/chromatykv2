@@ -186,7 +186,7 @@ function Inventory(props) {
                         <>
                         <h2 className="pseudoProfil wood-sign">Sac d'inventaire</h2>
                             <div className="inventoryContainer">
-                            {sortedInventory.filter(val => !["ball", "great", "ultra"].includes(val.slug))map((val) => (
+                            {sortedInventory.filter(val => !["ball", "great", "ultra"].includes(val.slug)).map((val) => (
                                     <div key={val.slug} className="honeyActions" style={val.slug === "box" ? getStyle(val.slug) : {}} onClick={val.slug === "boxplus" ? openLootboxPlus : val.slug === "box" ? openLootbox : val.slug === "fragement" ? createLootbox : undefined}>
                                         <img alt={val.slug} src={getImage(val.slug)} style={val.slug !== "box" ? getStyle(val.slug) : {}} />
                                         <p>{val.item}</p>
