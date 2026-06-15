@@ -420,28 +420,55 @@ function Cards() {
                                     <Loader />
                                 ) : (
 
-                                    <div className="openingWrapper">
-                                        <div
-                                            onAnimationEnd={() => {
-                                                if (openedCards[currentCard]?.tier === 6) {
-                                                    setShowImpact(true);
+                                        <div className="openingWrapper">
+                                            <div onAnimationEnd={() => { if (openedCards[currentCard]?.tier === 6) { setShowImpact(true); } }} className={`card ${revealed ? "flipped" : ""} ${revealed ? `tier${openedCards[currentCard]?.tier || 1}` : ""}`}>
+                                                {showImpact && (
+                                                    <div className="impactEffect" />
+                                                )}
+                                                <div className="cardInner">
+                                                    <div className="cardFront">
+                                                        <img src="/backCard.png" alt="" />
+                                                    </div>
+                                                    <div className="cardBack">
+                                                        <div className="cardArtwork">
+                                                            <img
+                                                                src={openedCards[currentCard]?.image + "/high.webp"}
+                                                                alt=""
+                                                            />
+
+                                                            {openedCards[currentCard]?.tier >= 6 && (
+                                                                <>
+                                                                    <div className="holoEffect" />
+                                                                    <div className="sparkles" />
+                                                                </>
+                                                            )}
+                                                        </div>
+
+                                                        {showNewBadge &&
+                                                            openedCards[currentCard]?.isNew && (
+                                                                <div className="newBadge">
+                                                                    ✨ NEW ✨
+                                                                </div>
+                                                            )}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div className="cardInfos">
+                                                Carte
+                                                {" "}
+                                                {currentCard + 1}
+                                                {" / "}
+                                                {openedCards.length}
+                                            </div>
+                                            <div className="hint">
+                                                {
+                                                    !revealed
+                                                        ? "Cliquer pour retourner"
+                                                        : "Cliquer pour continuer"
                                                 }
-                                            }}
-                                            className={`card ${revealed ? "flipped" : ""} ${revealed ? `tier${openedCards[currentCard]?.tier || 1}` : ""}`}
-                                        >
-                                            ...
-                                        </div>
 
-                                        <div className="cardInfos">
-                                            Carte {currentCard + 1} / {openedCards.length}
+                                            </div>
                                         </div>
-
-                                        <div className="hint">
-                                            {!revealed
-                                                ? "Cliquer pour retourner"
-                                                : "Cliquer pour continuer"}
-                                        </div>
-                                    </div>
 
                                 )}
                             </div>
