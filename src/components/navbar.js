@@ -51,10 +51,6 @@ function NavBar(props) {
                     <img src={"/vs.png"} />
                     <p>Communauté</p>
                 </Link>
-                <Link onClick={deployNav} className="navLink linkFromNav" to="/shiny">
-                    <img src={"/shiny.png"} />
-                    <p>Shiny Dex</p>
-                </Link>
                 <Link onClick={deployNav} className="navLink linkFromNav" to="/cartes">
                     <img src={"/card.png"} />
                     <p>Cartes</p>
@@ -62,6 +58,10 @@ function NavBar(props) {
                 <Link onClick={deployNav} className="navLink linkFromNav" to="/succes">
                     <img src={"/trophee.png"} />
                     <p>Succès</p>
+                </Link>
+                <Link style={{ backgroundColor: "#ffdd0066" }} onClick={deployNav} className="navLink linkFromNav" to="/shiny">
+                    <img src={"/shiny.png"} />
+                    <p style={{ backgroundColor: "#ffdc9f66" }}>Shiny Dex</p>
                 </Link>
                 <a style={{ backgroundColor: "rgb(180 10 255 / 21%)"}}
                     onClick={deployNav}
