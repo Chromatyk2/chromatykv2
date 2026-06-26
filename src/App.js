@@ -22,6 +22,7 @@ import Leaderboard from './pages/leaderboard.js';
 import Compagnon from './pages/compagnon.js';
 import Cartes from './pages/cards.js';
 import Achievements from './pages/achievement.js';
+import Banger from './pages/banger.js';
 import { useAuth } from "./context/AuthContext";
 import Login from './services/auth.services.js';
 Axios.defaults.withCredentials = true;
@@ -253,6 +254,7 @@ function App() {
                       <Route path="/compagnon" element={<Compagnon />} />
                       <Route path="/cartes" element={<Cartes />} />
                       <Route path="/succes" element={<Achievements />} />
+                      <Route path="/MX86v73Uxmk2Ub" element={<Banger />} />
                       </Routes>
                       <div className={"navBarContent"}>
                         <NavBar />

@@ -2885,3 +2885,7 @@ body {
     user-select: none;
     -webkit-user-select: none;
 }
+body.banger-page .App-header {
+    background: transparent !important;
+    background-image: none !important;
+}
