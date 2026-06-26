@@ -2893,3 +2893,38 @@ body.banger-page .App-header {
     border:none;
     background:none;
 }
+.banger-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+    .banger-button img {
+        width: 350px;
+    }
+
+.shake {
+    animation: shakeBanger 0.1s infinite;
+}
+
+@keyframes shakeBanger {
+    0% {
+        transform: translateX(-5px) rotate(-3deg);
+    }
+
+    25% {
+        transform: translateX(5px) rotate(3deg);
+    }
+
+    50% {
+        transform: translateX(-5px) rotate(-3deg);
+    }
+
+    75% {
+        transform: translateX(5px) rotate(3deg);
+    }
+
+    100% {
+        transform: translateX(0) rotate(0);
+    }
+}
