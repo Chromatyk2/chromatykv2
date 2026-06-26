@@ -65,7 +65,7 @@ function Banger(props) {
                 <div
                     className="skinRevealImage"
                     style={{
-                        backgroundImage: `url("/jaquettes/${banger.console}/${banger.number}.png")`
+                        backgroundImage: `url("/jaquettes/${banger.console}/Jeu (${banger.number}).png")`
                     }}
                 />
             )}
