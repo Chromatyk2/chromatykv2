@@ -22,7 +22,7 @@ function Banger(props) {
             setOpening(true);
 
             // La boîte tremble pendant 1 seconde
-            await new Promise(resolve => setTimeout(resolve, 1000));
+            await new Promise(resolve => setTimeout(resolve, 3000));
 
             const { data } = await Axios.get("/api/banger");
 
@@ -74,7 +74,7 @@ function Banger(props) {
                         <div
                             className="skinRevealImage"
                             style={{
-                                backgroundImage: `url("/jaquettes/${banger.console}/Jeu (${banger.number}).png")`
+                                backgroundImage: `url("/jaquettes/${banger.console}/Jeu (${banger.number}).png")`,margin:"auto",height:"230px"
                             }}
                         />
                         <p>Proposé par {banger.viewer}</p>
