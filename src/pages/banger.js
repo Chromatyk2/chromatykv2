@@ -6,6 +6,7 @@ function Banger(props) {
     const [opening, setOpening] = useState(false);
     const [boxImage, setBoxImage] = useState("/basic.png");
     const [banger, setBanger] = useState(null);
+    const [message, setMessage] = useState("");
     useEffect(() => {
         document.body.classList.add("banger-page");
 
@@ -30,14 +31,19 @@ function Banger(props) {
             const roll = Math.random();
             if (roll < 0.01) {
                 setBoxImage("/ultraOpen.png");
+                setMessage('3 Pack Safari Plus gagnés ! ')
             } else if (roll < 0.03) {
                 setBoxImage("/legendaryOpen.png");
+                setMessage('1 Pack Safari Plus gagnés ! ')
             } else if (roll < 0.10) {
                 setBoxImage("/epicOpen.png");
+                setMessage('3 Pack Safari gagné ! ');
             } else if (roll < 0.25) {
                 setBoxImage("/rareOpen.png");
+                setMessage('2 Pack Safari gagné ! ');
             } else {
                 setBoxImage("/basicOpen.png");
+                setMessage('1 Pack Safari gagné ! ');
             }
         } catch (err) {
             console.error(err);
@@ -72,6 +78,7 @@ function Banger(props) {
                             }}
                         />
                         <p>{banger.viewer}</p>
+                        <p>{message}</p>
                         </div>
                     </div>
             )}
