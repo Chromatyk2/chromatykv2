@@ -1,7 +1,7 @@
 import './styles/theme.css';
 import './styles/App.css';
 import { useEffect, useState, useRef } from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import { socket } from "./services/socket";
 import Axios from "axios";
 //Services
@@ -32,6 +32,10 @@ function App() {
     const [notifications, setNotifications] = useState([]);
     const [isSafariAnimation, setIsSafariAnimation] = useState(false);
     const notificationAudio = useRef(null);
+    const location = useLocation();
+    const ignoreMultipleTabs = [
+        "/MX86v73Uxmk2Ub"
+    ]
     useEffect(() => {
         notificationAudio.current = new Audio(
             "/notif.mp3"
@@ -171,7 +175,7 @@ function App() {
             channel.close();
         };
     }, []);
-    if (multipleTabs) {
+    if (multipleTabs && ignoreMultipleTabs.includes(location.pathname)) {
         return (
             <div className="App">
                 <header className="App-header">
