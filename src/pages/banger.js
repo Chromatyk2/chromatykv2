@@ -60,6 +60,7 @@ function Banger(props) {
                 />
             </button>
 
+
             {banger && (
                 <div
                     className="skinRevealImage"
@@ -67,6 +68,7 @@ function Banger(props) {
                         backgroundImage: `url("/jaquettes/${banger.console}/${banger.number}.png")`
                     }}
                 />
+            )}
         </div>
     )
 }
