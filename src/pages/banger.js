@@ -22,7 +22,7 @@ function Banger(props) {
             setOpening(true);
 
             // La boîte tremble pendant 1 seconde
-            await new Promise(resolve => setTimeout(resolve, 3000));
+            await new Promise(resolve => setTimeout(resolve, 2000));
 
             const { data } = await Axios.get("/api/banger");
 
