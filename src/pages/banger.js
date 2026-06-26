@@ -31,10 +31,10 @@ function Banger(props) {
             const roll = Math.random();
             if (roll < 0.01) {
                 setBoxImage("/ultraOpen.png");
-                setMessage('3 Pack Safari Plus gagnés ! ')
+                setMessage('3 Pack Safari Plus gagnés ! ');
             } else if (roll < 0.03) {
                 setBoxImage("/legendaryOpen.png");
-                setMessage('1 Pack Safari Plus gagnés ! ')
+                setMessage('1 Pack Safari Plus gagnés ! ');
             } else if (roll < 0.10) {
                 setBoxImage("/epicOpen.png");
                 setMessage('3 Pack Safari gagné ! ');
