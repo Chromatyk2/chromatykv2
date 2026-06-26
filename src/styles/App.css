@@ -2889,3 +2889,7 @@ body.banger-page .App-header {
     background: transparent !important;
     background-image: none !important;
 }
+.banger-button{
+    border:none;
+    background:none;
+}
