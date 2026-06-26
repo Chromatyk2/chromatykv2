@@ -62,12 +62,18 @@ function Banger(props) {
 
 
             {banger && (
-                <div
-                    className="skinRevealImage"
-                    style={{
-                        backgroundImage: `url("/jaquettes/${banger.console}/Jeu (${banger.number}).png")`
-                    }}
-                />
+                
+                    <div className="skinRevealOverlay">
+                    <div className="skinRevealCard">
+                        <div
+                            className="skinRevealImage"
+                            style={{
+                                backgroundImage: `url("/jaquettes/${banger.console}/Jeu (${banger.number}).png")`
+                            }}
+                        />
+                            <div className="skinBurst" />
+                        </div>
+                    </div>
             )}
         </div>
     )
