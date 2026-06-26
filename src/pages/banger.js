@@ -77,7 +77,7 @@ function Banger(props) {
                                 backgroundImage: `url("/jaquettes/${banger.console}/Jeu (${banger.number}).png")`
                             }}
                         />
-                        <p>{banger.viewer}</p>
+                        <p>Proposé par {banger.viewer}</p>
                         <p>{message}</p>
                         </div>
                     </div>
