@@ -2928,3 +2928,14 @@ body.banger-page .App-header {
         transform: translateX(0) rotate(0);
     }
 }
+
+.bangerRevealOverlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: transparent;
+    animation: fadeIn .3s;
+}
