@@ -32,7 +32,7 @@ function App() {
     const [notifications, setNotifications] = useState([]);
     const [isSafariAnimation, setIsSafariAnimation] = useState(false);
     const notificationAudio = useRef(null);
-    const location = useLocation();
+    const pathname = window.location.pathname;
     const ignoreMultipleTabs = [
         "/MX86v73Uxmk2Ub"
     ]
@@ -175,7 +175,10 @@ function App() {
             channel.close();
         };
     }, []);
-    if (multipleTabs && ignoreMultipleTabs.includes(location.pathname)) {
+    if (
+        multipleTabs &&
+        !ignoreMultipleTabs.includes(pathname)
+    ) {
         return (
             <div className="App">
                 <header className="App-header">
