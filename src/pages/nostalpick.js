@@ -56,6 +56,7 @@ function Nostalpick() {
 
                 {current ? (
                     <div className="card">
+                        <img alt={current.jeu} src={`url("/jaquettes/${current.console}/Jeu (${current.number}).png")`} />
                         <p><strong>Console :</strong> {current.console}</p>
                         <p><strong>Jeu :</strong> {current.jeu}</p>
                         <p><strong>Ajouté par :</strong> {current.viewer}</p>
