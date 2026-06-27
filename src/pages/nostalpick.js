@@ -31,6 +31,7 @@ function Nostalpick() {
     useEffect(() => {
         loadBangers();
     }, []);
+    console.log(user);
 
     const loadBangers = async () => {
         try {
