@@ -2955,14 +2955,16 @@ body.banger-page .App-header {
 form {
     display: flex;
     gap: 20px;
-    align-items: end;
-    margin-bottom: 30px;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
 }
 
-    form div {
-        display: flex;
-        flex-direction: column;
-    }
+form div {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+}
 
 table {
     width: 100%;
@@ -2976,7 +2978,25 @@ td {
     padding: 10px;
     text-align: left;
 }
+thead {
+    background: linear-gradient(#b87a3d, #8b5a2b);
+}
 
-th {
-    background: #333;
+form button {
+    background: repeating-linear-gradient(90deg, #5a381e, #5a381e 40px, #4a2d18 0, #4a2d18 80px);
+    border: 1px solid var(--border-light);
+    border-radius: 10px;
+    box-shadow: 0 0 0 3px var(--shadow-color), 0 20px 40px #00000080;
+    color: var(--text-main);
+    font-family: Charge Vector Black;
+    letter-spacing: 1px;
+}
+form button:hover {
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.2);
+    border: rgba(5, 72, 115, 1) solid 2px;
+    background: rgba(5, 72, 115, 0.5);
+    background: #2b1f0480;
+    border: 1px solid #010c12;
+    cursor: pointer;
 }

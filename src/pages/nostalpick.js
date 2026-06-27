@@ -49,7 +49,7 @@ function Nostalpick() {
 
     return (
         <div className={"globalContainerCenter"}>
-            <h1>Banger</h1>
+            <h1>Nostal'Pick</h1>
 
             <section className="current-game">
                 <h2 class="wood-sign">Jeu en cours</h2>
