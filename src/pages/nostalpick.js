@@ -66,7 +66,25 @@ function Nostalpick() {
             console.error(err);
         }
     };
+    const updateNumber = async (id, number) => {
+        if (!number) return;
 
+        try {
+            await Axios.put(`/api/banger/${id}/number`, {
+                number
+            });
+
+            setUpcoming(prev =>
+                prev.map(game =>
+                    game.id === id
+                        ? { ...game, number, tempNumber: undefined }
+                        : game
+                )
+            );
+        } catch (err) {
+            console.error(err);
+        }
+    };
     return (
         <div className={"globalContainerCenter"}>
             <h1>Nostal'Pick</h1>
@@ -146,7 +164,35 @@ function Nostalpick() {
                                 <td>{game.console}</td>
                                 <td>{game.jeu}</td>
                                 <td>{game.viewer}</td>
-                                {user?.id === "80482655" && <td>{game.number}</td>}
+                                <td>
+                                    {user?.id === "80482655" ? (
+                                        game.number === null ? (
+                                            <input
+                                                type="text"
+                                                value={game.tempNumber || ""}
+                                                onChange={(e) =>
+                                                    setUpcoming(prev =>
+                                                        prev.map(g =>
+                                                            g.id === game.id
+                                                                ? {
+                                                                    ...g,
+                                                                    tempNumber: e.target.value
+                                                                }
+                                                                : g
+                                                        )
+                                                    )
+                                                }
+                                                onKeyDown={(e) => {
+                                                    if (e.key === "Enter") {
+                                                        updateNumber(game.id, e.target.value);
+                                                    }
+                                                }}
+                                            />
+                                        ) : (
+                                            game.number
+                                        )
+                                    ) : null}
+                                </td>
                             </tr>
                         ))}
                     </tbody>
