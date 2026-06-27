@@ -15,7 +15,7 @@ function Nostalpick() {
 
     const loadBangers = async () => {
         try {
-            const { data } = await Axios.get("/api/banger");
+            const { data } = await Axios.get("/api/getBanger");
 
             setCurrent(data.current);
             setUpcoming(data.upcoming);
@@ -33,7 +33,7 @@ function Nostalpick() {
         }
 
         try {
-            const { data } = await Axios.post("/api/banger", {
+            const { data } = await Axios.post("/api/addBanger", {
                 console: consoleName,
                 jeu
             });
