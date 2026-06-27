@@ -155,7 +155,7 @@ function Nostalpick() {
                         <tr>
                             <th>Console</th>
                             <th>Jeu</th>
-                            <th>Proposé par</th
+                            <th>Proposé par</th>
                             <th>VOD</th>
                         </tr>
                     </thead>
@@ -167,7 +167,7 @@ function Nostalpick() {
                                 <td>{game.jeu}</td>
                                 <td>{game.viewer}</td>
                                 {game.link !== null &&
-                                    <td><a target={"_blank"} href={game.link}><img className={"linkShinydex"} src={"/youtube.png"} /></a></td>
+                                    <td><a rel="noreferrer" target={"_blank"} href={game.link}><img alt="lien youtube" className={"linkShinydex"} src={"/youtube.png"} /></a></td>
                                 }
                             </tr>
                         ))}
