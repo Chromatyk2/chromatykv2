@@ -114,6 +114,7 @@ function Nostalpick() {
                             onChange={(e) =>
                                 setJeu(e.target.value)
                             }
+                            placeholder="Entrer le nom du jeu"
                         />
                     </div>
 
