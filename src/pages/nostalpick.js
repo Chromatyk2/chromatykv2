@@ -50,21 +50,22 @@ function Nostalpick() {
     return (
         <div className={"globalContainerCenter"}>
             <h1>Nostal'Pick</h1>
+            {current &&
+                <section className="current-game">
+                    <h2 class="wood-sign">Jeu en cours</h2>
 
-            <section className="current-game">
-                <h2 class="wood-sign">Jeu en cours</h2>
-
-                {current ? (
-                    <div className="card">
-                        <img alt={current.jeu} src={`url("/jaquettes/${current.console}/Jeu (${current.number}).png")`} />
-                        <p><strong>Console :</strong> {current.console}</p>
-                        <p><strong>Jeu :</strong> {current.jeu}</p>
-                        <p><strong>Ajouté par :</strong> {current.viewer}</p>
-                    </div>
-                ) : (
-                    <p>Aucun jeu en cours.</p>
-                )}
-            </section>
+                    {current ? (
+                        <div className="card">
+                            <img style={{ width: "100%" }} alt={current.jeu} src={`/jaquettes/${current.console}/Jeu (${current.number}).png`} />
+                            <p>{current.console}</p>
+                            <p>{current.jeu}</p>
+                            <p>Proposé par : {current.viewer}</p>
+                        </div>
+                    ) : (
+                        <p>Aucun jeu en cours.</p>
+                    )}
+                </section>               
+            }
 
             <section className="add-game">
                 <h2 class="wood-sign">Ajouter un jeu</h2>
@@ -93,13 +94,13 @@ function Nostalpick() {
                     </div>
 
                     <button type="submit">
-                        Ajouter
+                        Ajouter au tirage
                     </button>
                 </form>
             </section>
 
             <section className="upcoming-games">
-                <h2 class="wood-sign">Jeux à venir</h2>
+                <h2 class="wood-sign">Jeux dans le tirage</h2>
 
                 <table>
                     <thead>
@@ -130,7 +131,8 @@ function Nostalpick() {
                         <tr>
                             <th>Console</th>
                             <th>Jeu</th>
-                            <th>Ajouté par</th>
+                            <th>Proposé par</th
+                            <th>VOD</th>
                         </tr>
                     </thead>
 
@@ -140,6 +142,9 @@ function Nostalpick() {
                                 <td>{game.console}</td>
                                 <td>{game.jeu}</td>
                                 <td>{game.viewer}</td>
+                                {game.link !== null &&
+                                    <td><a target={"_blank"} href={game.link}><img className={"linkShinydex"} src={"/youtube.png"} /></a></td>
+                                }
                             </tr>
                         ))}
                     </tbody>

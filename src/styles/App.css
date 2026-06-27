@@ -2946,10 +2946,14 @@ body.banger-page .App-header {
 }
 
 .card {
-    background: #222;
-    padding: 20px;
     border-radius: 10px;
     margin-bottom: 30px;
+    padding: 20px;
+    background: var(--bg-main);
+    border-bottom: solid #fff;
+    border: 6px solid var(--border-dark);
+    box-shadow: 0 0 0 4px var(--border-light), 1px 9px 6px 0 #000;
+    height: fit-content;
 }
 
 form {
@@ -2970,6 +2974,7 @@ table {
     width: 100%;
     border-collapse: collapse;
     margin-bottom: 40px;
+    font-size:18px;
 }
 
 th,
