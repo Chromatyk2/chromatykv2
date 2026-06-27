@@ -5,9 +5,26 @@ function Nostalpick() {
     const [current, setCurrent] = useState(null);
     const [upcoming, setUpcoming] = useState([]);
     const [finished, setFinished] = useState([]);
-
     const [consoleName, setConsoleName] = useState("");
     const [jeu, setJeu] = useState("");
+    const consoles = [
+        "DREAMCAST",
+        "GAMEGEAR",
+        "GB",
+        "GBA",
+        "GBC",
+        "MASTER SYSTEM",
+        "MEGADRIVE",
+        "N64",
+        "NDS",
+        "NES",
+        "NGC",
+        "PS1",
+        "PS2",
+        "PSP",
+        "SNES",
+        "WII"
+    ];
 
     useEffect(() => {
         loadBangers();
@@ -73,13 +90,20 @@ function Nostalpick() {
                 <form onSubmit={addBanger}>
                     <div>
                         <label>Console</label>
-                        <input
-                            type="text"
+                        <select
                             value={consoleName}
-                            onChange={(e) =>
-                                setConsoleName(e.target.value)
-                            }
-                        />
+                            onChange={(e) => setConsoleName(e.target.value)}
+                        >
+                            <option value="">
+                                Sélectionner une console
+                            </option>
+
+                            {consoles.map((console) => (
+                                <option key={console} value={console}>
+                                    {console}
+                                </option>
+                            ))}
+                        </select>
                     </div>
 
                     <div>
