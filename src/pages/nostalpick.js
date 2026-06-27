@@ -33,9 +33,13 @@ function Nostalpick() {
     }, []);
     console.log(user);
 
-    const limitReached =
-        user &&
-        upcoming.filter(game => game.viewer === user.login).length >= 5;
+    const myGames = upcoming.filter(
+        game =>
+            game.viewer?.trim().toLowerCase() ===
+            user?.login?.trim().toLowerCase()
+    );
+
+    const limitReached = myGames.length >= 5;
     const loadBangers = async () => {
         try {
             const { data } = await Axios.get("/api/getBanger");
