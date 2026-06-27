@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import Axios from "axios";
+import { useAuth } from "../context/AuthContext";
 
 function Nostalpick() {
+    const { user, loading } = useAuth();
     const [current, setCurrent] = useState(null);
     const [upcoming, setUpcoming] = useState([]);
     const [finished, setFinished] = useState([]);
@@ -133,6 +135,7 @@ function Nostalpick() {
                             <th>Console</th>
                             <th>Jeu</th>
                             <th>Ajouté par</th>
+                            {user?.id === 80482655 && <th>ID</th>}
                         </tr>
                     </thead>
 
@@ -163,13 +166,14 @@ function Nostalpick() {
 
                     <tbody>
                         {finished.map((game) => (
-                            <tr key={game.id}>
+                            <tr style={{backgroundColor: user?.id === 80482655 && "red"}} key={game.id}>
                                 <td>{game.console}</td>
                                 <td>{game.jeu}</td>
                                 <td>{game.viewer}</td>
                                 {game.link !== null &&
                                     <td><a rel="noreferrer" target={"_blank"} href={game.link}><img alt="lien youtube" style={{width:"50px"}} src={"/youtube.png"} /></a></td>
                                 }
+                                {user?.id === 80482655 && <td>{game.number}</td>}
                             </tr>
                         ))}
                     </tbody>
