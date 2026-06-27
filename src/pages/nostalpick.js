@@ -167,7 +167,7 @@ function Nostalpick() {
                                 <td>{game.jeu}</td>
                                 <td>{game.viewer}</td>
                                 {game.link !== null &&
-                                    <td><a rel="noreferrer" target={"_blank"} href={game.link}><img alt="lien youtube" className={"linkShinydex"} src={"/youtube.png"} /></a></td>
+                                    <td><a rel="noreferrer" target={"_blank"} href={game.link}><img alt="lien youtube" style={{width:"50px"}} src={"/youtube.png"} /></a></td>
                                 }
                             </tr>
                         ))}

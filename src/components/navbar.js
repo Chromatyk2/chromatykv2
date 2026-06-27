@@ -63,6 +63,12 @@ function NavBar(props) {
                     <img src={"/shiny.png"} />
                     <p style={{ backgroundColor: "#ffdc9f66" }}>Shiny Dex</p>
                 </Link>
+                {user &&
+                    <Link style={{ backgroundColor: "rgb(0 255 170 / 40%)" }} onClick={deployNav} className="navLink linkFromNav" to="/nostalpick">
+                        <img src={"/basic.png"} />
+                        <p style={{ backgroundColor: "rgb(159 255 227 / 40%)" }}>Nostal'pick</p>
+                    </Link>
+                }
                 <a style={{ backgroundColor: "rgb(180 10 255 / 21%)"}}
                     onClick={deployNav}
                     className="navLink linkFromNav"
