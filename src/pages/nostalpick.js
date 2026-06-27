@@ -55,7 +55,7 @@ function Nostalpick() {
                 jeu
             });
 
-            setUpcoming(prev => [...prev, data]);
+            setUpcoming(prev => [data, ...prev]);
 
             setConsoleName("");
             setJeu("");
