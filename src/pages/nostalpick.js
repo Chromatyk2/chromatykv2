@@ -33,6 +33,9 @@ function Nostalpick() {
     }, []);
     console.log(user);
 
+    const limitReached =
+        user &&
+        upcoming.filter(game => game.viewer === user.login).length >= 4;
     const loadBangers = async () => {
         try {
             const { data } = await Axios.get("/api/getBanger");
@@ -106,43 +109,48 @@ function Nostalpick() {
             }
 
             <section className="add-game">
-                <h2 class="wood-sign">Ajouter un jeu</h2>
+                <h2 className="wood-sign">Ajouter un jeu</h2>
 
-                <form onSubmit={addBanger}>
-                    <div>
-                        <label>Console</label>
-                        <select
-                            value={consoleName}
-                            onChange={(e) => setConsoleName(e.target.value)}
-                        >
-                            <option value="">
-                                Sélectionner une console
-                            </option>
-
-                            {consoles.map((console) => (
-                                <option key={console} value={console}>
-                                    {console}
+                {limitReached ? (
+                    <div className="limit-message">
+                        Vous avez atteint la limite de 4 jeux proposés.
+                        Attendez qu'un de vos jeux soit tiré avant d'en ajouter un nouveau.
+                    </div>
+                ) : (
+                    <form onSubmit={addBanger}>
+                        <div>
+                            <label>Console</label>
+                            <select
+                                value={consoleName}
+                                onChange={(e) => setConsoleName(e.target.value)}
+                            >
+                                <option value="">
+                                    Sélectionner une console
                                 </option>
-                            ))}
-                        </select>
-                    </div>
 
-                    <div>
-                        <label>Jeu</label>
-                        <input
-                            type="text"
-                            value={jeu}
-                            onChange={(e) =>
-                                setJeu(e.target.value)
-                            }
-                            placeholder="Entrer le nom du jeu"
-                        />
-                    </div>
+                                {consoles.map((console) => (
+                                    <option key={console} value={console}>
+                                        {console}
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
 
-                    <button type="submit">
-                        Ajouter au tirage
-                    </button>
-                </form>
+                        <div>
+                            <label>Jeu</label>
+                            <input
+                                type="text"
+                                value={jeu}
+                                onChange={(e) => setJeu(e.target.value)}
+                                placeholder="Entrer le nom du jeu"
+                            />
+                        </div>
+
+                        <button type="submit">
+                            Ajouter au tirage
+                        </button>
+                    </form>
+                )}
             </section>
 
             <section className="upcoming-games">
