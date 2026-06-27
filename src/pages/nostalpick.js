@@ -117,8 +117,8 @@ function Nostalpick() {
 
                 {limitReached ? (
                     <div className="limit-message">
-                        Vous avez atteint la limite de 4 jeux proposés.
-                        Attendez qu'un de vos jeux soit tiré avant d'en ajouter un nouveau.
+                        Tu as atteint la limite de 5 jeux proposés.
+                        Attends qu'un de tes jeux soit tiré avant d'en ajouter un nouveau.
                     </div>
                 ) : (
                     <form onSubmit={addBanger}>
