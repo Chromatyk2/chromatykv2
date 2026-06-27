@@ -2939,3 +2939,44 @@ body.banger-page .App-header {
     background: transparent;
     animation: fadeIn .3s;
 }
+.banger-page {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+}
+
+.card {
+    background: #222;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+}
+
+form {
+    display: flex;
+    gap: 20px;
+    align-items: end;
+    margin-bottom: 30px;
+}
+
+    form div {
+        display: flex;
+        flex-direction: column;
+    }
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 40px;
+}
+
+th,
+td {
+    border: 1px solid #444;
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background: #333;
+}
