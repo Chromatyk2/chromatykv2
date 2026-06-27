@@ -142,7 +142,7 @@ function Nostalpick() {
 
                     <tbody>
                         {upcoming.map((game) => (
-                            <tr style={{ backgroundColor: user?.id === "80482655" && "red" }} key={game.id}>
+                            <tr style={{ backgroundColor: user?.id === "80482655" && game.number === null && "red" }} key={game.id}>
                                 <td>{game.console}</td>
                                 <td>{game.jeu}</td>
                                 <td>{game.viewer}</td>
