@@ -48,11 +48,11 @@ function Nostalpick() {
     };
 
     return (
-        <div className="banger-page">
+        <div className={"globalContainerCenter"}>
             <h1>Banger</h1>
 
             <section className="current-game">
-                <h2>Jeu en cours</h2>
+                <h2 class="wood-sign">Jeu en cours</h2>
 
                 {current ? (
                     <div className="card">
@@ -66,7 +66,7 @@ function Nostalpick() {
             </section>
 
             <section className="add-game">
-                <h2>Ajouter un jeu</h2>
+                <h2 class="wood-sign">Ajouter un jeu</h2>
 
                 <form onSubmit={addBanger}>
                     <div>
@@ -98,7 +98,7 @@ function Nostalpick() {
             </section>
 
             <section className="upcoming-games">
-                <h2>Jeux à venir</h2>
+                <h2 class="wood-sign">Jeux à venir</h2>
 
                 <table>
                     <thead>
@@ -122,7 +122,7 @@ function Nostalpick() {
             </section>
 
             <section className="finished-games">
-                <h2>Jeux terminés</h2>
+                <h2 class="wood-sign">Jeux terminés</h2>
 
                 <table>
                     <thead>
