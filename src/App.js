@@ -277,16 +277,16 @@ function App() {
 
                   ))}
               </div>
-              {user?.id === "80482655" && missingCount > 0 && (
-                  <Link
-                      to="/nostalpick"
-                      className="nostalpick-notification"
-                      title={`${missingCount} jeu(x) sans numéro`}
-                  >
-                      {missingCount}
-                  </Link>
-              )}
               <BrowserRouter>
+                  {user?.id === "80482655" && missingCount > 0 && (
+                      <Link
+                          to="/nostalpick"
+                          className="nostalpick-notification"
+                          title={`${missingCount} jeu(x) sans numéro`}
+                      >
+                          {missingCount}
+                      </Link>
+                  )}
                       <Routes>
                         <Route path="/log" element={<Log />} />
                         <Route path="/" element={<HomePage />} />
