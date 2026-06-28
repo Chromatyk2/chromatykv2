@@ -35,7 +35,12 @@ function App() {
     const notificationAudio = useRef(null);
     const pathname = window.location.pathname;
     const ignoreMultipleTabs = [
-        "/MX86v73Uxmk2Ub"
+        "/MX86v73Uxmk2Ub",
+        "/nostalpick",
+        "/shiny",
+        "/succes",
+        "/leaderboard",
+        "/pokedex"
     ];
     const [missingCount, setMissingCount] = useState(0);
 
