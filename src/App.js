@@ -37,6 +37,45 @@ function App() {
     const ignoreMultipleTabs = [
         "/MX86v73Uxmk2Ub"
     ]
+    const [hasMissingNumber, setHasMissingNumber] = useState(false);
+
+    useEffect(() => {
+        if (user?.id !== "80482655") {
+            setHasMissingNumber(false);
+            return;
+        }
+
+        const checkUpcoming = async () => {
+            try {
+                const { data } = await Axios.get("/api/getBanger");
+
+                setHasMissingNumber(
+                    data.upcoming.some(
+                        game => game.number === null
+                    )
+                );
+            } catch (err) {
+                console.error(err);
+            }
+        };
+
+        checkUpcoming();
+
+        const interval = setInterval(checkUpcoming, 30000);
+
+        return () => clearInterval(interval);
+    }, [user]);
+
+    return (
+        <>
+            <NavBar
+                hasMissingNumber={hasMissingNumber}
+            />
+
+            {/* routes */}
+        </>
+    );
+}
     useEffect(() => {
         notificationAudio.current = new Audio(
             "/notif.mp3"
@@ -249,6 +288,15 @@ function App() {
 
                   ))}
               </div>
+              {user?.id === "80482655" && missingCount > 0 && (
+                  <Link
+                      to="/nostalpick"
+                      className="nostalpick-notification"
+                      title={`${missingCount} jeu(x) sans numéro`}
+                  >
+                      {missingCount}
+                  </Link>
+              )}
               <BrowserRouter>
                       <Routes>
                         <Route path="/log" element={<Log />} />
