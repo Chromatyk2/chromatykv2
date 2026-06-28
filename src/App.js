@@ -1,7 +1,7 @@
 import './styles/theme.css';
 import './styles/App.css';
 import { useEffect, useState, useRef } from "react";
-import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
+import { BrowserRouter, Route, Routes, useLocation, Link } from "react-router-dom";
 import { socket } from "./services/socket";
 import Axios from "axios";
 //Services
@@ -36,12 +36,12 @@ function App() {
     const pathname = window.location.pathname;
     const ignoreMultipleTabs = [
         "/MX86v73Uxmk2Ub"
-    ]
-    const [hasMissingNumber, setHasMissingNumber] = useState(false);
+    ];
+    const [missingCount, setMissingCount] = useState(0);
 
     useEffect(() => {
         if (user?.id !== "80482655") {
-            setHasMissingNumber(false);
+            setMissingCount(0);
             return;
         }
 
@@ -49,10 +49,10 @@ function App() {
             try {
                 const { data } = await Axios.get("/api/getBanger");
 
-                setHasMissingNumber(
-                    data.upcoming.some(
+                setMissingCount(
+                    data.upcoming.filter(
                         game => game.number === null
-                    )
+                    ).length
                 );
             } catch (err) {
                 console.error(err);
@@ -65,17 +65,6 @@ function App() {
 
         return () => clearInterval(interval);
     }, [user]);
-
-    return (
-        <>
-            <NavBar
-                hasMissingNumber={hasMissingNumber}
-            />
-
-            {/* routes */}
-        </>
-    );
-}
     useEffect(() => {
         notificationAudio.current = new Audio(
             "/notif.mp3"
