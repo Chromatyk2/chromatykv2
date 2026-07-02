@@ -8,6 +8,27 @@ function ProfileSkins({ profileData, reload, isOwner }) {
         profileData.profile;
     const skins =
         profileData.skins;
+    const [randomSkin, setRandomSkin] = useState(
+        profile.random_skin === 1
+    );
+
+    async function toggleRandomSkin() {
+        try {
+            const value = !randomSkin;
+
+            await Axios.post(
+                "/api/changeRandomSkin",
+                {
+                    random: value
+                }
+            );
+
+            setRandomSkin(value);
+            reload();
+        } catch (err) {
+            console.error(err);
+        }
+    }
     async function changeSkin(skin) {
         if (!isOwner) {
             return;
@@ -51,6 +72,21 @@ function ProfileSkins({ profileData, reload, isOwner }) {
     
     return (
         <>
+            <div className="randomSkinSwitch">
+                <label className="switch">
+                    <input
+                        type="checkbox"
+                        checked={randomSkin}
+                        onChange={toggleRandomSkin}
+                        disabled={!isOwner}
+                    />
+                    <span className="slider"></span>
+                </label>
+
+                <span>
+                    Skin aléatoire
+                </span>
+            </div>
             {
                 openingSkin && (
                     <div className="skinRevealOverlay">
