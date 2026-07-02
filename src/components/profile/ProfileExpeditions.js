@@ -59,6 +59,7 @@ function ProfileExpeditions({
             setReward(response.data.reward);
             setTimeout(() => {
                 reload();
+                setReward(null);
             }, 3000);
         } catch (err) {
             console.error(err);
