@@ -9,7 +9,7 @@ function ProfileSkins({ profileData, reload, isOwner }) {
     const skins =
         profileData.skins;
     const [randomSkin, setRandomSkin] = useState(
-        profile.random_skin === 1
+        profile.randomSkin === 1
     );
 
     async function toggleRandomSkin() {
