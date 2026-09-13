@@ -370,7 +370,7 @@ function Fight() {
                                     {negative === 1 && <ShadowSmokeBack targetRef={pokemonContainerRef} />}
                                     {negative === 1 && <ShadowSmokeFront targetRef={pokemonContainerRef} />}
                             <img className={negative === 1 ? "pokemonSprite shadowPokemon" : "pokemonSprite"}
-                                        src={`/Sprites/${shiny === 1 ? "shiny" : "normal"}/${pokemon.number}.gif`}
+                                        src={`/Sprites/${shiny === 1 ? "shiny" : "normal"}/${pokemon.number}.webp`}
                                         alt=""
                             />
                             <div className={"pokemon-shadow"}></div>

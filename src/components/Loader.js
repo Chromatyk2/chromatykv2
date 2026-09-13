@@ -11,7 +11,7 @@ function Loader() {
         <div className="loaderContainer">
 
             <img
-                src={`/Sprites/shiny/${pokemonId}.gif`}
+                src={`/Sprites/shiny/${pokemonId}.webp`}
                 alt="Loading"
                 className="loaderPokemon"
             />

@@ -292,7 +292,7 @@ function Fight(props) {
                     `/Sprites/${next.shiny
                         ? "shiny"
                         : "normal"
-                    }/${next.pokemon.number}.gif`;
+                    }/${next.pokemon.number}.webp`;
             });
             setPokemon(fight.pokemon);
             setCurrentHp(fight.currentHp);
@@ -414,7 +414,7 @@ function Fight(props) {
                                 height: "auto",
                                 transform: `scale(${scale})`,
                                 transformOrigin: "center bottom" }} className={props.compagnon[0].negative === 1 ? "pokemonSprite shadowPokemon" : "pokemonSprite"}
-                                src={`/Sprites/${props.compagnon[0].shiny === 1 ? "shiny" : "normal"}/${props.compagnon[0].number}.gif`}
+                                src={`/Sprites/${props.compagnon[0].shiny === 1 ? "shiny" : "normal"}/${props.compagnon[0].number}.webp`}
                                 alt=""
                             />
                             <div className={"pokemon-shadow"}></div>
@@ -466,7 +466,7 @@ function Fight(props) {
                                     transform: `scale(${scaleEnemy})`,
                                     transformOrigin: "center bottom"
                                 }} className={pokemon.negative === 1 ? "pokemonSprite shadowPokemon" : "pokemonSprite"}
-                                    src={`/Sprites/${pokemon.shiny === 1 ? "shiny" : "normal"}/${pokemon.number}.gif`}
+                                    src={`/Sprites/${pokemon.shiny === 1 ? "shiny" : "normal"}/${pokemon.number}.webp`}
                                     alt=""
                                 />
                                 <div className={"pokemon-shadow"}></div>

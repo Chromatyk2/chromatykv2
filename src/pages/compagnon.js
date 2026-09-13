@@ -262,7 +262,7 @@ function Compagnon() {
                                             </>
                                         }
                                         <img ref={pokemonContainerRef } className={compagnon[0].negative === 1 ? "pokemonSprite shadowPokemon" : "pokemonSprite"}
-                                                src={`/Sprites/${compagnon[0].shiny === 1 ? "shiny" : "normal"}/${compagnon[0].number}.gif`}
+                                                src={`/Sprites/${compagnon[0].shiny === 1 ? "shiny" : "normal"}/${compagnon[0].number}.webp`}
                                                     alt=""
                                         />
                                         <div className={"pokemon-shadow"}></div>

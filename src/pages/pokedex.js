@@ -122,7 +122,7 @@ function Pokedex() {
                                                 {isNegative === 1 && <ShadowSmokeBackDex targetRef={pokemonContainerRef} />}
                                                 {isNegative === 1 && <ShadowSmokeFrontDex targetRef={pokemonContainerRef} />}
                                                 <img style={{ maxHeight: "63px", width: "auto", maxWidth: "100%"}} className={isNegative === 1 ? "pokemonSprite shadowPokemon" : "pokemonSprite"}
-                                                        src={`/Sprites/${isShiny=== 1 ? "shiny" : "normal"}/${val.pokemon}.gif`}
+                                                        src={`/Sprites/${isShiny=== 1 ? "shiny" : "normal"}/${val.pokemon}.webp`}
                                                             alt=""
                                                 />
                                                 <div className={"pokemon-shadow"}></div>
