@@ -1,8 +1,8 @@
-```css
 /* =========================================
    POKÉMON RADAR — HOLOGRAPHIC NEON
    Fond transparent — OBS 1920x1080
    ========================================= */
+
 .pokemon-radar {
     position: fixed;
     inset: 0;
@@ -21,15 +21,15 @@
     box-sizing: border-box;
 }
 
-.pokemon-radar *,
-.pokemon-radar *::before,
-.pokemon-radar *::after {
-    box-sizing: border-box;
-}
+    .pokemon-radar *,
+    .pokemon-radar *::before,
+    .pokemon-radar *::after {
+        box-sizing: border-box;
+    }
 
-.pokemon-radar.active {
-    opacity: 1;
-}
+    .pokemon-radar.active {
+        opacity: 1;
+    }
 
 /* =========================================
    RADAR CENTRAL — CENTRAGE
@@ -557,5 +557,3 @@
         opacity: 1;
     }
 }
-
-```
