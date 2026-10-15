@@ -430,3 +430,16 @@
         opacity: 1;
     }
 }
+[data-phase="complete"] .radar-lock {
+    opacity: 1;
+    transform: scale(1);
+}
+
+[data-phase="complete"] .radar-pokemon {
+    opacity: 1;
+    transform: scale(1);
+}
+
+[data-phase="complete"] .radar-target-label {
+    opacity: 1;
+}

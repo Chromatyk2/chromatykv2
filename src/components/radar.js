@@ -20,7 +20,9 @@ export default function PokemonRadar({
     const [phase, setPhase] = useState("idle");
 
     useEffect(() => {
-        if (trigger === 0 || !pokemonImage) return;
+        if (!trigger || !pokemonImage) return;
+
+        setPhase("initializing");
 
         const timers = PHASES.map(({ name, delay }) =>
             setTimeout(() => {
@@ -32,112 +34,116 @@ export default function PokemonRadar({
             }, delay)
         );
 
-        return () => {
-            timers.forEach(clearTimeout);
-        };
+        return () => timers.forEach(clearTimeout);
     }, [trigger, pokemonImage, onComplete]);
 
-    const isActive = phase !== "idle";
-    const isRevealed =
+    const active = phase !== "idle";
+    const revealed =
         phase === "revealed" || phase === "complete";
 
     return (
         <section
-            className={`pokemon-radar ${isActive ? "active" : ""}`}
+            className={`pokemon-radar ${active ? "active" : ""}`}
             data-phase={phase}
         >
-            {/* Fond transparent : adapté à OBS */}
-            <div className="radar-hud">
-                <span className="radar-label">
-                    POKÉMON RADAR SYSTEM
-                </span>
-                <span className="radar-status">
-                    {phase === "idle" && "STANDBY"}
-                    {phase === "initializing" && "INITIALISATION"}
-                    {phase === "scanning" && "SCAN EN COURS"}
-                    {phase === "detected" && "CIBLE DÉTECTÉE"}
-                    {phase === "locking" && "VERROUILLAGE"}
-                    {isRevealed && "CIBLE IDENTIFIÉE"}
-                </span>
-            </div>
+            <div className="radar-halo" />
+            <div className="radar-grid" />
 
-            <div className="radar-display">
-                {/* Cercles holographiques */}
-                <div className="radar-rings">
-                    <div className="radar-ring ring-1" />
-                    <div className="radar-ring ring-2" />
-                    <div className="radar-ring ring-3" />
-                    <div className="radar-ring ring-4" />
+            <div className="radar-circle">
+                <div className="radar-ring ring-one" />
+                <div className="radar-ring ring-two" />
+                <div className="radar-ring ring-three" />
 
-                    <div className="radar-crosshair horizontal" />
-                    <div className="radar-crosshair vertical" />
+                <div className="radar-axis horizontal" />
+                <div className="radar-axis vertical" />
+                <div className="radar-sweep" />
 
-                    <div className="radar-sweep" />
+                <div className="radar-blip blip-1" />
+                <div className="radar-blip blip-2" />
+                <div className="radar-blip blip-3" />
+                <div className="radar-blip blip-4" />
+                <div className="radar-blip blip-5" />
 
-                    <div className="radar-blip blip-1" />
-                    <div className="radar-blip blip-2" />
-                    <div className="radar-blip blip-3" />
-
-                    <div className="radar-lock">
-                        <span />
-                        <span />
-                        <span />
-                        <span />
-                    </div>
+                <div className="radar-lock">
+                    <span className="lock-corner top-left" />
+                    <span className="lock-corner top-right" />
+                    <span className="lock-corner bottom-left" />
+                    <span className="lock-corner bottom-right" />
+                    <div className="lock-circle" />
                 </div>
 
-                {/* Silhouette puis sprite révélé */}
-                <div className={`pokemon-target ${isRevealed ? "revealed" : ""}`}>
-                    {pokemonImage && (
-                        <img
-                            className="pokemon-sprite"
-                            src={pokemonImage}
-                            alt={
-                                isRevealed
-                                    ? `Pokémon ${pokemonNumber}`
-                                    : "Silhouette du Pokémon détecté"
-                            }
-                            onError={(event) => {
-                                event.currentTarget.style.visibility =
-                                    "hidden";
-                                console.error(
-                                    "Sprite introuvable :",
-                                    pokemonImage
-                                );
-                            }}
-                        />
-                    )}
-                </div>
+                <div className="radar-pulse" />
 
-                {phase === "detected" && (
-                    <div className="radar-detected">
-                        SIGNAL DÉTECTÉ
-                    </div>
+                {pokemonImage && (
+                    <img
+                        key={pokemonImage}
+                        className="radar-pokemon"
+                        src={pokemonImage}
+                        alt={
+                            revealed
+                                ? `Pokémon numéro ${pokemonNumber}`
+                                : "Pokémon détecté"
+                        }
+                        style={{
+                            filter: revealed
+                                ? "drop-shadow(0 0 8px #00eaff) drop-shadow(0 0 22px #00eaff88)"
+                                : "brightness(0) drop-shadow(0 0 8px #00eaff)",
+                        }}
+                        onError={(event) => {
+                            event.currentTarget.style.display = "none";
+                            console.error(
+                                "Sprite introuvable :",
+                                pokemonImage
+                            );
+                        }}
+                    />
                 )}
             </div>
 
-            <div className="radar-footer">
-                <div className="radar-data">
-                    <span>GEN</span>
-                    <strong>{generation ?? "--"}</strong>
+            <div className="radar-hud">
+                <div className="radar-header">
+                    <div>
+                        <div className="radar-brand">
+                            POKÉMON RADAR
+                        </div>
+                        <div className="radar-subtitle">
+                            SYSTÈME DE DÉTECTION HOLOGRAPHIQUE
+                        </div>
+                    </div>
+
+                    <div className="radar-coordinates">
+                        GEN : {generation ?? "--"}
+                        <br />
+                        ID : {revealed ? `#${pokemonNumber}` : "----"}
+                        <br />
+                        SIGNAL : {revealed ? "LOCKED" : "SEARCHING"}
+                    </div>
                 </div>
 
-                <div className="radar-data">
-                    <span>IDENTIFIANT</span>
-                    <strong>
-                        {isRevealed
-                            ? `#${pokemonNumber}`
-                            : "SCANNING"}
-                    </strong>
-                </div>
+                <div className="radar-footer">
+                    <div className="radar-status">
+                        {phase === "idle" && "SYSTÈME EN ATTENTE"}
+                        {phase === "initializing" && "INITIALISATION"}
+                        {phase === "scanning" && "SCAN EN COURS"}
+                        {phase === "detected" && "SIGNAL DÉTECTÉ"}
+                        {phase === "locking" && "VERROUILLAGE CIBLE"}
+                        {revealed && "CIBLE IDENTIFIÉE"}
+                    </div>
 
-                <div className="radar-data">
-                    <span>STATUT</span>
-                    <strong>
-                        {isRevealed ? "CONFIRMÉ" : "RECHERCHE"}
-                    </strong>
+                    <div className="radar-progress">
+                        <div className="radar-progress-bar" />
+                    </div>
+
+                    <div className="radar-target-label">
+                        POKÉMON #{pokemonNumber}
+                    </div>
                 </div>
             </div>
+
+            <div className="radar-frame top-left" />
+            <div className="radar-frame top-right" />
+            <div className="radar-frame bottom-left" />
+            <div className="radar-frame bottom-right" />
         </section>
     );
 }
