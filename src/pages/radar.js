@@ -80,7 +80,6 @@ export default function Radar() {
     return (
         <main className="radar-page">
             <PokemonRadar
-                key={scanId}
                 trigger={scanId}
                 pokemonImage={pokemonImage}
                 generation={generation}
