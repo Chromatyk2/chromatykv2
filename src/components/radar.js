@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import "../styles/radar.css";
 
 export default function PokemonRadar({
-    pokemonImage = "/Sprites/5g/Pokemon%20(14).png",
+    pokemonImage = "/Sprites/Shiny/1.webp",
     trigger = 0,
     onComplete,
 }) {
