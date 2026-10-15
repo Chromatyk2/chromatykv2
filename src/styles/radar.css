@@ -1,0 +1,432 @@
+
+.pokemon-radar {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    color: #65f7ff;
+    font-family: Arial, sans-serif;
+    pointer-events: none;
+    opacity: 0;
+    z-index: 9999;
+}
+
+    .pokemon-radar.active {
+        opacity: 1;
+    }
+
+.radar-halo,
+.radar-grid,
+.radar-circle,
+.radar-lock,
+.radar-pulse,
+.radar-pokemon,
+.radar-hud,
+.radar-frame {
+    position: absolute;
+}
+
+.radar-halo {
+    width: 550px;
+    height: 550px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #00eaff16, transparent 70%);
+    box-shadow: 0 0 80px #00d9ff15;
+}
+
+.radar-grid {
+    width: 620px;
+    height: 620px;
+    border-radius: 50%;
+    opacity: .4;
+    background-image: linear-gradient(#00d9ff19 1px, transparent 1px), linear-gradient(90deg, #00d9ff19 1px, transparent 1px);
+    background-size: 30px 30px;
+    mask-image: radial-gradient(circle, black 20%, transparent 72%);
+}
+
+.radar-circle {
+    width: 490px;
+    height: 490px;
+    border: 1px solid #37eaff75;
+    border-radius: 50%;
+    box-shadow: 0 0 25px #00dfff22;
+}
+
+    .radar-circle::before,
+    .radar-circle::after {
+        content: "";
+        position: absolute;
+        inset: 24px;
+        border: 1px solid #00eaff4a;
+        border-radius: 50%;
+    }
+
+    .radar-circle::after {
+        inset: 75px;
+    }
+
+.radar-ring {
+    position: absolute;
+    inset: -15px;
+    border: 2px solid transparent;
+    border-top-color: #55f8ff;
+    border-right-color: #ff4f9b;
+    border-radius: 50%;
+    animation: radarRotate 4s linear infinite;
+    filter: drop-shadow(0 0 7px #00eaff);
+}
+
+.ring-two {
+    inset: 12px;
+    border-width: 1px;
+    border-top-color: #00eaff;
+    border-right-color: transparent;
+    animation-duration: 8s;
+    animation-direction: reverse;
+}
+
+.ring-three {
+    inset: 48px;
+    border-top-color: transparent;
+    border-bottom-color: #ff4f9b;
+    animation-duration: 6s;
+}
+
+.radar-axis {
+    position: absolute;
+    background: #00eaff42;
+}
+
+    .radar-axis.horizontal {
+        height: 1px;
+        width: 100%;
+        top: 50%;
+    }
+
+    .radar-axis.vertical {
+        width: 1px;
+        height: 100%;
+        left: 50%;
+    }
+
+.radar-sweep {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: conic-gradient( transparent 0deg 285deg, #00eaff08 315deg, #00eaffaa 358deg, transparent 360deg );
+    animation: radarRotate 2.2s linear infinite;
+}
+
+.radar-blip {
+    position: absolute;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #79fbff;
+    box-shadow: 0 0 12px 4px #00eaff88;
+    animation: radarBlip 1s ease-in-out infinite alternate;
+}
+
+.blip-1 {
+    top: 24%;
+    left: 32%;
+}
+
+.blip-2 {
+    top: 39%;
+    right: 23%;
+}
+
+.blip-3 {
+    bottom: 28%;
+    left: 24%;
+}
+
+.blip-4 {
+    bottom: 20%;
+    right: 35%;
+}
+
+.blip-5 {
+    top: 18%;
+    right: 40%;
+}
+
+.radar-lock {
+    width: 330px;
+    height: 330px;
+    opacity: 0;
+    transform: scale(1.5);
+}
+
+.lock-corner {
+    position: absolute;
+    width: 55px;
+    height: 55px;
+    border-color: #ff438d;
+    border-style: solid;
+    filter: drop-shadow(0 0 6px #ff126c);
+}
+
+    .lock-corner.top-left {
+        top: 0;
+        left: 0;
+        border-width: 3px 0 0 3px;
+    }
+
+    .lock-corner.top-right {
+        top: 0;
+        right: 0;
+        border-width: 3px 3px 0 0;
+    }
+
+    .lock-corner.bottom-left {
+        bottom: 0;
+        left: 0;
+        border-width: 0 0 3px 3px;
+    }
+
+    .lock-corner.bottom-right {
+        bottom: 0;
+        right: 0;
+        border-width: 0 3px 3px 0;
+    }
+
+.lock-circle {
+    position: absolute;
+    inset: 25px;
+    border: 1px dashed #ff438d;
+    border-radius: 50%;
+}
+
+.radar-pulse {
+    width: 200px;
+    height: 200px;
+    border: 2px solid #50faff;
+    border-radius: 50%;
+    opacity: 0;
+}
+
+.radar-pokemon {
+    width: 220px;
+    height: 220px;
+    object-fit: contain;
+    image-rendering: pixelated;
+    opacity: 0;
+    transform: scale(.2);
+    filter: drop-shadow(0 0 8px #00eaff) drop-shadow(0 0 22px #00eaff88);
+}
+
+.radar-hud {
+    inset: 0;
+    padding: 48px 70px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.radar-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.radar-brand {
+    font-size: 18px;
+    font-weight: 900;
+    letter-spacing: 5px;
+    text-shadow: 0 0 10px #00eaff;
+}
+
+.radar-subtitle {
+    margin-top: 8px;
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: #6caebd;
+}
+
+.radar-coordinates {
+    font-size: 11px;
+    line-height: 2;
+    text-align: right;
+    letter-spacing: 2px;
+}
+
+.radar-footer {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.radar-status {
+    font-size: 16px;
+    font-weight: 900;
+    letter-spacing: 5px;
+    text-shadow: 0 0 15px #00eaff;
+}
+
+.radar-progress {
+    width: 280px;
+    height: 3px;
+    margin: 15px auto 0;
+    background: #00eaff24;
+}
+
+.radar-progress-bar {
+    width: 0;
+    height: 100%;
+    background: #53faff;
+    box-shadow: 0 0 12px #00eaff;
+}
+
+.radar-target-label {
+    margin-top: 15px;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 4px;
+    color: #ff599d;
+    opacity: 0;
+}
+
+.radar-frame {
+    width: 35px;
+    height: 35px;
+    border-color: #00eaff;
+    border-style: solid;
+}
+
+    .radar-frame.top-left {
+        top: 25px;
+        left: 25px;
+        border-width: 2px 0 0 2px;
+    }
+
+    .radar-frame.top-right {
+        top: 25px;
+        right: 25px;
+        border-width: 2px 2px 0 0;
+    }
+
+    .radar-frame.bottom-left {
+        bottom: 25px;
+        left: 25px;
+        border-width: 0 0 2px 2px;
+    }
+
+    .radar-frame.bottom-right {
+        bottom: 25px;
+        right: 25px;
+        border-width: 0 2px 2px 0;
+    }
+
+[data-phase="scanning"] .radar-circle {
+    animation: radarGlow 1s infinite alternate;
+}
+
+[data-phase="locking"] .radar-lock {
+    animation: radarLock .65s forwards;
+}
+
+[data-phase="revealed"] .radar-pokemon {
+    animation: radarReveal .8s forwards;
+}
+
+[data-phase="revealed"] .radar-pulse {
+    animation: radarPulse .8s ease-out forwards;
+}
+
+[data-phase="revealed"] .radar-target-label {
+    animation: radarFade .5s forwards;
+}
+
+[data-phase="scanning"] .radar-progress-bar,
+[data-phase="detected"] .radar-progress-bar,
+[data-phase="locking"] .radar-progress-bar,
+[data-phase="revealed"] .radar-progress-bar {
+    animation: radarProgress 5s linear forwards;
+}
+
+@keyframes radarRotate {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes radarBlip {
+    from {
+        opacity: .3;
+        transform: scale(.6);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1.4);
+    }
+}
+
+@keyframes radarGlow {
+    to {
+        filter: drop-shadow(0 0 14px #00eaff);
+    }
+}
+
+@keyframes radarLock {
+    0% {
+        opacity: 0;
+        transform: scale(1.5) rotate(-30deg);
+    }
+
+    65% {
+        opacity: 1;
+        transform: scale(.95) rotate(4deg);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes radarReveal {
+    0% {
+        opacity: 0;
+        transform: scale(.2);
+    }
+
+    65% {
+        opacity: 1;
+        transform: scale(1.15);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes radarPulse {
+    0% {
+        opacity: .9;
+        transform: scale(.3);
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(2.7);
+    }
+}
+
+@keyframes radarProgress {
+    to {
+        width: 100%;
+    }
+}
+
+@keyframes radarFade {
+    to {
+        opacity: 1;
+    }
+}

@@ -26,7 +26,9 @@ import Banger from './pages/banger.js';
 import Nostalpick from './pages/nostalpick.js';
 import { useAuth } from "./context/AuthContext";
 import Login from './services/auth.services.js';
-Axios.defaults.withCredentials = true;
+import Radar from './pages/radar.js'
+Axios.defaults.withCredentialsimport Radar from './pages/radar';
+ = true;
 function App() {
     const [multipleTabs, setMultipleTabs] = useState(false);
     const { user, loading } = useAuth();
@@ -306,6 +308,7 @@ function App() {
                       <Route path="/succes" element={<Achievements />} />
                       <Route path="/nostalpick" element={<Nostalpick />} />
                       <Route path="/MX86v73Uxmk2Ub" element={<Banger />} />
+                      <Route path="/radarMK1" element={<Radar />} />
                       </Routes>
                       <div className={"navBarContent"}>
                         <NavBar />
