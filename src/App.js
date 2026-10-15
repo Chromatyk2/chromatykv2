@@ -229,7 +229,15 @@ function App() {
             channel.close();
         };
     }, []);
+    useEffect(() => {
+        const isRadarPage = window.location.pathname === "/radarMK1";
 
+        document.body.classList.toggle("radar-page-active", isRadarPage);
+
+        return () => {
+            document.body.classList.remove("radar-page-active");
+        };
+    }, []);
     // IMPORTANT :
     // Le radar est affiché seul, sans le layout principal du site.
     // Cette condition doit rester après les hooks React.
