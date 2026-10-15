@@ -26,9 +26,8 @@ import Banger from './pages/banger.js';
 import Nostalpick from './pages/nostalpick.js';
 import { useAuth } from "./context/AuthContext";
 import Login from './services/auth.services.js';
-import Radar from './pages/radar.js'
-Axios.defaults.withCredentialsimport Radar from './pages/radar';
- = true;
+import Radar from './pages/radar.js';
+Axios.defaults.withCredentials = true;
 function App() {
     const [multipleTabs, setMultipleTabs] = useState(false);
     const { user, loading } = useAuth();
