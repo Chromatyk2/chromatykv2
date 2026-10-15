@@ -3095,3 +3095,53 @@ select, input[type="text"] {
     .switch input:checked + .slider::before {
         transform: translateX(24px);
     }
+/* ========================================
+   RADAR POKÉMON — FOND TRANSPARENT OBS
+   ======================================== */
+
+/* Fond transparent uniquement lorsque le radar est affiché */
+html:has(.radar-page),
+body:has(.radar-page),
+#root:has(.radar-page) {
+    background: transparent !important;
+    background-color: transparent !important;
+}
+
+/* Supprime les marges et occupe toute la source OBS */
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.radar-page {
+    position: fixed !important;
+    inset: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    background: transparent !important;
+    background-color: transparent !important;
+}
+
+    /* Aucun fond opaque sur le radar */
+    .radar-page .pokemon-radar {
+        position: fixed;
+        inset: 0;
+        width: 100vw;
+        height: 100vh;
+        margin: 0;
+        padding: 0;
+        background: transparent !important;
+        background-color: transparent !important;
+        overflow: hidden;
+    }
+
+    /* Évite qu'un pseudo-élément ajoute un fond */
+    .radar-page::before,
+    .radar-page::after {
+        background: transparent !important;
+        box-shadow: none;
+    }
