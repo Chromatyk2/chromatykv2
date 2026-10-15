@@ -322,7 +322,7 @@
 }
 
 .radar-brand {
-    font-size: 18px;
+    font-size: 23px;
     font-weight: 900;
     letter-spacing: 5px;
     text-shadow: 0 0 10px #00eaff;
@@ -330,13 +330,13 @@
 
 .radar-subtitle {
     margin-top: 8px;
-    font-size: 10px;
+    font-size: 15px;
     letter-spacing: 3px;
     color: #6caebd;
 }
 
 .radar-coordinates {
-    font-size: 11px;
+    font-size: 20px;
     line-height: 2;
     text-align: right;
     letter-spacing: 2px;
@@ -357,7 +357,7 @@
 }
 
 .radar-status {
-    font-size: 16px;
+    font-size: 20px;
     font-weight: 900;
     letter-spacing: 5px;
     text-shadow: 0 0 15px #00eaff;

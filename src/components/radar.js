@@ -104,7 +104,7 @@ export default function PokemonRadar({
                 <div className="radar-header">
                     <div>
                         <div className="radar-brand">
-                            POKÉMON RADAR
+                            POKÉRADAR
                         </div>
                         <div className="radar-subtitle">
                             SYSTÈME DE DÉTECTION HOLOGRAPHIQUE
