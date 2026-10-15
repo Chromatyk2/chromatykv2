@@ -1,6 +1,6 @@
 
 import { useEffect, useRef, useState } from "react";
-import "../styles/PokemonRadar.css";
+import "../styles/radar.css";
 
 export default function PokemonRadar({
     pokemonImage = "/Sprites/5g/Pokemon%20(14).png",

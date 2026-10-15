@@ -1,6 +1,6 @@
 
 import { useState } from "react";
-import PokemonRadar from "../components/PokemonRadar";
+import PokemonRadar from "../components/radar";
 
 export default function Radar() {
     const [trigger, setTrigger] = useState(0);
