@@ -3148,3 +3148,410 @@ body {
 body.radar-page-active #site-footer {
     display: none !important;
 }
+/* =========================================
+   ACCUEIL CHROMATYK
+   ========================================= */
+
+.globalContainerCenter.homePage {
+    box-sizing: border-box;
+    width: min(1200px, calc(100% - 40px));
+    max-width: 1200px;
+    padding: 110px 35px 60px;
+    gap: 20px;
+    overflow: hidden;
+}
+
+/* Empêche les styles globaux de déformer les textes */
+.homePage p {
+    font-size: 17px;
+    line-height: 1.7;
+}
+
+.homePage h1.wood-sign,
+.homePage h2.wood-sign {
+    max-width: 100%;
+    box-sizing: border-box;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+}
+
+.homePage h1.wood-sign {
+    margin: 0 0 15px;
+}
+
+.homePage h2.wood-sign {
+    margin: 15px 0 25px;
+}
+
+/* =========================================
+   INTRODUCTION
+   ========================================= */
+
+.homeHero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 850px;
+    margin: 0 auto 25px;
+    text-align: center;
+}
+
+    .homeHero .welcomeText {
+        max-width: 750px;
+        margin: 0 0 10px;
+        font-size: 19px;
+    }
+
+    .homeHero > p {
+        margin: 5px 0 15px;
+    }
+
+.homeActionLink {
+    color: #83d7d7;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+    .homeActionLink:hover {
+        color: #b5ffff;
+    }
+
+.homePrimaryButton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 10px;
+    padding: 12px 22px;
+    background: linear-gradient(180deg, #70451f, #3b2412);
+    border: 2px solid var(--border-light);
+    border-radius: 10px;
+    box-shadow: 0 5px 15px #0006;
+    color: white;
+    font-size: 17px;
+    text-decoration: none;
+    transition: transform 0.2s ease, background 0.2s ease;
+}
+
+    .homePrimaryButton:hover {
+        transform: translateY(-3px);
+        background: linear-gradient(180deg, #875729, #503019);
+    }
+
+    .homePrimaryButton img {
+        width: 32px;
+        height: 32px;
+        object-fit: contain;
+    }
+
+/* =========================================
+   PARCOURS DU JOUEUR
+   ========================================= */
+
+.homeJourney {
+    width: 100%;
+    margin: 10px auto 25px;
+}
+
+    .homeJourney > h2 {
+        text-align: center;
+    }
+
+.homeSteps {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+    width: 100%;
+    align-items: stretch;
+}
+
+.homeStep {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+    min-width: 0;
+    padding: 25px 18px 22px;
+    background: linear-gradient(145deg, #352313, #21170e);
+    border: 2px solid var(--border-light);
+    border-radius: 12px;
+    box-shadow: 0 5px 15px #0006;
+    text-align: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+    .homeStep:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 10px 22px #0009;
+    }
+
+.homeStepNumber {
+    position: absolute;
+    top: 10px;
+    left: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #8a592f;
+    border: 1px solid #d6ad7b;
+    color: white;
+    font-size: 14px;
+}
+
+.homeStepIcon {
+    display: block;
+    width: 65px;
+    height: 65px;
+    margin: 10px auto 12px;
+    object-fit: contain;
+}
+
+.homeStep h3 {
+    margin: 5px 0 10px;
+    color: #f0c58e;
+    font-size: 19px;
+    line-height: 1.4;
+}
+
+.homeStep p {
+    flex: 1;
+    margin: 0 0 20px;
+    color: #f2e8dc;
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+.homeStepLink {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 100%;
+    box-sizing: border-box;
+    margin-top: auto;
+    padding: 10px 14px;
+    background: #5a381e;
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    color: white;
+    font-size: 14px;
+    line-height: 1.5;
+    text-decoration: none;
+    overflow-wrap: anywhere;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+    .homeStepLink:hover {
+        background: #805329;
+        transform: translateY(-2px);
+    }
+
+/* =========================================
+   DERNIER SHINY
+   ========================================= */
+
+.homeShinySection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin: 10px auto 25px;
+}
+
+    .homeShinySection > h2 {
+        width: 100%;
+        text-align: center;
+    }
+
+    .homeShinySection .shinydexCard {
+        width: min(100%, 300px);
+        box-sizing: border-box;
+        margin: 0 auto;
+        background: #21170e;
+        box-shadow: 0 5px 18px #0006;
+    }
+
+    .homeShinySection .shinydexSpriteContainer {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 170px;
+    }
+
+        .homeShinySection .shinydexSpriteContainer > div {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+        }
+
+    .homeShinySection .shinydexSprite {
+        display: block;
+        width: auto;
+        max-width: 100%;
+        max-height: 150px;
+        object-fit: contain;
+    }
+
+    .homeShinySection > p {
+        text-align: center;
+    }
+
+/* =========================================
+   RACCOURCIS
+   ========================================= */
+
+.homeExplore {
+    width: 100%;
+    margin: 10px auto 0;
+}
+
+    .homeExplore > h2 {
+        text-align: center;
+    }
+
+.homeExploreLinks {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 15px;
+    width: 100%;
+}
+
+.homeExploreLink {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    box-sizing: border-box;
+    min-width: 0;
+    min-height: 125px;
+    padding: 15px 10px;
+    background: linear-gradient(145deg, #352313, #21170e);
+    border: 2px solid var(--border-light);
+    border-radius: 10px;
+    color: white;
+    font-size: 15px;
+    text-decoration: none;
+    box-shadow: 0 4px 12px #0005;
+    transition: transform 0.2s ease, background 0.2s ease;
+}
+
+    .homeExploreLink:hover {
+        transform: translateY(-4px);
+        background: #503019;
+    }
+
+    .homeExploreLink img {
+        display: block;
+        width: 45px;
+        height: 45px;
+        object-fit: contain;
+    }
+
+    .homeExploreLink span {
+        text-align: center;
+        overflow-wrap: anywhere;
+    }
+
+/* =========================================
+   RESPONSIVE : TABLETTES
+   ========================================= */
+
+@media (max-width: 900px) {
+    .globalContainerCenter.homePage {
+        width: calc(100% - 24px);
+        padding: 100px 22px 50px;
+    }
+
+    .homeSteps {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 15px;
+    }
+
+    .homeExploreLinks {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .homeHero .welcomeText {
+        font-size: 17px;
+    }
+}
+
+/* =========================================
+   RESPONSIVE : MOBILES
+   ========================================= */
+
+@media (max-width: 550px) {
+    .globalContainerCenter.homePage {
+        width: 100%;
+        padding: 95px 14px 40px;
+        border: none;
+        box-shadow: none;
+        gap: 15px;
+    }
+
+    .homePage h1.wood-sign {
+        font-size: 1.2rem;
+        padding: 10px;
+    }
+
+    .homePage h2.wood-sign {
+        font-size: 1.05rem;
+        padding: 8px;
+    }
+
+    .homePage p {
+        font-size: 15px;
+    }
+
+    .homeHero .welcomeText {
+        font-size: 16px;
+    }
+
+    .homePrimaryButton {
+        font-size: 15px;
+        padding: 10px 15px;
+    }
+
+    .homeSteps {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 15px;
+    }
+
+    .homeStep {
+        padding: 22px 20px;
+    }
+
+    .homeStepIcon {
+        width: 58px;
+        height: 58px;
+    }
+
+    .homeStep h3 {
+        font-size: 18px;
+    }
+
+    .homeStep p {
+        font-size: 15px;
+    }
+
+    .homeExploreLinks {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+    }
+
+    .homeExploreLink {
+        min-height: 110px;
+        font-size: 14px;
+    }
+
+        .homeExploreLink img {
+            width: 38px;
+            height: 38px;
+        }
+}
