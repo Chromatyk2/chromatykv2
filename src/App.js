@@ -34,7 +34,10 @@ import Cartes from './pages/cards.js';
 import Achievements from './pages/achievement.js';
 import Banger from './pages/banger.js';
 import Nostalpick from './pages/nostalpick.js';
-import Radar from './pages/radar.js';
+import Radar from './pages/radar.js'; 
+import MentionsLegales from "./pages/MentionsLegales";
+import Confidentialite from "./pages/Confidentialite";
+import Cookies from "./pages/Cookies";
 
 import { useAuth } from "./context/AuthContext";
 
@@ -341,6 +344,9 @@ function App() {
                         <Route path="/succes" element={<Achievements />} />
                         <Route path="/nostalpick" element={<Nostalpick />} />
                         <Route path="/MX86v73Uxmk2Ub" element={<Banger />} />
+                        <Route path="/mentions-legales" element={<MentionsLegales />} />
+                        <Route path="/confidentialite" element={<Confidentialite />} />
+                        <Route path="/cookies" element={<Cookies />} />
                     </Routes>
 
                     <div className="navBarContent">
