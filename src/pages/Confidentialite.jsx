@@ -1,9 +1,8 @@
 import React from "react";
-import "./LegalPages.css";
-
+import "../styles/LegalPages.css";
 export default function Confidentialite() {
   return (
-    <main className="legalPage">
+      <main className="legal-page">
       <article className="legalContent">
         <h1>Politique de confidentialité</h1>
         <p className="legalUpdated">Dernière mise à jour : 27 octobre 2026</p>
