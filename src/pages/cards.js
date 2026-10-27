@@ -119,8 +119,29 @@ function Cards() {
 
             setBoosterCurrency(data.boosterCurrency);
             setProgress(data.progress);
-            startOpening(data.openedCards);
             setGlobalProgress(data.globalProgress);
+
+            // Afficher les cartes immédiatement
+            startOpening(data.openedCards);
+
+            // Actualiser la collection en arrière-plan
+            const profileUser = param || user.id;
+
+            Axios.get(`/api/card/init/${profileUser}`)
+                .then(({ data: updatedData }) => {
+                    setCollection(updatedData.collection);
+                    setRotationSets(updatedData.rotationSets);
+                    setProgress(updatedData.progress);
+                    setBoosterCurrency(updatedData.boosterCurrency);
+                    setGlobalProgress(updatedData.globalProgress);
+                    setOwnedSets(updatedData.ownedSets);
+                })
+                .catch(err => {
+                    console.error(
+                        "Erreur d'actualisation de la collection :",
+                        err
+                    );
+                });
 
         } catch (err) {
             console.error(err);
