@@ -222,7 +222,7 @@ function HomePage(props) {
                     {/* Dernier shiny capturé */}
                     <section className="homeShinySection">
                         <h2 className="wood-sign">
-                            ✨ Dernier shiny capturé
+                            ✨ Dernier shiny capturé (en live)
                         </h2>
 
                         {shinydex && shinydex.length > 0 && (
@@ -241,7 +241,7 @@ function HomePage(props) {
                                         <img
                                             alt={shinydex[0].pokemon}
                                             className="shinydexSprite"
-                                            src={`/sprites/shiny/${shinydex[0].idPkm}.webp`}
+                                            src={`/Sprites/Shiny/${shinydex[0].idPkm}.webp`}
                                         />
                                     </div>
 
