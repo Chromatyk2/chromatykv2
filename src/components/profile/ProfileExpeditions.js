@@ -98,7 +98,7 @@ function ProfileExpeditions({
                                     top: 0,
                                     bottom: 0
                                 }} className={val.negative === 1 ? "pokemonSprite shadowPokemon" : "pokemonSprite"}
-                                    src={`/Sprites/${val.shiny === 1 ? "shiny" : "normal"}/${val.number}.webp`}
+                                    src={`/Sprites/${val.shiny === 1 ? "Shiny" : "Normal"}/${val.number}.webp`}
                                     alt=""
                                 />
                             </div>
@@ -129,7 +129,7 @@ function ProfileExpeditions({
                         {expedition.negative === 1 && <ShadowSmokeBack targetRef={pokemonContainerRef} />}
                         {expedition.negative === 1 && <ShadowSmokeFront targetRef={pokemonContainerRef} />}
                         <img className={expedition.negative === 1 ? "pokemonSprite shadowPokemon" : "pokemonSprite"}
-                            src={`/Sprites/${expedition.shiny === 1 ? "shiny" : "normal"}/${expedition.number}.webp`}
+                            src={`/Sprites/${expedition.shiny === 1 ? "Shiny" : "Normal"}/${expedition.number}.webp`}
                             alt=""
                         />
                         <div className={"pokemon-shadow"}></div>
