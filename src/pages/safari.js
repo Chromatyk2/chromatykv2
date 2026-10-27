@@ -337,35 +337,6 @@ function Fight() {
                                 }
                                 {(shiny === 1 || negative === 1) && <img style={{ width: "30px", filter: negative === 1 ? "invert(1)" : "invert(0)" }} src={"/star.png"} alt={"Shiny"} />} {pokemon.name}</p>
                                 <div style={{ backgroundColor: pokemon.tier == 1 ? "#6d6d6c" : pokemon.tier == 2 ? "#21693a" : pokemon.tier == 3 ? "#744095" : "#bfa93a" }} className={"tierFight"}>Tier {pokemon.tier}</div>
-                                <div className="loveBarContainer">
-
-                                    <div
-                                        className="loveBar"
-                                        style={{
-                                            width: `${(currentLove / maxLove) * 100}%`,
-                                            maxWidth:'100%'
-                                        }}
-                                    />
-
-                                    <span className="loveText">
-                                        {currentLove}/{maxLove}
-                                    </span>
-
-                                    <div className="heart">
-                                        <div
-                                            className="heartInt"
-                                            style={{
-                                                background:
-                                                    (currentLove / maxLove) * 100 < 30
-                                                        ? "#ff5c8a"
-                                                        : (currentLove / maxLove) * 100 < 70
-                                                            ? "#ff2d95"
-                                                            : "#ff1493"
-                                            }}
-                                        />
-                                    </div>
-
-                                </div>
                         <div ref={pokemonContainerRef} style={{ visibility: onCatch && catchAnimation ? "hidden" : "visible" }} className={`fightSpriteCard`}>
                                     {negative === 1 && <ShadowSmokeBack targetRef={pokemonContainerRef} />}
                                     {negative === 1 && <ShadowSmokeFront targetRef={pokemonContainerRef} />}
@@ -381,37 +352,6 @@ function Fight() {
                         {pokemon &&
                             <div className={"fightActionsContainer"}>
                             {catchAnimation === false &&
-                                    currentLove < maxLove ?
-                                    <>
-                                        {inventory.filter(item => (item.slug === "exps" && item.quantity > 0) || (item.slug === "expm" && item.quantity > 0) || (item.slug === "expl" && item.quantity > 0)).length < 1 &&
-                                            <div style={{ background: "none" }} className={"emptyInventory"}>
-                                                <p style={{ fontSize: "18px" }} className="pseudoProfil">Tu n'as pas de bonbons, récupère en sur les streams de Chromatyk <span style={{ fontSize: "10px" }}>Pense à sauvegarder en haut à droite</span></p>
-                                                <a className={"twitchLink"} href="https://twitch.tv/chromatyk" target="blank_">Twitch</a>
-                                            </div>
-                                        }
-                                        {inventory.filter(item => item.slug === "exps" && item.quantity > 0).length > 0 &&
-                                            <div onClick={() => addLove("exps")} className={"fightActions"}>
-                                                < img src={"/exps.png"} />
-                                                <p>Bonbon S</p>
-                                                <p>x {inventory.find((item) => item.slug === "exps").quantity}</p>
-                                            </div>
-                                        }
-                                        {inventory.filter(item => item.slug === "expm" && item.quantity > 0).length > 0 &&
-                                            <div onClick={() => addLove("expm")} className={"fightActions"}>
-                                                < img src={"/expm.png"} />
-                                                <p>Bonbon M</p>
-                                                <p>x {inventory.find((item) => item.slug === "expm").quantity}</p>
-                                            </div>
-                                        }
-                                        {inventory.filter(item => item.slug === "expl" && item.quantity > 0).length > 0 &&
-                                            <div onClick={() => addLove("expl")} className={"fightActions"}>
-                                                < img src={"/expl.png"} />
-                                                <p>Bonbon L</p>
-                                                <p>x {inventory.find((item) => item.slug === "expl").quantity}</p>
-                                            </div>
-                                        }
-                                    </>
-                                    :
                                 catchAnimation === false ?
                                         <>
                                         {inventory.filter(item => (item.slug === "safari" && item.quantity > 0) || (item.slug === "master" && item.quantity > 0)).length < 1 &&
