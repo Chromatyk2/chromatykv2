@@ -3890,3 +3890,24 @@ body.radar-page-active #site-footer {
         filter: brightness(1);
     }
 }
+/* Pendant le flash, masquer définitivement les morceaux du booster */
+.boosterAnimation.burst .boosterPack {
+    animation: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+}
+
+/* Éviter que les morceaux réapparaissent */
+.boosterAnimation.burst .boosterHalf {
+    opacity: 0 !important;
+    visibility: hidden !important;
+}
+
+/* Le flash reste visible au-dessus du booster */
+.boosterAnimation.burst .boosterLight {
+    z-index: 10;
+}
+
+.boosterAnimation.burst .boosterParticles {
+    z-index: 11;
+}
