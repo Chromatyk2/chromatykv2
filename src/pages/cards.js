@@ -125,7 +125,7 @@ function Cards() {
 
             // Précharger les cartes avant de commencer l'animation
             await preloadCards(data.openedCards);
-
+            setOpeningLoading(false);
             setBoosterCurrency(data.boosterCurrency);
             setProgress(data.progress);
             setGlobalProgress(data.globalProgress);
@@ -595,7 +595,7 @@ function Cards() {
                                     : ""
                                 }`}
                             onClick={
-                                !openingLoading
+                                !openingLoading && openingPhase === "idle"
                                     ? nextCard
                                     : undefined
                             }
