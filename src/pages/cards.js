@@ -134,15 +134,11 @@ function Cards() {
             setOpeningPhase("shake");
             await new Promise(resolve => setTimeout(resolve, 900));
 
-            // 2. Déchirure
+            // 2. Déchirure + flash en même temps
             setOpeningPhase("tear");
             await new Promise(resolve => setTimeout(resolve, 700));
 
-            // 3. Flash lumineux
-            setOpeningPhase("burst");
-            await new Promise(resolve => setTimeout(resolve, 650));
-
-            // 4. Le booster disparaît et les cartes prennent le relais
+            // 3. Afficher les cartes juste après
             setOpeningPhase("idle");
             startOpening(data.openedCards);
 

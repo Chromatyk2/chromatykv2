@@ -3906,3 +3906,12 @@ body.radar-page-active #site-footer {
 .boosterAnimation.burst .boosterParticles {
     z-index: 11;
 }
+/* Le flash démarre en même temps que la déchirure */
+.boosterAnimation.tear .boosterLight {
+    animation: boosterLightBurst 0.7s ease-out forwards;
+}
+
+/* Les particules partent en même temps que le flash */
+.boosterAnimation.tear .boosterParticles span {
+    animation: particleBurst 0.7s ease-out forwards;
+}
