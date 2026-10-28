@@ -3555,163 +3555,181 @@ body.radar-page-active #site-footer {
             height: 38px;
         }
 }
-/* Conteneur général */
+/* ================================
+   CONTENEUR PRINCIPAL
+================================ */
+
 .boosterAnimation {
     position: relative;
     width: 100%;
-    height: 100%;
     min-height: 420px;
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    perspective: 1000px;
     isolation: isolate;
 }
 
-/* Booster */
+/* ================================
+   BOOSTER
+================================ */
+
 .boosterPack {
     position: relative;
     width: 220px;
     height: 320px;
-    z-index: 3;
-    transform-origin: center;
+    flex-shrink: 0;
 }
 
-/* Les deux moitiés du paquet */
+/*
+   Les deux moitiés utilisent exactement
+   la même image et les mêmes dimensions.
+   Cela évite de déformer le booster.
+*/
+
 .boosterHalf {
     position: absolute;
     inset: 0;
     overflow: hidden;
-    backface-visibility: hidden;
+    transform-origin: center;
 }
 
     .boosterHalf img {
         position: absolute;
-        width: 200%;
+        inset: 0;
+        display: block;
+        width: 100%;
         height: 100%;
-        max-width: none;
-        object-fit: fill;
+        object-fit: contain;
+        object-position: center;
     }
 
-/* Moitié gauche */
-.boosterLeft {
-    clip-path: inset(0 50% 0 0);
+/* Déchirure horizontale située à 25 % du haut */
+
+.boosterTop {
+    clip-path: inset(0 0 75% 0);
 }
 
-    .boosterLeft img {
-        left: 0;
-    }
-
-/* Moitié droite */
-.boosterRight {
-    clip-path: inset(0 0 0 50%);
+.boosterBottom {
+    clip-path: inset(25% 0 0 0);
 }
 
-    .boosterRight img {
-        left: -100%;
-    }
+/* ================================
+   PHASE 1 : TREMBLEMENT
+================================ */
 
-/* Phase 1 : tremblement */
 .boosterAnimation.shake .boosterPack {
     animation: boosterShake 0.12s linear infinite;
 }
 
 @keyframes boosterShake {
-    0% {
+    0%, 100% {
         transform: translateX(0) rotate(0);
     }
 
     25% {
-        transform: translateX(-5px) rotate(-2deg);
-    }
-
-    50% {
-        transform: translateX(5px) rotate(2deg);
-    }
-
-    75% {
         transform: translateX(-4px) rotate(-1deg);
     }
 
-    100% {
-        transform: translateX(0) rotate(0);
+    50% {
+        transform: translateX(4px) rotate(1deg);
+    }
+
+    75% {
+        transform: translateX(-3px) rotate(-0.5deg);
     }
 }
 
-/* Phase 2 : déchirure */
-.boosterAnimation.tear .boosterLeft {
-    animation: tearLeft 0.7s ease-in forwards;
+/* ================================
+   PHASE 2 : DÉCHIRURE
+================================ */
+
+/* La partie supérieure part vers le haut */
+
+.boosterAnimation.tear .boosterTop {
+    animation: tearTop 0.7s ease-in forwards;
 }
 
-.boosterAnimation.tear .boosterRight {
-    animation: tearRight 0.7s ease-in forwards;
+/* La partie inférieure part vers le bas */
+
+.boosterAnimation.tear .boosterBottom {
+    animation: tearBottom 0.7s ease-in forwards;
 }
 
-@keyframes tearLeft {
+@keyframes tearTop {
     0% {
-        transform: translateX(0) rotateY(0);
+        transform: translateY(0) rotate(0);
+        opacity: 1;
     }
 
     100% {
-        transform: translateX(-180px) rotateY(45deg);
+        transform: translateY(-115px) rotate(-8deg);
         opacity: 0;
     }
 }
 
-@keyframes tearRight {
+@keyframes tearBottom {
     0% {
-        transform: translateX(0) rotateY(0);
+        transform: translateY(0) rotate(0);
+        opacity: 1;
     }
 
     100% {
-        transform: translateX(180px) rotateY(-45deg);
+        transform: translateY(115px) rotate(5deg);
         opacity: 0;
     }
 }
 
-/* Lumière centrale */
+/* ================================
+   PHASE 3 : EXPLOSION LUMINEUSE
+================================ */
+
 .boosterLight {
     position: absolute;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    background: white;
-    opacity: 0;
     z-index: 2;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    opacity: 0;
     pointer-events: none;
+    background: radial-gradient( circle, rgba(255, 255, 255, 1) 0%, rgba(180, 230, 255, 0.95) 20%, rgba(90, 170, 255, 0.6) 45%, rgba(90, 170, 255, 0) 75% );
 }
 
-/* Éclat lumineux lors de l'ouverture */
 .boosterAnimation.burst .boosterLight {
-    animation: boosterFlash 0.9s ease-out forwards;
+    animation: boosterLightBurst 0.9s ease-out forwards;
 }
 
-@keyframes boosterFlash {
+@keyframes boosterLightBurst {
     0% {
         opacity: 0;
         transform: scale(0.2);
-        box-shadow: 0 0 0 white;
     }
 
-    30% {
+    25% {
         opacity: 1;
-        transform: scale(4);
-        box-shadow: 0 0 40px 20px #fff, 0 0 100px 50px #02c2e8, 0 0 160px 80px #a855f7;
+        transform: scale(5);
+    }
+
+    65% {
+        opacity: 0.8;
+        transform: scale(8);
     }
 
     100% {
         opacity: 0;
         transform: scale(12);
-        box-shadow: 0 0 100px 50px #02c2e8, 0 0 180px 90px #a855f7;
     }
 }
 
-/* Particules */
+/* ================================
+   PARTICULES
+================================ */
+
 .boosterParticles {
     position: absolute;
     inset: 0;
-    z-index: 4;
+    z-index: 3;
+    overflow: hidden;
     pointer-events: none;
 }
 
@@ -3719,140 +3737,156 @@ body.radar-page-active #site-footer {
         position: absolute;
         left: 50%;
         top: 50%;
-        width: 5px;
-        height: 5px;
+        width: 6px;
+        height: 6px;
         border-radius: 50%;
-        background: #fff;
-        box-shadow: 0 0 8px #02c2e8, 0 0 16px #a855f7;
         opacity: 0;
+        background: #fff;
+        box-shadow: 0 0 8px rgba(255, 255, 255, 0.9), 0 0 18px rgba(100, 190, 255, 0.8);
     }
+
+/* Chaque particule part dans une direction différente */
 
 .boosterAnimation.burst .boosterParticles span {
     animation: particleBurst 0.8s ease-out forwards;
 }
 
-/* Trajectoires différentes */
-.boosterParticles span:nth-child(6n + 1) {
-    --dx: -150px;
-    --dy: -170px;
-}
+    /* 18 trajectoires différentes */
 
-.boosterParticles span:nth-child(6n + 2) {
-    --dx: 130px;
-    --dy: -190px;
-}
+    .boosterAnimation.burst .boosterParticles span:nth-child(1) {
+        --particle-x: -120px;
+        --particle-y: -140px;
+    }
 
-.boosterParticles span:nth-child(6n + 3) {
-    --dx: -190px;
-    --dy: 20px;
-}
+    .boosterAnimation.burst .boosterParticles span:nth-child(2) {
+        --particle-x: 100px;
+        --particle-y: -160px;
+    }
 
-.boosterParticles span:nth-child(6n + 4) {
-    --dx: 180px;
-    --dy: 50px;
-}
+    .boosterAnimation.burst .boosterParticles span:nth-child(3) {
+        --particle-x: -160px;
+        --particle-y: -40px;
+    }
 
-.boosterParticles span:nth-child(6n + 5) {
-    --dx: -90px;
-    --dy: 180px;
-}
+    .boosterAnimation.burst .boosterParticles span:nth-child(4) {
+        --particle-x: 150px;
+        --particle-y: -70px;
+    }
 
-.boosterParticles span:nth-child(6n) {
-    --dx: 100px;
-    --dy: 160px;
-}
+    .boosterAnimation.burst .boosterParticles span:nth-child(5) {
+        --particle-x: -140px;
+        --particle-y: 80px;
+    }
 
-.boosterParticles span:nth-child(odd) {
-    animation-delay: 0.05s;
-}
+    .boosterAnimation.burst .boosterParticles span:nth-child(6) {
+        --particle-x: 130px;
+        --particle-y: 110px;
+    }
+
+    .boosterAnimation.burst .boosterParticles span:nth-child(7) {
+        --particle-x: -60px;
+        --particle-y: -180px;
+    }
+
+    .boosterAnimation.burst .boosterParticles span:nth-child(8) {
+        --particle-x: 60px;
+        --particle-y: 170px;
+    }
+
+    .boosterAnimation.burst .boosterParticles span:nth-child(9) {
+        --particle-x: -180px;
+        --particle-y: 10px;
+    }
+
+    .boosterAnimation.burst .boosterParticles span:nth-child(10) {
+        --particle-x: 180px;
+        --particle-y: -10px;
+    }
+
+    .boosterAnimation.burst .boosterParticles span:nth-child(11) {
+        --particle-x: -100px;
+        --particle-y: 150px;
+    }
+
+    .boosterAnimation.burst .boosterParticles span:nth-child(12) {
+        --particle-x: 90px;
+        --particle-y: -130px;
+    }
+
+    .boosterAnimation.burst .boosterParticles span:nth-child(13) {
+        --particle-x: -40px;
+        --particle-y: 180px;
+    }
+
+    .boosterAnimation.burst .boosterParticles span:nth-child(14) {
+        --particle-x: 160px;
+        --particle-y: 60px;
+    }
+
+    .boosterAnimation.burst .boosterParticles span:nth-child(15) {
+        --particle-x: -170px;
+        --particle-y: -100px;
+    }
+
+    .boosterAnimation.burst .boosterParticles span:nth-child(16) {
+        --particle-x: 40px;
+        --particle-y: -190px;
+    }
+
+    .boosterAnimation.burst .boosterParticles span:nth-child(17) {
+        --particle-x: -110px;
+        --particle-y: 120px;
+    }
+
+    .boosterAnimation.burst .boosterParticles span:nth-child(18) {
+        --particle-x: 110px;
+        --particle-y: 70px;
+    }
 
 @keyframes particleBurst {
     0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.3);
+    }
+
+    15% {
         opacity: 1;
-        transform: translate(-50%, -50%) scale(0.5);
     }
 
     100% {
         opacity: 0;
-        transform: translate( calc(-50% + var(--dx)), calc(-50% + var(--dy)) ) scale(0);
+        transform: translate( calc(-50% + var(--particle-x)), calc(-50% + var(--particle-y)) ) scale(0);
     }
 }
 
-/* Cartes qui jaillissent */
-.boosterCardsBurst {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    width: 100px;
-    height: 140px;
-    z-index: 5;
-    pointer-events: none;
+/* ================================
+   PHASE 4 : RÉAPPARITION DU BOOSTER
+================================ */
+
+.boosterReformed {
+    display: block;
+    width: 220px;
+    height: 320px;
+    object-fit: contain;
+    animation: boosterReappear 0.45s ease-out both;
 }
 
-.burstCard {
-    position: absolute;
-    width: 100px;
-    height: auto;
-    left: 0;
-    top: 0;
-    border-radius: 8px;
-    opacity: 0;
-    box-shadow: 0 0 20px rgba(2, 194, 232, 0.6);
-}
-
-.boosterAnimation.burst .burstCard {
-    animation: cardBurst 0.8s cubic-bezier(.15, .8, .3, 1) forwards;
-}
-
-.burstCard0 {
-    --card-x: -120px;
-    --card-y: -160px;
-    --card-rotate: -25deg;
-}
-
-.burstCard1 {
-    --card-x: -65px;
-    --card-y: -200px;
-    --card-rotate: -12deg;
-}
-
-.burstCard2 {
-    --card-x: 0px;
-    --card-y: -220px;
-    --card-rotate: 0deg;
-}
-
-.burstCard3 {
-    --card-x: 65px;
-    --card-y: -190px;
-    --card-rotate: 12deg;
-}
-
-.burstCard4 {
-    --card-x: 120px;
-    --card-y: -150px;
-    --card-rotate: 25deg;
-}
-
-@keyframes cardBurst {
+@keyframes boosterReappear {
     0% {
         opacity: 0;
-        transform: translate(0, 0) scale(0.2) rotate(0);
+        transform: scale(0.75);
+        filter: brightness(2);
     }
 
-    35% {
+    60% {
         opacity: 1;
+        transform: scale(1.05);
+        filter: brightness(1.5);
     }
 
     100% {
         opacity: 1;
-        transform: translate(var(--card-x), var(--card-y)) scale(1) rotate(var(--card-rotate));
-    }
-}
-
-/* Accessibilité */
-@media (prefers-reduced-motion: reduce) {
-    .boosterAnimation.shake .boosterPack {
-        animation: none;
+        transform: scale(1);
+        filter: brightness(1);
     }
 }

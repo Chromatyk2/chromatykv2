@@ -139,11 +139,15 @@ function Cards() {
             setOpeningPhase("tear");
             await wait(700);
 
-            // Phase 3 : explosion lumineuse et sortie des cartes
+            // Phase 3 : explosion lumineuse
             setOpeningPhase("burst");
             await wait(900);
 
-            // Phase 4 : affichage des cartes avec ton système actuel
+            // Phase 4 : le booster réapparaît entier
+            setOpeningPhase("reform");
+            await wait(500);
+
+            // Phase 5 : affichage des cartes
             setOpeningPhase("idle");
             startOpening(data.openedCards);
 
@@ -601,50 +605,43 @@ function Cards() {
                             {openingLoading ? (
                                 <Loader />
                             ) : openingPhase !== "idle" ? (
-                                <div className={`boosterAnimation ${openingPhase}`}>
+                                    <div className={`boosterAnimation ${openingPhase}`}>
 
-                                    {/* Image du booster avant son ouverture */}
-                                    <div className="boosterPack">
-
-                                        <div className="boosterHalf boosterLeft">
+                                        {openingPhase === "reform" ? (
                                             <img
                                                 src={openingBoosterImage}
                                                 alt=""
+                                                className="boosterReformed"
                                             />
-                                        </div>
+                                        ) : (
+                                            <>
+                                                <div className="boosterPack">
 
-                                        <div className="boosterHalf boosterRight">
-                                            <img
-                                                src={openingBoosterImage}
-                                                alt=""
-                                            />
-                                        </div>
+                                                    {/* Partie supérieure : 25 % de l'image */}
+                                                    <div className="boosterHalf boosterTop">
+                                                        <img src={openingBoosterImage} alt="" />
+                                                    </div>
+
+                                                    {/* Partie inférieure : 75 % de l'image */}
+                                                    <div className="boosterHalf boosterBottom">
+                                                        <img src={openingBoosterImage} alt="" />
+                                                    </div>
+
+                                                </div>
+
+                                                {/* Flash lumineux */}
+                                                <div className="boosterLight" />
+
+                                                {/* Particules */}
+                                                <div className="boosterParticles">
+                                                    {Array.from({ length: 18 }, (_, i) => (
+                                                        <span key={i} />
+                                                    ))}
+                                                </div>
+                                            </>
+                                        )}
 
                                     </div>
-
-                                    {/* Lumière au centre du booster */}
-                                    <div className="boosterLight" />
-
-                                    {/* Particules lumineuses */}
-                                    <div className="boosterParticles">
-                                        {Array.from({ length: 18 }, (_, i) => (
-                                            <span key={i} />
-                                        ))}
-                                    </div>
-
-                                    {/* Cartes qui jaillissent du paquet */}
-                                    <div className="boosterCardsBurst">
-                                        {openedCards.slice(0, 5).map((card, i) => (
-                                            <img
-                                                key={`${card.id}-${i}`}
-                                                src="/backCard.png"
-                                                alt=""
-                                                className={`burstCard burstCard${i}`}
-                                            />
-                                        ))}
-                                    </div>
-
-                                </div>
                             ) : (
                                 <div className="openingWrapper">
 
