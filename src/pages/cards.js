@@ -507,7 +507,16 @@ function Cards() {
 
                         <div className="bulkCardsGrid">
                             {(bulkResult.cardsSummary || []).map(card => (
-                                <div key={card.tcgdex_id} className="bulkCardItem">
+                                <div
+                                    key={card.tcgdex_id}
+                                    className={`bulkCardItem ${card.isNew ? "bulkCardNew" : ""}`}
+                                >
+                                    {card.isNew && (
+                                        <div className="bulkNewCardBadge">
+                                            ✨ NOUVELLE CARTE ✨
+                                        </div>
+                                    )}
+
                                     <img
                                         src={`${card.image}/high.webp`}
                                         alt={card.name || card.tcgdex_id}
