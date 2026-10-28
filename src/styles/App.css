@@ -3890,24 +3890,3 @@ body.radar-page-active #site-footer {
         filter: brightness(1);
     }
 }
-/* Le booster disparaît pendant le flash */
-.boosterAnimation.burst .boosterPack {
-    animation: boosterFlashDisappear 0.65s ease-out forwards;
-}
-
-@keyframes boosterFlashDisappear {
-    0% {
-        opacity: 1;
-        transform: scale(1);
-    }
-
-    30% {
-        opacity: 1;
-        transform: scale(1.05);
-    }
-
-    100% {
-        opacity: 0;
-        transform: scale(0.85);
-    }
-}
