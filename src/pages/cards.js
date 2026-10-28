@@ -699,7 +699,7 @@ function Cards() {
                                         )}
                                     </button>
                                     {/* NOUVEAU : boutons d'ouverture groupée */}
-                                    {isAdmin && isShop && !param && availableBulkOptions.length > 0 && (
+                                    {isShop && !param && availableBulkOptions.length > 0 && (
                                         <div className="bulkBoosterButtons">
                                             {availableBulkOptions.map(quantity => (
                                                 <button
