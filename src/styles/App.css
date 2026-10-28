@@ -3915,14 +3915,22 @@ body.radar-page-active #site-footer {
 .boosterAnimation.tear .boosterParticles span {
     animation: particleBurst 0.7s ease-out forwards;
 }
-.boosterAnimation.tear .boosterLight {
+/* Flash après la déchirure, derrière le booster */
+.boosterAnimation.burst .boosterLight {
     z-index: 0;
+    animation: boosterLightBurst 0.2s ease-out forwards;
 }
 
-.boosterAnimation.tear .boosterPack {
+/* Le booster passe devant le flash */
+.boosterAnimation.burst .boosterPack {
     z-index: 1;
 }
 
-.boosterAnimation.tear .boosterParticles {
+/* Les particules restent devant */
+.boosterAnimation.burst .boosterParticles {
     z-index: 2;
 }
+
+    .boosterAnimation.burst .boosterParticles span {
+        animation: particleBurst 0.2s ease-out forwards;
+    }
