@@ -45,7 +45,8 @@ function Cards() {
     const [syncLoading, setSyncLoading] = useState(false);
     const [syncMessage, setSyncMessage] = useState("");
     const [syncResults, setSyncResults] = useState([]);
-
+    const [openingPhase, setOpeningPhase] = useState("idle");
+    const [openingBoosterImage, setOpeningBoosterImage] = useState(null);
     const isAdmin = String(user?.id) === "80482655";
 
     const startOpening = (cards) => {
@@ -93,14 +94,20 @@ function Cards() {
             })
         );
     };
+    const openBooster = async (setTcgdexId, boosterImage) => {
+        if (openingLoading || opening) return;
 
-    const openBooster = async (setTcgdexId) => {
         setShowImpact(false);
         setOpeningLoading(true);
         setOpening(true);
+        setOpeningPhase("idle");
+        setOpeningBoosterImage(boosterImage);
 
         const startTime = Date.now();
         const userId = user.id;
+
+        const wait = (ms) =>
+            new Promise(resolve => setTimeout(resolve, ms));
 
         try {
             const { data } = await Axios.post(
@@ -112,16 +119,32 @@ function Cards() {
             );
 
             if (!data.success) {
+                setOpening(false);
                 return;
             }
 
+            // Précharger les cartes avant de commencer l'animation
             await preloadCards(data.openedCards);
 
             setBoosterCurrency(data.boosterCurrency);
             setProgress(data.progress);
             setGlobalProgress(data.globalProgress);
 
-            // Afficher les cartes immédiatement
+            // Phase 1 : le booster tremble
+            setOpeningLoading(false);
+            setOpeningPhase("shake");
+            await wait(900);
+
+            // Phase 2 : le booster se déchire
+            setOpeningPhase("tear");
+            await wait(700);
+
+            // Phase 3 : explosion lumineuse et sortie des cartes
+            setOpeningPhase("burst");
+            await wait(900);
+
+            // Phase 4 : affichage des cartes avec ton système actuel
+            setOpeningPhase("idle");
             startOpening(data.openedCards);
 
             // Actualiser la collection en arrière-plan
@@ -145,13 +168,12 @@ function Cards() {
 
         } catch (err) {
             console.error(err);
+            setOpening(false);
         } finally {
             const elapsed = Date.now() - startTime;
 
             if (elapsed < 500) {
-                await new Promise(resolve =>
-                    setTimeout(resolve, 500 - elapsed)
-                );
+                await wait(500 - elapsed);
             }
 
             setOpeningLoading(false);
@@ -475,9 +497,7 @@ function Cards() {
                             <div
                                 key={set.id}
                                 className="boosterCard"
-                                onClick={() =>
-                                    openBooster(set.tcgdex_id)
-                                }
+                                onClick={() => openBooster(set.tcgdex_id, set.logo)}
                             >
                                 {isHot && (
                                     <div className="hotBadge">
@@ -580,6 +600,51 @@ function Cards() {
                         >
                             {openingLoading ? (
                                 <Loader />
+                            ) : openingPhase !== "idle" ? (
+                                <div className={`boosterAnimation ${openingPhase}`}>
+
+                                    {/* Image du booster avant son ouverture */}
+                                    <div className="boosterPack">
+
+                                        <div className="boosterHalf boosterLeft">
+                                            <img
+                                                src={openingBoosterImage}
+                                                alt=""
+                                            />
+                                        </div>
+
+                                        <div className="boosterHalf boosterRight">
+                                            <img
+                                                src={openingBoosterImage}
+                                                alt=""
+                                            />
+                                        </div>
+
+                                    </div>
+
+                                    {/* Lumière au centre du booster */}
+                                    <div className="boosterLight" />
+
+                                    {/* Particules lumineuses */}
+                                    <div className="boosterParticles">
+                                        {Array.from({ length: 18 }, (_, i) => (
+                                            <span key={i} />
+                                        ))}
+                                    </div>
+
+                                    {/* Cartes qui jaillissent du paquet */}
+                                    <div className="boosterCardsBurst">
+                                        {openedCards.slice(0, 5).map((card, i) => (
+                                            <img
+                                                key={`${card.id}-${i}`}
+                                                src="/backCard.png"
+                                                alt=""
+                                                className={`burstCard burstCard${i}`}
+                                            />
+                                        ))}
+                                    </div>
+
+                                </div>
                             ) : (
                                 <div className="openingWrapper">
 
