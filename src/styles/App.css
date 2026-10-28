@@ -3915,3 +3915,14 @@ body.radar-page-active #site-footer {
 .boosterAnimation.tear .boosterParticles span {
     animation: particleBurst 0.7s ease-out forwards;
 }
+.boosterAnimation.tear .boosterLight {
+    z-index: 0;
+}
+
+.boosterAnimation.tear .boosterPack {
+    z-index: 1;
+}
+
+.boosterAnimation.tear .boosterParticles {
+    z-index: 2;
+}
