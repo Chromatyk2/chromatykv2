@@ -4074,19 +4074,19 @@ body.radar-page-active #site-footer {
     }
 
 .bulkNewCardBadge {
-    position: absolute;
-    top: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 2;
-    padding: 5px 10px;
+    background: linear-gradient(135deg, #087fbd, #02c2e8);
     border: 1px solid #7df9ff;
     border-radius: 20px;
-    background: linear-gradient(135deg, #087fbd, #02c2e8);
-    color: white;
-    font-size: 11px;
+    box-shadow: 0 0 12px #02c2e899;
+    color: #fff;
+    font-size: 9px;
     font-weight: 800;
+    left: 50%;
+    padding: 5px 10px;
+    position: absolute;
     text-align: center;
+    top: -1px;
+    transform: translateX(-50%);
     white-space: nowrap;
-    box-shadow: 0 0 12px rgba(2, 194, 232, 0.6);
+    z-index: 2;
 }
