@@ -4055,3 +4055,9 @@ body.radar-page-active #site-footer {
     font-weight: bold;
     cursor: pointer;
 }
+.bulkCardInfos span {
+    font-size: 15px;
+}
+.bulkCardInfos strong {
+    font-size: 20px;
+}
