@@ -130,26 +130,24 @@ function Cards() {
             setProgress(data.progress);
             setGlobalProgress(data.globalProgress);
 
-            // Phase 1 : le booster tremble
-            setOpeningLoading(false);
+            // 1. Tremblement
             setOpeningPhase("shake");
-            await wait(900);
+            await new Promise(resolve => setTimeout(resolve, 900));
 
-            // Phase 2 : le booster se déchire
+            // 2. Déchirure
             setOpeningPhase("tear");
-            await wait(700);
+            await new Promise(resolve => setTimeout(resolve, 700));
 
-            // Phase 3 : explosion lumineuse
+            // 3. Flash lumineux
             setOpeningPhase("burst");
-            await wait(900);
+            await new Promise(resolve => setTimeout(resolve, 650));
 
-            // Phase 4 : le booster réapparaît entier
-            setOpeningPhase("reform");
-            await wait(500);
-
-            // Phase 5 : affichage des cartes
+            // 4. Le booster disparaît et les cartes prennent le relais
             setOpeningPhase("idle");
             startOpening(data.openedCards);
+
+            // Masquer le loader si nécessaire
+            setOpeningLoading(false);
 
             // Actualiser la collection en arrière-plan
             const profileUser = param || user.id;
@@ -605,43 +603,25 @@ function Cards() {
                             {openingLoading ? (
                                 <Loader />
                             ) : openingPhase !== "idle" ? (
-                                    <div className={`boosterAnimation ${openingPhase}`}>
+                                <div className={`boosterAnimation ${openingPhase}`}>
+                                    <div className="boosterPack">
+                                        <div className="boosterHalf boosterTop">
+                                            <img src={openingBoosterImage} alt="" />
+                                        </div>
 
-                                        {openingPhase === "reform" ? (
-                                            <img
-                                                src={openingBoosterImage}
-                                                alt=""
-                                                className="boosterReformed"
-                                            />
-                                        ) : (
-                                            <>
-                                                <div className="boosterPack">
-
-                                                    {/* Partie supérieure : 25 % de l'image */}
-                                                    <div className="boosterHalf boosterTop">
-                                                        <img src={openingBoosterImage} alt="" />
-                                                    </div>
-
-                                                    {/* Partie inférieure : 75 % de l'image */}
-                                                    <div className="boosterHalf boosterBottom">
-                                                        <img src={openingBoosterImage} alt="" />
-                                                    </div>
-
-                                                </div>
-
-                                                {/* Flash lumineux */}
-                                                <div className="boosterLight" />
-
-                                                {/* Particules */}
-                                                <div className="boosterParticles">
-                                                    {Array.from({ length: 18 }, (_, i) => (
-                                                        <span key={i} />
-                                                    ))}
-                                                </div>
-                                            </>
-                                        )}
-
+                                        <div className="boosterHalf boosterBottom">
+                                            <img src={openingBoosterImage} alt="" />
+                                        </div>
                                     </div>
+
+                                    <div className="boosterLight" />
+
+                                    <div className="boosterParticles">
+                                        {Array.from({ length: 18 }, (_, i) => (
+                                            <span key={i} />
+                                        ))}
+                                    </div>
+                                </div>
                             ) : (
                                 <div className="openingWrapper">
 
