@@ -32,7 +32,8 @@ function Cards() {
     const [showNewBadge, setShowNewBadge] = useState(false);
     const [isTransitioning, setIsTransitioning] = useState(false);
     const [globalProgress, setGlobalProgress] = useState(null);
-
+    const [bulkResult, setBulkResult] = useState(null);
+    const [bulkLoading, setBulkLoading] = useState(false);
     const [searchParams] = useSearchParams();
     const param = searchParams.get("user");
 
@@ -48,7 +49,11 @@ function Cards() {
     const [openingPhase, setOpeningPhase] = useState("idle");
     const [openingBoosterImage, setOpeningBoosterImage] = useState(null);
     const isAdmin = String(user?.id) === "80482655";
+    const bulkOptions = [10, 25, 50, 100, 500];
 
+    const availableBulkOptions = bulkOptions.filter(
+        quantity => boosterCurrency >= quantity
+    );
     const startOpening = (cards) => {
         setOpenedCards(cards);
         setCurrentCard(0);
@@ -181,7 +186,61 @@ function Cards() {
             setOpeningLoading(false);
         }
     };
+    const openBoostersBulk = async (setTcgdexId, quantity) => {
+        if (openingLoading || opening || bulkLoading) return;
+        if (!user?.id || boosterCurrency < quantity) return;
 
+        setBulkLoading(true);
+        setBulkResult(null);
+
+        try {
+            const { data } = await Axios.post(
+                "/api/card/openBoostersBulk",
+                {
+                    userId: user.id,
+                    setTcgdexId,
+                    quantity
+                }
+            );
+
+            if (!data.success) {
+                window.alert(data.message || "Impossible d'ouvrir les boosters.");
+                return;
+            }
+
+            // Mettre à jour le solde et les statistiques de progression
+            setBoosterCurrency(data.boosterCurrency);
+            setProgress(data.progress);
+            setGlobalProgress(data.globalProgress);
+
+            // Conserver le résultat pour afficher le récapitulatif
+            setBulkResult(data);
+
+            // Recharger la collection et les données de la boutique
+            const profileUser = param || user.id;
+
+            const { data: updatedData } = await Axios.get(
+                `/api/card/init/${profileUser}`
+            );
+
+            setCollection(updatedData.collection);
+            setRotationSets(updatedData.rotationSets);
+            setProgress(updatedData.progress);
+            setBoosterCurrency(updatedData.boosterCurrency);
+            setGlobalProgress(updatedData.globalProgress);
+            setOwnedSets(updatedData.ownedSets);
+
+        } catch (err) {
+            console.error("Erreur lors de l'ouverture groupée :", err);
+
+            window.alert(
+                err.response?.data?.message ||
+                "Une erreur est survenue pendant l'ouverture des boosters."
+            );
+        } finally {
+            setBulkLoading(false);
+        }
+    };
     // Vérification et synchronisation forcée des sets de la rotation actuelle
     const syncCurrentRotation = async () => {
         if (!isAdmin) {
@@ -416,7 +475,63 @@ function Cards() {
                     </button>
                 </div>
             )}
+            {bulkResult && (
+                <div className="bulkResultOverlay">
+                    <div className="bulkResultModal">
+                        <button
+                            type="button"
+                            className="bulkResultClose"
+                            onClick={() => setBulkResult(null)}
+                        >
+                            ✕
+                        </button>
 
+                        <h2>
+                            {bulkResult.quantityOpened} boosters ouverts !
+                        </h2>
+
+                        <h3>Résumé par rareté</h3>
+
+                        <div className="bulkRaritySummary">
+                            {Object.entries(bulkResult.raritySummary || {}).map(
+                                ([rarity, quantity]) => (
+                                    <div key={rarity} className="bulkRarityItem">
+                                        <span>{rarity}</span>
+                                        <strong>×{quantity}</strong>
+                                    </div>
+                                )
+                            )}
+                        </div>
+
+                        <h3>Cartes obtenues</h3>
+
+                        <div className="bulkCardsGrid">
+                            {(bulkResult.cardsSummary || []).map(card => (
+                                <div key={card.tcgdex_id} className="bulkCardItem">
+                                    <img
+                                        src={`${card.image}/high.webp`}
+                                        alt={card.name || card.tcgdex_id}
+                                        loading="lazy"
+                                    />
+
+                                    <div className="bulkCardInfos">
+                                        <span>{card.name || card.tcgdex_id}</span>
+                                        <strong>×{card.quantity}</strong>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+
+                        <button
+                            type="button"
+                            onClick={() => setBulkResult(null)}
+                        >
+                            Continuer
+                        </button>
+                    </div>
+                </div>
+
+            )}
             {/* Bouton de synchronisation visible uniquement pour user.id 80482655 */}
             {isAdmin && isShop && !param && (
                 <div
@@ -583,6 +698,24 @@ function Cards() {
                                             "Aucun booster disponible"
                                         )}
                                     </button>
+                                    {/* NOUVEAU : boutons d'ouverture groupée */}
+                                    {isAdmin && isShop && !param && availableBulkOptions.length > 0 && (
+                                        <div className="bulkBoosterButtons">
+                                            {availableBulkOptions.map(quantity => (
+                                                <button
+                                                    key={quantity}
+                                                    type="button"
+                                                    onClick={(e) => {
+                                                        e.stopPropagation();
+                                                        openBoostersBulk(set.tcgdex_id, quantity);
+                                                    }}
+                                                    disabled={openingLoading || opening || bulkLoading}
+                                                >
+                                                    {bulkLoading ? "..." : `×${quantity}`}
+                                                </button>
+                                            ))}
+                                        </div>
+                                    )}
                                 </div>
                             </div>
                         );

@@ -3934,3 +3934,124 @@ body.radar-page-active #site-footer {
     .boosterAnimation.burst .boosterParticles span {
         animation: particleBurst 0.2s ease-out forwards;
     }
+.bulkBoosterButtons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 10px;
+}
+
+    .bulkBoosterButtons button {
+        padding: 8px 12px;
+        border: 1px solid #02c2e8;
+        border-radius: 8px;
+        background: #172033;
+        color: #fff;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background 0.2s, transform 0.2s;
+    }
+
+        .bulkBoosterButtons button:hover:not(:disabled) {
+            background: #2446ab;
+            transform: translateY(-2px);
+        }
+
+        .bulkBoosterButtons button:disabled {
+            opacity: 0.5;
+            cursor: wait;
+        }
+
+.bulkResultOverlay {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.85);
+}
+
+.bulkResultModal {
+    position: relative;
+    width: min(900px, 100%);
+    max-height: 85vh;
+    overflow-y: auto;
+    padding: 25px;
+    border: 2px solid #02c2e8;
+    border-radius: 16px;
+    background: #172033;
+    color: #fff8dc;
+    text-align: center;
+}
+
+.bulkResultClose {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 8px;
+    background: #303c52;
+    color: white;
+    cursor: pointer;
+}
+
+.bulkRaritySummary {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin: 15px 0 25px;
+}
+
+.bulkRarityItem {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    min-width: 100px;
+    padding: 12px;
+    border-radius: 8px;
+    background: #25334a;
+}
+
+.bulkCardsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+    gap: 12px;
+    margin-top: 15px;
+}
+
+.bulkCardItem {
+    overflow: hidden;
+    padding: 8px;
+    border-radius: 8px;
+    background: #25334a;
+}
+
+    .bulkCardItem img {
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+
+.bulkCardInfos {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-top: 8px;
+    overflow-wrap: anywhere;
+}
+
+.bulkResultModal > button:last-child {
+    margin-top: 20px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    background: #02c2e8;
+    color: #172033;
+    font-weight: bold;
+    cursor: pointer;
+}
